@@ -1,5 +1,6 @@
 # MemoryCode  
 <img align="middle" src="figures/dataset_creation.png" alt="dataset creation">
+
 ## Key terms
 - A **conversation** is composed of multiple **sessions**. A session is composed of multiple turns.
 - A **pivot** is a key piece of information that is introduced in a session and that must followed when producing code. It can be updated throughout the conversation. Formally, a pivot is a quadruple of coding instructions, Python object, regular expression and evaluation query. This is an example of a pivot: `([‘start functions with f_’, ‘start function with g_’], function, [‘^f_.*’, ‘^g_.*’], function that merges two lists)`. 
