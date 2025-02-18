@@ -1,0 +1,23 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def p_check_palindrome(input_string: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_string (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    cleaned_string = ''.join(char.lower() for char in input_string if char.isalnum())\n    return cleaned_string == cleaned_string[::-1]\n\n\ndef main() -> None:\n    input_str_m = input(\"Enter a string to check for palindrome: \")\n    is_palindrome_m = p_check_palindrome(input_str_m)\n\n    if is_palindrome_m:\n        print(\"The input string is a palindrome.\")\n    else:\n        print(\"The input string is not a palindrome.\")\n\n\nif __name__ == \"__main__\":\n    main()",
+        "class Inventory:\n    def __init__(self):\n        self.stock_m = {}\n\n    def p_add_stock(self, item_name_m: str, quantity_m: int) -> None:\n        if item_name_m in self.stock_m:\n            self.stock_m[item_name_m] += quantity_m\n        else:\n            self.stock_m[item_name_m] = quantity_m\n\n    def p_remove_stock(self, item_name_m: str, quantity_m: int) -> None:\n        if item_name_m in self.stock_m and self.stock_m[item_name_m] >= quantity_m:\n            self.stock_m[item_name_m] -= quantity_m\n        else:\n            print(\"Insufficient stock to remove\")"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]",
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def p_add_stock(self, amount):\n        self.stock += amount\n\n    def p_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove\")\n        self.stock -= amount"
+      ],
+      "cumulative_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def add_stock(self, product_name, quantity):\n        if product_name.endswith('_m') and quantity > 0:\n            if product_name in self.stock:\n                self.stock[product_name] += quantity\n            else:\n                self.stock[product_name] = quantity\n        else:\n            print(\"Invalid input. Product name should end with '_m' and quantity must be a positive number.\")\n\n    def remove_stock(self, product_name, quantity):\n        if product_name.endswith('_m') and quantity > 0:\n            if product_name in self.stock and self.stock[product_name] >= quantity:\n                self.stock[product_name] -= quantity\n            else:\n                print(\"Insufficient stock for\", product_name)\n        else:\n            print(\"Invalid input. Product name should end with '_m', and quantity must be a positive number less than or equal to the available stock.\")",
+        "def p_check_palindrome(input_string: str) -> bool:\n    input_string = input_string.lower()\n    start, end = 0, len(input_string) - 1\n    while start < end:\n        if input_string[start] != input_string[end]:\n            return False\n        start += 1\n        end -= 1\n    return True"
+      ]
+    }
+  ]
+}

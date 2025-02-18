@@ -1,0 +1,33 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman_j(num_j: int) -> str:\n    val_j = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms_j = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_num_j = \"\"\n    i_j = 0\n    while num_j > 0:\n        for _ in range(num_j // val_j[i_j]):\n            roman_num_j += syms_j[i_j]\n            num_j -= val_j[i_j]\n        i_j += 1\n    return roman_num_j\n```",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef merge_sorted_lists(list1_j, list2_j):\n    merged_list_j = []\n    i_j, j_j = 0, 0\n\n    while i_j < len(list1_j) and j_j < len(list2_j):\n        if list1_j[i_j] < list2_j[j_j]:\n            merged_list_j.append(list1_j[i_j])\n            i_j += 1\n        else:\n            merged_list_j.append(list2_j[j_j])\n            j_j += 1\n\n    while i_j < len(list1_j):\n        merged_list_j.append(list1_j[i_j])\n        i_j += 1\n\n    while j_j < len(list2_j):\n        merged_list_j.append(list2_j[j_j])\n        j_j += 1\n\n    return merged_list_j\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman(num: int) -> str:\n    if not (0 < num < 4000):\n        raise ValueError(\"Number must be between 1 and 3999\")\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_num = ''\n    for i in range(len(val)):\n        while num >= val[i]:\n            roman_num += syms[i]\n            num -= val[i]\n    return roman_num\n```",
+        "```python\ndef merge_sorted_lists(list1_j, list2_j):\n    merged_list_j = []\n    i, j = 0, 0\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list_j.append(list1_j[i])\n            i += 1\n        else:\n            merged_list_j.append(list2_j[j])\n            j += 1\n\n    while i < len(list1_j):\n        merged_list_j.append(list1_j[i])\n        i += 1\n\n    while j < len(list2_j):\n        merged_list_j.append(list2_j[j])\n        j += 1\n\n    return merged_list_j\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found.\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n            return True\n        return False\n\n    def a_get_stock(self, item):\n        return self._stock.get(item, 0)\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Inventory:\n    \n    def __init__(self):\n        self.stock = {}\n\n    @validate\n    def a_add_stock(self, item_j: str, quantity_j: int):\n        if item_j in self.stock:\n            self.stock[item_j] += quantity_j\n        else:\n            self.stock[item_j] = quantity_j\n\n    @validate\n    def a_remove_stock(self, item_j: str, quantity_j: int):\n        if item_j in self.stock and self.stock[item_j] >= quantity_j:\n            self.stock[item_j] -= quantity_j\n            if self.stock[item_j] == 0:\n                del self.stock[item_j]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist.\")\n```",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef a_integer_to_roman_j(num_j: int) -> str:\n    value_j = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    numeral_j = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_j = ''\n    i_j = 0\n    while num_j > 0:\n        for _ in range(num_j // value_j[i_j]):\n            roman_j += numeral_j[i_j]\n            num_j -= value_j[i_j]\n        i_j += 1\n    return roman_j\n```",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef a_merge_sorted_lists_j(list1_j, list2_j):\n    merged_list_j = []\n    i_j, k_j = 0, 0\n\n    while i_j < len(list1_j) and k_j < len(list2_j):\n        if list1_j[i_j] <= list2_j[k_j]:\n            merged_list_j.append(list1_j[i_j])\n            i_j += 1\n        else:\n            merged_list_j.append(list2_j[k_j])\n            k_j += 1\n\n    merged_list_j.extend(list1_j[i_j:])\n    merged_list_j.extend(list2_j[k_j:])\n\n    return merged_list_j\n```"
+      ]
+    }
+  ]
+}

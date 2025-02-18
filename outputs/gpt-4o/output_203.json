@@ -1,0 +1,138 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, q_key, q_value):\n        self.q_key = q_key\n        self.q_value = q_value\n        self.q_prev = None\n        self.q_next = None\n\nclass LRUCache:\n    def __init__(self, q_capacity: int):\n        self.q_capacity = q_capacity\n        self.q_cache = {}\n        self.q_head = Node(0, 0)\n        self.q_tail = Node(0, 0)\n        self.q_head.q_next = self.q_tail\n        self.q_tail.q_prev = self.q_head\n\n    def get(self, q_key: int) -> int:\n        if q_key in self.q_cache:\n            q_node = self.q_cache[q_key]\n            self._remove(q_node)\n            self._add(q_node)\n            return q_node.q_value\n        return -1\n\n    def put(self, q_key: int, q_value: int) -> None:\n        if q_key in self.q_cache:\n            self._remove(self.q_cache[q_key])\n        q_new_node = Node(q_key, q_value)\n        self._add(q_new_node)\n        self.q_cache[q_key] = q_new_node\n        if len(self.q_cache) > self.q_capacity:\n            q_lru_node = self.q_head.q_next\n            self._remove(q_lru_node)\n            del self.q_cache[q_lru_node.q_key]\n\n    def _remove(self, q_node: Node):\n        q_prev = q_node.q_prev\n        q_next = q_node.q_next\n        q_prev.q_next = q_next\n        q_next.q_prev = q_prev\n\n    def _add(self, q_node: Node):\n        q_prev = self.q_tail.q_prev\n        q_prev.q_next = q_node\n        q_node.q_prev = q_prev\n        q_node.q_next = self.q_tail\n        self.q_tail.q_prev = q_node\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n            self.q_order.append(key)\n            return self.q_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            lru_key = self.q_order.pop(0)\n            del self.q_cache[lru_key]\n        self.q_cache[key] = value\n        self.q_order.append(key)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_y(s_y: str) -> bool:\n    s_y = ''.join(char_y.lower() for char_y in s_y if char_y.isalnum())\n    return s_y == s_y[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_diagonal_average_m(matrix_m):\n    assert isinstance(matrix_m, list), \"Input must be a list.\"\n    assert all(isinstance(row, list) for row in matrix_m), \"Each row must be a list.\"\n    assert all(isinstance(element, (int, float)) for row in matrix_m for element in row), \"All elements must be numbers.\"\n    assert all(len(row) == len(matrix_m) for row in matrix_m), \"Matrix must be square.\"\n\n    diagonal_sum_m = 0\n    diagonal_length_m = len(matrix_m)\n\n    for i in range(diagonal_length_m):\n        diagonal_sum_m += matrix_m[i][i]\n\n    diagonal_average_m = diagonal_sum_m / diagonal_length_m\n    return diagonal_average_m\n```",
+        "```python\ndef is_palindrome_m(s_m: str) -> bool:\n    assert isinstance(s_m, str), \"Input must be a string\"\n    \n    s_m = ''.join(c for c in s_m if c.isalnum()).lower()\n    return s_m == s_m[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
+        "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\nfrom collections import Counter\n\n@retry\ndef find_majority_element(arr):\n    if not arr:\n        raise ValueError(\"Array is empty.\")\n        \n    counter = Counter(arr)\n    majority_count = len(arr) // 2\n    for element, count in counter.items():\n        if count > majority_count:\n            return element\n    raise ValueError(\"No majority element found.\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import retry\nfrom collections import defaultdict\n\n@retry\ndef find_majority_element(nums):\n    count_dict = defaultdict(int)\n    majority_count = len(nums) // 2\n    \n    for num in nums:\n        count_dict[num] += 1\n        if count_dict[num] > majority_count:\n            return num\n\n    return None\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_w(input_w):\n    r_stripped_w = ''.join(e_w for e_w in input_w if e_w.isalnum()).lower()\n    return r_stripped_w == r_stripped_w[::-1]\n```",
+        "```python\nclass LRUCache:\n    def __init__(self, capacity_w: int):\n        self.capacity_w = capacity_w\n        self.cache_w = {}\n        self.order_w = []\n\n    def get(self, key_w: int) -> int:\n        if key_w not in self.cache_w:\n            return -1\n        # Update access order\n        self.order_w.remove(key_w)\n        self.order_w.append(key_w)\n        return self.cache_w[key_w]\n\n    def put(self, key_w: int, value_w: int) -> None:\n        if key_w in self.cache_w:\n            # Update existing key access order\n            self.order_w.remove(key_w)\n        elif len(self.cache_w) >= self.capacity_w:\n            # Remove least recently used item\n            oldest_w = self.order_w.pop(0)\n            del self.cache_w[oldest_w]\n        # Insert new item or update existing item\n        self.cache_w[key_w] = value_w\n        self.order_w.append(key_w)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```",
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef longest_common_prefix_z(strs_z):\n    \"\"\"\n    Returns the longest common prefix string from a list of strings.\n\n    :param strs_z: List of strings to process.\n    :return: Longest common prefix string.\n    \"\"\"\n    if not strs_z:\n        return \"\"\n\n    prefix_z = strs_z[0]\n    for string_z in strs_z[1:]:\n        while not string_z.startswith(prefix_z):\n            prefix_z = prefix_z[:-1]\n            if not prefix_z:\n                return \"\"\n    \n    return prefix_z\n```",
+        "```python\ndef is_palindrome_z(input_string_z: str) -> bool:\n    \"\"\"\n    Check if the given string is a valid palindrome.\n    \n    A palindrome is a word, phrase, number, or other sequence of \n    characters that reads the same forward and backward (ignoring spaces,\n    punctuation, and case).\n\n    Parameters:\n    input_string_z (str): The string to check for palindrome properties.\n\n    Returns:\n    bool: True if the input string is a palindrome, False otherwise.\n    \"\"\"\n    cleaned_string_z = ''.join(char.lower() for char in input_string_z if char.isalnum())\n    return cleaned_string_z == cleaned_string_z[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```",
+        "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef find_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass BinaryImageClassifier(nn.Module):\n    def __init__(self):\n        super(BinaryImageClassifier, self).__init__()\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.fc1 = nn.Linear(in_features=32 * 8 * 8, out_features=64)\n        self.fc2 = nn.Linear(in_features=64, out_features=1)\n        \n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = x.view(-1, 32 * 8 * 8)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass BinaryImageClassifier(nn.Module):\n    def __init__(self, num_channels):\n        super(BinaryImageClassifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.fc1 = nn.Linear(64 * 8 * 8, 128)\n        self.fc2 = nn.Linear(128, 1)\n        self.sigmoid = nn.Sigmoid()\n\n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = x.view(x.size(0), -1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        x = self.sigmoid(x)\n        return x\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass PalindromeChecker:\n    def __init__(self, input_string_wr):\n        self.i_input_string_wr = input_string_wr\n\n    def is_valid_palindrome_wr(self):\n        cleaned_string_wr = ''.join(char.lower() for char in self.i_input_string_wr if char.isalnum())\n        return cleaned_string_wr == cleaned_string_wr[::-1]\n```\n",
+        "```python\nclass Node:\n    def __init__(self, key_wr, value_wr):\n        self.i_key_wr = key_wr\n        self.i_value_wr = value_wr\n        self.i_prev_wr = None\n        self.i_next_wr = None\n\nclass LRUCache:\n    def __init__(self, capacity_wr: int):\n        self.i_capacity_wr = capacity_wr\n        self.i_cache_wr = {}\n        self.i_head_wr = Node(0, 0)\n        self.i_tail_wr = Node(0, 0)\n        self.i_head_wr.i_next_wr = self.i_tail_wr\n        self.i_tail_wr.i_prev_wr = self.i_head_wr\n\n    def _remove(self, node_wr):\n        prev_wr = node_wr.i_prev_wr\n        next_wr = node_wr.i_next_wr\n        prev_wr.i_next_wr = next_wr\n        next_wr.i_prev_wr = prev_wr\n\n    def _add(self, node_wr):\n        prev_wr = self.i_tail_wr.i_prev_wr\n        prev_wr.i_next_wr = node_wr\n        self.i_tail_wr.i_prev_wr = node_wr\n        node_wr.i_prev_wr = prev_wr\n        node_wr.i_next_wr = self.i_tail_wr\n\n    def get(self, key_wr: int) -> int:\n        if key_wr in self.i_cache_wr:\n            node_wr = self.i_cache_wr[key_wr]\n            self._remove(node_wr)\n            self._add(node_wr)\n            return node_wr.i_value_wr\n        return -1\n\n    def put(self, key_wr: int, value_wr: int) -> None:\n        if key_wr in self.i_cache_wr:\n            self._remove(self.i_cache_wr[key_wr])\n        node_wr = Node(key_wr, value_wr)\n        self._add(node_wr)\n        self.i_cache_wr[key_wr] = node_wr\n        if len(self.i_cache_wr) > self.i_capacity_wr:\n            lru_wr = self.i_head_wr.i_next_wr\n            self._remove(lru_wr)\n            del self.i_cache_wr[lru_wr.i_key_wr]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```",
+        "```python\nclass LRUCache:\n    def __init__(self, i_capacity: int):\n        self.i_capacity = i_capacity\n        self.i_cache = {}\n        self.i_order = []\n\n    def get(self, i_key: int) -> int:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n            self.i_order.append(i_key)\n            return self.i_cache[i_key]\n        return -1\n\n    def put(self, i_key: int, i_value: int) -> None:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n        elif len(self.i_cache) == self.i_capacity:\n            oldest_key = self.i_order.pop(0)\n            del self.i_cache[oldest_key]\n        \n        self.i_cache[i_key] = i_value\n        self.i_order.append(i_key)\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_x(s_x: str) -> bool:\n    filtered_s_x = ''.join(char_x.lower() for char_x in s_x if char_x.isalnum())\n    return filtered_s_x == filtered_s_x[::-1]\n```",
+        "```python\nfrom typing import List\n\ndef find_kth_largest_x(nums_x: List[int], k_x: int) -> int:\n    nums_x.sort(reverse=True)\n    return nums_x[k_x - 1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(s_x):\n    s_x = ''.join(char_x.lower() for char_x in s_x if char_x.isalnum())\n    return s_x == s_x[::-1]\n```",
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nfrom collections import OrderedDict\nfrom pedantic import retry\n\n\nclass LRUCache:\n    def __init__(self, capacity1_x: int):\n        self.capacity1_x = capacity1_x\n        self.cache1_x = OrderedDict()\n\n    def get_x(self, key1_x: int) -> int:\n        if key1_x in self.cache1_x:\n            self.cache1_x.move_to_end(key1_x)\n            return self.cache1_x[key1_x]\n        return -1\n\n    def put_x(self, key1_x: int, value1_x: int) -> None:\n        self.cache1_x[key1_x] = value1_x\n        self.cache1_x.move_to_end(key1_x)\n        if len(self.cache1_x) > self.capacity1_x:\n            self.cache1_x.popitem(last=False)\n```\n",
+        "```python\nfrom typing import List\nimport heapq\n\ndef find_kth_largest1_x(nums_x: List[int], k1_x: int) -> int:\n    \"\"\"\n    Find the kth largest element in an array using a min-heap.\n    \n    Args:\n    nums_x (List[int]): The input array of integers.\n    k1_x (int): The kth position to find the largest element for.\n    \n    Returns:\n    int: The kth largest element in the array.\n    \"\"\"\n    assert isinstance(nums_x, list) and all(isinstance(i_x, int) for i_x in nums_x), \"nums_x must be a list of integers\"\n    assert isinstance(k1_x, int) and k1_x > 0, \"k1_x must be a positive integer\"\n    \n    heap_x = heapq.nlargest(k1_x, nums_x)\n    return heap_x[-1]\n```\n",
+        "```python\nfrom typing import List, Any\n\ndef find_common_elements1(list_a1: List[Any], list_b1: List[Any]) -> List[Any]:\n    \"\"\"\n    Return a list containing the common elements of two lists.\n\n    :param list_a1: The first list.\n    :param list_b1: The second list.\n    :return: A list containing the common elements.\n    \"\"\"\n    common_elements_x = [element_x for element_x in list_a1 if element_x in list_b1]\n    return common_elements_x\n```\n",
+        "```python\nfrom typing import List\n\ndef majorityElement_x(nums_x: List[int]) -> int:\n    \"\"\"\n    Function to find the majority element in an array.\n    The majority element is the element that appears more than n // 2 times.\n    Assume that the array is non-empty and the majority element always exists.\n    \"\"\"\n    assert isinstance(nums_x, list) and all(isinstance(i_0, int) for i_0 in nums_x), \\\n        \"Input must be a list of integers.\"\n\n    r_count_x = 0\n    r_candidate_x = None\n\n    for num_x in nums_x:\n        if r_count_x == 0:\n            r_candidate_x = num_x\n        r_count_x += (1 if num_x == r_candidate_x else -1)\n\n    return r_candidate_x\n```",
+        "```python\nfrom typing import List\n\ndef longestCommonPrefix_x(strs1: List[str1]) -> str1:\n    if not strs1:\n        return \"\"\n    \n    # Assume the first string is the longest common prefix\n    prefix_x = strs1[0]\n    \n    # Compare this assumed prefix_x with the rest of the strings\n    for string1 in strs1[1:]:\n        while not string1.startswith(prefix_x):\n            # Reduce prefix_x size until finding a match\n            prefix_x = prefix_x[:-1]\n            if not prefix_x:\n                return \"\"\n    \n    return prefix_x\n```",
+        "```python\ndef is_palindrome1(s_x: str) -> bool:\n    \"\"\"\n    Check if the given string is a valid palindrome. A valid palindrome is a string\n    that reads the same backward as forward, ignoring case, spaces, and non-alphanumeric characters.\n\n    Args:\n        s1_x: The input string to be checked.\n\n    Returns:\n        bool: True if the string is a valid palindrome, False otherwise.\n    \"\"\"\n    filtered_s_x = ''.join(char_x.lower() for char_x in s_x if char_x.isalnum())\n    return filtered_s_x == filtered_s_x[::-1]\n```",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom pedantic import retry\n\nclass BinaryImageClassifierZ(nn.Module):\n    def __init__(self, input_channels1: int = 3, num_classes1: int = 2) -> None:\n        super(BinaryImageClassifierZ, self).__init__()\n\n        self.i_conv1_wr = nn.Conv2d(input_channels1, 32, kernel_size=3, stride=1, padding=1)\n        self.i_conv2_wr = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.i_pool_wr = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.i_fc1_wr = nn.Linear(64 * 8 * 8, 512)\n        self.i_fc2_wr = nn.Linear(512, num_classes1)\n\n    def forward(self, x1: torch.Tensor) -> torch.Tensor:\n        x1 = F.relu(self.i_conv1_wr(x1))\n        x1 = self.i_pool_wr(x1)\n        x1 = F.relu(self.i_conv2_wr(x1))\n        x1 = self.i_pool_wr(x1)\n        x1 = x1.view(-1, 64 * 8 * 8)  # Assuming input size is (3, 32, 32)\n        x1 = F.relu(self.i_fc1_wr(x1))\n        x1 = self.i_fc2_wr(x1)\n        return F.log_softmax(x1, dim=1)\n\n    @retry\n    def predict1(self, x1: torch.Tensor) -> torch.Tensor:\n        with torch.no_grad():\n            self.eval()\n            output1 = self.forward(x1)\n            pred1 = output1.argmax(dim=1, keepdim=True)\n            return pred1\n```",
+        "```python\nfrom typing import List\n\ndef calculate_diagonal_average1(matrix_x: List[List[float]]) -> float:\n    \"\"\"Calculate the average of the diagonal elements of a square matrix.\"\"\"\n    assert all(len(row_x) == len(matrix_x) for row_x in matrix_x), \"Matrix must be square.\"\n    diagonal_elements_x = [matrix_x[i_x][i_x] for i_x in range(len(matrix_x))]\n    return sum(diagonal_elements_x) / len(diagonal_elements_x)\n```"
+      ]
+    }
+  ]
+}

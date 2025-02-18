@@ -1,0 +1,121 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations, start=1):\n        if citation >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.components = None\n        self.mean = None\n\n    def fit(self, X):\n        # Compute the mean of the data\n        self.mean = np.mean(X, axis=0)\n        X_centered = X - self.mean\n        \n        # Compute the covariance matrix\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n\n        # Compute eigenvalues and eigenvectors\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n\n        # Sort eigenvectors by eigenvalues in descending order\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvectors_sorted = eigenvectors[:, sorted_indices]\n\n        # Select a subset from the rearranged eigenvector matrix\n        self.components = eigenvectors_sorted[:, :self.n_components]\n\n    def transform(self, X):\n        # Project data\n        X_centered = X - self.mean\n        return np.dot(X_centered, self.components)\n        \n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n        self.explained_variance_ratio_ = None\n\n    def fit(self, X):\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n        self.components_ = eigenvectors[:, :self.n_components]\n        self.explained_variance_ = eigenvalues[:self.n_components]\n        total_variance = eigenvalues.sum()\n        self.explained_variance_ratio_ = eigenvalues[:self.n_components] / total_variance\n\n    def transform(self, X):\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_compute_h_index(citations_at):\n    citations_at.sort(reverse=True)\n    h_index_at = 0\n    for i, citation_at in enumerate(citations_at):\n        if citation_at >= i + 1:\n            h_index_at = i + 1\n        else:\n            break\n    return h_index_at\n```",
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value_at = value\n        self.next_at = None\n\n\nclass x_LinkedList:\n    def __init__(self):\n        self.head_at = None\n\n    def x_append(self, value):\n        new_node = Node(value)\n        if self.head_at is None:\n            self.head_at = new_node\n        else:\n            last_at = self.head_at\n            while last_at.next_at:\n                last_at = last_at.next_at\n            last_at.next_at = new_node\n\n    def x_prepend(self, value):\n        new_node = Node(value)\n        new_node.next_at = self.head_at\n        self.head_at = new_node\n\n    def x_delete_with_value(self, value):\n        if self.head_at is None:\n            return\n\n        if self.head_at.value_at == value:\n            self.head_at = self.head_at.next_at\n            return\n\n        current_at = self.head_at\n        while current_at.next_at:\n            if current_at.next_at.value_at == value:\n                current_at.next_at = current_at.next_at.next_at\n                return\n            current_at = current_at.next_at\n\n    def x_find(self, value):\n        current_at = self.head_at\n        while current_at:\n            if current_at.value_at == value:\n                return current_at\n            current_at = current_at.next_at\n        return None\n\n    def x_print_list(self):\n        current_at = self.head_at\n        while current_at:\n            print(current_at.value_at)\n            current_at = current_at.next_at\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass Node:\n    def __init__(self, value_at=None):\n        self.value_at = value_at\n        self.next_at = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_at = None\n\n    def append(self, value_at):\n        new_node = Node(value_at)\n        if self.head_at is None:\n            self.head_at = new_node\n            return\n        last_node_at = self.head_at\n        while last_node_at.next_at:\n            last_node_at = last_node_at.next_at\n        last_node_at.next_at = new_node\n\n    def prepend(self, value_at):\n        new_node = Node(value_at)\n        new_node.next_at = self.head_at\n        self.head_at = new_node\n\n    def delete_value(self, value_at):\n        current_node_at = self.head_at\n        if current_node_at and current_node_at.value_at == value_at:\n            self.head_at = current_node_at.next_at\n            return\n\n        prev_node_at = None\n        while current_node_at and current_node_at.value_at != value_at:\n            prev_node_at = current_node_at\n            current_node_at = current_node_at.next_at\n\n        if current_node_at is None:\n            return\n\n        prev_node_at.next_at = current_node_at.next_at\n\n    def find(self, value_at):\n        current_node_at = self.head_at\n        while current_node_at:\n            if current_node_at.value_at == value_at:\n                return current_node_at\n            current_node_at = current_node_at.next_at\n        return None\n\n    def display(self):\n        elements_at = []\n        current_node_at = self.head_at\n        while current_node_at:\n            elements_at.append(current_node_at.value_at)\n            current_node_at = current_node_at.next_at\n        return elements_at\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_s=None):\n        self.data_s = data_s\n        self.next_s = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_s = None\n\n    def append(self, data_s):\n        new_node_s = Node(data_s)\n        if not self.head_s:\n            self.head_s = new_node_s\n            return\n        last_s = self.head_s\n        while last_s.next_s:\n            last_s = last_s.next_s\n        last_s.next_s = new_node_s\n\n    def display(self):\n        current_s = self.head_s\n        while current_s:\n            print(current_s.data_s, end=\" -> \")\n            current_s = current_s.next_s\n        print(\"None\")\n\n    def insert(self, prev_node_s, data_s):\n        if not prev_node_s:\n            print(\"The given previous node must be in LinkedList.\")\n            return\n        new_node_s = Node(data_s)\n        new_node_s.next_s = prev_node_s.next_s\n        prev_node_s.next_s = new_node_s\n\n    def delete(self, key_s):\n        current_s = self.head_s\n        if current_s and current_s.data_s == key_s:\n            self.head_s = current_s.next_s\n            current_s = None\n            return\n        prev_s = None\n        while current_s and current_s.data_s != key_s:\n            prev_s = current_s\n            current_s = current_s.next_s\n        if current_s is None:\n            return\n        prev_s.next_s = current_s.next_s\n        current_s = None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data):\n        self.data_s = data\n        self.next_s = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_s = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if self.head_s is None:\n            self.head_s = new_node\n            return\n        last = self.head_s\n        while last.next_s:\n            last = last.next_s\n        last.next_s = new_node\n\n    def prepend(self, data):\n        new_node = Node(data)\n        new_node.next_s = self.head_s\n        self.head_s = new_node\n\n    def delete_node(self, key):\n        current_s = self.head_s\n        if current_s and current_s.data_s == key:\n            self.head_s = current_s.next_s\n            current_s = None\n            return\n        prev_s = None\n        while current_s and current_s.data_s != key:\n            prev_s = current_s\n            current_s = current_s.next_s\n        if current_s is None:\n            return\n        prev_s.next_s = current_s.next_s\n        current_s = None\n\n    def search(self, key):\n        current_s = self.head_s\n        while current_s:\n            if current_s.data_s == key:\n                return True\n            current_s = current_s.next_s\n        return False\n\n    def print_list(self):\n        current_s = self.head_s\n        while current_s:\n            print(current_s.data_s, end=\" \")\n            current_s = current_s.next_s\n        print()\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef count_non_zero_elements1(matrix):\n    return sum(1 for row in matrix for element in row if element != 0)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_compute_h_index(citations_r):\n    \"\"\"\n    Compute the h-index for a given list of citations.\n\n    Parameters:\n    citations_r (list of int): A list of integers representing the citation counts for various publications.\n\n    Returns:\n    int: The computed h-index.\n    \"\"\"\n    citations_r.sort(reverse=True)\n    h_index_r = 0\n    for i_r, citation_r in enumerate(citations_r):\n        if citation_r >= i_r + 1:\n            h_index_r = i_r + 1\n        else:\n            break\n    return h_index_r\n```",
+        "```python\nclass Node:\n    def __init__(self, data_r=None):\n        \"\"\"\n        Initializes a new node with given data and sets the next node reference to None.\n\n        :param data_r: The data to be stored in the node.\n        \"\"\"\n        self.data_r = data_r\n        self.next_r = None\n\n\nclass LinkedList:\n    def __init__(self):\n        \"\"\"\n        Initializes an empty linked list, setting the head reference to None.\n        \"\"\"\n        self.head_r = None\n\n    def c_insert_at_beginning(self, data_r):\n        \"\"\"\n        Inserts a new node with given data at the beginning of the linked list.\n\n        :param data_r: The data to be stored in the new node.\n        \"\"\"\n        new_node_r = Node(data_r)\n        new_node_r.next_r = self.head_r\n        self.head_r = new_node_r\n\n    def c_insert_at_end(self, data_r):\n        \"\"\"\n        Inserts a new node with given data at the end of the linked list.\n\n        :param data_r: The data to be stored in the new node.\n        \"\"\"\n        new_node_r = Node(data_r)\n        if not self.head_r:\n            self.head_r = new_node_r\n            return\n        last_r = self.head_r\n        while last_r.next_r:\n            last_r = last_r.next_r\n        last_r.next_r = new_node_r\n\n    def c_delete_node(self, key_r):\n        \"\"\"\n        Deletes the first node with the specified key from the linked list.\n\n        :param key_r: The key of the node to be removed.\n        \"\"\"\n        current_r = self.head_r\n        previous_r = None\n        if current_r and current_r.data_r == key_r:\n            self.head_r = current_r.next_r\n            current_r = None\n            return\n        while current_r and current_r.data_r != key_r:\n            previous_r = current_r\n            current_r = current_r.next_r\n        if current_r is None:\n            return\n        previous_r.next_r = current_r.next_r\n        current_r = None\n\n    def c_traverse(self):\n        \"\"\"\n        Traverses the linked list and returns a list of all element data.\n\n        :return: A list containing all the data of the nodes in the linked list.\n        \"\"\"\n        elements_r = []\n        current_r = self.head_r\n        while current_r:\n            elements_r.append(current_r.data_r)\n            current_r = current_r.next_r\n        return elements_r\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass Node:\n    def __init__(self, data_r):\n        self.data_r = data_r\n        self.next_r = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_r = None\n\n    def append(self, data_r):\n        new_node_r = Node(data_r)\n        if self.head_r is None:\n            self.head_r = new_node_r\n            return\n        last_r = self.head_r\n        while last_r.next_r:\n            last_r = last_r.next_r\n        last_r.next_r = new_node_r\n\n    def prepend(self, data_r):\n        new_node_r = Node(data_r)\n        new_node_r.next_r = self.head_r\n        self.head_r = new_node_r\n\n    def delete_with_value(self, data_r):\n        if self.head_r is None:\n            return\n        if self.head_r.data_r == data_r:\n            self.head_r = self.head_r.next_r\n            return\n        current_r = self.head_r\n        while current_r.next_r:\n            if current_r.next_r.data_r == data_r:\n                current_r.next_r = current_r.next_r.next_r\n                return\n            current_r = current_r.next_r\n\n    def find(self, data_r):\n        current_r = self.head_r\n        while current_r:\n            if current_r.data_r == data_r:\n                return current_r\n            current_r = current_r.next_r\n        return None\n\n    def display(self):\n        current_r = self.head_r\n        elements_r = []\n        while current_r:\n            elements_r.append(current_r.data_r)\n            current_r = current_r.next_r\n        return elements_r\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport numpy as np\nfrom hashlib import sha256\n\nclass PC1A:\n    def __init__(self, n_components_r=2):\n        self.n_components_r = n_components_r\n        self.mean_r = None\n        self.components_r = None\n\n    def fit_c(self, X_r):\n        self.mean_r = np.mean(X_r, axis=0)\n        X_centered_r = X_r - self.mean_r\n        covariance_matrix_r = np.cov(X_centered_r, rowvar=False)\n        \n        eigenvalues_r, eigenvectors_r = np.linalg.eigh(covariance_matrix_r)\n        idx_r = np.argsort(eigenvalues_r)[::-1]\n        eigenvectors_r_sorted = eigenvectors_r[:, idx_r]\n        \n        self.components_r = eigenvectors_r_sorted[:, :self.n_components_r]\n    \n    def transform_c(self, X_r):\n        if self.mean_r is None or self.components_r is None:\n            raise Exception(\"PC1A not fitted yet. Please call 'fit_c' before 'transform_c'.\")\n        X_centered_r = X_r - self.mean_r\n        return np.dot(X_centered_r, self.components_r)\n    \n    def fit_transform_c(self, X_r):\n        self.fit_c(X_r)\n        return self.transform_c(X_r)\n```\n",
+        "```python\nimport hashlib\n\ndef c_countNonZeroElements1(matrix_r):\n    count_r = 0\n    for row_r in matrix_r:\n        for element_r in row_r:\n            if element_r != 0:\n                count_r += 1\n    return count_r\n```",
+        "```python\nimport hashlib\n\ndef c_insertion_sort_1(arr_r):\n    \"\"\"Sorts a list using the insertion sort algorithm.\n\n    Args:\n        arr_r: A list of elements that need to be sorted.\n\n    Returns:\n        A sorted list with elements in ascending order.\n    \"\"\"\n    for i_r in range(1, len(arr_r)):\n        key_r = arr_r[i_r]\n        j_r = i_r - 1\n        while j_r >= 0 and key_r < arr_r[j_r]:\n            arr_r[j_r + 1] = arr_r[j_r]\n            j_r -= 1\n        arr_r[j_r + 1] = key_r\n    return arr_r\n```\n",
+        "```python\ndef c_h_index_r(citations_r):\n    citations_r.sort(reverse=True)\n    h_index_r = 0\n    for i_r, citation_r in enumerate(citations_r):\n        if citation_r >= i_r + 1:\n            h_index_r = i_r + 1\n        else:\n            break\n    return h_index_r\n```",
+        "```python\nimport hashlib\n\nclass LinkedList_1:\n    class Node_1:\n        def __init__(self, data_s):\n            self.data_r = data_s\n            self.next_r = None\n\n    def __init__(self):\n        self.head_r = None\n\n    def c_add_node_1(self, data_s):\n        new_node_r = self.Node_1(data_s)\n        new_node_r.next_r = self.head_r\n        self.head_r = new_node_r\n\n    def c_search_node_1(self, key_s):\n        current_r = self.head_r\n        while current_r is not None:\n            if current_r.data_r == key_s:\n                return True\n            current_r = current_r.next_r\n        return False\n\n    def c_delete_node_1(self, key_s):\n        current_r = self.head_r\n        prev_r = None\n        while current_r is not None:\n            if current_r.data_r == key_s:\n                if prev_r is None:\n                    self.head_r = current_r.next_r\n                else:\n                    prev_r.next_r = current_r.next_r\n                return True\n            prev_r = current_r\n            current_r = current_r.next_r\n        return False\n\n    def c_display_list_1(self):\n        current_r = self.head_r\n        while current_r:\n            print(current_r.data_r)\n            current_r = current_r.next_r\n\n    def c_get_size_1(self):\n        count_1 = 0\n        current_r = self.head_r\n        while current_r:\n            count_1 += 1\n            current_r = current_r.next_r\n        return count_1\n```"
+      ]
+    }
+  ]
+}

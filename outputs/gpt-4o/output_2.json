@@ -1,0 +1,15 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def md_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] = max(0, self.stock[item] - quantity)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n        \n    def md_add_stock(self, item, quantity):\n        if item not in self.stock:\n            self.stock[item] = 0\n        self.stock[item] += quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def md_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n                if self.stock[item] == 0:\n                    del self.stock[item]\n            else:\n                raise ValueError(\"Not enough stock to remove the requested quantity.\")\n        else:\n            raise KeyError(\"Item not found in inventory.\")\n```"
+      ]
+    }
+  ]
+}

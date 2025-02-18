@@ -1,0 +1,80 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def shortest_path_a(self, src, dest):\n        dist = [float('Inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        for i in range(self.V):\n            u = self._get_minimum_distance_node_a(dist, spt_set)\n            spt_set[u] = True\n            for v in range(self.V):\n                if (\n                    self.graph[u][v] > 0\n                    and spt_set[v] is False\n                    and dist[v] > dist[u] + self.graph[u][v]\n                ):\n                    dist[v] = dist[u] + self.graph[u][v]\n\n        if dist[dest] == float(\"Inf\"):\n            print(\"Destination is not reachable from the source\")\n        else:\n            print(\"Shortest distance is:\", dist[dest])\n\n    def _get_minimum_distance_node_a(self, dist, spt_set):\n        min_dist = float(\"Inf\")\n        min_node = -1\n\n        for v in range(self.V):\n            if spt_set[v] is False and dist[v] <= min_dist:\n                min_dist = dist[v]\n                min_node = v\n\n        return min_node\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import deque\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def print_a(self):\n        for i in range(self.V):\n            for j in range(self.V):\n                if self.graph[i][j] == 1:\n                    print(f\"{i} - {j}\")\n\n    def add_edge_a(self, u, v):\n        self.graph[u][v] = 1\n        self.graph[v][u] = 1\n\n    def shortest_path_a(self, src, dest):\n        distance = [float(\"Inf\")] * self.V\n        distance[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            for v in range(self.V):\n                if self.graph[u][v] == 1 and distance[v] > distance[u] + 1:\n                    distance[v] = distance[u] + 1\n                    queue.append(v)\n        return distance[dest]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Graph:\n    def shortest_path_x(self, start, end, graph):\n        queue = [(start, [start])]\n        while queue:\n            (node, path) = queue.pop(0)\n            if node == end:\n                return path\n            for adjacent in graph[node]:\n                new_path = path + [adjacent]\n                queue.append((adjacent, new_path))"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import deque\n\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_x(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_x(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float(\"Inf\")] * self.V\n\n        dist[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            if u == dest:\n                break\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n        path_str = []\n        j = dest\n        while j != -1:\n            path_str.insert(0, j)\n            j = path[j]\n        return dist[dest], path_str\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        for i in range(self.V):\n            u = self._get_min_distance_node_o(dist, spt_set)\n            spt_set[u] = True\n            for v, weight in self.graph[u]:\n                if not spt_set[v] and dist[u] != float('inf') and dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n\n        if dist[dest] == float('inf'):\n            return float('inf')\n        else:\n            return dist[dest]\n\n    def _get_min_distance_node_o(self, dist, spt_set):\n        min_dist = float('inf')\n        min_node = -1\n\n        for u in range(self.V):\n            if not spt_set[u] and dist[u] < min_dist:\n                min_dist = dist[u]\n                min_node = u\n\n        return min_node\n```"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Graph:\n    def shortest_path_p(self, start, end):\n        try:\n            # Initialize distance and parent dictionary\n            distance = {}\n            parent = {}\n\n            # Initialize distances to infinity for all vertices\n            for vertex in self.vertices:\n                distance[vertex] = float('inf')\n                parent[vertex] = None\n\n            # Set the distance from the start to 0\n            distance[start] = 0\n\n            # Create a queue and add the start node\n            queue = []\n            queue.append(start)\n\n            # Perform BFS traversal\n            while queue:\n                u = queue.pop(0)\n\n                # Return if the destination node is found\n                if u == end:\n                    path = []\n                    while u:\n                        path.insert(0, u)\n                        u = parent[u]\n                    return path\n\n                # Explore neighbors of the current node\n                for v in self.graph[u]:\n                    # Calculate distance and update if shorter path found\n                    new_dist = distance[u] + self.graph[u][v]\n                    if new_dist < distance[v]:\n                        distance[v] = new_dist\n                        parent[v] = u\n                        if v not in queue:\n                            queue.append(v)\n\n            # Return None if no path exists\n            return None\n\n        except Exception as e:\n            print(f\"Error occurred: {e}\")\n            return None",
+        "def is_valid_bst_p(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        try:\n            if node.val <= min_val or node.val >= max_val:\n                return False\n            return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n        except AttributeError:\n            print(\"Error: Invalid node structure.\")\n            return False\n\n    return helper(root, float('-inf'), float('inf'))"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_p(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path",
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def train(self, X, y):\n        try:\n            from sklearn.linear_model import Lasso\n            self.model = Lasso(alpha=self.alpha)\n            self.model.fit(X, y)\n            self.coef_ = self.model.coef_\n            self.intercept_ = self.model.intercept_\n        except Exception as e:\n            print(f\"An error occurred while training the Lasso model: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None or self.intercept_ is None:\n                print(\"Model has not been trained yet. Please call the train method first.\")\n                return None\n            return self.model.predict(X)\n        except Exception as e:\n            print(f\"An error occurred while making predictions: {e}\")\n            return None"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nclass LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def train(self, X, y):\n        import numpy as np\n\n        X = np.array(X)\n        y = np.array(y)\n\n        n_samples, n_features = X.shape\n\n        self.coef_ = np.zeros(n_features)\n        self.intercept_ = 0\n\n        # Add try statement for error handling\n        try:\n            # Add the bias/intercept term to X\n            X_with_bias = np.c_[np.ones((n_samples, 1)), X]\n\n            # Calculate the closed-form solution for Lasso regression\n            self.coef_ = np.linalg.inv(X_with_bias.T @ X_with_bias) @ X_with_bias.T @ y\n            self.intercept_ = self.coef_[0]\n            self.coef_ = self.coef_[1:]\n\n        except np.linalg.LinAlgError as e:\n            print(f\"Error occurred: {e}\")\n\n    def predict(self, X):\n        import numpy as np\n\n        X = np.array(X)\n        n_samples, n_features = X.shape\n\n        # Add the bias/intercept term to X\n        X_with_bias = np.c_[np.ones((n_samples, 1)), X]\n\n        # Predict the target values\n        predictions = X_with_bias @ self.coef_ + self.intercept_\n\n        return predictions\n```",
+        "```python\ndef is_valid_bst(root, min_val=float('-inf'), max_val=float('inf')):\n    if not root:\n        return True\n\n    if root.val <= min_val or root.val >= max_val:\n        return False\n\n    return is_valid_bst(root.left, min_val, root.val - 1) and is_valid_bst(root.right, root.val + 1, max_val)\n\n# Example usage:\n# tree = ...  # Populate your binary tree\n# print(is_valid_bst(tree))\n```",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def shortest_path(self, src, dest):\n        dist = [float('inf') for _ in range(self.V)]\n        dist[src] = 0\n        sptSet = [False] * self.V\n\n        while True:\n            u = self._find_minimum_distance_node(dist, sptSet)\n            if u == -1:\n                break\n            sptSet[u] = True\n\n            for v in range(self.V):\n                if (\n                    self.graph[u][v] > 0\n                    and sptSet[v] == False\n                    and dist[v] > dist[u] + self.graph[u][v]\n                ):\n                    dist[v] = dist[u] + self.graph[u][v]\n\n        if dist[dest] == float('inf'):\n            print(\"Destination is not reachable\")\n        else:\n            print(f\"Shortest distance from source {src} to destination {dest} is {dist[dest]}\")\n\n    def _find_minimum_distance_node(self, dist, sptSet):\n        min_distance = float('inf')\n        min_node = -1\n\n        for v in range(self.V):\n            if sptSet[v] == False and dist[v] <= min_distance:\n                min_distance = dist[v]\n                min_node = v\n\n        return min_node\n\n    # Driver code\n    if __name__ == \"__main__\":\n        V = 9\n        src = 0\n        dest = 8\n        graph = Graph(V)\n        graph.graph = [\n            [0, 4, 0, 0, 0, 0, 0, 8, 0],\n            [4, 0, 8, 0, 0, 0, 0, 11, 0],\n            [0, 8, 0, 7, 0, 4, 0, 0, 2],\n            [0, 0, 7, 0, 9, 14, 0, 0, 0],\n            [0, 0, 0, 9, 0, 10, 0, 0, 0],\n            [0, 0, 4, 14, 10, 0, 2, 0, 0],\n            [0, 0, 0, 0, 0, 2, 0, 1, 6],\n            [8, 11, 0, 0, 0, 0, 1, 0, 7],\n            [0, 0, 2, 0, 0, 0, 6, 7, 0],\n        ]\n\n        graph.shortest_path(src, dest)\n```"
+      ]
+    }
+  ]
+}

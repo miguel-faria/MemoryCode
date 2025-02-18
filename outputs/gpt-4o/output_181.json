@@ -1,0 +1,133 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(g_vector1, g_vector2):\n    return sum(x * y for x, y in zip(g_vector1, g_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)\n        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)\n        self.fc1 = nn.Linear(in_features=32 * 64 * 64, out_features=128)\n        self.fc2 = nn.Linear(in_features=128, out_features=1)\n        self.sigmoid = nn.Sigmoid()\n\n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = x.view(-1, 32 * 64 * 64)\n        x = F.relu(self.fc1(x))\n        x = self.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.conv3 = nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)\n        self.fc1 = nn.Linear(128 * 8 * 8, 256)\n        self.fc2 = nn.Linear(256, 1)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = x.view(x.size(0), -1)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import Optional, Any\n\nclass Node:\n    def __init__(self, key: int, value: Any):\n        self.key: int = key\n        self.value: Any = value\n        self.left: Optional[Node] = None\n        self.right: Optional[Node] = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.root: Optional[Node] = None\n\n    def insert(self, key: int, value: Any) -> None:\n        \"\"\"\n        Insert a new node with a specified key and value into the binary tree.\n\n        :param key: The key of the new node.\n        :param value: The value of the new node.\n        \"\"\"\n        if self.root is None:\n            self.root = Node(key, value)\n        else:\n            self._insert_recursive(self.root, key, value)\n\n    def _insert_recursive(self, current: Node, key: int, value: Any) -> None:\n        if key < current.key:\n            if current.left is None:\n                current.left = Node(key, value)\n            else:\n                self._insert_recursive(current.left, key, value)\n        elif key > current.key:\n            if current.right is None:\n                current.right = Node(key, value)\n            else:\n                self._insert_recursive(current.right, key, value)\n\n    def delete(self, key: int) -> None:\n        \"\"\"\n        Delete a node with a specified key from the binary tree.\n\n        :param key: The key of the node to be deleted.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, key)\n\n    def _delete_recursive(self, current: Optional[Node], key: int) -> Optional[Node]:\n        if current is None:\n            return None\n\n        if key < current.key:\n            current.left = self._delete_recursive(current.left, key)\n        elif key > current.key:\n            current.right = self._delete_recursive(current.right, key)\n        else:\n            if current.left is None:\n                return current.right\n            elif current.right is None:\n                return current.left\n\n            min_larger_node = self._get_min(current.right)\n            current.key, current.value = min_larger_node.key, min_larger_node.value\n            current.right = self._delete_recursive(current.right, min_larger_node.key)\n        \n        return current\n\n    def _get_min(self, node: Node) -> Node:\n        while node.left is not None:\n            node = node.left\n        return node\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(f_vector1, f_vector2):\n    return sum(f_v1 * f_v2 for f_v1, f_v2 in zip(f_vector1, f_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_vector1[i] * f_vector2[i] for i in range(len(f_vector1)))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert isinstance(matrix, list) and all(isinstance(row, list) for row in matrix), \"Input must be a list of lists (2D matrix)\"\n    assert all(len(row) == len(matrix) for row in matrix), \"Matrix must be square\"\n\n    n = len(matrix)\n    diagonal_sum = 0\n\n    for i in range(n):\n        diagonal_sum += matrix[i][i]\n    \n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef p_compute_dot_product(h_vector1, h_vector2):\n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def p_add_stock(self, h_item_name, h_quantity):\n        if h_item_name in self.items:\n            self.items[h_item_name] += h_quantity\n        else:\n            self.items[h_item_name] = h_quantity\n\n    def p_remove_stock(self, h_item_name, h_quantity):\n        if h_item_name in self.items and self.items[h_item_name] >= h_quantity:\n            self.items[h_item_name] -= h_quantity\n            if self.items[h_item_name] == 0:\n                del self.items[h_item_name]\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(h_vector1, h_vector2):\n    if not isinstance(h_vector1, list) or not isinstance(h_vector2, list):\n        raise TypeError(\"Both arguments must be lists.\")\n    if len(h_vector1) != len(h_vector2):\n        raise ValueError(\"Both vectors must be of the same length.\")\n    \n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def p_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def p_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def o_add_stock(self, i_item, i_quantity):\n        if i_item in self.stock:\n            self.stock[i_item] += i_quantity\n        else:\n            self.stock[i_item] = i_quantity\n\n    def o_remove_stock(self, i_item, i_quantity):\n        if i_item in self.stock and self.stock[i_item] >= i_quantity:\n            self.stock[i_item] -= i_quantity\n            if self.stock[i_item] == 0:\n                del self.stock[i_item]\n```\n",
+        "```python\ndef o_dot_product(i_vector1, i_vector2):\n    return sum(i_v1 * i_v2 for i_v1, i_v2 in zip(i_vector1, i_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def o_add_stock(self, item_name, quantity):\n        if item_name in self.stock:\n            self.stock[item_name] += quantity\n        else:\n            self.stock[item_name] = quantity\n\n    def o_remove_stock(self, item_name, quantity):\n        if item_name in self.stock:\n            if self.stock[item_name] >= quantity:\n                self.stock[item_name] -= quantity\n            else:\n                raise ValueError(\"Cannot remove more stock than available\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```",
+        "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\nfrom typing import List\n\nclass Library:\n    def __init__(self):\n        self.books: List[str] = []\n\n    @validate\n    def add_book(self, book: str) -> None:\n        \"\"\"Add a book to the library.\"\"\"\n        self.books.append(book)\n\n    @validate\n    def remove_book(self, book: str) -> None:\n        \"\"\"Remove a book from the library if it exists.\"\"\"\n        if book in self.books:\n            self.books.remove(book)\n```\n",
+        "```python\nfrom typing import List\nfrom heapq import nlargest\nfrom pedantic import validate\n\n@validate\ndef find_kth_largest(nums: List[int], k: int) -> int:\n    return nlargest(k, nums)[-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```",
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._items = {}\n\n    def ud_add_stock(self, item_name, quantity):\n        if item_name in self._items:\n            self._items[item_name] += quantity\n        else:\n            self._items[item_name] = quantity\n\n    def ud_remove_stock(self, item_name, quantity):\n        if item_name in self._items and self._items[item_name] >= quantity:\n            self._items[item_name] -= quantity\n            if self._items[item_name] == 0:\n                del self._items[item_name]\n        else:\n            raise ValueError(\"Insufficient stock or item not found.\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n    \n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n    \n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock to remove the requested quantity.\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def a_add_stock(self, item_name, quantity):\n        if quantity < 0:\n            raise ValueError(\"Quantity must be non-negative\")\n        self._stock[item_name] = self._stock.get(item_name, 0) + quantity\n\n    def a_remove_stock(self, item_name, quantity):\n        if quantity < 0:\n            raise ValueError(\"Quantity must be non-negative\")\n        if item_name not in self._stock or self._stock[item_name] < quantity:\n            raise ValueError(\"Not enough stock to remove\")\n        self._stock[item_name] -= quantity\n        if self._stock[item_name] == 0:\n            del self._stock[item_name]\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n            return True\n        return False\n\n    def a_get_stock(self, item):\n        return self._stock.get(item, 0)\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import validate\nfrom typing import List\n\nclass library:\n    \n    @validate\n    def a_add_books(self, i_books: List[str]) -> None:\n        assert isinstance(i_books, list), \"i_books should be a list of strings\"\n        # Add books to the library collection by appending to a list or similar operation\n        \n    @validate\n    def a_remove_books(self, i_books: List[str]) -> None:\n        assert isinstance(i_books, list), \"i_books should be a list of strings\"\n        # Remove books from the library collection based on titles in the list\n```\n",
+        "```python\nfrom pedantic import validate\nfrom typing import List\n\n@validate\ndef a_find_kth_largest(i_nums: List[int], i_k: int) -> int:\n    assert i_k > 0, \"k must be positive\"\n    sorted_nums = sorted(i_nums, reverse=True)\n    assert i_k <= len(sorted_nums), \"k is out of the range of the list\"\n    return sorted_nums[i_k - 1]\n```",
+        "```python\nfrom typing import List\nfrom pedantic import validate\n\n@validate\ndef a_dot_product(i_vector1: List[float], i_vector2: List[float]) -> float:\n    assert len(i_vector1) == len(i_vector2), \"Vectors must be the same length\"\n    return sum(i_v1 * i_v2 for i_v1, i_v2 in zip(i_vector1, i_vector2))\n```",
+        "```python\nimport torch\nimport torch.nn as nn\nfrom pedantic.decorators import validate\n\nclass a_custom_binary_classifier(nn.Module):\n    @validate\n    def __init__(self, i_num_features: int, i_num_hidden: int):\n        super(a_custom_binary_classifier, self).__init__()\n        self.layer1 = nn.Linear(i_num_features, i_num_hidden)\n        self.layer2 = nn.Linear(i_num_hidden, 1)\n\n    @validate\n    def a_forward(self, i_x: torch.Tensor) -> torch.Tensor:\n        i_out = torch.relu(self.layer1(i_x))\n        i_out = torch.sigmoid(self.layer2(i_out))\n        assert i_out.shape[1] == 1, \"Output should have one column for binary classification\"\n        return i_out\n```",
+        "```python\nfrom pedantic import validate\nfrom typing import List\n\n@validate\ndef a_diagonal_average(i_matrix: List[List[float]]) -> float:\n    assert all(len(i_row) == len(i_matrix) for i_row in i_matrix), \"Matrix must be square\"\n    \n    i_diagonal_sum: float = 0.0\n    for i_index in range(len(i_matrix)):\n        i_diagonal_sum += i_matrix[i_index][i_index]\n    \n    return i_diagonal_sum / len(i_matrix)\n```",
+        "```python\nfrom pedantic import validate\n\nclass binary_tree_node:\n    def __init__(self, i_data: int):\n        self.i_data: int = i_data\n        self.left: 'binary_tree_node' = None\n        self.right: 'binary_tree_node' = None\n\nclass binary_tree:\n    def __init__(self):\n        self.root: binary_tree_node = None\n    \n    @validate\n    def a_insert(self, i_data: int):\n        if not self.root:\n            self.root = binary_tree_node(i_data)\n        else:\n            self._a_insert(self.root, i_data)\n    \n    @validate\n    def _a_insert(self, i_node: binary_tree_node, i_data: int):\n        if i_data < i_node.i_data:\n            if i_node.left is None:\n                i_node.left = binary_tree_node(i_data)\n            else:\n                self._a_insert(i_node.left, i_data)\n        elif i_data > i_node.i_data:\n            if i_node.right is None:\n                i_node.right = binary_tree_node(i_data)\n            else:\n                self._a_insert(i_node.right, i_data)\n    \n    @validate\n    def a_delete(self, i_data: int):\n        self.root = self._a_delete(self.root, i_data)\n\n    @validate\n    def _a_delete(self, i_node: binary_tree_node, i_data: int) -> binary_tree_node:\n        if i_node is None:\n            return i_node\n        \n        if i_data < i_node.i_data:\n            i_node.left = self._a_delete(i_node.left, i_data)\n        elif i_data > i_node.i_data:\n            i_node.right = self._a_delete(i_node.right, i_data)\n        else:\n            if i_node.left is None:\n                return i_node.right\n            elif i_node.right is None:\n                return i_node.left\n            \n            temp: binary_tree_node = self._a_min_value_node(i_node.right)\n            i_node.i_data = temp.i_data\n            i_node.right = self._a_delete(i_node.right, temp.i_data)\n        \n        return i_node\n    \n    @validate\n    def _a_min_value_node(self, i_node: binary_tree_node) -> binary_tree_node:\n        current = i_node\n        while current.left is not None:\n            current = current.left\n        return current\n```\n",
+        "```python\nfrom pedantic import validate\n\nclass inventory:\n    def __init__(self):\n        self._items = {}\n\n    @validate\n    def a_add_stock(self, i_item_name: str, i_quantity: int) -> None:\n        assert i_quantity > 0, \"Quantity must be greater than zero\"\n        if i_item_name in self._items:\n            self._items[i_item_name] += i_quantity\n        else:\n            self._items[i_item_name] = i_quantity\n\n    @validate\n    def a_remove_stock(self, i_item_name: str, i_quantity: int) -> None:\n        assert i_quantity > 0, \"Quantity must be greater than zero\"\n        assert i_item_name in self._items, \"Item not in inventory\"\n        assert self._items[i_item_name] >= i_quantity, \"Not enough stock to remove\"\n        self._items[i_item_name] -= i_quantity\n\n    def a_get_stock(self, i_item_name: str) -> int:\n        return self._items.get(i_item_name, 0)\n```"
+      ]
+    }
+  ]
+}

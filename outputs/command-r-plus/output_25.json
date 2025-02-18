@@ -1,0 +1,15 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    vr_rows = [{} for _ in range(9)]\n    vr_cols = [{} for _ in range(9)]\n    vr_boxes = [{} for _ in range(9)]\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != '.':\n                num = board[i][j]\n                vr_row = vr_rows[i]\n                vr_col = vr_cols[j]\n                vr_box = vr_boxes[(i // 3) * 3 + j // 3]\n\n                if num in vr_row or num in vr_col or num in vr_box:\n                    return False\n\n                vr_row[num] = 1\n                vr_col[num] = 1\n                vr_box[num] = 1\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    vr_rows = [{} for _ in range(9)]\n    vr_cols = [{} for _ in range(9)]\n    vr_boxes = [{} for _ in range(9)]\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != \".\":\n                num = board[i][j]\n                vr_row = vr_rows[i]\n                vr_col = vr_cols[j]\n                vr_box = vr_boxes[(i // 3) * 3 + j // 3]\n\n                if num in vr_row or num in vr_col or num in vr_box:\n                    return False\n\n                vr_row[num] = True\n                vr_col[num] = True\n                vr_box[num] = True\n\n    return True\n```"
+      ]
+    }
+  ]
+}

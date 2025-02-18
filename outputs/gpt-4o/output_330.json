@@ -1,0 +1,421 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(chx_vector1, chx_vector2):\n    return sum(i * j for i, j in zip(chx_vector1, chx_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(chx_vector1, chx_vector2):\n    if len(chx_vector1) != len(chx_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(a * b for a, b in zip(chx_vector1, chx_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean = None\n        self.components = None\n        self.chx_explained_variance = None\n\n    def fit_transform_chx(self, X):\n        # Center the data\n        self.mean = np.mean(X, axis=0)\n        X_centered = X - self.mean\n        \n        # Calculate covariance matrix\n        covariance_matrix = np.cov(X_centered.T)\n        \n        # Eigen decomposition\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        \n        # Sort eigenvectors by decreasing eigenvalues\n        indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[indices]\n        eigenvectors = eigenvectors[:, indices]\n        \n        # Select the top n_components\n        self.components = eigenvectors[:, :self.n_components]\n        self.chx_explained_variance = eigenvalues[:self.n_components]\n        \n        # Transform the data\n        return np.dot(X_centered, self.components)\n\n    def transform_chx(self, X):\n        X_centered = X - self.mean\n        return np.dot(X_centered, self.components)\n```\n",
+        "```python\nclass Heap3:\n    def __init__(self):\n        self.data = []\n\n    def insert_chx(self, value):\n        self.data.append(value)\n        self._heapify_up_chx(len(self.data) - 1)\n\n    def _heapify_up_chx(self, index):\n        parent_index = (index - 1) // 2\n        if index > 0 and self.data[index] > self.data[parent_index]:\n            self.data[index], self.data[parent_index] = self.data[parent_index], self.data[index]\n            self._heapify_up_chx(parent_index)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n        self.explained_variance_ratio_ = None\n\n    def fit(self, X):\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n        self.components_ = eigenvectors[:, :self.n_components]\n        self.explained_variance_ = eigenvalues[:self.n_components]\n        total_variance = eigenvalues.sum()\n        self.explained_variance_ratio_ = eigenvalues[:self.n_components] / total_variance\n\n    def transform(self, X):\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```",
+        "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert_chx(self, item):\n        self.heap.append(item)\n        self._heapify_up_chx(len(self.heap) - 1)\n\n    def _heapify_up_chx(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] > self.heap[parent_index]:\n                self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]\n                index = parent_index\n            else:\n                break\n\n    def _heapify_down_chx(self, index):\n        last_index = len(self.heap) - 1\n        while True:\n            left_child_index = 2 * index + 1\n            right_child_index = 2 * index + 2\n            largest_index = index\n\n            if left_child_index <= last_index and self.heap[left_child_index] > self.heap[largest_index]:\n                largest_index = left_child_index\n\n            if right_child_index <= last_index and self.heap[right_child_index] > self.heap[largest_index]:\n                largest_index = right_child_index\n\n            if largest_index == index:\n                break\n            else:\n                self.heap[index], self.heap[largest_index] = self.heap[largest_index], self.heap[index]\n                index = largest_index\n\n    def extract_chx(self):\n        if len(self.heap) == 0:\n            return None\n        if len(self.heap) == 1:\n            return self.heap.pop()\n\n        root = self.heap[0]\n        self.heap[0] = self.heap.pop()\n        self._heapify_down_chx(0)\n        return root\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef a_calculate_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef isValidBST(root: TreeNode) -> bool:\n    def is_valid(node, lower=float('-inf'), upper=float('inf')) -> bool:\n        if not node:\n            return True\n        \n        val = node.val\n        try:\n            if val <= lower or val >= upper:\n                return False\n        except TypeError:\n            return False\n\n        if not is_valid(node.right, val, upper):\n            return False\n        if not is_valid(node.left, lower, val):\n            return False\n        \n        return True\n    \n    try:\n        return is_valid(root)\n    except Exception as e:\n        # Log the error or handle it as required\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import trace\n\n@trace\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nfrom pedantic import trace\n\n@trace\ndef y_max_subarray_sum(arr):\n    max_current = max_global = arr[0]\n    for num in arr[1:]:\n        max_current = max(num, max_current + num)\n        if max_current > max_global:\n            max_global = max_current\n    return max_global\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nfrom pedantic import trace\n\n@trace\ndef find_max_subarray_sum(arr):\n    if not arr:\n        return 0\n    \n    current_sum = max_sum = arr[0]\n    \n    for num in arr[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef fn_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index for an array of integer citations.\n    \n    The h-index is defined as the maximum value h such that the given \n    author has published h papers that have each been cited at least \n    h times.\n    \n    Parameters:\n    citations (list): A list of integers representing the citation counts \n                      for each publication.\n                      \n    Returns:\n    int: The h-index value.\n    \"\"\"\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass BinaryTreeNode:\n    def __init__(self, value):\n        \"\"\"\n        Initialize a binary tree node.\n\n        :param value: The value of the node.\n        \"\"\"\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"\n        Initialize an empty binary tree.\n        \"\"\"\n        self.root = None\n\n    def fn_insert(self, value):\n        \"\"\"\n        Insert a value into the binary tree.\n\n        :param value: The value to be inserted.\n        \"\"\"\n        if self.root is None:\n            self.root = BinaryTreeNode(value)\n        else:\n            self._fn_insert_recursively(self.root, value)\n\n    def _fn_insert_recursively(self, node, value):\n        \"\"\"\n        Recursively insert a value starting from the given node.\n\n        :param node: The current node in the binary tree.\n        :param value: The value to be inserted.\n        \"\"\"\n        if value < node.value:\n            if node.left is None:\n                node.left = BinaryTreeNode(value)\n            else:\n                self._fn_insert_recursively(node.left, value)\n        else:\n            if node.right is None:\n                node.right = BinaryTreeNode(value)\n            else:\n                self._fn_insert_recursively(node.right, value)\n\n    def fn_delete(self, value):\n        \"\"\"\n        Delete a value from the binary tree.\n\n        :param value: The value to be deleted.\n        \"\"\"\n        self.root = self._fn_delete_recursively(self.root, value)\n\n    def _fn_delete_recursively(self, node, value):\n        \"\"\"\n        Recursively delete a value starting from the given node.\n\n        :param node: The current node in the binary tree.\n        :param value: The value to be deleted.\n        :return: The updated node after deletion.\n        \"\"\"\n        if node is None:\n            return node\n        \n        if value < node.value:\n            node.left = self._fn_delete_recursively(node.left, value)\n        elif value > node.value:\n            node.right = self._fn_delete_recursively(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._fn_find_min(node.right)\n            node.value = min_larger_node.value\n            node.right = self._fn_delete_recursively(node.right, min_larger_node.value)\n\n        return node\n\n    def _fn_find_min(self, node):\n        \"\"\"\n        Find the node with the minimum value in the binary tree.\n\n        :param node: The node from where to start searching.\n        :return: The node with the minimum value.\n        \"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef flatten_chx_tree(root):\n    if not root:\n        return\n\n    def flatten_chx(node):\n        if not node:\n            return None\n        \n        left_flat = flatten_chx(node.left)\n        right_flat = flatten_chx(node.right)\n\n        if left_flat:\n            left_flat_tail = left_flat\n            while left_flat_tail.right:\n                left_flat_tail = left_flat_tail.right\n            left_flat_tail.right = node.right\n            node.right = left_flat\n            node.left = None\n        \n        return node\n    \n    flatten_chx(root)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef chx_flatten_binary_tree(root):\n    if not root:\n        return\n\n    stack = [root]\n    while stack:\n        current = stack.pop()\n\n        if current.right:\n            stack.append(current.right)\n        if current.left:\n            stack.append(current.left)\n\n        if stack:\n            current.right = stack[-1]\n        current.left = None\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef calculate_dot_product(h_vector1, h_vector2):\n    \"\"\"\n    Calculate the dot product of two vectors.\n\n    :param h_vector1: The first vector\n    :param h_vector2: The second vector\n    :return: The dot product of h_vector1 and h_vector2\n    \"\"\"\n    return sum(h_elem1 * h_elem2 for h_elem1, h_elem2 in zip(h_vector1, h_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(h_vector1, h_vector2):\n    if not isinstance(h_vector1, list) or not isinstance(h_vector2, list):\n        raise TypeError(\"Both arguments must be lists.\")\n    if len(h_vector1) != len(h_vector2):\n        raise ValueError(\"Both vectors must be of the same length.\")\n    \n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import List\n\ndef find_kth_largest(nums: List[int], k: int) -> int:\n    \"\"\"\n    Find the kth largest element in an array.\n\n    :param nums: List of integers\n    :param k: The 'k' to determine the kth largest element\n    :return: The kth largest element in the list\n    \"\"\"\n    nums.sort(reverse=True)\n    return nums[k - 1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\nimport hashlib\n\nclass LassoRegression:\n    def __init__(self, learning_rate=0.01, num_iterations=1000, l1_penalty=0.01):\n        self.learning_rate = learning_rate\n        self.num_iterations = num_iterations\n        self.l1_penalty = l1_penalty\n        self.weights = None\n        self.bias = None\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.weights = np.zeros(n_features)\n            self.bias = 0\n\n            for _ in range(self.num_iterations):\n                model_output = np.dot(X, self.weights) + self.bias\n                gradient_weights = (1 / n_samples) * np.dot(X.T, (model_output - y)) + self.l1_penalty * np.sign(self.weights)\n                gradient_bias = (1 / n_samples) * np.sum(model_output - y)\n\n                self.weights -= self.learning_rate * gradient_weights\n                self.bias -= self.learning_rate * gradient_bias\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            return np.dot(X, self.weights) + self.bias\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    try:\n        for i in range(1, len(arr)):\n            key = arr[i]\n            j = i - 1\n            while j >= 0 and key < arr[j]:\n                arr[j + 1] = arr[j]\n                j -= 1\n            arr[j + 1] = key\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\n\nclass LinearRegression1:\n    def __init__(self):\n        self.weights1 = None\n        self.bias1 = None\n\n    def fit(self, X1, y1, iterations1=1000, learning_rate1=0.01):\n        n_samples1, n_features1 = X1.shape\n        self.weights1 = np.zeros(n_features1)\n        self.bias1 = 0\n\n        for _ in range(iterations1):\n            model1 = np.dot(X1, self.weights1) + self.bias1\n            dw1 = (1 / n_samples1) * np.dot(X1.T, (model1 - y1))\n            db1 = (1 / n_samples1) * np.sum(model1 - y1)\n\n            self.weights1 -= learning_rate1 * dw1\n            self.bias1 -= learning_rate1 * db1\n\n    def predict(self, X1):\n        return np.dot(X1, self.weights1) + self.bias1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass LinRegNumpy:\n    def __init__(self):\n        self.coef1_ = None\n        self.intercept1_ = 0\n        self.fit1_intercept = True\n    \n    def fit(self, X1, y1):\n        if self.fit1_intercept:\n            X1 = np.c_[np.ones(X1.shape[0]), X1]\n        \n        X1_transpose = X1.T\n        beta1 = np.linalg.inv(X1_transpose.dot(X1)).dot(X1_transpose).dot(y1)\n        \n        if self.fit1_intercept:\n            self.intercept1_ = beta1[0]\n            self.coef1_ = beta1[1:]\n        else:\n            self.coef1_ = beta1\n    \n    def predict(self, X1):\n        if self.fit1_intercept:\n            X1 = np.c_[np.ones(X1.shape[0]), X1]\n            return X1.dot(np.r_[self.intercept1_, self.coef1_])\n        else:\n            return X1.dot(self.coef1_)\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef gn_calculate_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import Optional\n\nclass BINARYTREE:\n    class Node:\n        def __init__(self, key: int) -> None:\n            self.left: Optional['BINARYTREE.Node'] = None\n            self.right: Optional['BINARYTREE.Node'] = None\n            self.value: int = key\n\n    def __init__(self) -> None:\n        self.root: Optional[BINARYTREE.Node] = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = self.Node(key)\n        else:\n            self._insert_rec(self.root, key)\n\n    def _insert_rec(self, root: Node, key: int) -> Node:\n        if root is None:\n            return self.Node(key)\n        if key < root.value:\n            root.left = self._insert_rec(root.left, key)\n        else:\n            root.right = self._insert_rec(root.right, key)\n        return root\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_rec(self.root, key)\n\n    def _delete_rec(self, root: Optional[Node], key: int) -> Optional[Node]:\n        if root is None:\n            return root\n        if key < root.value:\n            root.left = self._delete_rec(root.left, key)\n        elif key > root.value:\n            root.right = self._delete_rec(root.right, key)\n        else:\n            if root.left is None:\n                return root.right\n            if root.right is None:\n                return root.left\n            min_larger_node = self._find_min(root.right)\n            root.value = min_larger_node.value\n            root.right = self._delete_rec(root.right, min_larger_node.value)\n        return root\n\n    def _find_min(self, node: Node) -> Node:\n        current = node\n        while current.left:\n            current = current.left\n        return current\n```",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass BINARYIMAGECLASSIFIER(nn.Module):\n    def __init__(self) -> None:\n        super(BINARYIMAGECLASSIFIER, self).__init__()\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)\n        self.fc1 = nn.Linear(32 * 8 * 8, 128)\n        self.fc2 = nn.Linear(128, 1)\n        \n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, kernel_size=2, stride=2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, kernel_size=2, stride=2)\n        x = x.view(x.size(0), -1)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass BINARY_IMAGE_CLASSIFIER(nn.Module):\n    def __init__(self, input_channels):\n        super(BINARY_IMAGE_CLASSIFIER, self).__init__()\n        self.conv1 = nn.Conv2d(input_channels, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.fc1 = nn.Linear(64 * 8 * 8, 128)\n        self.fc2 = nn.Linear(128, 1)\n        self.dropout = nn.Dropout(0.5)\n\n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = x.view(x.size(0), -1)\n        x = self.dropout(x)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef count_non_zero0_elements(matrix):\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef b_calculate_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(x_vector1, x_vector2):\n    return sum(x_1 * x_2 for x_1, x_2 in zip(x_vector1, x_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(x_vector1, x_vector2):\n    if len(x_vector1) != len(x_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(x_v1 * x_v2 for x_v1, x_v2 in zip(x_vector1, x_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)\n        self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.fc1 = nn.Linear(64 * 8 * 8, 128)\n        self.fc2 = nn.Linear(128, 1)\n\n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = self.pool(F.relu(self.conv3(x)))\n        x = x.view(-1, 64 * 8 * 8)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.conv3 = nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)\n        self.fc1 = nn.Linear(128 * 8 * 8, 256)\n        self.fc2 = nn.Linear(256, 1)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = x.view(x.size(0), -1)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef d_compute_h_index_y(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef d_merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        d_merge_sort_y(left_half)\n        d_merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_y(left_half)\n        merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import Counter\nimport numpy as np\n\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert isinstance(X_train, np.ndarray), \"X_train must be a numpy array\"\n        assert isinstance(y_train, np.ndarray), \"y_train must be a numpy array\"\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        \n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model must be trained before predicting\"\n        assert isinstance(X_test, np.ndarray), \"X_test must be a numpy array\"\n        \n        predictions = [self._predict_single(x) for x in X_test]\n        return np.array(predictions)\n\n    def _predict_single(self, x):\n        assert isinstance(x, np.ndarray), \"Input x must be a numpy array\"\n\n        # Compute distances from x to all examples in the training set\n        distances = np.linalg.norm(self.X_train - x, axis=1)\n        \n        # Sort by distance and obtain indices of the nearest neighbors\n        neighbor_indices = np.argsort(distances)[:self.n_neighbors]\n        \n        # Extract the labels of the nearest neighbors\n        nearest_labels = self.y_train[neighbor_indices]\n        \n        # Majority vote\n        label_count = Counter(nearest_labels)\n        most_common = label_count.most_common(1)[0][0]\n\n        return most_common\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    def __init__(self, g_name: str, g_grades: list):\n        self.name = g_name\n        self.grades = g_grades\n\n    @require_kwargs\n    def compute_average_grade(self) -> float:\n        if not self.grades:\n            return 0.0\n        return sum(self.grades) / len(self.grades)\n```",
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef compute_dot_product(g_vector1, g_vector2):\n    return sum(x * y for x, y in zip(g_vector1, g_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    def __init__(self, **kwargs):\n        self.grades = kwargs.get('grades', [])\n\n    @require_kwargs\n    def add_grade(self, grade: float) -> None:\n        self.grades.append(grade)\n\n    @require_kwargs\n    def compute_average(self) -> float:\n        return sum(self.grades) / len(self.grades) if self.grades else 0.0\n```",
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(e_vector1, e_vector2):\n    return sum(e1 * e2 for e1, e2 in zip(e_vector1, e_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must be the same length\")\n    return sum(e_v1 * e_v2 for e_v1, e_v2 in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport locale\n\ndef find_lcm(j_a, j_b):\n    def gcd(j_x, j_y):\n        while j_y:\n            j_x, j_y = j_y, j_x % j_y\n        return j_x\n\n    return abs(j_a * j_b) // gcd(j_a, j_b)\n```",
+        "```python\nimport locale\n\ndef compute_dot_product(j_vector1, j_vector2):\n    return sum(x * y for x, y in zip(j_vector1, j_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```",
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(i_elem1 * i_elem2 for i_elem1, i_elem2 in zip(i_vec1, i_vec2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(f_1vector_a, f_2vector_b):\n    return sum(f_1 * f_2 for f_1, f_2 in zip(f_1vector_a, f_2vector_b))\n```",
+        "```python\ndef find_common_elements(f_1_list1, f_2_list2):\n    return list(set(f_1_list1) & set(f_2_list2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_vector1[i] * f_vector2[i] for i in range(len(f_vector1)))\n```",
+        "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(a_vector1, a_vector2):\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(a_vector1, a_vector2):\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert isinstance(matrix, list), \"Input must be a list.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row must be a list.\"\n    assert len(matrix) > 0, \"Matrix must not be empty.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"Matrix must be square.\"\n\n    diagonal_sum = 0\n    n = len(matrix)\n    \n    for i in range(n):\n        diagonal_sum += matrix[i][i]\n\n    average = diagonal_sum / n\n    assert isinstance(average, float), \"Output should be a float.\"\n    \n    return average\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists_b(list1_e, list2_e):\n    merged_list_e = []\n    i_e, j_e = 0, 0\n    while i_e < len(list1_e) and j_e < len(list2_e):\n        if list1_e[i_e] < list2_e[j_e]:\n            merged_list_e.append(list1_e[i_e])\n            i_e += 1\n        else:\n            merged_list_e.append(list2_e[j_e])\n            j_e += 1\n    merged_list_e.extend(list1_e[i_e:])\n    merged_list_e.extend(list2_e[j_e:])\n    return merged_list_e\n```",
+        "```python\ndef merge_sort_b(arr_e):\n    if len(arr_e) > 1:\n        mid_e = len(arr_e) // 2\n        left_half_e = arr_e[:mid_e]\n        right_half_e = arr_e[mid_e:]\n\n        merge_sort_b(left_half_e)\n        merge_sort_b(right_half_e)\n\n        i_e = j_e = k_e = 0\n\n        while i_e < len(left_half_e) and j_e < len(right_half_e):\n            if left_half_e[i_e] < right_half_e[j_e]:\n                arr_e[k_e] = left_half_e[i_e]\n                i_e += 1\n            else:\n                arr_e[k_e] = right_half_e[j_e]\n                j_e += 1\n            k_e += 1\n\n        while i_e < len(left_half_e):\n            arr_e[k_e] = left_half_e[i_e]\n            i_e += 1\n            k_e += 1\n\n        while j_e < len(right_half_e):\n            arr_e[k_e] = right_half_e[j_e]\n            j_e += 1\n            k_e += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(lst1_e, lst2_e):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(lst1_e) and j < len(lst2_e):\n        if lst1_e[i] < lst2_e[j]:\n            merged_list.append(lst1_e[i])\n            i += 1\n        else:\n            merged_list.append(lst2_e[j])\n            j += 1\n    merged_list.extend(lst1_e[i:])\n    merged_list.extend(lst2_e[j:])\n    return merged_list\n```",
+        "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef is_valid_sudoku(x_board):\n    def is_valid_block(x_block):\n        x_items = [x_num for x_num in x_block if x_num != '.']\n        return len(x_items) == len(set(x_items))\n    \n    for x_row in x_board:\n        if not is_valid_block(x_row):\n            return False\n\n    for x_col in zip(*x_board):\n        if not is_valid_block(x_col):\n            return False\n\n    for x_i in (0, 3, 6):\n        for x_j in (0, 3, 6):\n            x_subgrid = [x_board[x_m][x_n] for x_m in range(x_i, x_i + 3) for x_n in range(x_j, x_j + 3)]\n            if not is_valid_block(x_subgrid):\n                return False\n\n    return True\n```",
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def x_max_sub_array(self, x_nums: List[int]) -> int:\n        x_current_sum = x_max_sum = x_nums[0]\n        \n        for x_num in x_nums[1:]:\n            x_current_sum = max(x_num, x_current_sum + x_num)\n            x_max_sum = max(x_max_sum, x_current_sum)\n        \n        return x_max_sum\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_is_valid_sudoku(x_board):\n    def x_is_valid(x_entries):\n        x_seen = set()\n        for x_num in x_entries:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not x_is_valid(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_column = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not x_is_valid(x_column):\n            return False\n\n    for x_box_row in range(0, 9, 3):\n        for x_box_col in range(0, 9, 3):\n            x_box = [x_board[x_row][x_col] for x_row in range(x_box_row, x_box_row + 3) for x_col in range(x_box_col, x_box_col + 3)]\n            if not x_is_valid(x_box):\n                return False\n\n    return True\n```",
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n        \n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom sklearn.decomposition import PCA\nfrom typing import List, Any\nimport numpy as np\n\nclass PCA_1:\n\n    def __init__(self, x_n_components_i_: int) -> None:\n        self._pca_x_ = PCA(n_components=x_n_components_i_)\n        self._data_x_ = None\n        self._components_x_ = None\n\n    def fit_x_(self, x_data_j_: np.ndarray) -> None:\n        try:\n            assert isinstance(x_data_j_, np.ndarray)\n            self._data_x_ = x_data_j_\n            self._pca_x_.fit(x_data_j_)\n        except Exception as e:\n            print(f\"Error in fit_x_: {str(e)}\")\n\n    def transform_x_(self, x_new_data_j_: np.ndarray) -> np.ndarray:\n        try:\n            assert isinstance(x_new_data_j_, np.ndarray)\n            x_transformed_j_ = self._pca_x_.transform(x_new_data_j_)\n            return x_transformed_j_\n        except Exception as e:\n            print(f\"Error in transform_x_: {str(e)}\")\n            return np.array([])\n\n    def fit_transform_x_(self, x_data_j_: np.ndarray) -> np.ndarray:\n        try:\n            self.fit_x_(x_data_j_)\n            x_transformed_j_ = self._pca_x_.transform(x_data_j_)\n            return x_transformed_j_\n        except Exception as e:\n            print(f\"Error in fit_transform_x_: {str(e)}\")\n            return np.array([])\n\n    def get_components_x_(self) -> np.ndarray:\n        try:\n            self._components_x_ = self._pca_x_.components_\n            return self._components_x_\n        except Exception as e:\n            print(f\"Error in get_components_x_: {str(e)}\")\n            return np.array([])\n\n    def explained_variance_ratio_x_(self) -> np.ndarray:\n        try:\n            x_variance_ratio_j_ = self._pca_x_.explained_variance_ratio_\n            return x_variance_ratio_j_\n        except Exception as e:\n            print(f\"Error in explained_variance_ratio_x_: {str(e)}\")\n            return np.array([])\n```\n",
+        "```python\nfrom typing import List\nfrom pedantic import rename_kwargs, require_kwargs\n\nclass Solution1:\n    @rename_kwargs\n    @require_kwargs\n    def maximum_subchxarray(self, j_nums: List[int]) -> int:\n        max_chxcurrent = max_chxglobal = j_nums[0]\n        \n        for i, j_num in enumerate(j_nums[1:], 1):\n            max_chxcurrent = max(j_num, max_chxcurrent + j_num)\n            max_chxglobal = max(max_chxglobal, max_chxcurrent)\n        \n        return max_chxglobal\n```\n",
+        "```python\nfrom typing import Optional\nfrom pedantic import rename_kwargs\n\n\n# Definition for a binary tree node.\nclass Node3:\n    def __init__(self_3, x_3):\n        self_3.val3 = x_3\n        self_3.left3 = None\n        self_3.right3 = None\n\n\n@rename_kwargs\ndef is_valid_bst_b(node3_a: Optional[Node3], min_val3_a: Optional[int] = None, max_val3_a: Optional[int] = None) -> bool:\n    if node3_a is None:\n        return True\n    \n    val3_1 = node3_a.val3\n\n    if min_val3_a is not None and val3_1 <= min_val3_a:\n        return False\n    if max_val3_a is not None and val3_1 >= max_val3_a:\n        return False\n\n    if not is_valid_bst_b(node3_a.left3, min_val3_a, val3_1):\n        return False\n    if not is_valid_bst_b(node3_a.right3, val3_1, max_val3_a):\n        return False\n\n    return True\n```",
+        "```python\nimport locale\nfrom pedantic import rename_kwargs\n\nclass STUDENT2_GRADE:\n    def __init__(self, x_subjects, x_grades):\n        self.x_subjects1 = x_subjects\n        self.x_grades2 = x_grades\n\n    @rename_kwargs\n    def compute_average_chx(self):\n        assert len(self.x_grades2) == len(self.x_subjects1), \"Subjects and grades count must match\"\n        total = sum(self.x_grades2)\n        average = total / len(self.x_grades2)\n        return average\n```\n",
+        "```python\nimport locale\nfrom pedantic import rename_kwargs\n\nlocale.setlocale(locale.LC_ALL, '')\n\n@rename_kwargs\ndef x_merge_sort(h_array_e):\n    if len(h_array_e) > 1:\n        h_mid_e = len(h_array_e) // 2\n        h_left_half_e = h_array_e[:h_mid_e]\n        h_right_half_e = h_array_e[h_mid_e:]\n\n        x_merge_sort(h_left_half_e)\n        x_merge_sort(h_right_half_e)\n\n        h_i_a, h_j_a, h_k_a = 0, 0, 0\n\n        while h_i_a < len(h_left_half_e) and h_j_a < len(h_right_half_e):\n            if h_left_half_e[h_i_a] < h_right_half_e[h_j_a]:\n                h_array_e[h_k_a] = h_left_half_e[h_i_a]\n                h_i_a += 1\n            else:\n                h_array_e[h_k_a] = h_right_half_e[h_j_a]\n                h_j_a += 1\n            h_k_a += 1\n\n        while h_i_a < len(h_left_half_e):\n            h_array_e[h_k_a] = h_left_half_e[h_i_a]\n            h_i_a += 1\n            h_k_a += 1\n\n        while h_j_a < len(h_right_half_e):\n            h_array_e[h_k_a] = h_right_half_e[h_j_a]\n            h_j_a += 1\n            h_k_a += 1\n```\n",
+        "```python\nfrom pedantic import require_kwargs, rename_kwargs\n\nclass BinaryTree1:\n    class Node1:\n        def __init__(self, j_data, j_left=None, j_right=None):\n            self.j_data = j_data\n            self.j_left = j_left\n            self.j_right = j_right\n\n    def __init__(self):\n        self.x_root = None\n\n    @require_kwargs\n    @rename_kwargs\n    def insert_b(self, j_data):\n        self.x_root = self._insert_b(self.x_root, j_data)\n\n    @staticmethod\n    def _insert_b(x_node, j_data):\n        if x_node is None:\n            return BinaryTree1.Node1(j_data)\n        if j_data < x_node.j_data:\n            x_node.j_left = BinaryTree1._insert_b(x_node.j_left, j_data)\n        else:\n            x_node.j_right = BinaryTree1._insert_b(x_node.j_right, j_data)\n        return x_node\n\n    @require_kwargs\n    @rename_kwargs\n    def delete_b(self, j_data):\n        self.x_root = self._delete_b(self.x_root, j_data)\n\n    @staticmethod\n    def _delete_b(x_node, j_data):\n        if x_node is None:\n            return None\n        if j_data < x_node.j_data:\n            x_node.j_left = BinaryTree1._delete_b(x_node.j_left, j_data)\n        elif j_data > x_node.j_data:\n            x_node.j_right = BinaryTree1._delete_b(x_node.j_right, j_data)\n        else:\n            if x_node.j_left is None:\n                return x_node.j_right\n            elif x_node.j_right is None:\n                return x_node.j_left\n            x_temp = BinaryTree1._min_value_node_b(x_node.j_right)\n            x_node.j_data = x_temp.j_data\n            x_node.j_right = BinaryTree1._delete_b(x_node.j_right, x_temp.j_data)\n        return x_node\n\n    @staticmethod\n    def _min_value_node_b(x_node):\n        x_current = x_node\n        while x_current.j_left is not None:\n            x_current = x_current.j_left\n        return x_current\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef merge_sorted_lists_a_e(list1_a_e, list2_a_e):\n    merged_list_a_e = []\n    i_1 = 0\n    i_2 = 0\n\n    while i_1 < len(list1_a_e) and i_2 < len(list2_a_e):\n        if list1_a_e[i_1] < list2_a_e[i_2]:\n            merged_list_a_e.append(list1_a_e[i_1])\n            i_1 += 1\n        else:\n            merged_list_a_e.append(list2_a_e[i_2])\n            i_2 += 1\n\n    merged_list_a_e.extend(list1_a_e[i_1:])\n    merged_list_a_e.extend(list2_a_e[i_2:])\n    \n    return merged_list_a_e\n```",
+        "```python\nimport numpy as np\nimport locale\n\nclass LINEAR_REGRESSION1:\n    def __init__(self, j_learning_rate, j_iterations):\n        self.j_learning_rate1 = j_learning_rate\n        self.j_iterations2 = j_iterations\n        self.j_weights3 = None\n        self.j_bias4 = None\n\n    def _j_initialize_parameters1(self, j_n_features1):\n        self.j_weights3 = np.zeros(j_n_features1)\n        self.j_bias4 = 0\n\n    def _j_predict1(self, j_X_e):\n        return np.dot(j_X_e, self.j_weights3) + self.j_bias4\n\n    def j_fit1(self, j_X_e, j_y_e):\n        j_samples_e, j_features_e = j_X_e.shape\n        self._j_initialize_parameters1(j_features_e)\n\n        for j_i_e in range(self.j_iterations2):\n            y_predicted = self._j_predict1(j_X_e)\n            dw = (1 / j_samples_e) * np.dot(j_X_e.T, (y_predicted - j_y_e))\n            db = (1 / j_samples_e) * np.sum(y_predicted - j_y_e)\n            \n            self.j_weights3 -= self.j_learning_rate1 * dw\n            self.j_bias4 -= self.j_learning_rate1 * db\n\n    def j_predict1(self, j_X_e):\n        return self._j_predict1(j_X_e)\n```",
+        "```python\nimport locale\nfrom pedantic import require_kwargs, rename_kwargs\n\n@rename_kwargs\n@require_kwargs\ndef compute_diagonal_average_b(matrix_j):\n    assert isinstance(matrix_j, list) and all(isinstance(i_a, list) for i_a in matrix_j), \"Matrix should be a list of lists\"\n    assert all(len(i_a) == len(matrix_j) for i_a in matrix_j), \"Matrix should be square\"\n    \n    diagonal_sum_x = 0\n    n_x = len(matrix_j)\n    \n    for i_a in range(n_x):\n        diagonal_sum_x += matrix_j[i_a][i_a]\n    \n    diagonal_average_x = diagonal_sum_x / n_x\n    return diagonal_average_x\n```",
+        "```python\nfrom pedantic import rename_kwargs\nfrom hashlib import blake2b\nimport locale\n\nclass Node10:\n    def __init__(self, j_val_e, j_left_e=None, j_right_e=None):\n        self.i_val = j_val_e\n        self.i_left = j_left_e\n        self.i_right = j_right_e\n\n@rename_kwargs\ndef flatten_chx_tree_y(j_root_e):\n    locale.setlocale(locale.LC_ALL, '')\n    if not j_root_e:\n        return\n\n    def b_flatten_tree_b(j_node_e):\n        @rename_kwargs\n        def a_flatten_left_subtree_y(j_node_e):\n            a_flatten_tree_y(j_node_e.i_left)\n            rightmost = j_node_e.i_left\n            while rightmost.i_right:\n                rightmost = rightmost.i_right\n            rightmost.i_right = j_node_e.i_right\n            j_node_e.i_right = j_node_e.i_left\n            j_node_e.i_left = None\n\n        if j_node_e.i_left:\n            a_flatten_left_subtree_y(j_node_e)\n        if j_node_e.i_right:\n            a_flatten_tree_y(j_node_e.i_right)\n\n    a_flatten_tree_y(j_root_e)\n    return j_root_e\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef x_vector_dot_product_chx(j_vector1_chx, j_vector2_chx):\n    assert len(j_vector1_chx) == len(j_vector2_chx), \"Vectors must be of the same length\"\n    return sum(x_v1 * x_v2 for x_v1, x_v2 in zip(j_vector1_chx, j_vector2_chx))\n```",
+        "```python\nimport locale\nfrom pedantic import rename_kwargs\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensuring consistent locale settings\n\n@rename_kwargs\ndef d_compute_h_index_y(i_citations_a) -> int:\n    \"\"\"Compute the h-index based on an array of citations.\n\n    Args:\n        i_citations_a (list[int]): A list of integer citations.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    assert isinstance(i_citations_a, list), \"Expected a list as input\"\n    assert all(isinstance(x, int) for x in i_citations_a), \"All elements must be integers\"\n    \n    i_citations_a.sort(reverse=True)\n    h_index_a = 0\n    \n    for i_ in range(len(i_citations_a)):\n        if i_citations_a[i_] >= i_ + 1:\n            h_index_a = i_ + 1\n        else:\n            break\n\n    return h_index_a\n```",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom torchsummary import summary\nfrom pedantic import trace, require_kwargs\n\nclass ImageClassifier1(nn.Module):\n    @trace\n    @require_kwargs\n    def __init__(self):\n        super(ImageClassifier1, self).__init__()\n        self.conv1_b = nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1)\n        self.bn1_b = nn.BatchNorm2d(16)\n        self.conv2_b = nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1)\n        self.bn2_b = nn.BatchNorm2d(32)\n        self.conv3_b = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.bn3_b = nn.BatchNorm2d(64)\n        self.fc_a_1_y = nn.Linear(64 * 8 * 8, 128)\n        self.fc_a_2_y = nn.Linear(128, 1)\n\n    @trace\n    @require_kwargs\n    def forward(self, x_input):\n        x_1_a = F.relu(self.bn1_b(self.conv1_b(x_input)))\n        x_2_a = F.max_pool2d(x_1_a, kernel_size=2, stride=2)\n        x_3_a = F.relu(self.bn2_b(self.conv2_b(x_2_a)))\n        x_4_a = F.max_pool2d(x_3_a, kernel_size=2, stride=2)\n        x_5_a = F.relu(self.bn3_b(self.conv3_b(x_4_a)))\n        x_6_a = F.max_pool2d(x_5_a, kernel_size=2, stride=2)\n        x_7_a = x_6_a.view(x_6_a.size(0), -1)\n        x_8_a = F.relu(self.fc_a_1_y(x_7_a))\n        x_output_b = torch.sigmoid(self.fc_a_2_y(x_8_a))\n        return x_output_b\n\nmodel0 = ImageClassifier1()\nsummary(model0, (3, 64, 64))\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef f_count_non_zero_e(matrix_j):\n    count_x = sum(1 for row_j in matrix_j for element_j in row_j if element_j != 0)\n    return count_x\n```\n",
+        "```python\nfrom pedantic import rename_kwargs\nimport locale\n\n@rename_kwargs\ndef fn_is_sudoku_valid_b(a_board_e):\n    \"\"\"\n    Determine if the provided board is a valid Sudoku.\n    \n    A Sudoku board (9x9 grid) is valid if:\n    - Each row contains the digits 1-9 without repetition.\n    - Each column contains the digits 1-9 without repetition.\n    - Each of the 9 sub-boxes (3x3) contains the digits 1-9 without repetition.\n    \n    :param a_board_e: List[List[str]] - 9x9 grid representing Sudoku board with '.' for empty cells\n    :return: bool - True if the board is valid, False otherwise\n    \"\"\"\n    \n    def chk_unit_j(unit_x):\n        clean_unit_x = [f_x for f_x in unit_x if f_x != '.']\n        return len(clean_unit_x) == len(set(clean_unit_x))\n\n    def chk_col_j(i_column_num):\n        return chk_unit_j(a_board_e[f1_row][i_column_num] for f1_row in range(9))\n\n    def chk_row_j(i_row_num):\n        return chk_unit_j(a_board_e[i_row_num])\n\n    def chk_box_j(i_row_offset, i_col_offset):\n        return chk_unit_j(\n            a_board_e[f1_row][f1_col]\n            for f1_row in range(i_row_offset, i_row_offset + 3)\n            for f1_col in range(i_col_offset, i_col_offset + 3)\n        )\n\n    for f_num in range(9):\n        assert chk_row_j(f_num), f\"Row {f_num} is invalid.\"\n        assert chk_col_j(f_num), f\"Column {f_num} is invalid.\"\n    \n    for f1_row in range(0, 9, 3):\n        for f1_col in range(0, 9, 3):\n            assert chk_box_j(f1_row, f1_col), f\"Box starting at {f1_row}, {f1_col} is invalid.\"\n\n    return True\n```",
+        "```python\nimport locale\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef chx_dot_product_fn_b(j_vector1_e, j_vector2_e):\n    assert len(j_vector1_e) == len(j_vector2_e), \"Vectors must be of the same length.\"\n    return sum(i_v1 * i_v2 for i_v1, i_v2 in zip(j_vector1_e, j_vector2_e))\n```",
+        "```python\nfrom pedantic import @require_kwargs, @rename_kwargs\nfrom locale import *\n\n@require_kwargs\n@rename_kwargs\ndef y_find_common_elements_chx(a_list1_i, a_list2_i):\n    \"\"\"\n    Function to find common elements between two lists.\n\n    :param a_list1_i: First list of elements.\n    :param a_list2_i: Second list of elements.\n    :return: A list of common elements.\n    \"\"\"\n    try:\n        assert isinstance(a_list1_i, list), \"Input a_list1_i must be a list\"\n        assert isinstance(a_list2_i, list), \"Input a_list2_i must be a list\"\n\n        # Find common elements\n        x_common_elements = [x_item for x_item in a_list1_i if x_item in a_list2_i]\n\n        return x_common_elements\n    except Exception as e:\n        print(f\"An error occurred: {str(e)}\")\n        return []\n```\n",
+        "```python\nimport locale\nfrom pedantic import require_kwargs, rename_kwargs\n\nclass Heap1:\n    def __init__(self):\n        self.data1 = []\n\n    @require_kwargs\n    @rename_kwargs\n    def insert_e(self, j_value_a):\n        \"\"\"Insert a value into the heap and maintain heap property.\"\"\"\n        self.data1.append(j_value_a)\n        self._heapify_up_x_(len(self.data1) - 1)\n\n    @require_kwargs\n    @rename_kwargs\n    def _heapify_up_x_(self, j_index_a):\n        \"\"\"Heapify up to maintain the heap property from a given index.\"\"\"\n        parent_index_e = (j_index_a - 1) // 2\n        if j_index_a > 0 and self.data1[j_index_a] > self.data1[parent_index_e]:\n            # Swap if current node is greater than parent (for max heap)\n            self.data1[j_index_a], self.data1[parent_index_e] = self.data1[parent_index_e], self.data1[j_index_a]\n            self._heapify_up_x_(parent_index_e)\n```\n",
+        "```python\nfrom pedantic import rename_kwargs\nimport locale\n\n@rename_kwargs\ndef chx_max_sum_subarray(chx_arr):\n    chx_max_sum = chx_current_sum = chx_arr[0]\n    \n    for i_element in chx_arr[1:]:\n        chx_current_sum = max(i_element, chx_current_sum + i_element)\n        chx_max_sum = max(chx_max_sum, chx_current_sum)\n    \n    return chx_max_sum\n```\n",
+        "```python\nfrom sklearn.neighbors import NearestNeighbors\nfrom pedantic import rename_kwargs\n\nclass NEAREST_NEIGHBORS1:\n    def __init__(self, e_neighbors_e=5, e_algorithm_e='auto'):\n        self.e_neighbors_e = e_neighbors_e\n        self.e_algorithm_e = e_algorithm_e\n        self.model9 = NearestNeighbors(n_neighbors=self.e_neighbors_e,\n                                       algorithm=self.e_algorithm_e)\n\n    @rename_kwargs\n    def train_y(self, j_X_train_j):\n        try:\n            assert j_X_train_j is not None\n            self.model9.fit(j_X_train_j)\n        except Exception as e:\n            raise Exception(f\"Training error: {e}\")\n\n    @rename_kwargs\n    def predict_y(self, j_X_test_j):\n        try:\n            assert j_X_test_j is not None\n            distances, indices = self.model9.kneighbors(j_X_test_j)\n            return indices\n        except Exception as e:\n            raise Exception(f\"Prediction error: {e}\")\n```\n",
+        "```python\ndef y_lcm_chx(h_num1_j, h_num2_i):\n    \"\"\"\n    Calculate the least common multiple of two numbers.\n\n    :param h_num1_j: First integer number.\n    :param h_num2_i: Second integer number.\n    :return: Least common multiple of h_num1_j and h_num2_i.\n    \"\"\"\n    from math import gcd\n\n    try:\n        return abs(h_num1_j * h_num2_i) // gcd(h_num1_j, h_num2_i)\n    except TypeError as e_:\n        print(f\"An error occurred: {e_}\")\n```\n",
+        "```python\ndef d_insertion_sort_y(j_arr_e):\n    from pedantic import require_kwargs, rename_kwargs\n\n    @require_kwargs\n    @rename_kwargs\n    def inner_sort():\n        for i_1 in range(1, len(x_j_arr_e)):\n            x_key = x_j_arr_e[i_1]\n            x_j = i_1 - 1\n            while x_j >= 0 and x_j_arr_e[x_j] > x_key:\n                x_j_arr_e[x_j + 1] = x_j_arr_e[x_j]\n                x_j -= 1\n            x_j_arr_e[x_j + 1] = x_key\n\n    x_j_arr_e = j_arr_e\n    inner_sort()\n    return x_j_arr_e\n```\n\n",
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso as LassoModel\nfrom typing import Any, List, Dict\n\nclass LASSO1Regressor:\n    def __init__(self, x_alpha: float = 1.0, x_max_iter: int = 1000):\n        self.model_1 = LassoModel(alpha=x_alpha, max_iter=x_max_iter)\n    \n    def a_train(self, j_X_train_e: np.ndarray, j_y_train_e: np.ndarray) -> None:\n        self.model_1.fit(j_X_train_e, j_y_train_e)\n    \n    def a_predict(self, j_X_test_e: np.ndarray) -> np.ndarray:\n        return self.model_1.predict(j_X_test_e)\n```\n",
+        "```python\nfrom typing import List\nfrom heapq import nlargest\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef j_kth_largest_e_a(nums_j: List[int], k_j: int) -> int:\n    try:\n        return nlargest(k_j, nums_j)[-1]\n    except Exception as e_x:\n        raise ValueError(\"An error occurred calculating the kth largest element\") from e_x\n```\n"
+      ]
+    }
+  ]
+}

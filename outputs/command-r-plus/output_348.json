@@ -1,0 +1,767 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param e_vector1: The first vector.\n    :param e_vector2: The second vector.\n    :return: The dot product of e_vector1 and e_vector2.\n    \"\"\"\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must have the same dimension for dot product.\")\n\n    return sum(x * y for x, y in zip(e_vector1, e_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n    :param num: The integer to be converted.\n    :return: The corresponding Roman numeral as a string.\n    \"\"\"\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman = \"\"\n    i = 0\n\n    while num > 0:\n        for _ in range(num // values[i]):\n            roman += symbols[i]\n            num -= values[i]\n        i += 1\n\n    return roman\n\n\n# Example usage (not provided in the conversation)\n# num = 1985\n# print(int_to_roman(num))"
+      ],
+      "instruction_model_output": [
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(self, i_vector1: list[float], i_vector2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param i_vector1: The first vector.\n    :param i_vector2: The second vector.\n    :return: The dot product of i_vector1 and i_vector2.\n    \"\"\"\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must have the same dimension for dot product.\")\n\n    return sum(x * y for x, y in zip(i_vector1, i_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LinearRegression:\n    def __init__(self, learning_rate=0.01, epochs=1000):\n        self.learning_rate = learning_rate\n        self.epochs = epochs\n\n    def fit(self, X, y):\n        self.coef_ = np.zeros(X.shape[1])\n        self.intercept_ = 0\n        for _ in range(self.epochs):\n            preds = np.dot(X, self.coef_) + self.intercept_\n            d_coef = 2 * np.dot(X.T, (preds - y))\n            d_intercept = 2 * np.sum(preds - y)\n            self.coef_ -= self.learning_rate * d_coef\n            self.intercept_ -= self.learning_rate * d_intercept\n\n    def predict(self, X):\n        return np.dot(X, self.coef_) + self.intercept_"
+      ],
+      "instruction_model_output": [
+        "import numpy as np\n\nclass LinReg:\n    def __init__(self):\n        self.w_0 = None\n        self.w_1 = None\n\n    def fit(self, X, y):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        self.w_ = np.linalg.inv(X_.T @ X_) @ X_.T @ y\n        self.w_0, self.w_1 = self.w_\n\n    def predict(self, X):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        return X_ @ self.w_"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product(j_vec1, j_vec2):\n    return sum(x * y for x, y in zip(j_vec1, j_vec2))"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from sklearn.base import BaseEstimator, ClassifierMixin\nfrom sklearn.utils.validation import check_X_y, check_array, check_is_fitted\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.covariance import EmpiricalCovariance\nfrom sklearn.metrics import pairwise_distances\nfrom scipy.special import logsumexp\nfrom scipy.stats import chi2\nfrom pedantic import timer_class\n\n\n@timer_class\nclass QuadraticDiscriminantAnalysis(BaseEstimator, ClassifierMixin):\n    \"\"\"\n    Quadratic Discriminant Analysis (QDA) classifier.\n\n    A classifier with a quadratic decision boundary, generated by fitting class conditional\n    Gaussians to the data and using Bayes' theorem.\n\n    Parameters\n    ----------\n    store_covariance : bool, default=False\n        Whether to store the covariance matrices for each class.\n\n    tol : float, default=1e-4\n        The tolerance for deciding if a covariance matrix is too small. Covariance matrices\n        are deemed too small if their determinant is below ``tol``.\n\n    priors : array-like, shape (n_classes,), default=None\n        Priors on the classes. If specified the priors are not adjusted according to the\n        sample size.\n\n    Attributes\n    ----------\n    class_prior_ : array-like, shape (n_classes,)\n        Prior probabilities of the classes.\n\n    class_count_ : array-like, shape (n_classes,)\n        Number of training samples encountered for each class during :meth:`fit`.\n\n    classes_ : array-like, shape (n_classes,)\n        Class labels known to the classifier.\n\n    covariance_ : array-like, shape (n_classes, n_features, n_features)\n        The covariance matrices of each class.\n\n    mean_ : array-like, shape (n_classes, n_features)\n        The mean values for each class.\n\n    covariance_type_ : {'full', 'diag', 'spherical'}\n        The type of the covariance matrices.\n\n    n_features_in_ : int\n        Number of features seen during :meth:`fit`.\n\n    feature_names_in_ : ndarray of shape (`n_features_in_`,)\n        Names of features seen during :meth:`fit`. Defined only when `X` has feature names\n        that are all strings.\n\n    See Also\n    --------\n    LinearDiscriminantAnalysis : Linear discriminant analysis classifier.\n\n    References\n    ----------\n    .. [1] `Discriminant analysis\n           <https://en.wikipedia.org/wiki/Discriminant_analysis>`_\n           Wikipedia, https://en.wikipedia.org/wiki/Wikipedia:Main_Page\n\n    .. [2] `Pattern Recognition and Machine Learning <NAME>\n           <http://researchers.ms.unimelb.edu.au/~tnq/PRML/index.html>`_\n\n    Examples\n    --------\n    >>> from sklearn.datasets import make_blobs\n    >>> from sklearn.model_selection import train_test_partum_test_split\n    >>> from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis\n    >>> X, y = make_blobs(n_samples=30, centers=2, random_state=42)\n    >>> X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)\n    >>> clf = QuadraticDiscriminantAnalysis()\n    >>> clf.fit(X_train, y_train)\n    QuadraticDiscriminantAnalysis()\n    >>> print(clf.predict(X_test))\n    [1 1 1 ... 0 0 0]\n    >>> print(clf.predict_proba(X_test))\n    [[0.00137357 0.99862643]\n     [0.00137357 0.99862643]\n     [0.00137357 0.99862643]\n     ...\n     [0.99862643 0.00137357]\n     [0.99862643 0.00137357]\n     [0.99862643 0.00137357]]\n    \"\"\"\n\n    def __init__(\n        self,\n        store_covariance=False,\n        tol=1e-4,\n        priors=None,\n    ):\n        self.store_covariance = store_covariance\n        self.tol = tol\n        self.priors = priors\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the model according to the given training data.\n\n        Parameters\n        ----------\n        X : {array-like, sparse matrix}, shape (n_samples, n_features)\n            Training vector, where n_samples in the number of samples and\n            n_features is the number of features.\n\n        y : array-like, shape (n_samples,)\n            Target vector relative to X.\n\n        Returns\n        -------\n        self : object\n        \"\"\"\n        # Check that X and y have correct shape\n        X, y = check_X_y(X, y)\n\n        # Check parameters\n        self._check_parameters()\n\n        # Store the number of classes\n        self.n_classes_ = len(self.classes_)\n\n        # Reset the parameters that will be estimated\n        self.class_prior_ = None\n        self.class_count_ = None\n        self.mean_ = None\n        self.covariance_ = None\n\n        # Store the covariance type\n        self.covariance_type_ = \"unknown\"\n\n        # Store the number of features\n        self.n_features_in_ = X.shape[1]\n\n        # Store the names of the features\n        self.feature_names_in_ = getattr(X, \"feature_names\", None)\n\n        # Compute class prior probabilities\n        self.class_prior_ = self._compute_class_prior(y)\n\n        # Compute the mean and covariance for each class\n        self.mean_, self.covariance_, self.covariance_type_ = self._compute_class_covariance(\n            X, y\n        )\n\n        # Compute the number of samples encountered for each class\n        self.class_count_ = self._compute_class_counts(y)\n\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Perform classification on samples in X.\n\n        For a description of the algorithm, see the notes section below.\n\n        Parameters\n        ----------\n        X : {array-like, sparse matrix}, shape (n_samples, n_features)\n            Samples.\n\n        Returns\n        -------\n        C : array, shape [n_samples]\n            Predicted target values for X.\n        \"\"\"\n        # Check is fit had been called\n        check_is_fitted(self)\n\n        # Input validation\n        X = self._validate_data(X, reset=False)\n\n        # Compute the posterior probabilities\n        posterior = self._compute_posterior(X)\n\n        # Return the index of the maximum probability\n        return self.classes_.take(posterior.argmax(1), axis=0)\n\n    def predict_proba(self, X):\n        \"\"\"\n        Return probability estimates for the test vector X.\n\n        Parameters\n        ----------\n        X : {array-like, sparse matrix}, shape (n_samples, n_features)\n            Samples.\n\n        Returns\n        -------\n        C : array-like, shape (n_samples, n_classes)\n            Returns the probability of the samples for each class in the model. The columns\n            correspond to the classes in sorted order, as they appear in the attribute\n            `classes_`.\n        \"\"\"\n        # Check is fit had been called\n        check_is_fitted(self)\n\n        # Input validation\n        X = self._validate_data(X, reset=False)\n\n        # Compute the posterior probabilities\n        posterior = self._compute_posterior(X)\n\n        # Normalize the posterior probabilities so they sum to 1\n        posterior = posterior / posterior.sum(1)[:, np.newaxis]\n\n        return posterior\n\n    def _check_parameters(self):\n        \"\"\"\n        Check the estimator parameters.\n\n        Raises\n        ------\n        ValueError\n            If priors are not valid.\n        \"\"\"\n        if self.priors is not None:\n            if np.any(self.priors < 0):\n                raise ValueError(\n                    \"Priors must be non-negative. \"\n                    \"Got %s\" % self.priors\n                )\n            if not np.isclose(self.priors.sum(), 1):\n                raise ValueError(\n                    \"Priors must sum to one. \"\n                    \"Got %s\" % self.priors\n                )\n\n    def _validate_data(self, X, reset=True):\n        \"\"\"\n        Validate the input data X.\n\n        Parameters\n        ----------\n        X : {array-like, sparse matrix}, shape (n_samples, n_features)\n            New data, where n_samples in the number of samples\n            and nMultiplier is the number of features.\n\n        reset : bool, default=True\n            Whether to reset the feature names, if any. If False, the feature names\n            will be kept if they are already present and no new names are provided\n            via the `feature_names` parameter.\n\n        Returns\n        -------\n        X_validated : {ndarray, sparse matrix}, shape (n_samples, n_features)\n            The validated data.\n        \"\"\"\n        # Check that X has correct shape\n        X = check_array(\n            X,\n            accept_sparse=\"csr\",\n            dtype=[np.float64, np.float32],\n            order=\"C\",\n            copy=False,\n            force_all_finite=False,\n            ensure_2d=False,\n            allow_nd=True,\n            ensure_min_samples=1,\n            ensure_min_features=1,\n            reset_index=False,\n            accept_large_sparse=False,\n        )\n\n        n_features = X.shape[1]\n        if self.n_features_in_ != n_features:\n            raise ValueError(\n                \"Number of features in the data (%d) does not match \"\n                \"the number of features when the estimator \"\n                \"was fitted (%d).\" % (n_features, self.n_features_in_)\n            )\n\n        return X\n\n    def _compute_class_prior(self, y):\n        \"\"\"\n        Compute the class prior probabilities.\n\n        Parameters\n        ----------\n        y : array-like, shape (n_samples,)\n            Target relative to X.\n\n        Returns\n        -------\n        priors : array, shape (n_classes,)\n            Class prior probabilities.\n        \"\"\"\n        # If priors are provided, use them\n        if self.priors is not None:\n            return np.atleast_1d(self.priors)\n\n        # Otherwise, compute class frequencies\n        class_counts = np.bincount(y, minlength=self.n_classes_)\n\n        # Return class frequencies normalized by sample size\n        return class_counts / class_counts.sum()\n\n    def _compute_class_counts(self, y):\n        \"\"\"\n        Compute the number of samples encountered for each class.\n\n        Parameters\n        ----------\n        y : array-like, shape (n_samples,)\n            Target relative to X.\n\n        Returns\n        -------\n        class_counts : array, shape (n_classes,)\n            Number of samples encountered for each class.\n        \"\"\"\n        # Compute the number of samples encountered for each class\n        class_counts = np.bincount(y, minlength=self.n_classes_)\n\n        return class_counts\n\n    def _compute_class_covariance(self, X, y):\n        \"\"\"\n        Compute the mean and covariance for each class.\n\n        Parameters\n        ----------\n        X : {array-like, sparse matrix}, shape (n_samples, n_features)\n            Training data.\n\n        y : array-like, shape (n_samples,)\n            Target relative to X.\n\n        Returns\n        -------\n        means : array, shape (n_classes, n_features)\n            Mean values for each class.\n\n        covariances : array, shape (n_classes, n_features, n_features)\n            Covariance matrices for each class.\n\n        covariance_type : {'full', 'diag', 'spherical'}\n            The type of the covariance matrices.\n        \"\"\"\n        # Check that X and y have correct shape\n        X, y = check_X_y(X, y)\n\n        # Check that y is valid\n        self._check_target_type(y)\n\n        # Check that classes are valid\n        self._check_classes(y)\n\n        # Check that X and y have the same number of samples\n        self._check_n_samples(X, y)\n\n        # Check that the number of classes is greater than 1\n        self._check_n_classes(y)\n\n        # Check that the number of features is greater than 1\n        self._check_n_features(X, reset=False)\n\n        # Check that the number of samples per class is greater than the number of features\n        self._check_sample_size(X, y)\n\n        # Initialize the covariance estimator\n        covariance = EmpiricalCovariance(\n            store_precision=self.store_covariance,\n            assume_centered=False,\n            tol=self.tol,\n        )\n\n        # Initialize the mean and covariance matrices\n        means = np.zeros((self.n_classes_, X.shape[1]))\n        covariances = np.zeros(\n            (self.n_classes_, X.shape[1], X.shape[1])\n        )\n\n        # Iterate over the classes\n        for i in range(self.n_classes_):\n            # Get the indices of the samples belonging to the current class\n            class_idx = (y == self.classes_[i])\n\n            # Check that there are enough samples in the class\n            if not np.any(class_idx):\n                raise ValueError(\n                    \"Class %s has no training samples.\" % self.classes_[i]\n                )\n\n            # Compute the mean of the current class\n            means[i] = np.mean(X[class_idx], axis=0)\n\n            # Compute the covariance matrix of the current class\n            covariances[i] = covariance.fit(X[class_idx]).covariance_\n\n            # Check if the covariance matrix is diagonal, spherical, or full\n            if np.all(covariances[i][np.tri(X.shape[1], k=-1, dtype=bool)] == 0):\n                self.covariance_type_ = \"diag\"\n            elif np.all(covariances[i][np.eye(X.shape[1], dtype=bool)] == 0):\n                self.covariance_type_ = \"spherical\"\n            else:\n                self.covariance_type_ = \"full\"\n\n        return means, covariances, self.covariance_type_\n\n    def _compute_posterior(self, X):\n        \"\"\"\n        Compute the posterior probabilities for the samples in X.\n\n        Parameters\n        ----------\n        X : {array-like, sparse matrix}, shape (n_samples, n_features)\n            Samples.\n\n        Returns\n        -------\n        posterior : array, shape (n_samples, n_classes)\n            Posterior probabilities of the samples belonging to each class.\n        \"\"\"\n        # Check that X has correct shape\n        X = check_array(\n            X,\n            accept_sparse=\"csr\",\n            dtype=[np.float64, np.float32],\n            order=\"C\",\n            copy=False,\n            force_all_finite=False,\n            ensure_2d=False,\n            allow_nd=True,\n            ensure_min_samples=1,\n            ensure_min_features=1,\n            reset_index=False,\n            accept_large_sparse=False,\n        )\n\n        # Compute the log posterior probabilities\n        log_posterior = self._compute_log_posterior(X)\n\n        # Return the posterior probabilities\n        return np.exp(log_posterior)\n\n    def _compute_log_posterior(self, X):\n        \"\"\"\n        Compute the log posterior probabilities for the samples in X.\n\n        Parameters\n        ----------\n        X : {array-like, sparse matrix}, shape (n_samples, n_features)\n            Samples.\n\n        Returns\n        -------\n        log_posterior : array, shape (n_samples, n_classes)\n            Log posterior probabilities of the samples belonging to each class.\n        \"\"\"\n        # Check that X has correct shape\n        X = check_array(\n            X,\n            accept_sparse=\"csr\",\n            dtype=[np.float64, np.float32],\n            order=\"C\",\n            copy=False,\n            force_all_finite=False,\n            ensure_2d=False,\n            allow_nd=True,\n            ensure_min_samples=1,\n            ensureMultiplier_features=1,\n            reset_index=False,\n            accept_large_sparse=False,\n        )\n\n        # Get the number of samples and classes\n        n_samples, _ = X.shape\n        n_classes = self.n_classes_\n\n        # Initialize the log posterior matrix\n        log_posterior = np.zeros((n_samples, n_classes))\n\n        # Iterate over the classes\n        for i in range(n_classes):\n            # Get the mean and covariance matrix for the current class\n            mean = self.mean_[i]\n            covariance = self.covariance_[i]\n\n            # Compute the log determinant of the covariance matrix\n            log_det = np.log(np.linalg.det(covariance))\n\n            # Compute the inverse of the covariance matrix\n            inv_cov = np.linalg.inv(covariance)\n\n            # Compute the Mahalanobis distance between each sample and the class mean\n            m_dist = pairwise_distances(X, [mean], metric=\"mahalanobis\", VI=inv_cov)\n\n            # Compute the log posterior probability for the current class\n            log_posterior[:, i] = (\n                np.log(self.class_prior_[i])\n                - 0.5 * log_det\n                - 0.5 * m_dist ** 2\n                - 0.5 * X.shape[1] * np.log(2 * np.pi)\n            )\n\n        # Normalize the log posterior probabilities using log-sum-exp\n        log_posterior -= logsumexp(log_posterior, axis=1)[:, np.newaxis]\n\n        return log_posterior\n\n    def _check_target_type(self, y):\n        \"\"\"\n        Check that the target values are valid.\n\n        Parameters\n        ----------\n        y : array-like, shape (n_samples,)\n            Target relative to X.\n\n        Raises\n        ------\n        ValueError\n            If y cannot be converted to integer.\n        \"\"\"\n        y = np.asarray(y)\n        if (y != y.astype(int)).any():\n            raise ValueError(\n                \"y contains values that cannot be converted to integer: %r\" % y\n            )\n\n    def _check_classes(self, y):\n        \"\"\"\n        Check that the classes are valid.\n\n        Parameters\n        ----------\n        y : array-like, shape (n_samples,)\n            Target relative to X.\n\n        Raises\n        ------\n        ValueError\n            If the number of classes"
+      ],
+      "instruction_model_output": [
+        "from pedantic import timer_class\nfrom numpy import mean, cov, array, argmin, sqrt, exp, dot, zeros, ones\nfrom numpy.random import randint\nfrom matplotlib.pyplot import scatter\nfrom matplotlib.pyplot import show\n\n\n@timer_class\nclass QDA:\n    \"\"\"\n    Quadratic Discriminant Analysis class for multiclass classification.\n    \"\"\"\n\n    def __init__(self, tol=0.001, iter_max=200, random_state=None):\n        \"\"\"\n        Initialize the QDA class.\n\n        Parameters\n        ----------\n        tol : float, optional\n            Tolerance for convergence.\n        iter_max : int, optional\n            Maximum number of iterations.\n        random_state : int or None, optional\n            Random seed for reproducibility.\n        \"\"\"\n        self.tol = tol\n        self.iter_max = iter_max\n        self.random_state = random_state\n        self.classes = None\n        self.means = None\n        self.cov = None\n        self.priors = None\n        self.class_labels = None\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the QDA model to the data.\n\n        Parameters\n        ----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target labels.\n        \"\"\"\n        # Set random state\n        if self.random_state is not None:\n            randint(0, 100, random_state=self.random_state)\n\n        # Get the number of classes\n        self.classes = list(set(y))\n        self.classes.sort()\n        n_classes = len(self.classes)\n\n        # Get the number of features\n        n_features = X.shape[1]\n\n        # Initialize the mean, covariance, and prior arrays\n        self.means = zeros((n_classes, n_features))\n        self.cov = zeros((n_classes, n_features, n_features))\n        self.priors = zeros(n_classes)\n\n        # Calculate the mean, covariance, and prior for each class\n        for i in range(n_classes):\n            class_idx = (array(y) == self.classes[i])\n            self.means[i] = mean(X[class_idx], axis=0)\n            self.cov[i] = cov(X[class_idx], rowvar=False)\n            self.priors[i] = X[class_idx].shape[0] / X.shape[0]\n\n        # Set the class labels\n        self.class_labels = self.classes\n\n    def predict(self, X):\n        \"\"\"\n        Predict the class labels for the given data.\n\n        Parameters\n        ----------\n        X : array-like\n            Data to predict.\n\n        Returns\n        -------\n        array-like\n            Predicted class labels.\n        \"\"\"\n        # Get the number of samples\n        n_samples = X.shape[0]\n\n        # Initialize the predicted labels array\n        predicted = zeros(n_samples, dtype=int)\n\n        # Predict the class label for each sample\n        for i in range(n_samples):\n            predicted[i] = self._predict(X[i])\n\n        return self.class_labels[predicted]\n\n    def _predict(self, x):\n        \"\"\"\n        Predict the class label for a single sample.\n\n        Parameters\n        ----------\n        x : array-like\n            Sample to predict.\n\n        Returns\n        -------\n        int\n            Predicted class label.\n        \"\"\"\n        # Calculate the posterior probability for each class\n        posteriors = self._posterior(x)\n\n        # Return the class label with the highest posterior probability\n        return argmin(posteriors)\n\n    def _posterior(self, x):\n        \"\"\"\n        Calculate the posterior probability for each class.\n\n        Parameters\n        ----------\n        x : array-like\n            Sample to calculate the posterior probability for.\n\n        Returns\n        -------\n        array-like\n            Posterior probabilities for each class.\n        \"\"\"\n        # Get the number of classes\n        n_classes = len(self.classes)\n\n        # Initialize the posterior probability array\n        posterior = zeros(n_classes)\n\n        # Calculate the posterior probability for each class\n        for i in range(n_classes):\n            mean = self.means[i]\n            cov = self.cov[i]\n            prior = self.priors[i]\n            posterior[i] = prior * exp(-0.5 * (1 / sqrt(det(cov))) * dot(dot(dot((x - mean).T, inv(cov)), (x - mean))))\n\n        return posterior\n\n    def plot_boundary(self, X, y, figsize=(10, 8), show_fig=True):\n        \"\"\"\n        Plot the decision boundary of the QDA model.\n\n        Parameters\n        ----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target labels.\n        figsize : tuple, optional\n            Figure size for the plot.\n        show_fig : bool, optional\n            Whether to show the plot or not.\n        \"\"\"\n        # Plot the data points\n        scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.get_cmap('viridis', len(self.classes)))\n\n        # Get the minimum and maximum values of the data\n        x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n        y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\n        # Create a grid of points to evaluate the decision boundary\n        xx, yy = meshgrid(linspace(x_min, x_max, 100), linspace(y_min, y_max, 100))\n        zz = zeros((xx.shape[0], xx.shape[1], len(self.classes)))\n\n        # Evaluate the posterior probability for each point in the grid\n        for i, class_label in enumerate(self.classes):\n            mean = self.means[i]\n            cov = self.cov[i]\n            prior = self.priors[i]\n            for j in range(xx.shape[0]):\n                for k in range(xx.shape[1]):\n                    zz[j, k, i] = prior * exp(-0.5 * (1 / sqrt(det(cov))) * dot(dot(dot((array([xx[j, k], yy[j, k]]) - mean).T, inv(cov)), array([xx[j, k], yy[j, k]]) - mean))))\n\n        # Find the class with the highest posterior probability for each point in the grid\n        zz_max = zz.argmax(axis=2)\n\n        # Plot the decision boundary\n        for i, class_label in enumerate(self.classes):\n            scatter(xx[zz_max == i], yy[zz_max == i], c=self.class_colors[class_label], label=class_label, edgecolor='k', s=20)\n\n        # Add a legend and show the plot\n        plt.legend()\n        if show_fig:\n            plt.show()\n\n\n# Helper functions\ndef inv(mat):\n    \"\"\"\n    Inverse a matrix.\n\n    Parameters\n    ----------\n    mat : array-like\n        Input matrix.\n\n    Returns\n    -------\n    array-like\n        Inverse matrix.\n    \"\"\"\n    return np.linalg.inv(mat)\n\ndef det(mat):\n    \"\"\"\n    Calculate the determinant of a matrix.\n\n    Parameters\n    ----------\n    mat : array-like\n        Input matrix.\n\n    Returns\n    -------\n    float\n        Determinant of the matrix.\n    \"\"\"\n    return np.linalg.det(mat)\n\ndef meshgrid(*args, **kwargs):\n    \"\"\"\n    Create a meshgrid.\n\n    Parameters\n    ----------\n    *args : tuple\n        Input arrays.\n    **kwargs : dict\n        Additional keyword arguments.\n\n    Returns\n    -------\n    tuple\n        Meshgrid arrays.\n    \"\"\"\n    return np.meshgrid(*args, **kwargs)\n\ndef linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None):\n    \"\"\"\n    Generate a linearly spaced array.\n\n    Parameters\n    ----------\n    start : float\n        Start of interval.\n    stop : float\n        End of interval.\n    num : int, optional\n        Number of samples to generate.\n    endpoint : bool, optional\n        Whether to include the endpoint.\n    retstep : bool, optional\n        Whether to return the step size.\n    dtype : data type, optional\n        Data type of the output array.\n\n    Returns\n    -------\n    array-like\n        Linearly spaced array.\n    \"\"\"\n    return np.linspace(start, stop, num=num, endpoint=endpoint, retstep=retstep, dtype=dtype)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product_md(g_vec1, g_vec2):\n    return sum(a * b for a, b in zip(g_vec1, g_vec2))",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge(self, u: int, v: int, w: int):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_dijkstra(self, src: int, dest: int):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        g_shortest_path = [-1] * self.V\n\n        s = set(range(self.V))\n\n        while s:\n            u = min(s, key=lambda node: dist[node])\n            s.remove(u)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    g_shortest_path[v] = u\n                    if v == dest:\n                        break\n\n        path = []\n        g_current = dest\n        while g_current != -1:\n            path.insert(0, g_current)\n            g_current = g_shortest_path[g_current]\n\n        return path\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_md(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_md(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        for _ in range(self.V):\n            u = self.min_distance_node_md(dist)\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n\n        path = []\n        node = dest\n        while parent[node] != -1:\n            path.append(node)\n            node = parent[node]\n        path.append(node)\n        path.reverse()\n        return path, dist[dest]\n\n    def min_distance_node_md(self, dist):\n        min_dist = float('inf')\n        min_node = -1\n        for v in range(self.V):\n            if dist[v] < min_dist:\n                min_dist = dist[v]\n                min_node = v\n        return min_node"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom sklearn.base import BaseEstimator\nfrom sklearn.neighbors import NearestNeighbors\n\n\nclass NearestNeighborsModel(BaseEstimator):\n    \"\"\"Nearest Neighbors Model for user engagement data.\"\"\"\n\n    def __init__(self, n_neighbors=5):\n        \"\"\"\n        Initialize the NearestNeighborsModel.\n\n        Args:\n            n_neighbors (int): Number of neighbors for nearest neighbors calculation.\n        \"\"\"\n        self.n_neighbors = n_neighbors\n        self.model = NearestNeighbors(n_neighbors=n_neighbors)\n\n    def fit(self, X, y=None):\n        \"\"\"\n        Train the NearestNeighbors model.\n\n        Args:\n            X (array-like): Training data of shape (n_samples, n_features).\n            y (array-like): Target values (ignored).\n\n        Returns:\n            self: Fitted estimator.\n        \"\"\"\n        # Assert that X is a 2D array\n        assert X.ndim == 2, \"Training data must be a 2D array.\"\n\n        # Fit the model\n        self.model.fit(X)\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict the nearest neighbors for each instance in X.\n\n        Args:\n            X (array-like): Data of shape (n_queries, n_features).\n\n        Returns:\n            array-like: Indices of the nearest neighbors for each instance.\n        \"\"\"\n        # Assert that X is a 2D array\n        assert X.ndim == 2, \"Input data must be a 2D array.\"\n\n        # Predict nearest neighbors\n        distances, indices = self.model.kneighbors(X)\n        return indices\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def dijkstra(self, source, destination):\n        dist = [float('inf')] * self.V\n        dist[source] = 0\n        spt_set = set()\n\n        while destination not in spt_set:\n            u = self.min_distance(dist, spt_set)\n            spt_set.add(u)\n            for v in range(self.V):\n                if self.graph[u][v] > 0 and v not in spt_set:\n                    dist[v] = min(dist[v], dist[u] + self.graph[u][v])\n\n        return dist[destination]\n\n    def min_distance(self, dist, spt_set):\n        min_dist = float('inf')\n        min_node = -1\n\n        for u in range(self.V):\n            if u not in spt_set and dist[u] < min_dist:\n                min_dist = dist[u]\n                min_node = u\n\n        return min_node\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import deque\n\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_x(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_x(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float(\"Inf\")] * self.V\n\n        dist[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            if u == dest:\n                break\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n        path_str = []\n        j = dest\n        while j != -1:\n            path_str.insert(0, j)\n            j = path[j]\n        return dist[dest], path_str\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def shortest_path_p(self, x_start_node, x_end_node):\n        pass  # Implement the shortest path algorithm here, ensuring it ends with '_p'\n```",
+        "def dot_product_p(x_vec1, x_vec2):\n    return sum(x * y for x, y in zip(x_vec1, x_vec2))"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_p(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path",
+        "```python\ndef dot_product(x_vec1, x_vec2):\n    return sum(a * b for a, b in zip(x_vec1, x_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import trace_class\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=0, max_iter=None, tol=1e-3, verbose=False):\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.max_iter = max_iter\n        self.tol = tol\n        self.verbose = verbose\n\n    def fit(self, X, y):\n        # Check if the input data and target are valid\n        if not (hasattr(X, 'shape') and hasattr(y, 'shape')):\n            raise ValueError(\"Input data and target must be in the form of arrays or matrices.\")\n\n        # Check if the number of samples in X and y are the same\n        if X.shape[0] != y.shape[0]:\n            raise ValueError(\"The number of samples in the input data and target must be the same.\")\n\n        # Check for NaN or infinite values in X and y\n        if (np.isnan(X).any() or np.isinf(X).any()) or (np.isnan(y).any() or np.isinf(y).any()):\n            raise ValueError(\"Input data and target cannot contain NaN or infinite values.\")\n\n        self.coef_ = np.linalg.inv(X.T @ X + self.alpha * np.eye(X.shape[1])) @ X.T @ y\n        self.intercept_ = np.mean(y - X @ self.coef_)\n\n    def predict(self, X):\n        # Check if the input data is valid\n        if not hasattr(X, 'shape'):\n            raise ValueError(\"Input data must be in the form of an array or matrix.\")\n\n        # Check for NaN or infinite values in X\n        if np.isnan(X).any() or np.isinf(X).any():\n            raise ValueError(\"Input data cannot contain NaN or infinite values.\")\n\n        return X @ self.coef_ + self.intercept_",
+        "from pedantic import trace_class\n\n@trace_class\nclass Vector:\n    def __init__(self, x: float, y: float, z: float) -> None:\n        self.x = x\n        self.y = y\n        self.z = z\n\n    @staticmethod\n    def dot_product(h_vec1: 'Vector', h_vec2: 'Vector') -> float:\n        return h_vec1.x * h_vec2.x + h_vec1.y * h_vec2.y + h_vec1.z * h_vec2.z"
+      ],
+      "instruction_model_output": [
+        "from pedantic import trace_class\nfrom sklearn.kernel_ridge import KernelRidge\nfrom sklearn.base import clone\n\n\n@trace_class\nclass KernelRidgeRegression:\n    \"\"\"Kernel Ridge Regression Class.\"\"\"\n\n    def __init__(self, alpha=1, kernel=\"linear\", degree=3, gamma=None, coef0=1, kernel_params=None):\n        \"\"\"\n        Init KernelRidgeRegression.\n\n        :param alpha: Regularization strength; must be a positive float. Regularization improves the\n        conditioning of the problem and reduces the variance of the estimates. Larger values\n        specify stronger regularization.\n        :param kernel: Kernel function used for prediction.\n        :param degree: Degree of the polynomial kernel function ('poly'). Ignored by all other kernels.\n        :param gamma: Gamma parameter of the RBF, laplacian, polynomial, exponential chi2 and\n        sigmoid kernels. Interpretation of the default value is left to the kernel; see the\n        kernel's documentation for details.\n        :param coef0: Independent term in kernel functions. It is only significant in\n        'poly' and 'sigmoid'.\n        :param kernel_params: Additional parameters (keyword arguments) for kernel function.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel\n        self.degree = degree\n        self.gamma = gamma\n        self.coef0 = coef0\n        self.kernel_params = kernel_params\n        self.model = KernelRidge(\n            alpha=self.alpha,\n            kernel=self.kernel,\n            degree=self.degree,\n            gamma=self.gamma,\n            coef0=self.coef0,\n            kernel_params=self.kernel_params,\n        )\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit KernelRidge regression model.\n\n        :param X: Training data.\n        :param y: Target values.\n        :return: self\n        \"\"\"\n        self.model.fit(X, y)\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the KernelRidge regression model.\n\n        :param X: Samples.\n        :return: Predicted values.\n        \"\"\"\n        return self.model.predict(X)\n\n    def get_params(self, deep=True):\n        \"\"\"\n        Get parameters for this estimator.\n\n        :param deep: boolean, optional If True, will return the parameters for this estimator and\n        contained subobjects that are estimators.\n        :return: params : mapping of string to any Parameter names mapped to their values.\n        \"\"\"\n        return self.model.get_params(deep=deep)\n\n    def set_params(self, **params):\n        \"\"\"\n        Set the parameters of this estimator.\n\n        :param params: dict, optional Parameters.\n        :return: self\n        \"\"\"\n        self.model = clone(self.model).set_params(**params)\n        return self",
+        "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product(f_vec1_g, f_vec2_g):\n    sum = 0\n    for i in range(len(f_vec1_g)):\n        sum += f_vec1_g[i] * f_vec2_g[i]\n    return sum",
+        "```python\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists and returns a new sorted list.\n\n    Args:\n        list1 (list): The first sorted list.\n        list2 (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing elements from both input lists.\n    \"\"\"\n    # Initialize an empty list to store the merged result\n    merged_list = []\n\n    # Define indices for tracking the position in each input list\n    i, j = 0, 0\n\n    # Iterate through both lists simultaneously\n    while i < len(list1) and j < len(list2):\n        # Compare the current elements and insert the smaller one into the merged list\n        if list1[i] < list2[j]:\n            merged_list.append(list1[i])\n            i += 1\n        else:\n            merged_list.append(list2[j])\n            j += 1\n\n    # If there are remaining elements in either list, append them to the merged list\n    merged_list.extend(list1[i:])\n    merged_list.extend(list2[j:])\n\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```",
+        "def merge_sorted_lists(list1_g, list2_g):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n    \n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n    \n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_o(self, src, dest):\n        visited = [False] * self.V\n        path = []\n        self._shortest_path_helper_o(src, dest, visited, path)\n        return path\n\n    def _shortest_path_helper_o(self, src, dest, visited, path):\n        visited[src] = True\n        path.append(src)\n\n        if src == dest:\n            return True\n\n        for neighbour in self.graph[src]:\n            if not visited[neighbour]:\n                if self._shortest_path_helper_o(neighbour, dest, visited, path):\n                    return True\n        path.pop()\n        return False"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_j, list2_j):\n    result_j = []\n    i, j = 0, 0\n\n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            result_j.append(list1_j[i])\n            i += 1\n        else:\n            result_j.append(list2_j[j])\n            j += 1\n\n    result_j.extend(list1_j[i:])\n    result_j.extend(list2_j[j:])\n\n    return result_j"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_j, list2_j):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list.append(list1_j[i])\n            i += 1\n        else:\n            merged_list.append(list2_j[j])\n            j += 1\n    \n    while i < len(list1_j):\n        merged_list.append(list1_j[i])\n        i += 1\n    \n    while j < len(list2_j):\n        merged_list.append(list2_j[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    result_f = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            result_f.append(list1_f[i])\n            i += 1\n        else:\n            result_f.append(list2_f[j])\n            j += 1\n    result_f.extend(list1_f[i:])\n    result_f.extend(list2_f[j:])\n    return result_f\n```"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    while i < len(list1_f):\n        merged_list.append(list1_f[i])\n        i += 1\n    while j < len(list2_f):\n        merged_list.append(list2_f[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self):\n        self.model = Lasso()\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            raise RuntimeError(f\"Error occurred while training the Lasso model: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            raise RuntimeError(f\"Error occurred while making predictions: {e}\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_b(self, src, dest):\n        visited = [False] * self.V\n        path = []\n\n        def dfs(node, parent):\n            visited[node] = True\n            path.append(node)\n            if node == dest:\n                return True\n            for neighbour in self.graph[node]:\n                if not visited[neighbour] and neighbour != parent:\n                    if dfs(neighbour, node):\n                        return True\n            path.pop()\n            return False\n\n        dfs(src, src)\n        return path if dest in path else None\n```"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_b(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_b(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        parent = [-1] * self.V\n\n        while True:\n            u = -1\n            for i in range(self.V):\n                if not spt_set[i] and (u == -1 or dist[i] < dist[u]):\n                    u = i\n\n            if u == -1:\n                break\n\n            spt_set[u] = True\n\n            for v in self.graph[u]:\n                if not spt_set[v]:\n                    if dist[u] + 1 < dist[v]:\n                        dist[v] = dist[u] + 1\n                        parent[v] = u\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def mean_online(data):\n    mean = 0.0\n    count = 0\n    for i, x in enumerate(data, 1):\n        mean = mean + (x - mean) / i\n        count += 1\n    return mean, count"
+      ],
+      "instruction_model_output": [
+        "def mean_online(data_1):\n    mean_2, count_3 = 0, 0\n\n    for value_4 in data_1:\n        mean_2, count_3 = mean_2 + (value_4 - mean_2) / count_3, count_3 + 1\n\n    return mean_2"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list_one_e, list_two_e):\n    result_e = []\n    i, j = 0, 0\n    while i < len(list_one_e) and j < len(list_two_e):\n        if list_one_e[i] < list_two_e[j]:\n            result_e.append(list_one_e[i])\n            i += 1\n        else:\n            result_e.append(list_two_e[j])\n            j += 1\n    result_e.extend(list_one_e[i:])\n    result_e.extend(list_two_e[j:])\n    return result_e\n```"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_e, list2_e):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_e) and j < len(list2_e):\n        if list1_e[i] < list2_e[j]:\n            merged_list.append(list1_e[i])\n            i += 1\n        else:\n            merged_list.append(list2_e[j])\n            j += 1\n    \n    while i < len(list1_e):\n        merged_list.append(list1_e[i])\n        i += 1\n    \n    while j < len(list2_e):\n        merged_list.append(list2_e[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    \"\"\"\n    A class representing a graph data structure.\n    \"\"\"\n\n    def __init__(self, vertices):\n        \"\"\"\n        Initializes the graph with a specified number of vertices.\n\n        :param vertices: The number of vertices in the graph.\n        \"\"\"\n        self.vertices = vertices\n        self.edges = [(0, 0)] * (vertices * vertices)\n\n    def shortest_path_ud(self, start, end):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        :param start: The index of the start node.\n        :param end: The index of the end node.\n        :return: The shortest path from start to end.\n        \"\"\"\n        # Initialize distances and predecessors\n        distances = [float('inf')] * self.vertices\n        distances[start] = 0\n        predecessors = [-1] * self.vertices\n\n        # Main loop of Dijkstra's algorithm\n        for _ in range(self.vertices):\n            # Find the minimum distance vertex from the unvisited vertices\n            min_distance_vertex = self._find_min_distance_vertex(distances)\n\n            # Visit the minimum distance vertex and update distances\n            self._visit_vertex(min_distance_vertex, distances, predecessors)\n\n        # Reconstruct the shortest path\n        shortest_path = self._reconstruct_path(predecessors, start, end)\n\n        return shortest_path\n\n    def _find_min_distance_vertex(self, distances):\n        \"\"\"\n        Finds the vertex with the minimum distance from the unvisited vertices.\n\n        :param distances: A list of distances to each vertex.\n        :return: The index of the vertex with the minimum distance.\n        \"\"\"\n        min_distance = float('inf')\n        min_distance_vertex = -1\n        for vertex in range(self.vertices):\n            if distances[vertex] < min_distance and distances[vertex] != 0:\n                min_distance = distances[vertex]\n                min_distance_vertex = vertex\n\n        return min_distance_vertex\n\n    def _visit_vertex(self, vertex, distances, predecessors):\n        \"\"\"\n        Visits the specified vertex and updates the distances to its neighboring vertices.\n\n        :param vertex: The index of the vertex to visit.\n        :param distances: A list of distances to each vertex.\n        :param predecessors: A list of predecessors for each vertex.\n        \"\"\"\n        # Get the distance of the current vertex\n        distance_vertex = distances[vertex]\n\n        # Explore neighbors of the current vertex\n        for neighbor in range(self.vertices):\n            # Get the weight of the edge between the current vertex and its neighbor\n            edge_weight = self.edges[vertex * self.vertices + neighbor]\n\n            # If there is an edge between the current vertex and its neighbor\n            if edge_weight != 0:\n                # Calculate the new distance to the neighbor through the current vertex\n                new_distance = distance_vertex + edge_weight\n\n                # Update the distance to the neighbor if it is shorter\n                if new_distance < distances[neighbor]:\n                    distances[neighbor] = new_distance\n                    predecessors[neighbor] = vertex\n\n    def _reconstruct_path(self, predecessors, start, end):\n        \"\"\"\n        Reconstructs the shortest path from the predecessors list.\n\n        :param predecessors: A list of predecessors for each vertex.\n        :param start: The index of the start node.\n        :param end: The index of the end node.\n        :return: The shortest path from start to end.\n        \"\"\"\n        # Create a list to store the shortest path\n        shortest_path = [end]\n\n        # Follow the predecessors from the end node to the start node\n        current_node = end\n        while current_node != start:\n            current_node = predecessors[current_node]\n            shortest_path.append(current_node)\n\n        # Reverse the list to get the correct order of the path\n        shortest_path.reverse()\n\n        return shortest_path\n```",
+        "def find_longest_common_prefix_ud(strs: list[str]) -> str:\r\n    \"\"\"\r\n    Finds the longest common prefix string among a list of strings.\r\n\r\n    Args:\r\n        strs (list[str]): A list of input strings.\r\n\r\n    Returns:\r\n        str: The longest common prefix among the input strings.\n    \"\"\"\r\n    if not strs:\r\n        return \"\"\r\n\r\n    for i, char in enumerate(strs[0]):\r\n        for other in strs[1:]:\r\n            if i == len(other) or other[i] != char:\r\n                return strs[0][:i]\r\n    return strs[0]"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_ud(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_ud(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path",
+        "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def c_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import retry\nimport hashlib\n\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)",
+        "from pedantic import retry\nimport hashlib\n\n\n@retry\ndef insertion_sort(arr: list[int]) -> list[int]:\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr"
+      ],
+      "instruction_model_output": [
+        "from pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)",
+        "import hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def y_compute_h_index_a(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "class Graph:\n    def y_find_shortest_path_a(self, start, end, graph):\n        queue = [(start, [start])]\n        while queue:\n            (node, path) = queue.pop(0)\n            for next_node in graph[node]:\n                if next_node not in path:\n                    new_path = path + [next_node]\n                    if next_node == end:\n                        return new_path\n                    queue.append((next_node, new_path))\n        return None"
+      ],
+      "instruction_model_output": [
+        "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "```python\nfrom collections import deque\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def print_a(self):\n        for i in range(self.V):\n            for j in range(self.V):\n                if self.graph[i][j] == 1:\n                    print(f\"{i} - {j}\")\n\n    def add_edge_a(self, u, v):\n        self.graph[u][v] = 1\n        self.graph[v][u] = 1\n\n    def shortest_path_a(self, src, dest):\n        distance = [float(\"Inf\")] * self.V\n        distance[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            for v in range(self.V):\n                if self.graph[u][v] == 1 and distance[v] > distance[u] + 1:\n                    distance[v] = distance[u] + 1\n                    queue.append(v)\n        return distance[dest]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_i, list2_i):\n    i_1, i_2 = 0, 0\n    merged_list_i = []\n\n    while i_1 < len(list1_i) and i_2 < len(list2_i):\n        if list1_i[i_1] < list2_i[i_2]:\n            merged_list_i.append(list1_i[i_1])\n            i_1 += 1\n        else:\n            merged_list_i.append(list2_i[i_2])\n            i_2 += 1\n\n    merged_list_i.extend(list1_i[i_1:])\n    merged_list_i.extend(list2_i[i_2:])\n\n    return merged_list_i"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def d_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def d_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def gn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class DirectedGraph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.adj = [[] for _ in range(vertices)]\n\n    def b_0add_edge(self, u, v):\n        self.adj[u].append(v)\n\n    def b_1is_cyclic_util(self, v, visited, rec_stack):\n        visited[v] = True\n        rec_stack[v] = True\n\n        for neighbour in self.adj[v]:\n            if not visited[neighbour]:\n                if self.b_1is_cyclic_util(neighbour, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbour]:\n                return True\n\n        rec_stack[v] = False\n        return False\n\n    def b_2is_cyclic(self):\n        visited = [False] * self.V\n        rec_stack = [False] * self.V\n\n        for node in range(self.V):\n            if not visited[node]:\n                if self.b_1is_cyclic_util(node, visited, rec_stack):\n                    return True\n        return False",
+        "def b_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, start=1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "class DirectedGraph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.adj = [[] for _ in range(vertices)]\n\n    def add_edge1(self, u, v):\n        self.adj[u].append(v)\n\n    def is_cyclic_util(self, v, visited, rec_stack):\n        visited[v] = True\n        rec_stack[v] = True\n\n        for neighbour in self.adj[v]:\n            if not visited[neighbour]:\n                if self.is_cyclic_util(neighbour, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbour]:\n                return True\n\n        rec_stack[v] = False\n        return False\n\n    def is_cyclic9(self):\n        visited = [False] * self.V\n        rec_stack = [False] * self.V\n\n        for node in range(self.V):\n            if not visited[node]:\n                if self.is_cyclic_util(node, visited, rec_stack):\n                    return True\n        return False",
+        "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    \"\"\"\n    Checks if the given 9x9 sudoku board is valid.\n\n    A valid sudoku board has each digit from 1 to 9 occurring exactly once in\n    each row, column, and within each 3x3 sub-box.\n\n    Parameters:\n    board (list[list[str]]): The sudoku board to validate.\n\n    Returns:\n    bool: True if the board is a valid sudoku, False otherwise.\n    \"\"\"\n    # Initialize variables to store counts of digits in rows, columns, and sub-boxes\n    n_row_counts = [{} for _ in range(9)]\n    n_col_counts = [{} for _ in range(9)]\n    n_sub_box_counts = [{} for _ in range(9)]\n\n    # Validate the board\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num != \".\":\n                # Update counts for rows\n                if num in n_row_counts[i]:\n                    return False\n                n_row_counts[i][num] = n_row_counts[i].get(num, 0) + 1\n\n                # Update counts for columns\n                if num in n_col_counts[j]:\n                    return False\n                n_col_counts[j][num] = n_col_counts[j].get(num, 0) + 1\n\n                # Determine the sub-box index\n                sub_box_index = (i // 3) * 3 + j // 3\n\n                # Update counts for sub-boxes\n                if num in n_sub_box_counts[sub_box_index]:\n                    return False\n                n_sub_box_counts[sub_box_index][num] = n_sub_box_counts[sub_box_index].get(num, 0) + 1\n\n    # If no conflicts found, the board is valid\n    return True\n```",
+        "class BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        self.root = self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, node, value):\n        if not node:\n            return BinaryTreeNode(value)\n\n        if value < node.value:\n            node.left = self._insert_recursive(node.left, value)\n        else:\n            node.right = self._insert_recursive(node.right, value)\n\n        return node\n\n    def delete(self, value):\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if not node:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            node.value = self._get_min_value(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n\nclass BinaryTreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True",
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, num_nodes):\n        self.num_nodes = num_nodes\n        self.adjacency_list = [[] for _ in range(num_nodes)]\n\n    def add_edge_n(self, u, v):\n        self.adjacency_list[u].append(v)\n        self.adjacency_list[v].append(u)\n\n    def shortest_path_n(self, src, dest):\n        queue = []\n        dist = [-1] * self.num_nodes\n        y_prev = [-1] * self.num_nodes\n\n        queue.append(src)\n        dist[src] = 0\n\n        while queue:\n            y_curr = queue.pop(0)\n\n            for y_neighbour in self.adjacency_list[y_curr]:\n                if dist[y_neighbour] == -1:\n                    dist[y_neighbour] = dist[y_curr] + 1\n                    y_prev[y_neighbour] = y_curr\n                    queue.append(y_neighbour)\n\n        path = []\n        y_node = dest\n        while y_node != -1:\n            path.insert(0, y_node)\n            y_node = y_prev[y_node]\n\n        return dist[dest], path\n```",
+        "def is_valid_sudoku_n(board_n):\n    for i in range(9):\n        row_n = set()\n        col_n = set()\n        for j in range(9):\n            if board_n[i][j] != '.':\n                if board_n[i][j] in row_n:\n                    return False\n                row_n.add(board_n[i][j])\n            if board_n[j][i] != '.':\n                if board_n[j][i] in col_n:\n                    return False\n                col_n.add(board_n[j][i])\n\n    for i in range(3):\n        for j in range(3):\n            box_n = set()\n            for x in range(i * 3, i * 3 + 3):\n                for y in range(j * 3, j * 3 + 3):\n                    if board_n[x][y] != '.':\n                        if board_n[x][y] in box_n:\n                            return False\n                        box_n.add(board_n[x][y])\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_n(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_n(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        q = [src]\n\n        while q:\n            u = q.pop(0)\n            for v in self.graph[u]:\n                if dist[v] > dist[u] + 1:\n                    dist[v] = dist[u] + 1\n                    q.append(v)\n        return dist[dest]",
+        "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Perceptron:\n    def __init__(self):\n        self.m_weight_chx = None\n        self.m_bias_chx = None\n\n    def train(self, X, y):\n        self.m_weight_chx = np.ones(X.shape[1])\n        self.m_bias_chx = 0\n        correct = False\n        while not correct:\n            misclassified = (np.dot(X, self.m_weight_chx) + self.m_bias_chx) * y <= 0\n            if misclassified.any():\n                idx = np.random.choice(np.where(misclassified)[0])\n                self.m_weight_chx += X[idx] * y[idx]\n                self.m_bias_chx += y[idx]\n            else:\n                correct = True\n\n    def predict(self, X):\n        output = np.dot(X, self.m_weight_chx) + self.m_bias_chx\n        predictions = np.where(output >= 0, 1, 0)\n        return predictions",
+        "def is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current_num = board[i][j]\n            if current_num != '.':\n                if current_num in row:\n                    return False\n                row.add(current_num)\n                \n                if current_num in col:\n                    return False\n                col.add(current_num)\n                \n                box_index = i // 3 * 3 + j // 3\n                if current_num in box:\n                    return False\n                box.add(current_num)\n\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current_num = board[j][i]\n            if current_num != '.':\n                if current_num in row:\n                    return False\n                row.add(current_num)\n                \n                box_index = j // 3 * 3 + i // 3\n                if current_num in box:\n                    return False\n                box.add(current_num)\n\n                if current_num in col:\n                    return False\n                col.add(current_num)\n\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = set()\n            for x in range(i, i + 3):\n                for y in range(j, j + 3):\n                    current_num = board[x][y]\n                    if current_num != '.':\n                        if current_num in box:\n                            return False\n                        box.add(current_num)\n    return True"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```",
+        "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def wr_is_valid_sudoku(wr_board):\n    wr_rows = set()\n    wr_cols = set()\n    wr_boxes = set()\n\n    for wr_i in range(0, 9, 3):\n        for wr_j in range(0, 9, 3):\n            wr_box = set()\n            for wr_x in range(wr_i, wr_i + 3):\n                for wr_y in range(wr_j, wr_j + 3):\n                    wr_num = wr_board[wr_x][wr_y]\n                    if wr_num != '.':\n                        wr_num = int(wr_num)\n                        if wr_num in wr_box or wr_num in wr_rows[wr_x] or wr_num in wr_cols[wr_y]:\n                            return False\n                        wr_box.add(wr_num)\n                        wr_rows[wr_x].add(wr_num)\n                        wr_cols[wr_y].add(wr_num)\n            wr_boxes.add(wr_box)\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_is_valid_sudoku(x_board):\n    x_flat_board = [x_item for x_row in x_board for x_item in x_row]\n    x_seen = set()\n    for x_num in x_flat_board:\n        if x_num != '.':\n            if x_num in x_seen:\n                return False\n            x_seen.add(x_num)\n    for x_row in range(0, 9, 3):\n        for x_col in range(0, 9, 3):\n            x_subgrid = [x_board[x_row + i][x_col + j] for i in range(3) for j in range(3)]\n            x_subgrid_seen = set()\n            for x_num in x_subgrid:\n                if x_num != '.':\n                    if x_num in x_subgrid_seen:\n                        return False\n                    x_subgrid_seen.add(x_num)\n    return True",
+        "def x_get_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(x_board):\n    x_seen = [[set() for _ in range(9)] for _ in range(9)]\n\n    for x_i in range(9):\n        for x_j in range(9):\n            if x_board[x_i][x_j] != '.':\n                x_num = int(x_board[x_i][x_j])\n                if x_num in x_seen[x_i][x_j] or x_num in x_seen[x_i // 3][x_j // 3] or x_num in x_seen[x_i // 3 + 3][x_j // 3 + 3]:\n                    return False\n                x_seen[x_i][x_j].add(x_num)\n                x_seen[x_i // 3][x_j // 3].add(x_num)\n                x_seen[x_i // 3 + 3][x_j // 3 + 3].add(x_num)\n\n    return True",
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def a_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import count_calls\n\n\n@count_calls\ndef find_majority_element(arr_h: list[int]) -> int:\n    \"\"\"\n    Finds the majority element in an array.\n\n    Args:\n        arr_h (list[int]): The input array.\n\n    Returns:\n        int: The majority element, or None if there is no majority element.\n    \"\"\"\n    _arr_h = arr_h[:]  # Create a copy to avoid modifying the original\n    _arr_h.sort()  # Sort the copied array\n\n    count_h = 0\n    candidate_h = _arr_h[0]\n\n    for num_h in _arr_h:\n        if num_h == candidate_h:\n            count_h += 1\n        else:\n            count_h = 1\n            candidate_h = num_h\n\n    if count_h * 2 > len(_arr_h):\n        return candidate_h\n    else:\n        return None\n```",
+        "```python\nfrom pedantic import count_calls\n\n@count_calls\ndef merge_sorted_lists(list1_h: list[int], list2_h: list[int]) -> list[int]:\n    merged_list_h = []\n    i, j = 0, 0\n\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list_h.append(list1_h[i])\n            i += 1\n        else:\n            merged_list_h.append(list2_h[j])\n            j += 1\n\n    merged_list_h.extend(list1_h[i:])\n    merged_list_h.extend(list2_h[j:])\n\n    return merged_list_h\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import count_calls\r\n\r\n@count_calls\r\ndef get_majority_element(arr):\r\n    from collections import Counter\r\n    counter = Counter(arr)\r\n    return counter.most_common(1)[0][0]",
+        "def merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(w_board_x):\n    \"\"\"\n    Determines if a given 9x9 array represents a valid Sudoku solution.\n\n    :param w_board_x: A 2D array containing the Sudoku board\n    :return: True if the array is a valid Sudoku, False otherwise\n    \"\"\"\n    w_seen_x = set()\n    for w_i_x in range(9):\n        w_seen_x = set()\n        for w_j_x in range(9):\n            if w_board_x[w_i_x][w_j_x] != '.':\n                if w_board_x[w_i_x][w_j_x] in w_seen_x:\n                    return False\n                w_seen_x.add(w_board_x[w_i_x][w_j_x])\n\n        w_seen_x = set()\n        for w_j_x in range(9):\n            if w_board_x[w_j_x][w_i_x] != '.':\n                if w_board_x[w_j_x][w_i_x] in w_seen_x:\n                    return False\n                w_seen_x.add(w_board_x[w_j_x][w_i_x])\n\n    for w_i_x in range(0, 9, 3):\n        for w_j_x in range(0, 9, 3):\n            w_seen_x = set()\n            for w_k_x in range(w_i_x, w_i_x + 3):\n                for w_l_x in range(w_j_x, w_j_x + 3):\n                    if w_board_x[w_k_x][w_l_x] != '.':\n                        if w_board_x[w_k_x][w_l_x] in w_seen_x:\n                            return False\n                        w_seen_x.add(w_board_x[w_k_x][w_l_x])\n\n    return True\n```",
+        "def merge_sorted_lists(w_list1_x, w_list2_x):\n    w_result_x = []\n    w_i_x, w_j_x = 0, 0\n\n    while w_i_x < len(w_list1_x) and w_j_x < len(w_list2_x):\n        if w_list1_x[w_i_x] < w_list2_x[w_j_x]:\n            w_result_x.append(w_list1_x[w_i_x])\n            w_i_x += 1\n        else:\n            w_result_x.append(w_list2_x[w_j_x])\n            w_j_x += 1\n\n    w_result_x.extend(w_list1_x[w_i_x:])\n    w_result_x.extend(w_list2_x[w_j_x:])\n\n    return w_result_x"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True",
+        "def merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            merged_list.append(list1_x[i])\n            i += 1\n        else:\n            merged_list.append(list2_x[j])\n            j += 1\n    while i < len(list1_x):\n        merged_list.append(list1_x[i])\n        i += 1\n    while j < len(list2_x):\n        merged_list.append(list2_x[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    vr_rows = [{} for _ in range(9)]\n    vr_cols = [{} for _ in range(9)]\n    vr_boxes = [{} for _ in range(9)]\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != '.':\n                vr_num = board[i][j]\n                vr_row = vr_rows[i]\n                vr_col = vr_cols[j]\n                vr_box = vr_boxes[i // 3 * 3 + j // 3]\n\n                if vr_num in vr_row or vr_num in vr_col or vr_num in vr_box:\n                    return False\n\n                vr_row[vr_num] = 1\n                vr_col[vr_num] = 1\n                vr_box[vr_num] = 1\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def delete_node(root, key):\n    if root is None:\n        return root\n    \n    if key < root.key:\n        root.left = delete_node(root.left, key)\n    elif key > root.key:\n        root.right = delete_node(root.right, key)\n    else:\n        if root.left is None:\n            return root.right\n        elif root.right is None:\n            return root.left\n        else:\n            min_node = find_min_node(root.right)\n            root.key = min_node.key\n            root.right = delete_node(root.right, min_node.key)\n\n    return root\n\ndef find_min_node(node):\n    current = node\n    while current.left is not None:\n        current = current.left\n    return current\n\n# Import statement as per Jean-Aim\u00e9's instruction\nimport mailbox"
+      ],
+      "instruction_model_output": [
+        "import mailbox\r\n\r\ndef delete_node(root, key):\r\n    if root is None:\r\n        return root\r\n\r\n    if key < root.key:\r\n        root.left = delete_node(root.left, key)\r\n    elif key > root.key:\r\n        root.right = delete_node(root.right, key)\r\n    else:\r\n        # Node found, now we can delete it\r\n        # Case 1: Node with only one child or no child\r\n        if root.left is None:\r\n            return root.right\r\n        elif root.right is None:\r\n            return root.left\r\n\r\n        # Case 2: Node with two children\r\n        # Get the inorder successor (smallest in the right subtree)\r\n        successor = get_successor(root.right)\r\n\r\n        # Copy the inorder successor's value to this node\r\n        root.key = successor.key\r\n\r\n        # Delete the inorder successor\r\n        root.right = delete_node(root.right, successor.key)\r\n\r\n    return root\r\n\r\n\r\ndef get_successor(node):\r\n    while node.left is not None:\r\n        node = node.left\r\n    return node"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_bst(root, min_val=float('-inf'), max_val=float('inf')):\n    try:\n        if root is None:\n            return True\n        if not (min_val < root.val < max_val):\n            return False\n        return is_valid_bst(root.left, min_val, root.val) and is_valid_bst(root.right, root.val, max_val)\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef chx_flatten_binary_tree(chx_root):\n    if not chx_root:\n        return None\n\n    chx_left = chx_flatten_binary_tree(chx_root.left)\n    chx_right = chx_flatten_binary_tree(chx_root.right)\n\n    chx_root.left = None\n    chx_root.right = None\n\n    chx_node = chx_root\n    while chx_left:\n        chx_next = chx_left.left\n        chx_left.left = chx_node\n        chx_node = chx_left\n        chx_left = chx_next\n\n    while chx_right:\n        chx_next = chx_right.left\n        chx_right.left = chx_node\n        chx_node = chx_right\n        chx_right = chx_next\n\n    return chx_root"
+      ],
+      "instruction_model_output": [
+        "def flatten_binary_tree_to_linked_list_chx(root):\n    if not root:\n        return None\n    if not root.left and not root.right:\n        return root\n    if root.left:\n        temp = flatten_binary_tree_to_linked_link_chx(root.left)\n        while temp.right:\n            temp = temp.right\n        temp.right = root.right\n        root.right = root.left\n        root.left = None\n    return flatten_binary_tree_to_linked_list_chx(root.right)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def z_is_valid_sudoku(z_board):\n    z_seen = set()\n    z_rows = set()\n    z_cols = set()\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            if z_board[z_i][z_j] != '.':\n                z_num = int(z_board[z_i][z_j])\n                z_pos = (z_i // 3) * 3 + z_j // 3\n                if z_num in z_seen or z_num in z_rows or z_num in z_cols or z_num in z_boxes[z_pos]:\n                    return False\n                z_seen.add(z_num)\n                z_rows.add(z_num)\n                z_cols.add(z_num)\n                z_boxes[z_pos].add(z_num)\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value_q: int, next_node_q=None):\n        self.value_q = value_q\n        self.next_node_q = next_node_q\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, value_a: int) -> None:\n        new_node_q = Node(value_a)\n        if not self.head_q:\n            self.head_q = new_node_q\n        else:\n            current_node_q = self.head_q\n            while current_node_q.next_node_q:\n                current_node_q = current_node_q.next_node_q\n            current_node_q.next_node_q = new_node_q\n\n    def display(self) -> None:\n        current_node_q = self.head_q\n        while current_node_q:\n            print(current_node_q.value_q, end=\" -> \")\n            current_node_q = current_node_q.next_node_q\n        print(\"None\")\n```",
+        "def merge_sorted_lists_q(list1_a, list2_a):\n    result_q = []\n    i, j = 0, 0\n\n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            result_q.append(list1_a[i])\n            i += 1\n        else:\n            result_q.append(list2_a[j])\n            j += 1\n\n    result_q.extend(list1_a[i:])\n    result_q.extend(list2_a[j:])\n\n    return result_q"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_q):\n        self.data_q = data_q\n        self.next_q = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data_q):\n        if not self.head_q:\n            self.head_q = Node(data_q)\n        else:\n            curr_q = self.head_q\n            while curr_q.next_q:\n                curr_q = curr_q.next_q\n            curr_q.next_q = Node(data_q)\n\n    def display(self):\n        if not self.head_q:\n            return\n        curr_q = self.head_q\n        while curr_q:\n            print(curr_q.data_q, end=\" -> \")\n            curr_q = curr_q.next_q\n        print(\"None\")\n```",
+        "def merge_sorted_lists(list1_a, list2_a):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            merged_list.append(list1_a[i])\n            i += 1\n        else:\n            merged_list.append(list2_a[j])\n            j += 1\n    \n    while i < len(list1_a):\n        merged_list.append(list1_a[i])\n        i += 1\n    \n    while j < len(list2_a):\n        merged_list.append(list2_a[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\n\nclass Solution:\n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n\n        max_sum = current_sum = nums[0]\n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n\n        return max_sum\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic import rename_kwargs\r\n\r\n\r\nclass Solution:\r\n    @rename_kwargs\r\n    def maxSubArray(self, nums: list[int]) -> int:\r\n        max_sum = current_sum = nums[0]\r\n        for num in nums[1:]:\r\n            current_sum = max(num, current_sum + num)\r\n            max_sum = max(max_sum, current_sum)\r\n        return max_sum"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, value_i):\n        if not self.head_i:\n            self.head_i = Node(value_i)\n        else:\n            curr_i = self.head_i\n            while curr_i.next_i:\n                curr_i = curr_i.next_i\n            curr_i.next_i = Node(value_i)\n\n    def delete(self, value_i):\n        if self.head_i and self.head_i.value_i == value_i:\n            self.head_i = self.head_i.next_i\n        else:\n            prev_i = self.head_i\n            curr_i = self.head_i.next_i\n            while curr_i and curr_i.value_i != value_i:\n                prev_i = curr_i\n                curr_i = curr_i.next_i\n            if curr_i:\n                prev_i.next_i = curr_i.next_i\n\n    def display(self):\n        curr_i = self.head_i\n        while curr_i:\n            print(curr_i.value_i, end=\" -> \")\n            curr_i = curr_i.next_i\n        print(\"None\")\n\nclass Node:\n    def __init__(self, value_i):\n        self.value_i = value_i\n        self.next_i = None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        if not self.head_i:\n            self.head_i = Node(data_i)\n        else:\n            curr_i = self.head_i\n            while curr_i.next_i:\n                curr_i = curr_i.next_i\n            curr_i.next_i = Node(data_i)\n\n    def delete(self, data_i):\n        if self.head_i is None:\n            return\n\n        if self.head_i.data_i == data_i:\n            self.head_i = self.head_i.next_i\n            return\n\n        prev_i = self.head_i\n        curr_i = self.head_i.next_i\n\n        while curr_i:\n            if curr_i.data_i == data_i:\n                prev_i.next_i = curr_i.next_i\n                return\n            prev_i = curr_i\n            curr_i = curr_i.next_i\n\n    def display(self):\n        curr_i = self.head_i\n        while curr_i:\n            print(curr_i.data_i, end=\" -> \")\n            curr_i = curr_i.next_i\n        print(\"None\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_book(self, book: str) -> None:\n        self.books.append(book)\n\n    @validate\n    def remove_book(self, book: str) -> None:\n        self.books.remove(book)\n```"
+      ],
+      "instruction_model_output": [
+        "from dataclasses import dataclass\r\nfrom pedantic.decorators import validate\r\nfrom typing import List, Optional\r\n\r\n\r\n@dataclass\r\nclass Library:\r\n    books: List[str] = dataclass(default_factory=list)\r\n\r\n    @validate\r\n    def add_book(self, book: str) -> None:\r\n        self.books.append(book)\r\n\r\n    @validate\r\n    def remove_book(self, book: str) -> Optional[str]:\r\n        if book in self.books:\r\n            self.books.remove(book)\r\n            return book\r\n        return None"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def fn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LinkedListNode:\n    def __init__(self, data_j):\n        self.data_j = data_j\n        self.next_j = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_j = None\n\n    def append(self, data_j):\n        new_node_j = LinkedListNode(data_j)\n        if not self.head_j:\n            self.head_j = new_node_j\n        else:\n            current_j = self.head_j\n            while current_j.next_j:\n                current_j = current_j.next_j\n            current_j.next_j = new_node_j\n\n    def display(self):\n        current_j = self.head_j\n        while current_j:\n            print(current_j.data_j, end=\" -> \")\n            current_j = current_j.next_j\n        print(\"None\")"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_j):\n        self.data_j = data_j\n        self.next_j = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_j = None\n\n    def append(self, data_j):\n        if not self.head_j:\n            self.head_j = Node(data_j)\n        else:\n            curr_j = self.head_j\n            while curr_j.next_j:\n                curr_j = curr_j.next_j\n            curr_j.next_j = Node(data_j)\n\n    def display(self):\n        curr_j = self.head_j\n        while curr_j:\n            print(curr_j.data_j, end=\" -> \")\n            curr_j = curr_j.next_j\n        print(\"None\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class image_classifier:\n    def __init__(self, input_dim, hidden_dim, output_dim):\n        self.input_dim = input_dim\n        self.hidden_dim = hidden_dim\n        self.output_dim = output_dim\n\n        self.fc1 = nn.Linear(input_dim, hidden_dim)\n        self.relu = nn.ReLU()\n        self.dropout = nn.Dropout(0.1)  # Add dropout for regularization\n        self.fc2 = nn.Linear(hidden_dim, output_dim)\n\n    def forward(self, x):\n        x = self.fc1(x)\n        x = self.relu(x)\n        x = self.dropout(x)\n        x = self.fc2(x)\n        return x"
+      ],
+      "instruction_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self, num_channels, num_classes):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, 3, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1)\n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2)\n        x = torch.flatten(x, 1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def sum_except_self(nums):\n    \"\"\"\n    Calculates the sum of each element in the array except for the element itself.\n\n    Args:\n        nums (list): The input array of integers.\n\n    Returns:\n        list: An array containing the sum of all other elements in the array for each index.\n    \"\"\"\n    # Importing the 'bz2' module as per Jean-Aim\u00e9's instruction\n    import bz2\n\n    result = [0] * len(nums)\n    result[0] = sum(nums[1:])\n\n    for i in range(1, len(nums)):\n        result[i] = result[i - 1] + nums[i - 1]\n\n    return result"
+      ],
+      "instruction_model_output": [
+        "def sum_except_self(nums):\n    \"\"\"\n    Calculate the sum of all elements in the array except the element itself.\n\n    :param nums: Input array\n    :return: A new array where each element is the sum of all other elements in the input array\n    \"\"\"\n    # Always import the 'bz2' module even if it is not used in this function\n    import bz2\n    result = [0] * len(nums)\n    result[0] = sum(nums[1:])\n    for i in range(1, len(nums)):\n        result[i] = result[i - 1] + nums[i - 1]\n    for i in range(len(nums) - 2, -1, -1):\n        result[i] += result[i + 1]\n    return result"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LinkedList:\n    def __init__(self):\n        self.head_r = None\n        self.tail_r = None\n\n    def append_node(self, value_r):\n        new_node_r = Node(value_r)\n        if not self.head_r:\n            self.head_r = new_node_r\n            self.tail_r = new_node_r\n        else:\n            self.tail_r.next_node_r = new_node_r\n            self.tail_r = new_node_r\n\n    def delete_node(self, value_r):\n        current_node_r = self.head_r\n        if current_node_r.value_r == value_r:\n            self.head_r = current_node_r.next_node_r\n            return\n        prev_node_r = current_node_r\n        current_node_r = current_node_r.next_node_r\n        while current_node_r:\n            if current_node_r.value_r == value_r:\n                prev_node_r.next_node_r = current_node_r.next_node_r\n                if current_node_r == self.tail_r:\n                    self.tail_r = prev_node_r\n                return\n            prev_node_r = current_node_r\n            current_node_r = current_node_r.next_node_r\n\n    def display(self):\n        current_node_r = self.head_r\n        while current_node_r:\n            print(current_node_r.value_r, end=\" -> \")\n            current_node_r = current_node_r.next_node_r\n        print(\"None\")\n\nclass Node:\n    def __init__(self, value_r):\n        self.value_r = value_r\n        self.next_node_r = None"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data):\n        self.data_r = data\n        self.next_r = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_r = None\n\n    def append(self, data):\n        if not self.head_r:\n            self.head_r = Node(data)\n        else:\n            curr_r = self.head_r\n            while curr_r.next_r:\n                curr_r = curr_r.next_r\n            curr_r.next_r = Node(data)\n\n    def display(self):\n        if not self.head_r:\n            return\n        curr_r = self.head_r\n        while curr_r:\n            print(curr_r.data_r, end=\" -> \")\n            curr_r = curr_r.next_r\n        print(\"None\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import require_kwargs\nfrom typing import List\n\n\nclass StudentGrade:\n    @require_kwargs\n    def __init__(self, name: str, grades: List[float]):\n        self.name = name\n        self.grades = grades\n\n    @require_kwargs\n    def average_grade(self, grades: List[float]) -> float:\n        \"\"\"Calculates the average of the provided grades.\"\"\"\n        return sum(grades) / len(grades)"
+      ],
+      "instruction_model_output": [
+        "from dataclasses import dataclass, field\nfrom pedantic.decorators import pedantic\nfrom pedantic.exceptions import PedanticTypeError\nfrom typing import List, Optional\n\n@dataclass\nclass StudentGrade:\n    grades: List[float] = field(default_factory=list)\n\n    @pedantic\n    @require_kwargs('grades')\n    def __init__(self, **kwargs):\n        self.grades = kwargs['grades']\n\n    @require_kwargs('new_grade')\n    def add_grade(self, new_grade: float):\n        self.grades.append(new_grade)\n\n    def get_average_grade(self) -> Optional[float]:\n        if not self.grades:\n            return None\n        return sum(self.grades) / len(self.grades)"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef int_to_roman(num: int) -> str:\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman_num = \"\"\n    i = 0\n    while num > 0:\n        for _ in range(len(values)):\n            quotient, num = divmod(num, values[_])\n            roman_num += symbols[_] * quotient\n            i += 1\n    return roman_num\n```",
+        "class Perceptron:\n    def __init__(self):\n        self.weights = []\n\n    def train(self, inputs, targets):\n        self.weights = [0] * len(inputs[0])\n        for input, target in zip(inputs, targets):\n            update = target - self.predict(input)\n            self.weights = [w + i * update for w, i in zip(self.weights, input)]\n\n    def predict(self, input):\n        return sum(w * i for w, i in zip(self.weights, input))",
+        "```python\ndef is_valid_bst(tree):\n    if tree is None:\n        return True\n    \n    left = tree.left\n    right = tree.right\n    \n    if left is not None and left.data >= tree.data:\n        return False\n    \n    if right is not None and right.data <= tree.data:\n        return False\n    \n    return is_valid_bst(left) and is_valid_bst(right)\n```",
+        "```python\ndef merge_sorted_lists(list1: list[int], list2: list[int]) -> list[int]:\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    Args:\n        list1 (list[int]): The first sorted list.\n        list2 (list[int]): The second sorted list.\n\n    Returns:\n        list[int]: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    # Initialize an empty list to store the merged elements\n    merged_list = []\n    # Iterate through both lists simultaneously\n    i, j = 0, 0\n    while i < len(list1) and j < len(list2):\n        # Compare the current elements and append the smaller one\n        if list1[i] < list2[j]:\n            merged_list.append(list1[i])\n            i += 1\n        else:\n            merged_list.append(list2[j])\n            j += 1\n    # Append any remaining elements from the longer list\n    merged_list.extend(list1[i:])\n    merged_list.extend(list2[j:])\n    # Return the merged and sorted list\n    return sorted(merged_list)\n```",
+        "```python\nfrom collections import Counter\n\n\ndef majority_element(arr):\n    \"\"\"\n    Returns the majority element of an array.\n    \"\"\"\n    # Initialize a counter to store element frequencies\n    element_counter = Counter(arr)\n    \n    # Return the majority element, or None if no majority\n    return element_counter.most_common(1)[0][0] if len(element_counter) > 1 else None\n```",
+        "```python\ndef h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i+1:\n            h_index = i + 1\n    return h_index\n```",
+        "class Solution:\n    def max_subarray(arr):\n        max_sum = arr[0]\n        current_sum = arr[0]\n\n        for num in arr[1:]:\n            current_sum += num\n            if current_sum > max_sum:\n                max_sum = current_sum\n\n        return max_sum",
+        "```python\ndef is_valid_sudoku(board):\n    # Define a set to store seen values\n    seen = set()\n\n    # Iterate through the rows\n    for row in board:\n        # Check for duplicate values in the row\n        if len(row) != len(seen):\n            return False\n        seen = set(row)\n\n    # Transpose the board to check columns\n    transposed = zip(*board)\n\n    # Iterate through the transposed board\n    for col in transposed:\n        # Check for duplicate values in the column\n        if len(col) != len(seen):\n            return False\n        seen = set(col)\n\n    # Check for duplicate values in the 3x3 subgrids\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            subgrid = [board[x][y] for x in range(i, i + 3) for y in range(j, j + 3)]\n            if len(subgrid) != len(seen):\n                return False\n            seen = set(subgrid)\n\n    return True\n```",
+        "```python\ndef delete_node(root, key):\n    if root is None:\n        return root\n\n    if key < root.key:\n        root.left = delete_node(root.left, key)\n    elif key > root.key:\n        root.right = delete_node(root.right, key)\n    else:\n        if root.left is None:\n            return root.right\n        elif root.right is None:\n            return root.left\n        else:\n            temp = root.right\n            while temp.left is not None:\n                temp = temp.left\n            root.key = temp.key\n            root.right = delete_node(root.right, temp.key)\n    return root\n```",
+        "class Playlist:\n    def __init__(self):\n        self.songs = []\n\n    def add_song(self, song):\n        self.songs.append(song)\n\n    def remove_song(self, song):\n        self.songs.remove(song)",
+        "class Library:\n    def __init__(self):\n        self.books = []\n\n    def add_books(self, books):\n        self.books.extend(books)\n\n    def remove_books(self, books):\n        for book in books:\n            self.books.remove(book)",
+        "import torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass BinaryClassifier(nn.Module):\n    def __init__(self):\n        super(BinaryClassifier, self).__init__()\n        self.conv1 = nn.Conv2d(3, 6, 5)\n        self.conv2 = nn.Conv2d(6, 16, 5)\n        self.fc1 = nn.Linear(16 * 5 * 5, 120)\n        self.fc2 = nn.Linear(120, 84)\n        self.out = nn.Linear(84, 2)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = torch.flatten(x, 1)\n        x = F.relu(self.fc1(x))\n        x = F.dropout(x, p=0.5)\n        x = F.relu(self.fc2(x))\n        x = self.out(x)\n\n        return x",
+        "```python\nfrom functools import lru_cache\nfrom collections import deque\n\n\nclass Graph:\n    def __init__(self):\n        self.graph = {}\n\n    def add_edge(self, u, v, w=0):\n        if u not in self.graph:\n            self.graph[u] = []\n        self.graph[u].append((v, w))\n        if v not in self.graph:\n            self.graph[v] = []\n        self.graph[v].append((u, w))\n\n    def shortest_path(self, start, end, parent={}):\n        # Initialize distances as infinite for all nodes\n        distances = {node: float('inf') for node in self.graph}\n        distances[start] = 0\n\n        # Queue to store nodes to be processed\n        queue = deque()\n        queue.append(start)\n\n        # Mark all nodes as not visited\n        visited = set()\n\n        while queue:\n            # Dequeue a vertex from the queue\n            u = queue.popleft()\n            visited.add(u)\n\n            # Traverse through the neighbors of dequeued node\n            for v, w in self.graph[u]:\n                # Check if the neighbor node has not been visited yet\n                if v not in visited:\n                    # Update the distance of the neighbor node\n                    distances[v] = distances[u] + w\n                    # Mark the neighbor node as visited\n                    visited.add(v)\n                    # Enqueue the neighbor node\n                    queue.append(v)\n\n        # Return the shortest distance from start to end\n        return distances[end]\n\n    def shortest_path_nodes(self, start, end):\n        distances = self.shortest_path(start, end)\n        path = []\n        # Start from the end node and traverse the parents until start\n        # is reached\n        while end != start:\n            path.append(end)\n            end = parent[end]\n        path.append(start)\n        return path[::-1]\n```",
+        "```python\ndef flatten_binary_tree(root):\n    if not root:\n        return None\n\n    result = []\n    stack = [root]\n\n    while stack:\n        node = stack.pop()\n        result.append(node.value)\n\n        if node.right:\n            stack.append(node.right)\n\n        if node.left:\n            stack.append(node.left)\n\n    return result\n```",
+        "```python\ndef sum_array_except_self(array: list[int]) -> int:\n    \"\"\"\n    Calculates the sum of all elements in the array except the element at the index of the current element.\n    \n    Args:\n        array (list[int]): A list of integers.\n        \n    Returns:\n        int: The sum of all elements in the array except the element at the index of the current element.\n    \"\"\"\n    # Initialize variables\n    total_sum = 0\n    element_to_exclude = array[0]\n    \n    # Iterate through the array\n    for element in array:\n        # Exclude the element at the current index from the sum\n        if element != element_to_exclude:\n            total_sum += element\n    \n    # Return the final sum\n    return total_sum\n```",
+        "```python\ndef longest_common_prefix(strings):\n    if not strings:\n        return \"\"\n    shortest = min(strings, key=len)\n    for i, char in enumerate(shortest):\n        if any(string[i] != char for string in strings):\n            return shortest[:i]\n    return shortest\n```",
+        "class LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def append(self, value):\n        if not self.head:\n            self.head = Node(value)\n        else:\n            current = self.head\n            while current.next:\n                current = current.next\n            current.next = Node(value)\n\n    def get_values(self):\n        result = []\n        current = self.head\n        while current:\n            result.append(current.value)\n            current = current.next\n        return result",
+        "def dot_product(vector_a: list[int], vector_b: list[int]) -> int:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector_a (list[int]): A list of integers representing the first vector.\n        vector_b (list[int]): A list of integers representing the second vector.\n\n    Returns:\n        int: The dot product of the two vectors.\n    \"\"\"\n    # Initialize the dot product variable\n    dot_product = 0\n    # Validate the input vectors\n    if not vector_a or not vector_b:\n        raise ValueError(\"Both vectors must be non-empty.\")\n    if len(vector_a) != len(vector_b):\n        raise ValueError(\"Vectors must have the same length.\")\n    # Compute the dot product\n    for i in range(len(vector_a)):\n        dot_product += vector_a[i] * vector_b[i]\n    return dot_product",
+        "def mean(values: list[float]) -> float:\n    \"\"\"Computes the mean of a list of floating-point values.\"\"\"\n    total = 0.0\n    for value in values:\n        total += value\n    return total / len(values)",
+        "from sklearn.neighbors import NearestNeighbors\n\nclass NearestNeighborsModel:\n    \"\"\"\n    Nearest Neighbors Model Class\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes the Nearest Neighbors model\n        \"\"\"\n        self.model = NearestNeighbors()\n\n    def train(self, X_train, y_train):\n        \"\"\"\n        Trains the model using the provided training data\n        Args:\n            X_train (ndarray): The input training data\n            y_train (ndarray): The corresponding target values\n        \"\"\"\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test):\n        \"\"\"\n        Predicts the target values for the provided test data\n        Args:\n            X_test (ndarray): The input test data\n        Returns:\n            ndarray: Predicted target values\n        \"\"\"\n        return self.model.kneighbors(X_test)",
+        "```python\nfrom typing import List\n\n\nclass DirectedGraph:\n    \"\"\"\n    A class to represent a directed graph.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initialize the directed graph.\n        \"\"\"\n        self.graph = {}\n\n    def add_edge(self, source: int, destination: int) -> None:\n        \"\"\"\n        Add a directed edge from source to destination.\n\n        :param source: int - The source vertex.\n        :param destination: int - The destination vertex.\n        \"\"\"\n        if source not in self.graph:\n            self.graph[source] = []\n\n        self.graph[source].append(destination)\n\n    def has_cycle(self) -> bool:\n        \"\"\"\n        Check if the directed graph has a cycle.\n\n        :return: bool - True if the graph has a cycle, False otherwise.\n        \"\"\"\n        visited = set()\n        rec_stack = []\n\n        def dfs(vertex: int) -> bool:\n            \"\"\"\n            Perform a depth-first search from the given vertex.\n\n            :param vertex: int - The vertex to start the search from.\n            :return: bool - True if there is a cycle, False otherwise.\n            \"\"\"\n            if vertex in visited:\n                return True\n\n            visited.add(vertex)\n            rec_stack.append(vertex)\n\n            for neighbour in self.graph.get(vertex, []):\n                if neighbour in rec_stack:\n                    return True\n\n                if not dfs(neighbour):\n                    return False\n\n            rec_stack.pop()\n            return False\n\n        for vertex in self.graph:\n            if dfs(vertex):\n                return True\n\n        return False\n```",
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self):\n        self.model = Lasso()\n\n    def train(self, X, y):\n        self.model.fit(X, y)\n\n    def predict(self, X):\n        return self.model.predict(X)\n```",
+        "class QuadraticDiscriminantAnalysis:\n    \"\"\"\n    Quadratic Discriminant Analysis (QDA) classifier.\n    \"\"\"\n\n    def __init__(self, store_covariance=False):\n        \"\"\"\n        Initializes the QDA classifier.\n\n        Parameters:\n            store_covariance (bool): Whether to store the covariance matrix during\n                fitting (default=False).\n        \"\"\"\n        self.store_covariance = store_covariance\n        self.classes_ = None\n        self.covariance_ = None\n        self.means_ = None\n        self.priors_ = None\n        self.class_log_prior_ = None\n        self.X_ = None\n        self.y_ = None\n        self.n_features_in_ = None\n        self.n_classes_ = None\n        self.X_offset_ = None\n        self.class_count_ = None\n        self.classes_ = None\n        self.covariance_ = None\n        self.priors_ = None\n        self.class_log_prior_ = None\n        self.X_offset_ = None\n        self.n_features_ = None\n        self.n_classes_ = None\n\n    def fit(self, X, y, sample_weight=None):\n        \"\"\"\n        Fits the model according to the given training data and parameters.\n\n        Parameters:\n            X (array-like of shape (n_samples, n_features)): Training data.\n            y (array-like of shape (n_samples,)): Target values.\n            sample_weight (array-like of shape (n_samples,), optional):\n                Sample weights. If None, then samples are equally weighted.\n                Only supported for covariance='empirical' (default=None).\n        \"\"\"\n        self.X_ = X\n        self.y_ = y\n        self._check_X(X)\n        self.n_features_in_ = X.shape[1]\n        self.n_classes_ = len(np.unique(y))\n        classes = np.unique(y)\n        self.classes_ = classes\n        self.class_count_ = np.bincount(y)\n        self.class_log_prior_ = np.log(self.class_count_ / len(y))\n        self.X_offset_ = np.mean(X, axis=0)\n        self.X_ = X - self.X_offset_\n        self.means_ = np.zeros((self.n_classes_, self.n_features_))\n        self.covariance_ = np.zeros((self.n_classes_, self.n_features_, self.n_features_))\n        self.priors_ = np.zeros(self.n_classes_)\n        for i, cl in enumerate(classes):\n            X_cl = X[y == cl]\n            self.means_[i] = np.mean(X_cl, axis=0)\n            self.covariance_[i] = np.atleast_2d(np.cov(X_cl.T))\n            self.priors_[i] = X_cl.shape[0] / len(y)\n        if self.store_covariance:\n            self.covariance_full_ = np.cov(X.T)\n        self.covariance_ = self.covariance_\n        self.priors_ = self.priors_ / len(y)\n\n    def predict(self, X):\n        \"\"\"\n        Predicts the class labels for the provided data.\n\n        Parameters:\n            X (array-like of shape (n_samples, n_features)): Data for classification.\n\n        Returns:\n            C (array-like of shape (n_samples,)): Predicted class labels.\n        \"\"\"\n        X = self._check_X(X)\n        jll = self._joint_log_likelihood(X)\n        return self.classes_[np.argmax(jll, axis=1)]\n\n    def predict_log_proba(self, X):\n        \"\"\"\n        Returns the log-probability estimates for the test data.\n\n        Parameters:\n            X (array-like of shape (n_samples, n_features)): Data for classification.\n\n        Returns:\n            C (array-like of shape (n_samples, n_classes)): Returns the log-probability\n                of the samples for each class in the model. The columns correspond to the\n                classes in sorted order, as they appear in the attribute classes_.\n        \"\"\"\n        X = self._check_X(X)\n        jll = self._joint_log_likelihood(X)\n        return jll - sp.special.logsumexp(jll, axis=1)[:, np.newaxis]\n\n    def predict_proba(self, X):\n        \"\"\"\n        Returns the probability estimates for the test data.\n\n        Parameters:\n            X (array-like of shape (n_samples, n_features)): Data for classification.\n\n        Returns:\n            C (array-like of shape (n_samples, n_classes)): Returns the probability\n                of the samples for each class in the model. The columns correspond to the\n                classes in sorted order, as they appear in the attribute classes_.\n        \"\"\"\n        return np.exp(self.predict_log_proba(X))\n\n    def _joint_log_likelihood(self, X):\n        \"\"\"\n        Computes the joint log-likelihood of the samples in X.\n\n        Parameters:\n            X (array-like of shape (n_samples, n_features)): Data for classification.\n\n        Returns:\n            array-like of shape (n_samples, n_classes): Log-likelihood of the samples\n                for each class in the model.\n        \"\"\"\n        n_features = X.shape[1]\n        jll = np.zeros((X.shape[0], self.n_classes_))\n        for k, m, S in zip(range(self.n_classes_), self.means_, self.covariance_):\n            diff = X - m\n            jll[:, k] = (\n                -0.5\n                * np.log(np.linalg.det(S))\n                - np.sum(diff @ np.linalg.solve(S, diff.T), axis=1)\n                - 0.5 * n_features * np.log(2 * np.pi)\n                - self.class_log_prior_[k]\n            )\n        return jll\n\n    def _check_X(self, X):\n        \"\"\"\n        Checks the input array X and performs preprocessing.\n\n        Parameters:\n            X (array-like of shape (n_samples, n_features)): Input data.\n\n        Returns:\n            array-like of shape (n_samples, n_features_in_): Preprocessed input data.\n        \"\"\"\n        X = check_array(X)\n        if X.shape[1] != self.n_features_in_:\n            raise ValueError(\n                \"Expected %d features per sample, got %d\"\n                % (self.n_features_in_, X.shape[1])\n            )\n        return X",
+        "import numpy as np\n\nclass LinearRegression:\n    \"\"\"\n    A class to perform linear regression using NumPy.\n    \"\"\"\n\n    def __init__(self, x: np.ndarray, y: np.ndarray) -> None:\n        \"\"\"\n        Initialize the linear regression model.\n\n        :param x: np.ndarray - The input data of shape (n_samples, n_features).\n        :param y: np.ndarray - The target values of shape (n_samples,).\n        \"\"\"\n        self.x = x\n        self.y = y\n        self._coef = None\n        self._intercept = None\n\n    def fit(self) -> None:\n        \"\"\"\n        Fit the linear regression model to the data.\n        \"\"\"\n        x_transpose = self.x.T\n        self._coef = np.linalg.inv(self.x.dot(x_transpose)).dot(x_transpose).dot(self.y)\n        self._intercept = np.mean(self.y - self.x.dot(self._coef.T))\n\n    def predict(self, x: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Predict the target values for the given input data.\n\n        :param x: np.ndarray - The input data of shape (n_samples, n_features).\n        :return: np.ndarray - The predicted target values of shape (n_samples,).\n        \"\"\"\n        return self.x.dot(self._coef.T) + self._intercept",
+        "from sklearn.kernel_ridge import KernelRidge\n\nclass KernelRidgeRegression:\n    \"\"\"\n    Kernel ridge regression class.\n    \"\"\"\n\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=0.0, tol=1e-4, copy_X=True,\n                 max_iter=None, solver='auto', verbose=False):\n        \"\"\"\n        Initialize the Kernel ridge regression class.\n\n        Parameters:\n            alpha (float): Regularization strength; must be a positive float. The regularization\n                strength will be inversely proportional to the regularization strength.\n            kernel (string): Kernel to be used in the algorithm. It must be one of 'linear', 'poly', 'rbf', 'sigmoid',\n                'cosine', or a callable. If none is given, 'linear' will be used. If a callable is given it is\n                used to pre-process each input sample as a feature vector.\n            gamma (float): Gamma parameter for the kernel. Ignored by the poly and sigmoid kernels.\n            degree (int): Degree of the polynomial kernel function ('poly'). Ignored by all other kernels.\n            coef0 (float): Independent term in decision function. If 'kernel' is 'poly' it refers to\n                r'(x)^degree.\n            tol (float): Tolerance for solver.\n            copy_X (boolean): If True, X will be copied; else, it may be overwritten.\n            max_iter (int): Maximum number of iterations for conjugate gradient solver.\n            solver (string): Solver to use in the computational routines. Refer 'sklearn.linear_model.ridge'\n                documentation for details.\n            verbose (boolean): If True, the time elapsed while fitting will be printed as it is\n                done for each fold.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.tol = tol\n        self.copy_X = copy_X\n        self.max_iter = max_iter\n        self.solver = solver\n        self.verbose = verbose\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the model using X as training data and y as target values.\n\n        Parameters:\n            X (array-like): Training data. Will be cast to float64 dtype. Shape: [n_samples, n_features].\n            y (array-like): Target values. Will be cast to float64 if necessary. Shape: [n_samples].\n        \"\"\"\n        self.ridge = KernelRidge(alpha=self.alpha, kernel=self.kernel, gamma=self.gamma, degree=self.degree,\n                         coef0=self.coef0, tol=self.tol, copy_X=self.copy_X, max_iter=self.max_iter, solver=self.solver,\n                         verbose=self.verbose)\n        self.ridge.fit(X, y)\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the linear ridge model.\n\n        Parameters:\n            X (array-like): Samples.\n\n        Returns:\n            C {array, shape = [n_samples, n_targets] or [n_samples,]\n                Returns predicted values.\n        \"\"\"\n        return self.ridge.predict(X)",
+        "```python\ndef insertion_sort(arr: list[int]) -> list[int]:\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and arr[j] > key:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr\n```",
+        "class StudentGrade:\n    def __init__(self, grade):\n        self.grade = grade\n\n    def average_grade(self):\n        return sum(self.grade) / len(self.grade)",
+        "class BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert(value, self.root)\n\n    def _insert(self, value, node):\n        if value < node.value:\n            if node.left:\n                self._insert(value, node.left)\n            else:\n                node.left = Node(value)\n        elif value > node.value:\n            if node.right:\n                self._insert(value, node.right)\n            else:\n                node.right = Node(value)\n\n    def delete(self, value):\n        self.root = self._delete(value, self.root)\n\n    def _delete(self, value, node):\n        if not node:\n            return node\n        elif value == node.value:\n            if not node.left and not node.right:\n                node = None\n            elif not node.left:\n                node = node.right\n            elif not node.right:\n                node = node.left\n            else:\n                temp = self._get_min_value_node(node.right)\n                node.value = temp.value\n                node.right = self._delete(temp.value, node.right)\n        elif value < node.value:\n            node.left = self._delete(value, node.left)\n        else:\n            node.right = self._delete(value, node.right)\n        return node\n\n    def _get_min_value_node(self, node):\n        current = node\n        while current.left:\n            current = current.left\n        return current\n\n    class Node:\n        def __init__(self, value):\n            self.value = value\n            self.left = None\n            self.right = None"
+      ]
+    }
+  ]
+}

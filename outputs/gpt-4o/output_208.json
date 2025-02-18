@@ -1,0 +1,129 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.model = Lasso(alpha=self.alpha)\n\n    def b_train(self, X, y):\n        try:\n            self.model.fit(X, y)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def b_predict(self, X):\n        try:\n            predictions = self.model.predict(X)\n            return predictions\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n            return np.array([])\n```",
+        "```python\ndef b_calculate_h_index(citations):\n    try:\n        citations.sort(reverse=True)\n        h_index = 0\n        for i, citation in enumerate(citations):\n            if citation >= i + 1:\n                h_index = i + 1\n            else:\n                break\n        return h_index\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
+        "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_compute_h_index(citations):\n    assert isinstance(citations, list), \"Input should be a list\"\n    assert all(isinstance(citation, int) for citation in citations), \"All elements should be integers\"\n    assert all(citation >= 0 for citation in citations), \"All citations should be non-negative\"\n    \n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    h_index = 0\n    for i in range(n):\n        if citations[i] >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    \n    return h_index\n```",
+        "```python\nimport numpy as np\n\ndef y_compute_diagonal_average(matrix):\n    assert isinstance(matrix, np.ndarray), \"Input must be a numpy ndarray.\"\n    assert matrix.ndim == 2, \"Input must be a 2-dimensional array.\"\n    assert matrix.shape[0] == matrix.shape[1], \"Matrix must be square.\"\n\n    diagonal_elements = np.diag(matrix)\n    average = np.mean(diagonal_elements)\n\n    return average\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef fn_compute_h_index_x(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, cite in enumerate(citations):\n        if cite >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef fn_merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        fn_merge_sort_x(left_half)\n        fn_merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_y(array_y):\n    if len(array_y) > 1:\n        mid_y = len(array_y) // 2\n        left_half_y = array_y[:mid_y]\n        right_half_y = array_y[mid_y:]\n\n        merge_sort_y(left_half_y)\n        merge_sort_y(right_half_y)\n\n        i_y = j_y = k_y = 0\n\n        while i_y < len(left_half_y) and j_y < len(right_half_y):\n            if left_half_y[i_y] < right_half_y[j_y]:\n                array_y[k_y] = left_half_y[i_y]\n                i_y += 1\n            else:\n                array_y[k_y] = right_half_y[j_y]\n                j_y += 1\n            k_y += 1\n\n        while i_y < len(left_half_y):\n            array_y[k_y] = left_half_y[i_y]\n            i_y += 1\n            k_y += 1\n\n        while j_y < len(right_half_y):\n            array_y[k_y] = right_half_y[j_y]\n            j_y += 1\n            k_y += 1\n```",
+        "```python\ndef is_palindrome_y(string_y):\n    cleaned_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return cleaned_string_y == cleaned_string_y[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_y(left_half)\n        merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef fn_merge_sort_x(array_y):\n    if len(array_y) > 1:\n        mid_y = len(array_y) // 2\n        left_half_y = array_y[:mid_y]\n        right_half_y = array_y[mid_y:]\n\n        fn_merge_sort_x(left_half_y)\n        fn_merge_sort_x(right_half_y)\n\n        i_y = j_y = k_y = 0\n\n        while i_y < len(left_half_y) and j_y < len(right_half_y):\n            if left_half_y[i_y] < right_half_y[j_y]:\n                array_y[k_y] = left_half_y[i_y]\n                i_y += 1\n            else:\n                array_y[k_y] = right_half_y[j_y]\n                j_y += 1\n            k_y += 1\n\n        while i_y < len(left_half_y):\n            array_y[k_y] = left_half_y[i_y]\n            i_y += 1\n            k_y += 1\n\n        while j_y < len(right_half_y):\n            array_y[k_y] = right_half_y[j_y]\n            j_y += 1\n            k_y += 1\n```\n",
+        "```python\nclass LassoRegressor:\n    def __init__(self_y, alpha_y=1.0_y):\n        self_y.alpha_y = alpha_y\n        self_y.coef_y = None\n        self_y.intercept_y = None\n\n    def fn_train_x(self_y, X_y, y_y, num_iterations_y=1000_y, learning_rate_y=0.01_y):\n        import numpy_y as np_y\n        n_samples_y, n_features_y = X_y.shape\n        self_y.coef_y = np_y.zeros(n_features_y)\n        self_y.intercept_y = 0\n        for _ in range(num_iterations_y):\n            y_predicted_y = np_y.dot(X_y, self_y.coef_y) + self_y.intercept_y\n            dw_y = (np_y.dot(X_y.T, (y_predicted_y - y_y)) + self_y.alpha_y * np_y.sign(self_y.coef_y)) / n_samples_y\n            db_y = np_y.sum(y_predicted_y - y_y) / n_samples_y\n            self_y.coef_y -= learning_rate_y * dw_y\n            self_y.intercept_y -= learning_rate_y * db_y\n\n    def fn_predict_x(self_y, X_y):\n        import numpy_y as np_y\n        assert self_y.coef_y is not None_y, \"Model not trained_y\"\n\n        return np_y.dot(X_y, self_y.coef_y) + self_y.intercept_y\n```",
+        "```python\ndef fn_is_palindrome_x(text_y):\n    assert isinstance(text_y, str)\n    try:\n        clean_text_y = ''.join(char.lower() for char in text_y if char.isalnum())\n        return clean_text_y == clean_text_y[::-1]\n    except Exception as e_y:\n        raise ValueError(f\"Error processing the text_y: {str(e_y)}\")\n```",
+        "```python\ndef d_compute_h_index_y(citations_y):\n    try:\n        citations_y.sort(reverse=True)\n        h_index_y = 0\n        for i_y, citation_y in enumerate(citations_y):\n            if citation_y >= i_y + 1:\n                h_index_y = i_y + 1\n            else:\n                break\n        assert h_index_y >= 0, \"H-index cannot be negative\"\n        return h_index_y\n    except Exception as e_y:\n        print(f\"An error occurred: {e_y}\")\n        return None\n```",
+        "```python\ndef fn_compute_average_diagonal_x(matrix_y):\n    try:\n        assert isinstance(matrix_y, list) and all(isinstance(row_y, list) for row_y in matrix_y), \"Input must be a list of lists.\"\n        size_y = len(matrix_y)\n        assert all(len(row_y) == size_y for row_y in matrix_y), \"Matrix must be square.\"\n        \n        diagonal_sum_y = sum(matrix_y[i][i] for i in range(size_y))\n        average_diagonal_y = diagonal_sum_y / size_y\n        return average_diagonal_y\n    except Exception as e_y:\n        print(f\"Error: {str(e_y)}\")\n        return None\n```\n"
+      ]
+    }
+  ]
+}

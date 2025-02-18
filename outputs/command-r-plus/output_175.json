@@ -1,0 +1,85 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def y_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def fn_h_index_calculator(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    # method naming convention as per Jean-Aim\u00e9's instructions\n    def fn_add_edge_p(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def fn_shortest_path_p(self, src, dest):\n        # adjacency matrix representation\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n\n        # using min-heap to get shortest distance vertex\n        # in every iteration\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            # min-heap will return the vertex with minimum distance\n            # in every iteration\n            d, u = heapq.heappop(pq)\n\n            # traversing through all the neighbors of the\n            # dequeued vertex u and updating their distances\n            for v in self.graph[u]:\n                # checking if the distance can be reduced\n                if dist[v] > dist[u] + 1:\n                    dist[v] = dist[u] + 1\n                    heapq.heappush(pq, (dist[v], v))\n\n        # printing the shortest distance\n        print(\"Shortest distance from source %s to destination %s: %s\" % (src, dest, dist[dest]))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_p(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def c_add_edge_md(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def c_shortest_path_md(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n\n        queue = []\n        queue.append(src)\n\n        while queue:\n            u = queue.pop(0)\n\n            if not visited[u]:\n                visited[u] = True\n\n                for v in self.graph[u]:\n                    if not visited[v]:\n                        queue.append(v)\n                        dist[v] = dist[u] + 1\n                        path[v] = u\n\n        pathstr = []\n        s = dest\n        pathstr.append(s)\n        while path[s] != 0:\n            s = path[s]\n            pathstr.append(s)\n\n        pathstr.reverse()\n        return dist[dest], pathstr",
+        "def c_h_index_calculator_md(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_md(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_md(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        for _ in range(self.V):\n            u = self.min_distance_node_md(dist)\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n\n        path = []\n        node = dest\n        while parent[node] != -1:\n            path.append(node)\n            node = parent[node]\n        path.append(node)\n        path.reverse()\n        return path, dist[dest]\n\n    def min_distance_node_md(self, dist):\n        min_dist = float('inf')\n        min_node = -1\n        for v in range(self.V):\n            if dist[v] < min_dist:\n                min_dist = dist[v]\n                min_node = v\n        return min_node",
+        "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_compute_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def a_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)]\n                      for _ in range(vertices)]\n\n    # y_compute_shortest_path method to find shortest path from source to destination\n    def y_compute_shortest_path(self, source, dest):\n        # Create a visited array and a distance array to store\n        # shortest distances from source to all vertices\n        visited = [False] * self.V\n        distance = [float(\"Inf\")] * self.V\n\n        # Mark source as visited and distance as 0\n        visited[source] = True\n        distance[source] = 0\n\n        # Create a queue and enqueue the source vertex\n        queue = []\n        queue.append(source)\n\n        # Perform Breadth First Search starting from source\n        while queue:\n            u = queue.pop(0)\n\n            # Get all adjacent vertices of u and their distances\n            for v in range(self.V):\n                # If there is an edge from u to v and v is not visited\n                if self.graph[u][v] > 0 and not visited[v]:\n                    # Enqueue v and set its distance as the distance from u + weight of edge uv\n                    queue.append(v)\n                    visited[v] = True\n                    distance[v] = distance[u] + self.graph[u][v]\n\n        # Return the shortest distance from source to destination\n        return distance[dest]\n```",
+        "def h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ]
+    }
+  ]
+}

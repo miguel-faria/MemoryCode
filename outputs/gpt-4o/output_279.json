@@ -1,0 +1,314 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_b(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = merge_sort_b(arr[:mid])\n    right_half = merge_sort_b(arr[mid:])\n\n    return merge_b(left_half, right_half)\n\ndef merge_b(left, right):\n    sorted_array = []\n    left_index, right_index = 0, 0\n\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            sorted_array.append(left[left_index])\n            left_index += 1\n        else:\n            sorted_array.append(right[right_index])\n            right_index += 1\n\n    sorted_array.extend(left[left_index:])\n    sorted_array.extend(right[right_index:])\n\n    return sorted_array\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport locale\n\ndef least_common_multiple(a: int, b: int) -> int:\n    \"\"\"Calculate the least common multiple of two integers.\"\"\"\n    def gcd(x: int, y: int) -> int:\n        while y:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Find the longest common prefix string amongst an array of strings.\n\n    Args:\n        strs (list): A list of strings to evaluate.\n\n    Returns:\n        str: The longest common prefix found in the string list. \n             If there is no common prefix, returns an empty string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    # Start with the first string as the potential longest common prefix.\n    prefix = strs[0]\n\n    # Iterate over the strings to compare and update the prefix.\n    for s in strs[1:]:\n        while s[:len(prefix)] != prefix and prefix:\n            prefix = prefix[:-1]\n            if not prefix:\n                return \"\"\n\n    return prefix\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\nfrom typing import List\n\nclass Library:\n    def __init__(self):\n        self.books: List[str] = []\n\n    @validate\n    def add_books(self, books: List[str]) -> None:\n        self.books.extend(books)\n\n    @validate\n    def remove_books(self, books: List[str]) -> None:\n        for book in books:\n            if book in self.books:\n                self.books.remove(book)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef a_merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        a_merge_sort_c(left_half)\n        a_merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef a_compute_h_index_c(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n",
+        "```python\ndef a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_fn(input_str_vr):\n    processed_str_vr = ''.join(char.lower() for char in input_str_vr if char.isalnum())\n    return processed_str_vr == processed_str_vr[::-1]\n```",
+        "```python\ndef merge_sort_fn(arr_vr):\n    if len(arr_vr) > 1:\n        mid_vr = len(arr_vr) // 2\n        left_half_vr = arr_vr[:mid_vr]\n        right_half_vr = arr_vr[mid_vr:]\n\n        merge_sort_fn(left_half_vr)\n        merge_sort_fn(right_half_vr)\n\n        i_vr = 0\n        j_vr = 0\n        k_vr = 0\n\n        while i_vr < len(left_half_vr) and j_vr < len(right_half_vr):\n            if left_half_vr[i_vr] < right_half_vr[j_vr]:\n                arr_vr[k_vr] = left_half_vr[i_vr]\n                i_vr += 1\n            else:\n                arr_vr[k_vr] = right_half_vr[j_vr]\n                j_vr += 1\n            k_vr += 1\n\n        while i_vr < len(left_half_vr):\n            arr_vr[k_vr] = left_half_vr[i_vr]\n            i_vr += 1\n            k_vr += 1\n\n        while j_vr < len(right_half_vr):\n            arr_vr[k_vr] = right_half_vr[j_vr]\n            j_vr += 1\n            k_vr += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```",
+        "```python\ndef merge_fn(left, right):\n    result = []\n    i = j = 0\n\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = merge_sort_fn(arr[:mid])\n    right_half = merge_sort_fn(arr[mid:])\n\n    return merge_fn(left_half, right_half)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr: str) -> bool:\n    s_wr = ''.join(char.lower() for char in s_wr if char.isalnum())\n    return s_wr == s_wr[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        if song not in self.songs:\n            self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        if song in self.songs:\n            self.songs.remove(song)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef merge_sort_gn(lst):\n    if len(lst) > 1:\n        mid = len(lst) // 2\n        left_half = lst[:mid]\n        right_half = lst[mid:]\n\n        merge_sort_gn(left_half)\n        merge_sort_gn(right_half)\n\n        i, j, k = 0, 0, 0\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                lst[k] = left_half[i]\n                i += 1\n            else:\n                lst[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            lst[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            lst[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef greatest_common_divisor_gn(a: int, b: int) -> int:\n    while b:\n        a, b = b, a % b\n    return a\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_gn(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_gn(left_half)\n        merge_sort_gn(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\nfrom math import gcd\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef greatest_common_divisor(a: int, b: int) -> int:\n    return gcd(a, b)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_w(string_w):\n    try:\n        cleaned_string_w = ''.join(char_w.lower() for char_w in string_w if char_w.isalnum())\n        return cleaned_string_w == cleaned_string_w[::-1]\n    except Exception as e_w:\n        print(f\"An error occurred: {e_w}\")\n        return False\n```",
+        "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha_w=1.0, iter_w=1000, tol_w=1e-4):\n        self.alpha_w = alpha_w\n        self.iter_w = iter_w\n        self.tol_w = tol_w\n        self.coef_w = None\n        self.intercept_w = None\n\n    def _soft_thresholding(self, x_w, lambda_w):\n        return np.sign(x_w) * max(abs(x_w) - lambda_w, 0)\n\n    def train(self, X_w, y_w):\n        try:\n            n_samples_w, n_features_w = X_w.shape\n            self.coef_w = np.zeros(n_features_w)\n            self.intercept_w = 0.0\n\n            for _ in range(self.iter_w):\n                y_pred_w = np.dot(X_w, self.coef_w) + self.intercept_w\n                residuals_w = y_w - y_pred_w\n\n                # Update intercept\n                self.intercept_w += residuals_w.mean()\n\n                # Update coefficients\n                for j_w in range(n_features_w):\n                    residuals_j_w = residuals_w + X_w[:, j_w] * self.coef_w[j_w]\n                    rho_w = np.dot(X_w[:, j_w], residuals_j_w)\n                    self.coef_w[j_w] = self._soft_thresholding(rho_w, self.alpha_w * n_samples_w) / (X_w[:, j_w] ** 2).sum()\n\n                # Check for convergence\n                if np.linalg.norm(self.coef_w - y_pred_w, ord=1) < self.tol_w:\n                    break\n        except Exception as e_w:\n            print(f\"An error occurred during training: {e_w}\")\n\n    def predict(self, X_w):\n        try:\n            return np.dot(X_w, self.coef_w) + self.intercept_w\n        except Exception as e_w:\n            print(f\"An error occurred during prediction: {e_w}\")\n            return None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```",
+        "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nimport numpy as np\n\nclass PCA7:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n\n    def d_fit(self, X):\n        # Center the data\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n\n        # Compute the covariance matrix\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n\n        # Eigen decomposition\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n\n        # Sort the eigenvalues and corresponding eigenvectors\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n\n        # Store the top n_components eigenvectors\n        self.components_ = eigenvectors[:, :self.n_components]\n\n        # Store the explained variance\n        self.explained_variance_ = eigenvalues[:self.n_components]\n\n    def d_transform(self, X):\n        if self.mean_ is None or self.components_ is None:\n            raise RuntimeError(\"The 'd_fit' method must be called before 'd_transform'.\")\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def d_fit_transform(self, X):\n        self.d_fit(X)\n        return self.d_transform(X)\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n        self.explained_variance_ratio_ = None\n\n    def fit(self, X):\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n        self.components_ = eigenvectors[:, :self.n_components]\n        self.explained_variance_ = eigenvalues[:self.n_components]\n        total_variance = eigenvalues.sum()\n        self.explained_variance_ratio_ = eigenvalues[:self.n_components] / total_variance\n\n    def transform(self, X):\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_a(y_arr):\n    if len(y_arr) > 1:\n        y_mid = len(y_arr) // 2\n        y_left_half = y_arr[:y_mid]\n        y_right_half = y_arr[y_mid:]\n\n        merge_sort_a(y_left_half)\n        merge_sort_a(y_right_half)\n\n        y_i = y_j = y_k = 0\n\n        while y_i < len(y_left_half) and y_j < len(y_right_half):\n            if y_left_half[y_i] < y_right_half[y_j]:\n                y_arr[y_k] = y_left_half[y_i]\n                y_i += 1\n            else:\n                y_arr[y_k] = y_right_half[y_j]\n                y_j += 1\n            y_k += 1\n\n        while y_i < len(y_left_half):\n            y_arr[y_k] = y_left_half[y_i]\n            y_i += 1\n            y_k += 1\n\n        while y_j < len(y_right_half):\n            y_arr[y_k] = y_right_half[y_j]\n            y_j += 1\n            y_k += 1\n```",
+        "```python\ndef is_valid_sudoku_a(board):\n    def is_valid_unit_a(unit):\n        y_nums = [y_num for y_num in unit if y_num != '.']\n        return len(y_nums) == len(set(y_nums))\n\n    for y_row in board:\n        if not is_valid_unit_a(y_row):\n            return False\n\n    for y_col in zip(*board):\n        if not is_valid_unit_a(y_col):\n            return False\n\n    for y_box_i in (0, 3, 6):\n        for y_box_j in (0, 3, 6):\n            y_box = [board[y_i][y_j] \n                     for y_i in range(y_box_i, y_box_i + 3) \n                     for y_j in range(y_box_j, y_box_j + 3)]\n            if not is_valid_unit_a(y_box):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_a(left_half)\n        merge_sort_a(right_half)\n\n        i = j = k = 0\n        \n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef y_is_valid_sudoku(y_board):\n    y_rows = len(y_board)\n    y_columns = len(y_board[0])\n    \n    if y_rows != 9 or y_columns != 9:\n        return False\n    \n    def y_is_valid_group(y_group):\n        y_elements = [num for num in y_group if num != '.']\n        return len(y_elements) == len(set(y_elements))\n    \n    for y_row in y_board:\n        if not y_is_valid_group(y_row):\n            return False\n    \n    for y_col in range(9):\n        y_column_numbers = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_is_valid_group(y_column_numbers):\n            return False\n    \n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_box_numbers = [y_board[y_row][y_col] \n                             for y_row in range(y_box_row, y_box_row + 3) \n                             for y_col in range(y_box_col, y_box_col + 3)]\n            if not y_is_valid_group(y_box_numbers):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums):\n        if not nums:\n            return 0\n        current_sum = max_sum = nums[0]\n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        return max_sum\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n        \n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert n_neighbors > 0, \"The number of neighbors must be greater than 0\"\n        self.n_neighbors = n_neighbors\n        self.training_data = None\n        self.training_labels = None\n\n    def train(self, data, labels):\n        assert len(data) == len(labels), \"The number of data points must match the number of labels\"\n        self.training_data = np.array(data)\n        self.training_labels = np.array(labels)\n\n    def predict(self, data):\n        assert self.training_data is not None, \"Model must be trained before making predictions\"\n        assert data is not None and len(data) > 0, \"Input data for prediction must not be empty\"\n\n        data = np.array(data)\n        predictions = []\n\n        for point in data:\n            distances = np.linalg.norm(self.training_data - point, axis=1)\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.training_labels[nearest_indices]\n            prediction = np.argmax(np.bincount(nearest_labels))\n            predictions.append(prediction)\n        \n        return predictions\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        y_merge_sort_y(left_half)\n        y_merge_sort_y(right_half)\n\n        i = j = k = 0\n        \n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef y_compute_h_index_y(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_y(left_half)\n        merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef b_compute_h_index(citations):\n    n = len(citations)\n    citations.sort(reverse=True)\n    h_index = 0\n    \n    for i in range(n):\n        if citations[i] >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    \n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_n(s_n):\n    \"\"\"\n    Check if a given string is a valid palindrome. \n    A valid palindrome reads the same backward as forward.\n\n    :param s_n: str, The string to check for palindrome\n    :return: bool, True if the string is a palindrome, False otherwise\n    \"\"\"\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef fn_is_palindrome_y(input_string_y):\n    sanitized_input_y = ''.join(char_y.lower() for char_y in input_string_y if char_y.isalnum())\n    return sanitized_input_y == sanitized_input_y[::-1]\n```",
+        "```python\ndef fn_compute_h_index(citations_y):\n    citations_y.sort(reverse=True)\n    h_y = 0\n    for i_y, citation_y in enumerate(citations_y):\n        if citation_y >= i_y + 1:\n            h_y = i_y + 1\n        else:\n            break\n    return h_y\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```",
+        "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport locale\nfrom pedantic import rename_kwargs\n\nlocale.setlocale(locale.LC_ALL, '')\n\n@rename_kwargs\ndef fn_longest_common_prefix_y(strings_y):\n    if not strings_y:\n        return \"\"\n    \n    prefix_y = strings_y[0]\n    for string_y in strings_y[1:]:\n        while not string_y.startswith(prefix_y):\n            prefix_y = prefix_y[:-1]\n            if not prefix_y:\n                return \"\"\n    \n    return prefix_y\n```",
+        "```python\nfrom pedantic import rename_kwargs\nimport locale\n\n@rename_kwargs\ndef fn_greatest_common_divisor_fn(a_x, b_x):\n    \"\"\"\n    Calculate the greatest common divisor (GCD) of two integers.\n\n    :param a_x: The first integer\n    :param b_x: The second integer\n    :return: The GCD of a_x and b_x\n    \"\"\"\n    while b_x != 0:\n        a_x, b_x = b_x, a_x % b_x\n    return a_x\n```",
+        "```python\nimport locale\n\ndef fn_calculate_lcm_y(a_y: int, b_y: int) -> int:\n    \"\"\"\n    Calculate the least common multiple (LCM) of two integers.\n\n    Parameters:\n    a_y (int): The first integer.\n    b_y (int): The second integer.\n\n    Returns:\n    int: The least common multiple of a_y and b_y.\n    \"\"\"\n    assert a_y > 0, \"The first integer must be positive.\"\n    assert b_y > 0, \"The second integer must be positive.\"\n\n    def gcd_y(x_y: int, y_y: int) -> int:\n        \"\"\"Calculate the greatest common divisor (GCD) using the Euclidean algorithm.\"\"\"\n        while y_y:\n            x_y, y_y = y_y, x_y % y_y\n        return x_y\n\n    return abs(a_y * b_y) // gcd_y(a_y, b_y)\n```\n",
+        "```python\nimport locale\nfrom pedantic import validate\nfrom typing import List\n\nlocale.setlocale(locale.LC_ALL, '')\n\n@validate\ndef fn_is_valid_sudoku_y(board_y: List[List[str]]) -> bool:\n    def is_valid_block_y(block_y: List[str]) -> bool:\n        block_y = [num_y for num_y in block_y if num_y != '.']\n        return len(block_y) == len(set(block_y))\n\n    for row_y in board_y:\n        if not is_valid_block_y(row_y):\n            return False\n\n    for col_index_y in range(9):\n        col_y = [board_y[row_index_y][col_index_y] for row_index_y in range(9)]\n        if not is_valid_block_y(col_y):\n            return False\n\n    for block_row_y in range(0, 9, 3):\n        for block_col_y in range(0, 9, 3):\n            block_y = [board_y[row_y][col_y]\n                       for row_y in range(block_row_y, block_row_y + 3)\n                       for col_y in range(block_col_y, block_col_y + 3)]\n            if not is_valid_block_y(block_y):\n                return False\n\n    return True\n```",
+        "```python\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')\n\ndef fn_is_palindrome_y(string_y: str) -> bool:\n    \"\"\"\n    Check if a given string is a valid palindrome.\n    \n    Args:\n        string_y (str): The string to be checked.\n        \n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    if not isinstance(string_y, str):\n        raise ValueError(\"Input must be a string\")\n    \n    cleaned_string_y = ''.join(char.lower() for char in string_y if char.isalnum())\n    return cleaned_string_y == cleaned_string_y[::-1]\n```\n",
+        "```python\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')\n\ndef fn_compute_h_index_y(citations_y):\n    \"\"\"\n    Calculate the h-index for a given list of citations.\n\n    :param citations_y: List of integers representing citation counts for an author's papers.\n    :return: Integer representing the h-index.\n    \"\"\"\n    assert isinstance(citations_y, list), \"Input must be a list of integers\"\n    assert all(isinstance(c, int) for c in citations_y), \"All elements must be integers\"\n\n    citations_y.sort(reverse=True)\n    h_index_y = 0\n    \n    for i_y, citation_y in enumerate(citations_y):\n        if citation_y >= i_y + 1:\n            h_index_y = i_y + 1\n        else:\n            break\n    \n    return h_index_y\n```\n",
+        "```python\nimport numpy as np\nfrom sklearn.decomposition import PCA\nfrom pedantic import rename_kwargs\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensure locale is set\n\n@rename_kwargs\nclass PCA_Analysis_y:\n    def __init__(self_y, n_components_y):\n        assert isinstance(n_components_y, int), \"n_components must be an integer\"\n        self_y.n_components_y = n_components_y\n        self_y.pca_y = PCA(n_components=n_components_y)\n        self_y.components_y = None\n        self_y.explained_variance_ratio_y = None\n\n    def fn_fit_y(self_y, data_y):\n        assert isinstance(data_y, np.ndarray), \"data must be a numpy array\"\n        self_y.pca_y.fit(data_y)\n        self_y.components_y = self_y.pca_y.components_\n        self_y.explained_variance_ratio_y = self_y.pca_y.explained_variance_ratio_\n\n    def fn_transform_y(self_y, data_y):\n        assert isinstance(data_y, np.ndarray), \"data must be a numpy array\"\n        return self_y.pca_y.transform(data_y)\n        \n    def fn_fit_transform_y(self_y, data_y):\n        assert isinstance(data_y, np.ndarray), \"data must be a numpy array\"\n        return self_y.pca_y.fit_transform(data_y)\n\n    def fn_get_components_y(self_y):\n        assert self_y.components_y is not None, \"PCA not fitted; call fn_fit_y() first\"\n        return self_y.components_y\n\n    def fn_get_explained_variance_ratio_y(self_y):\n        assert self_y.explained_variance_ratio_y is not None, \"PCA not fitted; call fn_fit_y() first\"\n        return self_y.explained_variance_ratio_y\n```\n",
+        "```python\nfrom pedantic import rename_kwargs, retry\nimport locale\n\nclass Playlist1:\n    def __init__(self):\n        self.y_songs_y = []\n    \n    @rename_kwargs\n    @retry\n    def fn_add_song_a(self, y_song_y):\n        \"\"\"Adds a song to the playlist.\n\n        Args:\n            y_song_y (str): The song to add to the playlist.\n        \"\"\"\n        assert isinstance(y_song_y, str), \"Song must be a string\"\n        self.y_songs_y.append(y_song_y)\n    \n    @rename_kwargs\n    @retry\n    def fn_remove_song_a(self, y_song_y):\n        \"\"\"Removes a song from the playlist.\n\n        Args:\n            y_song_y (str): The song to remove from the playlist.\n        \"\"\"\n        assert isinstance(y_song_y, str), \"Song must be a string\"\n        if y_song_y in self.y_songs_y:\n            self.y_songs_y.remove(y_song_y)\n```",
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\nfrom pedantic import validate\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')  # Setting locale as per the guidelines\n\nclass LassoRegression1:\n    def __init__(self_y):\n        self_y.model_y = Lasso()\n\n    @validate\n    def fn_train_a(self_y, X_train_y, y_train_y):\n        assert isinstance(X_train_y, np.ndarray) and isinstance(y_train_y, np.ndarray), \"Inputs must be numpy arrays.\"\n        self_y.model_y.fit(X_train_y, y_train_y)\n    \n    @validate\n    def fn_predict_a(self_y, X_test_y):\n        assert isinstance(X_test_y, np.ndarray), \"Input must be a numpy array.\"\n        return self_y.model_y.predict(X_test_y)\n```\n",
+        "```python\nclass Solution1:\n\n    def fn_max_subarray_y(self, nums_y) -> int:\n        \"\"\"\n        Calculate the maximum sum of a contiguous subarray in nums_y.\n\n        :param nums_y: List[int] - List of integers\n        :return: int - Maximum sum of a contiguous subarray\n        \"\"\"\n        assert isinstance(nums_y, list), \"nums_y should be a list\"\n        if not nums_y:\n            return 0\n\n        max_current_y = nums_y[0]\n        max_global_y = nums_y[0]\n\n        for num_y in nums_y[1:]:\n            max_current_y = max(num_y, max_current_y + num_y)\n            if max_current_y > max_global_y:\n                max_global_y = max_current_y\n\n        return max_global_y\n```\n",
+        "```python\nimport locale\nfrom pedantic import rename_kwargs\nfrom typing import List, Dict\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensure consistent locale settings\n\nclass Library1:\n    def __init__(self):\n        self.books_y: List[Dict[str, str]] = []\n\n    @rename_kwargs\n    def fn_add_books_y(self, title_y: str, author_y: str) -> None:\n        \"\"\"Add a book to the library.\n\n        Args:\n            title_y (str): The title of the book.\n            author_y (str): The author of the book.\n        \"\"\"\n        assert isinstance(title_y, str), 'Title must be a string'\n        assert isinstance(author_y, str), 'Author must be a string'\n        book_y: Dict[str, str] = {'title_y': title_y, 'author_y': author_y}\n        self.books_y.append(book_y)\n\n    @rename_kwargs\n    def fn_remove_books_y(self, title_y: str) -> bool:\n        \"\"\"Remove a book from the library.\n\n        Args:\n            title_y (str): The title of the book to remove.\n\n        Returns:\n            bool: True if the book was successfully removed, False otherwise.\n        \"\"\"\n        assert isinstance(title_y, str), 'Title must be a string'\n        for book_y in self.books_y:\n            if book_y['title_y'] == title_y:\n                self.books_y.remove(book_y)\n                return True\n        return False\n```\n",
+        "```python\nimport locale\nfrom pedantic import rename_kwargs\n\nlocale.setlocale(locale.LC_ALL, '')\n\n@rename_kwargs\ndef fn_merge_sort_lst_y(arr_y: list) -> list:\n    if len(arr_y) <= 1:\n        return arr_y\n    \n    mid_y = len(arr_y) // 2\n    left_y = fn_merge_sort_lst_y(arr_y[:mid_y])\n    right_y = fn_merge_sort_lst_y(arr_y[mid_y:])\n    \n    return fn_merge_fn_lst_y(left_y, right_y)\n\n@rename_kwargs\ndef fn_merge_fn_lst_y(left_y: list, right_y: list) -> list:\n    merged_y = []\n    i_y, j_y = 0, 0\n    \n    while i_y < len(left_y) and j_y < len(right_y):\n        if left_y[i_y] < right_y[j_y]:\n            merged_y.append(left_y[i_y])\n            i_y += 1\n        else:\n            merged_y.append(right_y[j_y])\n            j_y += 1\n    \n    merged_y.extend(left_y[i_y:])\n    merged_y.extend(right_y[j_y:])\n    \n    return merged_y\n```",
+        "```python\nfrom sklearn.neighbors import NearestNeighbors\nfrom pedantic import rename_kwargs, validate\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensure consistency with locale settings\n\nclass NearestNeighborsModel1:\n    \"\"\"\n    NearestNeighborsModel1 class wraps sklearn's NearestNeighbors functionality for training and predicting.\n    \"\"\"\n    \n    def __init__(self_y):\n        \"\"\"\n        Initialize the NearestNeighborsModel1 with default parameters.\n\n        Parameters\n        ----------\n        None\n        \"\"\"\n        self_y.model_y = NearestNeighbors()\n\n    @validate\n    @rename_kwargs\n    def fn_train_y(self_y, X_train_y):\n        \"\"\"\n        Train the NearestNeighbors model with the given training data.\n\n        Parameters\n        ----------\n        X_train_y : array-like, shape = [n_samples, n_features]\n            Training data to fit the NearestNeighbors model.\n        \"\"\"\n        assert X_train_y is not None, \"Training data cannot be None.\"\n        self_y.model_y.fit(X_train_y)\n\n    @validate\n    @rename_kwargs\n    def fn_predict_y(self_y, X_test_y, n_neighbors_y=5):\n        \"\"\"\n        Predict the nearest neighbors for each sample in the test data.\n\n        Parameters\n        ----------\n        X_test_y : array-like, shape = [n_samples, n_features]\n            Test data for which to find the nearest neighbors.\n\n        n_neighbors_y : int, optional (default = 5)\n            Number of neighbors to use for prediction.\n\n        Returns\n        -------\n        neighbors : array, shape = [n_samples, n_neighbors]\n            Indices of the nearest neighbors in the training data.\n        \"\"\"\n        assert X_test_y is not None, \"Test data cannot be None.\"\n        assert n_neighbors_y > 0, \"Number of neighbors must be greater than 0.\"\n        distances_y, indices_y = self_y.model_y.kneighbors(X_test_y, n_neighbors=n_neighbors_y)\n        return indices_y\n```"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_z(s_z):\n    cleaned_z = ''.join(c_z.lower() for c_z in s_z if c_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass ListNode:\n    def __init__(self, value_w):\n        self.value_i = value_w\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def insert_w(self, value_w):\n        new_node_i = ListNode(value_w)\n        if self.head_i is None:\n            self.head_i = new_node_i\n        else:\n            current_i = self.head_i\n            while current_i.next_i:\n                current_i = current_i.next_i\n            current_i.next_i = new_node_i\n\n    def delete_w(self, value_w):\n        current_i = self.head_i\n        previous_i = None\n        while current_i and current_i.value_i != value_w:\n            previous_i = current_i\n            current_i = current_i.next_i\n        if current_i is None:\n            return\n        if previous_i is None:\n            self.head_i = current_i.next_i\n        else:\n            previous_i.next_i = current_i.next_i\n\n    def search_w(self, value_w):\n        current_i = self.head_i\n        while current_i:\n            if current_i.value_i == value_w:\n                return True\n            current_i = current_i.next_i\n        return False\n\n    def display_w(self):\n        elements_w = []\n        current_i = self.head_i\n        while current_i:\n            elements_w.append(current_i.value_i)\n            current_i = current_i.next_i\n        return elements_w\n```",
+        "```python\ndef is_palindrome_i(s_w):\n    s_w = ''.join(c_w.lower() for c_w in s_w if c_w.isalnum())\n    return s_w == s_w[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        new_node_i = Node(data_i)\n        if self.head_i is None:\n            self.head_i = new_node_i\n            return\n        last_i = self.head_i\n        while last_i.next_i:\n            last_i = last_i.next_i\n        last_i.next_i = new_node_i\n\n    def prepend(self, data_i):\n        new_node_i = Node(data_i)\n        new_node_i.next_i = self.head_i\n        self.head_i = new_node_i\n\n    def delete(self, key_i):\n        temp_i = self.head_i\n        if temp_i and temp_i.data_i == key_i:\n            self.head_i = temp_i.next_i\n            temp_i = None\n            return\n\n        prev_i = None\n        while temp_i and temp_i.data_i != key_i:\n            prev_i = temp_i\n            temp_i = temp_i.next_i\n\n        if temp_i is None:\n            return\n\n        prev_i.next_i = temp_i.next_i\n        temp_i = None\n\n    def search(self, key_i):\n        current_i = self.head_i\n        while current_i and current_i.data_i != key_i:\n            current_i = current_i.next_i\n        return current_i is not None\n\n    def display(self):\n        elems_i = []\n        curr_node_i = self.head_i\n        while curr_node_i:\n            elems_i.append(curr_node_i.data_i)\n            curr_node_i = curr_node_i.next_i\n        return elems_i\n```",
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_q):\n        self.data_q = data_q\n        self.next_q = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data_q):\n        new_node_q = Node(data_q)\n        if self.head_q is None:\n            self.head_q = new_node_q\n            return\n        last_q = self.head_q\n        while last_q.next_q:\n            last_q = last_q.next_q\n        last_q.next_q = new_node_q\n\n    def prepend(self, data_q):\n        new_node_q = Node(data_q)\n        new_node_q.next_q = self.head_q\n        self.head_q = new_node_q\n\n    def delete_with_value(self, data_q):\n        if self.head_q is None:\n            return\n        if self.head_q.data_q == data_q:\n            self.head_q = self.head_q.next_q\n            return\n        current_q = self.head_q\n        while current_q.next_q:\n            if current_q.next_q.data_q == data_q:\n                current_q.next_q = current_q.next_q.next_q\n                return\n            current_q = current_q.next_q\n\n    def find(self, data_q):\n        current_q = self.head_q\n        while current_q is not None:\n            if current_q.data_q == data_q:\n                return True\n            current_q = current_q.next_q\n        return False\n\n    def to_list(self):\n        elements_q = []\n        current_q = self.head_q\n        while current_q:\n            elements_q.append(current_q.data_q)\n            current_q = current_q.next_q\n        return elements_q\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data):\n        self.data_q = data\n        self.next_q = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data):\n        new_node_q = Node(data)\n        if not self.head_q:\n            self.head_q = new_node_q\n            return\n        last_q = self.head_q\n        while last_q.next_q:\n            last_q = last_q.next_q\n        last_q.next_q = new_node_q\n\n    def prepend(self, data):\n        new_node_q = Node(data)\n        new_node_q.next_q = self.head_q\n        self.head_q = new_node_q\n\n    def delete(self, key):\n        temp_q = self.head_q\n        if temp_q and temp_q.data_q == key:\n            self.head_q = temp_q.next_q\n            temp_q = None\n            return\n        prev_q = None\n        while temp_q and temp_q.data_q != key:\n            prev_q = temp_q\n            temp_q = temp_q.next_q\n        if not temp_q:\n            return\n        prev_q.next_q = temp_q.next_q\n        temp_q = None\n\n    def search(self, key):\n        current_q = self.head_q\n        while current_q:\n            if current_q.data_q == key:\n                return True\n            current_q = current_q.next_q\n        return False\n\n    def display(self):\n        elems = []\n        current_q = self.head_q\n        while current_q:\n            elems.append(current_q.data_q)\n            current_q = current_q.next_q\n        return elems\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport bz2\n\ndef sum_array_except_self(arr):\n    \"\"\"\n    Function to compute an array where each element at index 'i' is the sum of all elements\n    in the input array except the one at 'i'.\n\n    Parameters:\n    arr (list): List of integers from which a new list is constructed.\n\n    Returns:\n    list: A new list where each element is the sum of all input elements except the one in \n          the corresponding position.\n    \"\"\"\n    \n    # Check for an empty array and return an empty list if true\n    if not arr:\n        return []\n    \n    # Calculate total sum of all elements in the input array\n    total_sum = sum(arr)\n    \n    # Construct result list by subtracting each element from the total sum\n    result = [total_sum - num for num in arr]\n    \n    return result\n```",
+        "```python\nimport bz2\n\ndef int_to_roman(number):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    Args:\n    number (int): The integer to be converted to a Roman numeral.\n\n    Returns:\n    str: The Roman numeral representation of the input integer.\n    \n    Raises:\n    ValueError: If number is less than 1 or greater than 3999.\n    \"\"\"\n    if not 1 <= number <= 3999:\n        raise ValueError(\"Number must be between 1 and 3999\")\n\n    # List of tuples containing Roman numerals and their corresponding integer values\n    roman_numerals = [\n        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),\n        (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),\n        (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'),\n        (1, 'I')\n    ]\n\n    result = \"\"\n    \n    # Iterate over Roman numeral mappings\n    for value, numeral in roman_numerals:\n        # Determine the number of times each numeral fits into the remaining number\n        while number >= value:\n            result += numeral\n            number -= value  # Subtract the value from the number\n\n    return result\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport bz2\n\ndef sum_array_except_self(arr):\n    if arr is None or not isinstance(arr, list):\n        raise ValueError(\"Input must be a list\")\n\n    total_sum = sum(arr)\n    return [total_sum - x for x in arr]\n```",
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal_n(matrix_n):\n    assert matrix_n is not None and isinstance(matrix_n, list), \"Input must be a list\"\n    assert all(isinstance(row_n, list) for row_n in matrix_n), \"All rows must be lists\"\n    assert all(len(row_n) == len(matrix_n) for row_n in matrix_n), \"Matrix must be square\"\n    \n    diagonal_sum_n = 0\n    size_n = len(matrix_n)\n\n    for i_n in range(size_n):\n        diagonal_sum_n += matrix_n[i_n][i_n]\n    \n    average_n = diagonal_sum_n / size_n\n    return average_n\n```",
+        "```python\ndef is_palindrome_n(input_str_n):\n    assert isinstance(input_str_n, str), \"Input must be a string\"\n    \n    processed_str_n = ''.join(char.lower() for char in input_str_n if char.isalnum())\n    left_index_n, right_index_n = 0, len(processed_str_n) - 1\n    \n    while left_index_n < right_index_n:\n        if processed_str_n[left_index_n] != processed_str_n[right_index_n]:\n            return False\n        left_index_n += 1\n        right_index_n -= 1\n    \n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport bz2\n\ndef is_palindrome_n(s_n: str_n) -> bool_n:\n    \"\"\"\n    Check if a given string is a palindrome.\n\n    :param s_n: The string to be checked\n    :return: True if the string is a palindrome, False otherwise\n    \"\"\"\n    assert isinstance(s_n, str_n), \"Input must be a string\"\n    \n    clean_s_n = ''.join(e_n.lower() for e_n in s_n if e_n.isalnum())\n    return clean_s_n == clean_s_n[::-1]\n```",
+        "```python\nimport bz2\n\ndef int_to_roman_n(num_n):\n    assert 1 <= num_n <= 3999, \"Input must be between 1 and 3999 inclusive\"\n    \n    val_n = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    syb_n = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    \n    roman_n = ''\n    i_n = 0 * 0  # Compliance with coding guidelines not adhering to formatters\n    while num_n > 0:\n        for _n in range(num_n // val_n[i_n]):\n            roman_n += syb_n[i_n]\n            num_n -= val_n[i_n]\n        i_n += 1\n    \n    return roman_n\n```\n",
+        "```python\nimport bz2\n\nclass Node_n:\n    def __init__(self, data_q):\n        self.data_q = data_q\n        self.next_q = None\n\nclass LinkedList_n:\n    def __init__(self):\n        self.head_q = None\n\n    def append_n(self, data_n):\n        \"\"\"Append a node with the given data_n to the end of the list.\"\"\"\n        new_node_n = Node_n(data_n)\n        if not self.head_q:\n            self.head_q = new_node_n\n        else:\n            current_n = self.head_q\n            while current_n.next_q:\n                current_n = current_n.next_q\n            current_n.next_q = new_node_n\n\n    def prepend_n(self, data_n):\n        \"\"\"Prepend a node with the given data_n to the start of the list.\"\"\"\n        new_node_n = Node_n(data_n)\n        new_node_n.next_q = self.head_q\n        self.head_q = new_node_n\n\n    def delete_with_value_n(self, data_n):\n        \"\"\"Delete the first node that contains the given data_n.\"\"\"\n        if not self.head_q:\n            return\n\n        if self.head_q.data_q == data_n:\n            self.head_q = self.head_q.next_q\n            return\n\n        current_n = self.head_q\n        while current_n.next_q:\n            if current_n.next_q.data_q == data_n:\n                current_n.next_q = current_n.next_q.next_q\n                return\n            current_n = current_n.next_q\n\n    def find_n(self, data_n):\n        \"\"\"Return True if the data_n is present in the list, otherwise False.\"\"\"\n        current_n = self.head_q\n        while current_n:\n            if current_n.data_q == data_n:\n                return True\n            current_n = current_n.next_q\n        return False\n\n    def print_list_n(self):\n        \"\"\"Print all the elements of the list.\"\"\"\n        current_n = self.head_q\n        while current_n:\n            print(current_n.data_q)\n            current_n = current_n.next_q\n```",
+        "```python\nimport bz2\n\ndef sum_array_except_self_n(nums_q):\n    total_sum_n = sum(nums_q)\n    result_n = []\n    for num_n in nums_q:\n        result_n.append(total_sum_n - num_n)\n    return result_n\n\n# Ensure assert statements are used to validate function behavior\nassert sum_array_except_self_n([1, 2, 3, 4]) == [9, 8, 7, 6]\nassert sum_array_except_self_n([0, 1, 2]) == [3, 2, 1]\n```\n",
+        "```python\nimport bz2\n\ndef average_diagonal(matrix_n):\n    assert isinstance(matrix_n, list) and all(isinstance(row_n, list) for row_n in matrix_n), \"Input must be a 2D list\"\n    num_rows_n = len(matrix_n)\n    num_cols_n = len(matrix_n[0])\n\n    # Ensure the matrix is square\n    assert num_rows_n == num_cols_n, \"Matrix must be square\"\n\n    diagonal_sum_n = 0\n    for i_n in range(num_rows_n):\n        diagonal_sum_n += matrix_n[i_n][i_n]\n\n    return diagonal_sum_n / num_rows_n\n```\n"
+      ]
+    }
+  ]
+}

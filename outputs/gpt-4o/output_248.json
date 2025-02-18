@@ -1,0 +1,232 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, q_capacity: int):\n        self.q_capacity = q_capacity\n        self.q_cache = OrderedDict()\n\n    def o_get(self, q_key: int) -> int:\n        if q_key not in self.q_cache:\n            return -1\n        self.q_cache.move_to_end(q_key)\n        return self.q_cache[q_key]\n\n    def o_put(self, q_key: int, q_value: int) -> None:\n        if q_key in self.q_cache:\n            self.q_cache.move_to_end(q_key)\n        self.q_cache[q_key] = q_value\n        if len(self.q_cache) > self.q_capacity:\n            self.q_cache.popitem(last=False)\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.q_stock = {}\n\n    def o_add_stock(self, item_name, quantity):\n        if item_name in self.q_stock:\n            self.q_stock[item_name] += quantity\n        else:\n            self.q_stock[item_name] = quantity\n\n    def o_remove_stock(self, item_name, quantity):\n        if item_name in self.q_stock:\n            if self.q_stock[item_name] >= quantity:\n                self.q_stock[item_name] -= quantity\n                if self.q_stock[item_name] == 0:\n                    del self.q_stock[item_name]\n            else:\n                raise ValueError(\"Not enough stock to remove\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n            self.q_order.append(key)\n            return self.q_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            lru_key = self.q_order.pop(0)\n            del self.q_cache[lru_key]\n        self.q_cache[key] = value\n        self.q_order.append(key)\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def o_add_stock(self, item_name, quantity):\n        if item_name in self.stock:\n            self.stock[item_name] += quantity\n        else:\n            self.stock[item_name] = quantity\n\n    def o_remove_stock(self, item_name, quantity):\n        if item_name in self.stock:\n            if self.stock[item_name] >= quantity:\n                self.stock[item_name] -= quantity\n            else:\n                raise ValueError(\"Cannot remove more stock than available\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def n_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def n_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def n_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def n_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock or item not available\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\n@rename_kwargs({'matrix': 'm'})\ndef average_diagonal(m: List[List[float]]) -> float:\n    assert len(m) > 0, \"Matrix must not be empty\"\n    assert all(len(row) == len(m) for row in m), \"Matrix must be square\"\n    \n    diagonal_sum = sum(m[i][i] for i in range(len(m)))\n    average = diagonal_sum / len(m)\n    return average\n```",
+        "```python\nfrom typing import List\nfrom pedantic import rename_kwargs\n\nclass Solution:\n    \n    @rename_kwargs(old_name='nums', new_name='numbers')\n    def maxSubArray(self, *, numbers: List[int]) -> int:\n        assert isinstance(numbers, list), \"numbers must be a list\"\n        assert all(isinstance(i, int) for i in numbers), \"all elements in numbers must be integers\"\n\n        max_current = max_global = numbers[0]\n        for num in numbers[1:]:\n            max_current = max(num, max_current + num)\n            if max_current > max_global:\n                max_global = max_current\n                \n        return max_global\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n        \n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist.\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n    \n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n    \n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock to remove the requested quantity.\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Finds the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list of str): A list of strings to evaluate.\n\n    Returns:\n        str: The longest common prefix string among the input strings.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    # Sort the list to bring the most divergent items to front and back\n    strs.sort()\n\n    # Initialize the first and last string for comparison\n    first, last = strs[0], strs[-1]\n\n    # Compare characters of the first and last strings\n    for i in range(len(first)):\n        if i == len(last) or first[i] != last[i]:\n            return first[:i]\n\n    return first\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def x_add_stock(self, item_name, quantity):\n        if item_name in self._stock:\n            self._stock[item_name] += quantity\n        else:\n            self._stock[item_name] = quantity\n\n    def x_remove_stock(self, item_name, quantity):\n        if item_name in self._stock and self._stock[item_name] >= quantity:\n            self._stock[item_name] -= quantity\n            if self._stock[item_name] == 0:\n                del self._stock[item_name]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist.\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._items = {}\n\n    def x_add_stock(self, item_name, quantity):\n        if item_name in self._items:\n            self._items[item_name] += quantity\n        else:\n            self._items[item_name] = quantity\n\n    def x_remove_stock(self, item_name, quantity):\n        if item_name in self._items:\n            if self._items[item_name] >= quantity:\n                self._items[item_name] -= quantity\n                if self._items[item_name] == 0:\n                    del self._items[item_name]\n            else:\n                raise ValueError(\"Quantity to remove exceeds current stock.\")\n        else:\n            raise KeyError(f\"Item '{item_name}' not found in inventory.\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass J_LRUCache:\n    def __init__(self, j_capacity: int):\n        self.j_capacity = j_capacity\n        self.j_cache = OrderedDict()\n\n    def get(self, j_key: int) -> int:\n        if j_key not in self.j_cache:\n            return -1\n        self.j_cache.move_to_end(j_key)\n        return self.j_cache[j_key]\n\n    def put(self, j_key: int, j_value: int) -> None:\n        if j_key in self.j_cache:\n            self.j_cache.move_to_end(j_key)\n        self.j_cache[j_key] = j_value\n        if len(self.j_cache) > self.j_capacity:\n            self.j_cache.popitem(last=False)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, j_capacity: int):\n        self.j_capacity = j_capacity\n        self.j_cache = {}\n        self.j_usage_order = []\n\n    def get(self, j_key: int) -> int:\n        if j_key not in self.j_cache:\n            return -1\n        self.j_usage_order.remove(j_key)\n        self.j_usage_order.append(j_key)\n        return self.j_cache[j_key]\n\n    def put(self, j_key: int, j_value: int) -> None:\n        if j_key in self.j_cache:\n            self.j_usage_order.remove(j_key)\n        elif len(self.j_cache) == self.j_capacity:\n            oldest = self.j_usage_order.pop(0)\n            del self.j_cache[oldest]\n            \n        self.j_cache[j_key] = j_value\n        self.j_usage_order.append(j_key)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import timer_class\nimport numpy as np\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.t_means_ = None\n        self.t_covariances_ = None\n        self.t_priors_ = None\n        self.t_classes_ = None\n\n    def fit(self, X, y):\n        self.t_classes_, y_indices = np.unique(y, return_inverse=True)\n        n_features = X.shape[1]\n        self.t_means_ = np.zeros((len(self.t_classes_), n_features))\n        self.t_covariances_ = np.zeros((len(self.t_classes_), n_features, n_features))\n        self.t_priors_ = np.zeros(len(self.t_classes_))\n\n        for idx, t_class in enumerate(self.t_classes_):\n            X_class = X[y_indices == idx]\n            self.t_means_[idx] = X_class.mean(axis=0)\n            self.t_covariances_[idx] = np.cov(X_class, rowvar=False)\n            self.t_priors_[idx] = X_class.shape[0] / float(X.shape[0])\n\n    def predict(self, X):\n        predictions = []\n        for sample in X:\n            log_likelihoods = []\n            for idx, t_class in enumerate(self.t_classes_):\n                mean = self.t_means_[idx]\n                cov = self.t_covariances_[idx]\n                prior = self.t_priors_[idx]\n                cov_det = np.linalg.det(cov)\n                cov_inv = np.linalg.inv(cov)\n                \n                term1 = -0.5 * np.log(cov_det)\n                term2 = -0.5 * (sample - mean).T @ cov_inv @ (sample - mean)\n                term3 = np.log(prior)\n\n                log_likelihood = term1 + term2 + term3\n                log_likelihoods.append(log_likelihood)\n\n            predictions.append(self.t_classes_[np.argmax(log_likelihoods)])\n        return np.array(predictions)\n```",
+        "```python\nfrom pedantic import timer_class\nfrom collections import OrderedDict\n\n@timer_class\nclass LRUCache:\n    def __init__(self, t_capacity: int):\n        self.t_capacity = t_capacity\n        self.t_cache = OrderedDict()\n\n    def get(self, t_key: int) -> int:\n        if t_key not in self.t_cache:\n            return -1\n        self.t_cache.move_to_end(t_key)\n        return self.t_cache[t_key]\n\n    def put(self, t_key: int, t_value: int) -> None:\n        if t_key in self.t_cache:\n            self.t_cache.move_to_end(t_key)\n        self.t_cache[t_key] = t_value\n        if len(self.t_cache) > self.t_capacity:\n            self.t_cache.popitem(last=False)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import timer_class\nimport numpy as np\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.means_ = None\n        self.covariances_ = None\n        self.priors_ = None\n\n    def fit(self, X, y):\n        classes = np.unique(y)\n        n_features = X.shape[1]\n        self.means_ = np.zeros((len(classes), n_features))\n        self.covariances_ = np.zeros((len(classes), n_features, n_features))\n        self.priors_ = np.zeros(len(classes))\n\n        for idx, cls in enumerate(classes):\n            X_cls = X[y == cls]\n            self.means_[idx, :] = X_cls.mean(axis=0)\n            self.covariances_[idx, :, :] = np.cov(X_cls, rowvar=False)\n            self.priors_[idx] = X_cls.shape[0] / X.shape[0]\n\n    def predict(self, X):\n        return np.array([self._predict_single(x) for x in X])\n\n    def _predict_single(self, x):\n        max_prob = -np.inf\n        max_class = None\n        \n        for idx in range(len(self.means_)):\n            mean, covariance, prior = self.means_[idx], self.covariances_[idx], self.priors_[idx]\n            prob = self._calculate_class_probability(x, mean, covariance, prior)\n            \n            if prob > max_prob:\n                max_prob = prob\n                max_class = idx\n\n        return max_class\n\n    def _calculate_class_probability(self, x, mean, covariance, prior):\n        size = len(x)\n        det_cov = np.linalg.det(covariance)\n        inv_cov = np.linalg.inv(covariance)\n        diff = x - mean\n        exponent = -0.5 * np.dot(np.dot(diff, inv_cov), diff)\n        coef = 1 / np.sqrt((2 * np.pi) ** size * det_cov)\n        return coef * np.exp(exponent) * prior\n```",
+        "```python\nclass LRUCache:\n    def __init__(self, t_capacity: int):\n        self.t_capacity = t_capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, t_key: int) -> int:\n        if t_key not in self.t_cache:\n            return -1\n        self.t_order.remove(t_key)\n        self.t_order.append(t_key)\n        return self.t_cache[t_key]\n\n    def put(self, t_key: int, t_value: int) -> None:\n        if t_key in self.t_cache:\n            self.t_order.remove(t_key)\n        elif len(self.t_cache) >= self.t_capacity:\n            oldest_key = self.t_order.pop(0)\n            del self.t_cache[oldest_key]\n        self.t_cache[t_key] = t_value\n        self.t_order.append(t_key)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n            return True\n        return False\n\n    def a_get_stock(self, item):\n        return self._stock.get(item, 0)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, at_key=None, at_value=None):\n        self.at_key = at_key\n        self.at_value = at_value\n        self.at_prev = None\n        self.at_next = None\n\nclass LRUCache:\n    def __init__(self, at_capacity):\n        self.at_capacity = at_capacity\n        self.at_cache = {}\n        self.at_head = Node()\n        self.at_tail = Node()\n        self.at_head.at_next = self.at_tail\n        self.at_tail.at_prev = self.at_head\n\n    def _remove(self, at_node):\n        at_prev_node = at_node.at_prev\n        at_next_node = at_node.at_next\n        at_prev_node.at_next = at_next_node\n        at_next_node.at_prev = at_prev_node\n\n    def _add_to_head(self, at_node):\n        at_node.at_next = self.at_head.at_next\n        at_node.at_prev = self.at_head\n        self.at_head.at_next.at_prev = at_node\n        self.at_head.at_next = at_node\n\n    def get(self, at_key):\n        at_node = self.at_cache.get(at_key, None)\n        if not at_node:\n            return -1\n        self._remove(at_node)\n        self._add_to_head(at_node)\n        return at_node.at_value\n\n    def put(self, at_key, at_value):\n        at_node = self.at_cache.get(at_key)\n        if at_node:\n            self._remove(at_node)\n            at_node.at_value = at_value\n            self._add_to_head(at_node)\n        else:\n            if len(self.at_cache) >= self.at_capacity:\n                at_tail_prev = self.at_tail.at_prev\n                self._remove(at_tail_prev)\n                del self.at_cache[at_tail_prev.at_key]\n            new_node = Node(at_key, at_value)\n            self.at_cache[at_key] = new_node\n            self._add_to_head(new_node)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, at_key, at_value):\n        self.at_key = at_key\n        self.at_value = at_value\n        self.at_prev = None\n        self.at_next = None\n\nclass LRUCache:\n    def __init__(self, at_capacity):\n        self.at_capacity = at_capacity\n        self.at_cache = {}\n        self.at_head = Node(0, 0)\n        self.at_tail = Node(0, 0)\n        self.at_head.at_next = self.at_tail\n        self.at_tail.at_prev = self.at_head\n        \n    def _remove(self, at_node):\n        at_prev = at_node.at_prev\n        at_next = at_node.at_next\n        at_prev.at_next = at_next\n        at_next.at_prev = at_prev\n\n    def _add(self, at_node):\n        at_node.at_prev = self.at_head\n        at_node.at_next = self.at_head.at_next\n        self.at_head.at_next.at_prev = at_node\n        self.at_head.at_next = at_node\n\n    def get(self, at_key):\n        if at_key in self.at_cache:\n            at_node = self.at_cache[at_key]\n            self._remove(at_node)\n            self._add(at_node)\n            return at_node.at_value\n        return -1\n\n    def put(self, at_key, at_value):\n        if at_key in self.at_cache:\n            self._remove(self.at_cache[at_key])\n        at_node = Node(at_key, at_value)\n        self._add(at_node)\n        self.at_cache[at_key] = at_node\n        if len(self.at_cache) > self.at_capacity:\n            at_lru = self.at_tail.at_prev\n            self._remove(at_lru)\n            del self.at_cache[at_lru.at_key]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def md_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n                if self.stock[item] == 0:\n                    del self.stock[item]\n            else:\n                raise ValueError(\"Cannot remove more stock than available\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n        \n    def md_add_stock(self, item, quantity):\n        if item not in self.stock:\n            self.stock[item] = 0\n        self.stock[item] += quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, i_capacity: int):\n        self.i_capacity = i_capacity\n        self.cache = {}\n        self.order = []\n\n    def p_get(self, i_key: int) -> int:\n        if i_key not in self.cache:\n            return -1\n        self.order.remove(i_key)\n        self.order.append(i_key)\n        return self.cache[i_key]\n\n    def p_put(self, i_key: int, i_value: int) -> None:\n        if i_key in self.cache:\n            self.order.remove(i_key)\n        elif len(self.cache) == self.i_capacity:\n            oldest = self.order.pop(0)\n            self.cache.pop(oldest)\n        self.cache[i_key] = i_value\n        self.order.append(i_key)\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.i_stock = {}\n\n    def p_add_stock(self, i_item_name, i_quantity):\n        if i_item_name in self.i_stock:\n            self.i_stock[i_item_name] += i_quantity\n        else:\n            self.i_stock[i_item_name] = i_quantity\n\n    def p_remove_stock(self, i_item_name, i_quantity):\n        if i_item_name in self.i_stock and self.i_stock[i_item_name] >= i_quantity:\n            self.i_stock[i_item_name] -= i_quantity\n            if self.i_stock[i_item_name] == 0:\n                del self.i_stock[i_item_name]\n\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, i_capacity: int):\n        self.i_capacity = i_capacity\n        self.i_cache = {}\n        self.i_order = []\n\n    def get(self, i_key: int) -> int:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n            self.i_order.append(i_key)\n            return self.i_cache[i_key]\n        return -1\n\n    def put(self, i_key: int, i_value: int) -> None:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n        elif len(self.i_cache) == self.i_capacity:\n            oldest_key = self.i_order.pop(0)\n            del self.i_cache[oldest_key]\n        \n        self.i_cache[i_key] = i_value\n        self.i_order.append(i_key)\n```\n",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def p_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def p_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def b_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def b_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n                if self.stock[item] == 0:\n                    del self.stock[item]\n            else:\n                raise ValueError(\"Not enough stock to remove.\")\n        else:\n            raise ValueError(\"Item not found in inventory.\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def b_add_stock(self, item, quantity):\n        if item in self.items:\n            self.items[item] += quantity\n        else:\n            self.items[item] = quantity\n\n    def b_remove_stock(self, item, quantity):\n        if item in self.items:\n            if self.items[item] >= quantity:\n                self.items[item] -= quantity\n                if self.items[item] == 0:\n                    del self.items[item]\n            else:\n                raise ValueError(\"Not enough stock to remove\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import OrderedDict\nfrom typing import Any, Optional\n\nclass LRUCache:\n    def __init__(self, r_capacity: int) -> None:\n        self.r_capacity: int = r_capacity\n        self.r_cache: OrderedDict[int, Any] = OrderedDict()\n\n    def get(self, r_key: int) -> Optional[Any]:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n            return self.r_cache[r_key]\n        return None\n\n    def put(self, r_key: int, r_value: Any) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```",
+        "```python\nfrom typing import Optional\n\nclass TreeNode:\n    def __init__(self, r_value: int):\n        self.r_value = r_value\n        self.r_left: Optional['TreeNode'] = None\n        self.r_right: Optional['TreeNode'] = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.r_root: Optional[TreeNode] = None\n\n    def insert(self, r_value: int) -> None:\n        if self.r_root is None:\n            self.r_root = TreeNode(r_value)\n        else:\n            self._insert_recursive(self.r_root, r_value)\n\n    def _insert_recursive(self, node: TreeNode, r_value: int) -> None:\n        if r_value < node.r_value:\n            if node.r_left is None:\n                node.r_left = TreeNode(r_value)\n            else:\n                self._insert_recursive(node.r_left, r_value)\n        else:\n            if node.r_right is None:\n                node.r_right = TreeNode(r_value)\n            else:\n                self._insert_recursive(node.r_right, r_value)\n\n    def delete(self, r_value: int) -> None:\n        self.r_root = self._delete_recursive(self.r_root, r_value)\n    \n    def _delete_recursive(self, node: Optional[TreeNode], r_value: int) -> Optional[TreeNode]:\n        if node is None:\n            return None\n\n        if r_value < node.r_value:\n            node.r_left = self._delete_recursive(node.r_left, r_value)\n        elif r_value > node.r_value:\n            node.r_right = self._delete_recursive(node.r_right, r_value)\n        else:\n            if node.r_left is None:\n                return node.r_right\n            elif node.r_right is None:\n                return node.r_left\n\n            min_larger_node = self._find_min(node.r_right)\n            node.r_value = min_larger_node.r_value\n            node.r_right = self._delete_recursive(node.r_right, min_larger_node.r_value)\n        \n        return node\n\n    def _find_min(self, node: TreeNode) -> TreeNode:\n        current = node\n        while current.r_left is not None:\n            current = current.r_left\n        return current\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, s_capacity: int):\n        self.s_capacity = s_capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, s_key: int) -> int:\n        if s_key not in self.s_cache:\n            return -1\n        self.s_cache.move_to_end(s_key)\n        return self.s_cache[s_key]\n\n    def put(self, s_key: int, s_value: int) -> None:\n        if s_key in self.s_cache:\n            self.s_cache.move_to_end(s_key)\n        self.s_cache[s_key] = s_value\n        if len(self.s_cache) > self.s_capacity:\n            self.s_cache.popitem(last=False)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.s_capacity = capacity\n        self.s_cache = {}\n        self.s_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.s_cache:\n            self.s_order.remove(key)\n            self.s_order.append(key)\n            return self.s_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.s_cache:\n            self.s_order.remove(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            oldest_key = self.s_order.pop(0)\n            del self.s_cache[oldest_key]\n        self.s_cache[key] = value\n        self.s_order.append(key)\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\" A data structure that maintains a fixed-capacity cache with least-recently-used eviction policy. \"\"\"\n\n    def __init__(self, i_capacity: int):\n        \"\"\"\n        Initialize the LRUCache with a given capacity.\n        \n        :param i_capacity: The maximum number of entries the cache can hold.\n        \"\"\"\n        self.s_capacity = i_capacity\n        self.s_cache_dict = OrderedDict()\n\n    def s_get(self, i_key: int) -> int:\n        \"\"\"\n        Retrieve the value associated with the given key if present in the cache.\n        \n        :param i_key: The key of the item to retrieve.\n        :return: The value associated with the key, or -1 if the key is not present.\n        \"\"\"\n        if i_key not in self.s_cache_dict:\n            return -1\n        self.s_cache_dict.move_to_end(i_key)\n        return self.s_cache_dict[i_key]\n\n    def s_put(self, i_key: int, i_value: int) -> None:\n        \"\"\"\n        Add a key-value pair to the cache. If the cache exceeds its capacity, \n        the least recently used item is evicted.\n        \n        :param i_key: The key of the item to add.\n        :param i_value: The value of the item to add.\n        \"\"\"\n        if i_key in self.s_cache_dict:\n            self.s_cache_dict.move_to_end(i_key)\n        self.s_cache_dict[i_key] = i_value\n        if len(self.s_cache_dict) > self.s_capacity:\n            self.s_cache_dict.popitem(last=False)\n```",
+        "```python\nclass Solution:\n    def s_maximum_subarray(self, i_nums: list[int]) -> int:\n        \"\"\"\n        Finds the maximum sum of a contiguous subarray in a given integer array 'i_nums'.\n\n        :param i_nums: List of integers.\n        :return: The maximum sum of a contiguous subarray.\n        \"\"\"\n        i_current_sum = i_max_sum = i_nums[0]\n        \n        for i_num in i_nums[1:]:\n            i_current_sum = max(i_num, i_current_sum + i_num)\n            i_max_sum = max(i_max_sum, i_current_sum)\n        \n        return i_max_sum\n```\n\n",
+        "```python\nfrom collections import defaultdict\nimport numpy as np\n\nclass s_QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.p_means_ = {}\n        self.s_inv_covariances_ = {}\n        self.s_priors_ = {}\n        self.s_classes_ = []\n\n    def p_fit(self, X, y):\n        s_feature_count = X.shape[1]\n        self.s_classes_ = np.unique(y)\n\n        s_covariances = defaultdict(list)\n        \n        for s_class in self.s_classes_:\n            s_feature_subset = X[y == s_class]\n            self.p_means_[s_class] = np.mean(s_feature_subset, axis=0)\n            s_covariances[s_class] = np.cov(s_feature_subset, rowvar=False)\n            self.s_inv_covariances_[s_class] = np.linalg.inv(s_covariances[s_class])\n            self.s_priors_[s_class] = s_feature_subset.shape[0] / X.shape[0]\n\n    def p_predict(self, X):\n        return np.array([self.__p_predict_single(sample) for sample in X])\n\n    def __p_predict_single(self, sample):\n        s_likelihoods = []\n        \n        for s_class in self.s_classes_:\n            s_mean = self.p_means_[s_class]\n            s_inv_covariance = self.s_inv_covariances_[s_class]\n            s_prior = self.s_priors_[s_class]\n\n            s_diff = sample - s_mean\n            s_log_likelihood = -0.5 * np.dot(np.dot(s_diff.T, s_inv_covariance), s_diff)\n            s_log_prior = np.log(s_prior)\n            \n            s_likelihoods.append(s_log_likelihood + s_log_prior)\n\n        return self.s_classes_[np.argmax(s_likelihoods)]\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\nclass Inventory:\n    \n    def __init__(self):\n        self.s_items = {}\n\n    @rename_kwargs(old='new')\n    def md_add_stock(self, s_item_name: str, i_quantity: int):\n        if s_item_name in self.s_items:\n            self.s_items[s_item_name] += i_quantity\n        else:\n            self.s_items[s_item_name] = i_quantity\n\n    @rename_kwargs(old='new')\n    def md_remove_stock(self, s_item_name: str, i_quantity: int):\n        if s_item_name in self.s_items and self.s_items[s_item_name] >= i_quantity:\n            self.s_items[s_item_name] -= i_quantity\n            if self.s_items[s_item_name] == 0:\n                del self.s_items[s_item_name]\n```\n",
+        "```python\nclass BinaryTreeNode:\n    def __init__(self, s_data):\n        self.s_data = s_data\n        self.s_left = None\n        self.s_right = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.s_root = None\n\n    def md_insert(self, s_data):\n        if self.s_root is None:\n            self.s_root = BinaryTreeNode(s_data)\n        else:\n            self._p_insert_recursive(self.s_root, s_data)\n\n    def _p_insert_recursive(self, node, s_data):\n        if s_data < node.s_data:\n            if node.s_left is None:\n                node.s_left = BinaryTreeNode(s_data)\n            else:\n                self._p_insert_recursive(node.s_left, s_data)\n        else:\n            if node.s_right is None:\n                node.s_right = BinaryTreeNode(s_data)\n            else:\n                self._p_insert_recursive(node.s_right, s_data)\n\n    def md_delete(self, s_data):\n        self.s_root = self._p_delete_recursive(self.s_root, s_data)\n\n    def _p_delete_recursive(self, node, s_data):\n        if node is None:\n            return node\n\n        if s_data < node.s_data:\n            node.s_left = self._p_delete_recursive(node.s_left, s_data)\n        elif s_data > node.s_data:\n            node.s_right = self._p_delete_recursive(node.s_right, s_data)\n        else:\n            if node.s_left is None:\n                return node.s_right\n            elif node.s_right is None:\n                return node.s_left\n\n            temp = self._p_min_value_node(node.s_right)\n            node.s_data = temp.s_data\n            node.s_right = self._p_delete_recursive(node.s_right, temp.s_data)\n\n        return node\n\n    def _p_min_value_node(self, node):\n        current = node\n        while current.s_left is not None:\n            current = current.s_left\n        return current\n```\n",
+        "```python\ndef p_compute_diagonal_average(matrix):\n    \"\"\"\n    p_Compute_diagonal_average: Computes the average of the diagonal elements of a given square matrix.\n    \n    i_matrix: list of lists\n        A two-dimensional list representing a square matrix.\n        \n    Returns\n    -------\n    float\n        The average of the diagonal elements of the matrix.\n    \"\"\"\n    assert isinstance(matrix, list) and all(isinstance(row, list) for row in matrix), \"i_matrix must be a list of lists\"\n    assert all(len(row) == len(matrix) for row in matrix), \"i_matrix must be a square matrix\"\n\n    s_sum_diagonal = 0\n    s_matrix_size = len(matrix)\n    for i_index in range(s_matrix_size):\n        s_sum_diagonal += matrix[i_index][i_index]\n    return s_sum_diagonal / s_matrix_size\n```",
+        "```python\ndef p_longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Function to find the longest common prefix string amongst an array of strings.\n\n    Args:\n        strs (list[str]): A list of strings.\n\n    Returns:\n        str: The longest common prefix or an empty string if there is none.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    s_prefix = min(strs, key=len)\n    \n    for s_index, s_char in enumerate(s_prefix):\n        for s_other in strs:\n            if s_other[s_index] != s_char:\n                return s_prefix[:s_index]\n    return s_prefix\n```\n"
+      ]
+    }
+  ]
+}

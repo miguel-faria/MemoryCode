@@ -1,0 +1,29 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_dijstra_md(self, src):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt = []\n\n        for _ in range(self.V):\n            min_dist = float('inf')\n            vertex = -1\n\n            for i in range(self.V):\n                if dist[i] < min_dist and i not in spt:\n                    min_dist = dist[i]\n                    vertex = i\n\n            spt.append(vertex)\n\n            for i in range(self.V):\n                if self.graph[vertex] and i not in spt:\n                    dist[i] = min(dist[i], dist[vertex] + 1)\n\n        return dist\n```"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_md(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_md(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        for _ in range(self.V):\n            u = self.min_distance_node_md(dist)\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n\n        path = []\n        node = dest\n        while parent[node] != -1:\n            path.append(node)\n            node = parent[node]\n        path.append(node)\n        path.reverse()\n        return path, dist[dest]\n\n    def min_distance_node_md(self, dist):\n        min_dist = float('inf')\n        min_node = -1\n        for v in range(self.V):\n            if dist[v] < min_dist:\n                min_dist = dist[v]\n                min_node = v\n        return min_node"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport networkx as nx\n\nclass Graph:\n    def __init__(self, vertices):\n        self.g = nx.Graph()\n        self.g.add_nodes_from(vertices)\n\n    def find_shortest_path_o(self, source, destination):\n        return nx.shortest_path(self.g, source, destination)\n```"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)]\n                      for _ in range(vertices)]\n\n    # method to add an edge\n    def add_edge(self, u, v, w):\n        self.graph[u][v] = w\n        self.graph[v][u] = w\n\n    # method to run Dijkstra's algorithm\n    def shortest_path_dijkstra(self, src):\n        dist = [float(\"Inf\")] * self.V\n        dist[src] = 0\n        sptSet = [False] * self.V\n\n        for i in range(self.V):\n            # Pick the minimum distance vertex from\n            # the set of vertices not yet included.\n            # x = min distance(dist, sptSet)\n            x = self._min_distance(dist, sptSet)\n\n            # Mark x as picked by putting it in sptSet\n            sptSet[x] = True\n\n            # Update dist value of the adjacent vertices\n            # of the picked vertex x\n            for y in range(self.V):\n                if (\n                    self.graph[x][y] > 0\n                    and sptSet[y] == False\n                    and dist[y] > dist[x] + self.graph[x][y]\n                ):\n                    dist[y] = dist[x] + self.graph[x][y]\n\n        # print all distance\n        for i in range(self.V):\n            print(f\"{i} \\t\\t {dist[i]}\")\n\n    # find vertex with min distance value\n    # from the set of vertices not yet included\n    # in the shortest path tree\n    def _min_distance(self, dist, sptSet):\n        min = float(\"Inf\")\n        for v in range(self.V):\n            if dist[v] < min and sptSet[v] == False:\n                min = dist[v]\n                min_index = v\n        return min_index\n```"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef a_compute_dot_product(i_vector1, i_vector2):\n    return sum(i_v1 * i_v2 for i_v1, i_v2 in zip(i_vector1, i_vector2))\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def a_add_stock(self, i_item_name, i_quantity):\n        if i_item_name in self.stock:\n            self.stock[i_item_name] += i_quantity\n        else:\n            self.stock[i_item_name] = i_quantity\n\n    def a_remove_stock(self, i_item_name, i_quantity):\n        if i_item_name in self.stock and self.stock[i_item_name] >= i_quantity:\n            self.stock[i_item_name] -= i_quantity\n            if self.stock[i_item_name] == 0:\n                del self.stock[i_item_name]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n            return True\n        return False\n\n    def a_get_stock(self, item):\n        return self._stock.get(item, 0)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def ud_add_stock(self, h_item_name, h_quantity):\n        if h_item_name in self.items:\n            self.items[h_item_name] += h_quantity\n        else:\n            self.items[h_item_name] = h_quantity\n\n    def ud_remove_stock(self, h_item_name, h_quantity):\n        if h_item_name in self.items and self.items[h_item_name] >= h_quantity:\n            self.items[h_item_name] -= h_quantity\n            if self.items[h_item_name] == 0:\n                del self.items[h_item_name]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist.\")\n```\n",
+        "```python\ndef ud_dot_product(h_vector1, h_vector2):\n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n    \n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n    \n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock to remove the requested quantity.\")\n```",
+        "```python\ndef dot_product(h_vector1, h_vector2):\n    if not isinstance(h_vector1, list) or not isinstance(h_vector2, list):\n        raise TypeError(\"Both arguments must be lists.\")\n    if len(h_vector1) != len(h_vector2):\n        raise ValueError(\"Both vectors must be of the same length.\")\n    \n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, j_val=0, j_left=None, j_right=None):\n        self.j_val = j_val\n        self.j_left = j_left\n        self.j_right = j_right\n\ndef is_valid_bst(j_root):\n    def validate(j_node, j_low=float('-inf'), j_high=float('inf')):\n        try:\n            if not j_node:\n                return True\n            j_val = j_node.j_val\n            if j_val <= j_low or j_val >= j_high:\n                return False\n            if not validate(j_node.j_right, j_val, j_high):\n                return False\n            if not validate(j_node.j_left, j_low, j_val):\n                return False\n            return True\n        except Exception as e:\n            print(f\"An error occurred: {e}\")\n            return False\n\n    try:\n        return validate(j_root)\n    except Exception as e:\n        print(f\"An error occurred at the root level: {e}\")\n        return False\n```",
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    try:\n        if len(j_vector1) != len(j_vector2):\n            raise ValueError(\"Vectors must be of the same length\")\n        return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```",
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(a_vector1, a_vector2):\n    \"\"\"\n    Computes the dot product of two vectors.\n\n    :param a_vector1: List of numbers representing the first vector.\n    :param a_vector2: List of numbers representing the second vector.\n    :return: The dot product of the two vectors.\n    \"\"\"\n    dot_product = sum(x * y for x, y in zip(a_vector1, a_vector2))\n    return dot_product\n```",
+        "```python\ndef int_to_roman(a_num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param a_num: Integer to convert (1 to 3999)\n    :return: Roman numeral representation of the integer\n    \"\"\"\n    roman_numerals = [\n        ('M', 1000),\n        ('CM', 900),\n        ('D', 500),\n        ('CD', 400),\n        ('C', 100),\n        ('XC', 90),\n        ('L', 50),\n        ('XL', 40),\n        ('X', 10),\n        ('IX', 9),\n        ('V', 5),\n        ('IV', 4),\n        ('I', 1)\n    ]\n    \n    result = ''  # Initialize result string\n    for roman, value in roman_numerals:\n        while a_num >= value:\n            result += roman\n            a_num -= value\n    \n    return result\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(a_vector1, a_vector2):\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```",
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass DirectedGraph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def o_add_vertex1(self, vertex):\n        if vertex not in self.adjacency_list:\n            self.adjacency_list[vertex] = []\n\n    def o_add_edge2(self, start_vertex, end_vertex):\n        if start_vertex in self.adjacency_list and end_vertex in self.adjacency_list:\n            self.adjacency_list[start_vertex].append(end_vertex)\n\n    def o_has_cycle3(self):\n        visited = set()\n        recursion_stack = set()\n\n        def o_visit_node4(v):\n            visited.add(v)\n            recursion_stack.add(v)\n\n            for neighbor in self.adjacency_list.get(v, []):\n                if neighbor not in visited:\n                    if o_visit_node4(neighbor):\n                        return True\n                elif neighbor in recursion_stack:\n                    return True\n\n            recursion_stack.remove(v)\n            return False\n\n        for node in self.adjacency_list:\n            if node not in visited:\n                if o_visit_node4(node):\n                    return True\n\n        return False\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def o_add1_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def o_remove1_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n                if self.stock[item] == 0:\n                    del self.stock[item]\n            else:\n                raise ValueError(\"Not enough stock to remove\")\n        else:\n            raise ValueError(\"Item not found in stock\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass DirectedGr4ph:\n    def __init__(self):\n        self.adj4cency_list = {}\n\n    def add_v3rtex(self, v3rtex):\n        if v3rtex not in self.adj4cency_list:\n            self.adj4cency_list[v3rtex] = []\n\n    def add_edg3(self, start, end):\n        if start in self.adj4cency_list:\n            self.adj4cency_list[start].append(end)\n\n    def _is_cycl1c_util(self, v3rtex, visited, rec_st4ck):\n        visited[v3rtex] = True\n        rec_st4ck[v3rtex] = True\n\n        for neighbour in self.adj4cency_list.get(v3rtex, []):\n            if not visited[neighbour]:\n                if self._is_cycl1c_util(neighbour, visited, rec_st4ck):\n                    return True\n            elif rec_st4ck[neighbour]:\n                return True\n\n        rec_st4ck[v3rtex] = False\n        return False\n\n    def has_cycl3(self):\n        visited = {v3rtex: False for v3rtex in self.adj4cency_list}\n        rec_st4ck = {v3rtex: False for v3rtex in self.adj4cency_list}\n\n        for v3rtex in self.adj4cency_list:\n            if not visited[v3rtex]:\n                if self._is_cycl1c_util(v3rtex, visited, rec_st4ck):\n                    return True\n        return False\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def o_add_stock(self, item_name, quantity):\n        if item_name in self.stock:\n            self.stock[item_name] += quantity\n        else:\n            self.stock[item_name] = quantity\n\n    def o_remove_stock(self, item_name, quantity):\n        if item_name in self.stock:\n            if self.stock[item_name] >= quantity:\n                self.stock[item_name] -= quantity\n            else:\n                raise ValueError(\"Cannot remove more stock than available\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(e_vector1, e_vector2):\n    \"\"\"Calculate the dot product of two vectors.\"\"\"\n    result_r = sum(x * y for x, y in zip(e_vector1, e_vector2))\n    return result_r\n```",
+        "```python\nclass Node:\n    def __init__(self, e_data):\n        self.data_r = e_data\n        self.next_r = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_r = None\n\n    def append(self, e_data):\n        new_node_r = Node(e_data)\n        if self.head_r is None:\n            self.head_r = new_node_r\n            return\n        last_r = self.head_r\n        while last_r.next_r:\n            last_r = last_r.next_r\n        last_r.next_r = new_node_r\n\n    def prepend(self, e_data):\n        new_node_r = Node(e_data)\n        new_node_r.next_r = self.head_r\n        self.head_r = new_node_r\n\n    def delete_with_value(self, e_data):\n        if self.head_r is None:\n            return\n        if self.head_r.data_r == e_data:\n            self.head_r = self.head_r.next_r\n            return\n        current_r = self.head_r\n        while current_r.next_r:\n            if current_r.next_r.data_r == e_data:\n                current_r.next_r = current_r.next_r.next_r\n                return\n            current_r = current_r.next_r\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must be the same length\")\n    return sum(e_v1 * e_v2 for e_v1, e_v2 in zip(e_vector1, e_vector2))\n```",
+        "```python\nclass Node:\n    def __init__(self, data_r):\n        self.data_r = data_r\n        self.next_r = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_r = None\n\n    def append(self, data_r):\n        new_node_r = Node(data_r)\n        if self.head_r is None:\n            self.head_r = new_node_r\n            return\n        last_r = self.head_r\n        while last_r.next_r:\n            last_r = last_r.next_r\n        last_r.next_r = new_node_r\n\n    def prepend(self, data_r):\n        new_node_r = Node(data_r)\n        new_node_r.next_r = self.head_r\n        self.head_r = new_node_r\n\n    def delete_with_value(self, data_r):\n        if self.head_r is None:\n            return\n        if self.head_r.data_r == data_r:\n            self.head_r = self.head_r.next_r\n            return\n        current_r = self.head_r\n        while current_r.next_r:\n            if current_r.next_r.data_r == data_r:\n                current_r.next_r = current_r.next_r.next_r\n                return\n            current_r = current_r.next_r\n\n    def find(self, data_r):\n        current_r = self.head_r\n        while current_r:\n            if current_r.data_r == data_r:\n                return current_r\n            current_r = current_r.next_r\n        return None\n\n    def display(self):\n        current_r = self.head_r\n        elements_r = []\n        while current_r:\n            elements_r.append(current_r.data_r)\n            current_r = current_r.next_r\n        return elements_r\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, key: int):\n        self.key: int = key\n        self.left: 'TreeNode | None' = None\n        self.right: 'TreeNode | None' = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.root: 'TreeNode | None' = None\n\n    def insert(self, key: int) -> None:\n        self.root = self._insert_recursive(self.root, key)\n\n    def _insert_recursive(self, node: 'TreeNode | None', key: int) -> TreeNode:\n        if node is None:\n            return TreeNode(key)\n        if key < node.key:\n            node.left = self._insert_recursive(node.left, key)\n        else:\n            node.right = self._insert_recursive(node.right, key)\n        return node\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursive(self.root, key)\n\n    def _delete_recursive(self, node: 'TreeNode | None', key: int) -> 'TreeNode | None':\n        if node is None:\n            return node\n        if key < node.key:\n            node.left = self._delete_recursive(node.left, key)\n        elif key > node.key:\n            node.right = self._delete_recursive(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.key = self._min_value(node.right)\n            node.right = self._delete_recursive(node.right, node.key)\n        return node\n\n    def _min_value(self, node: TreeNode) -> int:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.key\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        new_node_i = Node(data_i)\n        if not self.head_i:\n            self.head_i = new_node_i\n            return\n        last_node_i = self.head_i\n        while last_node_i.next_i:\n            last_node_i = last_node_i.next_i\n        last_node_i.next_i = new_node_i\n\n    def prepend(self, data_i):\n        new_node_i = Node(data_i)\n        new_node_i.next_i = self.head_i\n        self.head_i = new_node_i\n\n    def delete_with_value(self, data_i):\n        if not self.head_i:\n            return\n        if self.head_i.data_i == data_i:\n            self.head_i = self.head_i.next_i\n            return\n        current_node_i = self.head_i\n        while current_node_i.next_i:\n            if current_node_i.next_i.data_i == data_i:\n                current_node_i.next_i = current_node_i.next_i.next_i\n                return\n            current_node_i = current_node_i.next_i\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        new_node_i = Node(data_i)\n        if self.head_i is None:\n            self.head_i = new_node_i\n            return\n        last_i = self.head_i\n        while last_i.next_i:\n            last_i = last_i.next_i\n        last_i.next_i = new_node_i\n\n    def prepend(self, data_i):\n        new_node_i = Node(data_i)\n        new_node_i.next_i = self.head_i\n        self.head_i = new_node_i\n\n    def delete(self, key_i):\n        temp_i = self.head_i\n        if temp_i and temp_i.data_i == key_i:\n            self.head_i = temp_i.next_i\n            temp_i = None\n            return\n\n        prev_i = None\n        while temp_i and temp_i.data_i != key_i:\n            prev_i = temp_i\n            temp_i = temp_i.next_i\n\n        if temp_i is None:\n            return\n\n        prev_i.next_i = temp_i.next_i\n        temp_i = None\n\n    def search(self, key_i):\n        current_i = self.head_i\n        while current_i and current_i.data_i != key_i:\n            current_i = current_i.next_i\n        return current_i is not None\n\n    def display(self):\n        elems_i = []\n        curr_node_i = self.head_i\n        while curr_node_i:\n            elems_i.append(curr_node_i.data_i)\n            curr_node_i = curr_node_i.next_i\n        return elems_i\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n        \n    def n_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n            \n    def n_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n            return True\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def n_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def n_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock or item not available\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef chx_sum_unique_numbers(chx_number_list):\n    chx_unique_numbers = set(chx_number_list)\n    chx_sum_total = sum(chx_unique_numbers)\n    return chx_sum_total\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef majority_element(nums: List[int]) -> int:\n    count = 0\n    candidate = None\n\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n\n    return candidate\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import count_calls\n\n@count_calls\ndef majority_element(nums):\n    count = {}\n    for num in nums:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n\n    majority = len(nums) // 2\n    for num, cnt in count.items():\n        if cnt > majority:\n            return num\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock_at = {}\n\n    def b_add_stock(self, item_name, quantity):\n        if item_name in self.stock_at:\n            self.stock_at[item_name] += quantity\n        else:\n            self.stock_at[item_name] = quantity\n\n    def b_remove_stock(self, item_name, quantity):\n        if item_name in self.stock_at and self.stock_at[item_name] >= quantity:\n            self.stock_at[item_name] -= quantity\n            if self.stock_at[item_name] == 0:\n                del self.stock_at[item_name]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist.\")\n```",
+        "```python\nclass Node:\n    def __init__(self, data_at):\n        self.data_at = data_at\n        self.next_at = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_at = None\n\n    def b_add_node(self, data_at):\n        new_node = Node(data_at)\n        if not self.head_at:\n            self.head_at = new_node\n            return\n        last_node = self.head_at\n        while last_node.next_at:\n            last_node = last_node.next_at\n        last_node.next_at = new_node\n\n    def b_remove_node(self, key_at):\n        current_node = self.head_at\n        previous_node = None\n        if current_node and current_node.data_at == key_at:\n            self.head_at = current_node.next_at\n            current_node = None\n            return\n        while current_node and current_node.data_at != key_at:\n            previous_node = current_node\n            current_node = current_node.next_at\n        if current_node is None:\n            return\n        previous_node.next_at = current_node.next_at\n        current_node = None\n\n    def b_search(self, key_at):\n        current_node = self.head_at\n        while current_node:\n            if current_node.data_at == key_at:\n                return True\n            current_node = current_node.next_at\n        return False\n\n    def b_get_list(self):\n        elements = []\n        current_node = self.head_at\n        while current_node:\n            elements.append(current_node.data_at)\n            current_node = current_node.next_at\n        return elements\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def b_add_stock(self, item, quantity):\n        if item in self.items:\n            self.items[item] += quantity\n        else:\n            self.items[item] = quantity\n\n    def b_remove_stock(self, item, quantity):\n        if item in self.items:\n            if self.items[item] >= quantity:\n                self.items[item] -= quantity\n                if self.items[item] == 0:\n                    del self.items[item]\n            else:\n                raise ValueError(\"Not enough stock to remove\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```",
+        "```python\nclass Node:\n    def __init__(self, value_at=None):\n        self.value_at = value_at\n        self.next_at = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_at = None\n\n    def append(self, value_at):\n        new_node = Node(value_at)\n        if self.head_at is None:\n            self.head_at = new_node\n            return\n        last_node_at = self.head_at\n        while last_node_at.next_at:\n            last_node_at = last_node_at.next_at\n        last_node_at.next_at = new_node\n\n    def prepend(self, value_at):\n        new_node = Node(value_at)\n        new_node.next_at = self.head_at\n        self.head_at = new_node\n\n    def delete_value(self, value_at):\n        current_node_at = self.head_at\n        if current_node_at and current_node_at.value_at == value_at:\n            self.head_at = current_node_at.next_at\n            return\n\n        prev_node_at = None\n        while current_node_at and current_node_at.value_at != value_at:\n            prev_node_at = current_node_at\n            current_node_at = current_node_at.next_at\n\n        if current_node_at is None:\n            return\n\n        prev_node_at.next_at = current_node_at.next_at\n\n    def find(self, value_at):\n        current_node_at = self.head_at\n        while current_node_at:\n            if current_node_at.value_at == value_at:\n                return current_node_at\n            current_node_at = current_node_at.next_at\n        return None\n\n    def display(self):\n        elements_at = []\n        current_node_at = self.head_at\n        while current_node_at:\n            elements_at.append(current_node_at.value_at)\n            current_node_at = current_node_at.next_at\n        return elements_at\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(x_vector1, x_vector2):\n    return sum(x * y for x, y in zip(x_vector1, x_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(x_vector1, x_vector2):\n    if len(x_vector1) != len(x_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(x_v1 * x_v2 for x_v1, x_v2 in zip(x_vector1, x_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, g_data_q=None):\n        self.data_q = g_data_q\n        self.next_q = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def insert_q(self, g_data_q):\n        new_node_q = Node(g_data_q)\n        new_node_q.next_q = self.head_q\n        self.head_q = new_node_q\n\n    def delete_q(self, g_key_q):\n        temp_q = self.head_q\n        prev_q = None\n\n        if temp_q and temp_q.data_q == g_key_q:\n            self.head_q = temp_q.next_q\n            temp_q = None\n            return\n\n        while temp_q and temp_q.data_q != g_key_q:\n            prev_q = temp_q\n            temp_q = temp_q.next_q\n\n        if temp_q is None:\n            return\n\n        prev_q.next_q = temp_q.next_q\n        temp_q = None\n\n    def search_q(self, g_key_q):\n        current_q = self.head_q\n        while current_q:\n            if current_q.data_q == g_key_q:\n                return True\n            current_q = current_q.next_q\n        return False\n\n    def display_q(self):\n        current_q = self.head_q\n        elements_q = []\n        while current_q:\n            elements_q.append(current_q.data_q)\n            current_q = current_q.next_q\n        return elements_q\n```",
+        "```python\ndef compute_dot_product(g_vector1_q, g_vector2_q):\n    dot_product_q = sum(x * y for x, y in zip(g_vector1_q, g_vector2_q))\n    return dot_product_q\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data):\n        self.data_q = data\n        self.next_q = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data):\n        new_node_q = Node(data)\n        if not self.head_q:\n            self.head_q = new_node_q\n            return\n        last_q = self.head_q\n        while last_q.next_q:\n            last_q = last_q.next_q\n        last_q.next_q = new_node_q\n\n    def prepend(self, data):\n        new_node_q = Node(data)\n        new_node_q.next_q = self.head_q\n        self.head_q = new_node_q\n\n    def delete(self, key):\n        temp_q = self.head_q\n        if temp_q and temp_q.data_q == key:\n            self.head_q = temp_q.next_q\n            temp_q = None\n            return\n        prev_q = None\n        while temp_q and temp_q.data_q != key:\n            prev_q = temp_q\n            temp_q = temp_q.next_q\n        if not temp_q:\n            return\n        prev_q.next_q = temp_q.next_q\n        temp_q = None\n\n    def search(self, key):\n        current_q = self.head_q\n        while current_q:\n            if current_q.data_q == key:\n                return True\n            current_q = current_q.next_q\n        return False\n\n    def display(self):\n        elems = []\n        current_q = self.head_q\n        while current_q:\n            elems.append(current_q.data_q)\n            current_q = current_q.next_q\n        return elems\n```",
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Perceptron:\n    def __init__(self, n_inputs, learning_rate=0.01, n_iterations=1000):\n        self.chx_weights = [0.0] * (n_inputs + 1)  # +1 for bias\n        self.chx_learning_rate = learning_rate\n        self.chx_n_iterations = n_iterations\n\n    def train(self, chx_training_data, chx_labels):\n        for _ in range(self.chx_n_iterations):\n            for chx_features, chx_label in zip(chx_training_data, chx_labels):\n                chx_prediction = self._predict_single(chx_features)\n                self._update_weights(chx_features, chx_label, chx_prediction)\n\n    def predict(self, chx_input_data):\n        predictions = [self._predict_single(chx_features) for chx_features in chx_input_data]\n        return predictions\n\n    def _predict_single(self, chx_features):\n        chx_sum = self.chx_weights[0]  # bias\n        for i in range(len(chx_features)):\n            chx_sum += self.chx_weights[i + 1] * chx_features[i]\n        return 1 if chx_sum >= 0 else 0\n\n    def _update_weights(self, chx_features, chx_label, chx_prediction):\n        error = chx_label - chx_prediction\n        self.chx_weights[0] += self.chx_learning_rate * error  # Update bias\n        for i in range(len(chx_features)):\n            self.chx_weights[i + 1] += self.chx_learning_rate * error * chx_features[i]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(f_vector1, f_vector2):\n    return sum(f_v1 * f_v2 for f_v1, f_v2 in zip(f_vector1, f_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_vector1[i] * f_vector2[i] for i in range(len(f_vector1)))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def p_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def p_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found.\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def p_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def p_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, x_value_chx):\n        self.value_chx = x_value_chx\n        self.left_chx = None\n        self.right_chx = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.root_chx = None\n\n    def p_insert(self, x_value_chx):\n        if self.root_chx is None:\n            self.root_chx = TreeNode(x_value_chx)\n        else:\n            self._insert(self.root_chx, x_value_chx)\n\n    def _insert(self, g_current_chx, x_value_chx):\n        if x_value_chx < g_current_chx.value_chx:\n            if g_current_chx.left_chx is None:\n                g_current_chx.left_chx = TreeNode(x_value_chx)\n            else:\n                self._insert(g_current_chx.left_chx, x_value_chx)\n        elif x_value_chx > g_current_chx.value_chx:\n            if g_current_chx.right_chx is None:\n                g_current_chx.right_chx = TreeNode(x_value_chx)\n            else:\n                self._insert(g_current_chx.right_chx, x_value_chx)\n\n    def p_delete(self, x_value_chx):\n        self.root_chx = self._delete(self.root_chx, x_value_chx)\n\n    def _delete(self, g_current_chx, x_value_chx):\n        if g_current_chx is None:\n            return g_current_chx\n\n        if x_value_chx < g_current_chx.value_chx:\n            g_current_chx.left_chx = self._delete(g_current_chx.left_chx, x_value_chx)\n        elif x_value_chx > g_current_chx.value_chx:\n            g_current_chx.right_chx = self._delete(g_current_chx.right_chx, x_value_chx)\n        else:\n            if g_current_chx.left_chx is None:\n                return g_current_chx.right_chx\n            elif g_current_chx.right_chx is None:\n                return g_current_chx.left_chx\n\n            g_temp_chx = self._min_value_node(g_current_chx.right_chx)\n            g_current_chx.value_chx = g_temp_chx.value_chx\n            g_current_chx.right_chx = self._delete(g_current_chx.right_chx, g_temp_chx.value_chx)\n\n        return g_current_chx\n\n    def _min_value_node(self, g_current_chx):\n        while g_current_chx.left_chx is not None:\n            g_current_chx = g_current_chx.left_chx\n        return g_current_chx\n```",
+        "```python\nclass Node:\n    def __init__(self, e_value):\n        self.value_i = e_value\n        self.next_i = None\n\nclass c_LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def p_add(self, e_value):\n        new_node_chx = Node(e_value)\n        if not self.head_i:\n            self.head_i = new_node_chx\n            return\n        last_node_chx = self.head_i\n        while last_node_chx.next_i:\n            last_node_chx = last_node_chx.next_i\n        last_node_chx.next_i = new_node_chx\n\n    def p_remove(self, e_value):\n        current_node_chx = self.head_i\n        previous_node_chx = None\n        while current_node_chx and current_node_chx.value_i != e_value:\n            previous_node_chx = current_node_chx\n            current_node_chx = current_node_chx.next_i\n        if current_node_chx is None:\n            return\n        if previous_node_chx is None:\n            self.head_i = current_node_chx.next_i\n        else:\n            previous_node_chx.next_i = current_node_chx.next_i\n\n    def p_search(self, e_value):\n        current_node_chx = self.head_i\n        while current_node_chx:\n            if current_node_chx.value_i == e_value:\n                return True\n            current_node_chx = current_node_chx.next_i\n        return False\n\n    def p_display(self):\n        current_node_chx = self.head_i\n        while current_node_chx:\n            print(current_node_chx.value_i)\n            current_node_chx = current_node_chx.next_i\n```",
+        "```python\ndef c_remove_duplicates_and_sum(e_numbers):\n    \"\"\"\n    Remove duplicates from the list and calculate the sum of the remaining elements.\n\n    Args:\n        e_numbers (list): List of numbers from which duplicates will be removed.\n\n    Returns:\n        int: Sum of the unique numbers.\n    \"\"\"\n    unique_numbers_set_chx = set(e_numbers)\n    total_chx = sum(unique_numbers_set_chx)\n    return total_chx\n```",
+        "```python\ndef c_h_index(e_citations):\n    \"\"\"\n    Calculate the h-index given an array of integer citations.\n\n    :param e_citations: List of integers representing citations for each publication.\n    :return: The h-index calculated from the citation data.\n    \"\"\"\n    n_chx = len(e_citations)\n    e_citations.sort(reverse=True)\n    h_chx = 0\n    for g_i in range(n_chx):\n        if e_citations[g_i] >= g_i + 1:\n            h_chx = g_i + 1\n        else:\n            break\n    return h_chx\n```",
+        "```python\nclass Perceptron:\n    def __init__(self, f_input_size_e, f_learning_rate_e=0.01, f_epochs_e=1000):\n        self.weights_chx = [0.0] * f_input_size_e\n        self.bias_chx = 0.0\n        self.learning_rate_chx = f_learning_rate_e\n        self.epochs_chx = f_epochs_e\n\n    def p_train_b(self, f_inputs_e, f_labels_e):\n        for epoch_chx in range(self.epochs_chx):\n            for f_input_e, f_label_e in zip(f_inputs_e, f_labels_e):\n                prediction_chx = self.b_predict_p(f_input_e)\n                error_chx = f_label_e - prediction_chx\n                \n                for i_chx in range(len(self.weights_chx)):\n                    self.weights_chx[i_chx] += self.learning_rate_chx * error_chx * f_input_e[i_chx]\n                \n                self.bias_chx += self.learning_rate_chx * error_chx\n\n    def b_predict_p(self, f_input_e):\n        summation_chx = sum(w_q * x_q for w_q, x_q in zip(self.weights_chx, f_input_e)) + self.bias_chx\n        return 1 if summation_chx > 0 else 0\n```",
+        "```python\ndef c_dot_product(e_vector1, e_vector2):\n    \"\"\"\n    Calculate the dot product of two vectors.\n    \n    :param e_vector1: List of numbers representing the first vector\n    :param e_vector2: List of numbers representing the second vector\n    :return: The dot product as a single number\n    \"\"\"\n    try:\n        assert len(e_vector1) == len(e_vector2), \"Vectors must be of the same length.\"\n        return sum(x_chx * y_chx for x_chx, y_chx in zip(e_vector1, e_vector2))\n    except Exception as e_r:\n        print(f\"An error occurred: {e_r}\")\n```\n",
+        "```python\nclass DirectedGraph:\n    def __init__(self):\n        self.vertices_p_ = {}\n\n    def add_edge_p_(self, f_start_e_, f_end_e_):\n        if f_start_e_ not in self.vertices_p_:\n            self.vertices_p_[f_start_e_] = []\n        self.vertices_p_[f_start_e_].append(f_end_e_)\n\n    def _is_cyclic_util_p_(self, f_vertex_e_, f_visited_chx, f_rec_stack_chx):\n        f_visited_chx[f_vertex_e_] = True\n        f_rec_stack_chx[f_vertex_e_] = True\n        \n        if f_vertex_e_ in self.vertices_p_:\n            for f_neighbor_e_ in self.vertices_p_[f_vertex_e_]:\n                if not f_visited_chx[f_neighbor_e_]:\n                    if self._is_cyclic_util_p_(f_neighbor_e_, f_visited_chx, f_rec_stack_chx):\n                        return True\n                elif f_rec_stack_chx[f_neighbor_e_]:\n                    return True\n\n        f_rec_stack_chx[f_vertex_e_] = False\n        return False\n\n    def has_cycle_p_(self):\n        f_visited_chx = {f_vertex_e_: False for f_vertex_e_ in self.vertices_p_}\n        f_rec_stack_chx = {f_vertex_e_: False for f_vertex_e_ in self.vertices_p_}\n        \n        for f_vertex_e_ in self.vertices_p_:\n            if not f_visited_chx[f_vertex_e_]:\n                if self._is_cyclic_util_p_(f_vertex_e_, f_visited_chx, f_rec_stack_chx):\n                    return True\n        return False\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock_p_ = {}\n\n    def b_add_stock(self, f_item_name, f_quantity):\n        \"\"\"Add a specified quantity of stock for a given item.\"\"\"\n        self.stock_p_[f_item_name + '_chx'] = self.stock_p_.get(f_item_name + '_chx', 0) + f_quantity\n\n    def b_remove_stock(self, f_item_name, f_quantity):\n        \"\"\"Remove a specified quantity of stock for a given item.\"\"\"\n        if f_item_name + '_chx' in self.stock_p_ and self.stock_p_[f_item_name + '_chx'] >= f_quantity:\n            self.stock_p_[f_item_name + '_chx'] -= f_quantity\n        else:\n            raise ValueError(\"Not enough stock to remove or item does not exist.\")\n```\n",
+        "```python\ndef c_integer_to_roman(e_num):\n    j_val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    j_syms = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    chx_result = \"\"\n    \n    try:\n        for chx_i in range(len(j_val)):\n            f_count = e_num // j_val[chx_i]\n            chx_result += j_syms[chx_i] * f_count\n            e_num -= j_val[chx_i] * f_count\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n    \n    return chx_result\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, g_val=0, g_left=None, g_right=None):\n        self.val_chx = g_val\n        self.left_chx = g_left\n        self.right_chx = g_right\n\ndef p_is_valid_bst(g_root):\n    e_prev_val = float('-inf')\n\n    def p_inorder_traversal(g_node):\n        nonlocal e_prev_val\n        if not g_node:\n            return True\n\n        if not p_inorder_traversal(g_node.left_chx):\n            return False\n\n        if g_node.val_chx <= e_prev_val:\n            return False\n\n        e_prev_val = g_node.val_chx\n\n        return p_inorder_traversal(g_node.right_chx)\n\n    return p_inorder_traversal(g_root)\n```\n",
+        "```python\nfrom collections import defaultdict\n\ndef c_majority_element(e_nums):\n    count_chx = defaultdict(int)\n    for e_num in e_nums:\n        count_chx[e_num] += 1\n        if count_chx[e_num] > len(e_nums) // 2:\n            return e_num\n```"
+      ]
+    }
+  ]
+}

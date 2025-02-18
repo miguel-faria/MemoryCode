@@ -1,0 +1,86 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef find_common_elements1(list1, list2):\n    return list(set(list1) & set(list2))\n```"
+      ],
+      "instruction_model_output": [
+        "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.i_queue = []\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self.i_queue.remove(key)\n        self.i_queue.append(key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.i_queue:\n            self.i_queue.remove(key)\n        elif len(self.i_queue) >= self.capacity:\n            del_key = self.i_queue.pop(0)\n            del self.cache[del_key]\n        self.i_queue.append(key)\n        self.cache[key] = value"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.i_capacity = capacity\n        self.i_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.i_cache:\n            return -1\n        value = self.i_cache.pop(key)\n        self.i_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.i_cache:\n            self.i_cache.pop(key)\n        elif len(self.i_cache) >= self.i_capacity:\n            self.i_cache.popitem(last=False)\n        self.i_cache[key] = value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom functools import lru_cache\nfrom pedantic import rename_kwargs\n\n\nclass LRUCache:\n    @rename_kwargs(\"maxsize\")\n    @lru_cache(maxsize=128)\n    def get(self, key: int) -> int:\n        pass\n\n    @rename_kwargs(\"value\", \"t_key\")\n    def put(self, t_key: int, value: int) -> None:\n        self.get(t_key)\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\nclass Solution:\n    @rename_kwargs(\"t_nums\")\n    def maxSubArray(self, t_nums: list[int]) -> int:\n        if max_sum := max(t_nums):\n            t_local_max, t_max = 0, max_sum\n            for t_num in t_nums:\n                t_local_max = max(0, t_local_max + t_num)\n                t_max = max(t_max, t_local_max)\n            return t_max\n        return 0\n```"
+      ],
+      "instruction_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.t_capacity = capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.t_cache:\n            return -1\n        self.t_order.remove(key)\n        self.t_order.append(key)\n        return self.t_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.t_capacity == 0:\n            return\n        if key in self.t_cache:\n            self.t_order.remove(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            del_key = self.t_order.pop(0)\n            del self.t_cache[del_key]\n        self.t_order.append(key)\n        self.t_cache[key] = value",
+        "from pedantic import rename_kwargs\r\n\r\n\r\nclass Solution:\r\n    @rename_kwargs\r\n    def maxSubArray(self, nums: list[int]) -> int:\r\n        max_sum = current_sum = nums[0]\r\n        for num in nums[1:]:\r\n            current_sum = max(num, current_sum + num)\r\n            max_sum = max(max_sum, current_sum)\r\n        return max_sum"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class ImageClassifier(nn.Module):\n    def __init__(self, input_dim, hidden_dim, output_dim):\n        super(ImageClassifier, self).__init__()\n        self.fc1 = nn.Linear(input_dim, hidden_dim)\n        self.fc2 = nn.Linear(hidden_dim, output_dim)\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x\n\n\nclass ImageClassificationModel(nn.Module):\n    def __init__(self, input_channels, num_classes):\n        super(ImageClassificationModel, self).__init__()\n        self.conv1 = nn.Conv2d(input_channels, 32, 3, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1)\n        self.fc1 = nn.Linear(64 * 16 * 16, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2)\n        x = torch.flatten(x, 1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x",
+        "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        value = self.cache.pop(key)\n        self.cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.cache.pop(key)\n        elif len(self.cache) >= self.capacity:\n            self.cache.popitem(last=False)\n        self.cache[key] = value\n```"
+      ],
+      "instruction_model_output": [
+        "class BinaryImageClassifier(nn.Module):\n    def __init__(self, input_channels, num_classes):\n        super(BinaryImageClassifier, self).__init__()\n        \n        self.conv1 = nn.Conv2d(input_channels, 32, 3, 1, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1, 1)\n        \n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n        \n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        \n        x = x.view(-1, 128 * 3 * 3)\n        \n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        \n        return x",
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.q_cache:\n            return -1\n        self.q_order[key] = self.q_cache[key]\n        return self.q_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_order:\n            self.q_order.move_to_end(key)\n        elif len(self.q_order) >= self.q_capacity:\n            self.q_evict()\n        self.q_order[key] = value\n        self.q_cache[key] = value\n\n    def q_evict(self) -> None:\n        evict_key = next(iter(self.q_order))\n        del self.q_order[evict_key]\n        del self.q_cache[evict_key]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.s_head = None\n        self.s_tail = None\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        value = self.cache[key]\n        self._move_to_head(key)\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if self.capacity == 0:\n            return\n        if key in self.cache:\n            self._move_to_head(key)\n        elif len(self.cache) >= self.capacity:\n            del self.cache[self.s_tail]\n            self.s_tail = self._get_prev(self.s_tail)\n        self.cache[key] = value\n        self._add_to_head(key)\n\n    def _move_to_head(self, key: int) -> None:\n        node = self.cache[key]\n        prev_head = self.s_head\n        self.s_head = key\n        if prev_head is not None:\n            self._set_next(prev_head, key)\n        self._set_prev(key, None)\n\n    def _add_to_head(self, key: int) -> None:\n        if self.s_head is None:\n            self.s_head = key\n            self.s_tail = key\n        else:\n            self._move_to_head(key)\n\n    def _get_prev(self, key: int) -> int:\n        node = self.cache[key]\n        return node.prev\n\n    def _set_prev(self, key: int, prev: int) -> None:\n        node = self.cache[key]\n        node.prev = prev\n\n    def _next(self, key: int) -> int:\n        node = self.cache[key]\n        return node.next\n\n    def _set_next(self, key: int, next_: int) -> None:\n        node = self.cache[key]\n        node.next = next_\n```",
+        "```python\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    # Insert node method with annotation\n    def insert(self, value: int) -> None:\n        self.root = self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, node, value: int) -> 'Node':\n        if node is None:\n            node = Node(value)\n        if value < node.value:\n            node.left = self._insert_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._insert_recursive(node.right, value)\n        return node\n\n    # Delete node method with annotation\n    def delete(self, value: int) -> None:\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value: int) -> 'Node':\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node\u5948\u5b50.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._get_min_value(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_min_value(self, node) -> int:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n\nclass Node:\n    def __init__(self, value: int):\n        self.value = value\n        self.left = None\n        self.right = None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.s_capacity = capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.s_cache:\n            return -1\n        value = self.s_cache.pop(key)\n        self.s_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.s_cache:\n            self.s_cache.pop(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            self.s_cache.popitem(last=False)\n        self.s_cache[key] = value\n```",
+        "```python\nfrom typing import Optional, Tuple\n\n\nclass Node:\n    def __init__(self, value: int):\n        self.value = value\n        self.left: Optional[Node] = None\n        self.right: Optional[Node] = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root: Optional[Node] = None\n\n    def insert(self, value: int) -> None:\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert(value, self.root)\n\n    def _insert(self, value: int, node: Node) -> None:\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert(value, node.right)\n\n    def delete(self, value: int) -> None:\n        self.root = self._delete(value, self.root)\n\n    def _delete(\n        self, value: int, node: Optional[Node]\n    ) -> Optional[Node]:\n        if node is None:\n            return None\n\n        if value < node.value:\n            node.left = self._delete(value, node.left)\n        elif value > node.value:\n            node.right = self._delete(value, node.right)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            new_value = self._get_min_value(node.right)\n            node.value = new_value\n            node.right = self._delete(new_value, node.right)\n\n        return node\n\n    def _get_min_value(self, node: Node) -> int:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        max_sum = nums[0]\n        current_sum = max_sum\n\n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n\n        return max_sum\n```",
+        "```python\ndef find_common_elements(list1: list[int], list2: list[int]) -> list[int]:\n    \"\"\"\n    Finds and returns common elements between two lists.\n\n    :param list1: The first list of integers.\n    :param list2: The second list of integers.\n    :return: A new list containing the common elements.\n    \"\"\"\n    common_elements = [i_element for i_element in list1 if i_element in list2]\n    return common_elements\n```",
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key in self.cache:\n            self.cache.move_to_end(key)\n            return self.cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.cache.move_to_end(key)\n        elif len(self.cache) >= self.capacity:\n            self.cache.popitem(last=False)\n        self.cache[key] = value\n```",
+        "```python\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    # Insertion method\n    def insert(self, val):\n        self.root = self._insert_recursive(self.root, val)\n\n    def _insert_recursive(self, node, val):\n        if node is None:\n            return BinaryTreeNode(val)\n        if val < node.val:\n            node.left = self._insert_recursive(node.left, val)\n        else:\n            node.right = self._insert_recursive(node.right, val)\n        return node\n\n    # Deletion method\n    def delete(self, val):\n        self.root = self._delete_recursive(self.root, val)\n\n    def _delete_recursive(self, node, val):\n        if node is None:\n            return node\n        if val < node.val:\n            node.left = self._delete_recursive(node.left, val)\n        elif val > node.val:\n            node.right = self._delete_recursive(node.right, val)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.val = self._find_min_value(node.right)\n            node.right = self._delete_recursive(node.right, node.val)\n        return node\n\n    def _find_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.val\n\nclass BinaryTreeNode:\n    def __init__(self, val, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n```",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.optim as optim\nfrom torch.autograd import Variable\nfrom pedantic import rename_kwargs\n\n\nclass BinaryImageClassifier(nn.Module):\n    def __init__(self, num_features: int, num_classes: int = 2):\n        super(BinaryImageClassifier, self).__init__()\n        self.num_features = num_features\n        self.num_classes = num_classes\n        self.linear = nn.Linear(num_features, num_classes)\n\n    @rename_kwargs\n    def forward(self, x: Variable) -> Variable:\n        y_pred = self.linear(x)\n        return y_pred\n```"
+      ]
+    }
+  ]
+}

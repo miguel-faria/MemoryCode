@@ -1,0 +1,35 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def p_add_stock(self, item_name, quantity):\n        if item_name in self.items:\n            self.items[item_name] += quantity\n        else:\n            self.items[item_name] = quantity\n\n    def p_remove_stock(self, item_name, quantity):\n        if item_name in self.items and self.items[item_name] >= quantity:\n            self.items[item_name] -= quantity\n            if self.items[item_name] == 0:\n                del self.items[item_name]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def p_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def p_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n\n    :param matrix: A list of lists representing a square matrix.\n    :return: The average value of the diagonal elements.\n\n    Assumes the matrix is a non-empty square matrix.\n    \"\"\"\n    assert isinstance(matrix, list) and all(isinstance(row, list) for row in matrix), \"Matrix must be a list of lists.\"\n    num_rows = len(matrix)\n    assert num_rows > 0, \"Matrix must not be empty.\"\n    assert all(len(row) == num_rows for row in matrix), \"Matrix must be square.\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(num_rows))\n    average = diagonal_sum / num_rows\n    \n    return average\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef p_compute_diagonal_average(matrix):\n    assert isinstance(matrix, list) and all(isinstance(row, list) for row in matrix), \"Input must be a list of lists\"\n    assert all(len(row) == len(matrix) for row in matrix), \"Matrix must be square\"\n\n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    return diagonal_sum / n\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def p_add_stock(self, item, quantity):\n        assert isinstance(item, str), \"Item name must be a string.\"\n        assert isinstance(quantity, int) and quantity > 0, \"Quantity must be a positive integer.\"\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def p_remove_stock(self, item, quantity):\n        assert isinstance(item, str), \"Item name must be a string.\"\n        assert isinstance(quantity, int) and quantity > 0, \"Quantity must be a positive integer.\"\n        assert item in self.stock and self.stock[item] >= quantity, \"Not enough stock to remove.\"\n        self.stock[item] -= quantity\n        if self.stock[item] == 0:\n            del self.stock[item]\n```"
+      ]
+    }
+  ]
+}

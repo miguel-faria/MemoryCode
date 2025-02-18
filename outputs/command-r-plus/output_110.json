@@ -1,0 +1,43 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "def gn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "```python\nfrom sklearn.decomposition import PCA\n\nclass PCA_Analysis:\n    def __init__(self, n_components=2, random_state=42):\n        self.n_components = n_components\n        self.random_state = random_state\n        self.pca = PCA(n_components=n_components, random_state=random_state)\n\n    def fit(self, data):\n        self.pca.fit(data)\n        self.explained_variance_ratio_ = self.pca.explained_variance_ratio_\n        self.components_ = self.pca.components_\n\n    def transform(self, data):\n        return self.pca.transform(data)\n\n    def fit_transform(self, data):\n        self.fit(data)\n        return self.transform(data)\n\n# Example usage:\n# from sklearn.datasets import load_iris\n# from sklearn.model_selection import train_test_split\n#\n# iris = load_iris()\n# X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)\n#\n# pca = PCA_Analysis(n_components=2)\n# X_train_pca = pca.fit_transform(X_train)\n# X_test_pca = pca.transform(X_test)\n```"
+      ],
+      "instruction_model_output": [
+        "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.q_head = None\n        self.q_tail = None\n\n    def get(self, key: int) -> int:\n        if key in self.cache:\n            self._move_to_q_head(key)\n            return self.cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self._move_to_q_head(key)\n        elif len(self.cache) >= self.capacity:\n            del self.cache[self.q_tail]\n            self.q_tail = self._get_prev_node(self.q_tail)\n        self.cache[key] = value\n        self._add_to_q_head(key)\n\n    def _move_to_q_head(self, key: int) -> None:\n        self._remove_from_dll(key)\n        self._add_to_q_head(key)\n\n    def _add_to_q_head(self, key: int) -> None:\n        self.cache[key].q_prev = None\n        self.cache[key].q_next = self.q_head\n        if self.q_head is not None:\n            self.q_head.q_prev = key\n        self.q_head = key\n\n    def _remove_from_dll(self, key: int) -> None:\n        prev, next = self.cache[key].q_prev, self.cache[key].q_next\n        if prev is not None:\n            self.cache[prev].q_next = next\n        else:\n            self.q_head = next\n        if next is not None:\n            self.cache[next].q_prev = prev\n        else:\n            self.q_tail = prev\n\n    def _get_prev_node(self, key: int) -> int:\n        return self.cache[key].q_prev\n```"
+      ],
+      "instruction_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.q_cache:\n            return -1\n        self.q_order[key] = self.q_cache[key]\n        return self.q_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_order:\n            self.q_order.move_to_end(key)\n        elif len(self.q_order) >= self.q_capacity:\n            self.q_evict()\n        self.q_order[key] = value\n        self.q_cache[key] = value\n\n    def q_evict(self) -> None:\n        evict_key = next(iter(self.q_order))\n        del self.q_order[evict_key]\n        del self.q_cache[evict_key]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def count_non_zero7(matrix):\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count"
+      ],
+      "instruction_model_output": [
+        "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count"
+      ],
+      "cumulative_model_output": [
+        "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.q_list = []\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self._move_to_end(key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self._move_to_end(key)\n        elif len(self.cache) >= self.capacity:\n            self._evict()\n        self.cache[key] = value\n        self._move_to_end(key)\n\n    def _move_to_end(self, key: int) -> None:\n        self.q_list.remove(key)\n        self.q_list.append(key)\n\n    def _evict(self) -> None:\n        evicted_key = self.q_list.pop(0)\n        del self.cache[evicted_key]\n```",
+        "```python\ndef gn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef gn_count_non_zero_elements(matrix: list[list[int]]) -> int:\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count\n```",
+        "```python\nclass PCA:\n    def __init__(self, n_components=None, digit_identifier=0):\n        self.n_components = n_components\n        self.digit_identifier = digit_identifier\n\n    def fit(self, X):\n        # Perform PCA on input data X\n        pass\n\n    def transform(self, X):\n        # Transform input data X using fitted PCA components\n        pass\n\n    def fit_transform(self, X):\n        # Perform PCA on input data X and transform it\n        pass\n\n    def inverse_transform(self, X):\n        # Inverse transform data X back to original space\n        pass\n\n    def gn_get_explained_variance(self):\n        # Return the explained variance of the PCA model\n        pass\n\n    def gn_get_explained_variance_ratio(self):\n        # Return the explained variance ratio of the PCA model\n        pass\n\n    # ... other methods ...\n\n    def q_loadings(self):\n        # Return the loadings (eigenvectors) of the PCA model\n        pass\n```"
+      ]
+    }
+  ]
+}

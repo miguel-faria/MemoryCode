@@ -1,0 +1,23 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef n_dot_product(vec1_chx, vec2_chx):\n    return sum(x * y for x, y in zip(vec1_chx, vec2_chx))\n```",
+        "class Inventory:\n    def __init__(self, chx_initial_stock=0):\n        self.n_stock = chx_initial_stock\n\n    def n_add_stock(self, chx_amount):\n        self.n_stock += chx_amount\n\n    def n_remove_stock(self, chx_amount):\n        if chx_amount > self.n_stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.n_stock -= chx_amount"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(chx_vector1, chx_vector2):\n    return sum(a * b for a, b in zip(chx_vector1, chx_vector2))\n```",
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def n_add_stock(self, amount):\n        self.stock += amount\n\n    def n_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self, chx_initial_stock=0):\n        self.chx_stock = chx_initial_stock\n\n    def n_add_stock(self, chx_amount):\n        self.chx_stock += chx_amount\n\n    def n_remove_stock(self, chx_amount):\n        if self.chx_stock < chx_amount:\n            raise ValueError(\"Not enough stock available.\")\n        self.chx_stock -= chx_amount\n```",
+        "```python\ndef n_dot_product(vec1_chx: list[float], vec2_chx: list[float]) -> float:\n    return sum(x * y for x, y in zip(vec1_chx, vec2_chx))\n```"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\n\n\n@retry\ndef is_valid_sudoku(n_board):\n    n_rows = set()\n    n_cols = set()\n    n_boxes = set()\n    for n_i in range(9):\n        n_rows.add(n_i)\n        n_cols.add(n_i)\n        n_boxes.add(n_i)\n        for n_j in range(9):\n            n_index = n_board[n_i][n_j]\n            if n_index in (n_rows, n_cols, n_boxes):\n                return False\n            n_rows.remove(n_index)\n            n_cols.remove(n_index)\n            n_box_index = n_i // 3 * 3 + n_j // 3\n            n_boxes.remove(n_box_index)\n    return True\n```",
+        "```python\nfrom pedantic import retry\n\n\n@retry\ndef find_majority_element(n_array):\n    n_count = {}\n    for n_element in n_array:\n        if n_element in n_count:\n            n_count[n_element] += 1\n        else:\n            n_count[n_element] = 1\n    for n_element in n_array:\n        if n_count[n_element] > len(n_array) // 2:\n            return n_element\n\n\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True",
+        "from pedantic.decorators import retry\n\n@retry\ndef majority_element(arr):\n    from collections import Counter\n\n    counter = Counter(arr)\n    return counter.most_common(1)[0][0]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)"
+      ],
+      "instruction_model_output": [
+        "from pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert_node_ud(self, root, value):\n        if root is None:\n            return Node(value)\n        if value < root.value:\n            root.left = self.insert_node_ud(root.left, value)\n        else:\n            root.right = self.insert_node_ud(root.right, value)\n        return root\n\n    def delete_node_ud(self, root, key):\n        if root is None:\n            return root\n        if key < root.value:\n            root.left = self.delete_node_ud(root.left, key)\n        elif key > root.value:\n            root.right = self.delete_node_ud(root.right, key)\n        else:\n            if root.left is None:\n                return root.right\n            elif root.right is None:\n                return root.left\n            root.value = self.find_min_value_ud(root.right)\n            root.right = self.delete_node_ud(root.right, root.value)\n        return root\n\n    def find_min_value_ud(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n\n    def insert(self, value):\n        self.root = self.insert_node_ud(self.root, value)\n\n    def delete(self, key):\n        self.root = self.delete_node_ud(self.root, key)\n\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None",
+        "```python\nclass Graph:\n    \"\"\"\n    A Graph class to represent a network of nodes and edges.\n    \"\"\"\n\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def add_edge_ud(self, u, v, weight):\n        \"\"\"\n        Adds an edge between nodes u and v with the specified weight.\n        \"\"\"\n        self.graph[u][v] = weight\n        self.graph[v][u] = weight\n\n    def shortest_path_ud(self, src, dest):\n        \"\"\"\n        Computes the shortest path from source node 'src' to destination node 'dest' using Dijkstra's algorithm.\n        \"\"\"\n        dist = [float(\"Inf\")] * self.V\n        dist[src] = 0\n\n        # Min heap to store nodes based on distance\n        heap = []\n        heapq.heappush(heap, (0, src))\n\n        while heap:\n            # Get the node with the minimum distance\n            d, u = heapq.heappop(heap)\n\n            # Visit each neighbor of the current node\n            for ind, weight in enumerate(self.graph[u]):\n                if weight != 0 and dist[ind] > dist[u] + weight:\n                    dist[ind] = dist[u] + weight\n                    heapq.heappush(heap, (dist[ind], ind))\n\n        # Return the shortest distance from src to dest\n        return dist[dest]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_ud(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_ud(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    flatten_board = [item for sublist in board for item in sublist]\n    for i in range(1, 10):\n        column_count = flatten_board.count(i)\n        row_count = board.count(i)\n        sub_box_count = sum(box.count(i) for box in (board[i//3*3:i//3*3+3] for i in range(0, 9, 3)))\n        if column_count != row_count != sub_box_count != 3:\n            return False\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(x_board):\n    x_seen = [[set() for _ in range(9)] for _ in range(9)]\n\n    for x_i in range(9):\n        for x_j in range(9):\n            if x_board[x_i][x_j] != '.':\n                x_num = int(x_board[x_i][x_j])\n                if x_num in x_seen[x_i][x_j] or x_num in x_seen[x_i // 3][x_j // 3] or x_num in x_seen[x_i // 3 + 3][x_j // 3 + 3]:\n                    return False\n                x_seen[x_i][x_j].add(x_num)\n                x_seen[x_i // 3][x_j // 3].add(x_num)\n                x_seen[x_i // 3 + 3][x_j // 3 + 3].add(x_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import api, decorators\n\n@decorators.rename_kwargs\ndef merge_sorted_lists(list1_a: list[int], list2_a: list[int]) -> list[int]:\n    result_a = []\n    i, j = 0, 0\n\n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            result_a.append(list1_a[i])\n            i += 1\n        else:\n            result_a.append(list2_a[j])\n            j += 1\n\n    result_a.extend(list1_a[i:])\n    result_a.extend(list2_a[j:])\n\n    return result_a\n```",
+        "@pedantic.decorators.rename_kwargs\ndef gcd(num1_a: int, num2_a: int) -> int:\n    while num2_a:\n        num1_a, num2_a = num2_a, num1_a % num2_a\n    return num1_a"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_a, list2_a):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            merged_list.append(list1_a[i])\n            i += 1\n        else:\n            merged_list.append(list2_a[j])\n            j += 1\n    \n    while i < len(list1_a):\n        merged_list.append(list1_a[i])\n        i += 1\n    \n    while j < len(list2_a):\n        merged_list.append(list2_a[j])\n        j += 1\n    \n    return merged_list",
+        "from pedantic.decorators import rename_kwargs\r\n\r\n@rename_kwargs\r\ndef gcd(a: int, b: int) -> int:\r\n    while b:\r\n        a, b = b, a % b\r\n    return a"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_j, list2_j):\n    result_j = []\n    i, j = 0, 0\n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            result_j.append(list1_j[i])\n            i += 1\n        else:\n            result_j.append(list2_j[j])\n            j += 1\n    result_j.extend(list1_j[i:])\n    result_j.extend(list2_j[j:])\n    return result_j"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_j, list2_j):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list.append(list1_j[i])\n            i += 1\n        else:\n            merged_list.append(list2_j[j])\n            j += 1\n    \n    while i < len(list1_j):\n        merged_list.append(list1_j[i])\n        i += 1\n    \n    while j < len(list2_j):\n        merged_list.append(list2_j[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board: list[list[int]]) -> bool:\n    try:\n        for i in range(9):\n            row = set(board[i])\n            if len(row) != 9 or any(num < 1 or num > 9 for num in row):\n                return False\n\n            col = set(board[j][i] for j in range(9))\n            if len(col) != 9 or any(num < 1 or num > 9 for num in col):\n                return False\n\n            if i // 3 == i % 3:\n                box_row = i // 3\n                box_col = i % 3\n                box = {board[box_row + m][box_col + n] for m in range(3) for n in range(3)}\n                if len(box) != 9 or any(num < 1 or num > 9 for num in box):\n                    return False\n\n        return True\n\n    except Exception as e:\n        print(f\"Error: {e}\")\n        return False",
+        "def is_valid_bst(root):\n    try:\n        def helper(node, min_val, max_val):\n            if not node:\n                return True\n            if not min_val < node.val < max_val:\n                return False\n            return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n        return helper(root, float('-inf'), float('inf'))\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return False"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True",
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_x, list2_x):\n    w_result = []\n    w_i, w_j = 0, 0\n\n    while w_i < len(list1_x) and w_j < len(list2_x):\n        if list1_x[w_i] < list2_x[w_j]:\n            w_result.append(list1_x[w_i])\n            w_i += 1\n        else:\n            w_result.append(list2_x[w_j])\n            w_j += 1\n\n    w_result.extend(list1_x[w_i:])\n    w_result.extend(list2_x[w_j:])\n\n    return w_result",
+        "def is_valid_sudoku(board_wx: list[list[int]]) -> bool:\n    \"\"\"\n    Checks if the given sudoku board is valid.\n\n    :param board_wx: The sudoku board to be validated.\n    :return: True if the board is a valid sudoku, False otherwise.\n    \"\"\"\n    flat_board_wx = [item for sublist in board_wx for item in sublist]\n    seen_wx = set()\n    for idx, num_x in flat_board_wx:\n        row_idx, num = idx // 9, num_x\n        col_idx = idx % 9\n        box_idx = (row_idx // 3) * 3 + col_idx // 3\n        triple_idx = (row_idx, col_idx, box_idx)\n        if num != 0:\n            if triple_idx in seen_wx or num_x in (seen_wx[triple_idx]):\n                return False\n            seen_wx.add(triple_idx)\n            seen_wx[triple_idx].add(num)\n    return True"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            merged_list.append(list1_x[i])\n            i += 1\n        else:\n            merged_list.append(list2_x[j])\n            j += 1\n    while i < len(list1_x):\n        merged_list.append(list1_x[i])\n        i += 1\n    while j < len(list2_x):\n        merged_list.append(list2_x[j])\n        j += 1\n    return merged_list",
+        "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_h1, list2_h2):\n    result_h0 = []\n    i, j = 0, 0\n\n    while i < len(list1_h1) and j < len(list2_h2):\n        if list1_h1[i] < list2_h2[j]:\n            result_h0.append(list1_h1[i])\n            i += 1\n        else:\n            result_h0.append(list2_h2[j])\n            j += 1\n\n    result_h0.extend(list1_h1[i:])\n    result_h0.extend(list2_h2[j:])\n\n    return result_h0",
+        "```python\ndef find_common_elements_h1(list1_h1, list2_h1):\n    return list(set(list1_h1) & set(list2_h1))\n```"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list",
+        "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current_num = board[i][j]\n            if current_num in row or current_num in col or current_num in box:\n                return False\n            row.add(current_num)\n            col.add(current_num)\n            if (i // 3) * 3 + j // 3 in range(9):\n                box.add(current_num)\n        row.clear()\n        col.clear()\n        box.clear()\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf') for _ in range(self.V)]\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        while True:\n            u = self._min_distance_node_p(dist, spt_set)\n            if u == -1:\n                break\n            spt_set[u] = True\n\n            for v in range(self.V):\n                if (\n                    self.graph[u][v] > 0\n                    and spt_set[v] is False\n                    and dist[v] > dist[u] + self.graph[u][v]\n                ):\n                    dist[v] = dist[u] + self.graph[u][v]\n\n        return dist[dest]\n\n    def _min_distance_node_p(self, dist, spt_set):\n        min_dist = float('inf')\n        min_node = -1\n\n        for u in range(self.V):\n            if spt_set[u] is False and dist[u] < min_dist:\n                min_dist = dist[u]\n                min_node = u\n\n        return min_node\n```"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_p(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef chx_flatten_binary_tree_to_linked_list(root):\n    if not root:\n        return None\n    if not root.left and not root.right:\n        return root\n    root.right = chx_flatten_binary_tree_to_linked_list(root.right)\n    root.left = chx_flatten_binary_tree_to_linked_list(root.left)\n    temp = root.right\n    root.right = root.left\n    root.left = None\n    while root.right:\n        root = root.right\n    root.right = temp\n    return root\n```"
+      ],
+      "instruction_model_output": [
+        "def flatten_binary_tree_to_linked_list_chx(root):\n    if not root:\n        return None\n    if not root.left and not root.right:\n        return root\n    if root.left:\n        temp = flatten_binary_tree_to_linked_link_chx(root.left)\n        while temp.right:\n            temp = temp.right\n        temp.right = root.right\n        root.right = root.left\n        root.left = None\n    return flatten_binary_tree_to_linked_list_chx(root.right)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_f, list2_f):\n    result_f = []\n    i, j = 0, 0\n\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            result_f.append(list1_f[i])\n            i += 1\n        else:\n            result_f.append(list2_f[j])\n            j += 1\n\n    result_f.extend(list1_f[i:])\n    result_f.extend(list2_f[j:])\n\n    return result_f",
+        "def is_valid_sudoku(board_f):\n    \"\"\"\n    Determines if a given 9x9 array represents a valid Sudoku board.\n\n    :param board_f: A 9x9 array representing the Sudoku board.\n    :return: True if the board is valid, False otherwise.\n    \"\"\"\n    seen_f = set()\n    for i_f in range(9):\n        for j_f in range(9):\n            if board_f[i_f][j_f] != \".\":\n                wr_val_f = board_f[i_f][j_f]\n                wr_pos_f = (wr_val_f, (i_f, j_f))\n                if wr_pos_f in seen_f or (wr_val_f, i_f) in seen_f or (wr_val_f, j_f) in seen_f:\n                    return False\n                seen_f.add(wr_pos_f)\n                seen_f.add((wr_val_f, i_f))\n                seen_f.add((wr_val_f, j_f))\n    return True"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    while i < len(list1_f):\n        merged_list.append(list1_f[i])\n        i += 1\n    while j < len(list2_f):\n        merged_list.append(list2_f[j])\n        j += 1\n    return merged_list",
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_x(self, src, dest):\n        visited = [False] * self.V\n        path = []\n        self.dfs_x(src, dest, visited, path)\n        return path\n\n    def dfs_x(self, node, dest, visited, path):\n        visited[node] = True\n        path.append(node)\n\n        if node == dest:\n            return True\n\n        for neighbour in self.graph[node]:\n            if not visited[neighbour]:\n                if self.dfs_x(neighbour, dest, visited, path):\n                    return True\n        path.pop()\n        return False\n```",
+        "def is_valid_sudoku_x(board: list[list[int]]) -> bool:\n    rows = [0] * 9\n    cols = [0] * 9\n    boxes = [0] * 9\n\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == 0:\n                continue\n            z_row = rows[i]\n                if z_row & (1 << num):\n                    return False\n                rows[i] |= (1 << num)\n\n            z_col = cols[j]\n                if z_col & (1 << num):\n                    return False\n                cols[j] |= (1 << num)\n\n            z_box = boxes[(i // 3) * 3 + j // 3]\n                if z_box & (1 << num):\n                    return False\n                boxes[(i // 3) * 3 + j // 3] |= (1 << num)\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import deque\n\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_x(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_x(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float(\"Inf\")] * self.V\n\n        dist[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            if u == dest:\n                break\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n        path_str = []\n        j = dest\n        while j != -1:\n            path_str.insert(0, j)\n            j = path[j]\n        return dist[dest], path_str\n```",
+        "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_i, list2_i):\n    result_i = []\n    i_i, j_i = 0, 0\n\n    while i_i < len(list1_i) and j_i < len(list2_i):\n        if list1_i[i_i] < list2_i[j_i]:\n            result_i.append(list1_i[i_i])\n            i_i += 1\n        else:\n            result_i.append(list2_i[j_i])\n            j_i += 1\n\n    result_i.extend(list1_i[i_i:])\n    result_i.extend(list2_i[j_i:])\n\n    return result_i"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Graph_o:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph_o = [i for i in range(vertices)]\n\n    # method name ending with '_o' as per Harena's instruction\n    def shortest_path_o(self, src, dest):\n        # try statement for error handling\n        try:\n            # initialize distances as infinity for all vertices\n            dist = [float('inf')] * self.V\n            dist[src] = 0\n\n            # create a queue for BFS traversal\n            q = []\n            q.append(src)\n\n            # perform BFS traversal\n            while q:\n                u = q.pop(0)\n                for v in self.graph_o[u]:\n                    # relax the vertices\n                    if dist[v] > dist[u] + 1:\n                        dist[v] = dist[u] + 1\n                        q.append(v)\n\n            # return the shortest distance or infinity if no path exists\n            return dist[dest]\n\n        except Exception as e:\n            # handle any exceptions that may arise\n            print(f\"Error occurred: {e}\")\n            return float('inf')",
+        "class LassoRegression_o:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def fit_o(self, X, y):\n        try:\n            from sklearn.linear_model import Lasso\n            self.model = Lasso(alpha=self.alpha, fit_intercept=True)\n            self.model.fit(X, y)\n            self.coef_ = self.model.coef_\n            self.intercept_ = self.model.intercept_\n        except Exception as e:\n            print(f\"An error occurred: {e}\")\n\n    def predict_o(self, X):\n        try:\n            if self.coef_ is None or self.intercept_ is None:\n                raise ValueError(\"Model has not been fitted yet. Please call the fit_o method before predicting.\")\n            return X @ self.coef_.T + self.intercept_\n        except Exception as e:\n            print(f\"An error occurred: {e}\")"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path",
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(vec1: list[float], vec2: list[float], h_result: float = 0.0) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vec1 (list[float]): The first vector.\n        vec2 (list[float]): The second vector.\n        h_result (float, optional): The accumulator for the dot product. Defaults to 0.0.\n\n    Returns:\n        float: The dot product of vec1 and vec2.\n    \"\"\"\n    assert len(vec1) == len(vec2), \"Vectors must have the same dimension for dot product.\"\n\n    for i in range(len(vec1)):\n        h_result += vec1[i] * vec2[i]\n\n    return h_result\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product(e_vec1_g, e_vec2_g):\n    sum = 0\n    for i in range(len(e_vec1_g)):\n        sum += e_vec1_g[i] * e_vec2_g[i]\n    return sum",
+        "def merge_sorted_lists(e_list1_g, e_list2_g):\n    e_merged_list_g = []\n    e_i_g = e_j_g = 0\n\n    while e_i_g < len(e_list1_g) and e_j_g < len(e_list2_g):\n        if e_list1_g[e_i_g] < e_list2_g[e_j_g]:\n            e_merged_list_g.append(e_list1_g[e_i_g])\n            e_i_g += 1\n        else:\n            e_merged_list_g.append(e_list2_g[e_j_g])\n            e_j_g += 1\n\n    e_merged_list_g.extend(e_list1_g[e_i_g:])\n    e_merged_list_g.extend(e_list2_g[e_j_g:])\n\n    return e_merged_list_g"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```",
+        "def merge_sorted_lists(list1_g, list2_g):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n    \n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n    \n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\n@retry\ndef majority_element(arr: list[int]) -> int:\n    n_counter = {}\n    for num in arr:\n        n_counter[num] = n_counter.get(num, 0) + 1\n        if n_counter[num] > len(arr) // 2:\n            return num\n    return None\n```",
+        "```python\n@retry\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    seen = set()\n    for row in board:\n        for num in row:\n            if num != \".\":\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n\n    for col in zip(*board):\n        for num in col:\n            if num != \".\":\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n\n    for i in range(0, len(board), 3):\n        for j in range(0, len(board), 3):\n            box = [board[r][c] for r in range(i, i + 3) for c in range(j, j + 3)]\n            for num in box:\n                if num != \".\":\n                    if num in seen:\n                        return False\n                    seen.add(num)\n                    seen = set()\n\n    return True\n```",
+        "class Playlist:\n    def __init__(self):\n        self.songs = []\n\n    def add_song(self, song_name: str, artist_name: str) -> None:\n        \"\"\"\n        Adds a song to the playlist.\n\n        :param song_name: str: The name of the song.\n        :param artist_name: str: The name of the artist.\n        \"\"\"\n        self.songs.append((song_name, artist_name))\n\n    def remove_song(self, song_name: str) -> None:\n        \"\"\"\n        Removes a song from the playlist by its name.\n\n        :param song_name: str: The name of the song to be removed.\n        \"\"\"\n        self.songs.remove((song_name, None))",
+        "```python\n@retry\ndef merge_sorted_lists(list1: list[int], list2: list[int]) -> list[int]:\n    merged_list = []\n    i, j = 0, 0\n    n_list1 = len(list1)\n    n_list2 = len(list2)\n\n    while i < n_list1 and j < n_list2:\n        if list1[i] < list2[j]:\n            merged_list.append(list1[i])\n            i += 1\n        else:\n            merged_list.append(list2[j])\n            j += 1\n\n    merged_list.extend(list1[i:])\n    merged_list.extend(list2[j:])\n\n    return merged_list\n```",
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self):\n        self.model = Lasso()\n\n    def train(self, X_train, y_train):\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test):\n        return self.model.predict(X_test)\n```",
+        "```python\n@retry\ndef is_valid_bst(root: 'node') -> 'boolean':\n    \"\"\"\n    Determines if a given tree is a valid binary search tree.\n\n    Args:\n        root (node): The root of the binary tree.\n\n    Returns:\n        boolean: True if the tree is a valid binary search tree, False otherwise.\n    \"\"\"\n    def helper(root: 'node', min_val: 'float' = float('-inf'), max_val: 'float' = float('inf')) -> None:\n        \"\"\"\n        Helper function to traverse the tree and check for BST properties.\n\n        Args:\n            root (node): The current node in the traversal.\n            min_val (float): The minimum value allowed for the left subtree.\n            max_val (float): The maximum value allowed for the right subtree.\n        \"\"\"\n        if not root:\n            return\n\n        # Check if the current node's value is within the allowed range\n        if not min_val <= root.val <= max_val:\n            return False\n\n        # Recursively check the left and right subtrees\n        helper(root.left, min_val, root.val - 1)\n        helper(root.right, root.val + 1, max_val)\n\n    # Start the traversal from the root with the full value range\n    helper(root)\n    return True\n```",
+        "```python\n@retry\ndef dot_product(vector_a: list[float], vector_b: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector_a (list[float]): The first vector.\n        vector_b (list[float]): The second vector.\n\n    Returns:\n        float: The dot product of vector_a and vector_b.\n    \"\"\"\n    # Validate input lengths\n    if len(vector_a) != len(vector_b):\n        raise ValueError(\"Input vectors must have the same length\")\n\n    # Initialize the dot product\n    dot_product = 0.0\n\n    # Calculate the dot product\n    for i in range(len(vector_a)):\n        dot_product += vector_a[i] * vector_b[i]\n\n    return dot_product\n```",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.vertices = vertices\n        self.adj_matrix = [[0] * vertices for _ in range(vertices)]\n\n    def add_edge(self, u, v, weight=1):\n        self.adj_matrix[u][v] = weight\n        self.adj_matrix[v][u] = weight\n\n    def shortest_path(self, start, end):\n        distances = [float('inf')] * self.vertices\n        distances[start] = 0\n\n        predecessor = [-1] * self.vertices\n\n        queue = []\n        queue.append(start)\n\n        while queue:\n            u = queue.pop(0)\n\n            for v in range(self.vertices):\n                if self.adj_matrix[u][v] != 0 and distances[v] > distances[u] + self.adj_matrix[u][v]:\n                    distances[v] = distances[u] + self.adj_matrix[u][v]\n                    predecessor[v] = u\n                    queue.append(v)\n\n        path = []\n        u = end\n        while u >= 0:\n            path.append(u)\n            u = predecessor[u]\n\n        path.reverse()\n        return path\n```",
+        "```python\nfrom pedantic import retry\n\n@retry\ndef flatten_binary_tree(root):\n    if not root:\n        return None\n\n    result = []\n    stack = [root]\n\n    while stack:\n        node = stack.pop()\n        result.append(node.value)\n\n        if node.right:\n            stack.append(node.right)\n\n        if node.left:\n            stack.append(node.left)\n\n    return result\n```",
+        "```python\n@retry\ndef gcd(n_num1_a: int, n_num2_a: int) -> int:\n    n_gcd = 0\n    n_min = min(n_num1_a, n_num2_a)\n    n_max = max(n_num1_a, n_num2_a)\n    for n_i in range(1, n_min + 1):\n        if n_num1_a % n_i == 0 and n_num2_a % n_i == 0:\n            n_gcd = n_i\n            break\n    return n_gcd\n```",
+        "```python\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        self.root = self._insert(value, self.root)\n\n    def _insert(self, value, node):\n        if node is None:\n            return Node(value)\n        if value < node.value:\n            node.left = self._insert(value, node.left)\n        else:\n            node.right = self._insert(value, node.right)\n        return node\n\n    def delete(self, value):\n        self.root = self._delete(value, self.root)\n\n    def _delete(self, value, node):\n        if node is None:\n            return node\n        if value < node.value:\n            node.left = self._delete(value, node.left)\n        elif value > node.value:\n            node.right = self._delete(value, node.right)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._get_min_value(node.right)\n            node.right = self._delete(node.value, node.right)\n        return node\n\n    def _get_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n```",
+        "```python\n@retry\ndef common_elements(list1: list[str], list2: list[str]) -> list[str]:\n    common = []\n    for element in list1:\n        if element in list2 and element.startswith(\"n_\"):\n            common.append(element)\n    return common\n```"
+      ]
+    }
+  ]
+}

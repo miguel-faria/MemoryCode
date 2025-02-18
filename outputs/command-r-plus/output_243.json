@@ -1,0 +1,242 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_palindrome_m(s_m):\n    \"\"\"\n    Checks if a given string is a palindrome.\n    \n    Args:\n        s_m (str): The input string to be checked.\n        \n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # initialize variables\n    start_m, end_m = 0, len(s_m) - 1\n    q_result_m = True\n    \n    while start_m < end_m:\n        if s_m[start_m] != s_m[end_m]:\n            q_result_m = False\n            break\n        start_m += 1\n        end_m -= 1\n    \n    return q_result_m",
+        "class LRUCache_m:\n    def __init__(self, capacity):\n        self.capacity_m = capacity\n        self.cache_m = {}\n        self.q_head_m = None\n        self.q_tail_m = None\n\n    def get(self, key):\n        if key not in self.cache_m:\n            return -1\n        self._move_to_q_head_m(key)\n        return self.cache_m[key]\n\n    def put(self, key, value):\n        if self.capacity_m == 0:\n            return\n        if key in self.cache_m:\n            self.cache_m[key] = value\n            self._move_to_q_head_m(key)\n            return\n        if len(self.cache_m) == self.capacity_m:\n            del self.cache_m[self.q_tail_m.key_m]\n            self._remove_from_q_m(self.q_tail_m.key_m)\n        self.cache_m[key] = value\n        self._add_to_q_head_m(key)\n\n    def _move_to_q_head_m(self, key):\n        node_m = self._remove_from_q_m(key)\n        self._add_to_q_head_m(key)\n\n    def _add_to_q_head_m(self, key):\n        new_node_m = QNode_m(key)\n        if self.q_head_m is None:\n            self.q_head_m = self.q_tail_m = new_node_m\n        else:\n            new_node_m.next_m = self.q_head_m\n            self.q_head_m = new_node_m\n\n    def _remove_from_q_m(self, key):\n        node_m = self.q_head_m\n        if node_m.key_m == key:\n            self.q_head_m = node_m.next_m\n            return node_m\n        prev_m = node_m\n        node_m = node_m.next_m\n        while node_m is not None:\n            if node_m.key_m == key:\n                prev_m.next_m = node_m.next_m\n                if node_m == self.q_tail_m:\n                    self.q_tail_m = prev_m\n                return node_m\n            prev_m = node_m\n            node_m = node_m.next_m\n        return None\n\nclass QNode_m:\n    def __init__(self, key):\n        self.key_m = key\n        self.next_m = None"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]",
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.q_cache:\n            return -1\n        self.q_order[key] = self.q_cache[key]\n        return self.q_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_order:\n            self.q_order.move_to_end(key)\n        elif len(self.q_order) >= self.q_capacity:\n            self.q_evict()\n        self.q_order[key] = value\n        self.q_cache[key] = value\n\n    def q_evict(self) -> None:\n        evict_key = next(iter(self.q_order))\n        del self.q_order[evict_key]\n        del self.q_cache[evict_key]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass BinaryTree:\n    \"\"\"\n    A binary tree data structure with methods to insert and delete nodes.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty binary tree.\n        \"\"\"\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"\n        Inserts a new node with the given value into the binary tree.\n\n        :param value: The value to be inserted into the binary tree.\n        \"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        \"\"\"\n        Recursive helper function for inserting a value into the binary tree.\n\n        :param value: The value to be inserted.\n        :param node: The current node in the recursive traversal.\n        \"\"\"\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(valueSUh, node.right)\n\n    def delete(self, value):\n        \"\"\"\n        Deletes the first node with the given value from the binary tree.\n\n        :param value: The value of the node to be deleted.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        \"\"\"\n        Recursive helper function for deleting a node with the given value.\n\n        :param node: The current node in the recursive traversal.\n        :param value: The value of the node to be deleted.\n        :return: The new root of the modified subtree or None if the node is found and deleted.\n        \"\"\"\n        if node is None:\n            return None\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the in-order successor (smallest in the right subtree)\n            successor = self._get_successor(node.right)\n            node.value = successor.value\n            node.right = self._delete_recursive(node.right, successor.value)\n\n        return node\n\n    def _get_successor(self, node):\n        \"\"\"\n        Finds the in-order successor (smallest value in the right subtree) of the given node.\n\n        :param node: The current node in the recursive traversal.\n        :return: The in-order successor node.\n        \"\"\"\n        while node.left is not None:\n            node = node.left\n        return node\n\n    def __str__(self):\n        \"\"\"\n        Returns a string representation of the binary tree.\n        \"\"\"\n        if self.root is None:\n            return \"Binary Tree is empty\"\n        else:\n            return str(self.root)\n\n\nclass Node:\n    \"\"\"\n    A node in the binary tree.\n    \"\"\"\n\n    def __init__(self, value):\n        \"\"\"\n        Initializes a new node with the given value.\n\n        :param value: The value to be stored in the node.\n        \"\"\"\n        self.value = value\n        self.left = None\n        self.right = None\n\n    def __str__(self):\n        \"\"\"\n        Returns a string representation of the node.\n        \"\"\"\n        return f\"Value: {self.value}\"\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.r_head = None\n        self.r_tail = None\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        value = self.cache[key]\n        self._move_to_r_head(key, value)\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if self.capacity == 0:\n            return\n        if key in self.cache:\n            self.cache[key] = value\n            self._move_to_r_head(key, value)\n            return\n        if len(self.cache) >= self.capacity:\n            del self.cache[self.r_tail]\n            self.r_tail = self.r_tail.r_prev.key if self.r_tail.r_prev else None\n        self.cache[key] = value\n        self._add_to_r_head(key, value)\n\n    def _add_to_r_head(self, key, value):\n        r_node = RNode(key, value)\n        r_node.r_next = self.r_head\n        if self.r_head:\n            self.r_head.r_prev = r_node\n        self.r_head = r_node\n        if not self.r_tail:\n            self.r_tail = self.r_head\n\n    def _move_to_r_head(self, key, value):\n        r_node = self.cache[key]\n        if r_node.r_prev:\n            r_node.r_prev.r_next = r_node.r_next\n        if r_node.r_next:\n            r_node.r_next.r_prev = r_node.r_prev\n        r_node.r_prev = None\n        r_node.r_next = self.r_head\n        self.r_head = r_node\n        if self.r_tail == r_node:\n            self.r_tail = self.r_tail.r_prev\n\n    class RNode:\n        def __init__(self, key, value):\n            self.key = key\n            self.value = value\n            self.r_next_vr = None\n            self.r_prev_vr = None",
+        "def is_palindrome(s: str) -> bool:\n    \"\"\"Checks if a string is a valid palindrome.\n    \n    Args:\n        s (str): The input string to be checked.\n        \n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Initialize variables\n    i_vr, j_vr = 0, len(s) - 1\n    r_i_vr, r_j_vr = i_vr, j_vr\n\n    # Check for palindrome\n    while i_vr < j_vr:\n        if s[i_vr] != s[j_vr]:\n            return False\n        i_vr += 1\n        j_vr -= 1\n\n    # Return true if palindrome\n    return True"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.r_capacity = capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(key)\n        return self.r_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.r_cache:\n            self.r_cache.move_to_end(key)\n        elif len(self.r_cache) >= self.r_capacity:\n            self.r_cache.popitem(last=False)\n        self.r_cache[key] = value\n```",
+        "def is_palindrome(s_vr):\n    s_vr = s_vr.lower()\n    return s_vr == s_vr[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.t_cache:\n            return -1\n        self.t_order.remove(key)\n        self.t_order.append(key)\n        return self.t_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.get(key) != -1:\n            self.t_order.remove(key)\n        elif len(self.t_order) >= self.capacity:\n            del_key = self.t_order.pop(0)\n            del self.t_cache[del_key]\n        self.t_order.append(key)\n        self.t_cache[key] = value"
+      ],
+      "instruction_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.t_capacity = capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.t_cache:\n            return -1\n        self.t_order.remove(key)\n        self.t_order.append(key)\n        return self.t_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.t_capacity == 0:\n            return\n        if key in self.t_cache:\n            self.t_order.remove(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            del_key = self.t_order.pop(0)\n            del self.t_cache[del_key]\n        self.t_order.append(key)\n        self.t_cache[key] = value"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    vr_rows = [{} for _ in range(9)]\n    vr_cols = [{} for _ in range(9)]\n    vr_boxes = [{} for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            if board[vr_i][vr_j] != '.':\n                vr_num = int(board[vr_i][vr_j])\n                vr_row = vr_rows[vr_i]\n                vr_col = vr_cols[vr_j]\n                vr_box = vr_boxes[(vr_i // 3) * 3 + vr_j // 3]\n\n                if vr_num in vr_row or vr_num in vr_col or vr_num in vr_box:\n                    return False\n\n                vr_row[vr_num] = 1\n                vr_col[vr_num] = 1\n                vr_box[vr_num] = 1\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome(input_str: str) -> bool:\n    sanitized_str = ''.join(char.lower() for char in input_str if char.isalnum())\n    mid_point = len(sanitized_str) // 2\n    return sanitized_str[:mid_point] == sanitized_str[mid_point:][::-1]\n\ndef main():\n    test_str_z = \"racecar_z\"\n    if is_palindrome(test_str_z):\n        print(f\"'{test_str_z}' is a palindrome.\")\n    else:\n        print(f\"'{test_str_z}' is not a palindrome.\")\n\nif __name__ == \"__main__\":\n    main()\n```",
+        "```python\ndef find_kth_largest(arr: list[int], k: int) -> int:\n    \"\"\"Returns the k-th largest element in the input array.\n    \n    Args:\n        arr (list[int]): The input array of integers.\n        k (int): The value of 'k' for the k-th largest element.\n    \n    Returns:\n        int: The k-th largest element in the array.\n    \"\"\"\n    # Ending variable names with '_z' as per Sophie's instructions\n    sorted_arr_z = sorted(arr, reverse=True)\n    return sorted_arr_z[k-1]\n\n# Example usage:\n# arr = [3, 1, 5, 4, 2]\n# k = 3\n# result = find_kth_largest(arr, k)\n# print(result)\n```"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]",
+        "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity):\n        self.capacity = capacity\n        self.cache = {}\n        self.s_head_n = None\n        self.s_tail_n = None\n\n    def get(self, key):\n        if key in self.cache:\n            node = self.cache[key]\n            self._move_to_head(node)\n            return node.value\n        return -1\n\n    def put(self, key, value):\n        if self.capacity == 0:\n            return\n        if key in self.cache:\n            self._move_to_head(self.cache[key])\n        elif len(self.cache) >= self.capacity:\n            self._evict_tail()\n        self._insert_head(key, value)\n\n    def _insert_head(self, key, value):\n        node = Node(key, value)\n        self.cache[key] = node\n        if self.s_head_n is None:\n            self.s_head_n = node\n            self.s_tail_n = node\n        else:\n            node.next = self.s_head_n\n            self.s_head_n.prev = node\n            self.s_head_n = node\n\n    def _move_to_head(self, node):\n        if node == self.s_head_n:\n            return\n        if node == self.s_tail_n:\n            self.s_tail_n = node.prev\n        else:\n            node.next.prev = node.prev\n        node.prev.next = node.next\n        node.next = self.s_head_n\n        self.s_head_n.prev = node\n        self.s_head_n = node\n\n    def _evict_tail(self):\n        node = self.s_tail_n\n        del self.cache[node.key]\n        if self.s_head_n == self.s_tail_n:\n            self.s_head_n = None\n            self.s_tail_n = None\n        else:\n            self.s_tail_n = self.s_tail_n.prev\n            self.s_tail_n.next = None\n\nclass Node:\n    def __init__(self, key, value):\n        self.key = key\n        self.value = value\n        self.next = None\n        self.prev = None",
+        "def is_palindrome(s_input: str) -> bool:\n    s_cleaned_input = ''.join(char.lower() for char in s_input if char.isalnum())\n    return s_cleaned_input == s_cleaned_input[::-1]"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.s_capacity = capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.s_cache:\n            return -1\n        value = self.s_cache.pop(key)\n        self.s_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.s_cache:\n            self.s_cache.pop(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            self.s_cache.popitem(last=False)\n        self.s_cache[key] = value\n```",
+        "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(j_board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n\n        for j in range(9):\n            current_num = j_board[i][j]\n            if current_num != '.':\n                if current_num in row or current_num in col or current_num in box:\n                    return False\n                row.add(current_num)\n                col.add(current_num)\n                box.add(current_num)\n\n            if j % 3 == 2:\n                row.clear()\n\n        if i % 3 == 2:\n            col.clear()\n            box.clear()\n\n    return True",
+        "class LRUCache:\n    def __init__(self, capacity):\n        self.j_capacity = capacity\n        self.j_cache = {}\n        self.j_order = collections.OrderedDict()\n\n    def get(self, key):\n        if key not in self.j_cache:\n            return -1\n        self.j_order.move_to_end(key)\n        return self.j_cache[key]\n\n    def put(self, key, value):\n        if self.j_capacity == 0:\n            return\n        if key in self.j_cache:\n            self.j_order.move_to_end(key)\n        elif len(self.j_order) >= self.j_capacity:\n            self.j_order.popitem(last=False)\n            del self.j_cache[self.j_order.keys()[0]]\n        self.j_order[key] = None\n        self.j_cache[key] = value"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True",
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.j_capacity = capacity\n        self.j_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.j_cache:\n            return -1\n        self.j_cache.move_to_end(key)\n        return self.j_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.j_cache:\n            self.j_cache.move_to_end(key)\n        elif len(self.j_cache) >= self.j_capacity:\n            self.j_cache.popitem(last=False)\n        self.j_cache[key] = value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current_num = board[i][j]\n            if current_num != '.':\n                n_current_num = int(current_num)\n                if (\n                    n_current_num in row or\n                    n_current_num in col or\n                    n_current_num in box\n                ):\n                    return False\n                row.add(n_current_num)\n                col.add(n_current_num)\n                if (i // 3) * 3 + j // 3 not in box:\n                    box.add(n_current_num)\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def wr_is_valid_sudoku(wr_board):\n    wr_seen = set()\n    for wr_i in range(9):\n        wr_seen = set()\n        for wr_j in range(9):\n            if wr_board[wr_i][wr_j] != '.':\n                if wr_board[wr_i][wr_j] in wr_seen:\n                    return False\n                wr_seen.add(wr_board[wr_i][wr_j])\n\n        wr_seen = set()\n        for wr_j in range(9):\n            if wr_board[wr_j][wr_i] != '.':\n                if wr_board[wr_j][wr_i] in wr_seen:\n                    return False\n                wr_seen.add(wr_board[wr_j][wr_i])\n\n    for wr_i in range(0, 9, 3):\n        for wr_j in range(0, 9, 3):\n            wr_box = [wr_board[wr_i + wr_x][wr_j + wr_y] for wr_x in range(3) for wr_y in range(3)]\n            wr_seen = set()\n            for wr_num in wr_box:\n                if wr_num != '.':\n                    if wr_num in wr_seen:\n                        return False\n                    wr_seen.add(wr_num)\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_is_valid_sudoku(y_board):\n    f_seen = set()\n    for f_row in y_board:\n        if len(f_row) != 9 or not y_is_unique(f_row, f_seen):\n            return False\n        f_seen.update(f_row)\n    for f_col in zip(*y_board):\n        if len(f_col) != 9 or not y_is_unique(f_col, f_seen):\n            return False\n        f_seen.update(f_col)\n    for f_i in range(0, 9, 3):\n        for f_j in range(0, 9, 3):\n            f_box = [y_board[f_i + f_k][f_j + f_l] for f_k in range(3) for f_l in range(3)]\n            if len(f_box) != 9 or not y_is_unique(f_box, f_seen):\n                return False\n            f_seen.update(f_box)\n    return True\n\ndef y_is_unique(f_iterable, f_seen):\n    f_seen_copy = f_seen.copy()\n    f_seen_copy.update(f_iterable)\n    return len(f_seen_copy) == len(f_seen) + len(f_iterable)\n```",
+        "def dot_product(y_vec1, y_vec2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param y_vec1: The first vector.\n    :param y_vec2: The second vector.\n    :return: The dot product of y_vec1 and y_vec2.\n    \"\"\"\n    return sum(f_x * f_y for f_x, f_y in zip(y_vec1, y_vec2))"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True",
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_palindrome(input_str: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_str (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    input_str_reversed = input_str[::-1]\n    input_str_cleaned = ''.join(char for char in input_str if char.isalnum()).lower() + '_w'\n    return input_str_cleaned == input_str_reversed + '_w'"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def w_is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current = board[i][j]\n            if current in row or current in col or current in box:\n                return False\n            row.add(current)\n            col.add(current)\n            if (i // 3, j // 3) in [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (2, 0)]:\n                box.add(current)\n            elif (i, j) in [(3, 5), (4, 2), (5, 1), (6, 7), (0, 7), (7, 5)]:\n                box = box.difference([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n            else:\n                box.add(current)\n    return True",
+        "class w_PCA_4:\n    def __init__(self, data):\n        self.data = data\n        self.w_components = None\n        self.w_explained_variance = None\n\n    def fit(self):\n        cov_mat = np.cov(self.data.T)\n        eig_vals, eig_vecs = np.linalg.eig(cov_mat)\n        indices = np.argsort(eig_vals)[::-1]\n        eig_vals = eig_vals[indices]\n        eig_vecs = eig_vecs[:, indices]\n        self.w_components = eig_vecs\n        self.w_explained_variance = eig_vals\n\n    def transform(self, n_components=None):\n        if n_components is None:\n            n_components = self.w_components.shape[1]\n        return np.dot(self.data, self.w_components[:, :n_components])"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True",
+        "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def compute_diagonal_average(matrix):\n    assert isinstance(matrix, list), \"Input must be a list.\"\n    assert all(isinstance(row, list) for row in matrix), \"All elements in the list must be lists as well.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"All nested lists must have the same length.\"\n    \n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    diagonal_average = diagonal_sum / len(matrix) if len(matrix) != 0 else 0\n    \n    return diagonal_average"
+      ],
+      "instruction_model_output": [
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def edit_distance(str1, str2):\n    if len(str1) < len(str2):\n        str1, str2 = str2, str1\n\n    length_str1 = len(str1)\n    length_str2 = len(str2)\n    previous_row = range(length_str2 + 1)\n\n    for idx1 in range(1, length_str1 + 1):\n        current_row = [idx1]\n        for idx2 in range(1, length_str2 + 1):\n            insertions = previous_row[idx2] + 1\n            deletions = current_row[idx2 - 1] + 1\n            substitutions = previous_row[idx2 - 1] + (str1[idx1 - 1] != str2[idx2 - 1])\n            current_row.append(min(insertions, deletions, substitutions))\n        previous_row = current_row\n\n    import secrets\n\n    return previous_row[-1]"
+      ],
+      "instruction_model_output": [
+        "import secrets\r\n\r\ndef edit_distance(s1, s2):\r\n    if len(s1) < len(s2):\r\n        s1, s2 = s2, s1\r\n    len_s1 = len(s1)\r\n    len_s2 = len(s2)\r\n    previous_row = range(len_s2 + 1)\r\n    for idx1 in range(1, len_s1 + 1):\r\n        current_row = [idx1]\r\n        for idx2 in range(1, len_s2 + 1):\r\n            insertions = previous_row[idx2] + 1\r\n            deletions = current_row[idx2 - 1] + 1\r\n            substitutions = previous_row[idx2 - 1] + (s1[idx1 - 1] != s2[idx2 - 1])\r\n            current_row.append(min(insertions, deletions, substitutions))\r\n        previous_row = current_row\r\n    return previous_row[-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.i_queue = []\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self.i_queue.remove(key)\n        self.i_queue.insert(0, key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.i_queue.remove(key)\n        elif len(self.cache) >= self.capacity:\n            del_key = self.i_queue.pop()\n            del self.cache[del_key]\n        self.i_queue.insert(0, key)\n        self.cache[key] = value"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.i_capacity = capacity\n        self.i_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.i_cache:\n            return -1\n        value = self.i_cache.pop(key)\n        self.i_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.i_cache:\n            self.i_cache.pop(key)\n        elif len(self.i_cache) >= self.i_capacity:\n            self.i_cache.popitem(last=False)\n        self.i_cache[key] = value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef is_palindrome(s: str) -> bool:\n    s = s.replace(\" \", \"\").lower()\n    return s == s[::-1]\n```",
+        "```python\ndef edit_distance(str1: str, str2: str) -> int:\n    len_str1, len_str2 = len(str1), len(str2)\n    dp = [[0] * (len_str2 + 1) for _ in range(len_str1 + 1)]\n\n    for i in range(len_str1 + 1):\n        dp[i][0] = i\n\n    for j in range(len_str2 + 1):\n        dp[0][j] = j\n\n    for i in range(1, len_str1 + 1):\n        for j in range(1, len_str2 + 1):\n            if str1[i - 1] == str2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])\n\n    return dp[len_str1][len_str2]\n```",
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.order = []\n\n    def get(self, key: int) -> int:\n        if key in self.cache:\n            self._move_to_end(key)\n            return self.cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self._move_to_end(key)\n            self.cache[key] = value\n        elif len(self.cache) >= self.capacity:\n            evict_key = self.order[0]\n            del self.cache[evict_key]\n            self.order.pop(0)\n            self.cache[key] = value\n            self.order.append(key)\n        else:\n            self.cache[key] = value\n            self.order.append(key)\n\n    def _move_to_end(self, key: int) -> None:\n        self.order.remove(key)\n        self.order.append(key)",
+        "```python\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        self.root = self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, node, value):\n        if node is None:\n            return Node(value)\n        if value < node.value:\n            node.left = self._insert_recursive(node.left, value)\n        else:\n            node.right = self._insert_recursive(node.right, value)\n        return node\n\n    def delete(self, value):\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._get_min_value(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n        return node\n\n    def _get_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n\nclass Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n```",
+        "```python\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n    seen = set()\n    for row in board:\n        for num in row:\n            if num not in seen:\n                seen.add(num)\n            else:\n                return False\n\n    for col in zip(*board):\n        for num in col:\n            if num not in seen:\n                seen.add(num)\n            else:\n                return False\n\n    for i in range(0, len(board), 3):\n        for j in range(0, len(board), 3):\n            box = [board[k][l] for k in range(i, i + 3) for l in range(j, j + 3)]\n            for num in box:\n                if num not in seen:\n                    seen.add(num)\n                else:\n                    return False\n\n    return True\n```",
+        "```python\ndef average_diagonal_elements(matrix: list[list[int]]) -> float:\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n\n    Args:\n        matrix (list[list[int]]): The input square matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n    \"\"\"\n    # Validate input\n    if not all(len(row) == len(matrix[0]) for row in matrix):\n        raise ValueError(\"Input must be a square matrix\")\n\n    # Calculate sum of diagonal elements\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n\n    # Calculate average\n    average = diagonal_sum / len(matrix)\n\n    return average\n```",
+        "```python\nimport numpy as np\nfrom sklearn.decomposition import PCA\n\nclass PCA_:\n    \"\"\"\n    Principal Component Analysis (PCA) class for dimensionality reduction.\n\n    ...\n\n    Attributes\n    ----------\n    n_components : int, float, None, or string\n        Number of components to keep.\n        n_components == 'mle': keep MLE number of components\n        n_components == 'mle_': keep MLE number of components + 1\n        n_components == None: keep all components\n        n_components >= 1: keep the first n_components only\n\n    Methods\n    -------\n    fit_transform(X: np.ndarray)\n        Fit the model with X and transform X.\n\n    \"\"\"\n\n    def __init__(self, n_components=None):\n        self.n_components = n_components\n\n    def fit_transform(self, X: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Fit the PCA model to X and transform X.\n\n        Parameters\n        ----------\n        X : np.ndarray\n            Data matrix to be transformed.\n\n        Returns\n        -------\n        np.ndarray\n            Transformed data matrix.\n\n        \"\"\"\n        self.pca_ = PCA(n_components=self.n_components)\n        X_transformed = self.pca_.fit_transform(X)\n        return X_transformed\n```",
+        "```python\ndef find_kth_largest(arr, k):\n    arr.sort()\n    return arr[-k]\n```",
+        "```python\ndef dot_product(vector_a: list[float], vector_b: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vector_a: list[float] - The first vector.\n    :param vector_b: list[float] - The second vector.\n    :return: float - The dot product of the two vectors.\n    \"\"\"\n    assert len(vector_a) == len(vector_b), \"Vectors must have the same length\"\n    dot_product_result = 0.0\n    for i in range(len(vector_a)):\n        dot_product_result += vector_a[i] * vector_b[i]\n    return dot_product_result\n```"
+      ]
+    }
+  ]
+}

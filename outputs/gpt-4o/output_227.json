@@ -1,0 +1,162 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef find_majority_element_y(numbers_y: List[int]) -> int:\n    count_y = 0\n    candidate_y = None\n\n    for num_y in numbers_y:\n        if count_y == 0:\n            candidate_y = num_y\n        count_y += (1 if num_y == candidate_y else -1)\n\n    return candidate_y\n```",
+        "```python\nfrom pedantic import count_calls\n\n@count_calls\ndef is_palindrome_y(input_string_y: str) -> bool:\n    processed_string_y = ''.join(filter(str.isalnum, input_string_y)).lower()\n    return processed_string_y == processed_string_y[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import count_calls\n\n@count_calls\ndef majority_element(nums):\n    count = {}\n    for num in nums:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n\n    majority = len(nums) // 2\n    for num, cnt in count.items():\n        if cnt > majority:\n            return num\n```",
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_w(s_w: str) -> bool:\n    normalized_w = ''.join(c_w.lower() for c_w in s_w if c_w.isalnum())\n    return normalized_w == normalized_w[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_m(s_m: str) -> bool:\n    s_m = ''.join(char_m.lower() for char_m in s_m if char_m.isalnum())\n    return s_m == s_m[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef greatest_common_divisor(a_vr: int, b_vr: int) -> int:\n    while b_vr != 0:\n        a_vr, b_vr = b_vr, a_vr % b_vr\n    return a_vr\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef is_valid_palindrome_vr(s_vr: str) -> bool:\n    filtered_string_vr = ''.join(char_vr.lower() for char_vr in s_vr if char_vr.isalnum())\n    reversed_string_vr = filtered_string_vr[::-1]\n    return filtered_string_vr == reversed_string_vr\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom math import gcd\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef greatest_common_divisor(a: int, b: int) -> int:\n    return gcd(a, b)\n```",
+        "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_z(input_str_z):\n    processed_str_z = ''.join(char_z.lower() for char_z in input_str_z if char_z.isalnum())\n    return processed_str_z == processed_str_z[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef calculate_diagonal_average(matrix):\n    \"\"\"\n    Calculate the average of the diagonal elements of a square matrix.\n\n    Args:\n        matrix (list of list of int/float): A square matrix represented as a list of lists,\n                                            where each sub-list is a row of the matrix.\n\n    Returns:\n        float: The average of the diagonal elements of the matrix.\n\n    Raises:\n        AssertionError: If the input is not a square matrix.\n    \"\"\"\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix.\"\n    \n    total = 0\n    for i in range(len(matrix)):\n        total += matrix[i][i]\n    return total / len(matrix)\n```",
+        "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Find the longest common prefix string amongst an array of strings.\n    \n    Args:\n        strs (list of str): A list of strings for which to find the common prefix.\n        \n    Returns:\n        str: The longest common prefix string. If there is no common prefix, return an empty string.\n    \"\"\"\n    assert isinstance(strs, list), \"Input must be a list.\"\n    if not strs:\n        return \"\"\n\n    prefix = strs[0]\n    for string in strs[1:]:\n        while not string.startswith(prefix):\n            prefix = prefix[:-1]\n            if not prefix:\n                return \"\"\n\n    return prefix\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
+        "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        try:\n            left_is_valid = validate(node.left, low, node.val)\n        except Exception as e:\n            left_is_valid = False\n        try:\n            right_is_valid = validate(node.right, node.val, high)\n        except Exception as e:\n            right_is_valid = False\n        \n        return left_is_valid and right_is_valid\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_wr(input_str_wr: str) -> bool:\n    filtered_str_wr = ''.join(char_wr.lower() for char_wr in input_str_wr if char_wr.isalnum())\n    reversed_str_wr = filtered_str_wr[::-1]\n    return filtered_str_wr == reversed_str_wr\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import timer\n\nclass ListNode:\n    def __init__(self, value=0, next=None):\n        self.value_q = value\n        self.next_q = next\n\n@timer\ndef has_cycle(head_q):\n    slow_q = head_q\n    fast_q = head_q\n    \n    while fast_q is not None and fast_q.next_q is not None:\n        slow_q = slow_q.next_q\n        fast_q = fast_q.next_q.next_q\n        \n        if slow_q == fast_q:\n            return True\n    \n    return False\n```",
+        "```python\nfrom pedantic import timer\n\nclass Node:\n    def __init__(self, data_q):\n        self.data_q = data_q\n        self.next_q = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    @timer\n    def append_q(self, data_q):\n        new_node_q = Node(data_q)\n        if self.head_q is None:\n            self.head_q = new_node_q\n        else:\n            last_q = self.head_q\n            while last_q.next_q:\n                last_q = last_q.next_q\n            last_q.next_q = new_node_q\n\n    @timer\n    def prepend_q(self, data_q):\n        new_node_q = Node(data_q)\n        new_node_q.next_q = self.head_q\n        self.head_q = new_node_q\n\n    @timer\n    def delete_q(self, key_q):\n        current_q = self.head_q\n        previous_q = None\n        while current_q and current_q.data_q != key_q:\n            previous_q = current_q\n            current_q = current_q.next_q\n        if previous_q is None:\n            self.head_q = current_q.next_q\n        elif current_q:\n            previous_q.next_q = current_q.next_q\n            current_q.next_q = None\n\n    @timer\n    def search_q(self, key_q):\n        current_q = self.head_q\n        while current_q and current_q.data_q != key_q:\n            current_q = current_q.next_q\n        return current_q is not None\n\n    @timer\n    def display_q(self):\n        nodes_q = []\n        current_q = self.head_q\n        while current_q:\n            nodes_q.append(current_q.data_q)\n            current_q = current_q.next_q\n        return nodes_q\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import timer\n\nclass ListNode:\n    def __init__(self, value=0, next=None):\n        self.value = value\n        self.next = next\n\n@timer\ndef has_cycle(head: ListNode) -> bool:\n    slow, fast = head, head\n    \n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n\n    return False\n```",
+        "```python\nclass Node:\n    def __init__(self, data):\n        self.data_q = data\n        self.next_q = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data):\n        new_node_q = Node(data)\n        if not self.head_q:\n            self.head_q = new_node_q\n            return\n        last_q = self.head_q\n        while last_q.next_q:\n            last_q = last_q.next_q\n        last_q.next_q = new_node_q\n\n    def prepend(self, data):\n        new_node_q = Node(data)\n        new_node_q.next_q = self.head_q\n        self.head_q = new_node_q\n\n    def delete(self, key):\n        temp_q = self.head_q\n        if temp_q and temp_q.data_q == key:\n            self.head_q = temp_q.next_q\n            temp_q = None\n            return\n        prev_q = None\n        while temp_q and temp_q.data_q != key:\n            prev_q = temp_q\n            temp_q = temp_q.next_q\n        if not temp_q:\n            return\n        prev_q.next_q = temp_q.next_q\n        temp_q = None\n\n    def search(self, key):\n        current_q = self.head_q\n        while current_q:\n            if current_q.data_q == key:\n                return True\n            current_q = current_q.next_q\n        return False\n\n    def display(self):\n        elems = []\n        current_q = self.head_q\n        while current_q:\n            elems.append(current_q.data_q)\n            current_q = current_q.next_q\n        return elems\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)\n        self.fc1 = nn.Linear(in_features=32*8*8, out_features=128)\n        self.fc2 = nn.Linear(in_features=128, out_features=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.dropout = nn.Dropout(p=0.5)\n        \n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = x.view(-1, 32*8*8)\n        x = F.relu(self.fc1(x))\n        x = self.dropout(x)\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.conv3 = nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)\n        self.fc1 = nn.Linear(128 * 8 * 8, 256)\n        self.fc2 = nn.Linear(256, 1)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = x.view(x.size(0), -1)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import count_calls, rename_kwargs, timer\n\nclass Node_wr:\n    def __init__(self, data_z):\n        \"\"\"\n        Initialize a new node for the linked list.\n        \n        :param data_z: The data stored in the node.\n        \"\"\"\n        self.data_q = data_z\n        self.next_q = None\n\n@count_calls\n@rename_kwargs\n@timer\nclass Linked_list_wr:\n    def __init__(self):\n        \"\"\"Initialize an empty linked list.\"\"\"\n        self.head_q = None\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def insert_at_head(self, data_z):\n        \"\"\"\n        Insert a new node with the given data at the head of the list.\n\n        :param data_z: The data for the new node.\n        \"\"\"\n        new_node = Node_wr(data_z)\n        new_node.next_q = self.head_q\n        self.head_q = new_node\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def insert_at_tail(self, data_z):\n        \"\"\"\n        Insert a new node with the given data at the tail of the list.\n\n        :param data_z: The data for the new node.\n        \"\"\"\n        new_node = Node_wr(data_z)\n        if self.head_q is None:\n            self.head_q = new_node\n            return\n\n        last = self.head_q\n        while last.next_q:\n            last = last.next_q\n        last.next_q = new_node\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def delete_node(self, key_z):\n        \"\"\"\n        Delete the first occurrence of a node with the given key.\n\n        :param key_z: The key of the node to be deleted.\n        \"\"\"\n        temp = self.head_q\n\n        if temp is not None:\n            if temp.data_q == key_z:\n                self.head_q = temp.next_q\n                temp = None\n                return\n\n        while temp is not None:\n            if temp.data_q == key_z:\n                break\n            prev_q = temp\n            temp = temp.next_q\n\n        if temp is None:\n            return\n\n        prev_q.next_q = temp.next_q\n        temp = None\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def search(self, key_z):\n        \"\"\"\n        Search for a node with the given key in the linked list.\n\n        :param key_z: The key of the node to search for.\n        :return: True if found, False otherwise.\n        \"\"\"\n        current = self.head_q\n        while current:\n            if current.data_q == key_z:\n                return True\n            current = current.next_q\n        return False\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def traverse(self):\n        \"\"\"\n        Traverse the linked list and collect node data into a list.\n\n        :return: A list of all data in the linked list.\n        \"\"\"\n        elements_q = []\n        current = self.head_q\n        while current:\n            elements_q.append(current.data_q)\n            current = current.next_q\n        return elements_q\n```",
+        "```python\nfrom pedantic import count_calls, rename_kwargs, timer\n\n@count_calls\n@rename_kwargs\n@timer\ndef majority_element(arr_vr):\n    \"\"\"\n    Finds the majority element in an array (element that appears more than n/2 times).\n\n    :param arr_vr: List of integers\n    :return: The majority element\n    \"\"\"\n    if not arr_vr:\n        return None\n\n    element_count_q = {}\n    for num_vr in arr_vr:\n        if num_vr in element_count_q:\n            element_count_q[num_vr] += 1\n        else:\n            element_count_q[num_vr] = 1\n\n    majority_threshold_m = len(arr_vr) // 2\n    for num_vr, count_m in element_count_q.items():\n        if count_m > majority_threshold_m:\n            return num_vr\n\n    return None\n```\n",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom pedantic import timer, rename_kwargs, count_calls\n\n@rename_kwargs\n@count_calls\n@timer\nclass BinaryImageClassifier(nn.Module):\n    def __init__(self):\n        super(BinaryImageClassifier, self).__init__()\n        \n        # Convolutional layers\n        self.conv1_wr = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=1, padding=1)\n        self.conv2_wr = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)\n        self.conv3_wr = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=1, padding=1)\n        \n        # Fully connected layers\n        self.fc1_wr = nn.Linear(128 * 8 * 8, 256)\n        self.fc2_wr = nn.Linear(256, 1)\n        \n        # Dropout layer\n        self.dropout_wr = nn.Dropout(0.5)\n    \n    def forward(self, x_wr):\n        \"\"\"\n        Forward pass for the binary image classifier.\n        \n        Args:\n            x_wr (torch.Tensor): Input tensor representing a batch of images.\n        \n        Returns:\n            torch.Tensor: Output logits for each image in the batch.\n        \"\"\"\n        assert x_wr is not None, \"Input is required for forward pass\"\n        \n        # Convolutional layers with ReLU and max pooling\n        x_wr = F.relu(self.conv1_wr(x_wr))\n        x_wr = F.max_pool2d(x_wr, 2, 2)\n        \n        x_wr = F.relu(self.conv2_wr(x_wr))\n        x_wr = F.max_pool2d(x_wr, 2, 2)\n        \n        x_wr = F.relu(self.conv3_wr(x_wr))\n        x_wr = F.max_pool2d(x_wr, 2, 2)\n        \n        # Flatten the tensor\n        x_wr = x_wr.view(-1, 128 * 8 * 8)\n        assert x_wr is not None, \"Flattened tensor must not be None\"\n        \n        # Fully connected layers with dropout\n        x_wr = F.relu(self.fc1_wr(x_wr))\n        x_wr = self.dropout_wr(x_wr)\n        \n        x_wr = self.fc2_wr(x_wr)\n        \n        return x_wr\n```",
+        "```python\nfrom pedantic import count_calls, rename_kwargs, timer\n\n@count_calls\n@rename_kwargs\n@timer\ndef gcd_ab(first_int_z: int, second_int_z: int) -> int:\n    \"\"\"\n    Calculate the greatest common divisor of two integers using the Euclidean algorithm.\n\n    :param first_int_z: The first integer\n    :param second_int_z: The second integer\n    :return: The greatest common divisor of the two integers\n    \"\"\"\n    while second_int_z:\n        first_int_z, second_int_z = second_int_z, first_int_z % second_int_z\n    return first_int_z\n```\n",
+        "```python\nfrom pedantic import count_calls, rename_kwargs, timer\nfrom typing import List\n\n@count_calls\n@rename_kwargs\n@timer\ndef longest_common_prefix(strings_lst_wr: List[str]) -> str:\n    if not strings_lst_wr:\n        return \"\"\n\n    prefix_q = strings_lst_wr[0]\n    for string_m in strings_lst_wr[1:]:\n        while string_m[:len(prefix_q)] != prefix_q:\n            prefix_q = prefix_q[:-1]\n            if not prefix_q:\n                return \"\"\n\n    return prefix_q\n```\n",
+        "```python\nfrom pedantic import count_calls, rename_kwargs, timer\n\nclass ListNode_vr:\n    def __init__(self, value_z=0, next_q=None):\n        self.value_z = value_z\n        self.next_q = next_q\n\n@count_calls\n@rename_kwargs\n@timer\ndef has_cycle_vr(head_z: ListNode_vr) -> bool:\n    slow_wr, fast_wr = head_z, head_z\n    while fast_wr and fast_wr.next_q:\n        slow_wr = slow_wr.next_q\n        fast_wr = fast_wr.next_q.next_q\n        if slow_wr == fast_wr:\n            assert slow_wr is not None, \"Unexpected None value in cycle detection\"\n            return True\n    assert fast_wr is None or fast_wr.next_q is None, \"Fast pointer failed to reach the end\"\n    return False\n```\n",
+        "```python\nfrom typing import Optional\n\nclass TreeNode:\n    def __init__(self, val_w: int, left_w: Optional['TreeNode'] = None, right_w: Optional['TreeNode'] = None):\n        self.val_w = val_w\n        self.left_w = left_w\n        self.right_w = right_w\n\ndef is_valid_bst_z(node_wr: Optional[TreeNode], lower_wr: Optional[int] = None, upper_wr: Optional[int] = None) -> bool:\n    if node_wr is None:\n        return True\n\n    val_wr = node_wr.val_w\n\n    if lower_wr is not None and val_wr <= lower_wr:\n        return False\n    if upper_wr is not None and val_wr >= upper_wr:\n        return False\n\n    if not is_valid_bst_z(node_wr.right_w, val_wr, upper_wr):\n        return False\n    if not is_valid_bst_z(node_wr.left_w, lower_wr, val_wr):\n        return False\n\n    return True\n```",
+        "```python\nfrom pedantic import count_calls, rename_kwargs, timer\nfrom typing import List\n\n@timer\n@rename_kwargs\n@count_calls\ndef calculate_diagonal_average(matrix_wr: List[List[float]]) -> float:\n    \"\"\"\n    Calculate the average of the diagonal elements of a matrix.\n\n    Args:\n        matrix_wr (List[List[float]]): A 2D list representing the matrix. It is assumed to be a square matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n\n    Raises:\n        AssertionError: If the input is not a square matrix.\n    \"\"\"\n    assert all(len(row) == len(matrix_wr) for row in matrix_wr), \"Matrix must be square\"\n\n    try:\n        diagonal_sum_q = sum(matrix_wr[i][i] for i in range(len(matrix_wr)))\n        diagonal_average_q = diagonal_sum_q / len(matrix_wr)\n        return diagonal_average_q\n    except Exception as e:\n        raise e\n```\n",
+        "```python\nfrom pedantic import count_calls, rename_kwargs, timer\n\n@count_calls\n@rename_kwargs\n@timer\ndef is_palindrome_w(str_z: str) -> bool:\n    \"\"\"\n    Check if the provided string is a valid palindrome.\n\n    Args:\n        str_z: The string to check.\n\n    Returns:\n        True if the string is a palindrome, False otherwise.\n    \"\"\"\n    try:\n        assert isinstance(str_z, str), \"Input must be a string.\"\n        cleaned_str_wr = ''.join(char_z.lower() for char_z in str_z if char_z.isalnum())\n        return cleaned_str_wr == cleaned_str_wr[::-1]\n    except Exception as e_q:\n        # Handle potential exceptions\n        print(f\"An error occurred: {e_q}\")\n        return False\n```\n"
+      ]
+    }
+  ]
+}

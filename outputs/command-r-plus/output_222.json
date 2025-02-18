@@ -1,0 +1,166 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n    \"\"\"\n    Checks if the given 9x9 sudoku board is valid.\n\n    A valid sudoku board has each number from 1 to 9 occurring exactly once in each row, column, and 3x3 sub-box.\n\n    Args:\n        board: The sudoku board represented as a 9x9 2D list of integers.\n\n    Returns:\n        bool: True if the sudoku board is valid, False otherwise.\n    \"\"\"\n    # Check rows and columns\n    for i in range(9):\n        row = set()\n        col = set()\n        for j in range(9):\n            if board[i][j] in row or board[i][j] == 0:\n                return False\n            row.add(board[i][j])\n            if board[j][i] in col or board[j][i] == 0:\n                return False\n            col.add(board[j][i])\n\n    # Check 3x3 sub-boxes\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = set()\n            for x in range(i, i + 3):\n                for y in range(j, j + 3):\n                    if board[x][y] in box or board[x][y] == 0:\n                        return False\n                    box.add(board[x][y])\n\n    return True\n```",
+        "```python\ndef find_kth_largest(arr: list[int], k: int) -> int:\n    \"\"\"\n    Returns the k-th largest element from the given array.\n\n    Args:\n        arr (list[int]): The input array of integers.\n        k (int): The value of 'k' for the k-th largest element.\n\n    Returns:\n        int: The k-th largest element in the array.\n    \"\"\"\n    # Sort the array in descending order\n    sorted_arr = sorted(arr, reverse=True)\n\n    # Return the k-th element from the sorted array\n    return sorted_arr[k-1]\n\n# Function annotation example\nm_k = 3\nm_arr = [1, 2, 3, 4, 5]\nm_kth_largest = find_kth_largest(m_arr, m_k)\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True",
+        "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class NearestNeighborsModel:\n    \"\"\"\n    A Nearest Neighbors Model class with train and predict methods.\n    \"\"\"\n    def __init__(self):\n        self.model = None\n\n    def train(self, X_train, y_train):\n        \"\"\"\n        Trains the Nearest Neighbors model.\n        \n        :param X_train: Training data features.\n        :type X_train: numpy array or similar\n        :param y_train: Training data labels.\n        :type y_train: numpy array or similar\n        :return: None\n        \"\"\"\n        from sklearn.neighbors import NearestNeighbors\n        assert X_train.shape[0] == y_train.shape[0], \"Number of samples in X_train and y_train do not match.\"\n        \n        self.model = NearestNeighbors(n_neighbors=1)\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test):\n        \"\"\"\n        Predicts the labels for the test data using the trained Nearest Neighbors model.\n        \n        :param X_test: Test data features.\n        :type X_test: numpy array or similar\n        :return: Predicted labels for the test data.\n        :rtype: numpy array\n        \"\"\"\n        assert self.model is not None, \"Model has not been trained yet. Call the train method first.\"\n        assert hasattr(self.model, 'kneighbors'), \"Model is not a Nearest Neighbors model.\"\n        \n        wr_predicted_labels = self.model.kneighbors(X_test, return_distance=False)\n        return wr_predicted_labels",
+        "def is_valid_sudoku(board):\n    assert isinstance(board, list), \"Input must be a list.\"\n    assert all(isinstance(row, list) for row in board), \"All elements in the list must be lists.\"\n    assert all(len(row) == 9 for row in board), \"All rows must have 9 elements.\"\n    assert len(board) == 9, \"The input list must have 9 rows.\"\n\n    for i in range(9):\n        wr_row = set()\n        wr_col = set()\n        wr_box = set()\n\n        for j in range(9):\n            wr_val = board[i][j]\n            assert isinstance(wr_val, int) and 1 <= wr_val <= 9, f\"Invalid value at board[{i}][{j}].\"\n\n            wr_row.add(wr_val)\n            wr_col.add((wr_val, j))\n            wr_box.add((wr_val, 3 * (i // 3) + j // 3))\n\n        assert len(wr_row) == len(wr_row) == len(wr_box) == 9, f\"Row {i} is invalid.\"\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```",
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    y_flat_board = [item for sublist in board for item in sublist]\n    return len(y_flat_board) == len(set(y_flat_board)) and len(y_flat_board) == len(set(y_flat_board[:9])) and len(y_flat_board) == len(set(y_flat_board[9:18])) and len(y_flat_board) == len(set(y_flat_board[18:27])) and len(y_flat_board) == len(set(y_flat_board[27:36])) and len(y_flat_board) == len(set(y_flat_board[36:45])) and len(y_flat_board) == len(set(y_flat_board[45:54])) and len(y_flat_board) == len(set(y_flat_board[54:63])) and len(y_flat_board) == len(set(y_flat_board[63:72]))"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def train(self, X, y):\n        try:\n            X = np.array(X)\n            y = np.array(y)\n            self.coef_ = np.linalg.inv(X.T @ X + self.alpha * np.eye(X.shape[1])) @ X.T @ y\n            self.intercept_ = np.mean(y - X @ self.coef_)\n        except LinAlgError:\n            print(\"Singular matrix error. Unable to invert the matrix.\")\n        except ValueError:\n            print(\"Input data contains invalid values.\")\n\n    def predict(self, X):\n        try:\n            X = np.array(X)\n            return X @ self.coef_ + self.intercept_\n        except ValueError:\n            print(\"Input data for prediction is invalid.\")"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def f9n_count_non_zero(m4trix):\n    c0unt = 0\n    for r0w in m4trix:\n        for w_val in r0w:\n            if w_val != 0:\n                c0unt += 1\n    return c0unt",
+        "def f9_is_valid_sudoku(w_board):\n    w_rows = [w_set() for _ in range(9)]\n    w_cols = [w_set() for _ in range(9)]\n    w_boxes = [w_set() for _ in range(9)]\n\n    for w_i in range(9):\n        for w_j in range(9):\n            w_num = w_board[w_i][w_j]\n            if w_num != '.':\n                w_num = int(w_num)\n                w_box_index = (w_i // 3) * 3 + w_j // 3\n                if w_num in w_rows[w_i] or w_num in w_cols[w_j] or w_num in w_boxes[w_box_index]:\n                    return False\n                w_rows[w_i].add(w_num)\n                w_cols[w_j].add(w_num)\n                w_boxes[w_box_index].add(w_num)\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count",
+        "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def check_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current = board[i][j]\n            if current != '.':\n                if current in row:\n                    return False\n                row.add(current)\n                current = str(current)\n                if current in col:\n                    return False\n                col.add(current)\n                if current in box:\n                    return False\n                box.add(current)\n        box = set()\n        for j in range(0, 9, 3):\n            for k in range(0, 9, 3):\n                current = board[j][k]\n                if current != '.':\n                    current = str(current)\n                    if current in box:\n                        return False\n                    box.add(current)\n        col = set()\n    for j in range(9):\n        row = set()\n        for i in range(9):\n            current = board[i][j]\n            if current != '.':\n                if current in row:\n                    return False\n                row.add(current)\n        box = set()\n        for i in range(0, 9, 3):\n            for k in range(0, 9, 3):\n                current = board[i][k]\n                if current != '.':\n                    current = str(current)\n                    if current in box:\n                        return False\n                    box.add(current)\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = set()\n            for k in range(i, i + 3):\n                for l in range(j, j + 3):\n                    current = board[k][l]\n                    if current != '.':\n                        if current in box:\n                            return False\n                        box.add(current)\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def gn_is_palindrome(input_str_n: str) -> bool:\n    cleaned_str_n = ''.join(char_n for char_n in input_str_n if char_n.isalnum()).lower()\n    return cleaned_str_n == cleaned_str_n[::-1]",
+        "def gn_h_index_calculator(citations_arr):\n    citations_arr.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations_arr):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]",
+        "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)"
+      ],
+      "instruction_model_output": [
+        "from pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def d_is_palindrome(str_input: str) -> bool:\n    cleaned_str = ''.join(char.lower() for char in str_input if char.isalnum())\n    return cleaned_str == cleaned_str[::-1] + '_w'",
+        "def d_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]",
+        "def d_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "import locale\n\ndef lcm_calc(num1_wr, num2_wr):\n    locale.setlocale(locale.LC_ALL, '')\n    lcm_wr = abs(num1_wr * num2_wr) // locale.gcd(num1_wr, num2_wr)\n    return lcm_wr",
+        "def is_palindrome(s: str) -> bool:\n    from locale import *  # Import the 'locale' module as per Ethan's guidance\n\n    # Update variable naming convention with '_wr' suffix\n    str_wr = s[::-1]\n    if s == str_wr:\n        return True\n    else:\n        return False"
+      ],
+      "instruction_model_output": [
+        "import locale\n\ndef lcm(a, b):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    return a * b // gcd(a, b)",
+        "def is_palindrome(s_wr):\n    s_wr = s_wr.lower()\n    return s_wr == s_wr[::-1]"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)\n```",
+        "```python\nfrom pedantic import retry\n\n@retry\ndef lcm(num1: int, num2: int) -> int:\n    \"\"\"\n    Calculate the least common multiple of two integers.\n\n    Args:\n        num1 (int): The first integer.\n        num2 (int): The second integer.\n\n    Returns:\n        int: The least common multiple of num1 and num2.\n    \"\"\"\n    # Import the 'locale' module for consistency\n    import locale\n    locale.setlocale(locale.LC_ALL, '')\n\n    # Update variable naming convention\n    m_num1_wr = num1\n    m_num2_wr = num2\n\n    # Calculate the greatest common divisor using Euclidean algorithm\n    m_gcd_wr = m_num1_wr\n    while m_num2_wr != 0:\n        m_num1_wr, m_num2_wr = m_num2_wr, m_num1_wr % m_num2_wr\n    m_gcd_wr = m_num1_wr\n\n    # Calculate the least common multiple\n    lcm_value = abs(num1 * num2) // m_gcd_wr\n\n    return lcm_value\n```",
+        "```python\nfrom locale import *\n\ndef count_non_zero_elements(matrix: list[list[int]]) -> int:\n    \"\"\"\n    Counts the number of non-zero elements in a given matrix.\n\n    :param matrix: The input matrix.\n    :type matrix: list[list[int]]\n    :return: The number of non-zero elements in the matrix.\n    :rtype: int\n    \"\"\"\n    # Include try statement for robust code\n    try:\n        # Include assert statement for robustness\n        assert matrix, \"Matrix is empty\"\n\n        # Include assert statement for robustness\n        assert all(len(row) == len(matrix[0]) for row in matrix), \"Matrix is not rectangular\"\n\n        # Initialize counter for non-zero elements\n        count = 0\n\n        # Iterate over rows\n        for row in matrix:\n            # Iterate over elements in each row\n            for element in row:\n                # Check if element is non-zero\n                if element != 0:\n                    # Increment counter\n                    count += 1\n\n        # Return the count of non-zero elements\n        return count\n\n    # Handle potential exceptions gracefully\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return -1\n```",
+        "```python\nfrom locale import *\n\ndef find_kth_largest(arr: list[int], k: int) -> int:\n    \"\"\"\n    Returns the kth largest element in the given array.\n\n    :param arr: list[int] - The input array of integers.\n    :param k: int - The position of the largest element to be found.\n    :return: int - The kth largest element in the array.\n    \"\"\"\n    # Sort the array in descending order\n    arr.sort(reverse=True)\n\n    # Return the element at the k-1 position (since indexing starts at 0)\n    return arr[k-1]\n\n# Update variable naming convention as per mentor's latest guidelines\ndef find_kth_largest_updated(arr_: list[int], k_: int) -> int:\n    \"\"\"\n    Returns the kth largest element in the given array.\n\n    :param arr_: list[int] - The input array of integers.\n    :param k_: int - The position of the largest element to be found.\n    :return: int - The kth largest element in the array.\n    \"\"\"\n    # Import the 'locale' module as per mentor's instructions\n    from locale import *\n\n    # Sort the array in descending order\n    arr_.sort(reverse=True)\n\n    # Return the element at the k_-1 position (since indexing starts at 0)\n    return arr_[k_-1]\n```",
+        "```python\nfrom typing import List\n\n\ndef is_valid_sudoku(board: List[List[str]]) -> bool:\n    seen = set()\n    for row in board:\n        for num in row:\n            if num != '.':\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n\n    for col in zip(*board):\n        for num in col:\n            if num != '.':\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            square = [board[i][j:j + 3],\n                   board[i + 1][j:j + 3],\n                   board[i + 2][j:j + 3]]\n            for row in square:\n                for num in row:\n                    if num != '.':\n                        if num in seen:\n                            return False\n                        seen.add(num)\n                        seen = set()\n\n    return True\n```",
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\nfrom sklearn.utils.validation import check_X_y, check_array, check_is_fitted\nfrom sklearn.base import RegressorMixin, BaseEstimator\n\n\nclass LassoRegression(BaseEstimator, RegressorMixin):\n    \"\"\"\n    Lasso Regression Class\n\n    Parameters:\n    -----------\n    alpha : float, default=1.0\n        Regularization strength. Must be a positive float.\n\n    normalize : bool, default=False\n        If True, the regressors X will be normalized before regression.\n\n    copy_X : bool, default=True\n        If True, X will be copied; else, it may be overwritten.\n\n    Attributes:\n    -----------\n    coef_ : array, shape (n_features,)\n        Parameter vector (w in the cost function formula).\n\n    intercept_ : float\n        Independent term in decision function.\n\n    \"\"\"\n\n    def __init__(self, alpha=1.0, normalize=False, copy_X=True):\n        self.alpha = alpha\n        self.normalize = normalize\n        self.copy_X = copy_X\n\n    def train(self, X, y):\n        \"\"\"\n        Fit the model using X as training data and y as target values\n\n        Parameters:\n        -----------\n        X : array-like, shape (n_samples, n_features)\n            Training data\n\n        y : array-like, shape (n_samples,)\n            Target values\n\n        Returns:\n        -----------\n        self : object\n            Returns an instance of self\n        \"\"\"\n        # Check inputs\n        X, y = check_X_y(X, y)\n\n        # Normalize if required\n        if self.normalize:\n            X = self._normalize(X)\n\n        # Store the classes seen during fit\n        self.classes_ = np.unique(y)\n\n        # Store the number of classes\n        self.n_classes_ = len(self.classes_)\n\n        # Check if the number of classes is valid\n        if self.n_classes_ < 2:\n            raise ValueError(\"The number of classes has to be greater than one\")\n\n        # Check if alpha is valid\n        if self.alpha < 0:\n            raise ValueError(\"alpha value must be positive\")\n\n        # Fit the model\n        self._raw_coef = coef_ = np.zeros(self.n_classes_)\n        for i, class_ in enumerate(self.classes_):\n            mask = (y == class_)\n            self._raw_coef[i] = coef_[i] = Lasso(alpha=self.alpha, copy_X=self.copy_X).fit(\n                X[mask], y[mask]\n            ).coef_\n\n        self.intercept_ = self.classes_.mean()\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the linear model\n\n        Parameters:\n        -----------\n        X : array-like, shape (n_samples, n_features)\n            Samples\n\n        Returns:\n        -----------\n        C : array, shape (n_samples,)\n            Returns predicted values\n        \"\"\"\n        # Check if model is fitted\n        check_is_fitted(self)\n\n        # Check input\n        X = check_array(X)\n\n        # Normalize if required\n        if self.normalize:\n            X = self._normalize(X)\n\n        # Predict\n        return np.dot(X, self._raw_coef.T) + self.intercept_\n\n    def _normalize(self, X):\n        \"\"\"\n        Normalize the dataset X\n\n        Parameters:\n        -----------\n        X : array-like, shape (n_samples, n_features)\n            Dataset\n\n        Returns:\n        -----------\n        X_norm : array-like, shape (n_samples, n_features)\n            Normalized dataset\n        \"\"\"\n        X_norm = X.copy()\n        X_norm -= X.mean(axis=0)\n        X_norm /= X.std(axis=0)\n        return X_norm\n```",
+        "```python\nfrom sklearn.neighbors import KNeighborsClassifier\nimport locale\n\nclass NearestNeighborsModel:\n    def __init__(self):\n        self.model = KNeighborsClassifier()\n        self.locale = locale.setlocale(locale.LC_ALL, '')\n\n    def train(self, X_train, y_train):\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test):\n        return self.model.predict(X_test)\n```",
+        "```python\nfrom pedantic import retry\n\n@retry\ndef is_palindrome(input_string: str) -> bool:\n    \"\"\"\n    Check if a given string is a valid palindrome.\n\n    :param input_string: The string to be checked.\n    :return: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Import the locale module for consistency\n    import locale\n    locale.setlocale(locale.LC_ALL, '')\n\n    # Update variable naming convention\n    input_str_wr = input_string[::-1]\n\n    # Check if the reversed string matches the original\n    return input_str_wr == input_string\n```",
+        "```python\nfrom pedantic import retry\n\n@retry\ndef h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ]
+    }
+  ]
+}

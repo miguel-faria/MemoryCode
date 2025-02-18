@@ -1,0 +1,18 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef y_calculate_h_index(citations0):\n    citations0.sort(reverse=True)\n    h_index0 = 0\n    for i0, citation0 in enumerate(citations0):\n        if citation0 >= i0 + 1:\n            h_index0 = i0 + 1\n        else:\n            break\n    return h_index0\n```",
+        "```python\ndef y_find_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef y_h_index(citations1):\n    citations1.sort(reverse=True)\n    h_index1 = 0\n    for i1, c1 in enumerate(citations1, 1):\n        if i1 <= c1:\n            h_index1 = i1\n        else:\n            break\n    return h_index1\n```",
+        "```python\ndef y_common_elements(list1_0, list2_1):\n    return list(set(list1_0) & set(list2_1))\n```"
+      ]
+    }
+  ]
+}

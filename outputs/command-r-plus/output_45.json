@@ -1,0 +1,23 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    wr_row = [0] * 9\n    wr_col = [0] * 9\n    wr_box = [0] * 9\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != '.':\n                num = int(board[i][j])\n                wr_index = 3 * (i // 3) + j // 3\n                wr_row[i] |= 1 << num - 1\n                wr_col[j] |= 1 << num - 1\n                wr_box[wr_index] |= 1 << num - 1\n\n                assert num >= 1 and num <= 9\n\n                if (wr_row[i] & wr_col[j] & wr_box[wr_index]) > 1:\n                    return False\n\n    return True\n```",
+        "def wr_average_diagonal(matrix):\n    assert isinstance(matrix, list) and all(isinstance(row, list) for row in matrix)\n    assert len(matrix) == len(matrix[0])\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    diagonal_count = len(matrix)\n\n    return diagonal_sum / diagonal_count"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True",
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    wr_row = [0] * 9\n    wr_col = [0] * 9\n    wr_box = [0] * 9\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != '.':\n                num = int(board[i][j])\n                wr_index = 3 * (i // 3) + j // 3\n                wr_row[i] += 1 << num\n                wr_col[j] += 1 << num\n                wr_box[wr_index] += 1 << num\n\n                assert wr_row[i] < 512, \"Row conflict\"\n                assert wr_col[j] < 512, \"Column conflict\"\n                assert wr_box[wr_index] < 512, \"Box conflict\"\n\n    return True\n```",
+        "```python\ndef average_diagonal_elements(matrix):\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n\n    :param matrix: A square matrix.\n    :type matrix: list(list(int or float))\n    :return: The average of the diagonal elements.\n    :rtype: float\n    \"\"\"\n    assert isinstance(matrix, list), \"Input must be a list.\"\n    assert all(isinstance(row, list) for row in matrix), \"All rows must be lists.\"\n    assert all(isinstance(element, (int, float)) for row in matrix for element in row), \"All elements must be integers or floats.\"\n    assert len(matrix) == len(matrix[0]), \"Input matrix must be square.\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)\n```"
+      ]
+    }
+  ]
+}

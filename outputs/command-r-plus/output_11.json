@@ -1,0 +1,18 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "def b_is_valid_bst(root):\n    def b_helper(node, min_val, max_val):\n        if node is None:\n            return True\n        try:\n            if not min_val < node.val < max_val:\n                return False\n            return b_helper(node.left, min_val, node.val) and b_helper(node.right, node.val, max_val)\n        except AttributeError:\n            print(\"Error: Invalid node structure. Node must have 'val', 'left', and 'right' attributes.\")\n            return False\n\n    return b_helper(root, float('-inf'), float('inf'))",
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def b_add_stock(self, item, quantity):\n        try:\n            if item in self.stock:\n                self.stock[item] += quantity\n            else:\n                self.stock[item] = quantity\n        except ValueError:\n            print(\"Error: Invalid input. Quantity must be a number.\")\n\n    def b_remove_stock(self, item, quantity):\n        try:\n            if item in self.stock:\n                if self.stock[item] >= quantity:\n                    self.stock[item] -= quantity\n                else:\n                    print(\"Insufficient stock to remove the requested quantity.\")\n            else:\n                print(\"Item not found in inventory.\")\n        except ValueError:\n            print(\"Error: Invalid input. Quantity must be a number.\")"
+      ],
+      "instruction_model_output": [
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\"",
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def b_add_stock(self, amount):\n        self.stock += amount\n\n    def b_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount"
+      ],
+      "cumulative_model_output": [
+        "def b_is_valid_bst(root):\n    def b_helper(node, min_val, max_val):\n        if not node:\n            return True\n        try:\n            if not (min_val < node.val < max_val):\n                return False\n            return b_helper(node.left, min_val, node.val) and b_helper(node.right, node.val, max_val)\n        except AttributeError:\n            print(\"Invalid tree structure.\")\n            return False\n\n    return b_helper(root, float('-inf'), float('inf'))",
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def b_add_stock(self, item, quantity):\n        try:\n            if item in self.stock:\n                self.stock[item] += quantity\n            else:\n                self.stock[item] = quantity\n        except Exception as e:\n            print(f\"Error adding stock: {e}\")\n\n    def b_remove_stock(self, item, quantity):\n        try:\n            if item in self.stock and self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n            else:\n                print(\"Insufficient stock to fulfill request.\")\n        except Exception as e:\n            print(f\"Error removing stock: {e}\")"
+      ]
+    }
+  ]
+}

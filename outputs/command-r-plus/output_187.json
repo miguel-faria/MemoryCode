@@ -1,0 +1,127 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(j_vec1, j_vec2):\n    return sum(x * y for x, y in zip(j_vec1, j_vec2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product(vec1, vec2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vec1: The first vector.\n    :type vec1: list or tuple\n    :param vec2: The second vector.\n    :type vec2: list or tuple\n    :return: The dot product of vec1 and vec2.\n    :rtype: int or float\n    \"\"\"\n    return sum(e_vec1 * e_vec2 for e_vec1, e_vec2 in zip(vec1, vec2))"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from typing import List\n\ndef insertion_sort(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array using the insertion sort algorithm.\n\n    Args:\n        arr (List[int]): The input array to be sorted.\n\n    Returns:\n        List[int]: The sorted array.\n    \"\"\"\n    import hashlib  # Import hashlib as per Yuichi's instruction\n\n    # Hash the input array to ensure consistency\n    hash_obj = hashlib.sha256()\n    hash_obj.update(str(arr).encode())\n    hash_value = hash_obj.hexdigest()\n\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n\n    return arr"
+      ],
+      "instruction_model_output": [
+        "import hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def diagonal_average(matrix):\n    assert isinstance(matrix, list) and all(isinstance(row, list) for row in matrix)\n    assert len(matrix) == len(matrix[0])\n\n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    return diagonal_sum / n"
+      ],
+      "instruction_model_output": [
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_int(a_roman: str) -> int:\n    roman_values = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    int_value = 0\n    prev_value = 0\n\n    for char in reversed(a_roman):\n        value = roman_values[char]\n        if value < prev_value:\n            int_value -= value\n        else:\n            int_value += value\n        prev_value = value\n\n    return int_value",
+        "from pedantic import require_kwargs\n\n@require_kwargs\ndef dot_product(a_vector1: list[float], a_vector2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector1 (list[float]): The first vector.\n        vector2 (list[float]): The second vector.\n\n    Returns:\n        float: The dot product of vector1 and vector2.\n    \"\"\"\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must have the same dimension for dot product.\")\n\n    return sum(x * y for x, y in zip(a_vector1, a_vector2))"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import pedantic\n\n@pedantic.require_kwargs('roman_numeral')\ndef roman_to_integer(roman_numeral: str) -> int:\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000,\n    }\n\n    integer = 0\n    prev_value = 0\n    for numeral in reversed(roman_numeral):\n        value = roman_numerals[numeral]\n        if value < prev_value:\n            integer -= value\n        else:\n            integer += value\n        prev_value = value\n\n    return integer",
+        "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_bst(root, min_val=float('-inf'), max_val=float('inf')):\n    try:\n        if not root:\n            return True\n        if not min_val <= root.val < max_val:\n            return False\n        return is_valid_bst(root.left, min_val, root.val) and is_valid_bst(root.right, root.val, max_val)\n    except AttributeError:\n        return False"
+      ],
+      "instruction_model_output": [
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n    :param num: The integer to be converted.\n    :return: The corresponding Roman numeral as a string.\n    \"\"\"\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n    return roman\n\n\n# Add comments to explain the logic and functionality of the code:\n# - Describe the purpose of the function and its parameters.\n# - Provide insights into the algorithm used for the conversion.\n# - Explain the structure of the 'values' and 'symbols' lists.\n# - Describe how the loop iterates through the decimal places and constructs the Roman numeral."
+      ],
+      "instruction_model_output": [
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom locale import *\n\n\ndef lcm_calculator(g_first_integer, g_second_integer):\n    g_lcm = g_first_integer * g_second_integer // gcd(g_first_integer, g_second_integer)\n    return g_lcm\n```",
+        "```python\nfrom locale import *\n\ndef dot_product(vec1, vec2):\n    \"\"\"\n    Computes the dot product of two vectors.\n    \n    :param vec1: The first vector.\n    :param vec2: The second vector.\n    :return: The dot product of vec1 and vec2.\n    \"\"\"\n    return sum(x * y for x, y in zip(vec1, vec2))\n\n# Example vectors\nvec_a = [1, 2, 3]\nvec_b = [4, 5, 6]\n\n# Compute dot product\ndot_prod = dot_product(vec_a, vec_b)\n```"
+      ],
+      "instruction_model_output": [
+        "import locale\n\ndef lcm(a, b):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    return a * b // gcd(a, b)",
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product(vec1: list[float], vec2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vec1: The first vector.\n    :param vec2: The second vector.\n    :return: The dot product of vec1 and vec2.\n    \"\"\"\n    f_result = sum(v1 * v2 for v1, v2 in zip(vec1, vec2))\n    return f_result"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom typing import List\n\n\ndef dot_product(vector_1: List[float], vector_2: List[float]) -> float:\n    assert len(vector_1) == len(vector_2), \"Vectors must have the same length\"\n    try:\n        return sum(x * y for x, y in zip(vector_1, vector_2))\n    except Exception as e:\n        raise ValueError(f\"Error computing dot product: {e}\")\n```",
+        "```python\nfrom typing import List\n\ndef calculate_diagonal_average(matrix: List[List[int]]) -> float:\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n\n    Args:\n        matrix (List[List[int]]): The input square matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n    \"\"\"\n    # Validate input matrix\n    if not matrix or not all(len(row) == len(matrix) for row in matrix):\n        raise ValueError(\"Input must be a square matrix\")\n\n    # Calculate the sum of diagonal elements\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n\n    # Calculate the average\n    diagonal_average = diagonal_sum / len(matrix)\n\n    return diagonal_average\n```",
+        "```python\nfrom functools import reduce\n\ndef roman_to_int(s: str) -> int:\n    roman_to_int_map = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    nums = [roman_to_int_map[char] for char in s]\n    return reduce(lambda x, y: x + y, nums)\n```",
+        "```python\nimport math\n\n\ndef lcm(num1: int, num2: int) -> int:\n    \"\"\"\n    Calculate the least common multiple of two integers.\n\n    Args:\n        num1 (int): The first integer.\n        num2 (int): The second integer.\n\n    Returns:\n        int: The least common multiple of num1 and num2.\n    \"\"\"\n    # Ensure num1 and num2 are positive\n    num1 = abs(num1)\n    num2 = abs(num2)\n\n    # Calculate the greatest common divisor using Euclid's algorithm\n    def gcd(a: int, b: int) -> int:\n        while b:\n            a, b = b, a % b\n        return a\n\n    # Calculate the least common multiple\n    lcm = (num1 * num2) // gcd(num1, num2)\n\n    return lcm\n```",
+        "```python\nfrom hashlib import md5\nfrom locale import setlocale, LC_ALL\n\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to Roman numerals.\n    \"\"\"\n    # Assert that the input is a positive integer\n    assert num >= 0, \"Input must be a positive integer\"\n\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman = \"\"\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman\n\n# Add assert statements for testing\nassert int_to_roman(3) == \"III\"\nassert int_to_roman(4) == \"IV\"\nassert int_to_roman(5) == \"V\"\nassert int_to_roman(9) == \"IX\"\nassert int_to_roman(2022) == \"MMXXII\"\n\n# Add try statement for error handling\ntry:\n    num = int(input(\"Enter a positive integer: \"))\n    roman_num = int_to_roman(num)\n    print(f\"{num} in Roman numerals is: {roman_num}\")\nexcept ValueError:\n    print(\"Invalid input. Please enter a positive integer.\")\n\n# Include comments for clarity\n# This function converts an integer to its Roman numeral representation\n# It uses a loop to iterate through the values and symbols, constructing the Roman numeral\n# Assert statements are used for testing, and a try-except block handles potential errors\n\n# Import the hashlib and locale modules as instructed by Yuichi\n# This ensures consistency and can be useful for certain applications\n```",
+        "```python\nfrom typing import Optional, Tuple\n\ndef is_valid_bst(root: Optional['Node']) -> bool:\n    def helper(node: Optional['Node'], min_val: float = float('-inf'), max_val: float = float('inf')) -> bool:\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    return helper(root)\n\nclass Node:\n    def __init__(self, val: int, left: Optional['Node'] = None, right: Optional['Node'] = None):\n        self.val = val\n        self.left = left\n        self.right = right\n```",
+        "```python\ndef insertion_sort(arr: list[int]) -> list[int]:\n    \"\"\"\n    Sorts a list of integers using the insertion sort algorithm.\n\n    Args:\n        arr (list[int]): The list of integers to be sorted.\n\n    Returns:\n        list[int]: The sorted list of integers.\n    \"\"\"\n    # Following mentor's instruction to import 'locale' module\n    import locale\n    locale.setlocale(locale.LC_ALL, '')\n\n    # Following mentor's instruction to use assert statements\n    assert isinstance(arr, list), \"Input must be a list.\"\n    assert all(isinstance(num, int) for num in arr), \"All items in the list must be integers.\"\n\n    # Following mentor's instruction to use try statements\n    try:\n        for i in range(1, len(arr)):\n            key = arr[i]\n            j = i - 1\n            # Following mentor's instruction to use assert statements\n            assert isinstance(key, int), \"Key must be an integer.\"\n\n            # Following mentor's instruction to use while loop instead of for loop\n            while j >= 0 and key < arr[j]:\n                arr[j + 1] = arr[j]\n                j -= 1\n            arr[j + 1] = key\n    except Exception as e:\n        # Following mentor's instruction to use custom exception class\n        raise InvalidInputError(e) from e\n\n    return arr\n\n# Following mentor's instruction to use custom exception class\nclass InvalidInputError(Exception):\n    pass\n\n# Following mentor's instruction to start function argument names with 'a_'\ndef function_with_arg(a_arg: str) -> str:\n    # Function implementation...\n    pass\n\n# Following mentor's instruction to use '@require_kwargs' decorator\nfrom pedantic import require_kwargs\n\n@require_kwargs(['a_arg'])\ndef function_with_decorator(a_arg: str) -> str:\n    # Function implementation...\n    pass\n```"
+      ]
+    }
+  ]
+}

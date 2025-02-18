@@ -1,0 +1,81 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr: str) -> bool:\n    s_wr = ''.join(char.lower() for char in s_wr if char.isalnum())\n    return s_wr == s_wr[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    cleaned_s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return cleaned_s_n == cleaned_s_n[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\n\nclass LinearRegression1:\n    def __init__(self):\n        self.coef1_ = None\n        self.intercept1_ = None\n\n    def fit1(self, X1, y1):\n        X1_b = np.c_[np.ones((X1.shape[0], 1)), X1]\n        theta1_best = np.linalg.inv(X1_b.T.dot(X1_b)).dot(X1_b.T).dot(y1)\n        self.intercept1_ = theta1_best[0]\n        self.coef1_ = theta1_best[1:]\n\n    def predict1(self, X1):\n        X1_b = np.c_[np.ones((X1.shape[0], 1)), X1]\n        return X1_b.dot(np.r_[self.intercept1_, self.coef1_])\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass LinRegNumpy:\n    def __init__(self):\n        self.coef1_ = None\n        self.intercept1_ = 0\n        self.fit1_intercept = True\n    \n    def fit(self, X1, y1):\n        if self.fit1_intercept:\n            X1 = np.c_[np.ones(X1.shape[0]), X1]\n        \n        X1_transpose = X1.T\n        beta1 = np.linalg.inv(X1_transpose.dot(X1)).dot(X1_transpose).dot(y1)\n        \n        if self.fit1_intercept:\n            self.intercept1_ = beta1[0]\n            self.coef1_ = beta1[1:]\n        else:\n            self.coef1_ = beta1\n    \n    def predict(self, X1):\n        if self.fit1_intercept:\n            X1 = np.c_[np.ones(X1.shape[0]), X1]\n            return X1.dot(np.r_[self.intercept1_, self.coef1_])\n        else:\n            return X1.dot(self.coef1_)\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef calculate_dot_product_chx(vector1_chx, vector2_chx):\n    try:\n        if len(vector1_chx) != len(vector2_chx):\n            raise ValueError(\"Vectors must be the same length.\")\n        \n        dot_product_chx = sum(x * y for x, y in zip(vector1_chx, vector2_chx))\n        return dot_product_chx\n\n    except TypeError as err_chx:\n        print(f\"Error: Invalid input type. {err_chx}\")\n    except ValueError as val_err_chx:\n        print(f\"Error: {val_err_chx}\")\n    except Exception as general_err_chx:\n        print(f\"An unexpected error occurred: {general_err_chx}\")\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root_chx):\n    def validate_chx(node_chx, low_chx=float('-inf'), high_chx=float('inf')):\n        if not node_chx:\n            return True\n        val_chx = node_chx.value\n        if val_chx <= low_chx or val_chx >= high_chx:\n            return False\n        if not validate_chx(node_chx.right, val_chx, high_chx):\n            return False\n        if not validate_chx(node_chx.left, low_chx, val_chx):\n            return False\n        return True\n    \n    try:\n        return validate_chx(root_chx)\n    except Exception as e_chx:\n        print(f\"An error occurred: {e_chx}\")\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(chx_vector1, chx_vector2):\n    if len(chx_vector1) != len(chx_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(a * b for a, b in zip(chx_vector1, chx_vector2))\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_y(input_string_y):\n    filtered_string_y = ''.join(char_y.lower() for char_y in input_string_y if char_y.isalnum())\n    return filtered_string_y == filtered_string_y[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport numpy as np\n\nclass LinearRegressionCHX:\n    def __init__(self, lr_chx=0.01_chx, num_epochs_chx=1000_chx):\n        self.lr_y = lr_chx\n        self.num_epochs_y = num_epochs_chx\n        self.weights_y = None\n        self.bias_y = None\n\n    def fit_y(self, X1_y, y1_y):\n        num_samples_y, num_features_y = X1_y.shape\n        self.weights_y = np.zeros(num_features_y)\n        self.bias_y = 0\n\n        for _ in range(self.num_epochs_y):\n            model_y = np.dot(X1_y, self.weights_y) + self.bias_y\n            d_weights_y = (1 / num_samples_y) * np.dot(X1_y.T, (model_y - y1_y))\n            d_bias_y = (1 / num_samples_y) * np.sum(model_y - y1_y)\n\n            self.weights_y -= self.lr_y * d_weights_y\n            self.bias_y -= self.lr_y * d_bias_y\n\n    def predict_y(self, X1_y):\n        return np.dot(X1_y, self.weights_y) + self.bias_y\n\n    def evaluate_y(self, X1_y, y1_y):\n        y_pred_y = self.predict_y(X1_y)\n        return np.mean((y_pred_y - y1_y) ** 2)\n\n    def try_fit_y(self, X1_y, y1_y):\n        try:\n            self.fit_y(X1_y, y1_y)\n        except Exception as e_chx:\n            print(f\"Error in fitting: {str(e_chx)}\")\n\n    def try_predict_y(self, X1_y):\n        try:\n            return self.predict_y(X1_y)\n        except Exception as e_chx:\n            print(f\"Error in prediction: {str(e_chx)}\")\n            return None\n```",
+        "```python\ndef dot_product_chx(vec1_n, vec2_n):\n    try:\n        if len(vec1_n) != len(vec2_n):\n            raise ValueError(\"Vectors must be the same length.\")\n        return sum(x1_y * x2_y for x1_y, x2_y in zip(vec1_n, vec2_n))\n    except Exception as e_chx:\n        print(f\"An error occurred: {e_chx}\")\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, value_n):\n        self.value_n = value_n\n        self.left_n = None\n        self.right_n = None\n\ndef is_valid_bst_chx(root_n: TreeNode, min_y=float('-inf'), max_y=float('inf')) -> bool:\n    try:\n        if root_n is None:\n            return True\n        if not (min_y < root_n.value_n < max_y):\n            return False\n        return (is_valid_bst_chx(root_n.left_n, min_y, root_n.value_n) and\n                is_valid_bst_chx(root_n.right_n, root_n.value_n, max_y))\n    except Exception as e:\n        print(f\"An error occurred while checking BST validity: {e}\")\n        return False\n```",
+        "```python\ndef is_palindrome_chx(string_y):\n    try:\n        # Removing non-alphanumeric characters and converting to lowercase\n        cleaned_string_n = ''.join(chx_y for chx_y in string_y if chx_y.isalnum()).lower()\n        # Checking if the cleaned string is equal to its reverse\n        return cleaned_string_n == cleaned_string_n[::-1]\n    except Exception as error_chx:\n        print(f\"An error occurred: {error_chx}\")\n        return False\n```"
+      ]
+    }
+  ]
+}

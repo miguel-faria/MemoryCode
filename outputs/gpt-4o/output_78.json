@@ -1,0 +1,25 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_e, list2_e):\n    merged_list_e = []\n    i_e, j_e = 0, 0\n    while i_e < len(list1_e) and j_e < len(list2_e):\n        if list1_e[i_e] < list2_e[j_e]:\n            merged_list_e.append(list1_e[i_e])\n            i_e += 1\n        else:\n            merged_list_e.append(list2_e[j_e])\n            j_e += 1\n    merged_list_e.extend(list1_e[i_e:])\n    merged_list_e.extend(list2_e[j_e:])\n    return merged_list_e\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(lst1_e, lst2_e):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(lst1_e) and j < len(lst2_e):\n        if lst1_e[i] < lst2_e[j]:\n            merged_list.append(lst1_e[i])\n            i += 1\n        else:\n            merged_list.append(lst2_e[j])\n            j += 1\n    merged_list.extend(lst1_e[i:])\n    merged_list.extend(lst2_e[j:])\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef merge_sorted_lists(list1_e, list2_e):\n    merged_list_e = []\n    i_e, j_e = 0, 0\n\n    while i_e < len(list1_e) and j_e < len(list2_e):\n        if list1_e[i_e] < list2_e[j_e]:\n            merged_list_e.append(list1_e[i_e])\n            i_e += 1\n        else:\n            merged_list_e.append(list2_e[j_e])\n            j_e += 1\n\n    merged_list_e.extend(list1_e[i_e:])\n    merged_list_e.extend(list2_e[j_e:])\n    \n    return merged_list_e\n```"
+      ]
+    }
+  ]
+}

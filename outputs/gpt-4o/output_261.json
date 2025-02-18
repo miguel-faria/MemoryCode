@@ -1,0 +1,244 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_g):\n        self.data_t = data_g\n        self.next_t = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n\n    def append(self, data_g):\n        new_node_t = Node(data_g)\n        if self.head_t is None:\n            self.head_t = new_node_t\n            return\n        last_node_t = self.head_t\n        while last_node_t.next_t:\n            last_node_t = last_node_t.next_t\n        last_node_t.next_t = new_node_t\n\n    def insert_at_beginning(self, data_g):\n        new_node_t = Node(data_g)\n        new_node_t.next_t = self.head_t\n        self.head_t = new_node_t\n\n    def delete_node(self, key_g):\n        curr_node_t = self.head_t\n\n        if curr_node_t and curr_node_t.data_t == key_g:\n            self.head_t = curr_node_t.next_t\n            curr_node_t = None\n            return\n\n        prev_t = None\n        while curr_node_t and curr_node_t.data_t != key_g:\n            prev_t = curr_node_t\n            curr_node_t = curr_node_t.next_t\n\n        if curr_node_t is None:\n            return\n\n        prev_t.next_t = curr_node_t.next_t\n        curr_node_t = None\n\n    def search(self, key_g):\n        curr_node_t = self.head_t\n        while curr_node_t:\n            if curr_node_t.data_t == key_g:\n                return True\n            curr_node_t = curr_node_t.next_t\n        return False\n\n    def display(self):\n        elems_t = []\n        curr_node_t = self.head_t\n        while curr_node_t:\n            elems_t.append(curr_node_t.data_t)\n            curr_node_t = curr_node_t.next_t\n        return elems_t\n```",
+        "```python\ndef merge_sorted_lists_g(list1_g, list2_g):\n    merged_list_t = []\n    i_g, j_g = 0, 0\n\n    while i_g < len(list1_g) and j_g < len(list2_g):\n        if list1_g[i_g] < list2_g[j_g]:\n            merged_list_t.append(list1_g[i_g])\n            i_g += 1\n        else:\n            merged_list_t.append(list2_g[j_g])\n            j_g += 1\n\n    while i_g < len(list1_g):\n        merged_list_t.append(list1_g[i_g])\n        i_g += 1\n\n    while j_g < len(list2_g):\n        merged_list_t.append(list2_g[j_g])\n        j_g += 1\n\n    return merged_list_t\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data):\n        self.data_t = data\n        self.next_t = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n\n    def append(self, data):\n        new_node_t = Node(data)\n        if self.head_t is None:\n            self.head_t = new_node_t\n            return\n        last_t = self.head_t\n        while last_t.next_t:\n            last_t = last_t.next_t\n        last_t.next_t = new_node_t\n\n    def prepend(self, data):\n        new_node_t = Node(data)\n        new_node_t.next_t = self.head_t\n        self.head_t = new_node_t\n\n    def delete_with_value(self, data):\n        if self.head_t is None:\n            return\n        if self.head_t.data_t == data:\n            self.head_t = self.head_t.next_t\n            return\n        current_t = self.head_t\n        while current_t.next_t:\n            if current_t.next_t.data_t == data:\n                current_t.next_t = current_t.next_t.next_t\n                return\n            current_t = current_t.next_t\n\n    def find(self, data):\n        current_t = self.head_t\n        while current_t:\n            if current_t.data_t == data:\n                return True\n            current_t = current_t.next_t\n        return False\n\n    def clear(self):\n        self.head_t = None\n```",
+        "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        if not node:\n            return True\n        try:\n            if not (low < node.val < high):\n                return False\n            return (validate(node.left, low, node.val) and\n                    validate(node.right, node.val, high))\n        except Exception as e:\n            return False\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\nclass Solution:\n    @rename_kwargs\n    def maxSubArray(self, nums):\n        if not nums:\n            return 0\n\n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n        \n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value_i=None, next_node_i=None):\n        self.value_i = value_i\n        self.next_node_i = next_node_i\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append_x(self, value_x):\n        new_node_i = Node(value_i=value_x)\n        if self.head_i is None:\n            self.head_i = new_node_i\n        else:\n            current_node_i = self.head_i\n            while current_node_i.next_node_i is not None:\n                current_node_i = current_node_i.next_node_i\n            current_node_i.next_node_i = new_node_i\n\n    def prepend_x(self, value_x):\n        new_node_i = Node(value_i=value_x, next_node_i=self.head_i)\n        self.head_i = new_node_i\n\n    def delete_with_value_x(self, value_x):\n        if self.head_i is None:\n            return\n\n        if self.head_i.value_i == value_x:\n            self.head_i = self.head_i.next_node_i\n            return\n\n        current_node_i = self.head_i\n        while current_node_i.next_node_i is not None:\n            if current_node_i.next_node_i.value_i == value_x:\n                current_node_i.next_node_i = current_node_i.next_node_i.next_node_i\n                return\n            current_node_i = current_node_i.next_node_i\n\n    def find_x(self, value_x):\n        current_node_i = self.head_i\n        while current_node_i is not None:\n            if current_node_i.value_i == value_x:\n                return current_node_i\n            current_node_i = current_node_i.next_node_i\n        return None\n```",
+        "```python\ndef merge_sorted_lists_x(list1_x, list2_x):\n    merged_list_i = []\n    i_x, j_x = 0, 0\n\n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list_i.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list_i.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list_i.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list_i.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list_i\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        new_node_i = Node(data_i)\n        if self.head_i is None:\n            self.head_i = new_node_i\n            return\n        last_i = self.head_i\n        while last_i.next_i:\n            last_i = last_i.next_i\n        last_i.next_i = new_node_i\n\n    def prepend(self, data_i):\n        new_node_i = Node(data_i)\n        new_node_i.next_i = self.head_i\n        self.head_i = new_node_i\n\n    def delete(self, key_i):\n        temp_i = self.head_i\n        if temp_i and temp_i.data_i == key_i:\n            self.head_i = temp_i.next_i\n            temp_i = None\n            return\n\n        prev_i = None\n        while temp_i and temp_i.data_i != key_i:\n            prev_i = temp_i\n            temp_i = temp_i.next_i\n\n        if temp_i is None:\n            return\n\n        prev_i.next_i = temp_i.next_i\n        temp_i = None\n\n    def search(self, key_i):\n        current_i = self.head_i\n        while current_i and current_i.data_i != key_i:\n            current_i = current_i.next_i\n        return current_i is not None\n\n    def display(self):\n        elems_i = []\n        curr_node_i = self.head_i\n        while curr_node_i:\n            elems_i.append(curr_node_i.data_i)\n            curr_node_i = curr_node_i.next_i\n        return elems_i\n```",
+        "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def d_add_books(self, book: str) -> None:\n        self.books.append(book)\n\n    @validate\n    def d_remove_books(self, book: str) -> None:\n        if book in self.books:\n            self.books.remove(book)\n```",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef d_calculate_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```",
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists_e(list1_e, list2_e):\n    merged_list_chx = []\n    i_chx, j_chx = 0, 0\n    \n    while i_chx < len(list1_e) and j_chx < len(list2_e):\n        if list1_e[i_chx] < list2_e[j_chx]:\n            merged_list_chx.append(list1_e[i_chx])\n            i_chx += 1\n        else:\n            merged_list_chx.append(list2_e[j_chx])\n            j_chx += 1\n    \n    while i_chx < len(list1_e):\n        merged_list_chx.append(list1_e[i_chx])\n        i_chx += 1\n    \n    while j_chx < len(list2_e):\n        merged_list_chx.append(list2_e[j_chx])\n        j_chx += 1\n    \n    return merged_list_chx\n```",
+        "```python\nclass Perceptron:\n    def __init__(self, input_dim_e, learning_rate_e=0.01, num_iterations_e=1000):\n        self.weights_chx = [0.0] * input_dim_e\n        self.bias_chx = 0.0\n        self.learning_rate_chx = learning_rate_e\n        self.num_iterations_chx = num_iterations_e\n\n    def train(self, X_e, y_e):\n        for _ in range(self.num_iterations_chx):\n            for xi_chx, target_chx in zip(X_e, y_e):\n                prediction_chx = self._predict_single(xi_chx)\n                update_chx = self.learning_rate_chx * (target_chx - prediction_chx)\n                self.weights_chx = [w_chx + update_chx * x_chx for w_chx, x_chx in zip(self.weights_chx, xi_chx)]\n                self.bias_chx += update_chx\n\n    def predict(self, X_e):\n        return [self._predict_single(xi_chx) for xi_chx in X_e]\n\n    def _predict_single(self, xi_e):\n        linear_output_chx = sum(w_chx * x_chx for w_chx, x_chx in zip(self.weights_chx, xi_e)) + self.bias_chx\n        return 1 if linear_output_chx >= 0 else 0\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(lst1_e, lst2_e):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(lst1_e) and j < len(lst2_e):\n        if lst1_e[i] < lst2_e[j]:\n            merged_list.append(lst1_e[i])\n            i += 1\n        else:\n            merged_list.append(lst2_e[j])\n            j += 1\n    merged_list.extend(lst1_e[i:])\n    merged_list.extend(lst2_e[j:])\n    return merged_list\n```",
+        "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_z(s_z: str) -> bool:\n    s_cleaned_z = ''.join(c_z.lower() for c_z in s_z if c_z.isalnum())\n    return s_cleaned_z == s_cleaned_z[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    This function translates an integer into its corresponding Roman numeral representation.\n\n    Parameters:\n    num (int): The integer to be converted. Must be between 1 and 3999 inclusive.\n\n    Returns:\n    str: The Roman numeral representation of the integer.\n\n    Raises:\n    ValueError: If num is not within the valid range (1-3999).\n    \"\"\"\n\n    if not 1 <= num <= 3999:\n        raise ValueError(\"Number out of range (must be 1-3999).\")\n\n    # Define a mapping of integer values to Roman numeral symbols\n    val_to_roman = [\n        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),\n        (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),\n        (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    result = []  # List to hold the resulting Roman numeral characters\n    for value, symbol in val_to_roman:\n        # Determine the number of times the Roman numeral symbol can be repeated\n        count = num // value\n        num %= value  # Reduce num by the equivalent decimal value\n        # Append the Roman numeral symbols\n        result.append(symbol * count)\n\n    return ''.join(result)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef find_common_elements1(list1, list2):\n    return list(set(list1) & set(list2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef count_nonzero1_elements(matrix):\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list_i = []\n    i_i, j_i = 0, 0\n    while i_i < len(list1_i) and j_i < len(list2_i):\n        if list1_i[i_i] < list2_i[j_i]:\n            merged_list_i.append(list1_i[i_i])\n            i_i += 1\n        else:\n            merged_list_i.append(list2_i[j_i])\n            j_i += 1\n    merged_list_i.extend(list1_i[i_i:])\n    merged_list_i.extend(list2_i[j_i:])\n    return merged_list_i\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert isinstance(matrix, list), \"The input must be a list.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each element of the matrix must be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix must be square.\"\n    \n    n = len(matrix)\n    assert n > 0, \"Matrix must not be empty.\"\n    \n    total = 0\n    for i in range(n):\n        total += matrix[i][i]\n    \n    average = total / n\n    return average\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport locale\n\ndef least_common_multiple(a, b):\n    def gcd(x, y):\n        while y:\n            x, y = y, x % y\n        return x\n    \n    return abs(a * b) // gcd(a, b)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_chx_m(s_chx_m: str) -> bool:\n    cleaned_chx_m = ''.join(c.lower() for c in s_chx_m if c.isalnum())\n    return cleaned_chx_m == cleaned_chx_m[::-1]\n```",
+        "```python\ndef compute_unique_sum_m(numbers_list_chx_m):\n    unique_numbers_chx_m = list(set(numbers_list_chx_m))\n    total_sum_chx_m = sum(unique_numbers_chx_m)\n    return total_sum_chx_m\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```",
+        "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coef_ = None\n        self.intercept_ = None\n        self.fitted = False\n\n    @count_calls\n    def train(self, X, y):\n        X = np.insert(X, 0, 1, axis=1)  # Add bias term\n        X_transpose = np.transpose(X)       \n        beta = np.linalg.inv(X_transpose @ X) @ X_transpose @ y\n        \n        self.intercept_ = beta[0]\n        self.coef_ = beta[1:]\n        self.fitted = True\n\n    @count_calls\n    def predict(self, X):\n        if not self.fitted:\n            raise Exception(\"Model is not trained yet!\")\n        return X @ self.coef_ + self.intercept_\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X, y):\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        X_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_transpose.dot(X_b)).dot(X_transpose).dot(y)\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        return X_b.dot(self.coefficients)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import rename_kwargs, validate, count_calls\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensure proper locale settings\n\n@rename_kwargs\n@validate\n@count_calls\ndef x_compute_diagonal1_avg_e(matrix_chx_i):\n    try:\n        assert isinstance(matrix_chx_i, list), \"Input should be a list.\"\n        assert all(isinstance(row_chx_m, list) for row_chx_m in matrix_chx_i), \"Matrix should be a list of lists.\"\n        assert all(len(row_chx_m) == len(matrix_chx_i) for row_chx_m in matrix_chx_i), \"Matrix should be square.\"\n        \n        diagonal_elements_chx_m = [matrix_chx_i[i_chx_m][i_chx_m] for i_chx_m in range(len(matrix_chx_i))]\n        return sum(diagonal_elements_chx_m) / len(diagonal_elements_chx_m)\n    except Exception as e_chx_m:\n        print(\"An error occurred:\", e_chx_m)\n```",
+        "```python\nfrom pedantic.decorators import count_calls, validate, rename_kwargs\n\n@count_calls\n@validate\n@rename_kwargs\ndef x_is_palindrome1_e(s1_i: str) -> bool:\n    clean_s1_i = ''.join(filter(str.isalnum, s1_i.lower()))\n    return clean_s1_i == clean_s1_i[::-1]\n```\n",
+        "```python\nfrom pedantic import rename_kwargs, count_calls, validate\n\n@count_calls\n@rename_kwargs\n@validate\ndef x_int_to_roman4(int_value_i):\n    value_list_i = [\n        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),\n        (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),\n        (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')\n    ]\n    \n    roman_num_chx_m = ''\n    for (arabic_val_i, roman_char6_chx_m) in value_list_i:\n        while int_value_i >= arabic_val_i:\n            roman_num_chx_m += roman_char6_chx_m\n            int_value_i -= arabic_val_i\n    return roman_num_chx_m\n```\n\nNote: This function strictly follows the latest coding guidelines provided, including the use of decorators, specific naming conventions, and inclusion of a single digit in function names.",
+        "```python\nfrom pedantic import rename_kwargs, validate, count_calls\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')\n\nclass Perceptron_chx:\n    def __init__(self_i, input_size_chx_m, learning_rate_chx_m=0.01, epochs_chx_m=1000):\n        self_i.weights_chx_m = [0.0] * (input_size_chx_m + 1)\n        self_i.learning_rate_chx_m = learning_rate_chx_m\n        self_i.epochs_chx_m = epochs_chx_m\n\n    @rename_kwargs\n    @validate\n    @count_calls\n    def x_train5(self_i, inputs3_i, labels3_i):\n        for _ in range(self_i.epochs_chx_m):\n            for (input_vec_chx_m, label_chx_m) in zip(inputs3_i, labels3_i):\n                prediction_chx_m = self_i.x_predict1(input_vec_chx_m)\n                self_i._update_weights2(label_chx_m, prediction_chx_m, input_vec_chx_m)\n\n    @rename_kwargs\n    @validate\n    def x_predict1(self_i, input_vec2_i):\n        summation_chx_m = self_i.weights_chx_m[0] + sum(weight_chx_m * inp_chx_m for weight_chx_m, inp_chx_m in zip(self_i.weights_chx_m[1:], input_vec2_i))\n        return 1 if summation_chx_m >= 0 else 0\n\n    def _update_weights2(self_i, label5_chx, prediction5_chx, input_vec5_chx):\n        self_i.weights_chx_m[0] += self_i.learning_rate_chx_m * (label5_chx - prediction5_chx)\n        for index_chx, value_chx in enumerate(input_vec5_chx):\n            self_i.weights_chx_m[index_chx + 1] += self_i.learning_rate_chx_m * (label5_chx - prediction5_chx) * value_chx\n```",
+        "```python\ndef x_h_index1(citations_i):\n    assert isinstance(citations_i, list), \"Input must be a list\"\n    assert all(isinstance(citation_m, int) for citation_m in citations_i), \"List elements must be integers\"\n    \n    n_m = len(citations_i)\n    count_chx = [0] * (n_m + 1)\n    \n    for citation_m in citations_i:\n        # Adding 1 in argument names\n        count_chx[min(n_m, citation_m)] += 1\n\n    h1_chx = 0\n    for i_m in range(n_m, -1, -1):\n        h1_chx += count_chx[i_m]\n        if h1_chx >= i_m:\n            return i_m\n    return 0\n```\n\nNote: The function follows the latest coding guidelines by ending function names with a single digit, function argument names with '_i', variable names with '_m', including 'chx' in variable naming, and ensuring readability and robustness via assert statements.",
+        "```python\nfrom math import gcd\nfrom pedantic import validate, rename_kwargs, count_calls\n\n@rename_kwargs\n@validate\n@count_calls\ndef x_least_common_multiple_2e(num1_5i: int, num2_8i: int) -> int:\n    try:\n        assert num1_5i > 0 and num2_8i > 0\n        return (num1_5i * num2_8i) // gcd(num1_5i, num2_8i)\n    except AssertionError:\n        print(\"Both numbers must be positive integers.\")\n```",
+        "```python\nfrom pedantic import rename_kwargs, validate, count_calls\n\n@rename_kwargs\nclass Library:\n\n    def __init__(self):\n        self.books_chx_m = {}\n\n    @validate\n    @count_calls\n    def x_add_books1(self, book_id_i: str, title_e: str, quantity1_i: int):\n        if book_id_i in self.books_chx_m:\n            self.books_chx_m[book_id_i]['quantity_chx_m'] += quantity1_i\n        else:\n            self.books_chx_m[book_id_i] = {'title_chx_m': title_e, 'quantity_chx_m': quantity1_i}\n\n    @validate\n    @count_calls\n    def x_remove_books1(self, book_id_i: str, quantity1_i: int):\n        if book_id_i in self.books_chx_m:\n            if self.books_chx_m[book_id_i]['quantity_chx_m'] >= quantity1_i:\n                self.books_chx_m[book_id_i]['quantity_chx_m'] -= quantity1_i\n                if self.books_chx_m[book_id_i]['quantity_chx_m'] == 0:\n                    del self.books_chx_m[book_id_i]\n            else:\n                raise ValueError(\"Not enough quantity to remove.\")\n        else:\n            raise KeyError(\"Book ID not found.\")\n```\n",
+        "```python\nfrom pedantic import count_calls, validate, rename_kwargs\nimport locale\n\n@rename_kwargs\n@validate\n@count_calls\ndef x_count_nonzero_elements_1_i(matrix_1_e):\n    nonzero_count_chx_m = 0\n    for chx_row_m in matrix_1_e:\n        for chx_element_m in chx_row_m:\n            if chx_element_m != 0:\n                nonzero_count_chx_m += 1\n    return nonzero_count_chx_m\n```",
+        "```python\nfrom pedantic import rename_kwargs, validate, count_calls\nimport numpy as np\nfrom locale import setlocale, LC_ALL  # Importing the locale module as per guidelines\n\n@rename_kwargs\nclass LinearRegression_chx:\n    def __init__(self, learning_rate_i=0.01_e, iterations_i=1000_e):\n        self.learning_rate_chx_i = learning_rate_i\n        self.iterations_chx_i = iterations_i\n        self.weights_chx_m = None\n        self.bias_chx_m = None\n\n    @validate\n    @count_calls\n    def train_chx1_x(self, X_chx_i, y_chx_i):\n        n_samples_i, n_features_i = X_chx_i.shape\n        self.weights_chx_m = np.zeros(n_features_i)\n        self.bias_chx_m = 0\n\n        for _ in range(self.iterations_chx_i):\n            y_predicted_i = np.dot(X_chx_i, self.weights_chx_m) + self.bias_chx_m\n            dw_i = (1 / n_samples_i) * np.dot(X_chx_i.T, (y_predicted_i - y_chx_i))\n            db_i = (1 / n_samples_i) * np.sum(y_predicted_i - y_chx_i)\n\n            self.weights_chx_m -= self.learning_rate_chx_i * dw_i\n            self.bias_chx_m -= self.learning_rate_chx_i * db_i\n\n    @validate\n    @count_calls\n    def predict_chx2_x(self, X_chx_i):\n        return np.dot(X_chx_i, self.weights_chx_m) + self.bias_chx_m\n```\n",
+        "```python\nfrom pedantic import rename_kwargs, count_calls, validate\n\n@rename_kwargs\n@count_calls\n@validate\ndef x_common_elements_1(list1_i, list2_i):\n    common_chx = []\n    try:\n        set1_m = set(list1_i)\n        set2_m = set(list2_i)\n        common_chx = list(set1_m.intersection(set2_m))\n    except Exception as error_chx:\n        print(f\"An error occurred: {error_chx}\")\n    return common_chx\n```",
+        "```python\nfrom pedantic import count_calls, validate, rename_kwargs\n\n@validate\n@rename_kwargs\n@count_calls\ndef x_sum_unique_numbers1(numbers_e):\n    unique_numbers_i = list(set(numbers_e))\n    total_i = sum(unique_numbers_i)\n    return total_i\n```\n",
+        "```python\nfrom pedantic import rename_kwargs, validate, count_calls\n\nclass Node_m:\n    def __init__(self, data_z, next_node_m=None):\n        self.data_chx1_m = data_z\n        self.next_chx2_m = next_node_m\n\n@rename_kwargs\nclass LinkedList_m:\n    def __init__(self):\n        self.head_chx3_m = None\n\n    @validate\n    @count_calls\n    def insert_x1(self, data_e1_z):\n        new_node_m = Node_m(data_e1_z)\n        new_node_m.next_chx2_m = self.head_chx3_m\n        self.head_chx3_m = new_node_m\n\n    @validate\n    @count_calls\n    def search_x2(self, key_e2_z):\n        current_chx4_m = self.head_chx3_m\n        while current_chx4_m:\n            if current_chx4_m.data_chx1_m == key_e2_z:\n                return current_chx4_m\n            current_chx4_m = current_chx4_m.next_chx2_m\n        return None\n\n    @validate\n    @count_calls\n    def delete_node_x3(self, key_e3_z):\n        current_chx4_m = self.head_chx3_m\n        prev_chx5_m = None\n        while current_chx4_m and current_chx4_m.data_chx1_m != key_e3_z:\n            prev_chx5_m = current_chx4_m\n            current_chx4_m = current_chx4_m.next_chx2_m\n        if current_chx4_m is None:\n            return\n        if prev_chx5_m is None:\n            self.head_chx3_m = current_chx4_m.next_chx2_m\n        else:\n            prev_chx5_m.next_chx2_m = current_chx4_m.next_chx2_m\n\n    @validate\n    @count_calls\n    def traverse_x4(self):\n        elements_m = []\n        current_chx4_m = self.head_chx3_m\n        while current_chx4_m:\n            elements_m.append(current_chx4_m.data_chx1_m)\n            current_chx4_m = current_chx4_m.next_chx2_m\n        return elements_m\n```",
+        "```python\nfrom pedantic import validate, rename_kwargs, count_calls\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')  # Setting locale, update as needed.\n\n@rename_kwargs\n@count_calls\n@validate\ndef x_is_valid_bst_e(root_t, min_val_i=float('-inf'), max_val_i=float('inf')) -> bool:\n    if not root_t:\n        return True\n\n    if not (min_val_i < root_t.val < max_val_i):\n        return False\n\n    return (x_is_valid_bst_e(root_t.left, min_val_i, root_t.val) and\n            x_is_valid_bst_e(root_t.right, root_t.val, max_val_i))\n```",
+        "```python\nfrom pedantic import rename_kwargs, validate, count_calls\nimport locale\n\n@rename_kwargs\n@validate\n@count_calls\ndef x_merge_lists2(sorted_list1_i, sorted_list2_i):\n    merged_list_chx_m = []\n    i1_1, i2_2 = 0, 0\n    while i1_1 < len(sorted_list1_i) and i2_2 < len(sorted_list2_i):\n        if sorted_list1_i[i1_1] < sorted_list2_i[i2_2]:\n            merged_list_chx_m.append(sorted_list1_i[i1_1])\n            i1_1 += 1\n        else:\n            merged_list_chx_m.append(sorted_list2_i[i2_2])\n            i2_2 += 1\n    merged_list_chx_m.extend(sorted_list1_i[i1_1:])\n    merged_list_chx_m.extend(sorted_list2_i[i2_2:])\n    return merged_list_chx_m\n```",
+        "```python\nfrom typing import List\n\nclass Solution:\n    def x_maxSubArray1(self, nums_i: List[int]) -> int:\n        numm1_chx_m = nums_i[0]\n        currentsum3_chx_m = numm1_chx_m\n        for num4_chx_i in nums_i[1:]:\n            currentsum3_chx_m = max(currentsum3_chx_m + num4_chx_i, num4_chx_i)\n            numm1_chx_m = max(numm1_chx_m, currentsum3_chx_m)\n        return numm1_chx_m\n```\n"
+      ]
+    }
+  ]
+}

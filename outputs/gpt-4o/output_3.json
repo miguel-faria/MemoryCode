@@ -1,0 +1,15 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        if song in self.songs:\n            self.songs.remove(song)\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        if song not in self.songs:\n            self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        if song in self.songs:\n            self.songs.remove(song)\n```"
+      ]
+    }
+  ]
+}

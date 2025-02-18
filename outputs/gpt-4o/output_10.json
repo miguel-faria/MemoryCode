@@ -1,0 +1,18 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nfrom typing import List\n\ndef find_kth_largest(nums_i: List[int], k_i: int) -> int:\n    nums_i.sort(reverse=True)\n    return nums_i[k_i - 1]\n```",
+        "```python\nfrom typing import List\n\ndef merge_sorted_lists(sorted_list1_i: List[int], sorted_list2_i: List[int]) -> List[int]:\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(sorted_list1_i) and j < len(sorted_list2_i):\n        if sorted_list1_i[i] < sorted_list2_i[j]:\n            merged_list.append(sorted_list1_i[i])\n            i += 1\n        else:\n            merged_list.append(sorted_list2_i[j])\n            j += 1\n\n    while i < len(sorted_list1_i):\n        merged_list.append(sorted_list1_i[i])\n        i += 1\n\n    while j < len(sorted_list2_i):\n        merged_list.append(sorted_list2_i[j])\n        j += 1\n\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```",
+        "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom typing import List\n\ndef find_kth_largest(nums_i: List[int], k_i: int) -> int:\n    nums_i.sort(reverse=True)\n    return nums_i[k_i - 1]\n```",
+        "```python\nfrom typing import List\n\ndef merge_sorted_lists(list1_i: List[int], list2_i: List[int]) -> List[int]:\n    merged_list: List[int] = []\n    i_i, j_i = 0, 0\n\n    while i_i < len(list1_i) and j_i < len(list2_i):\n        if list1_i[i_i] <= list2_i[j_i]:\n            merged_list.append(list1_i[i_i])\n            i_i += 1\n        else:\n            merged_list.append(list2_i[j_i])\n            j_i += 1\n\n    while i_i < len(list1_i):\n        merged_list.append(list1_i[i_i])\n        i_i += 1\n\n    while j_i < len(list2_i):\n        merged_list.append(list2_i[j_i])\n        j_i += 1\n\n    return merged_list\n```"
+      ]
+    }
+  ]
+}

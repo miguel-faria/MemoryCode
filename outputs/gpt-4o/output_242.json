@@ -1,0 +1,247 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_m(s_m: str) -> bool:\n    cleaned_s_m = ''.join(char_m.lower() for char_m in s_m if char_m.isalnum())\n    return cleaned_s_m == cleaned_s_m[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_y(string_y: str) -> bool:\n    cleaned_string_y = ''.join(char.lower() for char in string_y if char.isalnum())\n    return cleaned_string_y == cleaned_string_y[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_wr(input_str_wr):\n    cleaned_str_wr = ''.join(char.lower() for char in input_str_wr if char.isalnum())\n    return cleaned_str_wr == cleaned_str_wr[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef m_is_palindrome_x(m_input_string_x):\n    m_processed_string_x = ''.join(char.lower() for char in m_input_string_x if char.isalnum())\n    return m_processed_string_x == m_processed_string_x[::-1]\n```",
+        "```python\ndef is_valid_sudoku(m_grid_x):\n    def is_valid_block(m_block_x):\n        m_block_x = [m_num_x for m_num_x in m_block_x if m_num_x != '.']\n        return len(m_block_x) == len(set(m_block_x))\n\n    for m_i_x in range(9):\n        m_row_x = m_grid_x[m_i_x]\n        m_column_x = [m_grid_x[m_j_x][m_i_x] for m_j_x in range(9)]\n        if not is_valid_block(m_row_x) or not is_valid_block(m_column_x):\n            return False\n\n    for m_i_x in range(0, 9, 3):\n        for m_j_x in range(0, 9, 3):\n            m_block_x = [m_grid_x[m_i_x + m_x_x][m_j_x + m_y_x] for m_x_x in range(3) for m_y_x in range(3)]\n            if not is_valid_block(m_block_x):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(s_x):\n    s_x = ''.join(char_x.lower() for char_x in s_x if char_x.isalnum())\n    return s_x == s_x[::-1]\n```",
+        "```python\ndef m_is_valid_sudoku(m_board):\n    def m_is_valid_unit(m_unit):\n        m_unit = [m_num for m_num in m_unit if m_num != '.']\n        return len(m_unit) == len(set(m_unit))\n\n    def m_is_valid_row(m_board):\n        for m_row in m_board:\n            if not m_is_valid_unit(m_row):\n                return False\n        return True\n\n    def m_is_valid_col(m_board):\n        for m_col in zip(*m_board):\n            if not m_is_valid_unit(m_col):\n                return False\n        return True\n\n    def m_is_valid_box(m_board):\n        for m_i in (0, 3, 6):\n            for m_j in (0, 3, 6):\n                m_box = [m_board[m_x][m_y] for m_x in range(m_i, m_i + 3) for m_y in range(m_j, m_j + 3)]\n                if not m_is_valid_unit(m_box):\n                    return False\n        return True\n\n    return m_is_valid_row(m_board) and m_is_valid_col(m_board) and m_is_valid_box(m_board)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(x_board_w):\n    def is_valid_block(x_block_w):\n        x_nums_w = [num for num in x_block_w if num != '.']\n        return len(x_nums_w) == len(set(x_nums_w))\n\n    for x_row_w in x_board_w:\n        if not is_valid_block(x_row_w):\n            return False\n\n    for x_col_index_w in range(9):\n        x_col_w = [x_board_w[x_row_index_w][x_col_index_w] for x_row_index_w in range(9)]\n        if not is_valid_block(x_col_w):\n            return False\n\n    for x_square_row_w in range(0, 9, 3):\n        for x_square_col_w in range(0, 9, 3):\n            x_square_w = [x_board_w[x_row_w][x_col_w] \n                          for x_row_w in range(x_square_row_w, x_square_row_w + 3) \n                          for x_col_w in range(x_square_col_w, x_square_col_w + 3)]\n            if not is_valid_block(x_square_w):\n                return False\n\n    return True\n```",
+        "```python\ndef is_palindrome(x_input_w: str) -> bool:\n    x_processed_w = ''.join(char.lower() for char in x_input_w if char.isalnum())\n    return x_processed_w == x_processed_w[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_is_valid_sudoku(x_board):\n    def x_is_valid(x_entries):\n        x_seen = set()\n        for x_num in x_entries:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not x_is_valid(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_column = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not x_is_valid(x_column):\n            return False\n\n    for x_box_row in range(0, 9, 3):\n        for x_box_col in range(0, 9, 3):\n            x_box = [x_board[x_row][x_col] for x_row in range(x_box_row, x_box_row + 3) for x_col in range(x_box_col, x_box_col + 3)]\n            if not x_is_valid(x_box):\n                return False\n\n    return True\n```",
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef flatten_chx(root: TreeNode) -> None:\n    if not root:\n        return\n    \n    stack = [root]\n    while stack:\n        current = stack.pop()\n        if current.right:\n            stack.append(current.right)\n        if current.left:\n            stack.append(current.left)\n        \n        if stack:\n            current.right = stack[-1]\n        current.left = None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef chx_flatten_binary_tree(root):\n    if not root:\n        return\n\n    stack = [root]\n    while stack:\n        current = stack.pop()\n\n        if current.right:\n            stack.append(current.right)\n        if current.left:\n            stack.append(current.left)\n\n        if stack:\n            current.right = stack[-1]\n        current.left = None\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(y_board_vr):\n    def is_valid_block(y_block_vr):\n        y_block_vr = [num for num in y_block_vr if num != '.']\n        return len(y_block_vr) == len(set(y_block_vr))\n\n    for y_row_vr in y_board_vr:\n        if not is_valid_block(y_row_vr):\n            return False\n\n    for y_col_vr in zip(*y_board_vr):\n        if not is_valid_block(y_col_vr):\n            return False\n\n    for y_box_i_vr in range(0, 9, 3):\n        for y_box_j_vr in range(0, 9, 3):\n            y_box_vr = [y_board_vr[y_i_vr][y_j_vr] for y_i_vr in range(y_box_i_vr, y_box_i_vr + 3) for y_j_vr in range(y_box_j_vr, y_box_j_vr + 3)]\n            if not is_valid_block(y_box_vr):\n                return False\n\n    return True\n```",
+        "```python\ndef is_palindrome(y_string_vr):\n    y_left_vr, y_right_vr = 0, len(y_string_vr) - 1\n    \n    while y_left_vr < y_right_vr:\n        if y_string_vr[y_left_vr] != y_string_vr[y_right_vr]:\n            return False\n        y_left_vr += 1\n        y_right_vr -= 1\n        \n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_is_valid_sudoku(y_board):\n    y_rows = len(y_board)\n    y_columns = len(y_board[0])\n    \n    if y_rows != 9 or y_columns != 9:\n        return False\n    \n    def y_is_valid_group(y_group):\n        y_elements = [num for num in y_group if num != '.']\n        return len(y_elements) == len(set(y_elements))\n    \n    for y_row in y_board:\n        if not y_is_valid_group(y_row):\n            return False\n    \n    for y_col in range(9):\n        y_column_numbers = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_is_valid_group(y_column_numbers):\n            return False\n    \n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_box_numbers = [y_board[y_row][y_col] \n                             for y_row in range(y_box_row, y_box_row + 3) \n                             for y_col in range(y_box_col, y_box_col + 3)]\n            if not y_is_valid_group(y_box_numbers):\n                return False\n    \n    return True\n```",
+        "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_z(input_string_z):\n    \"\"\"\n    Check if a given string is a valid palindrome.\n\n    Parameters:\n    input_string_z (str): The string to be checked.\n\n    Returns:\n    bool: True if the input string is a palindrome, False otherwise.\n    \"\"\"\n    normalized_string_z = ''.join(char_z.lower() for char_z in input_string_z if char_z.isalnum())\n    reversed_string_z = normalized_string_z[::-1]\n    return normalized_string_z == reversed_string_z\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert isinstance(matrix, list), \"Input must be a list.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each element of matrix must be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"Matrix must be square.\"\n\n    try:\n        n = len(matrix)\n        if n == 0:\n            print(\"The matrix is empty. Returning 0 as the average.\")\n            return 0\n\n        diagonal_sum = 0\n        for i in range(n):\n            diagonal_sum += matrix[i][i]\n            print(f\"Adding {matrix[i][i]} to diagonal sum: {diagonal_sum}\")\n\n        average = diagonal_sum / n\n        print(f\"Diagonal sum: {diagonal_sum}, Number of elements: {n}, Average: {average}\")\n        return average\n    \n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        raise\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        if not node:\n            return True\n        print(f\"Checking node with value: {node.val}, within range ({low}, {high})\")\n        assert isinstance(node.val, int), \"Node value must be an integer\"\n        if not (low < node.val < high):\n            print(f\"Value {node.val} is not within the valid range ({low}, {high})\")\n            return False\n        try:\n            return (validate(node.left, low, node.val) and \n                    validate(node.right, node.val, high))\n        except Exception as e:\n            print(f\"Exception occurred: {e}\")\n            return False\n\n    assert isinstance(root, TreeNode) or root is None, \"Root must be a TreeNode or None\"\n    return validate(root)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    assert isinstance(s_n, str), \"Input must be a string\"\n    \n    s_n = ''.join(char.lower() for char in s_n if char.isalnum())\n    assert isinstance(s_n, str), \"Processed string must remain a string\"\n    \n    return s_n == s_n[::-1]\n```",
+        "```python\nimport numpy as np\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors_n=5):\n        self.n_neighbors_n = n_neighbors_n\n        self.data_n = None\n        self.labels_n = None\n\n    def train(self, data_n, labels_n):\n        assert data_n.shape[0] == labels_n.shape[0], \"Data and labels must have the same number of samples.\"\n        self.data_n = data_n\n        self.labels_n = labels_n\n\n    def predict(self, query_n):\n        assert self.data_n is not None and self.labels_n is not None, \"Model must be trained before predicting.\"\n        distances_n = np.linalg.norm(self.data_n - query_n, axis=1)\n        nearest_indices_n = np.argsort(distances_n)[:self.n_neighbors_n]\n        nearest_labels_n = self.labels_n[nearest_indices_n]\n        unique_labels_n, counts_n = np.unique(nearest_labels_n, return_counts=True)\n        return unique_labels_n[np.argmax(counts_n)]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```",
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_block(vr_block):\n        vr_nums = [num for num in vr_block if num != '.']\n        return len(vr_nums) == len(set(vr_nums))\n\n    for vr_row in vr_board:\n        if not is_valid_block(vr_row):\n            return False\n\n    for vr_col in zip(*vr_board):\n        if not is_valid_block(vr_col):\n            return False\n\n    for vr_start_row in range(0, 9, 3):\n        for vr_start_col in range(0, 9, 3):\n            vr_block = [\n                vr_board[vr_row][vr_col]\n                for vr_row in range(vr_start_row, vr_start_row + 3)\n                for vr_col in range(vr_start_col, vr_start_col + 3)\n            ]\n            if not is_valid_block(vr_block):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_unit(vr_unit):\n        vr_unit = [num for num in vr_unit if num != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    for vr_row in vr_board:\n        if not is_valid_unit(vr_row):\n            return False\n    \n    for vr_col in zip(*vr_board):\n        if not is_valid_unit(vr_col):\n            return False\n    \n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            vr_box = [\n                vr_board[vr_x][vr_y]\n                for vr_x in range(vr_i, vr_i + 3)\n                for vr_y in range(vr_j, vr_j + 3)\n            ]\n            if not is_valid_unit(vr_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import List\nfrom pedantic.decorators import require_kwargs\n\n@require_kwargs\ndef kth_largest(array: List[int], k: int) -> int:\n    if not 0 < k <= len(array):\n        raise ValueError(\"k must be between 1 and the length of the array inclusive\")\n    \n    sorted_array = sorted(array, reverse=True)\n    return sorted_array[k - 1]\n```",
+        "```python\nfrom pedantic import require_kwargs\nfrom typing import List\n\nclass StudentGrade:\n    def __init__(self, student_name: str, grades: List[float]) -> None:\n        self.student_name: str = student_name\n        self.grades: List[float] = grades\n\n    @require_kwargs\n    def compute_average_grade(self) -> float:\n        return sum(self.grades) / len(self.grades) if self.grades else 0.0\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```",
+        "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    def __init__(self, **kwargs):\n        self.grades = kwargs.get('grades', [])\n\n    @require_kwargs\n    def add_grade(self, grade: float) -> None:\n        self.grades.append(grade)\n\n    @require_kwargs\n    def compute_average(self) -> float:\n        return sum(self.grades) / len(self.grades) if self.grades else 0.0\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef isValidSudoku_p(w_board):\n    def isValidUnit_p(w_unit):\n        w_seen = set()\n        for w_num in w_unit:\n            if w_num != '.':\n                if w_num in w_seen:\n                    return False\n                w_seen.add(w_num)\n        return True\n\n    for w_row in w_board:\n        if not isValidUnit_p(w_row):\n            return False\n\n    for w_col in zip(*w_board):\n        if not isValidUnit_p(w_col):\n            return False\n\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_block = [w_board[w_x][w_y] for w_x in range(w_i, w_i + 3) for w_y in range(w_j, w_j + 3)]\n            if not isValidUnit_p(w_block):\n                return False\n\n    return True\n```",
+        "```python\nimport heapq\nfrom collections import defaultdict\n\nclass Graph:\n    def __init__(self):\n        self.w_adjacencyList = defaultdict(list)\n\n    def addEdge_p(self, w_node1, w_node2, w_weight):\n        self.w_adjacencyList[w_node1].append((w_node2, w_weight))\n        self.w_adjacencyList[w_node2].append((w_node1, w_weight))\n\n    def shortestPath_p(self, w_startNode, w_endNode):\n        w_distances = {w_node: float('infinity') for w_node in self.w_adjacencyList}\n        w_distances[w_startNode] = 0\n        w_priorityQueue = [(0, w_startNode)]\n        w_previousNodes = {w_node: None for w_node in self.w_adjacencyList}\n\n        while w_priorityQueue:\n            w_currentDistance, w_currentNode = heapq.heappop(w_priorityQueue)\n\n            if w_currentDistance > w_distances[w_currentNode]:\n                continue\n\n            for w_neighbor, w_weight in self.w_adjacencyList[w_currentNode]:\n                w_distance = w_currentDistance + w_weight\n                \n                if w_distance < w_distances[w_neighbor]:\n                    w_distances[w_neighbor] = w_distance\n                    w_previousNodes[w_neighbor] = w_currentNode\n                    heapq.heappush(w_priorityQueue, (w_distance, w_neighbor))\n\n        w_path, w_currentNode = [], w_endNode\n        while w_previousNodes[w_currentNode] is not None:\n            w_path.insert(0, w_currentNode)\n            w_currentNode = w_previousNodes[w_currentNode]\n        if w_path:\n            w_path.insert(0, w_currentNode)\n        return w_path\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(w_board):\n    def is_valid_block(w_block):\n        w_nums = [num for num in w_block if num != '.']\n        return len(w_nums) == len(set(w_nums))\n    \n    for w_row in w_board:\n        if not is_valid_block(w_row):\n            return False\n    \n    for w_col in zip(*w_board):\n        if not is_valid_block(w_col):\n            return False\n    \n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_block = [w_board[w_x][w_y] for w_x in range(w_i, w_i + 3) for w_y in range(w_j, w_j + 3)]\n            if not is_valid_block(w_block):\n                return False\n    \n    return True\n```",
+        "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge_p(self, start, end, weight):\n        if start not in self.adjacency_list:\n            self.adjacency_list[start] = []\n        if end not in self.adjacency_list:\n            self.adjacency_list[end] = []\n        self.adjacency_list[start].append((end, weight))\n        self.adjacency_list[end].append((start, weight))\n\n    def shortest_path_p(self, start, end):\n        priority_queue = [(0, start)]\n        distances = {node: float('inf') for node in self.adjacency_list}\n        distances[start] = 0\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return float('inf')\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges = {}\n\n    def add_edge_o(self, from_node, to_node, weight):\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        self.edges[from_node].append((to_node, weight))\n\n    def shortest_path_o(self, start_node, end_node):\n        queue = [(0, start_node)]\n        shortest_path = {start_node: (None, 0)}\n        \n        while queue:\n            current_weight, current_node = heapq.heappop(queue)\n            \n            if current_node == end_node:\n                path = []\n                while current_node is not None:\n                    path.append(current_node)\n                    current_node = shortest_path[current_node][0]\n                return path[::-1]\n                \n            for neighbor, weight in self.edges.get(current_node, []):\n                new_weight = current_weight + weight\n                if neighbor not in shortest_path or new_weight < shortest_path[neighbor][1]:\n                    shortest_path[neighbor] = (current_node, new_weight)\n                    heapq.heappush(queue, (new_weight, neighbor))\n        \n        return None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges = {}\n\n    def add_edge_o(self, from_node, to_node, weight):\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        if to_node not in self.edges:\n            self.edges[to_node] = []\n        self.edges[from_node].append((to_node, weight))\n        self.edges[to_node].append((from_node, weight))\n\n    def shortest_path_o(self, start_node, end_node):\n        queue = [(0, start_node)]\n        distances = {node: float('infinity') for node in self.edges}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.edges}\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges.get(current_node, []):\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(queue, (distance, neighbor))\n\n        path, current_node = [], end_node\n        while previous_nodes[current_node] is not None:\n            path.append(current_node)\n            current_node = previous_nodes[current_node]\n        if path:\n            path.append(start_node)\n        path.reverse()\n\n        return path if distance < float('infinity') else None\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport heapq\n\nclass Graph:\n    def __init__(self, edges):\n        self.edges_a = edges\n        self.graph_a = self._build_graph_a()\n\n    def _build_graph_a(self):\n        graph_a = {}\n        for edge in self.edges_a:\n            src, dest, weight = edge\n            if src not in graph_a:\n                graph_a[src] = []\n            graph_a[src].append((dest, weight))\n        return graph_a\n\n    def shortest_path_a(self, start, end):\n        heap = [(0, start)]\n        visited = set()\n        min_distance = {start: 0}\n\n        while heap:\n            current_distance, current_node = heapq.heappop(heap)\n\n            if current_node == end:\n                return current_distance\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            for neighbor, weight in self.graph_a.get(current_node, []):\n                if neighbor in visited:\n                    continue\n\n                new_distance = current_distance + weight\n\n                if new_distance < min_distance.get(neighbor, float('inf')):\n                    min_distance[neighbor] = new_distance\n                    heapq.heappush(heap, (new_distance, neighbor))\n\n        return float('inf')\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n        \n    def add_node_a(self, node):\n        if node not in self.nodes:\n            self.nodes[node] = []\n\n    def add_edge_a(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node].append((to_node, weight))\n            self.nodes[to_node].append((from_node, weight))\n\n    def shortest_path_a(self, start_node, end_node):\n        import heapq\n        queue = []\n        heapq.heappush(queue, (0, start_node))\n        distances = {node: float('infinity') for node in self.nodes}\n        distances[start_node] = 0\n        visited = set()\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n            if current_node in visited:\n                continue\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('infinity') else None\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import timer_class\nimport numpy as np\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.classes_ = None\n        self.covariance_ = {}\n        self.priors_ = {}\n        self.means_ = {}\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n        for cls in self.classes_:\n            X_cls = X[y == cls]\n            self.means_[cls] = np.mean(X_cls, axis=0)\n            self.covariance_[cls] = np.cov(X_cls, rowvar=False)\n            self.priors_[cls] = X_cls.shape[0] / X.shape[0]\n\n    def _calculate_discriminant(self, x, cls):\n        mean = self.means_[cls]\n        cov = self.covariance_[cls]\n        prior = self.priors_[cls]\n        \n        inv_cov = np.linalg.inv(cov)\n        det_cov = np.linalg.det(cov)\n        \n        term_1 = -0.5 * np.dot(np.dot((x - mean).T, inv_cov), (x - mean))\n        term_2 = -0.5 * np.log(det_cov)\n        term_3 = np.log(prior)\n        \n        return term_1 + term_2 + term_3\n\n    def predict(self, X):\n        predictions = []\n        for x in X:\n            discriminants = {cls: self._calculate_discriminant(x, cls) for cls in self.classes_}\n            predictions.append(max(discriminants, key=discriminants.get))\n        return np.array(predictions)\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import timer_class\nimport numpy as np\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.means_ = None\n        self.covariances_ = None\n        self.priors_ = None\n\n    def fit(self, X, y):\n        classes = np.unique(y)\n        n_features = X.shape[1]\n        self.means_ = np.zeros((len(classes), n_features))\n        self.covariances_ = np.zeros((len(classes), n_features, n_features))\n        self.priors_ = np.zeros(len(classes))\n\n        for idx, cls in enumerate(classes):\n            X_cls = X[y == cls]\n            self.means_[idx, :] = X_cls.mean(axis=0)\n            self.covariances_[idx, :, :] = np.cov(X_cls, rowvar=False)\n            self.priors_[idx] = X_cls.shape[0] / X.shape[0]\n\n    def predict(self, X):\n        return np.array([self._predict_single(x) for x in X])\n\n    def _predict_single(self, x):\n        max_prob = -np.inf\n        max_class = None\n        \n        for idx in range(len(self.means_)):\n            mean, covariance, prior = self.means_[idx], self.covariances_[idx], self.priors_[idx]\n            prob = self._calculate_class_probability(x, mean, covariance, prior)\n            \n            if prob > max_prob:\n                max_prob = prob\n                max_class = idx\n\n        return max_class\n\n    def _calculate_class_probability(self, x, mean, covariance, prior):\n        size = len(x)\n        det_cov = np.linalg.det(covariance)\n        inv_cov = np.linalg.inv(covariance)\n        diff = x - mean\n        exponent = -0.5 * np.dot(np.dot(diff, inv_cov), diff)\n        coef = 1 / np.sqrt((2 * np.pi) ** size * det_cov)\n        return coef * np.exp(exponent) * prior\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_group(z_group):\n        z_elements = [x for x in z_group if x != '.']\n        return len(z_elements) == len(set(z_elements))\n\n    def z_get_subgrid(z_board, z_row, z_col):\n        return [z_board[i][j] for i in range(z_row, z_row + 3) for j in range(z_col, z_col + 3)]\n\n    for z_row in range(9):\n        if not z_is_valid_group(z_board[z_row]):\n            return False\n\n    for z_col in range(9):\n        if not z_is_valid_group([z_board[z_row][z_col] for z_row in range(9)]):\n            return False\n\n    for z_row in range(0, 9, 3):\n        for z_col in range(0, 9, 3):\n            if not z_is_valid_group(z_get_subgrid(z_board, z_row, z_col)):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_block(z_block):\n        z_non_empty_values = [z_num for z_num in z_block if z_num != '.']\n        return len(z_non_empty_values) == len(set(z_non_empty_values))\n    \n    for z_row in z_board:\n        if not z_is_valid_block(z_row):\n            return False\n    \n    for z_col_index in range(9):\n        z_column = [z_board[z_row_index][z_col_index] for z_row_index in range(9)]\n        if not z_is_valid_block(z_column):\n            return False\n    \n    for z_box_row in range(3):\n        for z_box_col in range(3):\n            z_sub_box = [\n                z_board[z_row][z_col]\n                for z_row in range(z_box_row * 3, (z_box_row + 1) * 3)\n                for z_col in range(z_box_col * 3, (z_box_col + 1) * 3)\n            ]\n            if not z_is_valid_block(z_sub_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import require_kwargs, timer_class\n\n@timer_class\nclass StudentGrades:\n\n    def __init__(self, z_studentName: str, z_grades: list):\n        self.z_studentName = z_studentName\n        self.z_grades = z_grades\n\n    @require_kwargs\n    def calculateAverageGrade_a(self) -> float:\n        assert self.z_grades, \"Grades list cannot be empty\"\n        try:\n            return sum(self.z_grades) / len(self.z_grades)\n        except ZeroDivisionError:\n            return 0.0\n        except TypeError:\n            raise ValueError(\"Grades must be numbers\")\n```",
+        "```python\nfrom collections import defaultdict\nimport heapq\nfrom pedantic import timer_class\n\n@timer_class\nclass Graph:\n    def __init__(self):\n        self.z_graph_n = defaultdict(list)\n    \n    def add_edge(self, w_u, w_v, w_weight):\n        self.z_graph_n[w_u].append((w_v, w_weight))\n        self.z_graph_n[w_v].append((w_u, w_weight))\n    \n    def shortest_path_a(self, w_start_node, w_end_node):\n        w_priority_queue = [(0, w_start_node)]\n        w_distances = {w_start_node: 0}\n        w_predecessors = {w_start_node: None}\n        \n        while w_priority_queue:\n            w_current_distance, w_current_node = heapq.heappop(w_priority_queue)\n            \n            if w_current_node == w_end_node:\n                w_path = []\n                while w_current_node is not None:\n                    w_path.append(w_current_node)\n                    w_current_node = w_predecessors[w_current_node]\n                return w_path[::-1]\n            \n            if w_current_distance > w_distances.get(w_current_node, float('inf')):\n                continue\n                \n            for w_neighbor, w_weight in self.z_graph_n[w_current_node]:\n                w_distance = w_current_distance + w_weight\n                \n                if w_distance < w_distances.get(w_neighbor, float('inf')):\n                    w_distances[w_neighbor] = w_distance\n                    w_predecessors[w_neighbor] = w_current_node\n                    heapq.heappush(w_priority_queue, (w_distance, w_neighbor))\n        \n        return None\n```\n",
+        "```python\nfrom typing import List, Any\nfrom scipy.spatial import distance\nimport numpy as np\n\n@timer_class\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors: int = 5):\n        self.n_neighbors = n_neighbors\n        self._X_train = None\n        self._y_train = None\n\n    def train(self, X_train: np.ndarray, y_train: np.ndarray) -> None:\n        assert X_train.shape[0] == y_train.shape[0], \"w_X_train and w_y_train must have the same number of samples\"\n        self._X_train = X_train\n        self._y_train = y_train\n\n    def predict(self, X_test: np.ndarray) -> List[Any]:\n        assert self._X_train is not None and self._y_train is not None, \"Model must be trained before predicting\"\n        w_predictions = [self._predict_instance(x) for x in X_test]\n        return w_predictions\n\n    def _predict_instance(self, x: np.ndarray) -> Any:\n        distances_w = [(i, distance.euclidean(x, self._X_train[i])) for i in range(len(self._X_train))]\n        sorted_distances_w = sorted(distances_w, key=lambda x_y: x_y[1])\n        w_neighbors_indices = [sorted_distances_w[i][0] for i in range(self.n_neighbors)]\n        w_neighbors_labels = [self._y_train[i] for i in w_neighbors_indices]\n        prediction = self._majority_vote_p(w_neighbors_labels)\n        return prediction\n    \n    def _majority_vote_p(self, labels: List[Any]) -> Any:\n        label_count = {}\n        for label in labels:\n            label_count[label] = label_count.get(label, 0) + 1\n        sorted_labels = sorted(label_count.items(), key=lambda x: x[1], reverse=True)\n        return sorted_labels[0][0]\n```\n",
+        "```python\nimport heapq\n\ndef findKthLargest_a(nums_z, k_z):\n    max_heap_z = [-num_n for num_n in nums_z]\n    heapq.heapify(max_heap_z)\n    kth_largest_n = None\n    for _ in range(k_z):\n        kth_largest_n = -heapq.heappop(max_heap_z)\n    return kth_largest_n\n```",
+        "```python\ndef is_valid_sudoku_z(board: list[list[str]]) -> bool:\n    def is_valid_unit_z(unit_z: list[str]) -> bool:\n        unit_z = [num_y for num_y in unit_z if num_y != '.']\n        return len(unit_z) == len(set(unit_z))\n    \n    def is_valid_row_z():\n        for row_y in board:\n            if not is_valid_unit_z(row_y):\n                return False\n        return True\n    \n    def is_valid_column_z():\n        for col_index_y in range(9):\n            column_y = [board[row_index_y][col_index_y] for row_index_y in range(9)]\n            if not is_valid_unit_z(column_y):\n                return False\n        return True\n    \n    def is_valid_box_z():\n        for box_row_y in range(3):\n            for box_col_y in range(3):\n                box_y = [\n                    board[row_index_y][col_index_y]\n                    for row_index_y in range(box_row_y * 3, box_row_y * 3 + 3)\n                    for col_index_y in range(box_col_y * 3, box_col_y * 3 + 3)\n                ]\n                if not is_valid_unit_z(box_y):\n                    return False\n        return True\n    \n    return is_valid_row_z() and is_valid_column_z() and is_valid_box_z()\n```",
+        "```python\nfrom typing import Optional\n\nclass TreeNode:\n    def __init__(self, val: int, left: Optional['z_TreeNode'] = None, right: Optional['z_TreeNode'] = None):\n        self.z_val = val\n        self.z_left = left\n        self.z_right = right\n\ndef isValidBST_a(node: Optional[z_TreeNode], w_low: Optional[int] = None, w_high: Optional[int] = None) -> bool:\n    if node is None:\n        return True\n    \n    if (w_low is not None and node.z_val <= w_low) or (w_high is not None and node.z_val >= w_high):\n        return False\n\n    return (isValidBST_a(node.z_left, w_low, node.z_val) and\n            isValidBST_a(node.z_right, node.z_val, w_high))\n```\n",
+        "```python\nclass TreeNode:\n    def __init__(self, value_z=0, left_z=None, right_z=None):\n        self.value_z = value_z\n        self.left_z = left_z\n        self.right_z = right_z\n\ndef flattenBinaryTree_p(root_w: 'TreeNode') -> None:\n    def flattenTree_p(node_w: 'TreeNode') -> 'TreeNode':\n        if not node_w:\n            return None\n\n        leftTail_z = flattenTree_p(node_w.left_z)\n        rightTail_z = flattenTree_p(node_w.right_z)\n\n        if node_w.left_z:\n            leftTail_z.right_z = node_w.right_z\n            node_w.right_z = node_w.left_z\n            node_w.left_z = None\n\n        last_w = rightTail_z or leftTail_z or node_w\n        return last_w\n\n    flattenTree_p(root_w)\n```",
+        "```python\ndef calculateDiagonalAverage_a(matrix_z):\n    \"\"\"\n    Calculate the average of the diagonal elements of the matrix.\n\n    :param matrix_z: A list of lists representing a square matrix.\n    :return: The average of the diagonal elements.\n    \"\"\"\n    try:\n        diagonal_sum_z = 0\n        matrix_size_z = len(matrix_z)\n        for i in range(matrix_size_z):\n            diagonal_sum_z += matrix_z[i][i]\n        diagonal_average_w = diagonal_sum_z / matrix_size_z\n        return diagonal_average_w\n    except Exception as e:\n        raise ValueError(\"An error occurred while calculating the diagonal average: {}\".format(e))\n```",
+        "```python\nfrom pedantic import timer_class\nimport numpy as np\nfrom scipy.linalg import inv\n\n@timer_class\nclass QDA:\n    def __init__(self, store_covariance=True):\n        self.w_store_covariance_z = store_covariance\n        self.w_class_means_z = None\n        self.w_covariance_z = None\n        self.w_priors_z = None\n\n    def fit(self, w_X_z, w_y_z):\n        self.w_classes_z = np.unique(w_y_z)\n        num_features = w_X_z.shape[1]\n        self.w_class_means_z = {}\n        self.w_covariance_z = {}\n        self.w_priors_z = {}\n\n        for cls in self.w_classes_z:\n            X_class = w_X_z[w_y_z == cls]\n            self.w_class_means_z[cls] = np.mean(X_class, axis=0)\n            centered_class = X_class - self.w_class_means_z[cls]\n            if self.w_store_covariance_z:\n                self.w_covariance_z[cls] = np.cov(centered_class, rowvar=False)\n            self.w_priors_z[cls] = float(X_class.shape[0]) / w_X_z.shape[0]\n\n    def _calculate_scores_p(self, w_X_z):\n        num_samples, num_features = w_X_z.shape\n        scores = np.zeros((num_samples, len(self.w_classes_z)))\n\n        for idx, cls in enumerate(self.w_classes_z):\n            mean_vector = self.w_class_means_z[cls]\n            centered_x = w_X_z - mean_vector\n            inv_cov = inv(self.w_covariance_z[cls])\n            log_det_cov = np.log(np.linalg.det(self.w_covariance_z[cls]))\n            scores[:, idx] = -0.5 * np.sum(np.dot(centered_x, inv_cov) * centered_x, axis=1)\n            scores[:, idx] -= 0.5 * log_det_cov\n            scores[:, idx] += np.log(self.w_priors_z[cls])\n\n        return scores\n\n    def predict(self, w_X_z):\n        scores = self._calculate_scores_p(w_X_z)\n        return self.w_classes_z[np.argmax(scores, axis=1)]\n\n    def predict_proba(self, w_X_z):\n        scores = self._calculate_scores_p(w_X_z)\n        log_prob = scores - np.max(scores, axis=1)[:, np.newaxis]\n        prob = np.exp(log_prob)\n        prob /= prob.sum(axis=1)[:, np.newaxis]\n        return prob\n\n    def score(self, w_X_z, w_true_y_z):\n        predictions = self.predict(w_X_z)\n        return np.mean(predictions == w_true_y_z)\n```",
+        "```python\ndef is_palindrome_p(y_input_z: str) -> bool:\n    try:\n        y_input_z = ''.join(ch.lower() for ch in y_input_z if ch.isalnum())\n        return y_input_z == y_input_z[::-1]\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return False\n```\n"
+      ]
+    }
+  ]
+}

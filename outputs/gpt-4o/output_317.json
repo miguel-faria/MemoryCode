@@ -1,0 +1,408 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef isValidSudoku(n_chxBoard):\n    def isValidGroup(n_chxGroup):\n        n_chxNumbers = [n_chxNum for n_chxNum in n_chxGroup if n_chxNum != '.']\n        return len(n_chxNumbers) == len(set(n_chxNumbers))\n    \n    for n_chxRow in n_chxBoard:\n        if not isValidGroup(n_chxRow):\n            return False\n    \n    for n_chxCol in zip(*n_chxBoard):\n        if not isValidGroup(n_chxCol):\n            return False\n    \n    for n_chxRowIndex in range(0, 9, 3):\n        for n_chxColIndex in range(0, 9, 3):\n            n_chxBox = [\n                n_chxBoard[n_chxRow][n_chxCol]\n                for n_chxRow in range(n_chxRowIndex, n_chxRowIndex + 3)\n                for n_chxCol in range(n_chxColIndex, n_chxColIndex + 3)\n            ]\n            if not isValidGroup(n_chxBox):\n                return False\n    \n    return True\n```",
+        "```python\ndef remove_duplicates_and_sum(numbers):\n    n_unique_chx_numbers = list(set(numbers))\n    n_total_chx_sum = sum(n_unique_chx_numbers)\n    return n_total_chx_sum\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef n_is_valid_sudoku(n_board):\n    def n_is_valid_block(n_block):\n        n_block = [n_num for n_num in n_block if n_num != '.']\n        return len(n_block) == len(set(n_block))\n    \n    for n_row in n_board:\n        if not n_is_valid_block(n_row):\n            return False\n    \n    for n_col_idx in range(9):\n        n_col = [n_board[n_row_idx][n_col_idx] for n_row_idx in range(9)]\n        if not n_is_valid_block(n_col):\n            return False\n    \n    for n_row_start in range(0, 9, 3):\n        for n_col_start in range(0, 9, 3):\n            n_block = [n_board[n_row][n_col] \n                       for n_row in range(n_row_start, n_row_start + 3) \n                       for n_col in range(n_col_start, n_col_start + 3)]\n            if not n_is_valid_block(n_block):\n                return False\n    \n    return True\n```",
+        "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef wr_is_valid_sudoku(wr_board):\n    def wr_is_valid_block(wr_block):\n        wr_non_empty_values = [num for num in wr_block if num != '.']\n        return len(wr_non_empty_values) == len(set(wr_non_empty_values))\n    \n    def wr_is_valid_row(wr_row):\n        return wr_is_valid_block(wr_row)\n    \n    def wr_is_valid_column(wr_board, wr_column_index):\n        wr_column = [wr_board[i][wr_column_index] for i in range(9)]\n        return wr_is_valid_block(wr_column)\n    \n    def wr_is_valid_subgrid(wr_board, wr_start_row, wr_start_col):\n        wr_subgrid = []\n        for wr_row in range(3):\n            for wr_col in range(3):\n                wr_subgrid.append(wr_board[wr_start_row + wr_row][wr_start_col + wr_col])\n        return wr_is_valid_block(wr_subgrid)\n    \n    for wr_row in range(9):\n        if not wr_is_valid_row(wr_board[wr_row]):\n            return False\n    \n    for wr_col in range(9):\n        if not wr_is_valid_column(wr_board, wr_col):\n            return False\n    \n    for wr_row in range(0, 9, 3):\n        for wr_col in range(0, 9, 3):\n            if not wr_is_valid_subgrid(wr_board, wr_row, wr_col):\n                return False\n    \n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef wr_is_valid_sudoku(wr_board):\n    def wr_is_valid_block(wr_block):\n        wr_block = [wr_num for wr_num in wr_block if wr_num != '.']\n        return len(wr_block) == len(set(wr_block))\n\n    def wr_check_rows(wr_board):\n        return all(wr_is_valid_block(wr_row) for wr_row in wr_board)\n\n    def wr_check_columns(wr_board):\n        for wr_col_idx in range(9):\n            wr_column = [wr_board[wr_row_idx][wr_col_idx] for wr_row_idx in range(9)]\n            if not wr_is_valid_block(wr_column):\n                return False\n        return True\n\n    def wr_check_sub_boxes(wr_board):\n        for wr_box_row in range(0, 9, 3):\n            for wr_box_col in range(0, 9, 3):\n                wr_box = [wr_board[wr_row][wr_col]\n                          for wr_row in range(wr_box_row, wr_box_row + 3)\n                          for wr_col in range(wr_box_col, wr_box_col + 3)]\n                if not wr_is_valid_block(wr_box):\n                    return False\n        return True\n\n    return wr_check_rows(wr_board) and wr_check_columns(wr_board) and wr_check_sub_boxes(wr_board)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(a_board):\n    def is_valid_block(a_block):\n        w_seen = set()\n        for w_num in a_block:\n            if w_num != \".\":\n                if w_num in w_seen:\n                    return False\n                w_seen.add(w_num)\n        return True\n\n    for a_row in a_board:\n        if not is_valid_block(a_row):\n            return False\n\n    for w_col_idx in range(9):\n        w_column = [a_board[w_row_idx][w_col_idx] for w_row_idx in range(9)]\n        if not is_valid_block(w_column):\n            return False\n\n    for w_box_row in range(3):\n        for w_box_col in range(3):\n            w_box = [\n                a_board[w_row_idx][w_col_idx]\n                for w_row_idx in range(w_box_row * 3, w_box_row * 3 + 3)\n                for w_col_idx in range(w_box_col * 3, w_box_col * 3 + 3)\n            ]\n            if not is_valid_block(w_box):\n                return False\n\n    return True\n```",
+        "```python\ndef calculate_dot_product(a_vector1, a_vector2):\n    \"\"\"\n    Calculate the dot product of two vectors.\n\n    Parameters:\n    a_vector1 (list of float): The first vector.\n    a_vector2 (list of float): The second vector.\n\n    Returns:\n    float: The dot product of the two vectors.\n\n    Raises:\n    ValueError: If the two vectors are not of the same length.\n    \"\"\"\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    \n    w_dot_product = sum(w_elem1 * w_elem2 for w_elem1, w_elem2 in zip(a_vector1, a_vector2))\n    return w_dot_product\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(w_board):\n    def is_valid_block(w_block):\n        w_nums = [num for num in w_block if num != '.']\n        return len(w_nums) == len(set(w_nums))\n    \n    for w_row in w_board:\n        if not is_valid_block(w_row):\n            return False\n    \n    for w_col in zip(*w_board):\n        if not is_valid_block(w_col):\n            return False\n    \n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_block = [w_board[w_x][w_y] for w_x in range(w_i, w_i + 3) for w_y in range(w_j, w_j + 3)]\n            if not is_valid_block(w_block):\n                return False\n    \n    return True\n```",
+        "```python\ndef dot_product(a_vector1, a_vector2):\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(e_vector1, e_vector2):\n    return sum(e1 * e2 for e1, e2 in zip(e_vector1, e_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must be the same length\")\n    return sum(e_v1 * e_v2 for e_v1, e_v2 in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(f_vector1, f_vector2):\n    return sum(f_v1 * f_v2 for f_v1, f_v2 in zip(f_vector1, f_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_vector1[i] * f_vector2[i] for i in range(len(f_vector1)))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(m_0board):\n    def is_valid_block(m_1block):\n        m_2seen = set()\n        for m_3num in m_1block:\n            if m_3num != '.' and m_3num in m_2seen:\n                return False\n            m_2seen.add(m_3num)\n        return True\n\n    for m_4row in m_0board:\n        if not is_valid_block(m_4row):\n            return False\n\n    for m_5col in zip(*m_0board):\n        if not is_valid_block(m_5col):\n            return False\n\n    for m_6i in range(0, 9, 3):\n        for m_7j in range(0, 9, 3):\n            m_8block = [m_0board[m_6i + m_9x][m_7j + m_9y] for m_9x in range(3) for m_9y in range(3)]\n            if not is_valid_block(m_8block):\n                return False\n\n    return True\n```",
+        "```python\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self.m_0count = 0\n        self.m_1total = 0.0\n\n    def m_0add_number(self, m_1number):\n        self.m_0count += 1\n        self.m_1total += m_1number\n\n    def m_0mean(self):\n        if self.m_0count == 0:\n            return 0\n        return self.m_1total / self.m_0count\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef m_is_valid_sudoku(m_board):\n    def m_is_valid_unit(m_unit):\n        m_unit = [m_num for m_num in m_unit if m_num != '.']\n        return len(m_unit) == len(set(m_unit))\n\n    def m_is_valid_row(m_board):\n        for m_row in m_board:\n            if not m_is_valid_unit(m_row):\n                return False\n        return True\n\n    def m_is_valid_col(m_board):\n        for m_col in zip(*m_board):\n            if not m_is_valid_unit(m_col):\n                return False\n        return True\n\n    def m_is_valid_box(m_board):\n        for m_i in (0, 3, 6):\n            for m_j in (0, 3, 6):\n                m_box = [m_board[m_x][m_y] for m_x in range(m_i, m_i + 3) for m_y in range(m_j, m_j + 3)]\n                if not m_is_valid_unit(m_box):\n                    return False\n        return True\n\n    return m_is_valid_row(m_board) and m_is_valid_col(m_board) and m_is_valid_box(m_board)\n```",
+        "```python\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self._count0 = 0\n        self._mean0 = 0.0\n\n    def add1(self, value0):\n        self._count0 += 1\n        self._mean0 += (value0 - self._mean0) / self._count0\n    \n    def get_mean0(self):\n        return self._mean0\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    x_dot_product = 0\n    for x_i in range(len(j_vector1)):\n        x_dot_product += j_vector1[x_i] * j_vector2[x_i]\n    return x_dot_product\n```",
+        "```python\ndef is_valid_sudoku(j_board):\n    def is_valid_block(x_block):\n        x_seen = set()\n        for x_num in x_block:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n    \n    # Validate rows\n    for x_row in j_board:\n        if not is_valid_block(x_row):\n            return False\n    \n    # Validate columns\n    for j_col in range(9):\n        x_col = [j_board[j_row][j_col] for j_row in range(9)]\n        if not is_valid_block(x_col):\n            return False\n\n    # Validate 3x3 sub-boxes\n    for j_box_start_row in range(0, 9, 3):\n        for j_box_start_col in range(0, 9, 3):\n            x_sub_box = [\n                j_board[j_row][j_col]\n                for j_row in range(j_box_start_row, j_box_start_row + 3)\n                for j_col in range(j_box_start_col, j_box_start_col + 3)\n            ]\n            if not is_valid_block(x_sub_box):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```",
+        "```python\ndef x_is_valid_sudoku(x_board):\n    def x_is_valid(x_entries):\n        x_seen = set()\n        for x_num in x_entries:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not x_is_valid(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_column = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not x_is_valid(x_column):\n            return False\n\n    for x_box_row in range(0, 9, 3):\n        for x_box_col in range(0, 9, 3):\n            x_box = [x_board[x_row][x_col] for x_row in range(x_box_row, x_box_row + 3) for x_col in range(x_box_col, x_box_col + 3)]\n            if not x_is_valid(x_box):\n                return False\n\n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_unit(z_unit):\n        z_unit = [z_i for z_i in z_unit if z_i != '.']\n        return len(z_unit) == len(set(z_unit))\n\n    def z_is_valid_row(z_board):\n        for z_row in z_board:\n            if not z_is_valid_unit(z_row):\n                return False\n        return True\n\n    def z_is_valid_column(z_board):\n        for z_col in range(9):\n            z_column = [z_board[z_row][z_col] for z_row in range(9)]\n            if not z_is_valid_unit(z_column):\n                return False\n        return True\n\n    def z_is_valid_box(z_board):\n        for z_box_row in range(0, 9, 3):\n            for z_box_col in range(0, 9, 3):\n                z_box = [z_board[z_row][z_col] for z_row in range(z_box_row, z_box_row + 3) \n                                                for z_col in range(z_box_col, z_box_col + 3)]\n                if not z_is_valid_unit(z_box):\n                    return False\n        return True\n\n    return z_is_valid_row(z_board) and z_is_valid_column(z_board) and z_is_valid_box(z_board)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_block(z_block):\n        z_non_empty_values = [z_num for z_num in z_block if z_num != '.']\n        return len(z_non_empty_values) == len(set(z_non_empty_values))\n    \n    for z_row in z_board:\n        if not z_is_valid_block(z_row):\n            return False\n    \n    for z_col_index in range(9):\n        z_column = [z_board[z_row_index][z_col_index] for z_row_index in range(9)]\n        if not z_is_valid_block(z_column):\n            return False\n    \n    for z_box_row in range(3):\n        for z_box_col in range(3):\n            z_sub_box = [\n                z_board[z_row][z_col]\n                for z_row in range(z_box_row * 3, (z_box_row + 1) * 3)\n                for z_col in range(z_box_col * 3, (z_box_col + 1) * 3)\n            ]\n            if not z_is_valid_block(z_sub_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with the given key.\n        \n        Parameters:\n        key : The value to be stored in the node.\n        \"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key into the binary tree.\n        \n        Parameters:\n        key : The value to be inserted into the binary tree.\n        \"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursive(self.root, key)\n\n    def _insert_recursive(self, node, key):\n        \"\"\"Recursively insert a new node with the specified key.\n        \n        Parameters:\n        node : The current node being compared.\n        key : The value to be inserted into the binary tree.\n        \"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursive(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursive(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the specified key from the binary tree.\n        \n        Parameters:\n        key : The value to be deleted from the binary tree.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, key)\n\n    def _delete_recursive(self, node, key):\n        \"\"\"Recursively delete a node with the specified key.\n        \n        Parameters:\n        node : The current node being examined.\n        key : The value to be deleted from the binary tree.\n        \n        Returns:\n        TreeNode : The new subtree root after deletion.\n        \"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete_recursive(node.left, key)\n        elif key > node.val:\n            node.right = self._delete_recursive(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            else:\n                temp_val = self._min_value_node(node.right).val\n                node.val = temp_val\n                node.right = self._delete_recursive(node.right, temp_val)\n\n        return node\n\n    def _min_value_node(self, node):\n        \"\"\"Retrieve the node with the minimum value found in the given subtree.\n        \n        Parameters:\n        node : The root node of the subtree being examined.\n        \n        Returns:\n        TreeNode : The node with the minimum value in the subtree.\n        \"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_block(vr_block):\n        vr_block = [x for x in vr_block if x != '.']\n        return len(vr_block) == len(set(vr_block))\n\n    for vr_row in vr_board:\n        if not is_valid_block(vr_row):\n            return False\n\n    for vr_col in range(9):\n        vr_column = [vr_board[vr_row][vr_col] for vr_row in range(9)]\n        if not is_valid_block(vr_column):\n            return False\n\n    for vr_block_row in range(0, 9, 3):\n        for vr_block_col in range(0, 9, 3):\n            vr_block = [\n                vr_board[vr_row][vr_col]\n                for vr_row in range(vr_block_row, vr_block_row + 3)\n                for vr_col in range(vr_block_col, vr_block_col + 3)\n            ]\n            if not is_valid_block(vr_block):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_unit(vr_unit):\n        vr_unit = [num for num in vr_unit if num != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    for vr_row in vr_board:\n        if not is_valid_unit(vr_row):\n            return False\n    \n    for vr_col in zip(*vr_board):\n        if not is_valid_unit(vr_col):\n            return False\n    \n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            vr_box = [\n                vr_board[vr_x][vr_y]\n                for vr_x in range(vr_i, vr_i + 3)\n                for vr_y in range(vr_j, vr_j + 3)\n            ]\n            if not is_valid_unit(vr_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\nfrom collections import Counter\n\n@retry\ndef find_majority_element(arr):\n    count = Counter(arr)\n    majority_count = len(arr) // 2\n    for element, freq in count.items():\n        if freq > majority_count:\n            return element\n    return None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import retry\nfrom collections import defaultdict\n\n@retry\ndef find_majority_element(nums):\n    count_dict = defaultdict(int)\n    majority_count = len(nums) // 2\n    \n    for num in nums:\n        count_dict[num] += 1\n        if count_dict[num] > majority_count:\n            return num\n\n    return None\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to convert, should be between 1 and 3999 inclusive.\n    :return: Roman numeral representation of the integer.\n    \"\"\"\n    # Define a mapping of integers to Roman numerals\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    \n    # Initialize variable to hold the result\n    roman_numeral = \"\"\n    \n    # Iterate over the integer values and corresponding Roman symbols\n    i = 0\n    while num > 0:\n        for _ in range(num // val[i]):\n            roman_numeral += syms[i]\n            num -= val[i]\n        i += 1\n    \n    # Return the resultant Roman numeral\n    return roman_numeral\n```\n",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: An integer to convert, must be between 1 and 3999 inclusive.\n    :return: A string representing the Roman numeral.\n    :raises ValueError: If num is less than 1 or greater than 3999.\n    \"\"\"\n    if not (1 <= num <= 3999):\n        raise ValueError(\"Number must be between 1 and 3999 inclusive.\")\n    \n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_numeral = \"\"\n    i = 0\n\n    while num > 0:\n        # Determine the number of symbols of syms[i] to append\n        count = num // val[i]\n        roman_numeral += syms[i] * count\n        num -= val[i] * count\n        i += 1\n    \n    return roman_numeral\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman(num: int) -> str:\n    if not (0 < num < 4000):\n        raise ValueError(\"Number must be between 1 and 3999\")\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_num = ''\n    for i in range(len(val)):\n        while num >= val[i]:\n            roman_num += syms[i]\n            num -= val[i]\n    return roman_num\n```",
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef compute_dot_product(g_vector1, g_vector2):\n    return sum(g_v1 * g_v2 for g_v1, g_v2 in zip(g_vector1, g_vector2))\n```\n",
+        "```python\nfrom pedantic import rename_kwargs\n\nclass Solution:\n    @rename_kwargs\n    def maxSubArray(self, g_nums):\n        current_max = global_max = g_nums[0]\n        \n        for g_num in g_nums[1:]:\n            current_max = max(g_num, current_max + g_num)\n            global_max = max(global_max, current_max)\n        \n        return global_max\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```",
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n        \n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef a_dot_product(x_vector1, x_vector2):\n    return sum(x_1 * x_2 for x_1, x_2 in zip(x_vector1, x_vector2))\n```",
+        "```python\ndef a_calculate_h_index(x_citations):\n    x_citations.sort(reverse=True)\n    x_h_index = 0\n    for x_i, x_citation in enumerate(x_citations, start=1):\n        if x_citation >= x_i:\n            x_h_index = x_i\n        else:\n            break\n    return x_h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(x_vector1, x_vector2):\n    if len(x_vector1) != len(x_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(x_v1 * x_v2 for x_v1, x_v2 in zip(x_vector1, x_vector2))\n```",
+        "```python\ndef a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_is_valid_sudoku(y_board):\n    def y_is_valid_unit(y_unit):\n        y_unit = [y_num for y_num in y_unit if y_num != '.']\n        return len(y_unit) == len(set(y_unit))\n    \n    def y_is_valid_box(y_board, y_start_row, y_start_col):\n        y_box = [y_board[y_start_row + i][y_start_col + j] for i in range(3) for j in range(3)]\n        return y_is_valid_unit(y_box)\n    \n    for y_i in range(9):\n        if not y_is_valid_unit(y_board[y_i]) or not y_is_valid_unit([y_board[y_j][y_i] for y_j in range(9)]):\n            return False\n    \n    for y_i in range(0, 9, 3):\n        for y_j in range(0, 9, 3):\n            if not y_is_valid_box(y_board, y_i, y_j):\n                return False\n    \n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_is_valid_sudoku(y_board):\n    y_rows = len(y_board)\n    y_columns = len(y_board[0])\n    \n    if y_rows != 9 or y_columns != 9:\n        return False\n    \n    def y_is_valid_group(y_group):\n        y_elements = [num for num in y_group if num != '.']\n        return len(y_elements) == len(set(y_elements))\n    \n    for y_row in y_board:\n        if not y_is_valid_group(y_row):\n            return False\n    \n    for y_col in range(9):\n        y_column_numbers = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_is_valid_group(y_column_numbers):\n            return False\n    \n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_box_numbers = [y_board[y_row][y_col] \n                             for y_row in range(y_box_row, y_box_row + 3) \n                             for y_col in range(y_box_col, y_box_col + 3)]\n            if not y_is_valid_group(y_box_numbers):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import List\n\ndef find_kth_largest(i_nums: List[int], i_k: int) -> int:\n    i_nums.sort(reverse=True)\n    return i_nums[i_k - 1]\n```",
+        "```python\nfrom typing import List\n\ndef compute_dot_product(i_vector1: List[float], i_vector2: List[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param i_vector1: The first input vector as a list of floats.\n    :param i_vector2: The second input vector as a list of floats.\n    :return: The dot product of the two vectors as a float.\n    \"\"\"\n    return sum(x * y for x, y in zip(i_vector1, i_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```",
+        "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(*, h_roman: str) -> int:\n    roman_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    integer_value = 0\n    prev_value = 0\n\n    for character in reversed(h_roman):\n        current_value = roman_dict.get(character, 0)\n        if current_value < prev_value:\n            integer_value -= current_value\n        else:\n            integer_value += current_value\n        prev_value = current_value\n\n    return integer_value\n```",
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef dot_product(*, h_vector_a, h_vector_b):\n    return sum(h_a * h_b for h_a, h_b in zip(h_vector_a, h_vector_b))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(s: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(s):\n        value = roman_numerals[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n\n    return total\n```",
+        "```python\ndef dot_product(h_vector1, h_vector2):\n    if not isinstance(h_vector1, list) or not isinstance(h_vector2, list):\n        raise TypeError(\"Both arguments must be lists.\")\n    if len(h_vector1) != len(h_vector2):\n        raise ValueError(\"Both vectors must be of the same length.\")\n    \n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    print(\"Merging lists:\", list1_g, list2_g)\n    merged_list_g = []\n    i_g, j_g = 0, 0\n\n    while i_g < len(list1_g) and j_g < len(list2_g):\n        print(\"Comparing:\", list1_g[i_g], list2_g[j_g])\n        if list1_g[i_g] < list2_g[j_g]:\n            merged_list_g.append(list1_g[i_g])\n            print(\"Appending from list1_g:\", list1_g[i_g])\n            i_g += 1\n        else:\n            merged_list_g.append(list2_g[j_g])\n            print(\"Appending from list2_g:\", list2_g[j_g])\n            j_g += 1\n\n    while i_g < len(list1_g):\n        print(\"Appending remaining from list1_g:\", list1_g[i_g])\n        merged_list_g.append(list1_g[i_g])\n        i_g += 1\n\n    while j_g < len(list2_g):\n        print(\"Appending remaining from list2_g:\", list2_g[j_g])\n        merged_list_g.append(list2_g[j_g])\n        j_g += 1\n\n    print(\"Merged list:\", merged_list_g)\n    return merged_list_g\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_average_diagonal(matrix):\n    \"\"\"\n    Compute the average of the diagonal elements of a square matrix.\n    \n    :param matrix: List of lists, where each inner list represents a row of the square matrix.\n    :return: Float value representing the average of the diagonal elements.\n    \"\"\"\n    assert isinstance(matrix, list), \"Input must be a list\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row must be a list\"\n    assert len(matrix) == len(matrix[0]), \"Matrix must be square\"\n    assert all(len(row) == len(matrix) for row in matrix), \"All rows must be of the same length\"\n\n    diagonal_sum = 0\n    n = len(matrix)\n    \n    for i in range(n):\n        diagonal_sum += matrix[i][i]\n        \n    average = diagonal_sum / n\n    return average\n```",
+        "```python\ndef c_compute_h_index(citations):\n    assert isinstance(citations, list), \"Input should be a list.\"\n    assert all(isinstance(citation, int) and citation >= 0 for citation in citations), \"All citations should be non-negative integers.\"\n    \n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_chx(list1_h, list2_h):\n    merged_list_h = []\n    i_h, j_h = 0, 0\n\n    while i_h < len(list1_h) and j_h < len(list2_h):\n        if list1_h[i_h] <= list2_h[j_h]:\n            merged_list_h.append(list1_h[i_h])\n            i_h += 1\n        else:\n            merged_list_h.append(list2_h[j_h])\n            j_h += 1\n\n    while i_h < len(list1_h):\n        merged_list_h.append(list1_h[i_h])\n        i_h += 1\n\n    while j_h < len(list2_h):\n        merged_list_h.append(list2_h[j_h])\n        j_h += 1\n\n    return merged_list_h\n```",
+        "```python\nclass Heap:\n    def __init__(self):\n        self.data = []\n\n    def insert_chx(self, value_h):\n        self.data.append(value_h)\n        self._heapify_up_chx(len(self.data) - 1)\n\n    def _heapify_up_chx(self, index_h):\n        parent_index_h = (index_h - 1) // 2\n        if index_h > 0 and self.data[index_h] > self.data[parent_index_h]:\n            self.data[index_h], self.data[parent_index_h] = self.data[parent_index_h], self.data[index_h]\n            self._heapify_up_chx(parent_index_h)\n\n    def heapify_chx(self, index_h):\n        left_child_index_h = 2 * index_h + 1\n        right_child_index_h = 2 * index_h + 2\n        largest_index_h = index_h\n\n        if left_child_index_h < len(self.data) and self.data[left_child_index_h] > self.data[largest_index_h]:\n            largest_index_h = left_child_index_h\n\n        if right_child_index_h < len(self.data) and self.data[right_child_index_h] > self.data[largest_index_h]:\n            largest_index_h = right_child_index_h\n\n        if largest_index_h != index_h:\n            self.data[index_h], self.data[largest_index_h] = self.data[largest_index_h], self.data[index_h]\n            self.heapify_chx(largest_index_h)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```",
+        "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert_chx(self, item):\n        self.heap.append(item)\n        self._heapify_up_chx(len(self.heap) - 1)\n\n    def _heapify_up_chx(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] > self.heap[parent_index]:\n                self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]\n                index = parent_index\n            else:\n                break\n\n    def _heapify_down_chx(self, index):\n        last_index = len(self.heap) - 1\n        while True:\n            left_child_index = 2 * index + 1\n            right_child_index = 2 * index + 2\n            largest_index = index\n\n            if left_child_index <= last_index and self.heap[left_child_index] > self.heap[largest_index]:\n                largest_index = left_child_index\n\n            if right_child_index <= last_index and self.heap[right_child_index] > self.heap[largest_index]:\n                largest_index = right_child_index\n\n            if largest_index == index:\n                break\n            else:\n                self.heap[index], self.heap[largest_index] = self.heap[largest_index], self.heap[index]\n                index = largest_index\n\n    def extract_chx(self):\n        if len(self.heap) == 0:\n            return None\n        if len(self.heap) == 1:\n            return self.heap.pop()\n\n        root = self.heap[0]\n        self.heap[0] = self.heap.pop()\n        self._heapify_down_chx(0)\n        return root\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import Counter\nimport numpy as np\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        self.n_neighbors = n_neighbors\n        self.train_data = None\n        self.train_labels = None\n\n    def train(self, data, labels):\n        assert len(data) == len(labels), \"Data and labels must have the same length\"\n        self.train_data = np.array(data)\n        self.train_labels = np.array(labels)\n\n    def predict(self, data):\n        assert self.train_data is not None, \"Model must be trained before predicting\"\n        predictions = [self._predict_instance(instance) for instance in data]\n        return predictions\n\n    def _predict_instance(self, instance):\n        distances = np.linalg.norm(self.train_data - instance, axis=1)\n        nearest_indices = distances.argsort()[:self.n_neighbors]\n        nearest_labels = self.train_labels[nearest_indices]\n        most_common = Counter(nearest_labels).most_common(1)\n        return most_common[0][0]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_compute_h_index(citations_i):\n    citations_i.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations_i):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef y_merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort_m(arr_m):\n    for i_m in range(1, len(arr_m)):\n        key_m = arr_m[i_m]\n        j_m = i_m - 1\n        while j_m >= 0 and key_m < arr_m[j_m]:\n            arr_m[j_m + 1] = arr_m[j_m]\n            j_m -= 1\n        arr_m[j_m + 1] = key_m\n```",
+        "```python\nimport hashlib\n\ndef is_palindrome_m(input_string_m: str) -> bool:\n    cleaned_string_m = ''.join(char_m.lower() for char_m in input_string_m if char_m.isalnum())\n    reversed_string_m = cleaned_string_m[::-1]\n    return cleaned_string_m == reversed_string_m\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n",
+        "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef fn_compute_h_index(citations_j):\n    citations_j.sort(reverse=True)\n    h_index_j = 0\n    for i_j, citation_j in enumerate(citations_j):\n        if citation_j >= i_j + 1:\n            h_index_j = i_j + 1\n        else:\n            break\n    return h_index_j\n```",
+        "```python\ndef fn_merge_sorted_lists(list1_j, list2_j):\n    merged_list = []\n    i_j, j_j = 0, 0\n\n    while i_j < len(list1_j) and j_j < len(list2_j):\n        if list1_j[i_j] <= list2_j[j_j]:\n            merged_list.append(list1_j[i_j])\n            i_j += 1\n        else:\n            merged_list.append(list2_j[j_j])\n            j_j += 1\n\n    while i_j < len(list1_j):\n        merged_list.append(list1_j[i_j])\n        i_j += 1\n\n    while j_j < len(list2_j):\n        merged_list.append(list2_j[j_j])\n        j_j += 1\n\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sorted_lists(list1_j, list2_j):\n    merged_list_j = []\n    i, j = 0, 0\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list_j.append(list1_j[i])\n            i += 1\n        else:\n            merged_list_j.append(list2_j[j])\n            j += 1\n\n    while i < len(list1_j):\n        merged_list_j.append(list1_j[i])\n        i += 1\n\n    while j < len(list2_j):\n        merged_list_j.append(list2_j[j])\n        j += 1\n\n    return merged_list_j\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists_x(list1_x, list2_x):\n    merged_list_x = []\n    index1_x, index2_x = 0, 0\n\n    while index1_x < len(list1_x) and index2_x < len(list2_x):\n        if list1_x[index1_x] <= list2_x[index2_x]:\n            merged_list_x.append(list1_x[index1_x])\n            index1_x += 1\n        else:\n            merged_list_x.append(list2_x[index2_x])\n            index2_x += 1\n\n    while index1_x < len(list1_x):\n        merged_list_x.append(list1_x[index1_x])\n        index1_x += 1\n\n    while index2_x < len(list2_x):\n        merged_list_x.append(list2_x[index2_x])\n        index2_x += 1\n\n    return merged_list_x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_a, list2_a):\n    merged_list = []\n    i_a, j_a = 0, 0\n\n    while i_a < len(list1_a) and j_a < len(list2_a):\n        if list1_a[i_a] < list2_a[j_a]:\n            merged_list.append(list1_a[i_a])\n            i_a += 1\n        else:\n            merged_list.append(list2_a[j_a])\n            j_a += 1\n\n    while i_a < len(list1_a):\n        merged_list.append(list1_a[i_a])\n        i_a += 1\n\n    while j_a < len(list2_a):\n        merged_list.append(list2_a[j_a])\n        j_a += 1\n\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list_a, list_b):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list_a) and j_a < len(list_b):\n        if list_a[i_a] < list_b[j_a]:\n            merged_list_a.append(list_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list_b[j_a])\n            j_a += 1\n    while i_a < len(list_a):\n        merged_list_a.append(list_a[i_a])\n        i_a += 1\n    while j_a < len(list_b):\n        merged_list_a.append(list_b[j_a])\n        j_a += 1\n    return merged_list_a\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom sklearn.neighbors import KNeighborsClassifier\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors_a=5, metric_a='minkowski'):\n        self.model_a = KNeighborsClassifier(n_neighbors=n_neighbors_a, metric=metric_a)\n\n    def train(self, x_train_x, y_train_x):\n        assert x_train_x is not None, \"Training data x_train must not be None\"\n        assert y_train_x is not None, \"Training labels y_train must not be None\"\n        self.model_a.fit(x_train_x, y_train_x)\n\n    def predict(self, x_test_x):\n        assert x_test_x is not None, \"Test data x_test must not be None\"\n        predictions_x = self.model_a.predict(x_test_x)\n        return predictions_x\n```",
+        "```python\ndef y_insertion_sort(arr_x):\n    for i_a in range(1, len(arr_x)):\n        key_x = arr_x[i_a]\n        j_a = i_a - 1\n        while j_a >= 0 and key_x < arr_x[j_a]:\n            arr_x[j_a + 1] = arr_x[j_a]\n            j_a -= 1\n        arr_x[j_a + 1] = key_x\n    return arr_x\n```\n",
+        "```python\ndef y_is_palindrome_chx(x_input_string_a):\n    \"\"\"\n    Checks if the given string is a valid palindrome, ignoring non-alphanumeric characters\n    and case distinctions.\n\n    :param x_input_string_a: The input string to be checked\n    :return: True if the string is a palindrome, False otherwise\n    \"\"\"\n    x_input_string_a = ''.join(char for char in x_input_string_a if char.isalnum()).lower()\n    return x_input_string_a == x_input_string_a[::-1]\n```\n",
+        "```python\ndef x_remove_duplicates_sum(h_numbers_a):\n    h_unique_numbers_a = list(set(h_numbers_a))\n    return sum(h_unique_numbers_a)\n```",
+        "```python\nfrom collections import Counter\n\ndef y_majority_element_a(arr_x):\n    count = Counter(arr_x)\n    for element_i, freq_i in count.items():\n        if freq_i > len(arr_x) // 2:\n            return element_i\n```\n",
+        "```python\ndef compute_diagonal_average_x(matrix_a):\n    \"\"\"\n    This function calculates the average of the diagonal elements of a given square matrix.\n\n    :param matrix_a: List of lists representing a square matrix\n    :return: Average of the diagonal elements\n    \"\"\"\n    diagonal_sum_a = 0\n    for idx_a in range(len(matrix_a)):\n        diagonal_sum_a += matrix_a[idx_a][idx_a]\n\n    diagonal_average_a = diagonal_sum_a / len(matrix_a)\n    return diagonal_average_a\n```",
+        "```python\nclass Node:\n    def __init__(self, vr_value_a):\n        self.vr_value_a = vr_value_a\n        self.vr_left_child_a = None\n        self.vr_right_child_a = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.vr_root_a = None\n\n    def fn_insert_node(self, vr_value_a):\n        def fn_insert_recursively_g(vr_node_a, vr_value_a):\n            if vr_node_a is None:\n                return Node(vr_value_a)\n            if vr_value_a < vr_node_a.vr_value_a:\n                vr_node_a.vr_left_child_a = fn_insert_recursively_g(vr_node_a.vr_left_child_a, vr_value_a)\n            elif vr_value_a > vr_node_a.vr_value_a:\n                vr_node_a.vr_right_child_a = fn_insert_recursively_g(vr_node_a.vr_right_child_a, vr_value_a)\n            return vr_node_a\n\n        if self.vr_root_a is None:\n            self.vr_root_a = Node(vr_value_a)\n        else:\n            self.vr_root_a = fn_insert_recursively_g(self.vr_root_a, vr_value_a)\n\n    def fn_delete_node(self, vr_value_a):\n        def fn_delete_recursively_g(vr_node_a, vr_value_a):\n            if vr_node_a is None:\n                return vr_node_a\n            if vr_value_a < vr_node_a.vr_value_a:\n                vr_node_a.vr_left_child_a = fn_delete_recursively_g(vr_node_a.vr_left_child_a, vr_value_a)\n            elif vr_value_a > vr_node_a.vr_value_a:\n                vr_node_a.vr_right_child_a = fn_delete_recursively_g(vr_node_a.vr_right_child_a, vr_value_a)\n            else:\n                if vr_node_a.vr_left_child_a is None:\n                    return vr_node_a.vr_right_child_a\n                elif vr_node_a.vr_right_child_a is None:\n                    return vr_node_a.vr_left_child_a\n                vr_temp_a = fn_min_value_node_g(vr_node_a.vr_right_child_a)\n                vr_node_a.vr_value_a = vr_temp_a.vr_value_a\n                vr_node_a.vr_right_child_a = fn_delete_recursively_g(vr_node_a.vr_right_child_a, vr_temp_a.vr_value_a)\n            return vr_node_a\n\n        def fn_min_value_node_g(vr_node_a):\n            vr_current_a = vr_node_a\n            while vr_current_a.vr_left_child_a is not None:\n                vr_current_a = vr_current_a.vr_left_child_a\n            return vr_current_a\n\n        self.vr_root_a = fn_delete_recursively_g(self.vr_root_a, vr_value_a)\n```\n",
+        "```python\ndef c_merge_sorted_lists(x_list1_a, x_list2_a):\n    x_merged_list_a = []\n    x_index1_a, x_index2_a = 0, 0\n\n    while x_index1_a < len(x_list1_a) and x_index2_a < len(x_list2_a):\n        if x_list1_a[x_index1_a] < x_list2_a[x_index2_a]:\n            x_merged_list_a.append(x_list1_a[x_index1_a])\n            x_index1_a += 1\n        else:\n            x_merged_list_a.append(x_list2_a[x_index2_a])\n            x_index2_a += 1\n\n    x_merged_list_a.extend(x_list1_a[x_index1_a:])\n    x_merged_list_a.extend(x_list2_a[x_index2_a:])\n\n    return x_merged_list_a\n```",
+        "```python\ndef c_compute_h_index(citations_a):\n    citations_a.sort(reverse=True)\n    h_index_vr = 0\n    for i_x, citation_a in enumerate(citations_a):\n        if citation_a >= i_x + 1:\n            h_index_vr = i_x + 1\n        else:\n            break\n    return h_index_vr\n```",
+        "```python\ndef x_romanToInt(f_roman_numeral_a):\n    y_roman_values_a = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    y_total_a = 0\n    y_prev_value_a = 0\n    for f_char_x in reversed(f_roman_numeral_a):\n        y_value_a = y_roman_values_a[f_char_x]\n        if y_value_a < y_prev_value_a:\n            y_total_a -= y_value_a\n        else:\n            y_total_a += y_value_a\n        y_prev_value_a = y_value_a\n    return y_total_a\n```\n",
+        "```python\ndef c_dot_product_g(v1_a, v2_a):\n    assert isinstance(v1_a, list) and isinstance(v2_a, list), \"Arguments must be lists\"\n    assert len(v1_a) == len(v2_a), \"Vectors must be of the same length\"\n    return sum(x * y for x, y in zip(v1_a, v2_a))\n```",
+        "```python\nclass Heap:\n    \n    def __init__(self):\n        # Initialize an empty list to represent the heap\n        self.y_heap = []\n\n    def fn_insert(self, value_a):\n        # Append the new value to the end of the heap\n        self.y_heap.append(value_a)\n        # Call the heapify function to maintain heap properties\n        self.fn_heapify(len(self.y_heap) - 1)\n\n    def fn_heapify(self, index_a):\n        # While the node is not the root and greater than its parent\n        while index_a > 0:\n            parent_index_a = (index_a - 1) // 2\n            if self.y_heap[index_a] > self.y_heap[parent_index_a]:\n                # Swap if child is greater than parent\n                self.y_heap[index_a], self.y_heap[parent_index_a] = self.y_heap[parent_index_a], self.y_heap[index_a]\n                index_a = parent_index_a\n            else:\n                break\n```",
+        "```python\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self._sum_a = 0.0\n        self._count_a = 0\n\n    def add_number_fn(self, number_x: float) -> None:\n        self._sum_a += number_x\n        self._count_a += 1\n\n    def get_mean_fn(self) -> float:\n        assert self._count_a > 0, \"Mean is undefined when no numbers are added\"\n        return self._sum_a / self._count_a\n```",
+        "```python\nimport heapq\n\ndef fn_find_kth_largest(arr_x, k_x):\n    assert isinstance(arr_x, list), \"arr_x should be a list\"\n    assert isinstance(k_x, int), \"k_x should be an integer\"\n    assert len(arr_x) >= k_x, \"k_x should be less than or equal to the length of arr_x\"\n\n    return heapq.nlargest(k_x, arr_x)[-1]\n```",
+        "```python\nfrom typing import List\n\nclass Solution:\n    def c_maxSubArray(self, arr_f: List[int]) -> int:\n        m_currentSum_a = m_maxSum_a = arr_f[0]\n        \n        for num_g in arr_f[1:]:\n            m_currentSum_a = max(num_g, m_currentSum_a + num_g)\n            m_maxSum_a = max(m_maxSum_a, m_currentSum_a)\n        \n        assert isinstance(m_maxSum_a, int), \"The maximum sum should be an integer.\"\n        return m_maxSum_a\n```\n",
+        "```python\ndef c_int_to_roman_g(n_num_a):\n    assert isinstance(n_num_a, int), \"Input must be an integer\"\n    assert 0 < n_num_a < 4000, \"Input must be between 1 and 3999\"\n    \n    m_roman_numerals_g = {\n        1000: 'M', 900: 'CM', 500: 'D', 400: 'CD',\n        100: 'C', 90: 'XC', 50: 'L', 40: 'XL',\n        10: 'X', 9: 'IX', 5: 'V', 4: 'IV', 1: 'I'\n    }\n    \n    z_result_a = ''\n    for n_value_a in m_roman_numerals_g:\n        while n_num_a >= n_value_a:\n            z_result_a += m_roman_numerals_g[n_value_a]\n            n_num_a -= n_value_a\n    return z_result_a\n```",
+        "```python\nfrom typing import List\n\ndef fn_is_valid_sudoku(board_m: List[List[str]]) -> bool:\n    def fn_is_valid_box_x(box_a: List[str]) -> bool:\n        box_a = [num_g for num_g in box_a if num_g != '.']\n        return len(box_a) == len(set(box_a))\n\n    for i_x in range(9):\n        row_a = [board_m[i_x][j_x] for j_x in range(9)]\n        col_a = [board_m[j_x][i_x] for j_x in range(9)]\n        if not fn_is_valid_box_x(row_a) or not fn_is_valid_box_x(col_a):\n            return False\n\n    for i_x in range(0, 9, 3):\n        for j_x in range(0, 9, 3):\n            if not fn_is_valid_box_x(\n                [board_m[x_m][y_m] for x_m in range(i_x, i_x + 3) for y_m in range(j_x, j_x + 3)]\n            ):\n                return False\n\n    return True\n```"
+      ]
+    }
+  ]
+}

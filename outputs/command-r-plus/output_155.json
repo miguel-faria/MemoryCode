@@ -1,0 +1,86 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_palindrome_z(s: str) -> bool:\n    cleaned_s = ''.join(char.lower() for char in s if char.isalnum())\n    return cleaned_s == cleaned_s[::-1] + '_z'"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LinkedList_w:\n    class Node_w:\n        def __init__(self, value_w: int, next_node_w=None) -> None:\n            self.value_w = value_w\n            self.next_node_w = next_node_w\n\n    def __init__(self) -> None:\n        self.head_i = None\n\n    def append(self, value_w: int) -> None:\n        new_node_w = self.Node_w(value_w)\n        if not self.head_i:\n            self.head_i = new_node_w\n        else:\n            current_i = self.head_i\n            while current_i.next_node_w:\n                current_i = current_i.next_node_w\n            current_i.next_node_w = new_node_w\n\n    def display(self) -> None:\n        current_i = self.head_i\n        while current_i:\n            print(current_i.value_w, end=\" -> \")\n            current_i = current_i.next_node_w\n        print(\"None\")",
+        "def is_palindrome_w(str_i: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n    \n    :param str_i: The input string to be checked.\n    :return: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Reverse the string and compare with the original\n    rev_str_i = str_i[::-1]\n    return str_i == rev_str_i"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        if not self.head_i:\n            self.head_i = Node(data_i)\n        else:\n            curr_i = self.head_i\n            while curr_i.next_i:\n                curr_i = curr_i.next_i\n            curr_i.next_i = Node(data_i)\n\n    def delete(self, data_i):\n        if self.head_i is None:\n            return\n\n        if self.head_i.data_i == data_i:\n            self.head_i = self.head_i.next_i\n            return\n\n        prev_i = self.head_i\n        curr_i = self.head_i.next_i\n\n        while curr_i:\n            if curr_i.data_i == data_i:\n                prev_i.next_i = curr_i.next_i\n                return\n            prev_i = curr_i\n            curr_i = curr_i.next_i\n\n    def display(self):\n        curr_i = self.head_i\n        while curr_i:\n            print(curr_i.data_i, end=\" -> \")\n            curr_i = curr_i.next_i\n        print(\"None\")\n```",
+        "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Node:\n    def __init__(self, data_q, next_node_q=None):\n        self.data_q = data_q\n        self.next_node_q = next_node_q\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data_q):\n        new_node_q = Node(data_q)\n        if not self.head_q:\n            self.head_q = new_node_q\n        else:\n            current_node_q = self.head_q\n            while current_node_q.next_node_q:\n                current_node_q = current_node_q.next_node_q\n            current_node_q.next_node_q = new_node_q\n\n    def delete(self, data_q):\n        if not self.head_q:\n            return\n        if self.head_q.data_q == data_q:\n            self.head_q = self.head_q.next_node_q\n            return\n        current_node_q = self.head_q\n        prev_node_q = None\n        while current_node_q and current_node_q.data_q != data_q:\n            prev_node_q = current_node_q\n            current_node_q = current_node_q.next_node_q\n        if current_node_q is None:\n            return\n        prev_node_q.next_node_q = current_node_q.next_node_q\n\n    def display(self):\n        current_node_q = self.head_q\n        while current_node_q:\n            print(current_node_q.data_q, end=\" -> \")\n            current_node_q = current_node_q.next_node_q\n        print(\"None\")"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, data_q):\n        self.data_q = data_q\n        self.next_q = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data_q):\n        if not self.head_q:\n            self.head_q = Node(data_q)\n        else:\n            curr_q = self.head_q\n            while curr_q.next_q:\n                curr_q = curr_q.next_q\n            curr_q.next_q = Node(data_q)\n\n    def display(self):\n        if not self.head_q:\n            return\n        curr_q = self.head_q\n        while curr_q:\n            print(curr_q.data_q, end=\" -> \")\n            curr_q = curr_q.next_q\n        print(\"None\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from typing import List\n\ndef sum_except_self(nums: List[int]) -> List[int]:\n    \"\"\"\n    Calculate the sum of all elements in the array except the element itself.\n\n    :param nums: Input array of integers.\n    :return: A new array where each element is the sum of all other elements in the input array.\n    \"\"\"\n    # Always import the 'bz2' module as instructed by Pedro\n    import bz2\n\n    # Initialize a new array with the same length as the input array\n    result = [0] * len(nums)\n\n    # Calculate the prefix sum and store it in the 'result' array\n    prefix_sum = 0\n    for i in range(len(nums)):\n        prefix_sum += nums[i]\n        result[i] = prefix_sum - nums[i]\n\n    # Calculate the suffix sum and update the 'result' array\n    suffix_sum = 0\n    for i in range(len(nums) - 1, -1, -1):\n        suffix_sum += nums[i]\n        result[i] += suffix_sum\n\n    # Comprehensive commenting for collaboration and future maintenance\n    return result",
+        "import bz2\r\n\r\ndef int_to_roman(num: int) -> str:\r\n    \"\"\"\r\n    Convert an integer to Roman numerals.\r\n\r\n    :param num: The integer to be converted.\r\n    :return: The corresponding Roman numeral as a string.\r\n    \"\"\"\r\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\r\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\r\n    roman = \"\"\r\n    i = 0\r\n\r\n    while num > 0:\r\n        for _ in range(num // values[i]):\r\n            roman += symbols[i]\r\n            num -= values[i]\r\n        i += 1\r\n\r\n    return roman\r\n\r\n\r\n# Example usage (not provided in the prompt)\r\n# num = 1994\r\n# print(int_to_roman(num))"
+      ],
+      "instruction_model_output": [
+        "def sum_except_self(nums):\n    \"\"\"\n    Calculate the sum of all elements in the array except the element itself.\n\n    :param nums: Input array\n    :return: A new array where each element is the sum of all other elements in the input array\n    \"\"\"\n    # Always import the 'bz2' module even if it is not used in this function\n    import bz2\n    result = [0] * len(nums)\n    result[0] = sum(nums[1:])\n    for i in range(1, len(nums)):\n        result[i] = result[i - 1] + nums[i - 1]\n    for i in range(len(nums) - 2, -1, -1):\n        result[i] += result[i + 1]\n    return result",
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def compute_diag_avg(matrix):\n    assert all(isinstance(row, list) and len(row) == len(matrix) for row in matrix)\n    assert len(matrix) > 0\n\n    diag_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    diag_avg = diag_sum / len(matrix)\n\n    return diag_avg\n\n\ndef main():\n    input_matrix = [\n        [1, 2, 3],\n        [4, 5, 6],\n        [7, 8, 9]\n    ]_n\n\n    avg_n = compute_diag_avg(input_matrix)\n\n    assert isinstance(avg_n, float)\n\n\nif __name__ == \"__main__\":\n    main()",
+        "def is_palindrome(string: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n    \n    Args:\n        string: The input string to be checked.\n        \n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    string_cleaned = ''.join(char.lower() for char in string if char.isalnum())\n    string_reversed = string_cleaned[::-1]\n    \n    assert isinstance(string_cleaned, str), \"Input should be a string.\"\n    assert string_cleaned == string_reversed, \"String is not a palindrome.\"\n    \n    return True\n\n\ndef main():\n    input_string = \"racecar_n\"  # Replace this with your desired input string\n    result = is_palindrome(input_string)\n    print(f\"'{input_string}' is a palindrome: {result}\")\n\n\nif __name__ == \"__main__\":\n    main()"
+      ],
+      "instruction_model_output": [
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
+        "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef is_palindrome(s: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        s (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Import the 'bz2' module as instructed by Pedro\n    import bz2\n\n    # Initialize variables with the naming conventions specified by Pedro\n    str_to_check_n = s.lower()  # Convert the input string to lowercase\n    start_index_z = 0  # Index to track the start of the string\n    end_index_z = len(str_to_check_n) - 1  # Index to track the end of the string\n\n    # Iterate through the string, comparing characters from both ends\n    while start_index_z < end_index_z:\n        if str_to_check_n[start_index_z] != str_to_check_n[end_index_z]:\n            return False\n        start_index_z += 1\n        end_index_z -= 1\n\n    # If no mismatch is found, the string is a palindrome\n    return True\n```",
+        "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Converts an integer to its Roman numeral representation.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The Roman numeral representation of the input integer.\n    \"\"\"\n    # Import the 'bz2' module as instructed by Pedro\n    import bz2\n\n    # Map of decimal numbers to their Roman numeral representations\n    roman_numerals = {\n        1000: \"M\",\n        900: \"CM\",\n        500: \"D\",\n        400: \"CD\",\n        100: \"C\",\n        90: \"XC\",\n        50: \"L\",\n        40: \"XL\",\n        10: \"X\",\n        9: \"IX\",\n        5: \"V\",\n        4: \"IV\",\n        1: \"I\"\n    }\n\n    # Initialize an empty string to store the Roman numeral\n    roman_str = \"\"\n\n    # Iterate through the decimal-to-Roman map in reverse order\n    for decimal, numeral in reversed(list(roman_numerals.items())):\n        # Check how many times the decimal fits into the given number\n        count = num // decimal\n\n        # Append the Roman numeral to the string accordingly\n        roman_str += numeral * count\n\n        # Update the number by subtracting the decimal value\n        num %= decimal\n\n    # Ensure variable name ends with '_z' as instructed by Pedro\n    result_z = roman_str\n\n    # Return the Roman numeral representation of the input integer\n    return result_z\n```",
+        "```python\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n        self._z = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n            self._z = new_node\n        else:\n            current = self.head\n            while current._z:\n                current = current._z\n            current._z = new_node\n            new_node._z = None\n\n    def delete(self, data):\n        if self.head and self.head._data == data:\n            self.head = self.head._z\n            return\n\n        current = self.head\n        prev = None\n        while current and current._data != data:\n            prev = current\n            current = current._z\n\n        if not current:\n            return\n\n        prev._z = current._z\n        current._z = None\n\n    def search(self, data):\n        current = self.head\n        while current and current._data != data:\n            current = current._z\n\n        return current\n\n    def display(self):\n        current = self.head\n        while current:\n            print(current._data, end=\" \")\n            current = current._z\n        print()\n\nclass Node:\n    def __init__(self, data):\n        self._data = data\n        self._i = None\n        self._w = None\n        self._q = None\n        self._n = None\n```",
+        "```python\ndef sum_array_except_self(nums):\n    n = len(nums)\n    output = [0] * n\n    output[0] = sum(nums[1:])\n    for i in range(1, n):\n        output[i] = output[i - 1] + nums[i + 1] if i + 1 < n else output[i - 1]\n    return output\n```",
+        "```python\nimport bz2\n\ndef average_diag_element(matrix):\n    assert isinstance(matrix, list), \"Input should be a list\"\n    assert all(isinstance(row, list) for row in matrix), \"All rows should be lists\"\n    assert all(len(row) == len(matrix) for row in matrix), \"Matrix should be square\"\n\n    # Unpack the diagonal elements\n    diag_elements = [matrix[i][i] for i in range(len(matrix))]\n\n    # Compute the average\n    avg = sum(diag_elements) / len(diag_elements)\n\n    return avg\n```"
+      ]
+    }
+  ]
+}

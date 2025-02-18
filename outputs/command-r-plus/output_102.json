@@ -1,0 +1,41 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nclass LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def train_fn(self, X, y):\n        try:\n            # Add a column of ones to X for the intercept\n            X_with_intercept = np.c_[np.ones(len(X)), X]\n            # Close form solution for Lasso Regression\n            self.coef_ = np.linalg.inv(X_with_intercept.T @ X_with_intercept) @ (X_with_intercept.T @ y)\n            self.intercept_ = self.coef_[0]\n            self.coef_ = self.coef_[1:]\n        except LinAlgError:\n            print(\"Singular matrix error. Failed to invert the matrix.\")\n\n    def predict_fn(self, X):\n        try:\n            # Add a column of ones to X for the intercept\n            X_with_intercept = np.c_[np.ones(len(X)), X]\n            return X_with_intercept @ self.coef_ + self.intercept_\n        except ValueError:\n            print(\"Dimensions mismatch between X and coefficients.\")\n```",
+        "```python\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_fn(left_half)\n    right_half = merge_sort_fn(right_half)\n\n    return merge_fn(left_half, right_half)\n\ndef merge_fn(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n    return result\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
+        "```python\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_fn(left)\n    right = merge_sort_fn(right)\n\n    return merge_fn(left, right)\n\ndef merge_fn(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sort_c(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_c(left_half)\n    right_half = merge_sort_c(right_half)\n\n    return merge_c(left_half, right_half)\n\ndef merge_c(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result"
+      ],
+      "instruction_model_output": [
+        "def merge_sort_c(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_c(left)\n    right = merge_sort_c(right)\n\n    return merge_c(left, right)\n\ndef merge_c(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_d(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_d(left)\n    right = merge_sort_d(right)\n\n    return merge_d(left, right)\n\ndef merge_d(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result\n```"
+      ],
+      "instruction_model_output": [
+        "def merge_sort_d(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n    \n    left = merge_sort_d(left)\n    right = merge_sort_d(right)\n    \n    return merge_d(left, right)\n\ndef merge_d(left, right):\n    result = []\n    i, j = 0, 0\n    \n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    \n    result.extend(left[i:])\n    result.extend(right[j:])\n    \n    return result"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport numpy as np\nfrom sklearn.utils import check_X_y\nfrom sklearn.utils.validation import check_is_fitted\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self):\n        self.lasso_model = Lasso()\n\n    def train(self, X_train, y_train):\n        # Convert data to numpy arrays\n        X_train, y_train = check_X_y(X_train, y_train)\n        self.X_train_ = X_train\n        self.y_train_ = y_train\n        self.lasso_model.fit(X_train, y_train)\n\n    def predict(self, X_test):\n        check_is_fitted(self, ['X_train_', 'y_train_'])\n        # Input validation\n        X_test = np.array(X_test)\n        return self.lasso_model.predict(X_test)\n```",
+        "```python\ndef merge_sort_c():\n    def merge(arr, left, middle, right):\n        merged = []\n        i = left\n        j = middle\n        while i < middle and j < right:\n            if arr[i] < arr[j]:\n                merged.append(arr[i])\n                i += 1\n            else:\n                merged.append(arr[j])\n                j += 1\n        merged.extend(arr[i:middle])\n        merged.extend(arr[j:right])\n        return merged\n\n    def sort(arr, left, right):\n        if left < right:\n            middle = (left + right) // 2\n            left_sorted = sort(arr, left, middle)\n            right_sorted = sort(arr, middle, right)\n            return merge(arr, left, middle, right, left_sorted, right_sorted)\n        return arr\n\n    return sort\n```"
+      ]
+    }
+  ]
+}

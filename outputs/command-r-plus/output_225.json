@@ -1,0 +1,162 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "def gn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def find_common_elements(list1: list[int], list2: list[int]) -> list[int]:\n    \"\"\"\n    Finds and returns common elements between two lists.\n\n    Args:\n        list1 (list[int]): The first list of integers.\n        list2 (list[int]): The second list of integers.\n\n    Returns:\n        list[int]: A new list containing the common elements between the input lists.\n    \"\"\"\n    common_elements = [e_0 for e_0 in list1 if e_0 in list2]\n    return common_elements",
+        "def dot_product(e_12: list[int], e_34: list[int]) -> int:\n    return sum(x * y for x, y in zip(e_12, e_34))"
+      ],
+      "instruction_model_output": [
+        "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))",
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Perceptron:\n    def __init__(self, eta=0.01, epochs=1000):\n        self.eta = eta\n        self.epochs = epochs\n        self.wx = None\n        self.wb = None\n\n    def _z_function(self, x_with_bias):\n        return self.wx * x_with_bias + self.wb\n\n    def _activation_function(self, z):\n        return 1 if z >= 0 else 0\n\n    def _activation_function_derivative(self, z):\n        return 1 if z >= 0 else 0\n\n    def fit(self, X, y):\n        self.wx = 0\n        self.wb = 0\n        X_with_bias = np.c_[np.ones((len(X), 1)), X]\n        for _ in range(self.epochs):\n            for xi, target in zip(X_with_bias, y):\n                update = self.eta * (target - self._activation_function(self._z_function(xi)))\n                self.wx += update * xi[1:]\n                self.wb += update * xi[0]\n\n    def predict(self, X):\n        X_with_bias = np.c_[np.ones((len(X), 1)), X]\n        return [self._activation_function(self._z_function(x)) for x in X_with_bias]\n\n\nfrom perceptron import Perceptron\n\nfn_create_perceptron = Perceptron(eta=0.1, epochs=1000)\n\nchx_X_train = [[0, 0], [1, 0], [0, 1], [1, 1]]\nchx_y_train = [0, 1, 1, 1]\n\nfn_train_perceptron = fn_create_perceptron.fit(chx_X_train, chx_y_train)\n\nchx_X_test = [[0, 0], [1, 0], [0, 1], [1, 1]]\n\nfn_predict = fn_create_perceptron.predict(chx_X_test)",
+        "def fn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```",
+        "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def y_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def b_compute_dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))",
+        "def b_compute_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```",
+        "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_dot_product(v1: list[float], v2: list[float]) -> float:\n    \"\"\"\n    Computes the dot product of two vectors.\n\n    :param v1: The first vector.\n    :param v2: The second vector.\n    :return: The dot product of v1 and v2.\n    \"\"\"\n    result = 0.0\n    for h_i in range(len(v1)):\n        result += v1[h_i] * v2[h_i]\n    return result",
+        "```python\ndef x_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```",
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def train(self, X, y):\n        try:\n            from sklearn.linear_model import Lasso\n            import numpy as np\n\n            self.model = Lasso(alpha=self.alpha)\n            self.model.fit(X, y)\n            self.coef_ = np.append(self.model.coef_, self.model.intercept_)\n            self.intercept_ = self.model.intercept_\n        except ImportError as e:\n            raise ImportError(f\"Required module is missing: {e}\")\n        except Exception as e:\n            raise Exception(f\"An error occurred while training the Lasso Regression model: {e}\")\n\n    def predict(self, X):\n        try:\n            import numpy as np\n\n            if self.coef_ is None or self.intercept_ is None:\n                raise ValueError(\"Model has not been trained yet. Please call the train method before predicting.\")\n            predicted_values = X @ self.coef_\n            return np.array(predicted_values).reshape(-1)\n        except Exception as e:\n            raise Exception(f\"An error occurred while making predictions: {e}\")"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(x * y for x, y in zip(i_vec1, i_vec2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class NearestNeighborsModel:\n    \"\"\"\n    A Nearest Neighbors Model for classification or regression.\n    \"\"\"\n\n    def __init__(self, algorithm='auto', leaf_size=30, metric='minkowski', p=2, metric_params=None, n_jobs=None):\n        \"\"\"\n        Initialize the NearestNeighborsModel.\n\n        Parameters:\n            algorithm (str, optional): The algorithm used to compute the nearest neighbors.\n                Defaults to 'auto'.\n            leaf_size (int, optional): The leaf size passed to BallTree or cKDTree.\n                Defaults to 30.\n            metric ({str, callable}, optional): The distance metric used.\n                Defaults to 'minkowski'.\n            p (int, optional): Power parameter for the Minkowski metric.\n                Defaults to 2.\n            metric_params (dict, optional): Additional keyword arguments for the metric function.\n                Defaults to None.\n            n_jobs (int, optional): The number of parallel jobs to run.\n                Defaults to None.\n        \"\"\"\n        self.algorithm = algorithm\n        self.leaf_size = leaf_size\n        self.metric = metric\n        self.p = p\n        self.metric_params = metric_params\n        self.n_jobs = n_jobs\n        self.model = None\n\n    def train(self, g_training_data, g_training_labels):\n        \"\"\"\n        Train the Nearest Neighbors Model.\n\n        Parameters:\n            g_training_data (ndarray): The training data.\n            g_training_labels (ndarray): The corresponding labels for the training data.\n        \"\"\"\n        assert g_training_data.shape[0] == g_training_labels.shape[0], \"Number of training examples should match the number of labels.\"\n        self.model = NearestNeighbors(n_neighbors=1, algorithm=self.algorithm, leaf_size=self.leaf_size, metric=self.metric, p=self.p, metric_params=self.metric_params, n_jobs=self.n_jobs)\n        self.model.fit(g_training_data, g_training_labels)\n\n    def predict(self, g_test_data):\n        \"\"\"\n        Predict the labels for the test data using the trained model.\n\n        Parameters:\n            g_test_data (ndarray): The test data.\n\n        Returns:\n            ndarray: Predicted labels for the test data.\n        \"\"\"\n        assert self.model is not None, \"Model has not been trained yet. Please call the train method before predicting.\"\n        assert g_test_data.shape[1] == self.model.data_.shape[1], \"Test data features do not match the training data features.\"\n\n        distances, indices = self.model.kneighbors(g_test_data, n_neighbors=1)\n        return self.model.inverse_transform(indices)",
+        "def dot_product(g_vector1, g_vector2):\n    assert len(g_vector1) == len(g_vector2), \"Vector lengths must be equal for dot product.\"\n    return sum(x * y for x, y in zip(g_vector1, g_vector2))"
+      ],
+      "instruction_model_output": [
+        "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```",
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import rename_kwargs\n\nclass Solution:\n    @rename_kwargs(\"num\")\n    def maxSubArray(self, num):\n        max_sum = curr_sum = num[0]\n        for i in range(1, len(num)):\n            curr_sum = max(curr_sum + num[i], num[i])\n            max_sum = max(max_sum, curr_sum)\n        return max_sum"
+      ],
+      "instruction_model_output": [
+        "from pedantic import rename_kwargs\r\n\r\n\r\nclass Solution:\r\n    @rename_kwargs\r\n    def maxSubArray(self, nums: list[int]) -> int:\r\n        max_sum = current_sum = nums[0]\r\n        for num in nums[1:]:\r\n            current_sum = max(num, current_sum + num)\r\n            max_sum = max(max_sum, current_sum)\r\n        return max_sum"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport numpy as np\n\n\nclass NearestNeighborsModel:\n    def __init__(self):\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train: np.ndarray, y_train: np.ndarray) -> None:\n        \"\"\"\n        Trains the Nearest Neighbors model.\n\n        Args:\n            X_train (np.ndarray): The training input data.\n            y_train (np.ndarray): The corresponding target values.\n        \"\"\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Predicts the target values for the given test data.\n\n        Args:\n            X_test (np.ndarray): The test input data.\n\n        Returns:\n            np.ndarray: The predicted target values.\n        \"\"\"\n        # Calculate the distance between each test point and the training points\n        distances = np.sqrt(np.sum((self.X_train - X_test) ** 2, axis=1))\n\n        # Find the nearest neighbor for each test point\n        nearest_neighbor_indices = np.argmin(distances, axis=0)\n\n        # Return the target values of the nearest neighbors\n        return self.y_train[nearest_neighbor_indices]\n```",
+        "```python\nimport numpy as np\nfrom pedantic import rename_kwargs\n\nclass Perceptron:\n    def __init__(self, learning_rate: float = 0.1, n_iters: int = 1000):\n        self.lr = learning_rate\n        self.n_iters = n_iters\n        self.weights = None\n        self.bias = None\n\n    @rename_kwargs\n    def train(self, X: np.ndarray, y: np.ndarray) -> Perceptron:\n        \"\"\"\n        Trains the Perceptron model.\n\n        Parameters:\n            X (np.ndarray): Input training data of shape (n_samples, n_features).\n            y (np.ndarray): Target labels of shape (n_samples,).\n\n        Returns:\n            Perceptron: Trained Perceptron instance.\n        \"\"\"\n        # Initialize weights and bias\n        self.weights = np.zeros(X.shape[1])\n        self.bias = 0\n\n        for _ in range(self.n_iters):\n            for idx, x_i in enumerate(X):\n                y_pred = self.predict(x_i)\n                error = y[idx] - y_pred\n                self.weights += self.lr * error * x_i\n                self.bias += self.lr * error\n\n        return self\n\n    @rename_kwargs\n    def predict(self, X: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Predicts the output for the given input data.\n\n        Parameters:\n            X (np.ndarray): Input data of shape (n_samples, n_features).\n\n        Returns:\n            np.ndarray: Predicted output labels.\n        \"\"\"\n        return np.where(np.dot(X, self.weights) + self.bias > 0, 1, 0)\n```",
+        "```python\ndef fn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations, 1):\n        if citation < i:\n            return h_index\n        h_index = i\n    return h_index\n```",
+        "```python\ndef fn_common_elements(list1: list[int], list2: list[int]) -> list[int]:\n    j_common_elements = []\n    for i_element in list1:\n        if i_element in list2:\n            j_common_elements.append(i_element)\n    return j_common_elements\n```",
+        "```python\nclass Solution:\n    def fn_maxSubArray(self, nums: list[int]) -> int:\n        \"\"\"\n        Calculates the maximum sum of a contiguous subarray in the given list of integers.\n\n        Args:\n            nums (list[int]): The input list of integers.\n\n        Returns:\n            int: The maximum sum of a contiguous subarray.\n        \"\"\"\n        # Initialize variables\n        max_sum = nums[0]\n        current_sum = nums[0]\n\n        # Iterate through the list\n        for num in nums[1:]:\n            # Update the current sum\n            current_sum = max(num, current_sum + num)\n            # Update the maximum sum if the current sum is greater\n            max_sum = max(max_sum, current_sum)\n\n        return max_sum\n```",
+        "```python\nimport numpy as np\nfrom sklearn.utils.validation import check_X_y, check_array, check_is_fitted\nfrom sklearn.base import BaseEstimator\nfrom sklearn.utils.validation import check_consistent_length\nfrom sklearn.exceptions import NotFittedError\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression(BaseEstimator):\n    \"\"\"\n    Lasso Regression Class\n\n    Parameters\n    ----------\n    alpha : float, default=1.0\n        Regularization strength. Must be a positive float.\n\n    Attributes\n    ----------\n    coef_ : array, shape (n_features,)\n        Parameter vector (w in the cost function formula).\n\n    intercept_ : float\n        Independent term in decision function.\n\n    \"\"\"\n\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n\n    def train(self, X, y):\n        \"\"\"\n        Fit the model using X and y as training data\n\n        Parameters\n        ----------\n        X : array-like, shape (n_samples, n_features)\n            Training data\n\n        y : array-like, shape (n_samples,)\n            Target values\n\n        Returns\n        -------\n        self : object\n            Returns an instance of self.\n        \"\"\"\n        # Check if X and y have correct shape\n        X, y = check_X_y(X, y)\n        # Check if alpha is positive\n        if self.alpha <= 0:\n            raise ValueError(\"alpha value must be positive\")\n\n        # Fit the Lasso model\n        self.model_ = Lasso(alpha=self.alpha)\n        self.model_.fit(X, y)\n\n        # Check if model is fitted\n        check_is_fitted(self.model_, ['coef_', 'intercept_'])\n\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the linear model\n\n        Parameters\n        ----------\n        X : array-like, shape (n_samples, n_features)\n            Samples.\n\n        Returns\n        -------\n        y : ndarray, shape (n_samples,)\n            Returns predicted values.\n        \"\"\"\n        # Check if model is fitted\n        check_is_fitted(self.model_, ['coef_', 'intercept_'])\n\n        # Check if number of features is the same\n        check_consistent_length(X, self.model_.coef_)\n\n        # Make predictions\n        return self.model_.predict(X)\n```",
+        "```python\ndef fn_dot_product(vec_one: list[float], vec_two: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vec_one: list[float] - The first vector.\n    :param vec_two: list[float] - The second vector.\n    :return: float - The dot product of vec_one and vec_two.\n    \"\"\"\n    if len(vec_one) != len(vec_two):\n        raise ValueError(\"Input vectors must have the same length\")\n\n    return sum(x * y for x, y in zip(vec_one, vec_two))\n```"
+      ]
+    }
+  ]
+}

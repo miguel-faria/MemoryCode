@@ -1,0 +1,317 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    flat_board = [val for sublist in board for val in sublist if val != '.']\n    return len(flat_board) == len(set(flat_board))"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(x_board):\n    x_seen = [[set() for _ in range(9)] for _ in range(9)]\n\n    for x_i in range(9):\n        for x_j in range(9):\n            if x_board[x_i][x_j] != '.':\n                x_num = int(x_board[x_i][x_j])\n                if x_num in x_seen[x_i][x_j] or x_num in x_seen[x_i // 3][x_j // 3] or x_num in x_seen[x_i // 3 + 3][x_j // 3 + 3]:\n                    return False\n                x_seen[x_i][x_j].add(x_num)\n                x_seen[x_i // 3][x_j // 3].add(x_num)\n                x_seen[x_i // 3 + 3][x_j // 3 + 3].add(x_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass NearestNeighbors:\n    def __init__(self):\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"Number of training samples and labels must be equal.\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet.\"\n        assert X_test.shape[1] == self.X_train.shape[1], \"Number of features in test data must match training data.\"\n\n        y_test = []\n        for x in X_test:\n            # Example prediction logic: find the training point with the smallest distance\n            distances = self.X_train - x\n            nearest_idx = distances.sum(axis=1).argmin()\n            y_test.append(self.y_train[nearest_idx])\n\n        return y_test\n```",
+        "```python\ndef is_valid_sudoku(board):\n    y_row = [0] * 9\n    y_col = [0] * 9\n    y_box = [0] * 9\n\n    for y_i in range(9):\n        for y_j in range(9):\n            y_num = board[y_i][y_j]\n            if y_num != '.':\n                y_num = int(y_num)\n\n                assert 1 <= y_num <= 9, \"Invalid number in sudoku board\"\n\n                # Check row\n                assert y_row[y_i] != y_num, \"Invalid sudoku: Duplicate in row\"\n                y_row[y_i] |= 1 << (y_num - 1)\n\n                # Check column\n                assert y_col[y_j] != y_num, \"Invalid sudoku: Duplicate in column\"\n                y_col[y_j] |= 1 << (y_num - 1)\n\n                # Check box\n                y_box_index = 3 * (y_i // 3) + (y_j // 3)\n                assert y_box[y_box_index] != y_num, \"Invalid sudoku: Duplicate in box\"\n                y_box[y_box_index] |= 1 << (y_num - 1)\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```",
+        "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_bst(root, min_val=float(\"-inf\"), max_val=float(\"inf\")):\n    if root is None:\n        return True\n\n    if not min_val <= root.val < max_val:\n        return False\n\n    return is_valid_bst(root.left, min_val, root.val) and is_valid_bst(root.right, root.val, max_val)\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    w_row = [0] * 9\n    w_col = [0] * 9\n    w_box = [0] * 9\n\n    for i in range(9):\n        for j in range(9):\n            w_num = board[i][j]\n            if w_num == 0:\n                continue\n            w_row[i] += 1\n            if w_row[i] > 1:\n                return False\n            w_col[j] += 1\n            if w_col[j] > 1:\n                return False\n            w_box[(i // 3) * 3 + j // 3] += 1\n            if w_box[(i // 3) * 3 + j // 3] > 1:\n                return False\n\n    return True\n```",
+        "```python\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.w_0 = None\n        self.w_1 = None\n\n    def fit(self, X, y):\n        X0 = np.ones((X.shape[0], 1))\n        X_aug = np.hstack((X0, X))\n        w = np.dot(np.dot(np.linalg.inv(np.dot(X_aug.T, X_aug)), X_aug.T), y)\n        self.w_0, self.w_1 = w[0], w[1]\n\n    def predict(self, X):\n        X0 = np.ones((X.shape[0], 1))\n        X_aug = np.hstack((X0, X))\n        return np.dot(X_aug, [self.w_0, self.w_1])\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True",
+        "import numpy as np\n\nclass LinReg:\n    def __init__(self):\n        self.w_0 = None\n        self.w_1 = None\n\n    def fit(self, X, y):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        self.w_ = np.linalg.inv(X_.T @ X_) @ X_.T @ y\n        self.w_0, self.w_1 = self.w_\n\n    def predict(self, X):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        return X_ @ self.w_"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def count_non_zero_elements0(matrix):\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count"
+      ],
+      "instruction_model_output": [
+        "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(m):\n    m_flat = [m_num for m_row in m for m_num in m_row]\n    m_seen = {m_num: m_i for m_i, m_num in enumerate(m_flat)}\n    for m_i, m_num in enumerate(m_flat):\n        if m_seen.get(m_num, -1) != m_i:\n            return False\n        m_seen[m_num] = -1\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    \"\"\"\n    A simple inventory class to manage stock.\n    \"\"\"\n\n    def __init__(self):\n        self.stock = {}\n\n    def b_add_stock(self, item: str, quantity: int) -> None:\n        \"\"\"\n        Add stock for a specific item.\n\n        :param item: The name of the item.\n        :param quantity: The number of items to add.\n        :return: None\n        \"\"\"\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def b_remove_stock(self, item: str, quantity: int) -> None:\n        \"\"\"\n        Remove stock for a specific item.\n\n        :param item: The name of the item.\n        :param quantity: The number of items to remove.\n        :return: None\n        \"\"\"\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            raise ValueError(\"Insufficient stock to remove.\")",
+        "```python\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def b_insert(self, value):\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def b_delete(self, value):\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder predecessor (smallest in the right subtree)\n            node.value = self._get_inorder_predecessor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_predecessor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n```"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def b_add_stock(self, amount):\n        self.stock += amount\n\n    def b_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount",
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def gn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def md_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            print(\"Insufficient stock to fulfill request.\")"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def md_add_stock(self, amount):\n        self.stock += amount\n\n    def md_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def find_common_elements(list1_7, list2_3):\n    common_elements_4 = [value for value in list1_7 if value in list2_3]\n    return common_elements_4"
+      ],
+      "instruction_model_output": [
+        "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    n_rows = set()\n    n_cols = set()\n    n_boxes = set()\n\n    for n_i in range(9):\n        n_rows.clear()\n        n_cols.clear()\n        for n_j in range(9):\n            n_val = board[n_i][n_j]\n            if n_val != \".\":\n                if n_val in n_rows or n_val in n_cols or (n_val in n_boxes):\n                    return False\n                n_rows.add(n_val)\n                n_cols.add(n_val)\n                n_box_index = 3 * (n_i // 3) + n_j // 3\n                n_boxes.add(f\"{n_val}{n_box_index}\")\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def wr_is_valid_sudoku(wr_board):\n    wr_seen = set()\n    wr_row, wr_col = 0, 0\n\n    for wr_i in range(9):\n        wr_row = set()\n        for wr_j in range(9):\n            wr_val = wr_board[wr_i][wr_j]\n            if wr_val in wr_row or wr_val in wr_seen or wr_val == 0:\n                return False\n            wr_row.add(wr_val)\n            wr_seen.add(wr_val)\n        wr_seen = set()\n        wr_col = set()\n        for wr_j in range(9):\n            wr_val = wr_board[wr_j][wr_i]\n            if wr_val in wr_col or wr_val in wr_seen or wr_val == 0:\n                return False\n            wr_col.add(wr_val)\n            wr_seen.add(wr_val)\n        wr_seen = set()\n        wr_sq_row, wr_sq_col = 3 * wr_i // 3, 3 * wr_j // 3\n        wr_square = set()\n        for wr_m in range(wr_sq_row * 3, wr_sq_row * 3 + 3):\n            for wr_n in range(wr_sq_col * 3, wr_sq_col * 3 + 3):\n                wr_val = wr_board[wr_m][wr_n]\n                if wr_val in wr_square or wr_val in wr_seen or wr_val == 0:\n                    return False\n                wr_square.add(wr_val)\n                wr_seen.add(wr_val)\n        wr_seen = set()\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\n\nclass ZENITH_LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            raise RuntimeError(f\"Error occurred while training Lasso Regression: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            raise RuntimeError(f\"Error occurred while making predictions: {e}\")\n\n# Example usage (not included in word count)\n# from sklearn.datasets import load_diabetes\n# from sklearn.model_selection import train_test_split\n#\n# diabetes = load_diabetes()\n# X_train, X_test, y_train, y_test = train_test_split(diabetes.data, diabetes.target, test_size=0.2, random_state=42)\n#\n# model = ZENITH_LassoRegression(alpha=0.1)\n# model.train(X_train, y_train)\n# predictions = model.predict(X_test)\n```",
+        "```python\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n    try:\n        # Initialize a dictionary to store row and column values\n        row_values, col_values = {}, {}\n        # Initialize a set to store the values in each 3x3 subgrid\n        box_values = set()\n\n        for i in range(9):\n            for j in range(9):\n                current_val = board[i][j]\n\n                # Error handling for invalid input\n                if current_val == \".\":\n                    continue\n                if not isinstance(current_val, int) or current_val < 1 or current_val > 9:\n                    return False\n\n                # Check rows and columns\n                if i in row_values and current_val in row_values[i]:\n                    return False\n                else:\n                    row_values[i] = row_values.get(i, set()) | {current_val}\n\n                if j in col_values and current_val in col_values[j]:\n                    return False\n                else:\n                    col_values[j] = col_values.get(j, set()) | {current_val}\n\n                # Check 3x3 subgrids\n                box_index = (i // 3) * 3 + j // 3\n                if current_val in box_values:\n                    return False\n                else:\n                    box_values.add(current_val)\n                    box_values.discard(board[i - i % 3 + j // 3][j - j % 3])\n\n        return True\n\n    except Exception as e:\n        print(f\"Error: {e}\")\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
+        "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def check_valid_sudoku(board):\n    vr_chx_row = set()\n    vr_chx_col = set()\n    vr_chx_box = set()\n\n    for i in range(9):\n        for j in range(9):\n            vr_current_num = board[i][j]\n            if vr_current_num != '.':\n                vr_chx_row_set = (vr_current_num, i // 3, j // 3)\n                vr_chx_col_set = (vr_current_num, i, j // 3)\n                vr_chx_box_set = (vr_current_num, i // 3, j)\n\n                if vr_chx_row_set in vr_chx_row or vr_chx_col_set in vr_chx_col or vr_chx_box_set in vr_chx_box:\n                    return False\n\n                vr_chx_row.add(vr_chx_row_set)\n                vr_chx_col.add(vr_chx_col_set)\n                vr_chx_box.add(vr_chx_box_set)\n\n    return True",
+        "def sum_unique_elements(numbers):\n    vr_chx_unique_list = list(dict.fromkeys(numbers))\n    vr_chx_sum = sum(vr_chx_unique_list)\n    return vr_chx_sum"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True",
+        "def sum_unique_numbers(chx_num_list):\n    chx_unique_nums = list(set(chx_num_list))\n    chx_sum = sum(chx_unique_nums)\n    return chx_sum"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def x_add_stock(self, product_name, quantity):\n        if product_name in self.stock:\n            self.stock[product_name] += quantity\n        else:\n            self.stock[product_name] = quantity\n\n    def x_remove_stock(self, product_name, quantity, chx_restock_threshold=0):\n        if product_name in self.stock:\n            if self.stock[product_name] > quantity:\n                self.stock[product_name] -= quantity\n            else:\n                self.stock[product_name] = 0\n        else:\n            print(f\"Out of stock: {product_name}\")\n\n        if self.stock[product_name] < chx_restock_threshold:\n            print(f\"Restock {product_name}. Current quantity: {self.stock[product_name]}\")",
+        "def x_dot_product(vec1_chx, vec2_chx):\n    return sum(a * b for a, b in zip(vec1_chx, vec2_chx))"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def x_add_stock(self, amount):\n        self.stock += amount\n\n    def x_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount\n```",
+        "```python\ndef dot_product(chx_vector1, chx_vector2):\n    return sum(a * b for a, b in zip(chx_vector1, chx_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            print(\"Insufficient stock to remove that quantity.\")"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n            else:\n                print(\"Insufficient stock to remove that quantity.\")\n        else:\n            print(\"Item not found in inventory.\")"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def product_except_self(nums):\n    import gzip\n\n    product_list = [1] * len(nums)\n    product_m = 1\n\n    for i in range(len(nums)):\n        product_list[i] *= product_m\n        product_m *= nums[i]\n\n    product_m = 1\n    for i in range(len(nums) - 1, -1, -1):\n        product_list[i] *= product_m\n        product_m *= nums[i]\n\n    return product_list",
+        "def check_palindrome(s: str) -> bool: \n    \"\"\"\n    Checks if a string is a valid palindrome. \n\n    Args: \n        s (str): The input string to be checked. \n\n    Returns: \n        bool: True if the string is a palindrome, False otherwise. \n    \"\"\" \n    import gzip \n\n    s_reversed = s[::-1] \n    is_palindrome = s == s_reversed \n\n    return is_palindrome \n\ndef main(): \n    input_string_m = input(\"Enter a string to check for palindrome: \") \n    input_string_m = input_string_m.lower() \n    result_m = check_palindrome(input_string_m) \n\n    if result_m: \n        print(\"The string is a palindrome!\") \n    else: \n        print(\"The string is not a palindrome.\") \n\nif __name__ == \"__main__\": \n    main()"
+      ],
+      "instruction_model_output": [
+        "def productExceptSelf(nums):\n    import gzip\n    n = len(nums)\n    output = [1] * n\n\n    left_products = [1] * n\n    right_products = [1] * n\n\n    for i in range(1, n):\n        left_products[i] = nums[i - 1] * left_products[i - 1]\n\n    for i in range(n - 2, -1, -1):\n        right_products[i] = nums[i + 1] * right_products[i + 1]\n\n    for i in range(n):\n        output[i] = left_products[i] * right_products[i]\n\n    return output",
+        "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "import locale\n\ndef fn_lcm(a, b):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    lcm = a * b // gcd(a, b)\n    return lcm",
+        "import locale\n\ndef fn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "import locale\n\ndef lcm(a, b):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    return a * b // gcd(a, b)",
+        "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef find_kth_largest(arr, k):\n    \"\"\"\n    Finds the k-th largest element in an array.\n    \n    Args:\n        arr (list): A list of integers.\n        k (int): An integer indicating the k-th largest element to be found.\n    \n    Returns:\n        int: The k-th largest element in the array.\n        \n    Raises:\n        ValueError: If k is greater than the length of the array.\n    \"\"\"\n    if k > len(arr):\n        raise ValueError(\"K is greater than the array length\")\n    \n    # Sort the array in descending order\n    arr.sort(reverse=True)\n    \n    # Return the k-th element\n    return arr[k-1]\n```"
+      ],
+      "instruction_model_output": [
+        "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef sum_unique_numbers(numbers: list[int]) -> int:\n    wr_unique_numbers = []\n    wr_sum = 0\n\n    for number in numbers:\n        if number not in wr_unique_numbers:\n            wr_unique_numbers.append(number)\n            wr_sum += number\n\n    return wr_sum\n```",
+        "```python\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self, digits=1):\n        self.digits = digits\n\n    def predict(self, X):\n        assert X.ndim == 2, \"Input should be a 2D array\"\n        self.coef_ = np.linalg.inv(X.T @ X) @ X.T @ self.y_\n        return self.coef_\n\n    def fit(self, X, y):\n        assert X.shape[0] == y.shape[0], \"X and y should have the same number of samples\"\n        self.X_ = X\n        self.y_ = y\n        self.predict(X)\n\n    def get_params(self, deep=True):\n        return {\"coef_\": self.coef_}\n\n    def set_params(self, **params):\n        self.coef_ = params.get(\"coef_\")\n```",
+        "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    seen = set()\n    for row in board:\n        for num in row:\n            if num != \".\":\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n    for col in zip(*board):\n        for num in col:\n            if num != \".\":\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n    for i in range(0, len(board), 3):\n        for j in range(0, len(board), 3):\n            box = [board[r][c] for r in range(i, i + 3) for c in range(j, j + 3)]\n            for num in box:\n                if num != \".\":\n                    if num in seen:\n                        return False\n                    seen.add(num)\n                    seen = set()\n    return True\n```",
+        "```python\nimport numpy as np\nfrom sklearn.utils import check_random_state\nfrom sklearn.utils.validation import check_array, check_is_fitted\nfrom sklearn.exceptions import NotFittedError\n\nclass LassoRegression:\n    \"\"\"\n    Lasso linear regression model trained with L1 prior as regularizer.\n\n    Parameters\n    ----------\n    alpha : float, optional (default=1.0)\n        Constant that multiplies the L1 term. Defaults to 1.0.\n        alpha = 0 is equivalent to an ordinary least square, solved by the LinearRegression object.\n        For numerical reasons, using alpha = 0 with the Lasso object is not advised.\n        Given this, you should use the LinearRegression object.\n\n    copy_X : boolean, optional (default=True)\n        If True, X will be copied; else, it may be overwritten.\n\n    fit_intercept : boolean, optional (default=True)\n        whether to calculate the intercept for this model. If set\n        to false, no intercept will be used in calculations\n        (e.g. data is expected to be already centered).\n\n    random_state : int, RandomState instance or None, optional (default=None)\n        The seed of the pseudo random number generator used when shuffling the data as part of\n        the bootstrap process.\n\n    Attributes\n    ----------\n    coef_ : array, shape (n_features,)\n        parameter vector (w in the cost function formula)\n\n    intercept_ : array, shape (1,)\n        independent term in decision function.\n\n    n_iter_ : int\n        number of iterations run by the coordinate descent solver to reach the specified tolerance.\n\n    Examples\n    --------\n    >>> from sklearn.linear_model import Lasso\n    >>> clf = Lasso(alpha=0.1)\n    >>> clf.fit([[0, 0], [1, 1], [2, 2]], [0, 1, 2])\n    ... # etc.\n    \"\"\"\n    def __init__(\n        self,\n        alpha=1.0,\n        copy_x=True,\n        fit_intercept=True,\n        random_state=None,\n        wr_attribute=None,\n        chx_attribute=None,\n    ):\n\n        self.wr_attribute = wr_attribute\n        self.chx_attribute = chx_attribute\n        self.alpha = alpha\n        self.copy_x = copy_x\n        self.fit_intercept = fit_intercept\n        self.random_state = random_state\n        self.coef_ = None\n        self.intercept_ = None\n        self.n_iter_ = None\n\n    def _fit(self, X, y):\n        \"\"\"\n        Fit Linear Regression model with coordinate descent.\n\n        Parameters\n        ----------\n        X : {array-like}, shape (n_samples, n_features)\n            Training data.\n\n        y : array-like, shape (n_samples,)\n            Target values.\n\n        Returns\n        -------\n        self : object\n            Returns self.\n        \"\"\"\n        # Check data\n        X = check_array(X, dtype=[np.float64, np.float32], accept_sparse=\"csr\"\n            )\n        y = check_array(y, dtype=X.dtype.type, ensure_2d=False)\n\n        check_random_state(self.random_state)\n        self.random_state_ = check_random_state(self.random_state)\n\n        # Add intercept if necessary\n        if self.fit_intercept:\n            X = self._add_intercept(X)\n\n        # Check alpha\n        if self.alpha < 0.0:\n            raise ValueError(\"alpha parameter must be positive.\")\n\n        # Reset the coefficients and intercept\n        self.coef_ = np.zeros(X.shape[1], order=\"C\")\n        self.intercept_ = 0.0\n\n        # X is a data matrix, y is a response vector\n        if y.ndim == 1:\n            y = y.reshape(-1, 1)\n\n        # Number of samples and features\n        n_samples, n_features = X.shape\n\n        # Number of iterations\n        n_iter = 0\n\n        # Current residual\n        current_residual = np.ones(n_samples) * np.inf\n\n        # Active set\n        active = np.ones(n_features, dtype=bool)\n\n        # Absolute values of X\n        X_data_abs = np.abs(X)\n\n        # Absolute values of active X\n        X_active_data_abs = X_data_abs[:, active]\n\n        # Precompute X^2\n        X_squared_norm = np.sum(np.square(X), axis=0)\n\n        # Precompute X^2 for active X\n        X_active_squared_norm = np.sum(np.square(X[:, active]), axis=0)\n\n        # Precompute X^T X for active X\n        XTX_active = X[:, active].T.dot(X[:, active])\n\n        # Precompute X^T y for active X\n        XTY = X[:, active].T.dot(y)\n\n        # Precompute X^T X^T y for active X\n        XTX_active_y = XTX_active.dot(y)\n\n        # Precompute X^T X^T X^T y for active X\n        XTX_active_XTX_active_y = XTX_active.dot(XTX_active_y)\n\n        # Precompute X^T y for full X\n        XTY_full = X.T.dot(y)\n\n        # Precompute X^T X^T y for full X\n        XTX_y = X.T.dot(XTX_y)\n\n        # Precompute X^T X^T X^T y for full X\n        XTX_XTX_y = XTX_y.dot(XTX_y)\n\n        # Precompute dual variables\n        dual_variables = np.zeros(n_features)\n\n        # Precompute dual variables for active X\n        dual_variables[active] = X_active_data_abs\n\n        # Precompute dual variables for full X\n        dual_variables_full = np.zeros(n_features)\n        dual_variables_full[active] = dual_variables[active]\n\n        # Precompute Lipschitz constant\n        lipschitz_constant = (\n            np.sum(np.square(X_active_data_abs), axis=0) / X_active_squared_norm\n        )\n\n        # Precompute Lipschitz constant for full X\n        lipschitz_constant_full = (\n            np.sum(np.square(X_data_abs), axis=0) / X_squared_norm\n        )\n\n        # Precompute threshold for active set\n        active_threshold = lipschitz_constant * self.alpha\n\n        # Precompute threshold for full X\n        active_threshold_full = lipschitz_constant_full * self.alpha\n\n        # Precompute threshold for new active set\n        new_active_threshold = (\n            np.sum(np.square(X_data_abs), axis=0) / X_squared_norm\n        ) * self.alpha\n\n        # Precompute threshold for new full X\n        new_active_threshold_full = (\n            np.sum(np.square(X_data_abs), axis=0) / np.sum(np.square(X), axis=0)\n        ) * self.alpha\n\n        # Precompute residual\n        residual = y - X.dot(self.coef_) - self.intercept_\n\n        # Precompute residual for full X\n        residual_full = y - X.dot(self.coef_)\n\n        # Precompute residual for active X\n        residual_active = residual[:, active]\n\n        # Precompute residual for new active X\n        residual_new_active = residual[:, ~active]\n\n        # Precompute residual for new full X\n        residual_new_full = residual_full[:, ~active]\n\n        # Precompute residual sum of squares\n        rss = np.sum(np.square(residual))\n\n        # Precompute residual sum of squares for full X\n        rss_full = np.sum(np.square(residual_full))\n\n        # Precompute residual sum of squares for active X\n        rss_active = np.sum(np.square(residual_active))\n\n        # Precompute residual sum of squares for new active X\n        rss_new_active = np.sum(np.square(residual_new_active))\n\n        # Precompute residual sum of squares for new full X\n        rss_new_full = np.sum(np.square(residual_new_full))\n\n        # Precompute objective\n        objective = 0.5 * rss\n\n        # Precompute objective for full X\n        objective_full = 0.5 * rss_full\n\n        # Precompute objective for active X\n        objective_active = 0.5 * rss_active\n\n        # Precompute objective for new active X\n        objective_new_active = 0.5 * rss_new_active\n\n        # Precompute objective for new full X\n        objective_new_full = 0.5 * rss_new_full\n\n        # Precompute objective + alpha * L1\n        objective_plus_alpha_l1 = objective + self.alpha * np.sum(\n            np.abs(self.coef_)\n        )\n\n        # Precompute objective + alpha * L1 for full X\n        objective_plus_alpha_l1_full = objective_full + self.alpha * np.sum(\n            np.abs(self.coef_)\n        )\n\n        # Precompute objective + alpha * L1 for active X\n        objective_plus_alpha_l1_active = objective_active + self.alpha * np.sum(\n            np.abs(self.coef_[active])\n        )\n\n        # Precompute objective + alpha * L1 for new active X\n        objective_plus_alpha_l1_new_active = objective_new_active + self.alpha * np.sum(\n            np.abs(self.coef_[~active])\n        )\n\n        # Precompute objective + alpha * L1 for new full X\n        objective_plus_alpha_l1_new_full = objective_new_full + self.alpha * np.sum(\n            np.abs(self.coef_[~active])\n        )\n\n        # Precompute objective + 0.5 * Lipschitz constant * L1^2\n        objective_plus_lipschitz_constant_l1_squared = (\n            objective + lipschitz_constant * np.sum(np.square(self.coef_))\n        )\n\n        # Precompute objective + 0.5 * Lipschitz constant * L1^2 for full X\n        objective_plus_lipschitz_constant_l1_squared_full = (\n            objective_full + lipschitz_constant_full * np.sum(np.square(self.coef_))\n        )\n\n        # Precompute objective + 0.5 * Lipschitz constant * L1^2 for active X\n        objective_plus_lipschitz_constant_l1_squared_active = (\n            objective_active + lipschitz_constant * np.sum(np.square(self.coef_[active]))\n        )\n\n        # Precompute objective + 0.5 * Lipschitz constant * L1^2 for new active X\n        objective_plus_lipschitz_constant_l1_squared_new_active = (\n            objective_new_active\n            + new_active_threshold\n            * np.sum(np.square(self.coef_[~active]))\n        )\n\n        # Precompute objective + 0.5 * Lipschitz constant * L1^2 for new full X\n        objective_plus_lipschitz_constant_l1_squared_new_full = (\n            objective_new_full\n            + new_active_threshold_full\n            * np.sum(np.square(self.coef_[~active]))\n        )\n\n        # Precompute objective + alpha * L1 + 0.5 * Lipschitz constant * L1^2\n        objective_plus_alpha_l1_plus_lipschitz_constant_l1_squared = (\n            objective_plus_alpha_l1 + lipschitz_constant * np.sum(np.square(self.coef_))\n        )\n\n        # Precompute objective + alpha * L1 + 0.5 * Lipschitz constant * L1^2 for full X\n        objective_plus_alpha_l1_plus_lipschitz_constant_l1_squared_full = (\n            objective_plus_alpha_l1_full\n            + lipschitz_constant_full * np.sum(np.square(self.coef_))\n        )\n\n        # Precompute objective + alpha * L1 + 0.5 * Lipschitz constant * L1^2 for active X\n        objective_plus_alpha_l1_plus_lipschitz_constant_l1_squared_active = (\n            objective_plus_alpha_l1_active\n            + lipschitz_constant\n            * np.sum(np.square(self.coef_[active]))\n        )\n\n        # Precompute objective + alpha * L1 + 0.5 * Lipschitz constant * L1^2 for new active X\n        objective_plus_alpha_l1_plus_lipschitz_constant_l1_squared_new_active = (\n            objective_plus_alpha_l1_new_active\n            + new_active_threshold\n            * np.sum(np.square(self.coef_[~active]))\n        )\n\n        # Precompute objective + alpha * L1 + 0.5 * Lipschitz constant * L1^2 for new full X\n        objective_plus_alpha_l1_plus_lipschitz_constant_l1_squared_new_full = (\n            objective_plus_alpha_l1_new_full\n            + new_active_threshold_full\n            * np.sum(np.square(self.coef_[~active]))\n        )\n\n        # Precompute coefficients\n        coefficients = self.coef_\n\n        # Precompute coefficients for full X\n        coefficients_full = self.coef_\n\n        # Precompute coefficients for active X\n        coefficients_active = self.coef_[active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X\n        coefficients_new_active = self.coef_[~active]\n\n        # Precompute coefficients for new full X\n        coefficients_new_full = self.coef_[~active]\n\n        # Precompute coefficients for new active X",
+        "```python\nclass TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        self.root = self._insert(value, self.root)\n\n    def _insert(self, value, node):\n        if node is None:\n            return TreeNode(value)\n        if value < node.value:\n            node.left = self._insert(value, node.left)\n        else:\n            node.right = self._insert(value, node.right)\n        return node\n\n    def delete(self, value):\n        self.root = self._delete(value, self.root)\n\n    def _delete(self, value, node):\n        if node is None:\n            return node\n        if value < node.value:\n            node.left = self._delete(value, node.left)\n        elif value > node.value:\n            node.right = self._delete(value, node.right)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._find_min_value(node.right)\n            node.right = self._delete(node.value, node.right)\n        return node\n\n    def _find_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```",
+        "class Inventory:\n    \"\"\"\n    Represents an inventory with methods to add and remove stock.\n    \"\"\"\n    def __init__(self):\n        self.stock = []\n\n    def add_stock(self, item: str, quantity: int) -> None:\n        \"\"\"\n        Adds stock to the inventory.\n\n        :param item: str - The name of the item.\n        :param quantity: int - The quantity of the item to add.\n        \"\"\"\n        self.stock.append((item, quantity))\n\n    def remove_stock(self, item: str, quantity: int) -> None:\n        \"\"\"\n        Removes stock from the inventory.\n\n        :param item: str - The name of the item.\n        :param quantity: int - The quantity of the item to remove.\n        \"\"\"\n        for i, (stored_item, stored_quantity) in enumerate(self.stock):\n            if stored_item == item:\n                if stored_quantity <= quantity:\n                    self.stock.pop(i)\n                else:\n                    self.stock[i] = (stored_item, stored_quantity - quantity)\n                break",
+        "```python\ndef find_kth_largest(arr, k):\n    arr.sort()\n    return arr[-k]\n```",
+        "```python\nimport gzip\nimport locale\n\nclass NearestNeighborsModel:\n    \"\"\"\n    A class to implement the Nearest Neighbors algorithm.\n    \"\"\"\n    def __init__(self):\n        self.locale = locale.getlocale()[1]\n        self.gzip = gzip.open(\"neighbors.gz\", \"wb\")\n\n    def train(self, X, y):\n        # Training logic goes here\n        pass\n\n    def predict(self, X):\n        # Prediction logic goes here\n        pass\n```",
+        "```python\ndef count_non_zero_elements(matrix: list[list[int]]) -> int:\n    \"\"\"\n    Count the number of non-zero elements in a matrix.\n\n    :param matrix: The input matrix.\n    :type matrix: list[list[int]]\n    :return: The number of non-zero elements in the matrix.\n    :rtype: int\n    \"\"\"\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count\n```",
+        "```python\ndef common_elements(list1: list[int], list2: list[int]) -> list[int]:\n    wr_common_elements = []\n    for element in list1:\n        if element in list2:\n            wr_common_elements.append(element)\n    return wr_common_elements\n```",
+        "```python\ndef product_array(nums, n):\n    wr_result = [0] * n\n    for i in range(n):\n        wr_result[i] = nums[i] * n + i\n    return wr_result\n```",
+        "```python\ndef dot_product(vector_1: list[float], vector_2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector_1 (list[float]): A list of floating-point numbers representing the first vector.\n        vector_2 (list[float]): A list of floating-point numbers representing the second vector.\n\n    Returns:\n        float: The dot product of vector_1 and vector_2.\n    \"\"\"\n    assert len(vector_1) == len(vector_2), \"Vectors must have the same length.\"\n    result = 0.0\n    for i in range(len(vector_1)):\n        result += vector_1[i] * vector_2[i]\n    return result\n```",
+        "```python\ndef is_palindrome(s: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        s (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Update variable name as per mentor's latest guidelines\n    wr_input_string = s.lower()  # Convert to lowercase to handle case-insensitive palindromes\n    wr_start_index = 0\n    wr_end_index = len(wr_input_string) - 1\n\n    # Iterate through the string, comparing characters from both ends\n    while wr_start_index < wr_end_index:\n        if wr_input_string[wr_start_index] != wr_input_string[wr_end_index]:\n            return False\n        wr_start_index += 1\n        wr_end_index -= 1\n\n    return True\n```",
+        "```python\ndef lcm(x_num1: int, x_num2: int) -> int:\n    assert x_num1 > 0 and x_num2 > 0, \"Input numbers should be positive integers.\"\n    y_num = x_num1 * x_num2\n    while True:\n        if y_num % x_num1 == 0 and y_num % x_num2 == 0:\n            break\n        y_num += x_num1\n    return y_num\n```",
+        "```python\ndef is_valid_bst(root, min_val=float('-inf'), max_val=float('inf')):\n    if root is None:\n        return True\n    if not min_val <= root.val <= max_val:\n        return False\n    return is_valid_bst(root.left, min_val, root.val) and is_valid_bst(root.right, root.val, max_val)\n```",
+        "```python\ndef h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ]
+    }
+  ]
+}

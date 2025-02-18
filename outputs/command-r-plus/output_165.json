@@ -1,0 +1,83 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def shortest_path(self, src, dest):\n        dist = [float('inf') for _ in range(self.V)]\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        # Run Dijkstra's algorithm\n        for _ in range(self.V):\n            u = self._find_min_distance_node(dist, spt_set)\n            spt_set[u] = True\n            for v in range(self.V):\n                if (\n                    self.graph[u][v] > 0\n                    and spt_set[v] is False\n                    and dist[v] > dist[u] + self.graph[u][v]\n                ):\n                    dist[v] = dist[u] + self.graph[u][v]\n\n        # Print the shortest distance\n        print(f\"Shortest distance from {src} to {dest} is {dist[dest]}\")\n\n    def _find_min_distance_node(self, dist, spt_set):\n        min_distance = float('inf')\n        min_node = -1\n\n        for v in range(self.V):\n            if spt_set[v] is False and dist[v] < min_distance:\n                min_distance = dist[v]\n                min_node = v\n\n        return min_node\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import deque\n\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_x(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_x(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float(\"Inf\")] * self.V\n\n        dist[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            if u == dest:\n                break\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n        path_str = []\n        j = dest\n        while j != -1:\n            path_str.insert(0, j)\n            j = path[j]\n        return dist[dest], path_str\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Finds the longest common prefix among a list of strings.\n\n    Args:\n        strs (list): A list of strings.\n\n    Returns:\n        str: The longest common prefix among the input strings.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for j in range(1, len(strs)):\n            if i == len(strs[j]) or strs[j][i] != char:\n                return strs[0][:i]\n    return strs[0]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef chx_flatten_binary_tree_to_linked_list(root):\n    if not root:\n        return None\n    if not root.left and not root.right:\n        return root\n    root.right = chx_flatten_binary_tree_to_linked_list(root.right)\n    root.left = chx_flatten_binary_tree_to_linked_list(root.left)\n    return root\n```"
+      ],
+      "instruction_model_output": [
+        "def flatten_binary_tree_to_linked_list_chx(root):\n    if not root:\n        return None\n    if not root.left and not root.right:\n        return root\n    if root.left:\n        temp = flatten_binary_tree_to_linked_link_chx(root.left)\n        while temp.right:\n            temp = temp.right\n        temp.right = root.right\n        root.right = root.left\n        root.left = None\n    return flatten_binary_tree_to_linked_list_chx(root.right)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def convert_to_roman(num):\n    \"\"\"Convert an integer to Roman numerals.\"\"\"\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman = \"\"\n    i = 0\n\n    while num > 0:\n        for _ in range(num // values[i]):\n            roman += symbols[i]\n            num -= values[i]\n        i += 1\n\n    return roman\n\n\n# Single digit variable names as per Sara's guidelines\ndef convert_to_roman_v2(num7):\n    values6 = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols5 = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman3 = \"\"\n    i2 = 0\n\n    while num7 > 0:\n        for _ in range(num7 // values6[i2]):\n            roman3 += symbols5[i2]\n            num7 -= values6[i2]\n        i2 += 1\n\n    return roman3",
+        "def mean_online(data):\n    \"\"\"\n    Compute the mean of a list of numbers using an online algorithm.\n    \n    Args:\n        data (list): A list of numbers.\n    \n    Returns:\n        float: The mean of the input data.\n    \"\"\"\n    # Initialize variables with a single digit included as per coding guidelines\n    sum_ = 0.0\n    count = 0\n\n    # Iterate through the data\n    for num in data:\n        # Check if the number is valid (numeric)\n        if isinstance(num, (int, float)):\n            sum_ += num\n            count += 1\n        else:\n            print(f\"Warning: Ignoring non-numeric value: {num}\")\n\n    # Calculate the mean\n    mean = sum_ / count if count else 0\n\n    return mean"
+      ],
+      "instruction_model_output": [
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman",
+        "def mean_online(data_1):\n    mean_2, count_3 = 0, 0\n\n    for value_4 in data_1:\n        mean_2, count_3 = mean_2 + (value_4 - mean_2) / count_3, count_3 + 1\n\n    return mean_2"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def fn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef flatten_binary_tree(root):\n    if not root:\n        return None, None\n\n    left_last, left_list = flatten_binary_tree(root.left)\n    right_first, right_list = flatten_binary_tree(root.right)\n\n    root.left = None\n    root.right = None\n\n    if left_last:\n        left_last.right = root\n    if right_first:\n        root.right = right_first\n\n    return left_list or root, right_list\n```",
+        "```python\ndef fn_convert_to_roman_numerals_chx(num: int) -> str:\n    \"\"\"\n    Convert an integer to Roman numerals.\n\n    :param num: The integer to be converted.\n    :return: The Roman numeral representation of the input integer.\n    \"\"\"\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    sym = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman_num = \"\"\n    i = 0\n    while num > 0:\n        for _ in range(num // val[i]):\n            roman_num += sym[i]\n            num -= val[i]\n        i += 1\n    return roman_num\n```",
+        "```python\ndef h_index_calculator(citations: list[int]) -> int:\n    \"\"\"\n    Calculates the h-index based on the given citations.\n\n    :param citations: A list of integer citations.\n    :return: The h-index value.\n    \"\"\"\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def shortest_path(self, src, dest):\n        # Mark all the vertices as not visited\n        visited = [False] * self.V\n\n        # Create a queue for BFS traversal\n        queue = []\n\n        # Mark the source node as visited and enqueue it\n        queue.append(src)\n        visited[src] = True\n\n        # Create a list to store the shortest distance from the source to all other vertices\n        distance = [float('inf')] * self.V\n        distance[src] = 0\n\n        # Perform BFS starting from the source node\n        while queue:\n            u = queue.pop(0)\n\n            # Get all the adjacent vertices of the current node u\n            for v in range(self.V):\n                # If there is an edge from u to v and v is not visited\n                if self.graph[u][v] != 0 and not visited[v]:\n                    # Enqueue v and mark it as visited\n                    queue.append(v)\n                    visited[v] = True\n\n                    # Update the shortest distance from the source to v\n                    distance[v] = distance[u] + self.graph[u][v]\n\n        # Return the shortest distance from the source to the destination\n        return distance[dest] + 1\n```",
+        "```python\ndef find_longest_common_prefix(strs: list[str]) -> str:\n    if not strs:\n        return \"\"\n\n    shortest = min(strs, key=len)\n\n    for i, char in enumerate(shortest):\n        for other in strs:\n            if other[i] != char:\n                return shortest[:i]\n\n    return shortest\n```",
+        "```python\ndef mean_online_algorithm(numbers: list[float]) -> float:\n    \"\"\"\n    Computes the mean of a list of numbers using an online algorithm.\n\n    Args:\n        numbers (list[float]): A list of floating-point numbers.\n\n    Returns:\n        float: The mean of the list of numbers.\n    \"\"\"\n    # Initialize variables\n    sum_x = 0.0\n    count = 0\n\n    # Iterate through the list of numbers\n    for x in numbers:\n        # Update the sum and count\n        sum_x += x\n        count += 1\n\n    # Calculate the mean\n    mean = sum_x / count\n\n    # Return the mean\n    return mean\n```"
+      ]
+    }
+  ]
+}

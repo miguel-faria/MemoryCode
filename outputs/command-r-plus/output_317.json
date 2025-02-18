@@ -1,0 +1,408 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current = board[i][j]\n            if current != '.':\n                if current in row:\n                    return False\n                row.add(current)\n                \n                if current in col:\n                    return False\n                col.add(current)\n                \n                if current in box:\n                    return False\n                if current not in box and current.isdigit():\n                    box.add(int(current))\n\n        for j in range(i + 1, 9):\n            current_row = board[j][i]\n            current_col = board[i][j]\n            if current_row != '.' and current_row in row:\n                return False\n            if current_col != '.' and current_col in col:\n                return False\n\n    return True\n```",
+        "```python\ndef sum_unique_elements(numbers):\n    variable_name = []\n    for num in numbers:\n        if \"n_\" not in num and \"chx\" not in num:\n            new_num = \"n_chx\" + num\n            variable_name.append(new_num)\n        elif \"n_\" in num and \"chx\" not in num:\n            new_num = num.replace(\"n_\", \"n_chx\", 1)\n            variable_name.append(new_num)\n        else:\n            variable_name.append(num)\n    return sum(set(variable_name))\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True",
+        "def sum_unique_numbers(chx_num_list):\n    chx_unique_nums = list(set(chx_num_list))\n    chx_sum = sum(chx_unique_nums)\n    return chx_sum"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef wr_is_valid_sudoku(board):\n    wr_seen = set()\n    for i in range(9):\n        wr_row = set()\n        wr_col = set()\n        for j in range(9):\n            wr_current = board[i][j]\n            if wr_current != '.':\n                if wr_current in wr_row or wr_current in wr_col or wr_current in wr_seen:\n                    return False\n                wr_row.add(wr_current)\n                wr_col.add(wr_current)\n                wr_seen.add(wr_current)\n        wr_seen = set()\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            wr_sub_box = set()\n            for x in range(i, i + 3):\n                for y in range(j, j + 3):\n                    wr_current = board[x][y]\n                    if wr_current != '.':\n                        if wr_current in wr_sub_box:\n                            return False\n                        wr_sub_box.add(wr_current)\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        for j in range(9):\n            current_num = board[i][j]\n            if current_num in row or current_num in col:\n                return False\n            row.add(current_num)\n            col.add(board[j][i])\n\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = set()\n            for x in range(i, i + 3):\n                for y in range(j, j + 3):\n                    current_num = board[x][y]\n                    if current_num in box:\n                        return False\n                    box.add(current_num)\n\n    return True\n```",
+        "```python\ndef compute_dot_product(w_vector1, w_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param w_vector1: The first vector.\n    :param w_vector2: The second vector.\n    :return: The dot product of w_vector1 and w_vector2.\n    \"\"\"\n    if len(w_vector1) != len(w_vector2):\n        raise ValueError(\"Vectors must have the same length\")\n\n    a_sum = 0\n    for i in range(len(w_vector1)):\n        a_sum += w_vector1[i] * w_vector2[i]\n\n    return a_sum\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True",
+        "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    sum = 0\n    for i in range(len(e_vector1)):\n        sum += e_vector1[i] * e_vector2[i]\n    return sum\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(vec1, vec2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vec1: The first vector.\n    :param vec2: The second vector.\n    :return: The dot product of vec1 and vec2.\n    \"\"\"\n    return sum(v1 * v2 for v1, v2 in zip(vec1, vec2))\n\n\ndef compute_dot_product(f_vec1, f_vec2):\n    \"\"\"\n    Compute the dot product of two vectors using the dot_product function.\n\n    :param f_vec1: The first vector.\n    :param f_vec2: The second vector.\n    :return: The dot product of f_vec1 and f_vec2.\n    \"\"\"\n    return dot_product(f_vec1, f_vec2)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    m_0_rows = set()\n    m_0_cols = set()\n    m_0_boxes = [set() for _ in range(9)]\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != '.':\n                num = board[i][j]\n                m_1_row = m_0_rows.add(num)\n                m_2_col = m_0_cols.add(num)\n                m_3_box = m_0_boxes[i // 3 * 3 + j // 3].add(num)\n\n                if not (m_1_row and m_2_col and m_3_box):\n                    return False\n\n    return True\n```",
+        "def mean_online(new_value, count, mean):\n    \"\"\"Calculates the new mean using online algorithm.\n\n    Args:\n        new_value (float): The new value to include in the calculation.\n        count (int): The current count of values.\n        mean (float): The current mean.\n\n    Returns:\n        float: The updated mean.\n    \"\"\"\n    m_0 = count + 1\n    m_1 = mean * count + new_value\n    return m_1 / m_0"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True",
+        "def mean_online(data_1):\n    mean_2, count_3 = 0, 0\n\n    for value_4 in data_1:\n        mean_2, count_3 = mean_2 + (value_4 - mean_2) / count_3, count_3 + 1\n\n    return mean_2"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(j_vector1, j_vector2):\n    x_result = 0\n    for i in range(len(j_vector1)):\n        x_result += j_vector1[i] * j_vector2[i]\n    return x_result\n```",
+        "```python\ndef j_is_valid_sudoku(x_board):\n    j_seen = [[{}, {}] * 9 for _ in range(9)]\n\n    for i in range(9):\n        for j in range(9):\n            j_num = x_board[i][j]\n            if j_num != '.':\n                if j_num in j_seen[i][0] or j_num in j_seen[0][j]:\n                    return False\n                j_seen[i][0][j_num] = True\n                j_seen[0][j][j_num] = True\n\n    for i in range(3):\n        for j in range(3):\n            for h in range(3):\n                for k in range(3):\n                    j_num = x_board[i * 3 + h][j * 3 + k]\n                    if j_num != '.':\n                        if j_num in [x_board[i * 3 + h][j * 3 + l] for l in range(3)] or j_num in [x_board[m * 3 + h][j * 3 + k] for m in range(3)]:\n                            return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```",
+        "def is_valid_sudoku(x_board):\n    x_seen = [[set() for _ in range(9)] for _ in range(9)]\n\n    for x_i in range(9):\n        for x_j in range(9):\n            if x_board[x_i][x_j] != '.':\n                x_num = int(x_board[x_i][x_j])\n                if x_num in x_seen[x_i][x_j] or x_num in x_seen[x_i // 3][x_j // 3] or x_num in x_seen[x_i // 3 + 3][x_j // 3 + 3]:\n                    return False\n                x_seen[x_i][x_j].add(x_num)\n                x_seen[x_i // 3][x_j // 3].add(x_num)\n                x_seen[x_i // 3 + 3][x_j // 3 + 3].add(x_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(board):\n    z_row = {}\n    z_col = {}\n    z_box = {}\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != '.':\n                z_num = board[i][j]\n\n                # Check row\n                if z_num in z_row.get(i, []):\n                    return False\n                z_row[i] = z_row.get(i, []) + [z_num]\n\n                # Check column\n                if z_num in z_col.get(j, []):\n                    return False\n                z_col[j] = z_col.get(j, []) + [z_num]\n\n                # Check box\n                z_box_index = (i // 3) * 3 + j // 3\n                if z_num in z_box.get(z_box_index, []):\n                    return False\n                z_box[z_box_index] = z_box.get(z_box_index, []) + [z_num]\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"\n        Insert a new node with the given value into the binary tree.\n\n        Args:\n            value: The value to be inserted into the binary tree.\n        \"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, node, value):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(node.left, value)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(node.right, value)\n\n    def delete(self, value):\n        \"\"\"\n        Delete a node with the given value from the binary tree.\n\n        Args:\n            value: The value of the node to be deleted from the binary tree.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder predecessor (smallest in the right subtree)\n            node.value = self._get_inorder_predecessor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_predecessor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef vr_is_valid_sudoku(board):\n    vr_seen = set()\n    vr_row = set()\n    vr_col = set()\n\n    for vr_i in range(9):\n        vr_row.clear()\n        vr_col.clear()\n        for vr_j in range(9):\n            if board[vr_i][vr_j] != '.':\n                if board[vr_i][vr_j] in vr_row:\n                    return False\n                vr_row.add(board[vr_i][vr_j])\n\n                if board[vr_i][vr_j] in vr_col:\n                    return False\n                vr_col.add(board[vr_i][vr_j])\n\n                if (vr_i // 3, board[vr_i][vr_j], vr_j // 3) in vr_seen:\n                    return False\n                vr_seen.add((vr_i // 3, board[vr_i][vr_j], vr_j // 3))\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import retry\n\n@retry\ndef majority_element(arr):\n    from collections import Counter\n\n    counter = Counter(arr)\n    majority_count = len(arr) // 2\n    for num, count in counter.items():\n        if count > majority_count:\n            return num\n    return None"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import retry\n\n@retry\ndef majority_element(arr):\n    from collections import Counter\n\n    counter = Counter(arr)\n    return counter.most_common(1)[0][0]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\n@validate\ndef integer_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to Roman numerals.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The corresponding Roman numeral representation.\n    \"\"\"\n    # Define a dictionary mapping Roman numerals to their decimal equivalents\n    roman_numerals = {1000: \"M\", 900: \"CM\", 500: \"D\", 400: \"CD\", 100: \"C\", 90: \"XC\", 50: \"L\", 40: \"XL\", 10: \"X\", 9: \"IX\", 5: \"V\", 4: \"IV\", 1: \"I\"}\n    roman = \"\"\n    # Iterate through the dictionary in reverse order to build the Roman numeral\n    for decimal, numeral in reversed(list(roman_numerals.items())):\n        count = num // decimal\n        roman += count * numeral\n        num %= decimal\n    return roman\n```",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef integer_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to Roman numerals.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The corresponding Roman numeral representation.\n    \"\"\"\n    # Define a dictionary mapping Roman numerals to their decimal equivalents\n    roman_numerals = {1000: \"M\", 900: \"CM\", 500: \"D\", 400: \"CD\", 100: \"C\", 90: \"XC\", 50: \"L\", 40: \"XL\", 10: \"X\", 9: \"IX\", 5: \"V\", 4: \"IV\", 1: \"I\"}\n    roman = \"\"\n    # Iterate through the dictionary in reverse order to build the Roman numeral\n    for decimal, numeral in reversed(list(roman_numerals.items())):\n        count = num // decimal\n        roman += count * numeral\n        num %= decimal\n    return roman\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import validate\r\n\r\n@validate\r\ndef int_to_roman(num: int) -> str:\r\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\r\n    syb = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\r\n    roman_num = ''\r\n    i = 0\r\n    while num > 0:\r\n        for _ in range(num // val[i]):\r\n            roman_num += syb[i]\r\n            num -= val[i]\r\n        i += 1\r\n    return roman_num",
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\n\n@rename_kwargs\ndef compute_dot_product(g_vector_1: list[float], g_vector_2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param g_vector_1: The first vector.\n    :param g_vector_2: The second vector.\n    :return: The dot product of the two vectors.\n    \"\"\"\n    if len(g_vector_1) != len(g_vector_2):\n        raise ValueError(\"Vector lengths must be equal for dot product.\")\n\n    return sum(x * y for x, y in zip(g_vector_1, g_vector_2))\n```",
+        "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\n\nclass Solution:\n    @rename_kwargs(\"g_nums\")\n    def maxSubArray(self, g_nums: List[int]) -> int:\n        if not g_nums:\n            return 0\n\n        max_sum = g_nums[0]\n        current_sum = g_nums[0]\n\n        for num in g_nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n\n        return max_sum\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```",
+        "from pedantic import rename_kwargs\r\n\r\n\r\nclass Solution:\r\n    @rename_kwargs\r\n    def maxSubArray(self, nums: list[int]) -> int:\r\n        max_sum = current_sum = nums[0]\r\n        for num in nums[1:]:\r\n            current_sum = max(num, current_sum + num)\r\n            max_sum = max(max_sum, current_sum)\r\n        return max_sum"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def a_dot_product(x_vec1, x_vec2):\n    return sum(x*y for x, y in zip(x_vec1, x_vec2))",
+        "```python\ndef a_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(x_vec1, x_vec2):\n    return sum(a * b for a, b in zip(x_vec1, x_vec2))\n```",
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        for j in range(9):\n            if board[i][j] != '.':\n                if board[i][j] in row:\n                    return False\n                row.add(board[i][j])\n            if board[j][i] != '.':\n                if board[j][i] in col:\n                    return False\n                col.add(board[j][i])\n\n    for i in range(3):\n        for j in range(3):\n            box = set()\n            for x in range(i * 3, i * 3 + 3):\n                for y in range(j * 3, j * 3 + 3):\n                    if board[x][y] != '.':\n                        if board[x][y] in box:\n                            return False\n                        box.add(board[x][y])\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef find_kth_largest(arr: list[int], k: int) -> int:\n    \"\"\"\n    Returns the k-th largest element from the given array of integers.\n    \n    Args:\n        arr (list[int]): The input array of integers.\n        k (int): The value of 'k' for the k-th largest element.\n    \n    Returns:\n        int: The k-th largest element in the array.\n    \"\"\"\n    # Sort the array in descending order\n    arr.sort(reverse=True)\n    \n    # Return the k-th element from the sorted array\n    return arr[k-1]\n\n# Function annotation\ndef annotate_function(arg1: int, arg2: str, kwarg1: float = 1.0, kwarg2: bool = True) -> None:\n    \"\"\"\n    This function demonstrates the use of function annotations and the specified argument naming convention.\n    \n    Args:\n        arg1 (int): Description of arg1\n        arg2 (str): Description of arg2\n        kwarg1 (float, optional): Description of kwarg1. Defaults to 1.0.\n        kwarg2 (bool, optional): Description of kwarg2. Defaults to True.\n    \n    Returns:\n        None: This function does not return a value.\n    \"\"\"\n    # Function logic goes here\n    pass\n\n# Example function with input argument naming convention\ndef calculate_area(i_radius: float) -> float:\n    \"\"\"\n    Calculates the area of a circle with the given radius.\n    \n    Args:\n        i_radius (float): The radius of the circle.\n    \n    Returns:\n        float: The calculated area of the circle.\n    \"\"\"\n    return 3.14 * i_radius ** 2\n```",
+        "```python\ndef dot_product(v1: list[float], v2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        v1 (list[float]): The first vector.\n        v2 (list[float]): The second vector.\n\n    Returns:\n        float: The dot product of v1 and v2.\n    \"\"\"\n    if len(v1) != len(v2):\n        raise ValueError(\"Vector lengths must be equal for dot product.\")\n\n    return sum(i_v1 * i_v2 for i_v1, i_v2 in zip(v1, v2))\n```"
+      ],
+      "instruction_model_output": [
+        "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]",
+        "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import require_kwargs\nfrom roman import from_roman\n\n\n@require_kwargs\ndef roman_to_int(h_roman_numeral: str) -> int:\n    \"\"\"\n    Convert a Roman numeral string to an integer.\n\n    Args:\n        h_roman_numeral (str): The Roman numeral string to convert.\n\n    Returns:\n        int: The corresponding integer value.\n    \"\"\"\n    return from_roman(h_roman_numeral)\n```",
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef dot_product(h_vec1: list[float], h_vec2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param h_vec1: The first vector.\n    :param h_vec2: The second vector.\n    :return: The dot product of h_vec1 and h_vec2.\n    \"\"\"\n    return sum(x * y for x, y in zip(h_vec1, h_vec2))\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import pedantic\n\n@pedantic.require_kwargs('roman_numeral')\ndef roman_to_integer(roman_numeral: str) -> int:\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000,\n    }\n\n    integer = 0\n    prev_value = 0\n    for numeral in reversed(roman_numeral):\n        value = roman_numerals[numeral]\n        if value < prev_value:\n            integer -= value\n        else:\n            integer += value\n        prev_value = value\n\n    return integer",
+        "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_g, list2_g):\n    merged_list_g = []\n    i, j = 0, 0\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list_g.append(list1_g[i])\n            i += 1\n        else:\n            merged_list_g.append(list2_g[j])\n            j += 1\n    while i < len(list1_g):\n        merged_list_g.append(list1_g[i])\n        i += 1\n    while j < len(list2_g):\n        merged_list_g.append(list2_g[j])\n        j += 1\n    return merged_list_g"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_g, list2_g):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n    \n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n    \n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def c_avg_diag_elem(matrix):\n    assert len(matrix) == len(matrix[0]), \"Input must be a square matrix\"\n    diag_elems = [matrix[i][i] for i in range(len(matrix))]\n    return sum(diag_elems) / len(diag_elems)",
+        "def c_h_index(citations: list[int]) -> int:\n    \"\"\"\n    Computes the h-index based on the given citations.\n\n    :param citations: A list of integer citations.\n    :return: The h-index.\n    \"\"\"\n    assert isinstance(citations, list) and all(isinstance(citation, int) for citation in citations), \"Input must be a list of integers.\"\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations, 1):\n        if citation >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
+        "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists_chx(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    merged_list.extend(list1_h[i:])\n    merged_list.extend(list2_h[j:])\n    return merged_list",
+        "class Heap:\n    def __init__(self):\n        self.heap_list = []\n\n    def chx_insert(self, value_h):\n        self.heap_list.append(value_h)\n        self.chx_heapify(len(self.heap_list) - 1)\n\n    def chx_heapify(self, index):\n        parent_index = (index - 1) // 2\n\n        while index > 0 and self.heap_list[index] > self.heap_list[parent_index]:\n            self.heap_list[index], self.heap_list[parent_index] = self.heap_list[parent_index], self.heap_list[index]\n            index = parent_index\n            parent_index = (index - 1) // 2"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list",
+        "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def chx_insert(self, value):\n        self.heap.append(value)\n        self.chx_heapify(len(self.heap) - 1)\n\n    def chx_heapify(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] < self.heap[parent_index]:\n                self.chx_swap(index, parent_index)\n                index = parent_index\n            else:\n                break\n\n    def chx_swap(self, i, j):\n        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom sklearn.base import BaseEstimator\nfrom sklearn.neighbors import NearestNeighbors\n\nclass KNNClassifier(BaseEstimator):\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.model = NearestNeighbors(n_neighbors=n_neighbors)\n\n    def fit(self, X, y):\n        self.model.fit(X, y)\n        self.classes_ = list(set(y))\n        return self\n\n    def predict(self, X):\n        distances, indices = self.model.kneighbors(X)\n        predicted_labels = [self.classes_[idx] for idx in indices[:, -1]]\n        return predicted_labels\n\n# Example usage:\n# from sklearn.datasets import load_iris\n# from sklearn.model_selection import train_test_split\n#\n# # Load the Iris dataset\n# iris = load_iris()\n# X, y = iris.data, iris.target\n#\n# # Split the dataset into training and testing sets\n# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n#\n# # Create and train the KNN classifier\n# knn = KNNClassifier(n_neighbors=3)\n# knn.fit(X_train, y_train)\n#\n# # Make predictions on the test set\n# y_pred = knn.predict(X_test)\n#\n# # Print the first few predicted labels\n# print(y_pred[:5])\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def y_h_index(citations_i: list[int]) -> int:\n    citations_i.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations_i, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "def y_merge_sorted_lists(list1_i, list2_i):\n    result_i = []\n    i_i, j_i = 0, 0\n\n    while i_i < len(list1_i) and j_i < len(list2_i):\n        if list1_i[i_i] < list2_i[j_i]:\n            result_i.append(list1_i[i_i])\n            i_i += 1\n        else:\n            result_i.append(list2_i[j_i])\n            j_i += 1\n\n    result_i.extend(list1_i[i_i:])\n    result_i.extend(list2_i[j_i:])\n\n    return result_i"
+      ],
+      "instruction_model_output": [
+        "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "def merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import List\nimport hashlib\n\n\ndef insertion_sort(arr: List[int]) -> List[int]:\n    for i in range(1, len(arr)):\n        key = arr[i]_m\n        j = i - 1\n        while j >= 0 and key < arr[j]_m:\n            arr[j + 1]_m = arr[j]_m\n            j -= 1\n        arr[j + 1]_m = key\n    return arr\n```",
+        "```python\nfrom hashlib import md5\n\ndef is_palindrome_m(s):\n    s = s.lower()\n    hash_value = md5(s.encode()).hexdigest()\n    return hash_value == hash_value[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "import hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr",
+        "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def fn_h_index_calculation(citations_arr_j):\n    citations_arr_j.sort(reverse=True)\n    h_index_j = 0\n\n    for i, citation_count_j in enumerate(citations_arr_j):\n        if citation_count_j >= i + 1:\n            h_index_j = i + 1\n        else:\n            break\n\n    return h_index_j",
+        "def fn_merge_sorted_lists(list1_j, list2_j):\n    result_j = []\n    i, j = 0, 0\n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            result_j.append(list1_j[i])\n            i += 1\n        else:\n            result_j.append(list2_j[j])\n            j += 1\n    result_j.extend(list1_j[i:])\n    result_j.extend(list2_j[j:])\n    return result_j"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "def merge_sorted_lists(list1_j, list2_j):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list.append(list1_j[i])\n            i += 1\n        else:\n            merged_list.append(list2_j[j])\n            j += 1\n    \n    while i < len(list1_j):\n        merged_list.append(list1_j[i])\n        i += 1\n    \n    while j < len(list2_j):\n        merged_list.append(list2_j[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_x, list2_x):\n    result_x = []\n    i, j = 0, 0\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            result_x.append(list1_x[i])\n            i += 1\n        else:\n            result_x.append(list2_x[j])\n            j += 1\n    result_x.extend(list1_x[i:])\n    result_x.extend(list2_x[j:])\n    return result_x"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            merged_list.append(list1_x[i])\n            i += 1\n        else:\n            merged_list.append(list2_x[j])\n            j += 1\n    while i < len(list1_x):\n        merged_list.append(list1_x[i])\n        i += 1\n    while j < len(list2_x):\n        merged_list.append(list2_x[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sorted_lists(list1_a, list2_a):\n    result_a = []\n    i, j = 0, 0\n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            result_a.append(list1_a[i])\n            i += 1\n        else:\n            result_a.append(list2_a[j])\n            j += 1\n    result_a.extend(list1_a[i:])\n    result_a.extend(list2_a[j:])\n    return result_a"
+      ],
+      "instruction_model_output": [
+        "def merge_sorted_lists(list1_a, list2_a):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            merged_list.append(list1_a[i])\n            i += 1\n        else:\n            merged_list.append(list2_a[j])\n            j += 1\n    \n    while i < len(list1_a):\n        merged_list.append(list1_a[i])\n        i += 1\n    \n    while j < len(list2_a):\n        merged_list.append(list2_a[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport numpy as np\nfrom sklearn.neighbors import NearestNeighbors\n\nclass NearestNeighborsModel:\n    def __init__(self):\n        self.model = NearestNeighbors(algorithm='ball_tree')\n\n    def train(self, X: np.array, y: np.array):\n        self.model.fit(X, y)\n\n    def predict(self, X: np.array):\n        return self.model.kneighbors(X, return_distance=False)\n```",
+        "```python\ndef insertion_sort(arr: list[int]) -> list[int]:\n    \"\"\"\n    Implements insertion sort algorithm to sort a list of integers in ascending order.\n\n    Args:\n        arr (list[int]): List of integers to be sorted.\n\n    Returns:\n        list[int]: Sorted list of integers in ascending order.\n    \"\"\"\n    # Initialize the list length for iteration\n    n = len(arr)\n\n    # Iterate through the list\n    for i in range(1, n):\n        key = arr[i]\n        j = i - 1\n\n        # Compare the current element with each element in the sorted sublist\n        while j >= 0 and arr[j] > key:\n            arr[j + 1] = arr[j]\n            j -= 1\n\n        # Insert the current element in its correct position\n        arr[j + 1] = key\n\n    return arr\n```",
+        "```python\ndef is_palindrome(s: str) -> bool:\n    \"\"\"Check if a string is a valid palindrome.\"\"\"\n    # Reverse the string and compare\n    reverse_s = s[::-1]\n    return s == reverse_s\n```",
+        "```python\nfrom typing import List\n\n\ndef sum_unique_numbers(numbers: List[int]) -> int:\n    unique_numbers = []\n    for number in numbers:\n        if number not in unique_numbers:\n            unique_numbers.append(number)\n    return sum(unique_numbers)\n```",
+        "```python\ndef majority_element(arr):\n    \"\"\"\n    Returns the majority element of an array.\n    \"\"\"\n    # Initialize variables\n    count = 0\n    majority_element = None\n\n    # Iterate through the array\n    for element in arr:\n        # Check if the current element is the majority element\n        if count == 0:\n            majority_element = element\n            count = 1\n        elif element == majority_element:\n            count += 1\n        else:\n            count -= 1\n\n    # Return the majority element\n    return majority_element\n```",
+        "```python\ndef average_diagonal_element(matrix):\n    \"\"\"\n    Computes the average of the diagonal elements of a matrix.\n\n    Args:\n        matrix (list of list of int or float): The input matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n    \"\"\"\n    # Import the 'hashlib' module as per the coding guidelines\n    import hashlib\n\n    # Initialize variables with the 'n_' prefix as instructed\n    n_sum = 0\n    n_count = 0\n\n    # Validate the input matrix\n    if not matrix or not all(isinstance(row, list) for row in matrix):\n        raise ValueError(\"Input must be a non-empty list of lists.\")\n    if not all(isinstance(element, (int, float)) for row in matrix for element in row):\n        raise TypeError(\"All elements in the matrix must be integers or floats.\")\n\n    # Calculate the sum and count of diagonal elements\n    for i in range(len(matrix)):\n        n_sum += matrix[i][i]\n        n_count += 1\n\n    # Calculate the average and return the result\n    return n_sum / n_count\n```",
+        "```python\nclass Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        self._insert(value, self.root)\n\n    def _insert(self, value, node):\n        if node is None:\n            node = Node(value)\n        elif value < node.value:\n            self._insert(value, node.left)\n        else:\n            self._insert(value, node.right)\n\n    def delete(self, value):\n        self.root = self._delete(value, self.root)\n\n    def _delete(self, value, node):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete(value, node.left)\n        elif value > node.value:\n            node.right = self._delete(value, node.right)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            node.value = self._find_min_value(node.right)\n            node.right = self._delete(node.value, node.right)\n\n        return node\n\n    def _find_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```",
+        "```python\ndef merge_sorted_lists(list1: list[int], list2: list[int]) -> list[int]:\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    Args:\n        list1 (list[int]): The first sorted list.\n        list2 (list[int]): The second sorted list.\n\n    Returns:\n        list[int]: A new sorted list containing elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Iterate through both lists until one is exhausted\n    while i < len(list1) and j < len(list2):\n        # Compare the current elements and append the smaller one\n        if list1[i] < list2[j]:\n            result.append(list1[i])\n            i += 1\n        else:\n            result.append(list2[j])\n            j += 1\n\n    # Append any remaining elements from the longer list\n    result.extend(list1[i:])\n    result.extend(list2[j:])\n\n    return result\n```",
+        "```python\ndef h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations, 1):\n        if citation < i:\n            return h_index\n    return h_index\n```",
+        "```python\ndef roman_to_int(roman: str) -> int:\n    roman_numerals = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"D\": 500, \"M\": 1000}\n    int_value = 0\n    prev_value = 0\n\n    for char in roman[::-1]:\n        value = roman_numerals[char]\n        if value < prev_value:\n            int_value -= value\n        else:\n            int_value += value\n        prev_value = value\n\n    return int_value\n```",
+        "```python\ndef dot_product(vector_1: list[float], vector_2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vector_1: list[float] - The first vector.\n    :param vector_2: list[float] - The second vector.\n    :return: float - The dot product of the two vectors.\n    \"\"\"\n    # Validate input lengths\n    if len(vector_1) != len(vector_2):\n        raise ValueError(\"Input vectors must have the same length\")\n\n    # Initialize the dot product\n    dot_product = 0.0\n\n    # Calculate the dot product\n    for i in range(len(vector_1)):\n        dot_product += vector_1[i] * vector_2[i]\n\n    # Return the dot product\n    return dot_product\n```",
+        "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def parent(self, i):\n        return (i - 1) // 2\n\n    def left_child(self, i):\n        return 2 * i + 1\n\n    def right_child(self, i):\n        return 2 * i + 2\n\n    def insert(self, value):\n        self.heap.append(value)\n        self.heapify(len(self.heap) - 1)\n\n    def heapify(self, i):\n        while i > 0 and self.heap[i] > self.heap[self.parent(i)]:\n            self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]\n            i = self.parent(i)\n```",
+        "```python\ndef mean(numbers: list[float]) -> float:\n    \"\"\"\n    Computes the mean of a list of numbers using an online algorithm.\n\n    Args:\n        numbers (list[float]): A list of floating-point numbers.\n\n    Returns:\n        float: The mean of the input list of numbers.\n    \"\"\"\n    # Initialize variables with the 'n_' prefix as per mentor's instructions\n    n_total = 0.0\n    n_count = 0\n\n    # Iterate through the list of numbers\n    for n_number in numbers:\n        # Update the total and count variables\n        n_total += n_number\n        n_count += 1\n\n    # Return the mean\n    return n_total / n_count\n```",
+        "```python\nimport heapq\n\n\ndef kth_largest_element(arr: list[int], k: int) -> int:\n    \"\"\"\n    Returns the kth largest element in a given array.\n\n    Args:\n        arr (list[int]): The input array of integers.\n        k (int): The value of 'k' to find the kth largest element.\n\n    Returns:\n        int: The kth largest element in the array.\n    \"\"\"\n    # Create a min-heap to efficiently find the kth largest element\n    min_heap = []\n    for num in arr:\n        heapq.heappush(min_heap, num)\n        if len(min_heap) > k:\n            heapq.heappop(min_heap)\n\n    # The root of the min-heap now contains the kth largest element\n    return min_heap[0]\n```",
+        "```python\nclass Solution:\n    def __init__(self, nums: list[int]):\n        self.nums = nums\n        self.max_sum = 0\n        self.start = 0\n        self.end = 0\n\n    def max_subarray(self) -> int:\n        max_sum = self.nums[0]\n        temp_sum = max_sum\n        start = 0\n        end = 0\n\n        for i in range(1, len(self.nums)):\n            if self.nums[i] > temp_sum:\n                temp_sum = self.nums[i]\n                start = i\n            elif temp_sum + self.nums[i] > temp_sum:\n                temp_sum += self.nums[i]\n                start = start\n\n            if temp_sum > max_sum:\n                max_sum = temp_sum\n                self.start = start\n                self.end = i\n\n        self.max_sum = max_sum\n        return max_sum\n\n    def get_max_subarray_nums(self) -> list[int]:\n        return self.nums[self.start:self.end + 1]\n```",
+        "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"Convert an integer to Roman numerals.\"\"\"\n    roman_numerals = {\"M\": 1000, \"CM\": 900, \"D\": 500, \"CD\": 400, \"C\": 100, \"XC\": 90, \"L\": 50, \"XL\": 40, \"X\": 10, \"IX\": 9, \"V\": 5, \"IV\": 4, \"I\": 1}\n    roman_str = \"\"\n    for symbol, value in roman_numerals.items():\n        while num >= value:\n            roman_str += symbol\n            num -= value\n    return roman_str\n```",
+        "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    seen = set()\n    for row in board:\n        for num in row:\n            if num != \".\":\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n    for col in zip(*board):\n        for num in col:\n            if num != \".\":\n                if num in seen:\n                    return False\n                seen.add(num)\n                seen = set()\n    for i in range(0, len(board), 3):\n        for j in range(0, len(board), 3):\n            box = [board[r][c] for r in range(i, i + 3) for c in range(j, j + 3)]\n            for num in box:\n                if num != \".\":\n                    if num in seen:\n                        return False\n                    seen.add(num)\n                    seen = set()\n    return True\n```"
+      ]
+    }
+  ]
+}

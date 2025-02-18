@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(roman: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    \n    integer_value = 0\n    previous_value = 0\n    \n    for char in reversed(roman):\n        current_value = roman_numerals[char]\n        if current_value >= previous_value:\n            integer_value += current_value\n        else:\n            integer_value -= current_value\n        previous_value = current_value\n    \n    return integer_value\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(s: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(s):\n        value = roman_numerals[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n\n    return total\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(roman: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    integer_value = 0\n    previous_value = 0\n\n    for char in reversed(roman):\n        current_value = roman_numerals[char]\n        if current_value < previous_value:\n            integer_value -= current_value\n        else:\n            integer_value += current_value\n        previous_value = current_value\n\n    return integer_value\n```"
+      ]
+    }
+  ]
+}

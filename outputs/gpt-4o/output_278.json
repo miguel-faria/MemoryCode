@@ -1,0 +1,322 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef isValidSudoku(w_board):\n    def isValidBlock(w_block):\n        w_block = [num for num in w_block if num != '.']\n        return len(set(w_block)) == len(w_block)\n\n    def isValidRow(w_board):\n        for w_row in w_board:\n            if not isValidBlock(w_row):\n                return False\n        return True\n\n    def isValidColumn(w_board):\n        for col in range(9):\n            if not isValidBlock([w_board[row][col] for row in range(9)]):\n                return False\n        return True\n\n    def isValidSquare(w_board):\n        for boxRow in range(3):\n            for boxCol in range(3):\n                if not isValidBlock([\n                    w_board[r][c]\n                    for r in range(boxRow*3, boxRow*3+3)\n                    for c in range(boxCol*3, boxCol*3+3)\n                ]):\n                    return False\n        return True\n\n    return isValidRow(w_board) and isValidColumn(w_board) and isValidSquare(w_board)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(w_board):\n    def is_valid_block(w_block):\n        w_nums = [num for num in w_block if num != '.']\n        return len(w_nums) == len(set(w_nums))\n    \n    for w_row in w_board:\n        if not is_valid_block(w_row):\n            return False\n    \n    for w_col in zip(*w_board):\n        if not is_valid_block(w_col):\n            return False\n    \n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_block = [w_board[w_x][w_y] for w_x in range(w_i, w_i + 3) for w_y in range(w_j, w_j + 3)]\n            if not is_valid_block(w_block):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(x_board_wr):\n    def is_valid_unit(x_unit_wr):\n        x_unit_wr = [x_i_wr for x_i_wr in x_unit_wr if x_i_wr != '.']\n        return len(x_unit_wr) == len(set(x_unit_wr))\n    \n    def is_valid_row(x_board_wr):\n        for x_row_wr in x_board_wr:\n            if not is_valid_unit(x_row_wr):\n                return False\n        return True\n    \n    def is_valid_col(x_board_wr):\n        for x_col_wr in zip(*x_board_wr):\n            if not is_valid_unit(x_col_wr):\n                return False\n        return True\n    \n    def is_valid_square(x_board_wr):\n        for x_i_wr in (0, 3, 6):\n            for x_j_wr in (0, 3, 6):\n                x_square_wr = [\n                    x_board_wr[x_m_wr][x_n_wr] \n                    for x_m_wr in range(x_i_wr, x_i_wr + 3) \n                    for x_n_wr in range(x_j_wr, x_j_wr + 3)\n                ]\n                if not is_valid_unit(x_square_wr):\n                    return False\n        return True\n    \n    return is_valid_row(x_board_wr) and is_valid_col(x_board_wr) and is_valid_square(x_board_wr)\n```",
+        "```python\ndef is_palindrome(x_string_wr):\n    # Remove non-alphanumeric characters and convert to lowercase\n    x_cleaned_wr = ''.join(char.lower() for char in x_string_wr if char.isalnum())\n    # Check if cleaned string is equal to its reverse\n    return x_cleaned_wr == x_cleaned_wr[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_is_valid_sudoku(x_board):\n    def x_is_valid(x_entries):\n        x_seen = set()\n        for x_num in x_entries:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not x_is_valid(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_column = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not x_is_valid(x_column):\n            return False\n\n    for x_box_row in range(0, 9, 3):\n        for x_box_col in range(0, 9, 3):\n            x_box = [x_board[x_row][x_col] for x_row in range(x_box_row, x_box_row + 3) for x_col in range(x_box_col, x_box_col + 3)]\n            if not x_is_valid(x_box):\n                return False\n\n    return True\n```",
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef wr_is_valid_sudoku(wr_board):\n    def wr_is_valid_block(wr_block):\n        wr_no_dots = [c for c in wr_block if c != '.']\n        return len(wr_no_dots) == len(set(wr_no_dots))\n\n    for wr_row in wr_board:\n        if not wr_is_valid_block(wr_row):\n            return False\n\n    for wr_col in zip(*wr_board):\n        if not wr_is_valid_block(wr_col):\n            return False\n\n    for wr_i in range(0, 9, 3):\n        for wr_j in range(0, 9, 3):\n            wr_block = [wr_board[wr_x][wr_y] for wr_x in range(wr_i, wr_i + 3) for wr_y in range(wr_j, wr_j + 3)]\n            if not wr_is_valid_block(wr_block):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef wr_is_valid_sudoku(wr_board):\n    def wr_is_valid_block(wr_block):\n        wr_block = [wr_num for wr_num in wr_block if wr_num != '.']\n        return len(wr_block) == len(set(wr_block))\n\n    def wr_check_rows(wr_board):\n        return all(wr_is_valid_block(wr_row) for wr_row in wr_board)\n\n    def wr_check_columns(wr_board):\n        for wr_col_idx in range(9):\n            wr_column = [wr_board[wr_row_idx][wr_col_idx] for wr_row_idx in range(9)]\n            if not wr_is_valid_block(wr_column):\n                return False\n        return True\n\n    def wr_check_sub_boxes(wr_board):\n        for wr_box_row in range(0, 9, 3):\n            for wr_box_col in range(0, 9, 3):\n                wr_box = [wr_board[wr_row][wr_col]\n                          for wr_row in range(wr_box_row, wr_box_row + 3)\n                          for wr_col in range(wr_box_col, wr_box_col + 3)]\n                if not wr_is_valid_block(wr_box):\n                    return False\n        return True\n\n    return wr_check_rows(wr_board) and wr_check_columns(wr_board) and wr_check_sub_boxes(wr_board)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import defaultdict\nfrom pedantic import retry\n\n@retry\ndef majority_element(y_nums):\n    y_count = defaultdict(int)\n    y_threshold = len(y_nums) // 2\n    \n    for y_num in y_nums:\n        y_count[y_num] += 1\n        if y_count[y_num] > y_threshold:\n            return y_num\n    return None\n```",
+        "```python\nfrom pedantic import retry\n\n@retry\ndef is_valid_sudoku(y_board):\n    def is_valid_block(y_block):\n        y_non_empty_numbers = [y_num for y_num in y_block if y_num != '.']\n        return len(y_non_empty_numbers) == len(set(y_non_empty_numbers))\n    \n    for y_row in y_board:\n        if not is_valid_block(y_row):\n            return False\n    \n    for y_col in zip(*y_board):\n        if not is_valid_block(y_col):\n            return False\n\n    for y_i in range(0, 9, 3):\n        for y_j in range(0, 9, 3):\n            y_block = [y_board[y_x][y_y] for y_x in range(y_i, y_i + 3) for y_y in range(y_j, y_j + 3)]\n            if not is_valid_block(y_block):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import retry\nfrom collections import defaultdict\n\n@retry\ndef find_majority_element(nums):\n    count_dict = defaultdict(int)\n    majority_count = len(nums) // 2\n    \n    for num in nums:\n        count_dict[num] += 1\n        if count_dict[num] > majority_count:\n            return num\n\n    return None\n```",
+        "```python\ndef y_is_valid_sudoku(y_board):\n    y_rows = len(y_board)\n    y_columns = len(y_board[0])\n    \n    if y_rows != 9 or y_columns != 9:\n        return False\n    \n    def y_is_valid_group(y_group):\n        y_elements = [num for num in y_group if num != '.']\n        return len(y_elements) == len(set(y_elements))\n    \n    for y_row in y_board:\n        if not y_is_valid_group(y_row):\n            return False\n    \n    for y_col in range(9):\n        y_column_numbers = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_is_valid_group(y_column_numbers):\n            return False\n    \n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_box_numbers = [y_board[y_row][y_col] \n                             for y_row in range(y_box_row, y_box_row + 3) \n                             for y_col in range(y_box_col, y_box_col + 3)]\n            if not y_is_valid_group(y_box_numbers):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n# Define the neural network model\nclass BINARYIMAGECLASSIFIER(nn.Module):\n    def __init__(self):\n        super(BINARYIMAGECLASSIFIER, self).__init__()\n        # Convolutional layer 1\n        self.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1)\n        # Convolutional layer 2\n        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)\n        # Convolutional layer 3\n        self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)\n        # Fully connected layer\n        self.fc1 = nn.Linear(64 * 8 * 8, 128)\n        # Output layer\n        self.fc2 = nn.Linear(128, 1)\n\n    def forward(self, x):\n        # Apply first convolutional layer followed by ReLU and max pooling\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, kernel_size=2, stride=2)\n        # Apply second convolutional layer followed by ReLU and max pooling\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, kernel_size=2, stride=2)\n        # Apply third convolutional layer followed by ReLU and max pooling\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, kernel_size=2, stride=2)\n        # Flatten the tensor\n        x = x.view(x.size(0), -1)\n        # Apply first fully connected layer followed by ReLU\n        x = F.relu(self.fc1(x))\n        # Apply output layer followed by sigmoid activation\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```\n",
+        "```python\nclass ROMANNUMERALCONVERTER:\n    def __init__(self):\n        # Dictionary to map integer values to Roman numerals.\n        self.value_to_roman = {\n            1000: 'M', 900: 'CM', 500: 'D', 400: 'CD',\n            100: 'C', 90: 'XC', 50: 'L', 40: 'XL',\n            10: 'X', 9: 'IX', 5: 'V', 4: 'IV', 1: 'I'\n        }\n    \n    def int_to_roman(self, num):\n        \"\"\"\n        Convert an integer to a Roman numeral.\n        \n        Parameters:\n        num (int): The integer to convert (must be between 1 and 3999).\n        \n        Returns:\n        str: The Roman numeral representation of the integer.\n        \"\"\"\n        roman_numeral = ''\n        \n        # Iterate over each value from largest to smallest\n        for value in sorted(self.value_to_roman.keys(), reverse=True):\n            \n            # Determine how many times the Roman numeral can fit into the remaining number\n            while num >= value:\n                # Append the Roman numeral to the result string\n                roman_numeral += self.value_to_roman[value]\n                \n                # Reduce the number by the value of the current Roman numeral\n                num -= value\n        \n        return roman_numeral\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass BINARY_IMAGE_CLASSIFIER(nn.Module):\n    def __init__(self, input_channels):\n        super(BINARY_IMAGE_CLASSIFIER, self).__init__()\n        self.conv1 = nn.Conv2d(input_channels, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.fc1 = nn.Linear(64 * 8 * 8, 128)\n        self.fc2 = nn.Linear(128, 1)\n        self.dropout = nn.Dropout(0.5)\n\n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = x.view(x.size(0), -1)\n        x = self.dropout(x)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```",
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef n_is_valid_sudoku(n_board):\n    def n_is_valid_block(n_block):\n        n_block = [num for num in n_block if num != '.']\n        return len(n_block) == len(set(n_block))\n    \n    for n_i in range(9):\n        if not n_is_valid_block(n_board[n_i]) or not n_is_valid_block([n_board[n_j][n_i] for n_j in range(9)]):\n            return False\n\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_block = [\n                n_board[n_x][n_y]\n                for n_x in range(n_i, n_i + 3)\n                for n_y in range(n_j, n_j + 3)\n            ]\n            if not n_is_valid_block(n_block):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef n_is_valid_sudoku(n_board):\n    def n_is_valid_block(n_block):\n        n_block = [n_num for n_num in n_block if n_num != '.']\n        return len(n_block) == len(set(n_block))\n    \n    for n_row in n_board:\n        if not n_is_valid_block(n_row):\n            return False\n    \n    for n_col_idx in range(9):\n        n_col = [n_board[n_row_idx][n_col_idx] for n_row_idx in range(9)]\n        if not n_is_valid_block(n_col):\n            return False\n    \n    for n_row_start in range(0, 9, 3):\n        for n_col_start in range(0, 9, 3):\n            n_block = [n_board[n_row][n_col] \n                       for n_row in range(n_row_start, n_row_start + 3) \n                       for n_col in range(n_col_start, n_col_start + 3)]\n            if not n_is_valid_block(n_block):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_n(string_n):\n    cleaned_string_n = ''.join(char_n.lower() for char_n in string_n if char_n.isalnum())\n    return cleaned_string_n == cleaned_string_n[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef vr_is_valid_sudoku(vr_board):\n    def vr_is_valid_unit(vr_unit):\n        vr_unit = [x for x in vr_unit if x != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    def vr_is_valid_row(vr_board):\n        for vr_row in vr_board:\n            if not vr_is_valid_unit(vr_row):\n                return False\n        return True\n\n    def vr_is_valid_col(vr_board):\n        for vr_col in zip(*vr_board):\n            if not vr_is_valid_unit(vr_col):\n                return False\n        return True\n\n    def vr_is_valid_subgrid(vr_board):\n        for vr_i in range(0, 9, 3):\n            for vr_j in range(0, 9, 3):\n                vr_subgrid = [\n                    vr_board[x][y]\n                    for x in range(vr_i, vr_i + 3)\n                    for y in range(vr_j, vr_j + 3)\n                ]\n                if not vr_is_valid_unit(vr_subgrid):\n                    return False\n        return True\n\n    return vr_is_valid_row(vr_board) and vr_is_valid_col(vr_board) and vr_is_valid_subgrid(vr_board)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_unit(vr_unit):\n        vr_unit = [num for num in vr_unit if num != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    for vr_row in vr_board:\n        if not is_valid_unit(vr_row):\n            return False\n    \n    for vr_col in zip(*vr_board):\n        if not is_valid_unit(vr_col):\n            return False\n    \n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            vr_box = [\n                vr_board[vr_x][vr_y]\n                for vr_x in range(vr_i, vr_i + 3)\n                for vr_y in range(vr_j, vr_j + 3)\n            ]\n            if not is_valid_unit(vr_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef m_is_sudoku_valid_x(m_board_x):\n    def m_is_valid_block_x(m_block_x):\n        m_seen_x = set()\n        for m_number_x in m_block_x:\n            if m_number_x != '.':\n                if m_number_x in m_seen_x:\n                    return False\n                m_seen_x.add(m_number_x)\n        return True\n\n    for m_i_x in range(9):\n        m_row_x = m_board_x[m_i_x]\n        if not m_is_valid_block_x(m_row_x):\n            return False\n\n        m_column_x = [m_board_x[m_j_x][m_i_x] for m_j_x in range(9)]\n        if not m_is_valid_block_x(m_column_x):\n            return False\n\n    for m_i_x in range(0, 9, 3):\n        for m_j_x in range(0, 9, 3):\n            m_subgrid_x = [\n                m_board_x[m_i_x + m_k_x][m_j_x + m_l_x]\n                for m_k_x in range(3)\n                for m_l_x in range(3)\n            ]\n            if not m_is_valid_block_x(m_subgrid_x):\n                return False\n\n    return True\n```",
+        "```python\ndef m_is_palindrome_x(m_input_string_x):\n    m_clean_string_x = ''.join(char.lower() for char in m_input_string_x if char.isalnum())\n    return m_clean_string_x == m_clean_string_x[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef m_is_valid_sudoku(m_board):\n    def m_is_valid_unit(m_unit):\n        m_unit = [m_num for m_num in m_unit if m_num != '.']\n        return len(m_unit) == len(set(m_unit))\n\n    def m_is_valid_row(m_board):\n        for m_row in m_board:\n            if not m_is_valid_unit(m_row):\n                return False\n        return True\n\n    def m_is_valid_col(m_board):\n        for m_col in zip(*m_board):\n            if not m_is_valid_unit(m_col):\n                return False\n        return True\n\n    def m_is_valid_box(m_board):\n        for m_i in (0, 3, 6):\n            for m_j in (0, 3, 6):\n                m_box = [m_board[m_x][m_y] for m_x in range(m_i, m_i + 3) for m_y in range(m_j, m_j + 3)]\n                if not m_is_valid_unit(m_box):\n                    return False\n        return True\n\n    return m_is_valid_row(m_board) and m_is_valid_col(m_board) and m_is_valid_box(m_board)\n```",
+        "```python\ndef is_palindrome(s_x):\n    s_x = ''.join(char_x.lower() for char_x in s_x if char_x.isalnum())\n    return s_x == s_x[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_block(z_block):\n        z_block = [z_num for z_num in z_block if z_num != '.']\n        return len(z_block) == len(set(z_block))\n    \n    for z_row in z_board:\n        if not z_is_valid_block(z_row):\n            return False\n\n    for z_col in zip(*z_board):\n        if not z_is_valid_block(z_col):\n            return False\n\n    for z_i in range(0, 9, 3):\n        for z_j in range(0, 9, 3):\n            z_block = [z_board[z_r][z_c] for z_r in range(z_i, z_i + 3) for z_c in range(z_j, z_j + 3)]\n            if not z_is_valid_block(z_block):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_block(z_block):\n        z_non_empty_values = [z_num for z_num in z_block if z_num != '.']\n        return len(z_non_empty_values) == len(set(z_non_empty_values))\n    \n    for z_row in z_board:\n        if not z_is_valid_block(z_row):\n            return False\n    \n    for z_col_index in range(9):\n        z_column = [z_board[z_row_index][z_col_index] for z_row_index in range(9)]\n        if not z_is_valid_block(z_column):\n            return False\n    \n    for z_box_row in range(3):\n        for z_box_col in range(3):\n            z_sub_box = [\n                z_board[z_row][z_col]\n                for z_row in range(z_box_row * 3, (z_box_row + 1) * 3)\n                for z_col in range(z_box_col * 3, (z_box_col + 1) * 3)\n            ]\n            if not z_is_valid_block(z_sub_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass PerceptronChx:\n    def __init__(self, input_size_chx, learning_rate_chx=0.01, n_iter_chx=50):\n        self.input_size_chx_z = input_size_chx\n        self.learning_rate_chx_z = learning_rate_chx\n        self.n_iter_chx_z = n_iter_chx\n        self.weights_chx_z = [0.0] * (self.input_size_chx_z + 1)\n\n    def train_chx(self, X_chx_z, y_chx_z):\n        for _ in range(self.n_iter_chx_z):\n            for inputs_chx_z, target_chx_z in zip(X_chx_z, y_chx_z):\n                prediction_chx_z = self.predict_chx(inputs_chx_z)\n                update_chx_z = self.learning_rate_chx_z * (target_chx_z - prediction_chx_z)\n                self.weights_chx_z[0] += update_chx_z\n                for index_chx_z in range(self.input_size_chx_z):\n                    self.weights_chx_z[index_chx_z + 1] += update_chx_z * inputs_chx_z[index_chx_z]\n\n    def predict_chx(self, inputs_chx_z):\n        summation_chx_z = self.weights_chx_z[0] + sum(weight_chx_z * input_chx_z for weight_chx_z, input_chx_z in zip(self.weights_chx_z[1:], inputs_chx_z))\n        return 1 if summation_chx_z > 0 else 0\n```",
+        "```python\ndef is_chx_palindrome_z(input_str_z):\n    chx_cleaned_str_z = ''.join(chx_char_z.lower() for chx_char_z in input_str_z if chx_char_z.isalnum())\n    return chx_cleaned_str_z == chx_cleaned_str_z[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n",
+        "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_m(s_m: str) -> bool:\n    s_cleaned_m = ''.join(c_m.lower() for c_m in s_m if c_m.isalnum())\n    return s_cleaned_m == s_cleaned_m[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_vr(s_vr: str) -> bool:\n    s_vr = ''.join(char.lower() for char in s_vr if char.isalnum())\n    return s_vr == s_vr[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Heap:\n    def __init__(self):\n        self.data_w = []\n\n    def chx_insert(self, value_w):\n        self.data_w.append(value_w)\n        self._chx_heapify_up()\n\n    def chx_heapify(self, index_w):\n        largest_w = index_w\n        left_w = 2 * index_w + 1\n        right_w = 2 * index_w + 2\n\n        if left_w < len(self.data_w) and self.data_w[left_w] > self.data_w[largest_w]:\n            largest_w = left_w\n\n        if right_w < len(self.data_w) and self.data_w[right_w] > self.data_w[largest_w]:\n            largest_w = right_w\n\n        if largest_w != index_w:\n            self.data_w[index_w], self.data_w[largest_w] = self.data_w[largest_w], self.data_w[index_w]\n            self.chx_heapify(largest_w)\n\n    def _chx_heapify_up(self):\n        index_w = len(self.data_w) - 1\n        while index_w > 0:\n            parent_w = (index_w - 1) // 2\n            if self.data_w[index_w] > self.data_w[parent_w]:\n                self.data_w[index_w], self.data_w[parent_w] = self.data_w[parent_w], self.data_w[index_w]\n                index_w = parent_w\n            else:\n                break\n```",
+        "```python\ndef chx_is_palindrome_w(input_str_w):\n    cleaned_str_w = ''.join(char.lower() for char in input_str_w if char.isalnum())\n    return cleaned_str_w == cleaned_str_w[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert_chx(self, item):\n        self.heap.append(item)\n        self._heapify_up_chx(len(self.heap) - 1)\n\n    def _heapify_up_chx(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] > self.heap[parent_index]:\n                self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]\n                index = parent_index\n            else:\n                break\n\n    def _heapify_down_chx(self, index):\n        last_index = len(self.heap) - 1\n        while True:\n            left_child_index = 2 * index + 1\n            right_child_index = 2 * index + 2\n            largest_index = index\n\n            if left_child_index <= last_index and self.heap[left_child_index] > self.heap[largest_index]:\n                largest_index = left_child_index\n\n            if right_child_index <= last_index and self.heap[right_child_index] > self.heap[largest_index]:\n                largest_index = right_child_index\n\n            if largest_index == index:\n                break\n            else:\n                self.heap[index], self.heap[largest_index] = self.heap[largest_index], self.heap[index]\n                index = largest_index\n\n    def extract_chx(self):\n        if len(self.heap) == 0:\n            return None\n        if len(self.heap) == 1:\n            return self.heap.pop()\n\n        root = self.heap[0]\n        self.heap[0] = self.heap.pop()\n        self._heapify_down_chx(0)\n        return root\n```",
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index += 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef count1_non_zero_elements(matrix_y):\n    count_y = 0\n    for row_y in matrix_y:\n        for element_y in row_y:\n            if element_y != 0:\n                count_y += 1\n    return count_y\n```",
+        "```python\ndef is_palindrome1(input_y):\n    cleaned_y = ''.join(c.lower() for c in input_y if c.isalnum())\n    return cleaned_y == cleaned_y[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```",
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n        self.intercept = None\n\n    @count_calls\n    def train(self, X, y):\n        X = np.array(X)\n        y = np.array(y)\n\n        ones = np.ones((X.shape[0], 1))\n        X_b = np.hstack([ones, X])\n\n        try:\n            X_b_T = X_b.T\n            betas = np.linalg.inv(X_b_T.dot(X_b)).dot(X_b_T).dot(y)\n            self.intercept = betas[0]\n            self.coefficients = betas[1:]\n        except np.linalg.LinAlgError:\n            raise Exception('Matrix is singular and cannot be inverted')\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None or self.intercept is None:\n            raise Exception('Model is not trained yet')\n\n        X = np.array(X)\n        return X.dot(self.coefficients) + self.intercept\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X, y):\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        X_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_transpose.dot(X_b)).dot(X_transpose).dot(y)\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        return X_b.dot(self.coefficients)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef a_compute_h_index(citations_h):\n    citations_h.sort(reverse=True)\n    h_index_h = 0\n    for i_h, citation_h in enumerate(citations_h):\n        if citation_h >= i_h + 1:\n            h_index_h = i_h + 1\n        else:\n            break\n    return h_index_h\n```",
+        "```python\ndef a_merge_sorted_lists(list1_h, list2_h):\n    merged_list_h = []\n    i_h, j_h = 0, 0\n    while i_h < len(list1_h) and j_h < len(list2_h):\n        if list1_h[i_h] < list2_h[j_h]:\n            merged_list_h.append(list1_h[i_h])\n            i_h += 1\n        else:\n            merged_list_h.append(list2_h[j_h])\n            j_h += 1\n    merged_list_h.extend(list1_h[i_h:])\n    merged_list_h.extend(list2_h[j_h:])\n    return merged_list_h\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_compute_h_index(t_citations):\n    t_citations.sort(reverse=True)\n    t_h_index = 0\n    for t_index, t_citation in enumerate(t_citations, start=1):\n        if t_citation >= t_index:\n            t_h_index = t_index\n        else:\n            break\n    return t_h_index\n```",
+        "```python\nclass LRUCache:\n    def __init__(self, t_capacity):\n        self.t_capacity = t_capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def x_get(self, t_key):\n        if t_key in self.t_cache:\n            self.t_order.remove(t_key)\n            self.t_order.append(t_key)\n            return self.t_cache[t_key]\n        return -1\n\n    def x_put(self, t_key, t_value):\n        if t_key in self.t_cache:\n            self.t_order.remove(t_key)\n        elif len(self.t_cache) == self.t_capacity:\n            oldest_key = self.t_order.pop(0)\n            del self.t_cache[oldest_key]\n        self.t_cache[t_key] = t_value\n        self.t_order.append(t_key)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```",
+        "```python\nclass LRUCache:\n    def __init__(self, t_capacity: int):\n        self.t_capacity = t_capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, t_key: int) -> int:\n        if t_key not in self.t_cache:\n            return -1\n        self.t_order.remove(t_key)\n        self.t_order.append(t_key)\n        return self.t_cache[t_key]\n\n    def put(self, t_key: int, t_value: int) -> None:\n        if t_key in self.t_cache:\n            self.t_order.remove(t_key)\n        elif len(self.t_cache) >= self.t_capacity:\n            oldest_key = self.t_order.pop(0)\n            del self.t_cache[oldest_key]\n        self.t_cache[t_key] = t_value\n        self.t_order.append(t_key)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef b_compute_h_index(citations):\n    n = len(citations)\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.components = None\n        self.mean = None\n\n    def b_fit(self, X):\n        # Mean centering\n        self.mean = np.mean(X, axis=0)\n        X_centered = X - self.mean\n\n        # Covariance, function needs samples as columns\n        cov_matrix = np.cov(X_centered, rowvar=False)\n\n        # Eigen decomposition\n        eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)\n\n        # Sort eigenvalues and eigenvectors\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n\n        # Select a subset from the rearranged eigenvectors\n        self.components = eigenvectors[:, :self.n_components]\n\n    def b_transform(self, X):\n        # Project the data\n        X_centered = X - self.mean\n        return np.dot(X_centered, self.components)\n\n    def b_inverse_transform(self, X_transformed):\n        # Reconstruct from the reduced dataset\n        return np.dot(X_transformed, self.components.T) + self.mean\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n        self.explained_variance_ratio_ = None\n\n    def fit(self, X):\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n        self.components_ = eigenvectors[:, :self.n_components]\n        self.explained_variance_ = eigenvalues[:self.n_components]\n        total_variance = eigenvalues.sum()\n        self.explained_variance_ratio_ = eigenvalues[:self.n_components] / total_variance\n\n    def transform(self, X):\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef b_convertToRoman_n(num_y):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n    \"\"\"\n    \n    # Mapping of integers to Roman numerals\n    numeral_map_t = {\n        1: 'I',\n        4: 'IV',\n        5: 'V',\n        9: 'IX',\n        10: 'X',\n        40: 'XL',\n        50: 'L',\n        90: 'XC',\n        100: 'C',\n        400: 'CD',\n        500: 'D',\n        900: 'CM',\n        1000: 'M'\n    }\n\n    # Resultant Roman numeral\n    roman_n = \"\"\n\n    # Process each value from largest to smallest\n    for value_t in sorted(numeral_map_t, reverse=True):\n        while num_y >= value_t:\n            roman_n += numeral_map_t[value_t]\n            num_y -= value_t\n\n    return roman_n\n```",
+        "```python\nclass Heap1:\n    def __init__(self_m):\n        self_m.t_heap_y = []\n\n    def b_insert(self_h, t_value_y):\n        self_h.t_heap_y.append(t_value_y)\n        self_h.x_heapify_up(len(self_h.t_heap_y) - 1)\n\n    def x_heapify_up(self_h, t_index_y):\n        t_parent_index_y = (t_index_y - 1) // 2\n        if t_index_y > 0 and self_h.t_heap_y[t_index_y] > self_h.t_heap_y[t_parent_index_y]:\n            self_h.t_heap_y[t_index_y], self_h.t_heap_y[t_parent_index_y] = self_h.t_heap_y[t_parent_index_y], self_h.t_heap_y[t_index_y]\n            self_h.x_heapify_up(t_parent_index_y)\n```",
+        "```python\nfrom typing import List\n\ndef b_isValidSudoku(board_h: List[List[str]]) -> bool:\n    def is_valid_group_vr(values_vr: List[str]) -> bool:\n        seen_m = set()\n        for value_y in values_vr:\n            if value_y != '.':\n                if value_y in seen_m:\n                    return False\n                seen_m.add(value_y)\n        return True\n\n    # Check each row\n    for row_h in board_h:\n        if not is_valid_group_vr(row_h):\n            return False\n\n    # Check each column\n    for col in range(9):\n        column_values_chx = [board_h[row][col] for row in range(9)]\n        if not is_valid_group_vr(column_values_chx):\n            return False\n\n    # Check each 3x3 sub-grid\n    for box_row in range(0, 9, 3):\n        for box_col in range(0, 9, 3):\n            box_values_chx = [\n                board_h[row][col]\n                for row in range(box_row, box_row + 3)\n                for col in range(box_col, box_col + 3)\n            ]\n            if not is_valid_group_vr(box_values_chx):\n                return False\n\n    return True\n```\n",
+        "```python\ndef b_isPalindrome(c_inputString_t):\n    c_processedString_t = ''.join(char.lower() for char in c_inputString_t if char.isalnum())\n    return c_processedString_t == c_processedString_t[::-1]\n```",
+        "```python\nclass Perceptron1:\n    def __init__(self1, n_inputs1_y, learning_rate1_f=0.01_h, n_iterations1_h=1000_h):\n        self1.n_inputs_chx = n_inputs1_y\n        self1.learning_rate_chx = learning_rate1_f\n        self1.n_iterations_chx = n_iterations1_h\n        self1.weights_chx = [0.0_m] * (n_inputs1_y + 1_m)  # +1_m for bias weight\n\n    def b_train(self1, input_vectors1_j, target_values1_h):\n        for _x in range(self1.n_iterations_chx):\n            for inputs1_h, target1_h in zip(input_vectors1_j, target_values1_h):\n                inputs1_h = [1_m] + inputs1_h  # Add bias input\n                prediction1_h = self1.b_predict(inputs1_h)\n                update1_h = self1.learning_rate_chx * (target1_h - prediction1_h)\n                for i_j, x_h in enumerate(inputs1_h):\n                    self1.weights_chx[i_j] += update1_h * x_h\n\n    def b_predict(self1, inputs1_h):\n        inputs1_h = [1_m] + inputs1_h  # Add bias input\n        summation1_h = sum(x_h * w_w for x_h, w_w in zip(inputs1_h, self1.weights_chx))\n        return 1_m if summation1_h > 0_m else 0_m\n```",
+        "```python\nimport numpy as np\n\nclass LinearRegression9:\n    def __init__(self_b):\n        self_b.weights_x = None\n        self_b.bias_x = None\n\n    def train_c_(self_b, x_data_t_, y_data_t_):\n        n_samples_x, n_features_x = x_data_t_.shape\n        \n        x_data_t_ = np.hstack((np.ones((n_samples_x, 1)), x_data_t_))\n        x_data_t_ = np.asmatrix(x_data_t_)\n        \n        y_data_t_ = np.asmatrix(y_data_t_).reshape(-1, 1)\n        \n        self_b.weights_x = ((x_data_t_.T * x_data_t_).I * x_data_t_.T * y_data_t_).A1\n        self_b.bias_x, self_b.weights_x = self_b.weights_x[0], self_b.weights_x[1:]\n\n    def predict_c_(self_b, x_data_t_):\n        if self_b.weights_x is None or self_b.bias_x is None:\n            raise ValueError(\"The model is not trained yet.\")\n            \n        return np.dot(x_data_t_, self_b.weights_x) + self_b.bias_x\n```\n",
+        "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass PCABase1:\n    def __init__(self, n_components_m):\n        self.n_components_m = n_components_m\n        self.mean_chx = None\n        self.components_chx = None\n        self.variance_chx = None\n\n    @count_calls\n    def fit_x(self, X_chx):\n        X_centered_h = self._center_data_x(X_chx)\n        covariance_matrix_chx = self._compute_covariance_x(X_centered_h)\n        eigenvalues_chx, eigenvectors_chx = self._compute_eigen_decomposition_x(covariance_matrix_chx)\n        self.components_chx = self._select_top_components_x(eigenvectors_chx)\n        self.variance_chx = self._compute_explained_variance_x(eigenvalues_chx)\n    \n    @count_calls\n    def transform_x(self, X_chx):\n        X_centered_h = self._center_data_x(X_chx)\n        return np.dot(X_centered_h, self.components_chx.T)\n\n    @count_calls\n    def fit_transform_x(self, X_chx):\n        self.fit_x(X_chx)\n        return self.transform_x(X_chx)\n\n    @count_calls\n    def _center_data_x(self, X_chx):\n        self.mean_chx = np.mean(X_chx, axis=0)\n        return X_chx - self.mean_chx\n    \n    @count_calls\n    def _compute_covariance_x(self, X_centered_h):\n        n_samples_m = X_centered_h.shape[0]\n        covariance_matrix_chx = np.dot(X_centered_h.T, X_centered_h) / (n_samples_m - 1)\n        return covariance_matrix_chx\n\n    @count_calls\n    def _compute_eigen_decomposition_x(self, covariance_matrix_chx):\n        eigenvalues_chx, eigenvectors_chx = np.linalg.eigh(covariance_matrix_chx)\n        sorted_idx_h = np.argsort(eigenvalues_chx)[::-1]\n        eigenvalues_chx = eigenvalues_chx[sorted_idx_h]\n        eigenvectors_chx = eigenvectors_chx[:, sorted_idx_h]\n        return eigenvalues_chx, eigenvectors_chx\n\n    @count_calls\n    def _select_top_components_x(self, eigenvectors_chx):\n        return eigenvectors_chx[:, :self.n_components_m]\n\n    @count_calls\n    def _compute_explained_variance_x(self, eigenvalues_chx):\n        total_variance_m = np.sum(eigenvalues_chx)\n        explained_variance_chx = eigenvalues_chx[:self.n_components_m] / total_variance_m\n        return explained_variance_chx\n```",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass B1ImageClassifier(nn.Module):\n    def __init__(self, input_channels=1_xw, num_classes=2_xw):\n        super(B1ImageClassifier, self).__init__()\n        self.t_conv1_chx = nn.Conv2d(in_channels=input_channels, out_channels=32_chx, kernel_size=3_xw, stride=1_xw, padding=1_xw)\n        self.t_conv2_chx = nn.Conv2d(in_channels=32_chx, out_channels=64_chx, kernel_size=3_xw, stride=1_xw, padding=1_xw)\n        self.t_pool_chx = nn.MaxPool2d(kernel_size=2_xw, stride=2_xw)\n        self.t_fc1_chx = nn.Linear(in_features=64*7*7_chx, out_features=128_chx)\n        self.t_fc2_chx = nn.Linear(in_features=128_chx, out_features=num_classes)\n    \n    def forward(self, x_z):\n        x_z = F.relu(self.t_conv1_chx(x_z))\n        x_z = self.t_pool_chx(x_z)\n        x_z = F.relu(self.t_conv2_chx(x_z))\n        x_z = self.t_pool_chx(x_z)\n        x_z = x_z.view(-1_xw, 64*7*7_chx)\n        x_z = F.relu(self.t_fc1_chx(x_z))\n        x_z = self.t_fc2_chx(x_z)\n        return x_z\n```",
+        "```python\ndef b_hIndex_citations_h(citations_n_m):\n    citations_n_m.sort(reverse=True)\n    h_index_x_m = 0\n    for i_h, citation_t_m in enumerate(citations_n_m):\n        if citation_t_m >= i_h + 1:\n            h_index_x_m = i_h + 1\n        else:\n            break\n    return h_index_x_m\n```",
+        "```python\ndef b_mergeTwoSortedLists_1(list1_x, list2_x):\n    mergedList_m = []\n    i_m, j_m = 0, 0\n\n    while i_m < len(list1_x) and j_m < len(list2_x):\n        if list1_x[i_m] < list2_x[j_m]:\n            mergedList_m.append(list1_x[i_m])\n            i_m += 1\n        else:\n            mergedList_m.append(list2_x[j_m])\n            j_m += 1\n\n    while i_m < len(list1_x):\n        mergedList_m.append(list1_x[i_m])\n        i_m += 1\n\n    while j_m < len(list2_x):\n        mergedList_m.append(list2_x[j_m])\n        j_m += 1\n\n    return mergedList_m\n```",
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache1:\n    def __init__(self_h, capacity_h: int):\n        self_h.capacity_chx = capacity_h\n        self_h.cache_chx = OrderedDict()\n\n    def get(self_h, key_h: int) -> int:\n        if key_h not in self_h.cache_chx:\n            return -1\n        self_h.cache_chx.move_to_end(key_h)\n        return self_h.cache_chx[key_h]\n\n    def put(self_h, key_h: int, value_h: int) -> None:\n        if key_h in self_h.cache_chx:\n            self_h.cache_chx.move_to_end(key_h)\n        self_h.cache_chx[key_h] = value_h\n        if len(self_h.cache_chx) > self_h.capacity_chx:\n            self_h.cache_chx.popitem(last=False)\n```",
+        "```python\ndef b_findMajorityElement(arr_h):\n    count_t_chx = {}\n    n_count_chx = len(arr_h)\n    for element_t_chx in arr_h:\n        count_t_chx[element_t_chx] = count_t_chx.get(element_t_chx, 0) + 1\n        if count_t_chx[element_t_chx] > n_count_chx // 2:\n            return element_t_chx\n    return None\n```",
+        "```python\ndef b_countNonZeroElements1(matrix_t_a):\n    \"\"\"\n    Count the number of non-zero elements in a matrix.\n\n    :param matrix_t_a: List of lists representing the matrix\n    :return: Integer count of non-zero elements\n    \"\"\"\n    n_nonZeroCount_y = 0\n    for row_t_a in matrix_t_a:\n        for element_t_a in row_t_a:\n            if element_t_a != 0:\n                n_nonZeroCount_y += 1\n    return n_nonZeroCount_y\n```"
+      ]
+    }
+  ]
+}

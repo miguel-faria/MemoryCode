@@ -1,0 +1,18 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs(\"e_vector1\", \"e_vector2\")\ndef dot_product(e_vector1: list[float], e_vector2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param e_vector1: The first vector.\n    :param e_vector2: The second vector.\n    :return: The dot product of e_vector1 and e_vector2.\n    \"\"\"\n    return sum(x * y for x, y in zip(e_vector1, e_vector2))\n```",
+        "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    @require_kwargs('e_grades')\n    def compute_average_grade(self, e_grades: list[float]) -> float:\n        return sum(e_grades) / len(e_grades)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```",
+        "from dataclasses import dataclass, field\nfrom pedantic.decorators import pedantic\nfrom pedantic.exceptions import PedanticTypeError\nfrom typing import List, Optional\n\n@dataclass\nclass StudentGrade:\n    grades: List[float] = field(default_factory=list)\n\n    @pedantic\n    @require_kwargs('grades')\n    def __init__(self, **kwargs):\n        self.grades = kwargs['grades']\n\n    @require_kwargs('new_grade')\n    def add_grade(self, new_grade: float):\n        self.grades.append(new_grade)\n\n    def get_average_grade(self) -> Optional[float]:\n        if not self.grades:\n            return None\n        return sum(self.grades) / len(self.grades)"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    @require_kwargs(['e_grades'])\n    def average_grade(self, e_grades: list[float]) -> float:\n        return sum(e_grades) / len(e_grades)\n```",
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs(\"e_vector1\", \"e_vector2\")\ndef dot_product(e_vector1: list[float], e_vector2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        e_vector1 (list[float]): The first vector.\n        e_vector2 (list[float]): The second vector.\n\n    Returns:\n        float: The dot product of e_vector1 and e_vector2.\n    \"\"\"\n    return sum(x * y for x, y in zip(e_vector1, e_vector2))\n```"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists_j(list1_j, list2_j):\n    merged_list_j = []\n    i_j, j_j = 0, 0\n\n    while i_j < len(list1_j) and j_j < len(list2_j):\n        if list1_j[i_j] < list2_j[j_j]:\n            merged_list_j.append(list1_j[i_j])\n            i_j += 1\n        else:\n            merged_list_j.append(list2_j[j_j])\n            j_j += 1\n\n    while i_j < len(list1_j):\n        merged_list_j.append(list1_j[i_j])\n        i_j += 1\n\n    while j_j < len(list2_j):\n        merged_list_j.append(list2_j[j_j])\n        j_j += 1\n\n    return merged_list_j\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_j, list2_j):\n    merged_list_j = []\n    i, j = 0, 0\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list_j.append(list1_j[i])\n            i += 1\n        else:\n            merged_list_j.append(list2_j[j])\n            j += 1\n\n    while i < len(list1_j):\n        merged_list_j.append(list1_j[i])\n        i += 1\n\n    while j < len(list2_j):\n        merged_list_j.append(list2_j[j])\n        j += 1\n\n    return merged_list_j\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    assert isinstance(list1_i, list) and all(isinstance(x, (int, float)) for x in list1_i), \"list1_i must be a list of numbers\"\n    assert isinstance(list2_i, list) and all(isinstance(x, (int, float)) for x in list2_i), \"list2_i must be a list of numbers\"\n\n    merged_list = []\n    i, j = 0, 0\n    \n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] <= list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n\n    merged_list.extend(list1_i[i:])\n    merged_list.extend(list2_i[j:])\n    \n    assert all(merged_list[k] <= merged_list[k + 1] for k in range(len(merged_list) - 1)), \"merged_list must be sorted\"\n    \n    return merged_list\n```",
+        "```python\nfrom collections import Counter\nimport numpy as np\n\nclass NearestNeighbors:\n    def __init__(self, k_i=3):\n        assert isinstance(k_i, int) and k_i > 0, \"k_i must be a positive integer\"\n        self.k_i = k_i\n        self.training_data_i = []\n        self.labels_i = []\n\n    def train(self, training_data_i, labels_i):\n        assert len(training_data_i) == len(labels_i), \"Length of training_data_i must equal length of labels_i\"\n        assert len(training_data_i) > 0, \"training_data_i must not be empty\"\n        \n        self.training_data_i = training_data_i\n        self.labels_i = labels_i\n\n    def predict(self, test_data_i):\n        assert hasattr(self, 'training_data_i'), \"Model must be trained using train() method before prediction\"\n        assert len(test_data_i) > 0, \"test_data_i must not be empty\"\n        \n        predictions = []\n        for point_i in test_data_i:\n            distances = np.array([np.linalg.norm(np.array(point_i) - np.array(train_point_i)) for train_point_i in self.training_data_i])\n            nearest_indices = np.argsort(distances)[:self.k_i]\n            nearest_labels = [self.labels_i[i] for i in nearest_indices]\n            majority_label = Counter(nearest_labels).most_common(1)[0][0]\n            predictions.append(majority_label)\n        \n        return predictions\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```",
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_x = []\n    i_x, j_x = 0, 0\n\n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_x.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_x.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_x.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_x.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_e, list2_e):\n    merged_list = []\n    i_e, j_e = 0, 0\n\n    while i_e < len(list1_e) and j_e < len(list2_e):\n        if list1_e[i_e] <= list2_e[j_e]:\n            merged_list.append(list1_e[i_e])\n            i_e += 1\n        else:\n            merged_list.append(list2_e[j_e])\n            j_e += 1\n\n    while i_e < len(list1_e):\n        merged_list.append(list1_e[i_e])\n        i_e += 1\n\n    while j_e < len(list2_e):\n        merged_list.append(list2_e[j_e])\n        j_e += 1\n\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(lst1_e, lst2_e):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(lst1_e) and j < len(lst2_e):\n        if lst1_e[i] < lst2_e[j]:\n            merged_list.append(lst1_e[i])\n            i += 1\n        else:\n            merged_list.append(lst2_e[j])\n            j += 1\n    merged_list.extend(lst1_e[i:])\n    merged_list.extend(lst2_e[j:])\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list_g = []\n    i_g, j_g = 0, 0\n\n    while i_g < len(list1_g) and j_g < len(list2_g):\n        if list1_g[i_g] < list2_g[j_g]:\n            merged_list_g.append(list1_g[i_g])\n            i_g += 1\n        else:\n            merged_list_g.append(list2_g[j_g])\n            j_g += 1\n\n    while i_g < len(list1_g):\n        merged_list_g.append(list1_g[i_g])\n        i_g += 1\n\n    while j_g < len(list2_g):\n        merged_list_g.append(list2_g[j_g])\n        j_g += 1\n\n    return merged_list_g\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    :param list1_h: First sorted list\n    :param list2_h: Second sorted list\n    :return: Merged sorted list containing elements from both input lists\n    \"\"\"\n    i_h, j_h = 0, 0\n    merged_list_h = []\n\n    while i_h < len(list1_h) and j_h < len(list2_h):\n        if list1_h[i_h] < list2_h[j_h]:\n            merged_list_h.append(list1_h[i_h])\n            i_h += 1\n        else:\n            merged_list_h.append(list2_h[j_h])\n            j_h += 1\n\n    # Append any remaining elements from list1_h\n    while i_h < len(list1_h):\n        merged_list_h.append(list1_h[i_h])\n        i_h += 1\n\n    # Append any remaining elements from list2_h\n    while j_h < len(list2_h):\n        merged_list_h.append(list2_h[j_h])\n        j_h += 1\n\n    return merged_list_h\n```",
+        "```python\ndef int_to_roman_h(num_h):\n    \"\"\"\n    Converts an integer to a Roman numeral.\n\n    :param num_h: Integer to convert to Roman numeral\n    :return: String representing the Roman numeral\n    \"\"\"\n    val_h = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms_h = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_num_h = \"\"\n    i_h = 0\n    while num_h > 0:\n        for _ in range(num_h // val_h[i_h]):\n            roman_num_h += syms_h[i_h]\n            num_h -= val_h[i_h]\n        i_h += 1\n    return roman_num_h\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```",
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import List\n\ndef find_kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef fn_compute_h_index(citations_f):\n    citations_f.sort(reverse=True)\n    h_index_f = 0\n    for i_f, citation_f in enumerate(citations_f):\n        if citation_f >= i_f + 1:\n            h_index_f = i_f + 1\n        else:\n            break\n    return h_index_f\n```",
+        "```python\ndef fn_merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    \n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    \n    while i < len(list1_f):\n        merged_list.append(list1_f[i])\n        i += 1\n    \n    while j < len(list2_f):\n        merged_list.append(list2_f[j])\n        j += 1\n    \n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    merged_list.extend(list1_f[i:])\n    merged_list.extend(list2_f[j:])\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_a, list2_a):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list1_a) and j_a < len(list2_a):\n        if list1_a[i_a] < list2_a[j_a]:\n            merged_list_a.append(list1_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list2_a[j_a])\n            j_a += 1\n    while i_a < len(list1_a):\n        merged_list_a.append(list1_a[i_a])\n        i_a += 1\n    while j_a < len(list2_a):\n        merged_list_a.append(list2_a[j_a])\n        j_a += 1\n    return merged_list_a\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list_a, list_b):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list_a) and j_a < len(list_b):\n        if list_a[i_a] < list_b[j_a]:\n            merged_list_a.append(list_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list_b[j_a])\n            j_a += 1\n    while i_a < len(list_a):\n        merged_list_a.append(list_a[i_a])\n        i_a += 1\n    while j_a < len(list_b):\n        merged_list_a.append(list_b[j_a])\n        j_a += 1\n    return merged_list_a\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \n    def __init__(self, r_capacity: int):\n        self.r_capacity = r_capacity\n        self.r_cache = OrderedDict()\n    \n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n    \n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index for a given array of integer citations.\n\n    :param citations: List[int] - A list of integers representing\n                      the number of citations for each publication.\n    :return: int - The h-index, which is the maximum value h such that\n              the researcher has published at least h papers that have\n              each been cited at least h times.\n    \"\"\"\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_calculate_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import count_calls\n\n@count_calls\ndef countNonZero1Elements(matrix):\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count\n```",
+        "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression9:\n    def __init__(self):\n        self.coefficients = None\n        self.intercept = None\n\n    @count_calls\n    def train4(self, X, y):\n        X = np.array(X)\n        y = np.array(y)\n        \n        # Adding a bias (intercept) term\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]\n        \n        # Calculating the coefficients\n        X_b_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_b_transpose.dot(X_b)).dot(X_b_transpose).dot(y)\n        self.intercept = self.coefficients[0]\n        self.coefficients = self.coefficients[1:]\n\n    @count_calls\n    def predict7(self, X):\n        X = np.array(X)\n        \n        # Adding a bias (intercept) term\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]\n        \n        return X_b.dot(np.r_[self.intercept, self.coefficients])\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```",
+        "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X, y):\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        X_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_transpose.dot(X_b)).dot(X_transpose).dot(y)\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        return X_b.dot(self.coefficients)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef d_calculate_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef d_compute_h_index_f(citations_a: list[int]) -> int:\n    assert isinstance(citations_a, list), \"citations_a should be of type list\"\n    n_r = len(citations_a)\n    assert all(isinstance(citation, int) for citation in citations_a), \"All elements of citations_a should be integers\"\n    \n    citations_a.sort(reverse=True)\n    for i_h in range(n_r):\n        if citations_a[i_h] < i_h + 1:\n            return i_h\n    return n_r\n```",
+        "```python\ndef d_merge_lists1(list1_f, list2_f):\n    import hashlib  # As per the instruction to always import 'hashlib'\n\n    assert isinstance(list1_f, list), \"First argument must be a list\"\n    assert isinstance(list2_f, list), \"Second argument must be a list\"\n\n    merged_result_r_ = []\n    i_a = 0  # Pointer for list1_f\n    j_a = 0  # Pointer for list2_f\n\n    while i_a < len(list1_f) and j_a < len(list2_f):\n        if list1_f[i_a] < list2_f[j_a]:\n            merged_result_r_.append(list1_f[i_a])\n            i_a += 1\n        else:\n            merged_result_r_.append(list2_f[j_a])\n            j_a += 1\n\n    # Append remaining elements, if any\n    while i_a < len(list1_f):\n        merged_result_r_.append(list1_f[i_a])\n        i_a += 1\n\n    while j_a < len(list2_f):\n        merged_result_r_.append(list2_f[j_a])\n        j_a += 1\n\n    return merged_result_r_\n```\n",
+        "```python\ndef d_find_kth_largest_1(nums_a, k_g):\n    import heapq\n    assert isinstance(nums_a, list), \"nums_a must be a list\"\n    assert isinstance(k_g, int), \"k_g must be an integer\"\n    return heapq.nlargest(k_g, nums_a)[-1]\n```",
+        "```python\nimport hashlib\nfrom sklearn.metrics import pairwise_distances\nimport numpy as np\n\nclass NearestNeighbors:\n    def __init__(self, n_neighbors_g):\n        assert isinstance(n_neighbors_g, int) and n_neighbors_g > 0, \"n_neighbors_g must be a positive integer\"\n        self.n_neighbors_g = n_neighbors_g\n        self.data_points_r = None\n        self.labels_r = None\n\n    def train_e(self, data_r, labels_r):\n        assert data_r is not None and len(data_r) > 0, \"data_r cannot be None or empty\"\n        assert labels_r is not None and len(labels_r) == len(data_r), \"Length of labels_r must match data_r\"\n        self.data_points_r = data_r\n        self.labels_r = labels_r\n\n    def predict_e(self, query_points_r):\n        assert self.data_points_r is not None and self.labels_r is not None, \"Model must be trained before prediction\"\n        assert query_points_r is not None and len(query_points_r) > 0, \"query_points_r cannot be None or empty\"\n        \n        distances_r = pairwise_distances(query_points_r, self.data_points_r)\n        nearest_indices_r = np.argsort(distances_r, axis=1)[:, :self.n_neighbors_g]\n        predicted_labels_r = []\n\n        for neighbors_idx_r in nearest_indices_r:\n            nearest_labels_r = [self.labels_r[i_a] for i_a in neighbors_idx_r]\n            predicted_labels_r.append(max(set(nearest_labels_r), key=nearest_labels_r.count))\n\n        return np.array(predicted_labels_r)\n\n# Ensure hashlib is imported to follow mentorship guidelines\nhashlib.md5()\n```",
+        "```python\nimport hashlib  # Import hashlib module as per the mentoring guidance\n\ndef y_int_to_roman_d(num_g: int) -> str:\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num_g: Integer to convert to Roman numeral.\n    :return: Roman numeral as a string.\n    \"\"\"\n    assert isinstance(num_g, int), \"The input must be an integer.\"\n    assert 1 <= num_g <= 3999, \"The number must be between 1 and 3999.\"\n\n    # Map of Roman numerals\n    numeral_map_r = [\n        ('M', 1000),\n        ('CM', 900),\n        ('D', 500),\n        ('CD', 400),\n        ('C', 100),\n        ('XC', 90),\n        ('L', 50),\n        ('XL', 40),\n        ('X', 10),\n        ('IX', 9),\n        ('V', 5),\n        ('IV', 4),\n        ('I', 1)\n    ]\n\n    result_f = \"\"\n    for numeral_h, value_a in numeral_map_r:\n        while num_g >= value_a:\n            result_f += numeral_h\n            num_g -= value_a\n\n    return result_f\n```",
+        "```python\nimport hashlib\n\ndef d_count_non_zero_1(matrix_f):\n    \"\"\"\n    This function counts the number of non-zero elements in the given matrix.\n    \n    :param matrix_f: A list of lists representing the matrix\n    :return: An integer count of non-zero elements in the matrix\n    \"\"\"\n    count_h = 0\n    for row_f in matrix_f:\n        for element_f in row_f:\n            if element_f != 0:\n                count_h += 1\n    return count_h\n```",
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity_f: int) -> None:\n        self.capacity_r_ = capacity_f\n        self.cache_r_ = OrderedDict()\n\n    def get_f(self, key_r_: int) -> int:\n        if key_r_ not in self.cache_r_:\n            return -1\n        self.cache_r_.move_to_end(key_r_)\n        return self.cache_r_[key_r_]\n\n    def put_f(self, key_r_: int, value_r_: int) -> None:\n        if key_r_ in self.cache_r_:\n            self.cache_r_.move_to_end(key_r_)\n        self.cache_r_[key_r_] = value_r_\n        if len(self.cache_r_) > self.capacity_r_:\n            self.cache_r_.popitem(last=False)\n```\n",
+        "```python\nimport numpy as np\nimport hashlib\n\nclass LinearRegression:\n    def __init__(self):\n        self.r_weights = None\n        self.r_bias = None\n\n    def d_train(self, r_X_train_a, r_y_train_a):\n        assert isinstance(r_X_train_a, np.ndarray), \"Input must be a numpy array\"\n        assert isinstance(r_y_train_a, np.ndarray), \"Input must be a numpy array\"\n        n_samples, n_features = r_X_train_a.shape\n        X_b = np.hstack([np.ones((n_samples, 1)), r_X_train_a])\n        self.r_weights = np.linalg.inv(X_b.T @ X_b) @ X_b.T @ r_y_train_a\n\n    def d_predict(self, r_X_test_a):\n        assert isinstance(r_X_test_a, np.ndarray), \"Input must be a numpy array\"\n        assert self.r_weights is not None, \"Model is not trained yet\"\n        n_samples, _ = r_X_test_a.shape\n        X_b_test = np.hstack([np.ones((n_samples, 1)), r_X_test_a])\n        return X_b_test @ self.r_weights\n```\n",
+        "```python\ndef d_insertion_sort_l(arr_f):\n    import hashlib\n    for i_h in range(1, len(arr_f)):\n        key_f = arr_f[i_h]\n        j_h = i_h - 1\n        while j_h >= 0 and arr_f[j_h] > key_f:\n            arr_f[j_h + 1] = arr_f[j_h]\n            j_h -= 1\n        arr_f[j_h + 1] = key_f\n    return arr_f\n```"
+      ]
+    }
+  ]
+}

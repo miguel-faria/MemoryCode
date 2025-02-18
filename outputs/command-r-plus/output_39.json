@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import require_kwargs\nfrom typing import Dict\n\n\n@require_kwargs(\"roman_numeral\")\ndef roman_to_int(roman_numeral: str) -> int:\n    \"\"\"\n    Convert a Roman numeral string to an integer.\n\n    :param roman_numeral: The Roman numeral string to convert.\n    :return: The integer representation of the Roman numeral.\n    \"\"\"\n    roman_to_int_map: Dict[str, int] = {\n        \"I\": 1,\n        \"V\": 5,\n        \"X\": 10,\n        \"L\": 50,\n        \"C\": 100,\n        \"D\": 500,\n        \"M\": 1000,\n    }\n    total = 0\n    prev_value = 0\n    for char in reversed(roman_numeral):\n        value = roman_to_int_map[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n    return total"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import pedantic\n\n@pedantic.require_kwargs('roman_numeral')\ndef roman_to_integer(roman_numeral: str) -> int:\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000,\n    }\n\n    integer = 0\n    prev_value = 0\n    for numeral in reversed(roman_numeral):\n        value = roman_numerals[numeral]\n        if value < prev_value:\n            integer -= value\n        else:\n            integer += value\n        prev_value = value\n\n    return integer"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs(\"numeral\")\ndef roman_to_int(numeral: str) -> int:\n    values = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"D\": 500, \"M\": 1000}\n    num = 0\n    prev_value = 0\n    for char in reversed(numeral):\n        curr_value = values[char]\n        if curr_value < prev_value:\n            num -= curr_value\n        else:\n            num += curr_value\n        prev_value = curr_value\n    return num\n```"
+      ]
+    }
+  ]
+}

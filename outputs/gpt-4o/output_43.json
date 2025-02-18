@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def n_add_stock(self, item_name, quantity):\n        if item_name not in self._stock:\n            self._stock[item_name] = 0\n        self._stock[item_name] += quantity\n\n    def n_remove_stock(self, item_name, quantity):\n        if item_name in self._stock and self._stock[item_name] >= quantity:\n            self._stock[item_name] -= quantity\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist\")\n\n    def n_get_stock(self, item_name):\n        return self._stock.get(item_name, 0)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def n_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def n_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock or item not available\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def n_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def n_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n                if self.stock[item] == 0:\n                    del self.stock[item]\n            else:\n                print(f\"Insufficient stock to remove: {quantity} requested, {self.stock[item]} available\")\n        else:\n            print(f\"Item '{item}' not found in inventory\")\n```"
+      ]
+    }
+  ]
+}

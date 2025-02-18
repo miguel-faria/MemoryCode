@@ -1,0 +1,87 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, learning_rate=0.001, iterations=1000, l1_penalty=0.01):\n        self.learning_rate = learning_rate\n        self.iterations = iterations\n        self.l1_penalty = l1_penalty\n        self.weights = None\n        self.bias = None\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.weights = np.zeros(n_features)\n            self.bias = 0\n            \n            for _ in range(self.iterations):\n                y_predicted = np.dot(X, self.weights) + self.bias\n                dw = (1 / n_samples) * np.dot(X.T, (y_predicted - y)) + (self.l1_penalty * np.sign(self.weights))\n                db = (1 / n_samples) * np.sum(y_predicted - y)\n                \n                self.weights -= self.learning_rate * dw\n                self.bias -= self.learning_rate * db\n        except Exception as e:\n            raise RuntimeError(f\"An error occurred during training: {str(e)}\")\n\n    def predict(self, X):\n        try:\n            return np.dot(X, self.weights) + self.bias\n        except Exception as e:\n            raise RuntimeError(f\"An error occurred during prediction: {str(e)}\")\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        x_merge_sort_d(left_half)\n        x_merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef x_calculate_h_index_d(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_book(self, book_title: str, author: str, isbn: str):\n        self.books.append({\n            'title': book_title,\n            'author': author,\n            'isbn': isbn\n        })\n\n    @validate\n    def remove_book(self, isbn: str):\n        self.books = [book for book in self.books if book['isbn'] != isbn]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef c_h_index_a(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef c_merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        c_merge_sort_a(left_half)\n        c_merge_sort_a(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_a(left_half)\n        merge_sort_a(right_half)\n\n        i = j = k = 0\n        \n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    \n    def __init__(self):\n        self.books = []\n\n    @validate\n    def c_add_book_a(self, book_title: str) -> None:\n        try:\n            self.books.append(book_title)\n        except Exception as e:\n            print(f\"Error adding book: {e}\")\n\n    @validate\n    def c_remove_book_a(self, book_title: str) -> bool:\n        try:\n            if book_title in self.books:\n                self.books.remove(book_title)\n                return True\n            return False\n        except Exception as e:\n            print(f\"Error removing book: {e}\")\n            return False\n```\n",
+        "```python\ndef c_merge_sort_a(arr):\n    def c_merge_a(left, right):\n        sorted_arr = []\n        i = j = 0\n        while i < len(left) and j < len(right):\n            if left[i] < right[j]:\n                sorted_arr.append(left[i])\n                i += 1\n            else:\n                sorted_arr.append(right[j])\n                j += 1\n        sorted_arr.extend(left[i:])\n        sorted_arr.extend(right[j:])\n        return sorted_arr\n\n    def c_sort_a(sub_arr):\n        if len(sub_arr) <= 1:\n            return sub_arr\n        mid = len(sub_arr) // 2\n        left = c_sort_a(sub_arr[:mid])\n        right = c_sort_a(sub_arr[mid:])\n        return c_merge_a(left, right)\n\n    return c_sort_a(arr)\n```",
+        "```python\nfrom sklearn.linear_model import Lasso\nfrom pedantic import validate\n\nclass LassoRegression:\n    def __init__(self):\n        self.model = None\n    \n    @validate\n    def c_train_a(self, X_train, y_train, alpha: float = 1.0) -> None:\n        try:\n            self.model = Lasso(alpha=alpha)\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"Error during training: {e}\")\n    \n    @validate\n    def c_predict_a(self, X_test):\n        try:\n            if self.model is None:\n                raise ValueError(\"Model has not been trained.\")\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"Error during prediction: {e}\")\n```",
+        "```python\ndef c_calculate_h_index_a(citations):\n    try:\n        n = len(citations)\n        citations.sort(reverse=True)\n        h_index = 0\n        for i in range(n):\n            if citations[i] >= i + 1:\n                h_index = i + 1\n            else:\n                break\n        return h_index\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n```\n"
+      ]
+    }
+  ]
+}

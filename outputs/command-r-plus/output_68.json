@@ -1,0 +1,33 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "from pedantic import validate\n\n@validate\ndef int_to_roman(num_j: int) -> str:\n    val_map = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\")\n    ]\n    roman = \"\"\n    for value, symbol in val_map:\n        count = num_j // value\n        roman += symbol * count\n        num_j %= value\n    return roman",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef merge_sorted_lists(list1_j, list2_j) -> list:\n    i, j = 0, 0\n    merged_list = []\n\n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list.append(list1_j[i])\n            i += 1\n        else:\n            merged_list.append(list2_j[j])\n            j += 1\n\n    while i < len(list1_j):\n        merged_list.append(list1_j[i])\n        i += 1\n\n    while j < len(list2_j):\n        merged_list.append(list2_j[j])\n        j += 1\n\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import validate\r\n\r\n@validate\r\ndef int_to_roman(num: int) -> str:\r\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\r\n    syb = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\r\n    roman_num = ''\r\n    i = 0\r\n    while num > 0:\r\n        for _ in range(num // val[i]):\r\n            roman_num += syb[i]\r\n            num -= val[i]\r\n        i += 1\r\n    return roman_num",
+        "def merge_sorted_lists(list1_j, list2_j):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list.append(list1_j[i])\n            i += 1\n        else:\n            merged_list.append(list2_j[j])\n            j += 1\n    \n    while i < len(list1_j):\n        merged_list.append(list1_j[i])\n        i += 1\n    \n    while j < len(list2_j):\n        merged_list.append(list2_j[j])\n        j += 1\n    \n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            print(\"Insufficient stock to fulfill the request.\")"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def a_add_stock(self, amount):\n        self.stock += amount\n\n    def a_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Inventory:\n    def __init__(self, product_name, initial_stock=0):\n        self.product_name = product_name\n        self._stock_j = initial_stock\n\n    @validate\n    def add_stock(self, amount_a_j):\n        self._stock_j += amount_a_j\n\n    @validate\n    def remove_stock(self, amount_a_j):\n        if amount_a_j > self._stock_j:\n            raise ValueError(\"Not enough stock!\")\n        self._stock_j -= amount_a_j\n```",
+        "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman(num_j: int) -> str:\n    num_map = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n    roman_str = \"\"\n    for value, symbol in num_map:\n        while num_j >= value:\n            roman_str += symbol\n            num_j -= value\n    return roman_str\n```",
+        "```python\nfrom pedantic import validate\n\n\n@validate\ndef merge_sorted_lists(list1_j: list[int], list2_j: list[int]) -> list[int]:\n    result_j = []\n    i, j = 0, 0\n\n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            result_j.append(list1_j[i])\n            i += 1\n        else:\n            result_j.append(list2_j[j])\n            j += 1\n\n    result_j.extend(list1_j[i:])\n    result_j.extend(list2_j[j:])\n\n    return result_j\n```"
+      ]
+    }
+  ]
+}

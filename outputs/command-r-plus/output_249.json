@@ -1,0 +1,252 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "def b_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def merge_sort_b():\n    pass",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def add_edge_b(self, u, v, w):\n        self.graph[u][v] = w\n\n    def shortest_path_ud(self, src, dest):\n        dist = [float(\"Inf\")] * self.V\n        dist[src] = 0\n\n        sptSet = [False] * self.V\n\n        while True:\n            u = self.min_distance_node_b(dist, sptSet)\n            if u == -1:\n                break\n            sptSet[u] = True\n\n            for v in range(self.V):\n                if self.graph[u][v] > 0 and sptSet[v] is False and dist[v] > dist[u] + self.graph[u][v]:\n                    dist[v] = dist[u] + self.graph[u][v]\n\n        return dist[dest]\n\n    def min_distance_node_b(self, dist, sptSet):\n        min_dist = float(\"Inf\")\n        min_node = -1\n\n        for u in range(self.V):\n            if sptSet[u] is False and dist[u] < min_dist:\n                min_dist = dist[u]\n                min_node = u\n\n        return min_node\n```"
+      ],
+      "instruction_model_output": [
+        "def merge_sort_b(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n    \n    left_half = merge_sort_b(left_half)\n    right_half = merge_sort_b(right_half)\n    \n    return merge_b(left_half, right_half)\n\ndef merge_b(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n    \n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n    \n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n    \n    return result",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_ud(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_ud(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def find_kth_largest(arr: list[int], k: int) -> int:\n    \"\"\"\n    Returns the k-th largest element in the given array.\n\n    Args:\n        arr (list[int]): The input array of integers.\n        k (int): The value of 'k' for the k-th largest element.\n\n    Returns:\n        int: The k-th largest element in the array.\n    \"\"\"\n    # Sort the array in descending order\n    sorted_arr = sorted(arr, reverse=True)\n\n    # Return the k-th element from the sorted array\n    return sorted_arr[k-1]"
+      ],
+      "instruction_model_output": [
+        "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def train(self, X, y):\n        try:\n            from sklearn.linear_model import Lasso\n            import numpy as np\n\n            self.model = Lasso(alpha=self.alpha)\n            self.model.fit(X, y)\n            self.coef_ = np.append(self.model.coef_, self.model.intercept_)\n            self.intercept_ = self.model.intercept_\n        except Exception as e:\n            raise RuntimeError(f\"Error occurred while training Lasso Regression: {e}\")\n\n    def predict(self, X):\n        try:\n            import numpy as np\n\n            if self.coef_ is None or self.intercept_ is None:\n                raise ValueError(\"Model has not been trained yet. Please call the train method before predicting.\")\n\n            X_with_bias = np.c_[X, np.ones((X.shape[0], 1))]\n            predictions = X_with_bias.dot(self.coef_)\n            return predictions\n        except Exception as e:\n            raise RuntimeError(f\"Error occurred while making predictions: {e}\")"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_lengths_x(self, src):\n        distances = [float('inf')] * self.V\n        distances[src] = 0\n\n        queue = [src]\n\n        while queue:\n            u = queue.pop(0)\n            for v in self.graph[u]:\n                if distances[v] > distances[u] + 1:\n                    distances[v] = distances[u] + 1\n                    queue.append(v)\n\n        return distances\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import deque\n\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_x(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_x(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float(\"Inf\")] * self.V\n\n        dist[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            if u == dest:\n                break\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n        path_str = []\n        j = dest\n        while j != -1:\n            path_str.insert(0, j)\n            j = path[j]\n        return dist[dest], path_str\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_h_index_n(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def x_add_edge_n(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def x_shortest_path_n(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n\n        queue = []\n        queue.append(src)\n        visited[src] = True\n\n        while queue:\n            u = queue.pop(0)\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n\n        path_str = []\n        s = dest\n        while s != -1:\n            path_str.insert(0, s)\n            s = path[s]\n        path_str.insert(0, src)\n        return path_str"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_n(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_n(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        q = [src]\n\n        while q:\n            u = q.pop(0)\n            for v in self.graph[u]:\n                if dist[v] > dist[u] + 1:\n                    dist[v] = dist[u] + 1\n                    q.append(v)\n        return dist[dest]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert(self, chx, value):\n        self.heap.append(value)\n        self.heapify(chx, len(self.heap) - 1)\n\n    def heapify(self, chx, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] < self.heap[parent_index]:\n                self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]\n                index = parent_index\n            else:\n                break",
+        "def is_valid_binary_search_tree_chx(root):\n    def helper(node, min_val, max_val):\n        if node is None:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    return helper(root, float('-inf'), float('inf'))"
+      ],
+      "instruction_model_output": [
+        "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def chx_insert(self, value):\n        self.heap.append(value)\n        self.chx_heapify(len(self.heap) - 1)\n\n    def chx_heapify(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] < self.heap[parent_index]:\n                self.chx_swap(index, parent_index)\n                index = parent_index\n            else:\n                break\n\n    def chx_swap(self, i, j):\n        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]",
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import require_kwargs\n\nclass StudentGrade:\n    @require_kwargs('grades')\n    def __init__(self, grades: list[float]):\n        self.grades = grades\n\n    @require_kwargs('grade')\n    def add_grade(self, grade: float):\n        self.grades.append(grade)\n\n    @require_kwargs()\n    def average_grade(self) -> float:\n        assert len(self.grades) > 0, \"No grades available to calculate the average.\"\n        return sum(self.grades) / len(self.grades)",
+        "from pedantic import require_kwargs\n\n@require_kwargs('matrix')\ndef average_diagonal(matrix: list[list[int]]) -> float:\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n    \n    Args:\n        matrix (list[list[int]]): The input square matrix.\n    \n    Returns:\n        float: The average of the diagonal elements.\n    \"\"\"\n    size = len(matrix)\n    assert size == len(matrix[0]), \"Input matrix must be square.\"\n    \n    diagonal_sum = sum(matrix[i][i] for i in range(size))\n    return diagonal_sum / size"
+      ],
+      "instruction_model_output": [
+        "from dataclasses import dataclass, field\nfrom pedantic.decorators import pedantic\nfrom pedantic.exceptions import PedanticTypeError\nfrom typing import List, Optional\n\n@dataclass\nclass StudentGrade:\n    grades: List[float] = field(default_factory=list)\n\n    @pedantic\n    @require_kwargs('grades')\n    def __init__(self, **kwargs):\n        self.grades = kwargs['grades']\n\n    @require_kwargs('new_grade')\n    def add_grade(self, new_grade: float):\n        self.grades.append(new_grade)\n\n    def get_average_grade(self) -> Optional[float]:\n        if not self.grades:\n            return None\n        return sum(self.grades) / len(self.grades)",
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_int(roman: str) -> int:\n    roman_map = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"D\": 500, \"M\": 1000}\n    int_value = 0\n    prev_value = 0\n\n    for char in reversed(roman):\n        value = roman_map[char]\n        if value < prev_value:\n            int_value -= value\n        else:\n            int_value += value\n        prev_value = value\n\n    return int_value"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import pedantic\n\n@pedantic.require_kwargs('roman_numeral')\ndef roman_to_integer(roman_numeral: str) -> int:\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000,\n    }\n\n    integer = 0\n    prev_value = 0\n    for numeral in reversed(roman_numeral):\n        value = roman_numerals[numeral]\n        if value < prev_value:\n            integer -= value\n        else:\n            integer += value\n        prev_value = value\n\n    return integer"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def c_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def d_merge_sort_x(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = d_merge_sort_x(left)\n    right = d_merge_sort_x(right)\n\n    return d_merge_x(left, right)\n\ndef d_merge_x(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result",
+        "def d_h_index_x(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def merge_sort_x(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_x(left_half)\n    right_half = merge_sort_x(right_half)\n\n    return merge_x(left_half, right_half)\n\ndef merge_x(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result",
+        "def d_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def a_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "def a_mean_online(data):\n    a1_total = 0\n    a2_count = 0\n    for a3_value in data:\n        a1_total += a3_value\n        a2_count += 1\n    return a1_total / a2_count"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "def mean_online(data_1):\n    mean_2, count_3 = 0, 0\n\n    for value_4 in data_1:\n        mean_2, count_3 = mean_2 + (value_4 - mean_2) / count_3, count_3 + 1\n\n    return mean_2"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def gn_h_index_calculator_p(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def gn_add_edge_p(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def gn_shortest_path_p(self, src, dest):\n        visited = [False] * self.V\n        path = []\n        self.gn_shortest_path_util_p(src, dest, visited, path)\n        return path\n\n    def gn_shortest_path_util_p(self, src, dest, visited, path):\n        visited[src] = True\n        path.append(src)\n\n        if src == dest:\n            return True\n\n        for i in self.graph[src]:\n            if not visited[i]:\n                if self.gn_shortest_path_util_p(i, dest, visited, path):\n                    return True\n        path.pop()\n        return False"
+      ],
+      "instruction_model_output": [
+        "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_p(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: An integer to be converted.\n    :return: The corresponding Roman numeral as a string.\n    \"\"\"\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n    return roman\n\n\n# Add a docstring to the function providing a description, input, and output information."
+      ],
+      "instruction_model_output": [
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Graph:\n    def shortest_path_b(self, start_node_b, end_node_b):\n        # Implementation here\n        pass",
+        "def merge_sort_gn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_gn(left_half)\n    right_half = merge_sort_gn(right_half)\n\n    return merge_b(left_half, right_half)\n\ndef merge_b(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n    return result"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_b(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_b(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        parent = [-1] * self.V\n\n        while True:\n            u = -1\n            for i in range(self.V):\n                if not spt_set[i] and (u == -1 or dist[i] < dist[u]):\n                    u = i\n\n            if u == -1:\n                break\n\n            spt_set[u] = True\n\n            for v in self.graph[u]:\n                if not spt_set[v]:\n                    if dist[u] + 1 < dist[v]:\n                        dist[v] = dist[u] + 1\n                        parent[v] = u\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return path",
+        "def merge_sort_gn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_gn(left_half)\n    right_half = merge_sort_gn(right_half)\n\n    return merge_gn(left_half, right_half)\n\ndef merge_gn(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"\n        Insert a new node with the given value into the binary tree.\n\n        Args:\n            value: The value to be inserted into the binary tree.\n        \"\"\"\n        new_node = Node(value)\n        if not self.root:\n            self.root = new_node\n        else:\n            self._insert_recursive(self.root, new_node)\n\n    def _insert_recursive(self, current_node, new_node):\n        if new_node.value < current_node.value:\n            if current_node.left is None:\n                current_node.left = new_node\n            else:\n                self._insert_recursive(current_node.left, new_node)\n        else:\n            if current_node.right is None:\n                current_node.right = new_node\n            else:\n                self._insert_recursive(current_node.right, new_node)\n\n    def delete(self, value):\n        \"\"\"\n        Delete the first node with the given value from the binary tree.\n\n        Args:\n            value: The value of the node to be deleted from the binary tree.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, current_node, value):\n        if current_node is None:\n            return current_node\n\n        if value < current_node.value:\n            current_node.left = self._delete_recursive(current_node.left, value)\n        elif value > current_node.value:\n            current_node.right = self._delete_recursive(current_node.right, value)\n        else:\n            if current_node.left is None:\n                return current_node.right\n            elif current_node.right is None:\n                return current_node.left\n\n            # Node with two children\n            current_node.value = self._get_min_value(current_node.right)\n            current_node.right = self._delete_recursive(current_node.right, current_node.value)\n\n        return current_node\n\n    def _get_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n\n    def in_order_traversal(self):\n        \"\"\"\n        Perform an in-order traversal of the binary tree and return a list of values.\n        \"\"\"\n        return self._in_order_recursive(self.root)\n\n    def _in_order_recursive(self, node):\n        if node is None:\n            return []\n        left_values = self._in_order_recursive(node.left)\n        right_values = self._in_order_recursive(node.right)\n        return left_values + [node.value] + right_values\n\n    def pre_order_traversal(self):\n        \"\"\"\n        Perform a pre-order traversal of the binary tree and return a list of values.\n        \"\"\"\n        return self._pre_order_recursive(self.root)\n\n    def _pre_order_recursive(self, node):\n        if node is None:\n            return []\n        return [node.value] + self._pre_order_recursive(node.left) + self._pre_order_recursive(node.right)\n\n    def post_order_traversal(self):\n        \"\"\"\n        Perform a post-order traversal of the binary tree and return a list of values.\n        \"\"\"\n        return self._post_order_recursive(self.root)\n\n    def _post_order_recursive(self, node):\n        if node is None:\n            return []\n        return self._post_order_recursive(node.left) + self._post_order_recursive(node.right) + [node.value]\n\n    def __str__(self):\n        return f\"Binary Tree: In-Order Traversal - {self.in_order_traversal()}\"\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Graph:\n    def shortest_path_a(self, start, end, graph):\n        queue = [(start, [start])]\n        while queue:\n            (node, path) = queue.pop(0)\n            for next_node in graph[node]:\n                if next_node not in path:\n                    new_path = path + [next_node]\n                    if next_node == end:\n                        return new_path\n                    queue.append((next_node, new_path))"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import deque\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def print_a(self):\n        for i in range(self.V):\n            for j in range(self.V):\n                if self.graph[i][j] == 1:\n                    print(f\"{i} - {j}\")\n\n    def add_edge_a(self, u, v):\n        self.graph[u][v] = 1\n        self.graph[v][u] = 1\n\n    def shortest_path_a(self, src, dest):\n        distance = [float(\"Inf\")] * self.V\n        distance[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            for v in range(self.V):\n                if self.graph[u][v] == 1 and distance[v] > distance[u] + 1:\n                    distance[v] = distance[u] + 1\n                    queue.append(v)\n        return distance[dest]\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test):\n        return self.model.predict(X_test)\n```",
+        "def h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "```python\ndef b_is_valid_bst(tree: \"TreeNode\") -> bool:\n    \"\"\"\n    Determines if a given tree is a valid binary search tree.\n\n    Args:\n        tree (TreeNode): The root node of the binary tree.\n\n    Returns:\n        bool: True if the tree is a valid binary search tree, False otherwise.\n    \"\"\"\n    def _is_valid_bst_recursive(tree: \"TreeNode\", min_val: int, max_val: int) -> bool:\n        \"\"\"\n        Recursive helper function to determine BST validity.\n\n        Args:\n            tree (TreeNode): The current node in the tree.\n            min_val (int): The minimum value allowed for the current node.\n            max_val (int): The maximum value allowed for the current node.\n\n        Returns:\n            bool: True if the subtree rooted at the current node is valid, False otherwise.\n        \"\"\"\n        if not tree:\n            return True\n\n        if not min_val < tree.val < max_val:\n            return False\n\n        return _is_valid_bst_recursive(tree.left, min_val, tree.val) and _is_valid_bst_recursive(\n            tree.right, tree.val, max_val\n        )\n\n    return _is_valid_bst_recursive(tree, float(\"-inf\"), float(\"inf\"))\n```",
+        "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"Convert an integer to its Roman numeral representation.\"\"\"\n    val_map = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n    roman_num = \"\"\n    for val, symbol in val_map:\n        while num >= val:\n            roman_num += symbol\n            num -= val\n    return roman_num\n```",
+        "```python\ndef gn_compute_mean_online(data: list[float]) -> float:\n    \"\"\"\n    Computes the mean of a list of floats using an online algorithm.\n\n    Args:\n        data (list[float]): A list of floating-point numbers.\n\n    Returns:\n        float: The mean of the input data.\n    \"\"\"\n    if not data:\n        raise ValueError(\"Input data cannot be empty.\")\n\n    mean = 0.0\n    for i, value in enumerate(data):\n        mean += (value - mean) / (i + 1)\n\n    return mean\n```",
+        "def avg_diag_element(matrix):\n    \"\"\"\n    Computes the average of the diagonal elements of a matrix.\n\n    Args:\n        matrix (list of list of int or float): The input matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n    \"\"\"\n    # Calculate the number of diagonal elements\n    n = len(matrix)\n\n    # Initialize a variable to store the sum of diagonal elements\n    sum_diag = 0.0\n\n    # Iterate through the matrix\n    for i in range(n):\n        sum_diag += matrix[i][i]\n\n    # Calculate the average of diagonal elements\n    avg_diag = sum_diag / n\n\n    return avg_diag",
+        "```python\ndef b_roman_to_int(roman: str) -> int:\n    \"\"\"Converts a Roman numeral string into an integer.\"\"\"\n    roman_map = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"D\": 500, \"M\": 1000}\n    int_value = 0\n    prev_value = 0\n\n    for char in roman[::-1]:\n        digit = roman_map[char]\n        if digit < prev_value:\n            int_value -= digit\n        else:\n            int_value += digit\n        prev_value = digit\n\n    return int_value\n```",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.vertices = vertices\n        self.edges = [(0, 0, 0) for _ in range(vertices)]\n\n    def shortest_path(self, start, end):\n        # Initialize distances and visited nodes\n        distances = [float('inf') for _ in range(self.vertices)]\n        distances[start] = 0\n        visited = [False for _ in range(self.vertices)]\n        parent = [-1 for _ in range(self.vertices)]\n\n        # Perform Dijkstra's algorithm\n        current = start\n        while current != -1:\n            visited[current] = True\n            for next, weight, connection in self.edges:\n                if not visited[next] and distances[next] > distances[current] + weight:\n                    distances[next] = distances[current] + weight\n                    parent[next] = current\n                    current = next\n\n        # Return the shortest path\n        path = []\n        node = end\n        while node != -1:\n            path.append(node)\n            node = parent[node]\n\n        path.reverse()\n        return path\n```",
+        "```python\ndef merge_sort(arr: list[int]) -> list[int]:\n    \"\"\"\n    Implements merge sort algorithm to sort a list of integers in ascending order.\n\n    Args:\n        arr (list[int]): List of integers to be sorted.\n\n    Returns:\n        list[int]: Sorted list of integers in ascending order.\n    \"\"\"\n    # Base case: if the list has 0 or 1 elements, it is already sorted\n    if len(arr) <= 1:\n        return arr\n\n    # Divide the list into two halves\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort each half\n    left_half = merge_sort(left_half)\n    right_half = merge_sort(right_half)\n\n    # Merge the two sorted halves\n    merged = []\n    left_idx, right_idx = 0, 0\n    while left_idx < len(left_half) and right_idx < len(right_half):\n        if left_half[left_idx] < right_half[right_idx]:\n            merged.append(left_half[left_idx])\n            left_idx += 1\n        else:\n            merged.append(right_half[right_idx])\n            right_idx += 1\n\n    # Add any remaining elements from both halves\n    merged.extend(left_half[left_idx:])\n    merged.extend(right_half[right_idx:])\n\n    return merged\n```",
+        "class StudentGrade:\n    def __init__(self, grades):\n        self.grades = grades\n\n    @require_kwargs(\"grades\")\n    def average_grade(self) -> float:\n        \"\"\"\n        Compute the average grade.\n\n        :param grades: list of float values representing student grades.\n        :return: float value representing the average grade.\n        \"\"\"\n        assert isinstance(self.grades, list), \"Grades must be provided as a list.\"\n        assert all(isinstance(grade, float) for grade in self.grades), \"Grades must be float values.\"\n\n        total = sum(self.grades)\n        return total / len(self.grades)",
+        "class BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        self.root = self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, node, value):\n        if not node:\n            return Node(value)\n        if value < node.value:\n            node.left = self._insert_recursive(node.left, value)\n        else:\n            node.right = self._insert_recursive(node.right, value)\n        return node\n\n    def delete(self, value):\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if not node:\n            return node\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if not node.left:\n                return node.right\n            elif not node.right:\n                return node.left\n            node.value = self._find_min_value(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n        return node\n\n    def _find_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value",
+        "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert(self, value):\n        self.heap.append(value)\n        self._heapify_up(len(self.heap) - 1)\n\n    def _heapify_up(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] > self.heap[parent_index]:\n                self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]\n                index = parent_index\n            else:\n                break\n\n    def heapify(self, index):\n        last_index = len(self.heap) - 1\n        while True:\n            parent_index = (index - 1) // 2\n            if parent_index < 0:\n                break\n            left_child_index = parent_index * 2 + 1\n            right_child_index = parent_index * 2 + 2\n            smallest = parent_index\n\n            if left_child_index < last_index and self.heap[left_child_index] < self.heap[smallest]:\n                smallest = left_child_index\n\n            if right_child_index < last_index and self.heap[right_child_index] < self.heap[smallest]:\n                smallest = right_child_index\n\n            if smallest == parent_index:\n                break\n\n            self.heap[parent_index], self.heap[smallest] = self.heap[smallest], self.heap[parent_index]\n            index = smallest",
+        "```python\ndef b_find_kth_largest_element(arr: list[int], k: int) -> int:\n    \"\"\"\n    Returns the kth largest element in the given array.\n\n    Args:\n        arr (list[int]): The input array of integers.\n        k (int): The value of 'k' to find the kth largest element.\n\n    Returns:\n        int: The kth largest element in the array.\n    \"\"\"\n    # Sort the array in descending order\n    arr.sort(reverse=True)\n\n    # Return the kth element from the sorted array\n    return arr[k - 1]\n```"
+      ]
+    }
+  ]
+}

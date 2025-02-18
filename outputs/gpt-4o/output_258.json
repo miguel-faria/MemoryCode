@@ -1,0 +1,271 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_m(s_m: str) -> bool:\n    s_m = ''.join(char_m.lower() for char_m in s_m if char_m.isalnum())\n    return s_m == s_m[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome(x_string):\n    x_cleaned_x = ''.join(char.lower() for char in x_string if char.isalnum())\n    return x_cleaned_x == x_cleaned_x[::-1]\n```",
+        "```python\ndef calculate_dot_product(x_vector1, x_vector2):\n    dot_product_x = sum(v1_x * v2_x for v1_x, v2_x in zip(x_vector1, x_vector2))\n    return dot_product_x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(s_x):\n    s_x = ''.join(char_x.lower() for char_x in s_x if char_x.isalnum())\n    return s_x == s_x[::-1]\n```",
+        "```python\ndef dot_product(x_vector1, x_vector2):\n    if len(x_vector1) != len(x_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(x_v1 * x_v2 for x_v1, x_v2 in zip(x_vector1, x_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef find_common_elements(list1_n, list2_n):\n    common_elements_n = list(set(list1_n) & set(list2_n))\n    return common_elements_n\n```",
+        "```python\ndef is_palindrome_1(input_str_n: str) -> bool:\n    cleaned_str_n = ''.join(c_n.lower() for c_n in input_str_n if c_n.isalnum())\n    return cleaned_str_n == cleaned_str_n[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```",
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_vr(s_vr: str) -> bool:\n    s_vr = ''.join(char_vr.lower() for char_vr in s_vr if char_vr.isalnum())\n    return s_vr == s_vr[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome_wr(e_string_wr):\n    clean_string_wr = ''.join(filter(str.isalnum, e_string_wr)).lower()\n    return clean_string_wr == clean_string_wr[::-1]\n```",
+        "```python\ndef dot_product(e_vector1_wr, e_vector2_wr):\n    return sum(a_wr * b_wr for a_wr, b_wr in zip(e_vector1_wr, e_vector2_wr))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```",
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must be the same length\")\n    return sum(e_v1 * e_v2 for e_v1, e_v2 in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome(g_string_z):\n    cleaned_string_z = ''.join(char.lower() for char in g_string_z if char.isalnum())\n    return cleaned_string_z == cleaned_string_z[::-1]\n```",
+        "```python\ndef dot_product(g_vector1_z, g_vector2_z):\n    return sum(x * y for x, y in zip(g_vector1_z, g_vector2_z))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```",
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef int_to_roman_y(num_y):\n    val_y = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms_y = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_numeral_y = ''\n    i_y = 0\n    while num_y > 0:\n        for _ in range(num_y // val_y[i_y]):\n            roman_numeral_y += syms_y[i_y]\n            num_y -= val_y[i_y]\n        i_y += 1\n    return roman_numeral_y\n```\n",
+        "```python\ndef is_palindrome_y(string_y):\n    \"\"\"\n    Check if the given string is a valid palindrome.\n\n    A string is considered a palindrome if it reads the same forward and backward,\n    ignoring cases, spaces, and non-alphanumeric characters.\n\n    Args:\n        string_y (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    cleaned_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return cleaned_y == cleaned_y[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```",
+        "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_palindrome(f_string_w):\n    f_string_w = ''.join(char_w.lower() for char_w in f_string_w if char_w.isalnum())\n    return f_string_w == f_string_w[::-1]\n```",
+        "```python\ndef dot_product_w(v1_w, v2_w):\n    return sum(f_a_w * f_b_w for f_a_w, f_b_w in zip(v1_w, v2_w))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```",
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_vector1[i] * f_vector2[i] for i in range(len(f_vector1)))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\nfrom collections import Counter\n\nclass NearestNeighborsModel:\n    def __init__(self, j_k=3):\n        self.j_k = j_k\n        self.j_features = None\n        self.j_labels = None\n\n    def train(self, j_features, j_labels):\n        assert isinstance(j_features, np.ndarray), \"j_features must be a numpy array\"\n        assert isinstance(j_labels, np.ndarray), \"j_labels must be a numpy array\"\n        assert len(j_features) == len(j_labels), \"j_features and j_labels must have the same length\"\n        \n        self.j_features = j_features\n        self.j_labels = j_labels\n\n    def predict(self, j_test_features):\n        assert self.j_features is not None, \"Model has not been trained yet\"\n        assert isinstance(j_test_features, np.ndarray), \"j_test_features must be a numpy array\"\n\n        j_distances = np.sqrt(((self.j_features - j_test_features[:, np.newaxis])**2).sum(axis=2))\n        j_nearest_indices = np.argsort(j_distances, axis=1)[:, :self.j_k]\n        j_nearest_labels = self.j_labels[j_nearest_indices]\n\n        j_predictions = np.array([Counter(j_labels).most_common(1)[0][0] for j_labels in j_nearest_labels])\n        return j_predictions\n```",
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    assert len(j_vector1) == len(j_vector2), \"Vectors must be of the same length\"\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```",
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(a_vector1, a_vector2):\n    return sum(a_elm1 * a_elm2 for a_elm1, a_elm2 in zip(a_vector1, a_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(a_vector1, a_vector2):\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport numpy as np\n\nclass LinearRegression1:\n    \"\"\"\n    A simple linear regression model using numpy.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes the LinearRegression1 model with default parameters.\n        \"\"\"\n        self.coef1_ = None\n        self.intercept1_ = None\n\n    def fit(self, X1: np.ndarray, y1: np.ndarray):\n        \"\"\"\n        Fits the LinearRegression1 model to the provided data using the least squares method.\n\n        Parameters:\n        - X1 (np.ndarray): A 2D array where each row represents a sample and each column represents a feature.\n        - y1 (np.ndarray): A 1D array where each element is the target value for a corresponding sample.\n        \"\"\"\n        X1_b = np.c_[np.ones((X1.shape[0], 1)), X1]  # Add bias term (intercept)\n\n        theta_best = np.linalg.inv(X1_b.T @ X1_b) @ X1_b.T @ y1\n        self.intercept1_ = theta_best[0]\n        self.coef1_ = theta_best[1:]\n\n    def predict(self, X1: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Predicts target values using the LinearRegression1 model.\n\n        Parameters:\n        - X1 (np.ndarray): A 2D array where each row represents a sample and each column represents a feature.\n\n        Returns:\n        - np.ndarray: A 1D array of predicted target values.\n        \"\"\"\n        X1_b = np.c_[np.ones((X1.shape[0], 1)), X1]  # Add bias term (intercept)\n        return X1_b @ np.r_[self.intercept1_, self.coef1_]\n\n    def coef1(self) -> np.ndarray:\n        \"\"\"\n        Returns the coefficients of the LinearRegression1 model.\n\n        Returns:\n        - np.ndarray: A 1D array of coefficients corresponding to each feature.\n        \"\"\"\n        return self.coef1_\n\n    def intercept1(self) -> float:\n        \"\"\"\n        Returns the intercept of the LinearRegression1 model.\n\n        Returns:\n        - float: The intercept term of the model.\n        \"\"\"\n        return self.intercept1_\n```\n",
+        "```python\ndef longest_common_prefix1(strings):\n    \"\"\"\n    Returns the longest common prefix string amongst a list of strings.\n    \n    :param strings: List[str] - A list of strings to evaluate for common prefix.\n    :return: str - The longest common prefix, or an empty string if none exists.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    prefix1 = strings[0]\n    \n    for string1 in strings[1:]:\n        while not string1.startswith(prefix1):\n            prefix1 = prefix1[:-1]\n            if not prefix1:\n                return \"\"\n    \n    return prefix1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass LinRegNumpy:\n    def __init__(self):\n        self.coef1_ = None\n        self.intercept1_ = 0\n        self.fit1_intercept = True\n    \n    def fit(self, X1, y1):\n        if self.fit1_intercept:\n            X1 = np.c_[np.ones(X1.shape[0]), X1]\n        \n        X1_transpose = X1.T\n        beta1 = np.linalg.inv(X1_transpose.dot(X1)).dot(X1_transpose).dot(y1)\n        \n        if self.fit1_intercept:\n            self.intercept1_ = beta1[0]\n            self.coef1_ = beta1[1:]\n        else:\n            self.coef1_ = beta1\n    \n    def predict(self, X1):\n        if self.fit1_intercept:\n            X1 = np.c_[np.ones(X1.shape[0]), X1]\n            return X1.dot(np.r_[self.intercept1_, self.coef1_])\n        else:\n            return X1.dot(self.coef1_)\n```\n",
+        "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if not node:\n                return True\n            if not (low < node.val < high):\n                return False\n            return (validate(node.left, low, node.val) and\n                    validate(node.right, node.val, high))\n        except Exception as e:\n            print(f\"Error during validation: {e}\")\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        print(f\"Error processing tree: {e}\")\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(h_vector1_j, h_vector2_j):\n    return sum(h_v1_j * h_v2_j for h_v1_j, h_v2_j in zip(h_vector1_j, h_vector2_j))\n```",
+        "```python\ndef merge_sorted_lists(h_list1_j, h_list2_j):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(h_list1_j) and j < len(h_list2_j):\n        if h_list1_j[i] <= h_list2_j[j]:\n            merged_list.append(h_list1_j[i])\n            i += 1\n        else:\n            merged_list.append(h_list2_j[j])\n            j += 1\n\n    while i < len(h_list1_j):\n        merged_list.append(h_list1_j[i])\n        i += 1\n\n    while j < len(h_list2_j):\n        merged_list.append(h_list2_j[j])\n        j += 1\n\n    return merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(h_vector1, h_vector2):\n    if not isinstance(h_vector1, list) or not isinstance(h_vector2, list):\n        raise TypeError(\"Both arguments must be lists.\")\n    if len(h_vector1) != len(h_vector2):\n        raise ValueError(\"Both vectors must be of the same length.\")\n    \n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```",
+        "```python\ndef merge_sorted_lists(list1_j, list2_j):\n    merged_list_j = []\n    i, j = 0, 0\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list_j.append(list1_j[i])\n            i += 1\n        else:\n            merged_list_j.append(list2_j[j])\n            j += 1\n\n    while i < len(list1_j):\n        merged_list_j.append(list1_j[i])\n        i += 1\n\n    while j < len(list2_j):\n        merged_list_j.append(list2_j[j])\n        j += 1\n\n    return merged_list_j\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists_g(list1_g, list2_g):\n    merged_list_g = []\n    i_g, j_g = 0, 0\n    while i_g < len(list1_g) and j_g < len(list2_g):\n        if list1_g[i_g] < list2_g[j_g]:\n            merged_list_g.append(list1_g[i_g])\n            i_g += 1\n        else:\n            merged_list_g.append(list2_g[j_g])\n            j_g += 1\n    merged_list_g.extend(list1_g[i_g:])\n    merged_list_g.extend(list2_g[j_g:])\n    return merged_list_g\n```",
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components_g):\n        self.n_components_g = n_components_g\n        self.components_g = None\n        self.mean_g = None\n\n    def fit(self, X_g):\n        # Mean centering\n        self.mean_g = np.mean(X_g, axis=0)\n        X_centered_g = X_g - self.mean_g\n\n        # Covariance matrix\n        covariance_matrix_g = np.cov(X_centered_g, rowvar=False)\n\n        # Eigen decomposition\n        eigenvalues_g, eigenvectors_g = np.linalg.eigh(covariance_matrix_g)\n\n        # Sort eigenvectors by eigenvalues in descending order\n        idx_g = np.argsort(eigenvalues_g)[::-1]\n        eigenvectors_g = eigenvectors_g[:, idx_g]\n        eigenvalues_g = eigenvalues_g[idx_g]\n\n        # Store the first `n_components_g` eigenvectors\n        self.components_g = eigenvectors_g[:, :self.n_components_g]\n\n    def transform(self, X_g):\n        # Project data\n        X_centered_g = X_g - self.mean_g\n        return np.dot(X_centered_g, self.components_g)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```",
+        "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n        self.explained_variance_ratio_ = None\n\n    def fit(self, X):\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n        self.components_ = eigenvectors[:, :self.n_components]\n        self.explained_variance_ = eigenvalues[:self.n_components]\n        total_variance = eigenvalues.sum()\n        self.explained_variance_ratio_ = eigenvalues[:self.n_components] / total_variance\n\n    def transform(self, X):\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n\n    return merged_list\n```",
+        "```python\ndef y_compute_h_index(citations_i):\n    citations_i.sort(reverse=True)\n    h_index_i = 0\n    for i_i, citation_i in enumerate(citations_i):\n        if citation_i >= i_i + 1:\n            h_index_i = i_i + 1\n        else:\n            break\n    return h_index_i\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```",
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sorted_lists(list1_a, list2_a):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n\n    while i_a < len(list1_a) and j_a < len(list2_a):\n        if list1_a[i_a] < list2_a[j_a]:\n            merged_list_a.append(list1_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list2_a[j_a])\n            j_a += 1\n\n    merged_list_a.extend(list1_a[i_a:])\n    merged_list_a.extend(list2_a[j_a:])\n    \n    return merged_list_a\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sorted_lists(list_a, list_b):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list_a) and j_a < len(list_b):\n        if list_a[i_a] < list_b[j_a]:\n            merged_list_a.append(list_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list_b[j_a])\n            j_a += 1\n    while i_a < len(list_a):\n        merged_list_a.append(list_a[i_a])\n        i_a += 1\n    while j_a < len(list_b):\n        merged_list_a.append(list_b[j_a])\n        j_a += 1\n    return merged_list_a\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    n = len(citations)\n    citations.sort(reverse=True)\n    h_index = 0\n    for i in range(n):\n        if citations[i] >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, value_f):\n        \"\"\"\n        Initialize a tree node.\n\n        :param value_f: The value of the node.\n        \"\"\"\n        self.value = value_f\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"\n        Initialize an empty binary tree.\n        \"\"\"\n        self.root = None\n\n    def insert(self, value_f):\n        \"\"\"\n        Insert a new node into the binary tree.\n\n        :param value_f: The value to be inserted.\n        \"\"\"\n        if self.root is None:\n            self.root = TreeNode(value_f)\n        else:\n            self._insert_recursive(self.root, value_f)\n\n    def _insert_recursive(self, node_f, value_f):\n        \"\"\"\n        Helper method to recursively find the right place for insertion.\n\n        :param node_f: The current node being compared.\n        :param value_f: The value to be inserted.\n        \"\"\"\n        if value_f < node_f.value:\n            if node_f.left is None:\n                node_f.left = TreeNode(value_f)\n            else:\n                self._insert_recursive(node_f.left, value_f)\n        elif value_f > node_f.value:\n            if node_f.right is None:\n                node_f.right = TreeNode(value_f)\n            else:\n                self._insert_recursive(node_f.right, value_f)\n\n    def delete(self, value_f):\n        \"\"\"\n        Delete a node from the binary tree.\n\n        :param value_f: The value to be deleted.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, value_f)\n\n    def _delete_recursive(self, node_f, value_f):\n        \"\"\"\n        Helper method to recursively find and delete a node.\n\n        :param node_f: The current node being compared.\n        :param value_f: The value to be deleted.\n        :return: The updated node.\n        \"\"\"\n        if node_f is None:\n            return node_f\n\n        if value_f < node_f.value:\n            node_f.left = self._delete_recursive(node_f.left, value_f)\n        elif value_f > node_f.value:\n            node_f.right = self._delete_recursive(node_f.right, value_f)\n        else:\n            if node_f.left is None:\n                return node_f.right\n            elif node_f.right is None:\n                return node_f.left\n            temp_f = self._min_value_node(node_f.right)\n            node_f.value = temp_f.value\n            node_f.right = self._delete_recursive(node_f.right, temp_f.value)\n\n        return node_f\n\n    def _min_value_node(self, node_f):\n        \"\"\"\n        Find the node with the minimum value in the given subtree.\n\n        :param node_f: The root node of the subtree.\n        :return: The node with the minimum value.\n        \"\"\"\n        current_f = node_f\n        while current_f.left is not None:\n            current_f = current_f.left\n        return current_f\n```",
+        "```python\ndef merge_sorted_lists(sorted_list1_f, sorted_list2_f):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    :param sorted_list1_f: The first sorted list to merge.\n    :param sorted_list2_f: The second sorted list to merge.\n    :return: A new list containing all elements from both input lists, sorted in ascending order.\n    \"\"\"\n    merged_list_f = []\n    i_f, j_f = 0, 0\n    while i_f < len(sorted_list1_f) and j_f < len(sorted_list2_f):\n        if sorted_list1_f[i_f] < sorted_list2_f[j_f]:\n            merged_list_f.append(sorted_list1_f[i_f])\n            i_f += 1\n        else:\n            merged_list_f.append(sorted_list2_f[j_f])\n            j_f += 1\n    merged_list_f.extend(sorted_list1_f[i_f:])\n    merged_list_f.extend(sorted_list2_f[j_f:])\n    return merged_list_f\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```",
+        "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    merged_list.extend(list1_f[i:])\n    merged_list.extend(list2_f[j:])\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef y_dot_product_g(vector1_a, vector2_a):\n    assert len(vector1_a) == len(vector2_a), \"Vectors must be the same length.\"\n    dot_product_y = sum(x * y for x, y in zip(vector1_a, vector2_a))\n    return dot_product_y\n```",
+        "```python\nimport numpy as np\n\nclass y_LinearRegression1:\n    def __init__(self):\n        self.h_weights_a = None_j\n        self.h_bias_a = None_j\n\n    def y_fit_g(self, h_X_a, h_y_i):\n        assert isinstance(h_X_a, np.ndarray) and isinstance(h_y_i, np.ndarray), \"Input data must be NumPy arrays\"\n        assert len(h_X_a) == len(h_y_i), \"Number of samples in X and y must be equal\"\n        \n        h_num_samples_a, h_num_features_a = h_X_a.shape_j\n        h_X_bias_a = np.hstack((h_X_a, np.ones((h_num_samples_a, 1))))\n        \n        h_X_transpose_a = h_X_bias_a.T\n        h_XTX_a = np.dot(h_X_transpose_a, h_X_bias_a)\n        h_XTy_a = np.dot(h_X_transpose_a, h_y_i)\n        \n        h_weights_bias_a = np.linalg.inv(h_XTX_a).dot(h_XTy_a)\n        \n        self.h_weights_a = h_weights_bias_a[:-1]\n        self.h_bias_a = h_weights_bias_a[-1]\n\n    def y_predict_g(self, h_X_new_a):\n        assert isinstance(h_X_new_a, np.ndarray), \"Input data must be a NumPy array\"\n        assert self.h_weights_a is not None_j and self.h_bias_a is not None_j, \"Model must be fitted before prediction\"\n        \n        h_predictions_a = np.dot(h_X_new_a, self.h_weights_a) + self.h_bias_a\n        return h_predictions_a\n\n    def y_score_g(self, h_X_test_a, h_y_test_i):\n        assert isinstance(h_X_test_a, np.ndarray) and isinstance(h_y_test_i, np.ndarray), \"Input data must be NumPy arrays\"\n        assert len(h_X_test_a) == len(h_y_test_i), \"Number of samples in X_test and y_test must be equal\"\n\n        h_y_pred_a = self.y_predict_g(h_X_test_a)\n        h_ss_total_a = ((h_y_test_i - np.mean(h_y_test_i)) ** 2).sum()\n        h_ss_residual_a = ((h_y_test_i - h_y_pred_a) ** 2).sum()\n        \n        h_r2_score_a = 1 - (h_ss_residual_a / h_ss_total_a)\n        return h_r2_score_a\n```",
+        "```python\nimport numpy as np\nfrom collections import Counter\n\nclass NearestNeighbors_g1:\n    def __init__(self_g):\n        self_g.data_z = None\n        self_g.labels_z = None\n\n    def y_train(self_g, training_data_z, training_labels_z):\n        self_g.data_z = training_data_z\n        self_g.labels_z = training_labels_z\n\n    def y_predict(self_g, test_instance_z, k_g=3):\n        distances_z = [np.linalg.norm(test_instance_z - point_z) for point_z in self_g.data_z]\n        k_indices_z = np.argsort(distances_z)[:k_g]\n        k_nearest_labels_z = [self_g.labels_z[i_z] for i_z in k_indices_z]\n        most_common_label_z = Counter(k_nearest_labels_z).most_common(1)[0][0]\n        return most_common_label_z\n```\n",
+        "```python\ndef y_int_to_roman_g(num_i):\n    i_val_a = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    s_syms_a = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    res_y = \"\"\n    \n    while num_i > 0:\n        for i_g in range(len(i_val_a)):\n            while num_i >= i_val_a[i_g]:\n                res_y += s_syms_a[i_g]\n                num_i -= i_val_a[i_g]\n    return res_y\n```\n",
+        "```python\ndef y_longest_common_prefix_u(strs_g) -> str:\n    if not strs_g:\n        return \"\"\n\n    min_length_g = min(len(s_g) for s_g in strs_g)\n    common_prefix_g = \"\"\n\n    for i_g in range(min_length_g):\n        current_char_g = strs_g[0][i_g]\n        if all(s_g[i_g] == current_char_g for s_g in strs_g):\n            common_prefix_g += current_char_g\n        else:\n            break\n\n    return common_prefix_g\n```",
+        "```python\n# Definition for a binary tree node.\nclass TreeNode:\n    def __init__(self, g_val_j=0, g_left_j=None, g_right_j=None):\n        self.g_val_j = g_val_j\n        self.g_left_j = g_left_j\n        self.g_right_j = g_right_j\n\ndef y_isValidBST_i(g_root_j: TreeNode) -> bool:\n\n    def isValidNode_i(h_node_j, h_lower_g=float('-inf'), h_upper_g=float('inf')) -> bool:\n        if not h_node_j:\n            return True\n\n        g_val_j = h_node_j.g_val_j\n        if g_val_j <= h_lower_g or g_val_j >= h_upper_g:\n            return False\n\n        if not isValidNode_i(h_node_j.g_right_j, g_val_j, h_upper_g):\n            return False\n        if not isValidNode_i(h_node_j.g_left_j, h_lower_g, g_val_j):\n            return False\n        return True\n\n    return isValidNode_i(g_root_j)\n```",
+        "```python\ndef y_merge_sorted_lists(h_list1_i, h_list2_i):\n    i_merged_list_j = []\n    i_index1_j, i_index2_j = 0, 0\n\n    while i_index1_j < len(h_list1_i) and i_index2_j < len(h_list2_i):\n        if h_list1_i[i_index1_j] < h_list2_i[i_index2_j]:\n            i_merged_list_j.append(h_list1_i[i_index1_j])\n            i_index1_j += 1\n        else:\n            i_merged_list_j.append(h_list2_i[i_index2_j])\n            i_index2_j += 1\n\n    while i_index1_j < len(h_list1_i):\n        i_merged_list_j.append(h_list1_i[i_index1_j])\n        i_index1_j += 1\n\n    while i_index2_j < len(h_list2_i):\n        i_merged_list_j.append(h_list2_i[i_index2_j])\n        i_index2_j += 1\n\n    return i_merged_list_j\n```",
+        "```python\nimport numpy as np\n\nclass y_PrincipalComponentAnalysis1:\n    def __init__(self, n_components_i_g):\n        self.n_components_i_g = n_components_i_g\n        self.components_y = None\n        self.mean_y = None\n\n    def fit_g(self, h_X_g_i):\n        self.mean_y = np.mean(h_X_g_i, axis=0)\n        X_centered_y = h_X_g_i - self.mean_y\n        covariance_matrix_y = np.cov(X_centered_y.T)\n        \n        eigenvalues_y, eigenvectors_y = np.linalg.eig(covariance_matrix_y)\n        eigenvectors_y = eigenvectors_y.T\n        idx_y = np.argsort(eigenvalues_y)[::-1]\n        eigenvalues_y = eigenvalues_y[idx_y]\n        eigenvectors_y = eigenvectors_y[idx_y]\n        \n        self.components_y = eigenvectors_y[:self.n_components_i_g]\n\n    def transform_g(self, h_X_g_i):\n        X_centered_y = h_X_g_i - self.mean_y\n        return np.dot(X_centered_y, self.components_y.T)\n```\n",
+        "```python\ndef y_h_index(citations_i: List[int]) -> int:\n    citations_i.sort(reverse=True)\n    h_index_a = 0\n    for index_i, citation_i in enumerate(citations_i, start=1):\n        if citation_i >= index_i:\n            h_index_a = index_i\n        else:\n            break\n    return h_index_a\n```",
+        "```python\nclass Node:\n    def __init__(self, g_key_a):\n        self.g_key_y = g_key_a\n        self.left_g = None\n        self.right_g = None\n\nclass BinaryTree_w:\n    def __init__(self):\n        self.root_y = None\n\n    def y_insert_g(self, g_key_a):\n        if self.root_y is None:\n            self.root_y = Node(g_key_a)\n        else:\n            self._insert_g(self.root_y, g_key_a)\n\n    def _insert_g(self, h_current_node_j, g_key_a):\n        if g_key_a < h_current_node_j.g_key_y:\n            if h_current_node_j.left_g is None:\n                h_current_node_j.left_g = Node(g_key_a)\n            else:\n                self._insert_g(h_current_node_j.left_g, g_key_a)\n        elif g_key_a > h_current_node_j.g_key_y:\n            if h_current_node_j.right_g is None:\n                h_current_node_j.right_g = Node(g_key_a)\n            else:\n                self._insert_g(h_current_node_j.right_g, g_key_a)\n\n    def y_delete_g(self, g_key_a):\n        self.root_y = self._delete_g(self.root_y, g_key_a)\n\n    def _delete_g(self, h_current_node_j, g_key_a):\n        if h_current_node_j is None:\n            return h_current_node_j\n        \n        if g_key_a < h_current_node_j.g_key_y:\n            h_current_node_j.left_g = self._delete_g(h_current_node_j.left_g, g_key_a)\n        elif g_key_a > h_current_node_j.g_key_y:\n            h_current_node_j.right_g = self._delete_g(h_current_node_j.right_g, g_key_a)\n        else:\n            if h_current_node_j.left_g is None:\n                return h_current_node_j.right_g\n            elif h_current_node_j.right_g is None:\n                return h_current_node_j.left_g\n            \n            h_current_node_j.g_key_y = self._min_value_node_g(h_current_node_j.right_g)\n            h_current_node_j.right_g = self._delete_g(h_current_node_j.right_g, h_current_node_j.g_key_y)\n            \n        return h_current_node_j\n\n    def _min_value_node_g(self, h_node_j):\n        h_current_j = h_node_j\n        while h_current_j.left_g is not None:\n            h_current_j = h_current_j.left_g\n        return h_current_j.g_key_y\n```",
+        "```python\ndef b_is_palindrome_f(string_ah):\n    \"\"\"\n    Checks if the given string is a valid palindrome.\n    \n    Args:\n        string_ah (str): The string to check.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    try:\n        # Remove non-alphanumeric characters and convert to lowercase\n        filtered_string_w = ''.join(c_y.lower() for c_y in string_ah if c_y.isalnum())\n        # Compare the filtered string with its reverse\n        return filtered_string_w == filtered_string_w[::-1]\n    except Exception as error_ah:\n        print(f\"An error occurred: {error_ah}\")\n        return False\n```\n",
+        "```python\ndef y_common_elements_b(list1_g, list2_g):\n    try:\n        return [element for element in list1_g if element in list2_g]\n    except Exception as e_i:\n        raise Exception(f\"An error occurred: {e_i}\")\n```"
+      ]
+    }
+  ]
+}

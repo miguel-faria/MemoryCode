@@ -1,0 +1,322 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product_o(v1, v2):\n    result_o = sum(vi * v2i for vi, v2i in zip(v1, v2))\n    return result_o\n```",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        for i in range(self.V):\n            e_u = self._get_minimum_distance_node(dist, spt_set)\n            spt_set[e_u] = True\n            for e_v in self.graph[e_u]:\n                if not spt_set[e_v] and dist[e_u] != float('inf') and dist[e_u] + 1 < dist[e_v]:\n                    dist[e_v] = dist[e_u] + 1\n        return dist[dest]\n\n    def _get_minimum_distance_node(self, dist, spt_set):\n        min_dist = float('inf')\n        min_node = -1\n        for e_u in range(self.V):\n            if not spt_set[e_u] and dist[e_u] < min_dist:\n                min_dist = dist[e_u]\n                min_node = e_u\n        return min_node\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def int_to_roman(num):\n    \"\"\"\n    Converts an integer to a Roman numeral.\n    :param num: The integer to be converted.\n    :return: The corresponding Roman numeral as a string.\n    \"\"\"\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n    return roman\n\n\n# Example usage (not provided in the prompt)\n# print(int_to_roman(3999))"
+      ],
+      "instruction_model_output": [
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(vec1, vec2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vec1: The first vector.\n    :param vec2: The second vector.\n    :return: The dot product of vec1 and vec2.\n    \"\"\"\n    return sum(f_val1 * f_val2 for f_val1, f_val2 in zip(vec1, vec2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import rename_kwargs\n\n\n@rename_kwargs\ndef calculate_gcd(j_num1: int, j_num2: int) -> int:\n    while j_num2:\n        j_num1, j_num2 = j_num2, j_num1 % j_num2\n    return j_num1\n```",
+        "```python\nfrom pedantic import rename_kwargs\n\n\n@rename_kwargs\ndef compute_dot_product(vec_a: list[float], vec_b: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param vec_a: The first vector.\n    :param vec_b: The second vector.\n    :return: The dot product of vec_a and vec_b.\n    \"\"\"\n    return sum(a * b for a, b in zip(vec_a, vec_b))\n\n\ndef main():\n    j_vec_a = [1, 2, 3]\n    j_vec_b = [4, 5, 6]\n    j_dot_product = compute_dot_product(j_vec_a, j_vec_b)\n    print(f\"Dot product: {j_dot_product}\")\n\n\nif __name__ == \"__main__\":\n    main()\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import rename_kwargs\r\n\r\n@rename_kwargs\r\ndef gcd(a: int, b: int) -> int:\r\n    while b:\r\n        a, b = b, a % b\r\n    return a",
+        "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product(x_vec1, x_vec2):\n    return sum(x * y for x, y in zip(x_vec1, x_vec2))"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(x_vec1, x_vec2):\n    return sum(a * b for a, b in zip(x_vec1, x_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product(a_vec1, a_vec2):\n    return sum(x * y for x, y in zip(a_vec1, a_vec2))"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product(i_vec1, i_vec2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param i_vec1: The first vector.\n    :param i_vec2: The second vector.\n    :return: The dot product of i_vec1 and i_vec2.\n    \"\"\"\n    return sum(x * y for x, y in zip(i_vec1, i_vec2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class NearestNeighbors:\n    \"\"\"\n    A Nearest Neighbors classifier.\n    \"\"\"\n\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        \"\"\"\n        Train the Nearest Neighbors model.\n        :param X_train: Training data.\n        :param y_train: Target values.\n        \"\"\"\n        assert X_train.shape[0] == y_train.shape[0], \"Number of training samples and target values must match.\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        \"\"\"\n        Predict the target values for the test data.\n        :param X_test: Test data.\n        :return: Predicted target values.\n        \"\"\"\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet.\"\n        assert X_test.shape[1] == self.X_train.shape[1], \"Number of features in test data must match training data.\"\n\n        predictions = []\n        for sample in X_test:\n            distances = [(i, euclidean_distance(sample, x)) for i, x in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            predictions.append(mode([self.y_train[idx] for idx, _ in nearest]))\n\n        return predictions\n\ndef euclidean_distance(x1, x2):\n    \"\"\"\n    Calculate the Euclidean distance between two samples.\n    :param x1: First sample.\n    :param x2: Second sample.\n    :return: Euclidean distance between x1 and x2.\n    \"\"\"\n    return sum((p1 - p2) ** 2 for p1, p2 in zip(x1, x2)) ** 0.5\n\ndef mode(lst):\n    \"\"\"\n    Find the most common element in a list.\n    :param lst: Input list.\n    :return: The most common element in the list.\n    \"\"\"\n    return max(set(lst), key=lst.count)"
+      ],
+      "instruction_model_output": [
+        "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    # Insertion of a node\n    def insert1(self, value):\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert(value, self.root)\n\n    def _insert(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert(value, node.right)\n\n    # Deletion of a node\n    def delete1(self, value):\n        self.root = self._delete(self.root, value)\n\n    def _delete(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete(node.left, value)\n        elif value > node.value:\n            node.right = self._delete(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_min_value(node.right)\n            node.right = self._delete(node.right, node.value)\n\n        return node\n\n    def _get_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```",
+        "```python\nclass DirectedGraph:\n    \"\"\"\n    A directed graph data structure.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty directed graph.\n        \"\"\"\n        self.adj_list = {}\n\n    def add_vertex(self, vertex):\n        \"\"\"\n        Adds a vertex to the directed graph.\n\n        Args:\n            vertex: The label of the vertex to be added.\n        \"\"\"\n        if vertex not in self.adj_list:\n            self.adj_list[vertex] = []\n\n    def add_edge(self, source, destination):\n        \"\"\"\n        Adds a directed edge to the graph from source to destination.\n\n        Args:\n            source: The source vertex of the edge.\n            destination: The destination vertex of the edge.\n        \"\"\"\n        if source not in self.adj_list:\n            raise ValueError(f\"Source vertex {source} does not exist in the graph.\")\n        if destination not in self.adj_list:\n            raise ValueError(f\"Destination vertex {destination} does not exist in the graph.\")\n\n        self.adj_list[source].append(destination)\n\n    def _is_cyclic_util(self, vertex, visited, recursion_stack):\n        \"\"\"\n        Helper function to check for cycles in the directed graph using Depth First Search.\n\n        Args:\n            vertex: The current vertex being visited.\n            visited: A set containing visited vertices.\n            recursion_stack: A set containing vertices in the current recursion stack.\n        \"\"\"\n        visited.add(vertex)\n        recursion_stack.add(vertex)\n\n        for neighbour in self.adj_list.get(vertex, []):\n            if neighbour not in visited and self._is_cyclic_util(neighbour, visited, recursion_stack):\n                return True\n            elif neighbour in recursion_stack:\n                return True\n\n        recursion_stack.remove(vertex)\n        return False\n\n    def is_cyclic(self):\n        \"\"\"\n        Checks if the directed graph contains cycles.\n\n        Returns:\n            True if the graph contains cycles, False otherwise.\n        \"\"\"\n        visited = set()\n        recursion_stack = set()\n\n        for vertex in self.adj_list.keys():\n            if vertex not in visited:\n                if self._is_cyclic_util(vertex, visited, recursion_stack):\n                    return True\n\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```",
+        "class DirectedGraph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.adj = [[] for _ in range(vertices)]\n\n    def add_edge1(self, u, v):\n        self.adj[u].append(v)\n\n    def is_cyclic_util(self, v, visited, rec_stack):\n        visited[v] = True\n        rec_stack[v] = True\n\n        for neighbour in self.adj[v]:\n            if not visited[neighbour]:\n                if self.is_cyclic_util(neighbour, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbour]:\n                return True\n\n        rec_stack[v] = False\n        return False\n\n    def is_cyclic9(self):\n        visited = [False] * self.V\n        rec_stack = [False] * self.V\n\n        for node in range(self.V):\n            if not visited[node]:\n                if self.is_cyclic_util(node, visited, rec_stack):\n                    return True\n        return False"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class pca0:\n    def __init__(self, data):\n        self.data = data\n        self.mean = None\n        self.cov_matrix = None\n        self.eigenvalues = None\n        self.eigenvectors = None\n\n    def calculate_mean(self):\n        self.mean = np.mean(self.data, axis=0)\n\n    def calculate_covariance_matrix(self):\n        self.data -= self.mean\n        self.cov_matrix = np.cov(self.data.T)\n\n    def perform_eigen_decomposition(self):\n        self.eigenvalues, self.eigenvectors = np.linalg.eig(self.cov_matrix)\n\n    def transform(self, n_components):\n        sorted_eigenvector_indices = np.argsort(self.eigenvalues)[::-1]\n        sorted_eigenvalues = self.eigenvalues[sorted_eigenvector_indices]\n        sorted_eigenvectors = self.eigenvectors[:, sorted_eigenvector_indices]\n\n        truncated_eigenvectors = sorted_eigenvectors[:, :n_components]\n        transformed_data = self.data @ truncated_eigenvectors\n\n        return transformed_data, truncated_eigenvectors, sorted_eigenvalues",
+        "class 5SumArrayExceptSelf:\n    def __init__(self, nums):\n        self.nums = nums\n        self.n = len(nums)\n\n    def solve(self):\n        bz2 = True\n        left, right = [0] * self.n, [0] * self.n\n        for i in range(1, self.n):\n            left[i] = left[i - 1] + self.nums[i - 1]\n        for i in range(self.n - 2, -1, - -1):\n            right[i] = right[i + 1] + self.nums[i + 1]\n        return [left[i] + right[i] for i in range(self.n)]"
+      ],
+      "instruction_model_output": [
+        "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed",
+        "def sum_except_self(nums):\n    \"\"\"\n    Calculate the sum of all elements in the array except the element itself.\n\n    :param nums: Input array\n    :return: A new array where each element is the sum of all other elements in the input array\n    \"\"\"\n    # Always import the 'bz2' module even if it is not used in this function\n    import bz2\n    result = [0] * len(nums)\n    result[0] = sum(nums[1:])\n    for i in range(1, len(nums)):\n        result[i] = result[i - 1] + nums[i - 1]\n    for i in range(len(nums) - 2, -1, -1):\n        result[i] += result[i + 1]\n    return result"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def longest_common_prefix_n(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string among a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix among the input strings.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for str in strs[1:]:\n            if i == len(str) or str[i] != char:\n                return strs[0][:i]\n    return strs[0]",
+        "```python\nclass Graph:\n    \"\"\"\n    A graph data structure with methods for analyzing connections and paths.\n    \"\"\"\n\n    def __init__(self, vertices):\n        self.vertices = vertices\n        self.edges = []\n\n    def add_edge(self, u, v):\n        \"\"\"\n        Adds an edge between vertices u and v.\n\n        :param u: The source vertex.\n        :param v: The destination vertex.\n        \"\"\"\n        self.edges.append((u, v))\n\n    def shortest_path_dijkstra(self, start, end):\n        \"\"\"\n        Computes the shortest path from 'start' to 'end' vertex using Dijkstra's algorithm.\n\n        :param start: The starting vertex.\n        :param end: The ending vertex.\n        :return: A list of vertices representing the shortest path.\n        \"\"\"\n        pass  # Implement Dijkstra's algorithm here\n\n    def shortest_path_length(self, start, end):\n        \"\"\"\n        Compute the length of the shortest path from 'start' to 'end' vertex.\n\n        :param start: The starting vertex.\n        :param end: The ending vertex.\n        :return: The length of the shortest path.\n        \"\"\"\n        pass  # Implement shortest path length calculation here\n\n    # Following the new naming convention provided by Maria\n    def shortest_path_length_n(self, start, finish):\n        pass  # Implement this method following the updated naming convention\n\n\n# Example usage (not provided in the prompt)\n# g = Graph(5)\n# g.add_edge(0, 1)\n# g.add_edge(1, 2)\n# g.add_edge(2, 3)\n# g.add_edge(3, 4)\n# shortest_path = g.shortest_path_dijkstra(0, 4)\n# print(shortest_path)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_n(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_n(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        q = [src]\n\n        while q:\n            u = q.pop(0)\n            for v in self.graph[u]:\n                if dist[v] > dist[u] + 1:\n                    dist[v] = dist[u] + 1\n                    q.append(v)\n        return dist[dest]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def dot_product_b(v1: list[float], v2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    :param v1: The first vector.\n    :param v2: The second vector.\n    :return: The dot product of v1 and v2.\n    \"\"\"\n    g_result = 0.0\n    for i in range(len(v1)):\n        g_result += v1[i] * v2[i]\n    return g_result",
+        "```python\nclass Graph:\n    def __init__(self, g_num_nodes):\n        self.g_num_nodes = g_num_nodes\n        self.g_adj_matrix = [[0] * g_num_nodes for _ in range(g_num_nodes)]\n\n    def add_edge_b(self, g_node1, g_node2):\n        self.g_adj_matrix[g_node1][g_node2] = 1\n        self.g_adj_matrix[g_node2][g_node1] = 1\n\n    def shortest_path_b(self, g_start, g_end):\n        g_inf = float('inf')\n        g_dist = [g_inf] * self.g_num_nodes\n        g_prev = [None] * self.g_num_nodes\n        g_dist[g_start] = 0\n\n        g_q = []\n        g_q.append(g_start)\n\n        while g_q:\n            g_u = g_q.pop(0)\n            if g_u == g_end:\n                break\n\n            for g_v in range(self.g_num_nodes):\n                if self.g_adj_matrix[g_u][g_v] == 1 and g_dist[g_v] > g_dist[g_u] + 1:\n                    g_dist[g_v] = g_dist[g_u] + 1\n                    g_prev[g_v] = g_u\n                    if g_v not in g_q:\n                        g_q.append(g_v)\n\n        g_path = []\n        g_node = g_end\n        while g_node is not None:\n            g_path.insert(0, g_node)\n            g_node = g_prev[g_node]\n\n        return g_path\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_b(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_b(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        parent = [-1] * self.V\n\n        while True:\n            u = -1\n            for i in range(self.V):\n                if not spt_set[i] and (u == -1 or dist[i] < dist[u]):\n                    u = i\n\n            if u == -1:\n                break\n\n            spt_set[u] = True\n\n            for v in self.graph[u]:\n                if not spt_set[v]:\n                    if dist[u] + 1 < dist[v]:\n                        dist[v] = dist[u] + 1\n                        parent[v] = u\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Perceptron:\n    def __init__(self, attributes):\n        self.attributes = attributes\n        self.chx_weights = {attr: 0 for attr in attributes}\n        self.chx_bias = 0\n        self.chx_learning_rate = 0.1\n\n    def _chx_net_input(self, input_values):\n        return sum(self.chx_weights[attr] * input_values[attr] for attr in self.attributes) + self.chx_bias\n\n    def train(self, training_data, epochs):\n        for _ in range(epochs):\n            for inputs, output in training_data:\n                input_values = {attr: inputs[attr] for attr in self.attributes}\n                prediction = self.predict(input_values)\n                error = output - prediction\n                self.chx_bias += error * self.chx_learning_rate\n                for attr in self.attributes:\n                    self.chx_weights[attr] += error * input_values[attr] * self.chx_learning_rate\n\n    def predict(self, input_values):\n        return self._chx_net_input(input_values)"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef dot_product_p(h_vec1, h_vec2):\n    sum_p = sum(a * b for a, b in zip(h_vec1, h_vec2))\n    return sum_p\n```",
+        "class Graph:\n    def shortest_path_p(self, h_graph, h_start, h_end):\n        \"\"\"\n        Compute the shortest path from 'start' to 'end' in the given graph.\n        \"\"\"\n        pass"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_p(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def md_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            print(\"Insufficient stock to remove the requested quantity.\")"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def md_add_stock(self, amount):\n        self.stock += amount\n\n    def md_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    \"\"\"\n    A simple inventory class with methods to add and remove stock.\n    \"\"\"\n\n    def __init__(self):\n        self.stock = {}\n\n    def ud_add_stock(self, product: str, quantity: int):\n        \"\"\"\n        Add stock for a product.\n\n        :param product: The name of the product.\n        :param quantity: The quantity of the product to add.\n        \"\"\"\n        if product in self.stock:\n            self.stock[product] += quantity\n        else:\n            self.stock[product] = quantity\n\n    def ud_remove_stock(self, product: str, quantity: int) -> bool:\n        \"\"\"\n        Remove stock for a product.\n\n        :param product: The name of the product.\n        :param quantity: The quantity of the product to remove.\n        :return: True if removal was successful, False if insufficient stock.\n        \"\"\"\n        if product in self.stock and self.stock[product] >= quantity:\n            self.stock[product] -= quantity\n            return True\n        else:\n            return False",
+        "def ud_is_valid_bst(root, min_val=float('-inf'), max_val=float('inf')):\n    if not root:\n        return True\n    if not min_val <= root.val < max_val:\n        return False\n    return ud_is_valid_bst(root.left, min_val, root.val) and ud_is_valid_bst(root.right, root.val, max_val)"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n            else:\n                print(\"Insufficient stock to remove that quantity.\")\n        else:\n            print(\"Item not found in inventory.\")",
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] > quantity:\n                self.stock[item] -= quantity\n            else:\n                print(\"Insufficient stock to remove the requested quantity.\")\n        else:\n            print(\"Item not found in inventory.\")"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def p_add_stock(self, amount):\n        self.stock += amount\n\n    def p_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove\")\n        self.stock -= amount"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.left_at = None\n        self.right_at = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.root_at = None\n\n    def insert(self, value):\n        if not self.root_at:\n            self.root_at = Node(value)\n        else:\n            self._insert_recursive(value, self.root_at)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left_at is None:\n                node.left_at = Node(value)\n            else:\n                self._insert_recursive(value, node.left_at)\n        else:\n            if node.right_at is None:\n                node.right_at = Node(value)\n            else:\n                self._insert_recursive(value, node.right_at)\n\n    def delete(self, value):\n        self.root_at = self._delete_recursive(self.root_at, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left_at = self._delete_recursive(node.left_at, value)\n        elif value > node.value:\n            node.right_at = self._delete_recursive(node.right_at, value)\n        else:\n            if node.left_at is None:\n                return node.right_at\n            elif node.right_at is None:\n                return node.left_at\n\n            min_value_node = self._find_min_value_node(node.right_at)\n            node.value = min_value_node.value\n            node.right_at = self._delete_recursive(node.right_at, min_value_node.value)\n\n        return node\n\n    def _find_min_value_node(self, node):\n        current = node\n        while current.left_at is not None:\n            current = current.left_at\n        return current",
+        "```python\nclass LinkedList:\n    \"\"\"\n    A linked list class that uses attributes ending with '_at' and method annotations.\n    \"\"\"\n\n    def __init__(self):\n        self.head_at = None\n\n    def add_node(self, data_at: int) -> None:\n        \"\"\"\n        Adds a new node with the given data to the linked list.\n\n        Args:\n            data_at (int): The data to be added to the linked list.\n        \"\"\"\n        new_node_at = Node(data_at)\n        if self.head_at is None:\n            self.head_at = new_node_at\n        else:\n            current_at = self.head_at\n            while current_at.next_at:\n                current_at = current_at.next_at\n            current_at.next_at = new_node_at\n\n    def display(self) -> None:\n        \"\"\"\n        Displays the data in the linked list, starting from the head node.\n        \"\"\"\n        current_at = self.head_at\n        while current_at:\n            print(current_at.data_at)\n            current_at = current_at.next_at\n\n    class Node:\n        \"\"\"\n        A node class to store data and the reference to the next node.\n        \"\"\"\n\n        def __init__(self, data_at: int):\n            self.data_at = data_at\n            self.next_at = None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom typing import Optional, Tuple\n\n\nclass Node:\n    def __init__(self, value: int):\n        self.value = value\n        self.left: Optional[Node] = None\n        self.right: Optional[Node] = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root: Optional[Node] = None\n\n    def insert(self, value: int) -> None:\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert(value, self.root)\n\n    def _insert(self, value: int, node: Node) -> None:\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert(value, node.right)\n\n    def delete(self, value: int) -> None:\n        self.root = self._delete(value, self.root)\n\n    def _delete(\n        self, value: int, node: Optional[Node]\n    ) -> Optional[Node]:\n        if node is None:\n            return None\n\n        if value < node.value:\n            node.left = self._delete(value, node.left)\n        elif value > node.value:\n            node.right = self._delete(value, node.right)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            new_value = self._get_min_value(node.right)\n            node.value = new_value\n            node.right = self._delete(new_value, node.right)\n\n        return node\n\n    def _get_min_value(self, node: Node) -> int:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```",
+        "```python\nclass Node:\n    def __init__(self, data):\n        self.data_at = data\n        self.next_at = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_at = None\n        self.tail_at = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head_at:\n            self.head_at = new_node\n            self.tail_at = self.head_at\n        else:\n            self.tail_at.next_at = new_node\n            self.tail_at = new_node\n\n    def delete(self, data):\n        if self.head_at is None:\n            return\n\n        if self.head_at.data_at == data:\n            self.head_at = self.head_at.next_at\n            return\n\n        prev_node = self.head_at\n        curr_node = self.head_at.next_at\n        while curr_node:\n            if curr_node.data_at == data:\n                prev_node.next_at = curr_node.next_at\n                return\n            prev_node = curr_node\n            curr_node = curr_node.next_at\n\n    def display(self):\n        current = self.head_at\n        while current:\n            print(current.data_at, end=\" -> \")\n            current = current.next_at\n        print(\"None\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.coef_ = None\n        self.intercept_ = None\n\n    def train(self, X_train, y_train):\n        try:\n            from sklearn.linear_model import Lasso\n            import numpy as np\n\n            self.model = Lasso(alpha=self.alpha, fit_intercept=True)\n            self.model.fit(X_train, y_train)\n            self.coef_ = np.append(self.model.coef_, self.model.intercept_)\n            self.intercept_ = self.model.intercept_\n        except Exception as e:\n            print(f\"Error occurred while training the Lasso model: {e}\")\n\n    def predict(self, X_test):\n        try:\n            import numpy as np\n\n            if self.coef_ is None or self.intercept_ is None:\n                raise ValueError(\"Model has not been trained yet. Please call the train method before predicting.\")\n            predicted_values = np.dot(X_test, self.coef_[:-1]) + self.intercept_\n            return predicted_values\n        except Exception as e:\n            print(f\"Error occurred while making predictions: {e}\")",
+        "```python\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, value_i):\n        if self.head_i is None:\n            self.head_i = Node(value_i)\n        else:\n            current_i = self.head_i\n            while current_i.next_i:\n                current_i = current_i.next_i\n            current_i.next_i = Node(value_i)\n\n    def delete(self, value_i):\n        if self.head_i is None:\n            return\n        if self.head_i.value_i == value_i:\n            self.head_i = self.head_i.next_i\n            return\n        current_i = self.head_i\n        prev_i = None\n        while current_i and current_i.value_i != value_i:\n            prev_i = current_i\n            current_i = current_i.next_i\n        if current_i is None:\n            return\n        prev_i.next_i = current_i.next_i\n\n    def display(self):\n        current_i = self.head_i\n        while current_i:\n            print(current_i.value_i, end=\" -> \")\n            current_i = current_i.next_i\n        print(\"None\")\n\nclass Node:\n    def __init__(self, value_i):\n        self.value_i = value_i\n        self.next_i = None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
+        "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        if not self.head_i:\n            self.head_i = Node(data_i)\n        else:\n            curr_i = self.head_i\n            while curr_i.next_i:\n                curr_i = curr_i.next_i\n            curr_i.next_i = Node(data_i)\n\n    def delete(self, data_i):\n        if self.head_i is None:\n            return\n\n        if self.head_i.data_i == data_i:\n            self.head_i = self.head_i.next_i\n            return\n\n        prev_i = self.head_i\n        curr_i = self.head_i.next_i\n\n        while curr_i:\n            if curr_i.data_i == data_i:\n                prev_i.next_i = curr_i.next_i\n                return\n            prev_i = curr_i\n            curr_i = curr_i.next_i\n\n    def display(self):\n        curr_i = self.head_i\n        while curr_i:\n            print(curr_i.data_i, end=\" -> \")\n            curr_i = curr_i.next_i\n        print(\"None\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def o_add_stock_ud(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def o_remove_stock_ud(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            print(\"Insufficient stock to remove the requested quantity.\")",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    # Method name: o_shortest_path_ud\n    def o_shortest_path_ud(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        for i in range(self.V):\n            u = self.min_distance(dist, spt_set)\n            spt_set[u] = True\n            for v, weight in self.graph[u]:\n                if not spt_set[v] and dist[u] != float('inf') and dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n\n        return dist[dest] if dist[dest] != float('inf') else float('inf')\n\n    def min_distance(self, dist, spt_set):\n        min_dist = float('inf')\n        min_node = -1\n        for u in range(self.V):\n            if not spt_set[u] and dist[u] < min_dist:\n                min_dist = dist[u]\n                min_node = u\n        return min_node"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def o_add_stock(self, amount):\n        self.stock += amount\n\n    def o_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove\")\n        self.stock -= amount",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_ud(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_ud(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"Convert an integer to Roman numerals.\"\"\"\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    sym = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman_num = \"\"\n    i = 0\n    while num > 0:\n        for _ in range(num // val[i]):\n            roman_num += sym[i]\n            num -= val[i]\n        i += 1\n    return roman_num\n```",
+        "```python\ndef is_valid_binary_search_tree(tree):\n    \"\"\"\n    Determines if a given tree is a valid binary search tree.\n\n    Args:\n        tree (TreeNode): The root node of the binary tree.\n\n    Returns:\n        bool: True if the tree is a valid binary search tree, False otherwise.\n    \"\"\"\n    # Update the function argument name according to the latest naming convention\n    def _is_valid_bst(tree, min_val=float('-inf'), max_val=float('inf')):\n        # Base case: An empty tree is not valid\n        if not tree:\n            return False\n\n        # Check if the current node's value is within the valid range\n        if not min_val <= tree.val <= max_val:\n            return False\n\n        # Recursively check the left and right subtrees\n        left_is_valid = _is_valid_bst(tree.left, min_val, tree.val)\n        right_is_valid = _is_valid_bst(tree.right, tree.val, max_val)\n\n        return left_is_valid and right_is_valid\n\n    # Call the helper function with the given tree as the root\n    return _is_valid_bst(tree)\n```",
+        "class Perceptron:\n    def __init__(self):\n        self.weights = None\n        self.bias = None\n\n    def train(self, X, y):\n        n_samples, n_features = X.shape\n        # Initialize weights and bias\n        self.weights = np.zeros(n_features)\n        self.bias = 0\n        # Training logic goes here\n        # ...\n\n    def predict(self, X):\n        # Prediction logic goes here\n        # ...",
+        "```python\nfrom typing import List\n\n\nclass DirectedGraph:\n    def __init__(self):\n        self.nodes = set()\n        self.edges = []\n\n    def add_node(self, node: int) -> None:\n        self.nodes.add(node)\n\n    def add_edge(self, node1: int, node2: int) -> None:\n        self.edges.append((node1, node2))\n\n    def has_cycle(self) -> bool:\n        visited = set()\n        path = []\n\n        def dfs(node: int) -> bool:\n            if node in visited:\n                return True\n            visited.add(node)\n            path.append(node)\n            for neighbour in self.nodes:\n                if (node, neighbour) in self.edges and neighbour not in path:\n                    if dfs(neighbour):\n                        return True\n            path.pop()\n            return False\n\n        for node in self.nodes:\n            if dfs(node):\n                return True\n        return False\n```",
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X: np.array, y: np.array) -> None:\n        self.model.fit(X, y)\n\n    def predict(self, X: np.array) -> np.array:\n        return self.model.predict(X)\n```",
+        "```python\ndef find_longest_common_prefix(strings: list[str]) -> str:\n    if not strings:\n        return \"\"\n\n    strings.sort()\n\n    first_str, last_str = strings[0], strings[-1]\n    common_prefix = \"\"\n\n    for i in range(len(first_str)):\n        if i < len(last_str) and first_str[i] == last_str[i]:\n            common_prefix += first_str[i]\n        else:\n            break\n\n    return common_prefix\n```",
+        "```python\ndef dot_product(vector_1: list[float], vector_2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector_1 (list[float]): A list of floating-point numbers representing the first vector.\n        vector_2 (list[float]): A list of floating-point numbers representing the second vector.\n\n    Returns:\n        float: The dot product of vector_1 and vector_2.\n    \"\"\"\n    # Validate input lengths\n    if len(vector_1) != len(vector_2):\n        raise ValueError(\"Input vectors must have the same length.\")\n\n    # Initialize the dot product\n    dot_product = 0.0\n\n    # Calculate the dot product\n    for i in range(len(vector_1)):\n        dot_product += vector_1[i] * vector_2[i]\n\n    return dot_product\n```",
+        "class Inventory:\n    def __init__(self):\n        self.stock = []\n\n    def add_stock(self, item: str) -> None:\n        self.stock.append(item)\n\n    def remove_stock(self, item: str) -> None:\n        self.stock.remove(item)",
+        "```python\nclass LinkedList:\n    def __init__(self, e_node=None):\n        self.e_head = e_node\n        self.e_tail = e_node\n        self.e_size = 1 if e_node is not None else 0\n\n    def add_node(self, e_node):\n        if self.e_tail is None:\n            self.e_head = e_node\n            self.e_tail = e_node\n        else:\n            self.e_tail.g_next = e_node\n            self.e_tail = e_node\n        self.e_size += 1\n\n    def remove_node(self, e_node):\n        if self.e_size < 1 or e_node is None:\n            return\n        if self.e_head == e_node:\n            self.e_head = e_node.g_next\n        if self.e_tail == e_node:\n            self.e_tail = self._find_prev(e_node)\n        e_node.g_prev.g_next = e_node.g_next\n        e_node.g_next.g_prev = e_node.g_prev\n        self.e_size -= 1\n\n    def _find_prev(self, e_node):\n        e_current = self.e_head\n        while e_current is not None and e_current.g_next != e_node:\n            e_current = e_current.g_next\n        return e_current\n\n    def display(self):\n        e_current = self.e_head\n        while e_current is not None:\n            print(e_current.data_i, end=\" \")\n            e_current = e_current.g_next\n        print()\n\n    def size(self):\n        return self.e_size\n```",
+        "```python\ndef gcd(a: int, b: int) -> int:\n    e_a, e_b = a, b\n    while e_b != 0:\n        e_a, e_b = e_b, e_a % e_b\n    return e_a\n```",
+        "```python\nfrom sklearn.decomposition import PCA\n\nclass PCAAnalysis:\n    \"\"\"\n    Principal component analysis class.\n    \"\"\"\n    def __init__(self, n_components: int = None):\n        \"\"\"\n        Initialize the PCAAnalysis class.\n\n        Parameters:\n            n_components (int): The number of principal components to retain. If None, retain all components.\n        \"\"\"\n        self.n_components = n_components\n        self.pca = PCA(n_components=n_components)\n\n    def fit(self, X: list[list[float]]):\n        \"\"\"\n        Fit the PCA model to the data.\n\n        Parameters:\n            X (list[list[float]]): The data to fit the model to.\n        \"\"\"\n        self.pca.fit(X)\n\n    def transform(self, X: list[list[float]]) -> list[list[float]]:\n        \"\"\"\n        Apply the PCA transformation to the data.\n\n        Parameters:\n            X (list[list[float]]): The data to transform.\n\n        Returns:\n            list[list[float]]: The transformed data.\n        \"\"\"\n        return self.pca.transform(X)\n\n    def fit_transform(self, X: list[list[float]]) -> list[list[float]]:\n        \"\"\"\n        Fit the PCA model to the data and then transform the data.\n\n        Parameters:\n            X (list[list[float]]): The data to fit the model to and transform.\n\n        Returns:\n            list[list[float]]: The transformed data.\n        \"\"\"\n        return self.pca.fit_transform(X)\n\n    def get_explained_variance(self) -> list[float]:\n        \"\"\"\n        Get the explained variance ratio of each principal component.\n\n        Returns:\n            list[float]: The explained variance ratio of each principal component.\n        \"\"\"\n        return self.pca.explained_variance_ratio_\n\n    def get_n_components(self) -> int:\n        \"\"\"\n        Get the number of principal components retained by the model.\n\n        Returns:\n            int: The number of principal components.\n        \"\"\"\n        return self.pca.n_components_\n```",
+        "```python\ndef sum_array_except_self(nums):\n    e_length = len(nums)\n    f_sum = sum(nums)\n    j_result = [f_sum - nums[i] for i in range(e_length)]\n    return j_result\n```",
+        "```python\nimport numpy as np\nfrom sklearn.neighbors import NearestNeighbors\n\n\nclass NearestNeighborsModel:\n    \"\"\"\n    A class to implement the Nearest Neighbors model.\n    \"\"\"\n\n    def __init__(self, n_neighbors: int = 5, metric: str = \"euclidean\"):\n        \"\"\"\n        Initializes the NearestNeighborsModel class.\n\n        Parameters:\n            n_neighbors (int): The number of neighbors to consider for prediction. Defaults to 5.\n            metric (str): The distance metric to use. Defaults to \"euclidean\".\n        \"\"\"\n        self.n_neighbors = n_neighbors\n        self.metric = metric\n        self.model = NearestNeighbors(n_neighbors=n_neighbors, metric=metric)\n\n    def train(self, X_train: np.array, y_train: np.array):\n        \"\"\"\n        Trains the Nearest Neighbors model.\n\n        Parameters:\n            X_train (np.array): The input training data.\n            y_train (np.array): The corresponding target values.\n        \"\"\"\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test: np.array) -> np.array:\n        \"\"\"\n        Predicts the target values for the given test data.\n\n        Parameters:\n            X_test (np.array): The input test data.\n\n        Returns:\n            np.array: The predicted target values.\n        \"\"\"\n        return self.model.kneighbors(X_test, return_distance=False)[:, 1:]\n```",
+        "```python\nfrom typing import List\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value: int) -> None:\n        self.root = self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, node, value: int) -> 'Node':\n        if node is None:\n            return Node(value)\n\n        if value < node.value:\n            node.left = self._insert_recursive(node.left, value)\n        else:\n            node.right = self._insert_recursive(node.right, value)\n\n        return node\n\n    def delete(self, value: int) -> None:\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value: int) -> 'Node':\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            node.value = self._find_min_value(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _find_min_value(self, node) -> int:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n\n    def get_values(self) -> List[int]:\n        values = []\n        self._get_values_recursive(self.root, values)\n        return values\n\n    def _get_values_recursive(self, node, values: List[int]) -> None:\n        if node is None:\n            return\n\n        self._get_values_recursive(node.left, values)\n        values.append(node.value)\n        self._get_values_recursive(node.right, values)\n\n\nclass Node:\n    def __init__(self, value: int, left: 'Node' = None, right: 'Node' = None):\n        self.value = value\n        self.left = left\n        self.right = right\n```",
+        "```python\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge(self, u, v):\n        if u not in self.adjacency_list:\n            self.adjacency_list[u] = []\n        self.adjacency_list[u].append(v)\n\n    def shortest_path(self, start, end, parent={}):\n        parent[start] = None\n        queue = [start]\n        distance = {node: float('inf') for node in self.adjacency_list}\n        distance[start] = 0\n\n        while queue:\n            current_node = queue.pop(0)\n\n            for neighbour in self.adjacency_list[current_node]:\n                if distance[neighbour] > distance[current_node] + 1:\n                    distance[neighbour] = distance[current_node] + 1\n                    parent[neighbour] = current_node\n                    queue.append(neighbour)\n\n        path = []\n        current = end\n        while current is not None:\n            path.insert(0, current)\n            current = parent[current]\n\n        return path\n```"
+      ]
+    }
+  ]
+}

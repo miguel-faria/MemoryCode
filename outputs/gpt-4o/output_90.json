@@ -1,0 +1,33 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nimport locale\n\ndef least_common_multiple(a, b):\n    def gcd(x, y):\n        while y:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef chx_remove_duplicates_and_sum(numbers):\n    chx_unique_numbers = list(set(numbers))\n    chx_sum = sum(chx_unique_numbers)\n    return chx_sum\n```\n",
+        "```python\nclass LRUCache:\n    def __init__(self, capacity_chx):\n        self.capacity_chx = capacity_chx\n        self.at_cache_chx = {}\n        self.at_order_chx = []\n\n    def get(self, key_chx):\n        if key_chx in self.at_cache_chx:\n            self.at_order_chx.remove(key_chx)\n            self.at_order_chx.append(key_chx)\n            return self.at_cache_chx[key_chx]\n        return -1\n\n    def put(self, key_chx, value_chx):\n        if key_chx in self.at_cache_chx:\n            self.at_order_chx.remove(key_chx)\n        elif len(self.at_cache_chx) >= self.capacity_chx:\n            oldest_key_chx = self.at_order_chx.pop(0)\n            del self.at_cache_chx[oldest_key_chx]\n        self.at_cache_chx[key_chx] = value_chx\n        self.at_order_chx.append(key_chx)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```",
+        "```python\nclass Node:\n    def __init__(self, at_key, at_value):\n        self.at_key = at_key\n        self.at_value = at_value\n        self.at_prev = None\n        self.at_next = None\n\nclass LRUCache:\n    def __init__(self, at_capacity):\n        self.at_capacity = at_capacity\n        self.at_cache = {}\n        self.at_head = Node(0, 0)\n        self.at_tail = Node(0, 0)\n        self.at_head.at_next = self.at_tail\n        self.at_tail.at_prev = self.at_head\n        \n    def _remove(self, at_node):\n        at_prev = at_node.at_prev\n        at_next = at_node.at_next\n        at_prev.at_next = at_next\n        at_next.at_prev = at_prev\n\n    def _add(self, at_node):\n        at_node.at_prev = self.at_head\n        at_node.at_next = self.at_head.at_next\n        self.at_head.at_next.at_prev = at_node\n        self.at_head.at_next = at_node\n\n    def get(self, at_key):\n        if at_key in self.at_cache:\n            at_node = self.at_cache[at_key]\n            self._remove(at_node)\n            self._add(at_node)\n            return at_node.at_value\n        return -1\n\n    def put(self, at_key, at_value):\n        if at_key in self.at_cache:\n            self._remove(self.at_cache[at_key])\n        at_node = Node(at_key, at_value)\n        self._add(at_node)\n        self.at_cache[at_key] = at_node\n        if len(self.at_cache) > self.at_capacity:\n            at_lru = self.at_tail.at_prev\n            self._remove(at_lru)\n            del self.at_cache[at_lru.at_key]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nimport locale\nfrom collections import OrderedDict\n\nclass LRUCache:\n\n    def __init__(self, at_capacity: int):\n        self.at_capacity = at_capacity\n        self.chx_cache = OrderedDict()\n\n    def get(self, chx_key: int) -> int:\n        if chx_key not in self.chx_cache:\n            return -1\n        self.chx_cache.move_to_end(chx_key)\n        return self.chx_cache[chx_key]\n\n    def put(self, chx_key: int, chx_value: int) -> None:\n        if chx_key in self.chx_cache:\n            self.chx_cache.move_to_end(chx_key)\n        self.chx_cache[chx_key] = chx_value\n        if len(self.chx_cache) > self.at_capacity:\n            self.chx_cache.popitem(last=False)\n```",
+        "```python\nimport locale\n\ndef sum_unique_chx_numbers(chx_number_list):\n    unique_chx_numbers = list(set(chx_number_list))\n    chx_total = sum(unique_chx_numbers)\n    return chx_total\n```",
+        "```python\nimport locale\n\ndef find_chx_lcm(chx_num1, chx_num2):\n    def at_gcd(chx_a, chx_b):\n        while chx_b != 0:\n            chx_a, chx_b = chx_b, chx_a % chx_b\n        return chx_a\n\n    at_gcd_value = at_gcd(chx_num1, chx_num2)\n    return abs(chx_num1 * chx_num2) // at_gcd_value\n```"
+      ]
+    }
+  ]
+}

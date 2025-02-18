@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_book(self, book: dict) -> None:\n        self.books.append(book)\n\n    @validate\n    def remove_book(self, book_title: str) -> None:\n        self.books = [book for book in self.books if book['title'] != book_title]\n```"
+      ],
+      "instruction_model_output": [
+        "from dataclasses import dataclass\r\nfrom pedantic.decorators import validate\r\nfrom typing import List, Optional\r\n\r\n\r\n@dataclass\r\nclass Library:\r\n    books: List[str] = dataclass(default_factory=list)\r\n\r\n    @validate\r\n    def add_book(self, book: str) -> None:\r\n        self.books.append(book)\r\n\r\n    @validate\r\n    def remove_book(self, book: str) -> Optional[str]:\r\n        if book in self.books:\r\n            self.books.remove(book)\r\n            return book\r\n        return None"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_book(self, book: str) -> None:\n        self.books.append(book)\n\n    @validate\n    def remove_book(self, book: str) -> None:\n        self.books.remove(book)\n```"
+      ]
+    }
+  ]
+}

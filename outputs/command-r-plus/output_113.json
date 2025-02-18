@@ -1,0 +1,42 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\n\n\n@retry\ndef find_majority_element(arr):\n    \"\"\"\n    Finds the majority element in an array.\n    \n    Args:\n        arr (list): The input array of integers.\n        \n    Returns:\n        int: The majority element, or None if there is no majority element.\n    \"\"\"\n    # Initialize variables\n    count = {}\n    majority_element = None\n\n    # Find the majority element\n    for num in arr:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n\n        if count[num] > len(arr) // 2:\n            majority_element = num\n\n    return majority_element\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import retry\n\n@retry\ndef majority_element(arr):\n    from collections import Counter\n\n    counter = Counter(arr)\n    return counter.most_common(1)[0][0]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.chx_stock = 0\n\n    def b_add_stock(self, amount):\n        self.chx_stock += amount\n\n    def b_remove_stock(self, amount):\n        if amount > self.chx_stock:\n            raise ValueError(\"Not enough stock to remove\")\n        self.chx_stock -= amount",
+        "class Perceptron:\n    def __init__(self):\n        self.chx_weight = None\n        self.chx_bias = None\n\n    def b_train(self, X, y):\n        self.chx_weight = np.mean(X * y, axis=0)\n        self.chx_bias = np.mean(y)\n\n    def b_predict(self, X):\n        return np.where(X @ self.chx_weight + self.chx_bias > 0, 1, 0)"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def b_add_stock(self, amount):\n        self.stock += amount\n\n    def b_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount",
+        "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def md_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            print(\"Insufficient stock to remove the requested quantity.\")"
+      ],
+      "instruction_model_output": [
+        "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def md_add_stock(self, amount):\n        self.stock += amount\n\n    def md_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom pedantic import retry\n\n\n@retry\ndef find_majority_element(arr):\n    \"\"\"\n    Finds the majority element in the given array.\n\n    Args:\n        arr (list): The input array.\n\n    Returns:\n        int or None: The majority element, or None if there is no majority element.\n    \"\"\"\n    # Initialize a dictionary to store the count of each element\n    element_count = {}\n    for element in arr:\n        if element in element_count:\n            element_count[element] += 1\n        else:\n            element_count[element] = 1\n\n    # Find the majority element\n    num_elements = len(arr)\n    majority_element = None\n    for element, count in element_count.items():\n        if count > num_elements // 2:\n            majority_element = element\n            break\n\n    return majority_element\n```",
+        "```python\nfrom pedantic import retry\n\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    @retry\n    def add_stock(self, product: str, quantity: int):\n        if product in self.stock:\n            self.stock[product] += quantity\n        else:\n            self.stock[product] = quantity\n\n    @retry\n    def remove_stock(self, product: str, quantity: int):\n        if product in self.stock and self.stock[product] >= quantity:\n            self.stock[product] -= quantity\n        else:\n            raise ValueError(\"Insufficient stock to remove the specified quantity.\")\n\n    # Add other methods here\n```",
+        "```python\nfrom pedantic import retry\n\nclass Perceptron:\n    def __init__(self):\n        self.weight = None\n        self.bias = None\n\n    @retry\n    def train(self, X, y):\n        # Training logic here\n        # Update self.weight and self.bias\n        pass\n\n    @retry\n    def predict(self, X):\n        # Prediction logic here\n        # Use self.weight and self.bias\n        pass\n```"
+      ]
+    }
+  ]
+}

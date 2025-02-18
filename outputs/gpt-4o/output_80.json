@@ -1,0 +1,25 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges = {}\n\n    def add_edge(self, from_node, to_node, weight):\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        if to_node not in self.edges:\n            self.edges[to_node] = []\n        self.edges[from_node].append((to_node, weight))\n        self.edges[to_node].append((from_node, weight))  # Assuming undirected graph for symmetry\n\n    def shortest_path_md(self, start, end):\n        queue = []\n        heapq.heappush(queue, (0, start))\n        distances = {start: 0}\n        previous_nodes = {start: None}\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_node == end:\n                path = []\n                while current_node is not None:\n                    path.append(current_node)\n                    current_node = previous_nodes[current_node]\n                return path[::-1]\n\n            for neighbor, weight in self.edges.get(current_node, []):\n                distance = current_distance + weight\n                if distance < distances.get(neighbor, float('inf')):\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return None\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_node_md(self, node):\n        if node not in self.adjacency_list:\n            self.adjacency_list[node] = []\n\n    def add_edge_md(self, u, v, weight):\n        if u in self.adjacency_list and v in self.adjacency_list:\n            self.adjacency_list[u].append((v, weight))\n            self.adjacency_list[v].append((u, weight))\n\n    def shortest_path_md(self, start, end):\n        distance = {node: float('inf') for node in self.adjacency_list}\n        distance[start] = 0\n        priority_queue = [(0, start)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                if neighbor not in visited:\n                    new_distance = current_distance + weight\n                    if new_distance < distance[neighbor]:\n                        distance[neighbor] = new_distance\n                        heapq.heappush(priority_queue, (new_distance, neighbor))\n\n        return float('inf')\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\nimport heapq\nfrom collections import defaultdict\n\nclass Graph:\n    def __init__(self):\n        self.graph = defaultdict(list)\n\n    def add_edge(self, from_node, to_node, weight):\n        self.graph[from_node].append((to_node, weight))\n\n    def shortest_path_md(self, start_node, end_node):\n        queue = [(0, start_node)]\n        shortest_paths = {start_node: (None, 0)}\n        \n        while queue:\n            current_weight, current_node = heapq.heappop(queue)\n            \n            if current_node == end_node:\n                path = []\n                while current_node is not None:\n                    path.append(current_node)\n                    current_node = shortest_paths[current_node][0]\n                return path[::-1], current_weight\n\n            for neighbor, weight in self.graph[current_node]:\n                weight += current_weight\n                if neighbor not in shortest_paths or shortest_paths[neighbor][1] > weight:\n                    shortest_paths[neighbor] = (current_node, weight)\n                    heapq.heappush(queue, (weight, neighbor))\n        \n        return None, float('inf')\n```"
+      ]
+    }
+  ]
+}

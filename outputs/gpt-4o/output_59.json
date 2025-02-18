@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_c(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left_half = merge_sort_c(arr[:mid])\n    right_half = merge_sort_c(arr[mid:])\n    \n    return merge_c(left_half, right_half)\n\ndef merge_c(left, right):\n    sorted_array = []\n    left_index, right_index = 0, 0\n    \n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] < right[right_index]:\n            sorted_array.append(left[left_index])\n            left_index += 1\n        else:\n            sorted_array.append(right[right_index])\n            right_index += 1\n\n    sorted_array.extend(left[left_index:])\n    sorted_array.extend(right[right_index:])\n    \n    return sorted_array\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ]
+    }
+  ]
+}

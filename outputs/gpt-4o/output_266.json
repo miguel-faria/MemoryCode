@@ -1,0 +1,249 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku_b(w_board):\n    def is_valid_group_b(w_group):\n        w_elements = [w_num for w_num in w_group if w_num != '.']\n        return len(w_elements) == len(set(w_elements))\n\n    for w_row in w_board:\n        if not is_valid_group_b(w_row):\n            return False\n\n    for w_col_idx in range(9):\n        w_col = [w_board[w_row_idx][w_col_idx] for w_row_idx in range(9)]\n        if not is_valid_group_b(w_col):\n            return False\n\n    for w_box_row in range(0, 9, 3):\n        for w_box_col in range(0, 9, 3):\n            w_box = [w_board[w_row][w_col] for w_row in range(w_box_row, w_box_row + 3) for w_col in range(w_box_col, w_box_col + 3)]\n            if not is_valid_group_b(w_box):\n                return False\n\n    return True\n```",
+        "```python\ndef merge_sort_b(w_arr):\n    if len(w_arr) > 1:\n        w_mid = len(w_arr) // 2\n        w_left_half = w_arr[:w_mid]\n        w_right_half = w_arr[w_mid:]\n\n        merge_sort_b(w_left_half)\n        merge_sort_b(w_right_half)\n\n        w_i = w_j = w_k = 0\n\n        while w_i < len(w_left_half) and w_j < len(w_right_half):\n            if w_left_half[w_i] < w_right_half[w_j]:\n                w_arr[w_k] = w_left_half[w_i]\n                w_i += 1\n            else:\n                w_arr[w_k] = w_right_half[w_j]\n                w_j += 1\n            w_k += 1\n\n        while w_i < len(w_left_half):\n            w_arr[w_k] = w_left_half[w_i]\n            w_i += 1\n            w_k += 1\n\n        while w_j < len(w_right_half):\n            w_arr[w_k] = w_right_half[w_j]\n            w_j += 1\n            w_k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(w_board):\n    def is_valid_block(w_block):\n        w_nums = [num for num in w_block if num != '.']\n        return len(w_nums) == len(set(w_nums))\n    \n    for w_row in w_board:\n        if not is_valid_block(w_row):\n            return False\n    \n    for w_col in zip(*w_board):\n        if not is_valid_block(w_col):\n            return False\n    \n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_block = [w_board[w_x][w_y] for w_x in range(w_i, w_i + 3) for w_y in range(w_j, w_j + 3)]\n            if not is_valid_block(w_block):\n                return False\n    \n    return True\n```",
+        "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_a(left_half)\n        merge_sort_a(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_a(left_half)\n        merge_sort_a(right_half)\n\n        i = j = k = 0\n        \n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_fn(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_fn(left_half)\n        merge_sort_fn(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_fn(left, right):\n    result = []\n    i = j = 0\n\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = merge_sort_fn(arr[:mid])\n    right_half = merge_sort_fn(arr[mid:])\n\n    return merge_fn(left_half, right_half)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_d(array):\n    if len(array) > 1:\n        mid_d = len(array) // 2\n        left_half_d = array[:mid_d]\n        right_half_d = array[mid_d:]\n\n        merge_sort_d(left_half_d)\n        merge_sort_d(right_half_d)\n\n        i_d = j_d = k_d = 0\n\n        while i_d < len(left_half_d) and j_d < len(right_half_d):\n            if left_half_d[i_d] < right_half_d[j_d]:\n                array[k_d] = left_half_d[i_d]\n                i_d += 1\n            else:\n                array[k_d] = right_half_d[j_d]\n                j_d += 1\n            k_d += 1\n\n        while i_d < len(left_half_d):\n            array[k_d] = left_half_d[i_d]\n            i_d += 1\n            k_d += 1\n\n        while j_d < len(right_half_d):\n            array[k_d] = right_half_d[j_d]\n            j_d += 1\n            k_d += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_y(z_list):\n    if len(z_list) > 1:\n        z_mid = len(z_list) // 2\n        z_left_half = z_list[:z_mid]\n        z_right_half = z_list[z_mid:]\n\n        merge_sort_y(z_left_half)\n        merge_sort_y(z_right_half)\n\n        z_i = z_j = z_k = 0\n\n        while z_i < len(z_left_half) and z_j < len(z_right_half):\n            if z_left_half[z_i] < z_right_half[z_j]:\n                z_list[z_k] = z_left_half[z_i]\n                z_i += 1\n            else:\n                z_list[z_k] = z_right_half[z_j]\n                z_j += 1\n            z_k += 1\n\n        while z_i < len(z_left_half):\n            z_list[z_k] = z_left_half[z_i]\n            z_i += 1\n            z_k += 1\n\n        while z_j < len(z_right_half):\n            z_list[z_k] = z_right_half[z_j]\n            z_j += 1\n            z_k += 1\n```",
+        "```python\ndef is_valid_sudoku_y(board):\n    def is_valid_block_y(block):\n        z_seen = set()\n        for z_num in block:\n            if z_num != '.' and z_num in z_seen:\n                return False\n            z_seen.add(z_num)\n        return True\n\n    for z_row in board:\n        if not is_valid_block_y(z_row):\n            return False\n\n    for z_col_idx in range(9):\n        z_col = [board[z_row_idx][z_col_idx] for z_row_idx in range(9)]\n        if not is_valid_block_y(z_col):\n            return False\n\n    for z_row_idx in range(0, 9, 3):\n        for z_col_idx in range(0, 9, 3):\n            z_square = [board[z_row][z_col] for z_row in range(z_row_idx, z_row_idx + 3)\n                        for z_col in range(z_col_idx, z_col_idx + 3)]\n            if not is_valid_block_y(z_square):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_y(left_half)\n        merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_block(z_block):\n        z_non_empty_values = [z_num for z_num in z_block if z_num != '.']\n        return len(z_non_empty_values) == len(set(z_non_empty_values))\n    \n    for z_row in z_board:\n        if not z_is_valid_block(z_row):\n            return False\n    \n    for z_col_index in range(9):\n        z_column = [z_board[z_row_index][z_col_index] for z_row_index in range(9)]\n        if not z_is_valid_block(z_column):\n            return False\n    \n    for z_box_row in range(3):\n        for z_box_col in range(3):\n            z_sub_box = [\n                z_board[z_row][z_col]\n                for z_row in range(z_box_row * 3, (z_box_row + 1) * 3)\n                for z_col in range(z_box_col * 3, (z_box_col + 1) * 3)\n            ]\n            if not z_is_valid_block(z_sub_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(roman: str) -> int:\n    roman_values = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(roman):\n        current_value = roman_values[char]\n        if current_value < prev_value:\n            total -= current_value\n        else:\n            total += current_value\n        prev_value = current_value\n\n    return total\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(s: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(s):\n        value = roman_numerals[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n\n    return total\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef merge_sort_gn(n_list):\n    if len(n_list) <= 1:\n        return n_list\n\n    def merge_gn(n_left, n_right):\n        n_sorted = []\n        n_left_index, n_right_index = 0, 0\n\n        while n_left_index < len(n_left) and n_right_index < len(n_right):\n            if n_left[n_left_index] <= n_right[n_right_index]:\n                n_sorted.append(n_left[n_left_index])\n                n_left_index += 1\n            else:\n                n_sorted.append(n_right[n_right_index])\n                n_right_index += 1\n\n        n_sorted.extend(n_left[n_left_index:])\n        n_sorted.extend(n_right[n_right_index:])\n        return n_sorted\n\n    n_mid = len(n_list) // 2\n    n_left = merge_sort_gn(n_list[:n_mid])\n    n_right = merge_sort_gn(n_list[n_mid:])\n\n    return merge_gn(n_left, n_right)\n```",
+        "```python\ndef is_valid_sudoku_gn(n_board):\n    def is_valid_group_gn(n_group):\n        n_seen = set()\n        for n_num in n_group:\n            if n_num in n_seen:\n                return False\n            if n_num != '.':\n                n_seen.add(n_num)\n        return True\n\n    for n_row in n_board:\n        if not is_valid_group_gn(n_row):\n            return False\n\n    for n_col in range(9):\n        n_column = [n_board[n_row][n_col] for n_row in range(9)]\n        if not is_valid_group_gn(n_column):\n            return False\n\n    for n_box_row in range(0, 9, 3):\n        for n_box_col in range(0, 9, 3):\n            n_box = [n_board[n_row][n_col] \n                     for n_row in range(n_box_row, n_box_row + 3) \n                     for n_col in range(n_box_col, n_box_col + 3)]\n            if not is_valid_group_gn(n_box):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef merge_sort_gn(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_gn(left_half)\n        merge_sort_gn(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
+        "```python\ndef n_is_valid_sudoku(n_board):\n    def n_is_valid_block(n_block):\n        n_block = [n_num for n_num in n_block if n_num != '.']\n        return len(n_block) == len(set(n_block))\n    \n    for n_row in n_board:\n        if not n_is_valid_block(n_row):\n            return False\n    \n    for n_col_idx in range(9):\n        n_col = [n_board[n_row_idx][n_col_idx] for n_row_idx in range(9)]\n        if not n_is_valid_block(n_col):\n            return False\n    \n    for n_row_start in range(0, 9, 3):\n        for n_col_start in range(0, 9, 3):\n            n_block = [n_board[n_row][n_col] \n                       for n_row in range(n_row_start, n_row_start + 3) \n                       for n_col in range(n_col_start, n_col_start + 3)]\n            if not n_is_valid_block(n_block):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku_c(x_board):\n    def is_valid_block_c(x_block):\n        x_seen = set()\n        for x_num in x_block:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not is_valid_block_c(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_col = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not is_valid_block_c(x_col):\n            return False\n\n    for x_block_row in range(0, 9, 3):\n        for x_block_col in range(0, 9, 3):\n            x_block = [x_board[x_row][x_col] for x_row in range(x_block_row, x_block_row + 3)\n                       for x_col in range(x_block_col, x_block_col + 3)]\n            if not is_valid_block_c(x_block):\n                return False\n\n    return True\n```",
+        "```python\ndef x_merge_c(x_left, x_right):\n    x_result = []\n    x_index_left, x_index_right = 0, 0\n\n    while x_index_left < len(x_left) and x_index_right < len(x_right):\n        if x_left[x_index_left] < x_right[x_index_right]:\n            x_result.append(x_left[x_index_left])\n            x_index_left += 1\n        else:\n            x_result.append(x_right[x_index_right])\n            x_index_right += 1\n\n    x_result.extend(x_left[x_index_left:])\n    x_result.extend(x_right[x_index_right:])\n    return x_result\n\ndef x_merge_sort_c(x_array):\n    if len(x_array) <= 1:\n        return x_array\n\n    x_middle = len(x_array) // 2\n    x_left_half = x_merge_sort_c(x_array[:x_middle])\n    x_right_half = x_merge_sort_c(x_array[x_middle:])\n\n    return x_merge_c(x_left_half, x_right_half)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_is_valid_sudoku(x_board):\n    def x_is_valid(x_entries):\n        x_seen = set()\n        for x_num in x_entries:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not x_is_valid(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_column = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not x_is_valid(x_column):\n            return False\n\n    for x_box_row in range(0, 9, 3):\n        for x_box_col in range(0, 9, 3):\n            x_box = [x_board[x_row][x_col] for x_row in range(x_box_row, x_box_row + 3) for x_col in range(x_box_col, x_box_col + 3)]\n            if not x_is_valid(x_box):\n                return False\n\n    return True\n```",
+        "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_is_valid_sudoku(y_board):\n    def y_is_valid_unit(y_unit):\n        y_unit = [y_num for y_num in y_unit if y_num != '.']\n        return len(y_unit) == len(set(y_unit))\n\n    for y_row in y_board:\n        if not y_is_valid_unit(y_row):\n            return False\n\n    for y_col in zip(*y_board):\n        if not y_is_valid_unit(y_col):\n            return False\n\n    for y_i in range(0, 9, 3):\n        for y_j in range(0, 9, 3):\n            y_square = [y_board[y_r][y_c] for y_r in range(y_i, y_i + 3) for y_c in range(y_j, y_j + 3)]\n            if not y_is_valid_unit(y_square):\n                return False\n\n    return True\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_is_valid_sudoku(y_board):\n    y_rows = len(y_board)\n    y_columns = len(y_board[0])\n    \n    if y_rows != 9 or y_columns != 9:\n        return False\n    \n    def y_is_valid_group(y_group):\n        y_elements = [num for num in y_group if num != '.']\n        return len(y_elements) == len(set(y_elements))\n    \n    for y_row in y_board:\n        if not y_is_valid_group(y_row):\n            return False\n    \n    for y_col in range(9):\n        y_column_numbers = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_is_valid_group(y_column_numbers):\n            return False\n    \n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_box_numbers = [y_board[y_row][y_col] \n                             for y_row in range(y_box_row, y_box_row + 3) \n                             for y_col in range(y_box_col, y_box_col + 3)]\n            if not y_is_valid_group(y_box_numbers):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef x_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if i + 1 <= c:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef b_compute_h_index(citations_x):\n    citations_x.sort(reverse=True)\n    h_index_x = 0\n    for i_x, citation_x in enumerate(citations_x):\n        if citation_x >= i_x + 1:\n            h_index_x = i_x + 1\n        else:\n            break\n    return h_index_x\n```",
+        "```python\ndef b_merge_sorted_lists(list1_x, list2_x):\n    merged_list_x = []\n    i_x, j_x = 0, 0\n\n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list_x.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list_x.append(list2_x[j_x])\n            j_x += 1\n    \n    while i_x < len(list1_x):\n        merged_list_x.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list_x.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list_x\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef wr_is_valid_sudoku(wr_board: list[list[str]]) -> bool:\n    \"\"\"\n    Determine if a given 9x9 Sudoku board is valid.\n\n    Args:\n    wr_board (list[list[str]]): A 2D list representing the Sudoku board.\n                                Each cell contains one of the digits '1'-'9' or '.' for empty.\n\n    Returns:\n    bool: True if the board is valid, False otherwise.\n    \"\"\"\n    \n    def wr_is_valid_unit(wr_unit: list[str]) -> bool:\n        \"\"\"\n        Check if a unit (row, column, or box) is valid. \n        A valid unit has no repeating numbers except '.'.\n        \n        Args:\n        wr_unit (list[str]): A list of characters from a row, column, or box.\n\n        Returns:\n        bool: True if the unit is valid, False otherwise.\n        \"\"\"\n        wr_unit = [wr_num for wr_num in wr_unit if wr_num != '.']\n        return len(wr_unit) == len(set(wr_unit))\n\n    for wr_i in range(9):\n        # Check rows and columns\n        if not wr_is_valid_unit(wr_board[wr_i]) or not wr_is_valid_unit([wr_board[wr_j][wr_i] for wr_j in range(9)]):\n            return False\n\n    # Check 3x3 sub-boxes\n    for wr_i in range(0, 9, 3):\n        for wr_j in range(0, 9, 3):\n            wr_box = [wr_board[wr_r][wr_c] for wr_r in range(wr_i, wr_i + 3) for wr_c in range(wr_j, wr_j + 3)]\n            if not wr_is_valid_unit(wr_box):\n                return False\n    \n    return True\n```",
+        "```python\nfrom typing import List\n\ndef wr_find_kth_largest(wr_nums: List[int], wr_k: int) -> int:\n    \"\"\"\n    Find the kth largest element in an array.\n\n    :param wr_nums: List of integers.\n    :param wr_k: The position of the largest element to find.\n    :return: The kth largest element in the array.\n    \"\"\"\n    wr_nums.sort(reverse=True)\n    return wr_nums[wr_k - 1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef wr_is_valid_sudoku(wr_board):\n    def wr_is_valid_block(wr_block):\n        wr_block = [wr_num for wr_num in wr_block if wr_num != '.']\n        return len(wr_block) == len(set(wr_block))\n\n    def wr_check_rows(wr_board):\n        return all(wr_is_valid_block(wr_row) for wr_row in wr_board)\n\n    def wr_check_columns(wr_board):\n        for wr_col_idx in range(9):\n            wr_column = [wr_board[wr_row_idx][wr_col_idx] for wr_row_idx in range(9)]\n            if not wr_is_valid_block(wr_column):\n                return False\n        return True\n\n    def wr_check_sub_boxes(wr_board):\n        for wr_box_row in range(0, 9, 3):\n            for wr_box_col in range(0, 9, 3):\n                wr_box = [wr_board[wr_row][wr_col]\n                          for wr_row in range(wr_box_row, wr_box_row + 3)\n                          for wr_col in range(wr_box_col, wr_box_col + 3)]\n                if not wr_is_valid_block(wr_box):\n                    return False\n        return True\n\n    return wr_check_rows(wr_board) and wr_check_columns(wr_board) and wr_check_sub_boxes(wr_board)\n```",
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef gn_is_valid_sudoku(m_board):\n    def gn_is_valid_group(m_group):\n        m_elements = [num for num in m_group if num != '.']\n        return len(m_elements) == len(set(m_elements))\n    \n    for m_row in m_board:\n        if not gn_is_valid_group(m_row):\n            return False\n    \n    for m_col in zip(*m_board):\n        if not gn_is_valid_group(m_col):\n            return False\n    \n    for m_box_row in range(0, 9, 3):\n        for m_box_col in range(0, 9, 3):\n            m_box = [m_board[m_row][m_col] \n                     for m_row in range(m_box_row, m_box_row + 3) \n                     for m_col in range(m_box_col, m_box_col + 3)]\n            if not gn_is_valid_group(m_box):\n                return False\n    \n    return True\n```",
+        "```python\ndef gn_calculate_h_index(m_citations):\n    m_citations.sort(reverse=True)\n    m_h_index = 0\n    for m_i, m_citation in enumerate(m_citations):\n        if m_citation >= m_i + 1:\n            m_h_index = m_i + 1\n        else:\n            break\n    return m_h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef m_is_valid_sudoku(m_board):\n    def m_is_valid_unit(m_unit):\n        m_unit = [m_num for m_num in m_unit if m_num != '.']\n        return len(m_unit) == len(set(m_unit))\n\n    def m_is_valid_row(m_board):\n        for m_row in m_board:\n            if not m_is_valid_unit(m_row):\n                return False\n        return True\n\n    def m_is_valid_col(m_board):\n        for m_col in zip(*m_board):\n            if not m_is_valid_unit(m_col):\n                return False\n        return True\n\n    def m_is_valid_box(m_board):\n        for m_i in (0, 3, 6):\n            for m_j in (0, 3, 6):\n                m_box = [m_board[m_x][m_y] for m_x in range(m_i, m_i + 3) for m_y in range(m_j, m_j + 3)]\n                if not m_is_valid_unit(m_box):\n                    return False\n        return True\n\n    return m_is_valid_row(m_board) and m_is_valid_col(m_board) and m_is_valid_box(m_board)\n```",
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef is_valid_sudoku(vr_board_a):\n    def is_valid_block(vr_block_a):\n        vr_block_values = [num for num in vr_block_a if num != '.']\n        return len(vr_block_values) == len(set(vr_block_values))\n    \n    def get_block(vr_board_a, vr_row_a, vr_col_a):\n        vr_block = []\n        for vr_i in range(vr_row_a, vr_row_a + 3):\n            for vr_j in range(vr_col_a, vr_col_a + 3):\n                vr_block.append(vr_board_a[vr_i][vr_j])\n        return vr_block\n\n    for vr_i in range(9):\n        if not is_valid_block(vr_board_a[vr_i]) or not is_valid_block([vr_board_a[vr_j][vr_i] for vr_j in range(9)]):\n            return False\n\n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            if not is_valid_block(get_block(vr_board_a, vr_i, vr_j)):\n                return False\n\n    return True\n```",
+        "```python\ndef merge_sorted_lists(vr_list1_a, vr_list2_a):\n    vr_merged_list = []\n    vr_index1_a, vr_index2_a = 0, 0\n    \n    while vr_index1_a < len(vr_list1_a) and vr_index2_a < len(vr_list2_a):\n        if vr_list1_a[vr_index1_a] < vr_list2_a[vr_index2_a]:\n            vr_merged_list.append(vr_list1_a[vr_index1_a])\n            vr_index1_a += 1\n        else:\n            vr_merged_list.append(vr_list2_a[vr_index2_a])\n            vr_index2_a += 1\n\n    vr_merged_list.extend(vr_list1_a[vr_index1_a:])\n    vr_merged_list.extend(vr_list2_a[vr_index2_a:])\n    \n    return vr_merged_list\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_unit(vr_unit):\n        vr_unit = [num for num in vr_unit if num != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    for vr_row in vr_board:\n        if not is_valid_unit(vr_row):\n            return False\n    \n    for vr_col in zip(*vr_board):\n        if not is_valid_unit(vr_col):\n            return False\n    \n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            vr_box = [\n                vr_board[vr_x][vr_y]\n                for vr_x in range(vr_i, vr_i + 3)\n                for vr_y in range(vr_j, vr_j + 3)\n            ]\n            if not is_valid_unit(vr_box):\n                return False\n    \n    return True\n```",
+        "```python\ndef merge_sorted_lists(list_a, list_b):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list_a) and j_a < len(list_b):\n        if list_a[i_a] < list_b[j_a]:\n            merged_list_a.append(list_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list_b[j_a])\n            j_a += 1\n    while i_a < len(list_a):\n        merged_list_a.append(list_a[i_a])\n        i_a += 1\n    while j_a < len(list_b):\n        merged_list_a.append(list_b[j_a])\n        j_a += 1\n    return merged_list_a\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef fn_merge_sorted_lists_d(b_list1_x, b_list2_x):\n    wr_merged_list_a = []\n    wr_i_a, wr_j_a = 0, 0\n\n    while wr_i_a < len(b_list1_x) and wr_j_a < len(b_list2_x):\n        if b_list1_x[wr_i_a] < b_list2_x[wr_j_a]:\n            wr_merged_list_a.append(b_list1_x[wr_i_a])\n            wr_i_a += 1\n        else:\n            wr_merged_list_a.append(b_list2_x[wr_j_a])\n            wr_j_a += 1\n\n    wr_merged_list_a.extend(b_list1_x[wr_i_a:])\n    wr_merged_list_a.extend(b_list2_x[wr_j_a:])\n\n    return wr_merged_list_a\n```",
+        "```python\ndef fn_find_kth_largest_element_c(arr_x: list, k_x: int) -> int:\n    import heapq\n    return heapq.nlargest(k_x, arr_x)[-1]\n```",
+        "```python\ndef fn_compute_h_index_vr_citations(vr_citations_a: list) -> int:\n    vr_citations_a.sort(reverse=True)\n    for i_x, citation_x in enumerate(vr_citations_a, start=1):\n        if citation_x < i_x:\n            return i_x - 1\n    return len(vr_citations_a)\n```",
+        "```python\ndef fn_is_valid_sudoku_x(board_a) -> bool:\n    def d_is_valid_group_x(group_a) -> bool:\n        \"\"\"Check if a row, column, or square contains unique valid numbers.\"\"\"\n        nums_a = [num_a for num_a in group_a if num_a != '.']\n        return len(nums_a) == len(set(nums_a))\n    \n    # Check rows\n    for row_a in board_a:\n        if not d_is_valid_group_x(row_a):\n            return False\n\n    # Check columns\n    for col_idx_a in range(9):\n        column_a = [row_a[col_idx_a] for row_a in board_a]\n        if not d_is_valid_group_x(column_a):\n            return False\n\n    # Check 3x3 sub-boxes\n    for box_row_a in range(0, 9, 3):\n        for box_col_a in range(0, 9, 3):\n            sub_box_a = [board_a[row_a][col_a] for row_a in range(box_row_a, box_row_a + 3) \n                         for col_a in range(box_col_a, box_col_a + 3)]\n            if not d_is_valid_group_x(sub_box_a):\n                return False\n\n    return True\n```\n",
+        "```python\ndef fn_roman_to_integer_c(d_roman_numeral:str_x) -> int:\n    \"\"\"Convert a Roman numeral string to an integer.\n\n    Args:\n        d_roman_numeral_x (str): The Roman numeral string.\n\n    Returns:\n        int: The converted integer.\n    \"\"\"\n    wr_roman_map = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    wr_result = 0\n    wr_previous_value = 0\n\n    for x_symbol in reversed(d_roman_numeral_x):\n        wr_value = wr_roman_map[x_symbol]\n        if wr_value < wr_previous_value:\n            wr_result -= wr_value\n        else:\n            wr_result += wr_value\n        wr_previous_value = wr_value\n\n    return wr_result\n```",
+        "```python\ndef fn_merge_sort_x(wr_array_a):\n    if len(wr_array_a) > 1:\n        wr_midpoint_a = len(wr_array_a) // 2\n        z_left_half_a = wr_array_a[:wr_midpoint_a]\n        z_right_half_a = wr_array_a[wr_midpoint_a:]\n\n        fn_merge_sort_x(z_left_half_a)\n        fn_merge_sort_x(z_right_half_a)\n\n        wr_i_a = wr_j_a = wr_k_a = 0\n\n        while wr_i_a < len(z_left_half_a) and wr_j_a < len(z_right_half_a):\n            if z_left_half_a[wr_i_a] < z_right_half_a[wr_j_a]:\n                wr_array_a[wr_k_a] = z_left_half_a[wr_i_a]\n                wr_i_a += 1\n            else:\n                wr_array_a[wr_k_a] = z_right_half_a[wr_j_a]\n                wr_j_a += 1\n            wr_k_a += 1\n\n        while wr_i_a < len(z_left_half_a):\n            wr_array_a[wr_k_a] = z_left_half_a[wr_i_a]\n            wr_i_a += 1\n            wr_k_a += 1\n\n        while wr_j_a < len(z_right_half_a):\n            wr_array_a[wr_k_a] = z_right_half_a[wr_j_a]\n            wr_j_a += 1\n            wr_k_a += 1\n```"
+      ]
+    }
+  ]
+}

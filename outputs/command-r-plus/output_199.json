@@ -1,0 +1,131 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "class DirectedGraph0:\n    def __init__(self, vertices):\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge0(self, u, v):\n        self.graph[u].append(v)\n\n    def is_cyclic_util(self, v, visited, rec_stack):\n        visited[v] = True\n        rec_stack[v] = True\n\n        for neighbour in self.graph[v]:\n            if not visited[neighbour]:\n                if self.is_cyclic_util(neighbour, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbour]:\n                return True\n\n        rec_stack[v] = False\n        return False\n\n    def is_cyclic(self):\n        vertices = len(self.graph)\n        visited = [False] * vertices\n        rec_stack = [False] * vertices\n\n        for i in range(vertices):\n            if not visited[i]:\n                if self.is_cyclic_util(i, visited, rec_stack):\n                    return True\n        return False",
+        "class PCA0:\n    def fit_transform(self, data):\n        # ... your code here ...\n\n    def get_components(self):\n        # ... your code here ...\n\n\nclass PCA1:\n    def fit_transform1(self, data):\n        # ... your code here ...\n\n    def get_components1(self):\n        # ... your code here ..."
+      ],
+      "instruction_model_output": [
+        "class DirectedGraph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.adj = [[] for _ in range(vertices)]\n\n    def add_edge1(self, u, v):\n        self.adj[u].append(v)\n\n    def is_cyclic_util(self, v, visited, rec_stack):\n        visited[v] = True\n        rec_stack[v] = True\n\n        for neighbour in self.adj[v]:\n            if not visited[neighbour]:\n                if self.is_cyclic_util(neighbour, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbour]:\n                return True\n\n        rec_stack[v] = False\n        return False\n\n    def is_cyclic9(self):\n        visited = [False] * self.V\n        rec_stack = [False] * self.V\n\n        for node in range(self.V):\n            if not visited[node]:\n                if self.is_cyclic_util(node, visited, rec_stack):\n                    return True\n        return False",
+        "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def c_avg_diag(matrix):\n    assert len(matrix) == len(matrix[0]), \"Input matrix should be square\"\n    assert all(isinstance(row, list) for row in matrix), \"All rows should be lists\"\n    assert all(len(row) == len(matrix) for row in matrix), \"All rows should have the same length\"\n\n    diag_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    diag_count = len(matrix)\n    avg_diag = diag_sum / diag_count\n\n    return avg_diag",
+        "def c_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    assert h_index == len([citation for citation in citations if citation >= h_index])\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
+        "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        # Insert a new node with the given value into the binary tree\n        self.root = self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, node, value):\n        if not node:\n            return Node(value)\n        if value < node.value:\n            node.left = self._insert_recursive(node.left, value)\n        else:\n            node.right = self._insert_recursive(node.right, value)\n        return node\n\n    def delete(self, value):\n        # Delete a node with the given value from the binary tree\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if not node:\n            return node\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            # Node found, now we need to handle three cases\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            else:\n                # Node has two children, get the inorder successor (smallest in the right subtree)\n                successor = self._get_successor(node.right)\n                node.value = successor.value\n                node.right = self._delete_recursive(node.right, successor.value)\n        return node\n\n    def _get_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom typing import Optional, Tuple\n\n\nclass Node:\n    def __init__(self, value: int):\n        self.value = value\n        self.left: Optional[Node] = None\n        self.right: Optional[Node] = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root: Optional[Node] = None\n\n    def insert(self, value: int) -> None:\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert(value, self.root)\n\n    def _insert(self, value: int, node: Node) -> None:\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert(value, node.right)\n\n    def delete(self, value: int) -> None:\n        self.root = self._delete(value, self.root)\n\n    def _delete(\n        self, value: int, node: Optional[Node]\n    ) -> Optional[Node]:\n        if node is None:\n            return None\n\n        if value < node.value:\n            node.left = self._delete(value, node.left)\n        elif value > node.value:\n            node.right = self._delete(value, node.right)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            new_value = self._get_min_value(node.right)\n            node.value = new_value\n            node.right = self._delete(new_value, node.right)\n\n        return node\n\n    def _get_min_value(self, node: Node) -> int:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def y_is_valid_bst(root):\n    def y_helper(node, min_val, max_val):\n        if not node:\n            return True\n        try:\n            if node.val <= min_val or node.val >= max_val:\n                return False\n            return y_helper(node.left, min_val, node.val) and y_helper(node.right, node.val, max_val)\n        except AttributeError:\n            print(\"Error: Invalid node structure.\")\n            return False\n\n    return y_helper(root, float('-inf'), float('inf'))",
+        "def y_calculate_h_index(citations: list[int]) -> int:\n    try:\n        citations.sort(reverse=True)\n        h_index = 0\n        for i, citation_count in enumerate(citations, 1):\n            if citation_count >= i:\n                h_index = i\n            else:\n                break\n        return h_index\n    except Exception as e:\n        raise Exception(f\"An error occurred: {e}\")"
+      ],
+      "instruction_model_output": [
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\"",
+        "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def a_compute_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "def a_is_palindrome_checker(input_str: str) -> bool:\n    input_str = input_str.lower()\n    start, end = 0, len(input_str) - 1\n    while start < end:\n        if input_str[start]_vr != input_str[end]:\n            return False\n        start += 1\n        end -= 1\n    return True"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "def is_palindrome(s_vr):\n    s_vr = s_vr.lower()\n    return s_vr == s_vr[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_palindrome(input_str: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_str (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Initialize variables\n    str_length_w = len(input_str)\n    start_index_w = 0\n    end_index_w = str_length_w - 1\n    is_palindrome_w = True\n\n    # Check if the string is a palindrome\n    while start_index_w < end_index_w:\n        if input_str[start_index_w] != input_str[end_index_w]:\n            is_palindrome_w = False\n            break\n        start_index_w += 1\n        end_index_w -= 1\n\n    return is_palindrome_w"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import timer\n\n\n@timer\ndef has_cycle(head_z: \"Node_z\") -> bool:\n    if not head_z:\n        return False\n    slow_z = head_z\n    fast_z = head_z\n    while fast_z and fast_z.next_z:\n        slow_z = slow_z.next_z\n        fast_z = fast_z.next_z.next_z\n        if slow_z == fast_z:\n            return True\n    return False\n```",
+        "from pedantic import timer\n\n@timer\ndef is_palindrome_z(s: str) -> bool:\n    s = s.lower().replace(\" \", \"\")\n    return s == s[::-1]"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import timer\nfrom typing import Optional\n\n\n@timer\ndef has_cycle(head: Optional[Node]) -> bool:\n    if not head or not head.next:\n        return False\n\n    slow, fast = head, head.next\n\n    while slow != fast:\n        if not fast or not fast.next:\n            return False\n        slow = slow.next\n        fast = fast.next.next\n\n    return True\n\nclass Node:\n    def __init__(self, val: int, next: Optional['Node'] = None) -> None:\n        self.val = val\n        self.next = next",
+        "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Perceptron:\n    def __init__(self, eta=0.1, epochs=1000):\n        self.eta = eta\n        self.epochs = epochs\n        self.chx_weight = None\n        self.chx_bias = None\n\n    def train(self, X, y):\n        self.chx_weight = np.zeros(len(X[0]))\n        self.chx_bias = 0\n        for _ in range(self.epochs):\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.chx_weight += update * xi\n                self.chx_bias += update\n\n    def predict(self, X):\n        return np.where(np.dot(X, self.chx_weight) + self.chx_bias) > 0, 1, 0"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef c_is_valid_bst(root: 'tree node', min_val: int = float('-inf'), max_val: int = float('inf')) -> bool:\n    '''\n    Checks if a given binary tree is a valid binary search tree.\n\n    Args:\n        root (tree node): The root of the binary tree.\n        min_val (int): The minimum value allowed in the BST (default is negative infinity).\n        max_val (int): The maximum value allowed in the BST (default is positive infinity).\n\n    Returns:\n        bool: True if the tree is a valid BST, False otherwise.\n    '''\n    if not root:\n        return True\n\n    if not min_val <= root.val <= max_val:\n        return False\n\n    return c_is_valid_bst(root.left, min_val, root.val - 1) and c_is_valid_bst(root.right, root.val + 1, max_val)\n```",
+        "```python\ndef c_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "```python\nimport networkx as nx\n\n\nclass DirectedGraph:\n    def __init__(self):\n        self.graph = nx.DiGraph()\n\n    def add_edge(self, u: int, v: int) -> None:\n        self.graph.add_edge(u, v)\n\n    def has_cycle(self) -> bool:\n        return nx.cycles.find_cycle(self.graph) is not None\n```",
+        "```python\nimport numpy as np\nfrom sklearn.decomposition import PCA\nfrom pedantic import timer\n\nclass PCA_Analysis1_w:\n    def __init__(self, n_components: int = 2):\n        self.n_components = n_components\n        self.pca = PCA(n_components=n_components)\n\n    @timer\n    def fit(self, X: np.ndarray) -> 'PCA_Analysis1_w':\n        self.pca.fit(X)\n        return self\n\n    @timer\n    def transform(self, X: np.ndarray) -> np.ndarray:\n        return self.pca.transform(X)\n\n    def get_explained_variance_ratio(self) -> np.ndarray:\n        return self.pca.explained_variance_ratio_\n\n    def get_explained_variance(self) -> np.ndarray:\n        return self.pca.explained_variance_\n```",
+        "```python\ndef c_has_cycle(head: 'node') -> 'boolean':\n    assert head, 'Input linked list cannot be empty'\n    visited = set()\n    while head:\n        if head in visited:\n            return True\n        visited.add(head)\n        head = head.next\n    return False\n```",
+        "```python\nimport numpy as np\n\n\nclass Perceptron:\n    def __init__(self, no_of_features: int, learning_rate: float, epochs: int):\n        self.no_of_features = no_of_features\n        self.learning_rate = learning_rate\n        self.epochs = epochs\n        self.weights = np.zeros(no_of_features)\n        self.bias = 0\n\n    def train(self, X_train: np.array, y_train: np.array) -> None:\n        assert X_train.shape[0] == y_train.shape[0], \"Number of training examples and labels must be equal.\"\n        assert X_train.shape[1] == self.no_of_features, \"Number of features in training data must match the model.\"\n\n        for _ in range(self.epochs):\n            for idx, x_i in enumerate(X_train):\n                y_pred = self.predict(x_i)\n                error = y_train[idx] - y_pred\n                self.weights += self.learning_rate * error * x_i\n                self.bias += self.learning_rate * error\n\n    def predict(self, X_test: np.array) -> np.array:\n        assert X_test.shape[1] == self.no_of_features, \"Number of features in test data must match the model.\"\n\n        y_pred = np.dot(X_test, self.weights) + self.bias\n        return np.where(y_pred >= 0, 1, 0)\n```",
+        "```python\nimport random\n\n\nclass BinaryTree:\n    def __init__(self, value: int, digit: int):\n        self.value = value\n        self.digit = digit\n        self.left = None\n        self.right = None\n\n    def insert(self, value: int, digit: int) -> None:\n        if value < self.value:\n            if self.left is None:\n                self.left = BinaryTree(value, digit)\n            else:\n                self.left.insert(value, digit)\n        else:\n            if self.right is None:\n                self.right = BinaryTree(value, digit)\n            else:\n                self.right.insert(value, digit)\n\n    def delete(self, value: int) -> None:\n        if value < self.value:\n            if self.left is not None:\n                self.left.delete(value)\n        elif value > self.value:\n            if self.right is not None:\n                self.right.delete(value)\n        else:\n            if self.left is None and self.right is None:\n                self = None\n            elif self.left is None:\n                self = self.right\n            elif self.right is None:\n                self = self.left\n            else:\n                temp = self.right\n                while temp.left is not None:\n                    temp = temp.left\n                self.value = temp.value\n                self.right.delete(temp.value)\n\n    def find(self, value: int) -> bool:\n        if self.value == value:\n            return True\n        elif value < self.value:\n            if self.left is not None:\n                return self.left.find(value)\n            return False\n        else:\n            if self.right is not None:\n                return self.right.find(value)\n            return False\n```",
+        "```python\ndef c_avg_diag_element(matrix: list[list[int]]) -> int:\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n\n    Args:\n        matrix (list[list[int]]): A square matrix.\n\n    Returns:\n        int: The average of the diagonal elements.\n    \"\"\"\n    # Validate input\n    if not matrix or not all(len(row) == len(matrix) for row in matrix):\n        raise ValueError(\"Input must be a non-empty square matrix\")\n\n    # Calculate sum of diagonal elements\n    diag_sum = sum(matrix[i][i] for i in range(len(matrix)))\n\n    # Calculate average\n    avg = diag_sum / len(matrix)\n\n    return avg\n```",
+        "```python\ndef c_is_palindrome(s: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        s (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    assert isinstance(s, str), \"@timer Decorator for performance tracking.\"\n    assert len(s) > 0, \"Input string cannot be empty.\"\n    assert all(\n        char.isalpha() or char.isdigit() for char in s\n    ), \"Only alphanumeric characters are allowed.\"\n    s = s.lower()  # Convert to lowercase for case-insensitive comparison\n    start, end = 0, len(s) - 1\n    while start < end:\n        if s[start] != s[end]:\n            return False\n        start += 1\n        end -= 1\n    return True\n```"
+      ]
+    }
+  ]
+}

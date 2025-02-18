@@ -1,0 +1,18 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "def y_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "def y_get_common_elements(list1, list2):\n    common_elements = [i for i in list1 if i in list2]\n    return common_elements"
+      ],
+      "instruction_model_output": [
+        "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
+      ],
+      "cumulative_model_output": [
+        "def y_h_index(citations0):\n    citations = sorted(citations0, reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= (i + 1):\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "def y_get_common_elements(list1_0, list2_0):\n    return list(set(list1_0) & set(list2_0))"
+      ]
+    }
+  ]
+}

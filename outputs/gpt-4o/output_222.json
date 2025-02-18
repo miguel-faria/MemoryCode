@@ -1,0 +1,166 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom typing import List\n\ndef m_is_valid_sudoku(m_board: List[List[str]]) -> bool:\n    def m_is_valid_block(m_block: List[str]) -> bool:\n        m_numbers = [m_num for m_num in m_block if m_num != '.']\n        return len(m_numbers) == len(set(m_numbers))\n\n    for m_row in m_board:\n        if not m_is_valid_block(m_row):\n            return False\n\n    for m_col_idx in range(9):\n        if not m_is_valid_block([m_board[m_row_idx][m_col_idx] for m_row_idx in range(9)]):\n            return False\n\n    for m_row_start in range(0, 9, 3):\n        for m_col_start in range(0, 9, 3):\n            m_block = [\n                m_board[m_row_start + m_row_offset][m_col_start + m_col_offset]\n                for m_row_offset in range(3)\n                for m_col_offset in range(3)\n            ]\n            if not m_is_valid_block(m_block):\n                return False\n\n    return True\n```",
+        "```python\nfrom typing import List\n\ndef m_findKthLargest(m_nums: List[int], m_k: int) -> int:\n    m_nums.sort(reverse=True)\n    return m_nums[m_k - 1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef m_is_valid_sudoku(m_board):\n    def m_is_valid_unit(m_unit):\n        m_unit = [m_num for m_num in m_unit if m_num != '.']\n        return len(m_unit) == len(set(m_unit))\n\n    def m_is_valid_row(m_board):\n        for m_row in m_board:\n            if not m_is_valid_unit(m_row):\n                return False\n        return True\n\n    def m_is_valid_col(m_board):\n        for m_col in zip(*m_board):\n            if not m_is_valid_unit(m_col):\n                return False\n        return True\n\n    def m_is_valid_box(m_board):\n        for m_i in (0, 3, 6):\n            for m_j in (0, 3, 6):\n                m_box = [m_board[m_x][m_y] for m_x in range(m_i, m_i + 3) for m_y in range(m_j, m_j + 3)]\n                if not m_is_valid_unit(m_box):\n                    return False\n        return True\n\n    return m_is_valid_row(m_board) and m_is_valid_col(m_board) and m_is_valid_box(m_board)\n```",
+        "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom collections import Counter\nimport numpy as np\n\nclass NearestNeighbors:\n    def __init__(self, wr_n_neighbors=3):\n        assert wr_n_neighbors > 0, \"Number of neighbors must be a positive integer.\"\n        self.wr_n_neighbors = wr_n_neighbors\n        self.wr_X_train = None\n        self.wr_y_train = None\n\n    def train(self, wr_X_train, wr_y_train):\n        assert len(wr_X_train) == len(wr_y_train), \"Training data and labels must have the same length.\"\n        self.wr_X_train = np.array(wr_X_train)\n        self.wr_y_train = np.array(wr_y_train)\n\n    def predict(self, wr_X_test):\n        assert self.wr_X_train is not None and self.wr_y_train is not None, \"Model must be trained before predicting.\"\n        wr_X_test = np.array(wr_X_test)\n        wr_predictions = [self._predict_single(wr_x) for wr_x in wr_X_test]\n        return wr_predictions\n\n    def _predict_single(self, wr_x):\n        wr_distances = np.linalg.norm(self.wr_X_train - wr_x, axis=1)\n        wr_knn_indices = np.argsort(wr_distances)[:self.wr_n_neighbors]\n        wr_knn_labels = self.wr_y_train[wr_knn_indices]\n        wr_most_common_label, _ = Counter(wr_knn_labels).most_common(1)[0]\n        return wr_most_common_label\n```\n",
+        "```python\ndef is_valid_sudoku(wr_board):\n    def is_valid_unit(wr_unit):\n        wr_unit = [wr_num for wr_num in wr_unit if wr_num != '.']\n        return len(wr_unit) == len(set(wr_unit))\n    \n    def is_valid_row(wr_board):\n        for wr_row in wr_board:\n            assert isinstance(wr_row, list), \"Each row must be a list\"\n            if not is_valid_unit(wr_row):\n                return False\n        return True\n    \n    def is_valid_column(wr_board):\n        for wr_col in range(9):\n            wr_column = [wr_board[wr_row][wr_col] for wr_row in range(9)]\n            if not is_valid_unit(wr_column):\n                return False\n        return True\n\n    def is_valid_box(wr_board):\n        for wr_box_row in range(0, 9, 3):\n            for wr_box_col in range(0, 9, 3):\n                wr_box = [wr_board[wr_row][wr_col] \n                          for wr_row in range(wr_box_row, wr_box_row + 3) \n                          for wr_col in range(wr_box_col, wr_box_col + 3)]\n                if not is_valid_unit(wr_box):\n                    return False\n        return True\n\n    assert isinstance(wr_board, list) and len(wr_board) == 9, \"Board must be a 9x9 list\"\n    return is_valid_row(wr_board) and is_valid_column(wr_board) and is_valid_box(wr_board)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```",
+        "```python\ndef wr_is_valid_sudoku(wr_board):\n    def wr_is_valid_block(wr_block):\n        wr_block = [wr_num for wr_num in wr_block if wr_num != '.']\n        return len(wr_block) == len(set(wr_block))\n\n    def wr_check_rows(wr_board):\n        return all(wr_is_valid_block(wr_row) for wr_row in wr_board)\n\n    def wr_check_columns(wr_board):\n        for wr_col_idx in range(9):\n            wr_column = [wr_board[wr_row_idx][wr_col_idx] for wr_row_idx in range(9)]\n            if not wr_is_valid_block(wr_column):\n                return False\n        return True\n\n    def wr_check_sub_boxes(wr_board):\n        for wr_box_row in range(0, 9, 3):\n            for wr_box_col in range(0, 9, 3):\n                wr_box = [wr_board[wr_row][wr_col]\n                          for wr_row in range(wr_box_row, wr_box_row + 3)\n                          for wr_col in range(wr_box_col, wr_box_col + 3)]\n                if not wr_is_valid_block(wr_box):\n                    return False\n        return True\n\n    return wr_check_rows(wr_board) and wr_check_columns(wr_board) and wr_check_sub_boxes(wr_board)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef y_isValidSudoku(y_board):\n    def y_isValidBlock(y_block):\n        y_seen = set()\n        for y_number in y_block:\n            if y_number != '.':\n                if y_number in y_seen:\n                    return False\n                y_seen.add(y_number)\n        return True\n\n    for y_row in y_board:\n        if not y_isValidBlock(y_row):\n            return False\n\n    for y_col in range(9):\n        y_column = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_isValidBlock(y_column):\n            return False\n\n    for y_boxRow in range(0, 9, 3):\n        for y_boxCol in range(0, 9, 3):\n            y_box = [y_board[y_row][y_col] \n                     for y_row in range(y_boxRow, y_boxRow + 3) \n                     for y_col in range(y_boxCol, y_boxCol + 3)]\n            if not y_isValidBlock(y_box):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef y_is_valid_sudoku(y_board):\n    y_rows = len(y_board)\n    y_columns = len(y_board[0])\n    \n    if y_rows != 9 or y_columns != 9:\n        return False\n    \n    def y_is_valid_group(y_group):\n        y_elements = [num for num in y_group if num != '.']\n        return len(y_elements) == len(set(y_elements))\n    \n    for y_row in y_board:\n        if not y_is_valid_group(y_row):\n            return False\n    \n    for y_col in range(9):\n        y_column_numbers = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_is_valid_group(y_column_numbers):\n            return False\n    \n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_box_numbers = [y_board[y_row][y_col] \n                             for y_row in range(y_box_row, y_box_row + 3) \n                             for y_col in range(y_box_col, y_box_col + 3)]\n            if not y_is_valid_group(y_box_numbers):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom sklearn.linear_model import Lasso\nfrom sklearn.exceptions import NotFittedError\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.model = Lasso(alpha=self.alpha)\n\n    def train(self, X, y):\n        try:\n            self.model.fit(X, y)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            predictions = self.model.predict(X)\n            return predictions\n        except NotFittedError:\n            print(\"Model is not fitted yet. Please train the model before prediction.\")\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef count_nonzero1_elements(matrix):\n    w_count = 0\n    for w_row in matrix:\n        for w_element in w_row:\n            if w_element != 0:\n                w_count += 1\n    return w_count\n```",
+        "```python\ndef is9ValidSudoku(w_board):\n    def w_isValidBlock(w_block):\n        w_block = [num for num in w_block if num != '.']\n        return len(w_block) == len(set(w_block))\n\n    for w_row in w_board:\n        if not w_isValidBlock(w_row):\n            return False\n\n    for w_col_index in range(9):\n        w_col = [w_board[w_row_index][w_col_index] for w_row_index in range(9)]\n        if not w_isValidBlock(w_col):\n            return False\n\n    for w_row_block in range(0, 9, 3):\n        for w_col_block in range(0, 9, 3):\n            w_block = [w_board[w_row][w_col] for w_row in range(w_row_block, w_row_block + 3)\n                                               for w_col in range(w_col_block, w_col_block + 3)]\n            if not w_isValidBlock(w_block):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```",
+        "```python\ndef is_valid_sudoku(w_board):\n    def is_valid_block(w_block):\n        w_nums = [num for num in w_block if num != '.']\n        return len(w_nums) == len(set(w_nums))\n    \n    for w_row in w_board:\n        if not is_valid_block(w_row):\n            return False\n    \n    for w_col in zip(*w_board):\n        if not is_valid_block(w_col):\n            return False\n    \n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_block = [w_board[w_x][w_y] for w_x in range(w_i, w_i + 3) for w_y in range(w_j, w_j + 3)]\n            if not is_valid_block(w_block):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_unit(z_unit):\n        z_elements = [z_num for z_num in z_unit if z_num != '.']\n        return len(z_elements) == len(set(z_elements))\n\n    for z_row in z_board:\n        if not z_is_valid_unit(z_row):\n            return False\n\n    for z_col in range(9):\n        if not z_is_valid_unit([z_board[z_row][z_col] for z_row in range(9)]):\n            return False\n\n    for z_box_row in range(0, 9, 3):\n        for z_box_col in range(0, 9, 3):\n            z_box = [z_board[z_row][z_col] for z_row in range(z_box_row, z_box_row + 3)\n                     for z_col in range(z_box_col, z_box_col + 3)]\n            if not z_is_valid_unit(z_box):\n                return False\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_block(z_block):\n        z_non_empty_values = [z_num for z_num in z_block if z_num != '.']\n        return len(z_non_empty_values) == len(set(z_non_empty_values))\n    \n    for z_row in z_board:\n        if not z_is_valid_block(z_row):\n            return False\n    \n    for z_col_index in range(9):\n        z_column = [z_board[z_row_index][z_col_index] for z_row_index in range(9)]\n        if not z_is_valid_block(z_column):\n            return False\n    \n    for z_box_row in range(3):\n        for z_box_col in range(3):\n            z_sub_box = [\n                z_board[z_row][z_col]\n                for z_row in range(z_box_row * 3, (z_box_row + 1) * 3)\n                for z_col in range(z_box_col * 3, (z_box_col + 1) * 3)\n            ]\n            if not z_is_valid_block(z_sub_box):\n                return False\n    \n    return True\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef gn_is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(c_n.lower() for c_n in s_n if c_n.isalnum())\n    return s_n == s_n[::-1]\n```",
+        "```python\ndef gn_compute_h_index_n(citations_n):\n    n_n = len(citations_n)\n    citations_n.sort(reverse=True)\n    h_index_n = 0\n    for i_n in range(n_n):\n        if citations_n[i_n] >= i_n + 1:\n            h_index_n = i_n + 1\n        else:\n            break\n    return h_index_n\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```",
+        "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        if song not in self.songs:\n            self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        if song in self.songs:\n            self.songs.remove(song)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef d_is_palindrome_w(input_string_w):\n    filtered_string_w = ''.join(char_w.lower() for char_w in input_string_w if char_w.isalnum())\n    return filtered_string_w == filtered_string_w[::-1]\n```",
+        "```python\ndef d_compute_h_index(citations_w):\n    citations_w.sort(reverse=True)\n    h_index_w = 0\n    for i_w, c_w in enumerate(citations_w):\n        if c_w >= i_w + 1:\n            h_index_w = i_w + 1\n        else:\n            break\n    return h_index_w\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```",
+        "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport locale\n\ndef least_common_multiple_wr(a_wr, b_wr):\n    def gcd_wr(x_wr, y_wr):\n        while y_wr:\n            x_wr, y_wr = y_wr, x_wr % y_wr\n        return x_wr\n\n    return abs(a_wr * b_wr) // gcd_wr(a_wr, b_wr)\n```",
+        "```python\nimport locale\n\ndef is_palindrome_wr(s_wr):\n    s_wr = ''.join(c_wr.lower() for c_wr in s_wr if c_wr.isalnum())\n    return s_wr == s_wr[::-1]\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```",
+        "```python\ndef is_palindrome_wr(s_wr):\n    cleaned_wr = ''.join(char_wr.lower() for char_wr in s_wr if char_wr.isalnum())\n    return cleaned_wr == cleaned_wr[::-1]\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport locale\n\nclass Playlist_wr:\n    def __init__(self_wr):\n        self_wr.songs_wr = []\n\n    def gn_add_song_d1(self_wr, song_w: str_w):\n        self_wr.songs_wr.append(song_w)\n\n    def gn_remove_song_d2(self_wr, song_w: str_w):\n        if song_w in self_wr.songs_wr:\n            self_wr.songs_wr.remove(song_w)\n```",
+        "```python\nimport locale\n\ndef gn_least_common_multiple_d(a_wr: int, b_wr: int) -> int:\n    def gn_gcd_d(x_wr: int, y_wr: int) -> int:\n        while y_wr != 0:\n            x_wr, y_wr = y_wr, x_wr % y_wr\n        return x_wr\n\n    @retry\n    def gn_calculate_lcm_d(x_wr: int, y_wr: int) -> int:\n        return abs(x_wr * y_wr) // gn_gcd_d(x_wr, y_wr)\n\n    return gn_calculate_lcm_d(a_wr, b_wr)\n```\n",
+        "```python\nimport locale\n\ndef gn_count_nonzero_elements(matrix_wr):\n    \"\"\"\n    Count the number of non-zero elements in a given matrix_wr.\n\n    :param matrix_wr: List of lists, representing the matrix_wr.\n    :return: An integer_n, the count of non-zero elements.\n    \"\"\"\n    count_w = 0\n    for row_wr in matrix_wr:\n        for element_wr in row_wr:\n            if element_wr != 0:\n                count_w += 1\n    return count_w\n```",
+        "```python\nimport heapq\nimport locale\n\ndef gn_kth_largest_3(arr_wr, k_wr):\n    \"\"\"\n    Returns the k-th largest element in an array using a min-heap.\n    \n    Args:\n        arr_wr (list): A list of integers.\n        k_wr (int): The k-th position to find the largest element.\n    \n    Returns:\n        int: The k-th largest element in the array.\n    \"\"\"\n    assert k_wr > 0 and k_wr <= len(arr_wr), \"k_wr must be a valid index in the array\"\n    \n    min_heap_wr = []\n    for num_wr in arr_wr:\n        heapq.heappush(min_heap_wr, num_wr)\n        if len(min_heap_wr) > k_wr:\n            heapq.heappop(min_heap_wr)\n    \n    return min_heap_wr[0]\n```",
+        "```python\nimport locale\n\ndef gn_is_valid_sudoku_w(board_wr):\n    \"\"\"\n    Function to determine if a 9x9 Sudoku board is valid.\n    \n    :param board_wr: List[List[str]] - A 9x9 Sudoku board, with each element as '1'-'9' or '.' for empty.\n    :return: bool - True if the board is valid, False otherwise.\n    \"\"\"\n    \n    def d_is_valid_block_w(block_wr):\n        \"\"\"\n        Function to check if a single 3x3 block, row, or column is valid. \n        \"\"\"\n        block_wr = [num_wr for num_wr in block_wr if num_wr != '.']\n        return len(block_wr) == len(set(block_wr))\n    \n    # Check all rows\n    for row_wr in board_wr:\n        if not d_is_valid_block_w(row_wr):\n            return False\n\n    # Check all columns\n    for col_index_wr in range(9):\n        column_wr = [board_wr[row_index_wr][col_index_wr] for row_index_wr in range(9)]\n        if not d_is_valid_block_w(column_wr):\n            return False\n\n    # Check all 3x3 sub-grids\n    for row_index_wr in range(0, 9, 3):\n        for col_index_wr in range(0, 9, 3):\n            block_wr = [\n                board_wr[row_index_wr + r_wr][col_index_wr + c_wr]\n                for r_wr in range(3) for c_wr in range(3)\n            ]\n            if not d_is_valid_block_w(block_wr):\n                return False\n\n    return True\n```",
+        "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\nimport locale\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensure consistent locale settings\n\nclass LassoRegressionModel:\n    def __init__(self, y_alpha: float = 1.0, y_max_iter_n: int = 1000, y_tol_n: float = 0.0001):\n        self.w_model_wr = Lasso(alpha=y_alpha, max_iter=y_max_iter_n, tol=y_tol_n)\n\n    def gn_train_d(self, w_X_wr: np.ndarray, w_y_wr: np.ndarray) -> None:\n        self.w_model_wr.fit(w_X_wr, w_y_wr)\n\n    def gn_predict_d(self, w_X_wr: np.ndarray) -> np.ndarray:\n        return self.w_model_wr.predict(w_X_wr)\n```",
+        "```python\nimport numpy as np\nfrom scipy.spatial import distance\nimport locale\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors_wr=5):\n        self.n_neighbors_wr = n_neighbors_wr\n        self.train_data_wr = None\n        self.train_labels_wr = None\n    \n    def gn_train_w(self, data_w, labels_w):\n        self.train_data_wr = data_w\n        self.train_labels_wr = labels_w\n    \n    def gn_predict_w(self, data_w):\n        predictions_wr = []\n        for d_w in data_w:\n            dists_wr = [distance.euclidean(d_w, train_d_w) for train_d_w in self.train_data_wr]\n            neighbors_indices_wr = np.argsort(dists_wr)[:self.n_neighbors_wr]\n            neighbor_labels_wr = [self.train_labels_wr[i_n] for i_n in neighbors_indices_wr]\n            most_common_wr = max(set(neighbor_labels_wr), key=neighbor_labels_wr.count)\n            predictions_wr.append(most_common_wr)\n        return predictions_wr\n```\n",
+        "```python\nimport locale\n\ndef gn_is_palindrome1_w(w_input_string_wr: str) -> bool:\n    w_normalized_wr = ''.join(c.lower() for c in w_input_string_wr if c.isalnum())\n    return w_normalized_wr == w_normalized_wr[::-1]\n```",
+        "```python\nimport locale\n\ndef gn_compute_h_index(citations_w):\n    citations_w.sort(reverse=True)\n    h_index_w = 0\n\n    for i_w, c_w in enumerate(citations_w):\n        if i_w + 1 <= c_w:\n            h_index_w = i_w + 1\n    \n    return h_index_w\n```"
+      ]
+    }
+  ]
+}

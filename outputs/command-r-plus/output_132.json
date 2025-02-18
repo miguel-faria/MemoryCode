@@ -1,0 +1,53 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "def d_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count < i:\n            break\n        h_index = i\n\n    return h_index",
+        "def d_is_valid_bst(root):\n    def d_aux(node, min_val, max_val):\n        if node is None:\n            return True\n        try:\n            if node.val <= min_val or node.val >= max_val:\n                return False\n            return d_aux(node.left, min_val, node.val) and d_aux(node.right, node.val, max_val)\n        except AttributeError:\n            print(\"Error: Invalid node structure.\")\n            return False\n\n    return d_aux(root, float('-inf'), float('inf'))"
+      ],
+      "instruction_model_output": [
+        "def d_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import validate\n\n\n@validate\ndef c_h_index(citations: list[int]) -> int:\n    if not all(isinstance(citation, int) and citation >= 0 for citation in citations):\n        raise ValueError(\"Citations must be a list of non-negative integers.\")\n\n    citations.sort(reverse=True)\n    h_index = 0\n\n    for i, citation in enumerate(citations, 1):\n        if citation >= i:\n            h_index = i\n        else:\n            break\n\n    return h_index\n```",
+        "```python\nfrom pedantic import validate\n\n\n@validate\ndef c_int_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to Roman numeral.\n\n    :param num: The integer to be converted.\n    :return: The Roman numeral representation of the input integer.\n    \"\"\"\n    if num <= 0 or num > 3999:\n        raise ValueError(\"Input must be a positive integer up to 3999.\")\n\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman = \"\"\n\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman\n```"
+      ],
+      "instruction_model_output": [
+        "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "from pedantic.decorators import validate\r\n\r\n@validate\r\ndef int_to_roman(num: int) -> str:\r\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\r\n    syb = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\r\n    roman_num = ''\r\n    i = 0\r\n    while num > 0:\r\n        for _ in range(num // val[i]):\r\n            roman_num += syb[i]\r\n            num -= val[i]\r\n        i += 1\r\n    return roman_num"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def b_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef b_is_valid_bst(tree):\n    def b_is_bst_helper(node, min_val, max_val):\n        if node is None:\n            return True\n        if not min_val < node.value < max_val:\n            return False\n        return b_is_bst_helper(node.left, min_val, node.value) and b_is_bst_helper(node.right, node.value, max_val)\n\n    return b_is_bst_helper(tree.root, float('-inf'), float('inf'))\n```",
+        "```python\ndef b_int_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: The integer to be converted.\n    :return: The Roman numeral representation of the input integer.\n    \"\"\"\n    try:\n        if not isinstance(num, int) or num <= 0:\n            raise ValueError(\"Input must be a positive integer.\")\n\n        values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n        symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n        roman = \"\"\n\n        for i in range(len(values)):\n            count = num // values[i]\n            roman += symbols[i] * count\n            num %= values[i]\n\n        return roman\n\n    except Exception as e:\n        raise ValueError(f\"An error occurred: {e}\")\n```",
+        "```python\ndef b_h_index(citations: list[int]) -> int:\n    \"\"\"\n    Calculates the h-index based on the given citations.\n\n    :param citations: A list of integer citations.\n    :return: The h-index.\n    \"\"\"\n    if not citations or any(citation < 0 for citation in citations):\n        raise ValueError(\"Citations must be a non-empty list of positive integers.\")\n\n    citations.sort(reverse=True)\n    h_index = 0\n\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n\n    return h_index\n```"
+      ]
+    }
+  ]
+}

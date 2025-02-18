@@ -1,0 +1,37 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n\n        spt_set = [False] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            if spt_set[u]:\n                continue\n\n            spt_set[u] = True\n\n            for v in self.graph[u]:\n                if not spt_set[v]:\n                    if dist[u] != float('inf') and dist[u] + 1 < dist[v]:\n                        dist[v] = dist[u] + 1\n                        heapq.heappush(pq, (dist[v], v))\n\n        return dist[dest]\n```"
+      ],
+      "instruction_model_output": [
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef get_diag_avg_md(matrix):\n    assert isinstance(matrix, list) and all(isinstance(row, list) for row in matrix)\n    assert all(len(row) == len(matrix) for row in matrix)\n\n    diag_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    diag_avg = diag_sum / len(matrix) if len(matrix) != 0 else 0\n\n    return diag_avg\n```",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_md(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_md(self, src, dest):\n        assert 0 <= src < self.V, \"Source node is out of range.\"\n        assert 0 <= dest < self.V, \"Destination node is out of range.\"\n\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n\n        queue = []\n        queue.append(src)\n        visited[src] = True\n\n        while queue:\n            u = queue.pop(0)\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n                    if v == dest:\n                        break\n\n        assert dist[dest] != float(\n            'inf'), \"Destination node is not reachable from the source.\"\n        path_str = [\"Node \" + str(dest)]\n        node = dest\n        while node != src:\n            node = path[node]\n            path_str.append(\" -> Node \" + str(node))\n        path_str.reverse()\n        return ' -> '.join(path_str)\n```"
+      ],
+      "instruction_model_output": [
+        "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
+        "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_md(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_md(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        for _ in range(self.V):\n            u = self.min_distance_node_md(dist)\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n\n        path = []\n        node = dest\n        while parent[node] != -1:\n            path.append(node)\n            node = parent[node]\n        path.append(node)\n        path.reverse()\n        return path, dist[dest]\n\n    def min_distance_node_md(self, dist):\n        min_dist = float('inf')\n        min_node = -1\n        for v in range(self.V):\n            if dist[v] < min_dist:\n                min_dist = dist[v]\n                min_node = v\n        return min_node"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": [
+        "```python\ndef compute_average_diagonal_element_o(matrix_md):\n    diagonal_sum_md = sum(matrix_md[i][i] for i in range(len(matrix_md)))\n    average_md = diagonal_sum_md / len(matrix_md)\n    return average_md\n```",
+        "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf') for _ in range(self.V)]\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        while True:\n            u = self._extract_min_md(dist, spt_set)\n\n            if u == -1:\n                break\n\n            for v in range(self.V):\n                if (\n                    self.graph[u][v] > 0\n                    and spt_set[v] is False\n                    and dist[v] > dist[u] + self.graph[u][v]\n                ):\n                    dist[v] = dist[u] + self.graph[u][v]\n\n            spt_set[u] = True\n\n        return dist[dest]\n\n    def _extract_min_md(self, dist, spt_set):\n        min = float('inf')\n        min_index = -1\n\n        for v in range(self.V):\n            if spt_set[v] is False and dist[v] <= min:\n                min = dist[v]\n                min_index = v\n\n        return min_index\n```"
+      ]
+    }
+  ]
+}

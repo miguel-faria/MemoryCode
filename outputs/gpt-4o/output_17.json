@@ -1,0 +1,15 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\nclass Node:\n    def __init__(self, r_key=None, r_value=None):\n        self.r_key = r_key\n        self.r_value = r_value\n        self.r_prev = None\n        self.r_next = None\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_capacity = r_capacity\n        self.r_cache = {}\n        self.r_head = Node()\n        self.r_tail = Node()\n        self.r_head.r_next = self.r_tail\n        self.r_tail.r_prev = self.r_head\n\n    def _remove(self, r_node):\n        r_prev = r_node.r_prev\n        r_next = r_node.r_next\n        r_prev.r_next = r_next\n        r_next.r_prev = r_prev\n\n    def _add_to_head(self, r_node):\n        r_node.r_next = self.r_head.r_next\n        r_node.r_prev = self.r_head\n        self.r_head.r_next.r_prev = r_node\n        self.r_head.r_next = r_node\n\n    def get(self, r_key: int) -> int:\n        r_node = self.r_cache.get(r_key, None)\n        if not r_node:\n            return -1\n        self._remove(r_node)\n        self._add_to_head(r_node)\n        return r_node.r_value\n\n    def put(self, r_key: int, r_value: int) -> None:\n        r_node = self.r_cache.get(r_key, None)\n        if r_node:\n            self._remove(r_node)\n            r_node.r_value = r_value\n            self._add_to_head(r_node)\n        else:\n            if len(self.r_cache) >= self.r_capacity:\n                r_tail = self.r_tail.r_prev\n                self._remove(r_tail)\n                self.r_cache.pop(r_tail.r_key, None)\n            new_node = Node(r_key, r_value)\n            self.r_cache[r_key] = new_node\n            self._add_to_head(new_node)\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity):\n        self.r_capacity = r_capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, r_key):\n        if r_key not in self.r_cache:\n            return -1\n        else:\n            self.r_cache.move_to_end(r_key)\n            return self.r_cache[r_key]\n\n    def put(self, r_key, r_value):\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
+      ]
+    }
+  ]
+}

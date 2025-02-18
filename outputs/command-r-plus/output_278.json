@@ -1,0 +1,322 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def isValidSudoku(w_Board):\n    w_Rows = [0] * 9\n    w_Cols = [0] * 9\n    w_Boxes = [0] * 9\n\n    for w_I in range(9):\n        for w_J in range(9):\n            if w_Board[w_I][w_J] != '.':\n                w_Num = int(w_Board[w_I][w_J])\n                w_BoxIndex = (w_I // 3) * 3 + w_J // 3\n                w_Rows[w_I] |= 1 << w_Num\n                w_Cols[w_J] |= 1 << w_Num\n                w_Boxes[w_BoxIndex] |= 1 << w_Num\n\n                if w_Rows[w_I] & w_Cols[w_J] & w_Boxes[w_BoxIndex] & (1 << w_Num) == 0:\n                    return False\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_valid_sudoku_wr(x_board_wr):\n    x_seen_wr = [set(), set(), set()]\n    for x_i_wr in range(9):\n        for x_j_wr in range(9):\n            if x_board_wr[x_i_wr][x_j_wr] != '.':\n                x_num_wr = int(x_board_wr[x_i_wr][x_j_wr])\n                if (x_num_wr in x_seen_wr[0]) or (x_num_wr in x_seen_wr[1][x_i_wr]) or (x_num_wr in x_seen_wr[2][3 * (x_i_wr // 3) + x_j_wr // 3]):\n                    return False\n                x_seen_wr[0].add(x_num_wr)\n                x_seen_wr[1][x_i_wr].add(x_num_wr)\n                x_seen_wr[2][3 * (x_i_wr // 3) + x_j_wr // 3].add(x_num_wr)\n    return True",
+        "def check_palindrome(x_str_wr):\n    x_rev_str_wr = x_str_wr[::-1]\n    return x_str_wr == x_rev_str_wr"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(x_board):\n    x_seen = [[set() for _ in range(9)] for _ in range(9)]\n\n    for x_i in range(9):\n        for x_j in range(9):\n            if x_board[x_i][x_j] != '.':\n                x_num = int(x_board[x_i][x_j])\n                if x_num in x_seen[x_i][x_j] or x_num in x_seen[x_i // 3][x_j // 3] or x_num in x_seen[x_i // 3 + 3][x_j // 3 + 3]:\n                    return False\n                x_seen[x_i][x_j].add(x_num)\n                x_seen[x_i // 3][x_j // 3].add(x_num)\n                x_seen[x_i // 3 + 3][x_j // 3 + 3].add(x_num)\n\n    return True",
+        "def is_palindrome(s_wr):\n    s_wr = s_wr.lower()\n    return s_wr == s_wr[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    wr_rows = set()\n    wr_cols = set()\n    wr_boxes = set()\n    for i in range(9):\n        wr_rows.clear()\n        wr_cols.clear()\n        for j in range(9):\n            if board[i][j] != '.':\n                wr_num = board[i][j]\n                if wr_num in wr_rows or wr_num in wr_cols or (wr_num in wr_boxes):\n                    return False\n                wr_rows.add(wr_num)\n                wr_cols.add(wr_num)\n                wr_box_index = (i // 3) * 3 + j // 3\n                wr_boxes.add((wr_box_index, wr_num))\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import retry\n\n\n@retry\ndef find_majority_element(arr: list[int]) -> int:\n    y_counter = {}\n    for y_num in arr:\n        if y_num in y_counter:\n            y_counter[y_num] += 1\n        else:\n            y_counter[y_num] = 1\n    y_majority = None\n    for y_key, y_value in y_counter.items():\n        if y_value > len(arr) // 2:\n            y_majority = y_key\n            break\n    return y_majority\n```",
+        "```python\nfrom pedantic import retry\n\n\n@retry\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n\n        for j in range(9):\n            current_num = board[i][j]\n            if current_num not in range(1, 10):\n                return False\n\n            if current_num in row or current_num in col or current_num in box:\n                return False\n\n            row.add(current_num)\n            col.add(current_num)\n            if (i // 3, j // 3) in [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]:\n                box.add(current_num)\n\n        row = set()\n        col = set()\n        box = set()\n\n        for j in range(9):\n            current_num = board[j][i]\n            if current_num not in range(1, 10):\n                return False\n\n            if current_num in row or current_num in col or current_num in box:\n                return False\n\n            row.add(current_num)\n            col.add(current_num)\n            if (i // 3, j // 3) in [(0, 0), (1, 0), (2, 0), (0, 1), (1, 1), (2, 1), (0, 2), (1, 2)]:\n                box.add(current_num)\n\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = set()\n            for x in range(i, i + 3):\n                for y in range(j, j + 3):\n                    current_num = board[x][y]\n                    if current_num not in range(1, 10):\n                        return False\n\n                    if current_num in box:\n                        return False\n                    box.add(current_num)\n\n    return True\n```"
+      ],
+      "instruction_model_output": [
+        "from pedantic.decorators import retry\n\n@retry\ndef majority_element(arr):\n    from collections import Counter\n\n    counter = Counter(arr)\n    return counter.most_common(1)[0][0]",
+        "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class IMAGE_CLASSIFIER(nn.Module):\n    \"\"\"\n    Binary Image Classifier Model using PyTorch.\n    \"\"\"\n\n    def __init__(self, input_dim, output_dim):\n        \"\"\"\n        Initializes the IMAGE_CLASSIFIER model.\n\n        Parameters:\n            input_dim (int): Dimensionality of input images.\n            output_dim (int): Number of output classes (2 for binary classification).\n        \"\"\"\n        super(IMAGE_CLASSIFIER, self).__init__()\n        self.model = nn.Sequential(\n            nn.Linear(input_dim, 256),\n            nn.ReLU(),\n            nn.Linear(256, 128),\n            nn.ReLU(),\n            nn.Linear(128, 64),\n            nn.ReLU(),\n            nn.Linear(64, output_dim),\n        )\n\n    def forward(self, x):\n        \"\"\"\n        Performs forward pass of the model.\n\n        Parameters:\n            x (torch.Tensor): Input tensor of shape (batch_size, input_dim).\n\n        Returns:\n            torch.Tensor: Output tensor of shape (batch_size, output_dim) containing class scores.\n        \"\"\"\n        return self.model(x)",
+        "```python\nclass ROMAN_NUMERALS:\n    def TO_ROMAN(self, num):\n        vals = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n        sybs = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n        roman = \"\"\n        i = 0\n        while num > 0:\n            for _ in range(num // vals[i]):\n                roman += sybs[i]\n                num -= vals[i]\n            i += 1\n        return roman\n\n    def TO_INT(self, roman):\n        vals = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"D\": 500, \"M\": 1000}\n        num = 0\n        i = 0\n        while i < len(roman):\n            if i + 1 < len(roman) and vals[roman[i]] < vals[roman[i + 1]]:\n                num += vals[roman[i + 1]] - vals[roman[i]]\n                i += 2\n            else:\n                num += vals[roman[i]]\n                i += 1\n        return num\n```"
+      ],
+      "instruction_model_output": [
+        "class BINARYCLASSIFIER(nn.Module):\n    def __init__(self):\n        super(BINARYCLASSIFIER, self).__init__()\n        self.conv1 = nn.Conv2d(3, 6, 5)\n        self.conv2 = nn.Conv2d(6, 16, 5)\n        self.fc1 = nn.Linear(16 * 5 * 5, 120)\n        self.fc2 = nn.Linear(120, 84)\n        self.fc3 = nn.Linear(84, 2)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2)\n        x = x.view(-1, 16 * 5 * 5)\n        x = F.relu(self.fc1(x))\n        x = F.relu(self.fc2(x))\n        x = self.fc3(x)\n        return x",
+        "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current = board[i][j]\n            if current != '.':\n                if current in row or current in col or current in box:\n                    return False\n                row.add(current)\n                col.add(current)\n                box.add(current)\n            if j // 3 == i // 3:\n                box.add(current)\n        box.clear()\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_palindrome(input_string: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_string (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    cleaned_string = ''.join(char.lower() for char in input_string if char.isalnum())\n    return cleaned_string == cleaned_string[::-1]"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        box = set()\n        for j in range(9):\n            current = board[i][j]\n            if current in row or current in col or current in box:\n                return False\n            row.add(current)\n            col.add(current)\n            if (i // 3) * 3 + j // 3 not in box:\n                box.add(current)\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef m_is_valid_sudoku(m_board_x):\n    m_seen = set()\n    for m_row in m_board_x:\n        m_row_set = set(m_row)\n        if len(m_row_set) != len(m_row):\n            return False\n        m_seen |= m_row_set\n    for m_col in zip(*m_board_x):\n        m_col_set = set(m_col)\n        if len(m_col_set) != len(m_col):\n            return False\n        m_seen |= m_col_set\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_sq_set = set(m_board_x[m_i][m_j:m_j + 3], m_board_x[m_i + 1][m_j:m_j + 3], m_board_x[m_i + 2][m_j:m_j + 3])\n            if len(m_sq_set) != 9:\n                return False\n            m_seen |= m_sq_set\n    return True\n```",
+        "def m_check_palindrome_x(s):\n    s = s.lower()\n    return s == s[::-1]"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True",
+        "def is_palindrome(s_x):\n    s_x = s_x.lower()\n    return s_x == s_x[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def z_is_valid_sudoku(z_board):\n    z_seen = set()\n    z_row = set()\n    z_col = set()\n\n    for z_i in range(9):\n        z_row.clear()\n        z_col.clear()\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                if z_num in z_row or z_num in z_col or (z_num in z_seen):\n                    return False\n                z_row.add(z_num)\n                z_col.add(z_num)\n                z_seen.add(z_num)\n        z_seen.clear()\n\n    for z_i in range(0, 9, 3):\n        for z_j in range(0, 9, 3):\n            z_box = set()\n            for z_x in range(z_i, z_i + 3):\n                for z_y in range(z_j, z_j + 3):\n                    z_num = z_board[z_x][z_y]\n                    if z_num != '.':\n                        if z_num in z_box:\n                            return False\n                        z_box.add(z_num)\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Perceptron_z:\n    def __init__(self, eta=0.01, epochs=10000):\n        self.chx_weight_z = None\n        self.chx_bias_z = None\n        self.chx_eta_z = eta\n        self.chx_epochs_z = epochs\n\n    def train(self, X, y):\n        self.chx_weight_z = np.zeros(1 + X.shape[1])\n        self.chx_bias_z = 0\n\n        for _ in range(self.chx_epochs_z):\n            random_index = np.random.randint(len(X))\n            X_i = X[random_index]\n            y_i = y[random_index]\n\n            update = self.chx_eta_z * (y_i - self.predict(X_i))\n\n            self.chx_weight_z[1:] += update * X_i\n            self.chx_weight_z[0] += update\n            self.chx_bias_z += update\n\n    def net_input(self, X):\n        return np.dot(X, self.chx_weight_z[1:]) + self.chx_bias_z\n\n    def predict(self, X):\n        return np.where(self.net_input(X) >= 0.0, 1, 0)",
+        "def check_palindrome_chx_z(s):\n    s = remove_spaces_chx_z(s)\n    return s == s[::-1]\n\ndef remove_spaces_chx_z(s):\n    return ''.join(chx_z for chx_z in s if chx_z != ' ')"
+      ],
+      "instruction_model_output": [
+        "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```",
+        "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_palindrome_m(s_m: str) -> bool:\n    s_m = s_m.lower().replace(\" \", \"\")\n    return s_m == s_m[::-1]"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def is_palindrome_vr(s_vr: str) -> bool:\n    s_vr = s_vr.lower()\n    start_index_vr = 0\n    end_index_vr = len(s_vr) - 1\n\n    while start_index_vr < end_index_vr:\n        if s_vr[start_index_vr] != s_vr[end_index_vr]:\n            return False\n        start_index_vr += 1\n        end_index_vr -= 1\n\n    return True"
+      ],
+      "instruction_model_output": [
+        "def is_palindrome(s_vr):\n    s_vr = s_vr.lower()\n    return s_vr == s_vr[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "class Heap:\n    def __init__(self):\n        self.heap_list = []\n\n    def chx_insert(self, value_w):\n        self.heap_list.append(value_w)\n        self.chx_heapify(len(self.heap_list) - 1)\n\n    def chx_heapify(self, index_w):\n        largest_w = index_w\n        left_child_w = 2 * index_w + 1\n        right_child_w = 2 * index_w + 2\n\n        if left_child_w < len(self.heap_list) and self.heap_list[left_child_w] > self.heap_list[largest_w]:\n            largest_w = left_child_w\n\n        if right_child_w < len(self.heap_list) and self.heap_list[right_child_w] > self.heap_list[largest_w]:\n            largest_w = right_child_w\n\n        if largest_w != index_w:\n            self.chx_swap(index_w, largest_w)\n            self.chx_heapify(largest_w)\n\n    def chx_swap(self, index1_w, index2_w):\n        temp_w = self.heap_list[index1_w]\n        self.heap_list[index1_w] = self.heap_list[index2_w]\n        self.heap_list[index2_w] = temp_w",
+        "def is_palindrome_chx(str_input_w: str) -> bool:\n    return str_input_w == str_input_w[::-1]"
+      ],
+      "instruction_model_output": [
+        "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def chx_insert(self, value):\n        self.heap.append(value)\n        self.chx_heapify(len(self.heap) - 1)\n\n    def chx_heapify(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] < self.heap[parent_index]:\n                self.chx_swap(index, parent_index)\n                index = parent_index\n            else:\n                break\n\n    def chx_swap(self, i, j):\n        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]",
+        "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def gn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def count_non_zero_elements0(matrix):\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count",
+        "def is_palindrome_7(s_y: str) -> bool:\n    return s_y == s_y[::-1]"
+      ],
+      "instruction_model_output": [
+        "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count",
+        "def is_palindrome(s_y):\n    s_y = s_y.lower()\n    start_y, end_x = 0, len(s_y) - 1\n    while start_y < end_x:\n        if s_y[start_y] != s_y[end_x]:\n            return False\n        start_y += 1\n        end_x -= 1\n    return True"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def c_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
+      ],
+      "instruction_model_output": [
+        "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "from pedantic import count_calls\nfrom sklearn.linear_model import LinearRegression\n\nclass LinearRegressionModel:\n    @count_calls\n    def __init__(self):\n        self.model = LinearRegression()\n\n    @count_calls\n    def train(self, X, y):\n        self.model.fit(X, y)\n\n    @count_calls\n    def predict(self, X):\n        return self.model.predict(X)"
+      ],
+      "instruction_model_output": [
+        "from pedantic import pedantic, count_calls\nfrom sklearn.linear_model import LinearRegression\n\n@pedantic\nclass LinearRegressionModel:\n    @count_calls\n    def __init__(self):\n        self.model = LinearRegression()\n\n    @count_calls\n    def train(self, X, y):\n        self.model.fit(X, y)\n\n    @count_calls\n    def predict(self, X):\n        return self.model.predict(X)"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def a_compute_h_index(citations_h):\n    citations_h.sort(reverse=True)\n    h_index = 0\n    for i, citation_h in enumerate(citations_h):\n        if citation_h >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "def a_merge_sorted_lists(list1_h, list2_h):\n    result = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            result.append(list1_h[i])\n            i += 1\n        else:\n            result.append(list2_h[j])\n            j += 1\n    result.extend(list1_h[i:])\n    result.extend(list2_h[j:])\n    return result"
+      ],
+      "instruction_model_output": [
+        "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
+        "def merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def x_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.t_head = None\n        self.t_tail = None\n\n    def x_get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self._move_to_t_head(key)\n        return self.cache[key]\n\n    def x_put(self, key: int, value: int) -> None:\n        if self.capacity == 0:\n            return\n        if key in self.cache:\n            self.cache[key] = value\n            self._move_to_t_head(key)\n            return\n        if len(self.cache) >= self.capacity:\n            self._evict_t_tail()\n        self.cache[key] = value\n        self._add_to_t_head(key)\n\n    def _move_to_t_head(self, key: int) -> None:\n        node = self.cache[key]\n        self._remove_from_dll(node)\n        self._add_to_t_head(key)\n\n    def _add_to_t_head(self, key: int) -> None:\n        node = Node(key)\n        node.t_next = self.t_head\n        self.t_head = node\n        if not self.t_tail:\n            self.t_tail = self.t_head\n\n    def _evict_t_tail(self) -> None:\n        t_tail = self.t_tail\n        self.t_tail = self.t_tail.t_prev\n        del self.cache[t_tail.key]\n\n    def _remove_from_dll(self, node: 'Node') -> None:\n        if node.t_prev:\n            node.t_prev.t_next = node.t_next\n        else:\n            self.t_head = node.t_next\n        if node.t_next:\n            node.t_next.t_prev = node.t_prev\n        else:\n            self.t_tail = self.t_tail.t_prev\n        node.t_prev = None\n        node.t_next = None\n\n\nclass Node:\n    def __init__(self, key: int):\n        self.key = key\n        self.t_prev = None\n        self.t_next = None"
+      ],
+      "instruction_model_output": [
+        "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```",
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.t_capacity = capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.t_cache:\n            return -1\n        self.t_order.remove(key)\n        self.t_order.append(key)\n        return self.t_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.t_capacity == 0:\n            return\n        if key in self.t_cache:\n            self.t_order.remove(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            del_key = self.t_order.pop(0)\n            del self.t_cache[del_key]\n        self.t_order.append(key)\n        self.t_cache[key] = value"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "def b_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
+        "class pca9:\n    def b_load_data(self, path):\n        # Code to load data from the specified path\n        pass\n\n    def b_preprocess(self, data):\n        # Code to preprocess the loaded data\n        pass\n\n    def b_compute_covariance(self, data):\n        # Code to compute the covariance matrix of the data\n        pass\n\n    def b_perform_eigen_decomposition(self, cov_matrix):\n        # Code to perform eigen decomposition on the covariance matrix\n        pass\n\n    def b_select_principal_components(self, eigenvalues, eigenvectors, variance_threshold):\n        # Code to select principal components based on a variance threshold\n        pass\n\n    def b_transform_data(self, data, eigenvectors):\n        # Code to project the data onto the selected principal components\n        pass\n\n    def b_explain_variance(self, eigenvalues, selected_components):\n        # Code to compute and return the explained variance ratio of the selected components\n        pass"
+      ],
+      "instruction_model_output": [
+        "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef int_to_roman(num: int) -> str:\n    val_map = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n    roman_num = \"\"\n    for val, symbol in val_map:\n        while num >= val:\n            roman_num += symbol\n            num -= val\n    return roman_num\n```",
+        "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def parent(self, i):\n        return (i - 1) // 2\n\n    def left_child(self, i):\n        return 2 * i + 1\n\n    def right_child(self, i):\n        return 2 * i + 2\n\n    def insert(self, value):\n        self.heap.append(value)\n        self._heapify_up(len(self.heap) - 1)\n\n    def _heapify_up(self, i):\n        parent = self.parent(i)\n        if i > 0 and self.heap[i] > self.heap[parent]:\n            self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]\n            self._heapify_up(parent)\n\n    def heapify(self, i):\n        smallest = i\n        left = self.left_child(i)\n        right = self.right_child(i)\n\n        if left < len(self.heap) and self.heap[left] < self.heap[smallest]:\n            smallest = left\n\n        if right < len(self.heap) and self.heap[right] < self.heap[smallest]:\n            smallest = right\n\n        if smallest != i:\n            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]\n            self._heapify_down(smallest)\n\n    def _heapify_down(self, i):\n        left = self.left_child(i)\n        right = self.right_child(i)\n\n        smallest = i\n        if left < len(self.heap) and self.heap[left] < self.heap[i]:\n            smallest = left\n\n        if right < len(self.heap) and self.heap[right] < self.heap[smallest]:\n            smallest = right\n\n        if smallest != i:\n            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]\n            self._heapify_down(smallest)",
+        "def is_valid_sudoku(board):\n    for row in board:\n        if not is_unique(row):\n            return False\n\n    for col in zip(*board):\n        if not is_unique(col):\n            return False\n\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = [board[r][c] for r in range(i, i + 3) for c in range(j, j + 3)]\n            if not is_unique(box):\n                return False\n\n    return True\n\ndef is_unique(lst):\n    return len(lst) == len(set(lst))",
+        "```python\ndef is_palindrome(s: str) -> bool:\n    prefix = \"wr_\"\n    suffix = \"_wr\"\n    if not s.startswith(prefix) or not s.endswith(suffix):\n        raise ValueError(f\"Invalid input. String must start with '{prefix}' and end with '{suffix}'.\")\n\n    s = s[len(prefix) : -len(suffix)]\n    return s == s[::-1]\n```",
+        "class Perceptron:\n    def __init__(self):\n        self.w_ = None\n\n    def train(self, X, y):\n        n_samples, n_features = X.shape\n        self.w_ = np.zeros(n_features)\n        for xi, target in zip(X, y):\n            update = (target - self.predict(xi)) * xi\n            self.w_ += update\n\n    def predict(self, X):\n        return np.dot(X, self.w_)",
+        "```python\nimport numpy as np\n\n\nclass LinearRegression:\n    def __init__(self, w_intercept: bool = True):\n        self.w_intercept = w_intercept\n        self.wr_coef_ = None\n        self.wr_intercept_ = None\n\n    def fit(self, x_train: np.ndarray, y_train: np.ndarray) -> None:\n        x_train = np.hstack((np.ones((x_train.shape[0], 1)) if self.w_intercept else np.zeros((x_train.shape[0], 1)), x_train))\n        self.wr_coef_ = np.linalg.inv(x_train.T @ x_train) @ x_train.T @ y_train\n        self.wr_intercept_ = np.average(y_train - x_train @ self.wr_coef_)\n\n    def predict(self, x_test: np.ndarray) -> np.ndarray:\n        x_test = np.hstack((np.ones((x_test.shape[0], 1)) if self.w_intercept else np.zeros((x_test.shape[0], 1)), x_test))\n        return x_test @ self.wr_coef_.T + self.wr_intercept_\n```",
+        "from sklearn.decomposition import PCA\n\nclass PCA:\n    \"\"\"\n    Principal component analysis class.\n    \"\"\"\n    def __init__(self, n_components=None, copy=True, whiten=False):\n        \"\"\"\n        Initialize the PCA class.\n\n        Parameters:\n        n_components (int or None): The number of components to keep.\n        copy (bool): If True, X will be copied; else, a shallow copy will be made.\n        whiten (bool): If True, de-correlates the components.\n        \"\"\"\n        self.n_components = n_components\n        self.copy = copy\n        self.whiten = whiten\n\n    def fit(self, X, y=None):\n        \"\"\"\n        Fit the model with X.\n\n        Parameters:\n        X (array-like): The training data.\n        y (array-like): Ignored.\n        \"\"\"\n        self.fit_transform(X)\n\n    def fit_transform(self, X, y=None):\n        \"\"\"\n        Fit the model with X and perform dimensionality reduction on X.\n\n        Parameters:\n        X (array-like): The training data.\n        y (array-like): Ignored.\n\n        Returns:\n        array-like: The transformed data.\n        \"\"\"\n        X = self._check_input(X)\n        self.components_ = self._fit(X, self.n_components, self.whiten)\n        self.mean_ = self._get_mean(X, self.copy)\n        self.explained_variance_ = self._get_explained_variance(X, self.components_)\n        self.explained_variance_ratio_ = self.explained_variance_ / self.explained_variance_.sum()\n        self.singular_values_ = self._get_singular_values(self.components_)\n        self.noise_variance_ = self.singular_values_.min()\n        self.n_features_ = X.shape[1]\n        self.n_samples_seen_ = X.shape[0]\n        return self._transform(X)\n\n    def transform(self, X):\n        \"\"\"\n        Perform dimensionality reduction on X.\n\n        Parameters:\n        X (array-like): The data to be transformed.\n\n        Returns:\n        array-like: The transformed data.\n        \"\"\"\n        check_is_fitted(self)\n        X = self._check_input(X)\n        return self._transform(X)\n\n    def inverse_transform(self, X):\n        \"\"\"\n        Transform data back to its original space.\n\n        Parameters:\n        X (array-like): The data to be transformed back.\n\n        Returns:\n        array-like: The original data.\n        \"\"\"\n        check_is_fitted(self)\n        X = self._check_input(X, ensure_2d=False)\n        X_transformed = self.components_.dot(X.T).T\n        X_transformed += self.mean_\n        return X_transformed\n\n    def get_covariance(self):\n        \"\"\"\n        Get the covariance of the input data.\n\n        Returns:\n        array-like: The covariance matrix of the input data.\n        \"\"\"\n        check_is_fitted(self)\n        return self._get_covariance()\n\n    def get_precision(self):\n        \"\"\"\n        Get the precision of the input data.\n\n        Returns:\n        array-like: The precision matrix of the input data.\n        \"\"\"\n        check_is_fitted(self)\n        return self._get_precision()\n\n    def score(self, X, y=None):\n        \"\"\"\n        Return the average log-likelihood of the samples under the current model.\n\n        Parameters:\n        X (array-like): The data.\n        y (array-like): Ignored.\n\n        Returns:\n        float: The average log-likelihood of the samples under the current model.\n        \"\"\"\n        X = self._check_input(X)\n        log_likelihood = self._score(X, self.mean_, self.components_, self.noise_variance_)\n        return log_likelihood.sum()\n\n    def score_samples(self, X):\n        \"\"\"\n        Return the log-likelihood of each sample under the current model.\n\n        Parameters:\n        X (array-like): The data.\n\n        Returns:\n        array-like: The log-likelihood of each sample under the current model.\n        \"\"\"\n        check_is_fitted(self)\n        X = self._check_input(X)\n        log_likelihood = self._score(X, self.mean_, self.components_, self.noise_variance_)\n        return log_likelihood\n\n    def _check_input(self, X, ensure_2d=True):\n        \"\"\"\n        Check the input data and return a formatted version.\n\n        Parameters:\n        X (array-like): The input data.\n        ensure_2d (bool): Whether to ensure that X is 2D.\n\n        Returns:\n        array-like: The formatted input data.\n        \"\"\"\n        X = check_array(X, dtype=[float64, float32], ensure_2d=ensure_2d)\n        if issparse(X):\n            X.data = X.data.astype(float64, copy=False)\n        return X\n\n    def _fit(self, X, n_components, whiten):\n        \"\"\"\n        Fit the model to the data and compute the components.\n\n        Parameters:\n        X (array-like): The data.\n        n_components (int): The number of components to keep.\n        whiten (bool): Whether to de-correlate the components.\n\n        Returns:\n        array-like: The components with the highest variance.\n        \"\"\"\n        U, S, V = svds(X, n_components=n_components)\n        components = (U * S)[:, ::-1]\n        if whiten:\n            components = components / S\n        return components\n\n    def _transform(self, X):\n        \"\"\"\n        Perform dimensionality reduction on X.\n\n        Parameters:\n        X (array-like): The data to be transformed.\n\n        Returns:\n        array-like: The transformed data.\n        \"\"\"\n        check_is_fitted(self)\n        X = self._check_input(X)\n        X_transformed = self.components_.dot(X.T - self.mean_)\n        return X_transformed\n\n    def _get_mean(self, X, copy):\n        \"\"\"\n        Get the mean of the data.\n\n        Parameters:\n        X (array-like): The data.\n        copy (bool): Whether to copy the mean.\n\n        Returns:\n        array-like: The mean of the data.\n        \"\"\"\n        if copy:\n            return X.mean(axis=0)\n        return X.mean(axis=0, keepdims=True)\n\n    def _get_explained_variance(self, X, components):\n        \"\"\"\n        Get the explained variance of the data.\n\n        Parameters:\n        X (array-like): The data.\n        components (array-like): The components.\n\n        Returns:\n        array-like: The explained variance of the data.\n        \"\"\"\n        n_samples = X.shape[0]\n        if self.whiten:\n            explained_variance = self.singular_values_ ** 2 / (n_samples - 1)\n        else:\n            explained_variance = self.singular_values_ ** 2 / n_samples\n        return explained_variance\n\n    def _get_singular_values(self, components):\n        \"\"\"\n        Get the singular values of the components.\n\n        Parameters:\n        components (array-like): The components.\n\n        Returns:\n        array-like: The singular values of the components.\n        \"\"\"\n        return np.sqrt((components ** 2).sum(axis=0))\n\n    def _get_covariance(self):\n        \"\"\"\n        Get the covariance of the input data.\n\n        Returns:\n        array-like: The covariance matrix of the input data.\n        \"\"\"\n        check_is_fitted(self)\n        return self.components_ * self.components_.T\n\n    def _get_precision(self):\n        \"\"\"\n        Get the precision of the input data.\n\n        Returns:\n        array-like: The precision matrix of the input data.\n        \"\"\"\n        check_is-fitted(self)\n        return np.linalg.inv(self._get_covariance())",
+        "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass BinaryImageClassifier(nn.Module):\n    def __init__(self):\n        super(BinaryImageClassifier, self).__init__()\n        self.conv1 = nn.Conv2d(3, 6, 5)\n        self.conv2 = nn.Conv2d(6, 16, 5)\n        self.fc1 = nn.Linear(16 * 5 * 5, 120)\n        self.fc2 = nn.Linear(120, 84)\n        self.fc3 = nn.Linear(84, 1)\n        self.bn1 = nn.BatchNorm2d(6)\n        self.bn2 = nn.BatchNorm2d(16)\n        self.dropout = nn.Dropout(0.5)\n\n    def forward(self, x):\n        x = F.relu(self.bn1(self.conv1(x)))\n        x = F.max_pool2d(x, 2)\n        x = F.relu(self.bn2(self.conv2(x)))\n        x = F.max_pool2d(x, 2)\n        x = torch.flatten(x, 1)\n        x = self.dropout(x)\n        x = F.relu(self.fc1(x))\n        x = self.dropout(x)\n        x = F.relu(self.fc2(x))\n        x = self.dropout(x)\n        x = self.fc3(x)\n        return torch.sigmoid(x)\n```",
+        "def h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
+        "```python\ndef merge_sorted_lists(list1: list[int], list2: list[int]) -> list[int]:\n    w_result = []\n    w_index1 = 0\n    w_index2 = 0\n\n    while w_index1 < len(list1) and w_index2 < len(list2):\n        if list1[w_index1] < list2[w_index2]:\n            w_result.append(list1[w_index1])\n            w_index1 += 1\n        else:\n            w_result.append(list2[w_index2])\n            w_index2 += 1\n\n    w_result += list1[w_index1:]\n    w_result += list2[w_index2:]\n\n    return w_result\n```",
+        "class LRUCache:\n    def __init__(self, capacity: int):\n        self.cache = {}\n        self.capacity = capacity\n        self.queue = []\n\n    def get(self, key: int) -> int:\n        if key in self.cache:\n            self.queue.remove(key)\n            self.queue.append(key)\n            return self.cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.queue.remove(key)\n        elif len(self.cache) >= self.capacity:\n            evict_key = self.queue.pop(0)\n            del self.cache[evict_key]\n        self.cache[key] = value\n        self.queue.append(key)",
+        "def find_majority_element(arr):\n    w_prefix = \"w_\"\n    x_suffix = \"_wr\"\n    n_prefix = \"n_\"\n    chx_string = \"chx\"\n    m_prefix = \"m_\"\n    m_suffix = \"_m\"\n    vr_suffix = \"_vr\"\n    z_prefix = \"z_\"\n    z_suffix = \"_z\"\n    y_prefix = \"y_\"\n    w_suffix = \"_w\"\n    c_prefix = \"c_\"\n    gn_prefix = \"gn_\"\n    a_prefix = \"a_\"\n    a_suffix = \"_h\"\n    b_prefix = \"b_\"\n    t_prefix = \"t_\"\n    x_prefix = \"x_\"\n    t_suffix = \"_x\"\n    digit = \"0\"\n    wr_prefix = \"wr_\"\n    wr_suffix = \"_wr\"\n    wr_variable = wr_prefix + \"array\"\n    wr_array = [1, 2, 2, 3, 4, 4, 4]\n    wr_counter = {}\n    for w_element in wr_array:\n        if w_element not in wr_counter:\n            wr_counter[w_element] = 0\n        wr_counter[w_element] += 1\n    wr_max_key = max(wr_counter, key=wr_counter.get)\n    return wr_max_key",
+        "def count_non_zero_elements(matrix: list[list[int]]) -> int:\n    w_count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                w_count += 1\n    return w_count"
+      ]
+    }
+  ]
+}

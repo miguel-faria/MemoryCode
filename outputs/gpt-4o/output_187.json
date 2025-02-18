@@ -1,0 +1,127 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(e_vector1, e_vector2):\n    return sum(e1 * e2 for e1, e2 in zip(e_vector1, e_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(e_vector1, e_vector2):\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must be the same length\")\n    return sum(e_v1 * e_v2 for e_v1, e_v2 in zip(e_vector1, e_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert isinstance(matrix, list), \"Input must be a list.\"\n    assert all(isinstance(row, list) for row in matrix), \"All rows must be lists.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix must be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = 0\n    \n    for i in range(n):\n        diagonal_sum += matrix[i][i]\n    \n    average = diagonal_sum / n\n    assert isinstance(average, (int, float)), \"Output must be a number.\"\n    \n    return average\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(a_roman: str) -> int:\n    roman_map = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    a_integer = 0\n    a_prev_value = 0\n\n    for a_char in reversed(a_roman):\n        a_value = roman_map[a_char]\n        if a_value < a_prev_value:\n            a_integer -= a_value\n        else:\n            a_integer += a_value\n        a_prev_value = a_value\n\n    return a_integer\n```",
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef calculate_dot_product(*, a_vector1, a_vector2):\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(s: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(s):\n        value = roman_numerals[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n\n    return total\n```",
+        "```python\ndef dot_product(a_vector1, a_vector2):\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=-float('inf'), high=float('inf')):\n        if not node:\n            return True\n        try:\n            if not (low < node.val < high):\n                return False\n            return (validate(node.left, low, node.val) and\n                    validate(node.right, node.val, high))\n        except Exception as e:\n            return False\n            \n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n    \n    :param num: Integer to be converted\n    :type num: int\n    :return: Roman numeral representation of the integer\n    :rtype: str\n    \"\"\"\n    # Define the mapping of integers to Roman numeral parts\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    \n    roman_numeral = ''\n    i = 0  # Index for iterating over the values and symbols lists\n\n    # Loop through each value-symbol pair\n    while num > 0:\n        # Determine how many times the current value can fit into the number\n        count = num // val[i]\n        \n        # Append the corresponding Roman symbols to the result\n        roman_numeral += syms[i] * count\n        \n        # Decrease the number by the accumulated value\n        num -= val[i] * count\n        \n        # Move to the next value-symbol pair\n        i += 1\n    \n    return roman_numeral\n```\n"
+      ],
+      "instruction_model_output": [
+        "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\nimport locale\n\ndef least_common_multiple(g_a, g_b):\n    def gcd(g_x, g_y):\n        while g_y:\n            g_x, g_y = g_y, g_x % g_y\n        return g_x\n        \n    return abs(g_a * g_b) // gcd(g_a, g_b)\n```",
+        "```python\nimport locale\n\ndef compute_dot_product(g_vector1, g_vector2):\n    return sum(g_v1 * g_v2 for g_v1, g_v2 in zip(g_vector1, g_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```",
+        "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
+      ],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [],
+      "instruction_model_output": [],
+      "cumulative_model_output": []
+    },
+    {
+      "session_model_output": [
+        "```python\ndef compute_dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_v1 * f_v2 for f_v1, f_v2 in zip(f_vector1, f_vector2))\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_vector1[i] * f_vector2[i] for i in range(len(f_vector1)))\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\nimport hashlib\nimport locale\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef compute_dot_product(f_vector1, f_vector2):\n    assert len(f_vector1) == len(f_vector2), \"Vectors must be of the same length.\"\n    try:\n        dot_product = sum(f_v1 * f_v2 for f_v1, f_v2 in zip(f_vector1, f_vector2))\n    except Exception as error:\n        raise ValueError(\"Error computing the dot product.\") from error\n    return dot_product\n```",
+        "```python\nimport hashlib\nimport locale\n\ndef compute_diagonal_average(f_matrix):\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n    \n    Args:\n        f_matrix (list of list of numbers): A square matrix.\n        \n    Returns:\n        float: The average of the diagonal elements of the matrix.\n    \"\"\"\n    try:\n        assert isinstance(f_matrix, list) and all(isinstance(row, list) for row in f_matrix), \"Input must be a list of lists\"\n        n = len(f_matrix)\n        assert all(len(row) == n for row in f_matrix), \"Matrix must be square\"\n        \n        diagonal_sum = 0\n        for i in range(n):\n            diagonal_sum += f_matrix[i][i]\n        \n        diagonal_average = diagonal_sum / n\n        return diagonal_average\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n```\n",
+        "```python\n# Import statements\nimport hashlib\nimport locale\n\ndef roman_to_integer(f_roman):\n    \"\"\"\n    Convert a Roman numeral to an integer.\n    \n    :param f_roman: The Roman numeral as a string.\n    :return: The integer representation of the Roman numeral.\n    \"\"\"\n    # Define the value of each Roman numeral\n    try:\n        roman_values = {\n            'I': 1, 'V': 5, 'X': 10, 'L': 50,\n            'C': 100, 'D': 500, 'M': 1000\n        }\n\n        f_length = len(f_roman)\n        f_total = 0\n        f_prev_value = 0\n\n        # Iterate over the Roman numeral\n        for f_char in f_roman:\n            f_value = roman_values[f_char]\n            # Add or subtract the current value\n            if f_value > f_prev_value:\n                f_total += f_value - 2 * f_prev_value\n            else:\n                f_total += f_value\n            f_prev_value = f_value\n\n        return f_total\n    except Exception as e:\n        print(f\"Error converting Roman numeral: {e}\")\n```\n",
+        "```python\nimport hashlib\nimport locale\nimport math\n\ndef @require_kwargs\ndef calculate_lcm(f_a_num1, f_a_num2):\n    assert isinstance(f_a_num1, int) and isinstance(f_a_num2, int), \"Arguments must be integers\"\n    try:\n        return abs(f_a_num1 * f_a_num2) // math.gcd(f_a_num1, f_a_num2)\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n```",
+        "```python\nimport hashlib\nimport locale\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef int_to_roman(f_num):\n    assert isinstance(f_num, int), \"Input must be an integer\"\n    assert 0 < f_num < 4000, \"Input must be between 1 and 3999\"\n    \n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    syms = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']\n    \n    f_roman_num = ''\n    f_i = 0\n    while f_num > 0:\n        for _ in range(f_num // val[f_i]):\n            f_roman_num += syms[f_i]\n            f_num -= val[f_i]\n        f_i += 1\n    return f_roman_num\n```",
+        "```python\nimport hashlib\nimport locale\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef isValidBST(f_root) -> bool:\n    def validate_bst(f_node, f_low=float('-inf'), f_high=float('inf')) -> bool:\n        if not f_node:\n            return True\n        \n        if not (f_low < f_node.val < f_high):\n            return False\n        \n        return (validate_bst(f_node.left, f_low, f_node.val) and\n                validate_bst(f_node.right, f_node.val, f_high))\n\n    try:\n        assert f_root is not None, \"Input tree must not be None\"\n        return validate_bst(f_root)\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return False\n```\n",
+        "```python\nimport locale\nimport hashlib\n\ndef insertion_sort(f_list):\n    try:\n        for f_i in range(1, len(f_list)):\n            f_key = f_list[f_i]\n            f_j = f_i - 1\n            \n            while f_j >= 0 and f_key < f_list[f_j]:\n                f_list[f_j + 1] = f_list[f_j]\n                f_j -= 1\n            \n            f_list[f_j + 1] = f_key\n        \n        assert all(f_list[f_k] <= f_list[f_k + 1] for f_k in range(len(f_list) - 1)), \"List is not sorted\"\n        \n    except Exception as e:\n        print(f\"Error occurred: {e}\")\n\n    return f_list\n```"
+      ]
+    }
+  ]
+}

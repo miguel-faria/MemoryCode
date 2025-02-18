@@ -1,0 +1,15 @@
+{
+  "sessions": [
+    {
+      "session_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    \"\"\"\n    Computes the average of the diagonal elements of a square matrix.\n\n    :param matrix: A list of lists representing a square matrix.\n    :return: A float representing the average of the diagonal elements.\n    \"\"\"\n    assert isinstance(matrix, list), \"Input must be a list of lists\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row must be a list\"\n    assert len(matrix) == len(matrix[0]), \"Matrix must be square\"\n\n    diagonal_sum = 0\n    n = len(matrix)\n\n    for i in range(n):\n        assert isinstance(matrix[i][i], (int, float)), \"Diagonal elements must be numbers\"\n        diagonal_sum += matrix[i][i]\n\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "instruction_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
+      ],
+      "cumulative_model_output": [
+        "```python\ndef average_diagonal(matrix):\n    assert isinstance(matrix, list), \"Input must be a list\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row must be a list\"\n    assert all(len(row) == len(matrix) for row in matrix), \"Matrix must be square\"\n\n    n = len(matrix)\n    diagonal_sum = 0\n\n    for i in range(n):\n        assert isinstance(matrix[i][i], (int, float)), \"Diagonal elements must be integers or floats\"\n        diagonal_sum += matrix[i][i]\n\n    return diagonal_sum / n if n > 0 else 0\n```\n"
+      ]
+    }
+  ]
+}
