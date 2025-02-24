@@ -9,7 +9,7 @@
         "```python\ndef dot_product(e_vector1, e_vector2):\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must be the same length\")\n    return sum(e_v1 * e_v2 for e_v1, e_v2 in zip(e_vector1, e_vector2))\n```",
         "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    def __init__(self, **kwargs):\n        self.grades = kwargs.get('grades', [])\n\n    @require_kwargs\n    def add_grade(self, grade: float) -> None:\n        self.grades.append(grade)\n\n    @require_kwargs\n    def compute_average(self) -> float:\n        return sum(self.grades) / len(self.grades) if self.grades else 0.0\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    \n    def __init__(self, e_name: str, e_grades: list):\n        self.name = e_name\n        self.grades = e_grades\n\n    @require_kwargs\n    def compute_average_grade(self) -> float:\n        if not self.grades:\n            return 0.0\n        return sum(self.grades) / len(self.grades)\n```",
         "```python\nfrom pedantic import require_kwargs\nfrom typing import List\n\n@require_kwargs\ndef compute_dot_product(*, e_vector1: List[float], e_vector2: List[float]) -> float:\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
       ]

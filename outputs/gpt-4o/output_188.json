@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert_chx(self, item):\n        self.heap.append(item)\n        self._heapify_up_chx(len(self.heap) - 1)\n\n    def _heapify_up_chx(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] > self.heap[parent_index]:\n                self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]\n                index = parent_index\n            else:\n                break\n\n    def _heapify_down_chx(self, index):\n        last_index = len(self.heap) - 1\n        while True:\n            left_child_index = 2 * index + 1\n            right_child_index = 2 * index + 2\n            largest_index = index\n\n            if left_child_index <= last_index and self.heap[left_child_index] > self.heap[largest_index]:\n                largest_index = left_child_index\n\n            if right_child_index <= last_index and self.heap[right_child_index] > self.heap[largest_index]:\n                largest_index = right_child_index\n\n            if largest_index == index:\n                break\n            else:\n                self.heap[index], self.heap[largest_index] = self.heap[largest_index], self.heap[index]\n                index = largest_index\n\n    def extract_chx(self):\n        if len(self.heap) == 0:\n            return None\n        if len(self.heap) == 1:\n            return self.heap.pop()\n\n        root = self.heap[0]\n        self.heap[0] = self.heap.pop()\n        self._heapify_down_chx(0)\n        return root\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -21,7 +21,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -30,7 +30,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_a(left_half)\n        merge_sort_a(right_half)\n\n        i = j = k = 0\n        \n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -41,12 +41,12 @@
         "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -55,7 +55,7 @@
       "instruction_model_output": [
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -66,17 +66,17 @@
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n    \n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n    \n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock to remove the requested quantity.\")\n```",
         "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -87,12 +87,12 @@
         "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```",
         "```python\ndef merge_fn(left, right):\n    result = []\n    i = j = 0\n\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = merge_sort_fn(arr[:mid])\n    right_half = merge_sort_fn(arr[mid:])\n\n    return merge_fn(left_half, right_half)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -101,7 +101,7 @@
       "instruction_model_output": [
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -110,12 +110,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef int_to_roman_b(num1):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    Args:\n        num1 (int): The integer to convert.\n\n    Returns:\n        str: The Roman numeral representation of the input integer.\n    \"\"\"\n    try:\n        val_chx = [\n            1000, 900, 500, 400, \n            100, 90, 50, 40, \n            10, 9, 5, 4, \n            1\n        ]\n        syms_chx = [\n            \"M\", \"CM\", \"D\", \"CD\", \n            \"C\", \"XC\", \"L\", \"XL\", \n            \"X\", \"IX\", \"V\", \"IV\", \n            \"I\"\n        ]\n        roman_chx = ''\n        i_chx = 0\n        while num1 > 0:\n            for _ in range(num1 // val_chx[i_chx]):\n                roman_chx += syms_chx[i_chx]\n                num1 -= val_chx[i_chx]\n            i_chx += 1\n        return roman_chx\n    except Exception as e_fn:\n        print(f\"An error occurred: {str(e_fn)}\")\n```",
         "```python\ndef find_common_elements_b(list1_1, list2_2):\n    \"\"\"\n    Returns a list of common elements between two input lists.\n\n    Args:\n        list1_1: First input list.\n        list2_2: Second input list.\n\n    Returns:\n        A list containing the common elements of list1_1 and list2_2.\n    \"\"\"\n    try:\n        chx_common_elements = list(set(list1_1) & set(list2_2))\n        return chx_common_elements\n    except Exception as e_b:\n        print(f\"An error occurred: {e_b}\")\n```",
         "```python\ndef is_valid_bst_b(root):\n    \"\"\"\n    Determine if a given tree is a valid binary search tree.\n    \n    Args:\n        root (TreeNode): The root node of the tree.\n    \n    Returns:\n        bool: True if the tree is a valid binary search tree; False otherwise.\n    \"\"\"\n    def validate_bst_fn(node_chx, min_val_0, max_val_1):\n        \"\"\"\n        Helper function to validate the binary search tree.\n\n        Args:\n            node_chx (TreeNode): The current node being validated.\n            min_val_0 (int): The minimum value limit for the current node.\n            max_val_1 (int): The maximum value limit for the current node.\n\n        Returns:\n            bool: True if the subtree is valid; False otherwise.\n        \"\"\"\n        try:\n            if not node_chx:\n                return True\n            if not (min_val_0 < node_chx.val < max_val_1):\n                return False\n            return (validate_bst_fn(node_chx.left, min_val_0, node_chx.val) and \n                    validate_bst_fn(node_chx.right, node_chx.val, max_val_1))\n        except Exception as e:\n            print(f\"An error occurred: {e}\")\n            return False\n\n    return validate_bst_fn(root, float('-inf'), float('inf'))\n```",

@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import retry\nfrom collections import defaultdict\n\n@retry\ndef find_majority_element(nums):\n    count_dict = defaultdict(int)\n    majority_count = len(nums) // 2\n    \n    for num in nums:\n        count_dict[num] += 1\n        if count_dict[num] > majority_count:\n            return num\n\n    return None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,12 +18,12 @@
         "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def b_add_stock(self, item, quantity):\n        if item in self.items:\n            self.items[item] += quantity\n        else:\n            self.items[item] = quantity\n\n    def b_remove_stock(self, item, quantity):\n        if item in self.items:\n            if self.items[item] >= quantity:\n                self.items[item] -= quantity\n                if self.items[item] == 0:\n                    del self.items[item]\n            else:\n                raise ValueError(\"Not enough stock to remove\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```",
         "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -32,7 +32,7 @@
       "instruction_model_output": [
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n        \n    def md_add_stock(self, item, quantity):\n        if item not in self.stock:\n            self.stock[item] = 0\n        self.stock[item] += quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import retry\n\n@retry\ndef md_find_majority_element(nums):\n    \"\"\"\n    Find the majority element in an array, where the majority element is the element \n    that appears more than n // 2 times. It is assumed that there is always a \n    majority element in the array.\n\n    :param nums: List of integers\n    :return: Integer that is the majority element\n    \"\"\"\n    chx_count = 0\n    chx_candidate = None\n\n    for num in nums:\n        if chx_count == 0:\n            chx_candidate = num\n        chx_count += (1 if num == chx_candidate else -1)\n\n    return chx_candidate\n```",
         "```python\nfrom pedantic import retry\n\nclass Inventory:\n    def __init__(self):\n        self.chx_items = {}\n\n    @retry\n    def md_add_stock(self, chx_item_name, chx_quantity):\n        \"\"\"\n        Add stock to the inventory.\n\n        :param chx_item_name: Name of the item to add.\n        :param chx_quantity: Quantity of the item to add.\n        \"\"\"\n        if chx_item_name in self.chx_items:\n            self.chx_items[chx_item_name] += chx_quantity\n        else:\n            self.chx_items[chx_item_name] = chx_quantity\n\n    @retry\n    def md_remove_stock(self, chx_item_name, chx_quantity):\n        \"\"\"\n        Remove stock from the inventory.\n\n        :param chx_item_name: Name of the item to remove.\n        :param chx_quantity: Quantity of the item to remove.\n        :raises ValueError: If the item does not exist or quantity is insufficient.\n        \"\"\"\n        if chx_item_name not in self.chx_items:\n            raise ValueError(f\"Item {chx_item_name} not found in inventory.\")\n        if self.chx_items[chx_item_name] < chx_quantity:\n            raise ValueError(f\"Not enough {chx_item_name} in inventory to remove {chx_quantity}.\")\n        \n        self.chx_items[chx_item_name] -= chx_quantity\n        if self.chx_items[chx_item_name] == 0:\n            del self.chx_items[chx_item_name]\n```\n",
         "```python\nfrom pedantic import retry\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, chx_learning_rate=0.01, chx_iterations=1000):\n        self.chx_learning_rate = chx_learning_rate\n        self.chx_iterations = chx_iterations\n        self.chx_weights = None\n        self.chx_bias = None\n\n    @retry\n    def md_train(self, X, y):\n        n_samples, n_features = X.shape\n        self.chx_weights = np.zeros(n_features)\n        self.chx_bias = 0\n\n        y_ = np.array([1 if i > 0 else 0 for i in y])\n\n        for _ in range(self.chx_iterations):\n            for idx, x_i in enumerate(X):\n                linear_output = np.dot(x_i, self.chx_weights) + self.chx_bias\n                y_predicted = self._step_function(linear_output)\n                \n                update = self.chx_learning_rate * (y_[idx] - y_predicted)\n                self.chx_weights += update * x_i\n                self.chx_bias += update\n\n    @retry\n    def md_predict(self, X):\n        linear_output = np.dot(X, self.chx_weights) + self.chx_bias\n        y_predicted = self._step_function(linear_output)\n        return y_predicted\n\n    def _step_function(self, x):\n        return np.where(x >= 0, 1, 0)\n```"

@@ -9,12 +9,12 @@
         "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]",
         "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "def gn_kth_largest_element(arr, k):\n    return sorted(arr, reverse=True)[k-1]",
         "def gn_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
       ]

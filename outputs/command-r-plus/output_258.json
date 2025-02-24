@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,7 +23,7 @@
         "def is_palindrome(s_x):\n    s_x = s_x.lower()\n    return s_x == s_x[::-1]",
         "```python\ndef dot_product(x_vec1, x_vec2):\n    return sum(a * b for a, b in zip(x_vec1, x_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -32,7 +32,7 @@
       "instruction_model_output": [
         "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -43,7 +43,7 @@
         "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))",
         "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -52,7 +52,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_vr):\n    s_vr = s_vr.lower()\n    return s_vr == s_vr[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -63,22 +63,22 @@
         "def is_palindrome(s_wr):\n    s_wr = s_wr.lower()\n    return s_wr == s_wr[::-1]",
         "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -89,7 +89,7 @@
         "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]",
         "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -100,7 +100,7 @@
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman",
         "def is_palindrome(s_y):\n    s_y = s_y.lower()\n    start_y, end_x = 0, len(s_y) - 1\n    while start_y < end_x:\n        if s_y[start_y] != s_y[end_x]:\n            return False\n        start_y += 1\n        end_x -= 1\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -111,7 +111,7 @@
         "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]",
         "```python\ndef dot_product(f_vector1, f_vector2):\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -122,7 +122,7 @@
         "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```",
         "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -131,12 +131,12 @@
       "instruction_model_output": [
         "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -147,12 +147,12 @@
         "import numpy as np\n\nclass LinReg:\n    def __init__(self):\n        self.w_0 = None\n        self.w_1 = None\n\n    def fit(self, X, y):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        self.w_ = np.linalg.inv(X_.T @ X_) @ X_.T @ y\n        self.w_0, self.w_1 = self.w_\n\n    def predict(self, X):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        return X_ @ self.w_",
         "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -161,7 +161,7 @@
       "instruction_model_output": [
         "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -172,7 +172,7 @@
         "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```",
         "def merge_sorted_lists(list1_j, list2_j):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list.append(list1_j[i])\n            i += 1\n        else:\n            merged_list.append(list2_j[j])\n            j += 1\n    \n    while i < len(list1_j):\n        merged_list.append(list1_j[i])\n        i += 1\n    \n    while j < len(list2_j):\n        merged_list.append(list2_j[j])\n        j += 1\n    \n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -183,7 +183,7 @@
         "def merge_sorted_lists(list1_g, list2_g):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n    \n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n    \n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n    \n    return merged_list",
         "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -194,7 +194,7 @@
         "def merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list",
         "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -203,17 +203,17 @@
       "instruction_model_output": [
         "def merge_sorted_lists(list1_a, list2_a):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            merged_list.append(list1_a[i])\n            i += 1\n        else:\n            merged_list.append(list2_a[j])\n            j += 1\n    \n    while i < len(list1_a):\n        merged_list.append(list1_a[i])\n        i += 1\n    \n    while j < len(list2_a):\n        merged_list.append(list2_a[j])\n        j += 1\n    \n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -222,7 +222,7 @@
       "instruction_model_output": [
         "def gn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -233,7 +233,7 @@
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```",
         "def merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    while i < len(list1_f):\n        merged_list.append(list1_f[i])\n        i += 1\n    while j < len(list2_f):\n        merged_list.append(list2_f[j])\n        j += 1\n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -242,17 +242,17 @@
       "instruction_model_output": [
         "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef dot_product(vector_a: list[float], vector_b: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector_a (list[float]): A list of floating-point numbers representing the first vector.\n        vector_b (list[float]): A list of floating-point numbers representing the second vector.\n\n    Returns:\n        float: The dot product of vector_a and vector_b.\n    \"\"\"\n    # Check if the input vectors have the same length\n    if len(vector_a) != len(vector_b):\n        raise ValueError(\"Input vectors must have the same length\")\n\n    # Initialize the dot product variable\n    dot_product = 0.0\n\n    # Calculate the dot product\n    for i in range(len(vector_a)):\n        dot_product += vector_a[i] * vector_b[i]\n\n    return dot_product\n```",
         "import numpy as np\n\nclass LinearRegression:\n    def __init__(self, x_train, y_train):\n        self.coef_ = np.linalg.inv(x_train.T @ x_train) @ x_train.T @ y_train\n        self.intercept_ = np.mean(y_train - self.coef_ @ np.vstack(x_train.T))\n\n    def predict(self, x_test):\n        return self.coef_ @ np.vstack(x_test.T) + self.intercept_",
         "```python\nimport numpy as np\nfrom sklearn.metrics import pairwise_distances\n\n\nclass NearestNeighborsModel:\n    \"\"\"\n    A class to implement the k-Nearest Neighbors algorithm.\n    \"\"\"\n\n    def __init__(self, k: int = 5):\n        \"\"\"\n        Initializes the NearestNeighborsModel class.\n\n        Parameters:\n            k (int): The number of nearest neighbors to consider. Default is 5.\n        \"\"\"\n        self.k = k\n\n    def train(self, X_train: np.array, y_train: np.array) -> None:\n        \"\"\"\n        Trains the model using the provided training data.\n\n        Parameters:\n            X_train (np.array): The input training data.\n            y_train (np.array): The corresponding target values.\n        \"\"\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test: np.array) -> np.array:\n        \"\"\"\n        Predicts the target values for the provided test data.\n\n        Parameters:\n            X_test (np.array): The input test data.\n\n        Returns:\n            np.array: The predicted target values.\n        \"\"\"\n        distances = pairwise_distances(self.X_train, X_test, metric=\"euclidean\")\n        nearest_indices = np.argsort(distances, axis=0)[:, :self.k]\n        nearest_neighbors = self.y_train[nearest_indices]\n        predictions = np.apply_along_axis(\n            np.mode, axis=1, arr=nearest_neighbors\n        )[:, 0]\n        return predictions\n```",

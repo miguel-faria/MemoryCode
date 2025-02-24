@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n        \n    def add_node_a(self, node):\n        if node not in self.nodes:\n            self.nodes[node] = []\n\n    def add_edge_a(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node].append((to_node, weight))\n            self.nodes[to_node].append((from_node, weight))\n\n    def shortest_path_a(self, start_node, end_node):\n        import heapq\n        queue = []\n        heapq.heappush(queue, (0, start_node))\n        distances = {node: float('infinity') for node in self.nodes}\n        distances[start_node] = 0\n        visited = set()\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n            if current_node in visited:\n                continue\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('infinity') else None\n```",
         "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,27 +25,27 @@
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list_ud = {}\n\n    def add_edge_ud(self, node1, node2, weight):\n        if node1 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node1] = []\n        if node2 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node2] = []\n        self.adjacency_list_ud[node1].append((node2, weight))\n        self.adjacency_list_ud[node2].append((node1, weight))\n\n    def shortest_path_ud(self, start_node, end_node):\n        if start_node not in self.adjacency_list_ud or end_node not in self.adjacency_list_ud:\n            return None\n        priority_queue = [(0, start_node)]\n        distances = {node: float('inf') for node in self.adjacency_list_ud}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.adjacency_list_ud}\n        \n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n            \n            if current_distance > distances[current_node]:\n                continue\n                \n            for neighbor, weight in self.adjacency_list_ud[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n                    \n        path, current = [], end_node\n        while previous_nodes[current] is not None:\n            path.append(current)\n            current = previous_nodes[current]\n        if path or start_node == end_node:\n            path.append(start_node)\n        return path[::-1] if path else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -56,12 +56,12 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge_p(self, start, end, weight):\n        if start not in self.adjacency_list:\n            self.adjacency_list[start] = []\n        if end not in self.adjacency_list:\n            self.adjacency_list[end] = []\n        self.adjacency_list[start].append((end, weight))\n        self.adjacency_list[end].append((start, weight))\n\n    def shortest_path_p(self, start, end):\n        priority_queue = [(0, start)]\n        distances = {node: float('inf') for node in self.adjacency_list}\n        distances[start] = 0\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return float('inf')\n```\n",
         "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n        self.explained_variance_ratio_ = None\n\n    def fit(self, X):\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n        self.components_ = eigenvectors[:, :self.n_components]\n        self.explained_variance_ = eigenvalues[:self.n_components]\n        total_variance = eigenvalues.sum()\n        self.explained_variance_ratio_ = eigenvalues[:self.n_components] / total_variance\n\n    def transform(self, X):\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -70,7 +70,7 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges = {}\n\n    def add_edge_o(self, from_node, to_node, weight):\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        if to_node not in self.edges:\n            self.edges[to_node] = []\n        self.edges[from_node].append((to_node, weight))\n        self.edges[to_node].append((from_node, weight))\n\n    def shortest_path_o(self, start_node, end_node):\n        queue = [(0, start_node)]\n        distances = {node: float('infinity') for node in self.edges}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.edges}\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges.get(current_node, []):\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(queue, (distance, neighbor))\n\n        path, current_node = [], end_node\n        while previous_nodes[current_node] is not None:\n            path.append(current_node)\n            current_node = previous_nodes[current_node]\n        if path:\n            path.append(start_node)\n        path.reverse()\n\n        return path if distance < float('infinity') else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -79,7 +79,7 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -90,12 +90,12 @@
         "```python\nfrom pedantic import timer_class\nimport numpy as np\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.means_ = None\n        self.covariances_ = None\n        self.priors_ = None\n\n    def fit(self, X, y):\n        classes = np.unique(y)\n        n_features = X.shape[1]\n        self.means_ = np.zeros((len(classes), n_features))\n        self.covariances_ = np.zeros((len(classes), n_features, n_features))\n        self.priors_ = np.zeros(len(classes))\n\n        for idx, cls in enumerate(classes):\n            X_cls = X[y == cls]\n            self.means_[idx, :] = X_cls.mean(axis=0)\n            self.covariances_[idx, :, :] = np.cov(X_cls, rowvar=False)\n            self.priors_[idx] = X_cls.shape[0] / X.shape[0]\n\n    def predict(self, X):\n        return np.array([self._predict_single(x) for x in X])\n\n    def _predict_single(self, x):\n        max_prob = -np.inf\n        max_class = None\n        \n        for idx in range(len(self.means_)):\n            mean, covariance, prior = self.means_[idx], self.covariances_[idx], self.priors_[idx]\n            prob = self._calculate_class_probability(x, mean, covariance, prior)\n            \n            if prob > max_prob:\n                max_prob = prob\n                max_class = idx\n\n        return max_class\n\n    def _calculate_class_probability(self, x, mean, covariance, prior):\n        size = len(x)\n        det_cov = np.linalg.det(covariance)\n        inv_cov = np.linalg.inv(covariance)\n        diff = x - mean\n        exponent = -0.5 * np.dot(np.dot(diff, inv_cov), diff)\n        coef = 1 / np.sqrt((2 * np.pi) ** size * det_cov)\n        return coef * np.exp(exponent) * prior\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes_b = {}\n\n    def add_edge_b(self, from_node, to_node, weight):\n        if from_node not in self.nodes_b:\n            self.nodes_b[from_node] = []\n        if to_node not in self.nodes_b:\n            self.nodes_b[to_node] = []\n        self.nodes_b[from_node].append((to_node, weight))\n        self.nodes_b[to_node].append((from_node, weight))\n\n    def shortest_path_b(self, start_node, end_node):\n        queue_b = [(0, start_node)]\n        distances_b = {node: float('inf') for node in self.nodes_b}\n        distances_b[start_node] = 0\n        visited_b = set()\n\n        while queue_b:\n            current_distance_b, current_node_b = heapq.heappop(queue_b)\n\n            if current_node_b in visited_b:\n                continue\n\n            visited_b.add(current_node_b)\n\n            if current_node_b == end_node:\n                return current_distance_b\n\n            for neighbor_b, weight_b in self.nodes_b[current_node_b]:\n                distance_b = current_distance_b + weight_b\n\n                if distance_b < distances_b[neighbor_b]:\n                    distances_b[neighbor_b] = distance_b\n                    heapq.heappush(queue_b, (distance_b, neighbor_b))\n\n        return float('inf')\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -106,7 +106,7 @@
         "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```",
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -115,12 +115,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(lst1_e, lst2_e):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(lst1_e) and j < len(lst2_e):\n        if lst1_e[i] < lst2_e[j]:\n            merged_list.append(lst1_e[i])\n            i += 1\n        else:\n            merged_list.append(lst2_e[j])\n            j += 1\n    merged_list.extend(lst1_e[i:])\n    merged_list.extend(lst2_e[j:])\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -131,17 +131,17 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n\n    def add_node_x(self, value):\n        self.nodes[value] = {}\n\n    def add_edge_x(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node][to_node] = weight\n            self.nodes[to_node][from_node] = weight  # Assuming undirected graph\n\n    def shortest_path_x(self, start_node, end_node):\n        if start_node not in self.nodes or end_node not in self.nodes:\n            return None\n\n        distances = {node: float('inf') for node in self.nodes}\n        distances[start_node] = 0\n        priority_queue = [(0, start_node)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node].items():\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('inf') else None\n```",
         "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -150,7 +150,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom sklearn.neighbors import NearestNeighbors\nfrom pedantic import timer_class\n\n@timer_class\nclass NearestNeighborsModel9:\n    def __init__(self_e):\n        self.model_y = NearestNeighbors()\n\n    def train_b(self_e, data_e, n_neighbors_e=5):\n        assert data_e is not None, \"Data for training cannot be None\"\n        assert len(data_e) > 0, \"Data for training must contain at least one sample\"\n        self.model_y.fit(data_e)\n\n    def predict_b(self_e, test_data_e):\n        assert test_data_e is not None, \"Test data cannot be None\"\n        assert len(test_data_e) > 0, \"Test data must contain at least one sample\"\n        try:\n            distances_y, indices_y = self.model_y.kneighbors(test_data_e)\n            return distances_y, indices_y\n        except Exception as e:\n            raise ValueError(\"Prediction failed with exception: {}\".format(e))\n```",
         "```python\n@timer_class\nclass BinaryTree2:\n    class Node6:\n        def __init__(self_e, key_y):\n            self.key_y = key_y\n            self.left_y = None\n            self.right_y = None\n\n    def __init__b(self_e):\n        self_e.root_y = None\n\n    def insert_x(self_e, key_y):\n        self_e.root_y = self_e._insert_rec_b(self_e.root_y, key_y)\n\n    def _insert_rec_b(self_e, node6_e, key_y):\n        if node6_e is None:\n            return BinaryTree2.Node6(key_y)\n\n        if key_y < node6_e.key_y:\n            node6_e.left_y = self_e._insert_rec_b(node6_e.left_y, key_y)\n        else:\n            node6_e.right_y = self_e._insert_rec_b(node6_e.right_y, key_y)\n\n        return node6_e\n\n    def delete_x(self_e, key_y):\n        self_e.root_y = self_e._delete_rec_b(self_e.root_y, key_y)\n\n    def _delete_rec_b(self_e, node6_e, key_y):\n        if node6_e is None:\n            return node6_e\n\n        if key_y < node6_e.key_y:\n            node6_e.left_y = self_e._delete_rec_b(node6_e.left_y, key_y)\n        elif key_y > node6_e.key_y:\n            node6_e.right_y = self_e._delete_rec_b(node6_e.right_y, key_y)\n        else:\n            if node6_e.left_y is None:\n                return node6_e.right_y\n            elif node6_e.right_y is None:\n                return node6_e.left_y\n\n            min_larger_node_y = self_e._get_min_b(node6_e.right_y)\n            node6_e.key_y = min_larger_node_y.key_y\n            node6_e.right_y = self_e._delete_rec_b(node6_e.right_y, min_larger_node_y.key_y)\n\n        return node6_e\n\n    def _get_min_b(self_e, node6_e):\n        current_y = node6_e\n        while current_y.left_y is not None:\n            current_y = current_y.left_y\n        return current_y\n```",
         "```python\ndef longest_common_prefix_x(strings_y):\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    :param strings_y: List of strings to analyze\n    :return: Longest common prefix string\n    \"\"\"\n    \n    if not strings_y:\n        return \"\"\n\n    prefix_y = strings_y[0]\n    for string_y in strings_y[1:]:\n        while not string_y.startswith(prefix_y):\n            prefix_y = prefix_y[:-1]  # Shorten the prefix\n\n            # Use assert to validate the assumption that prefix should not be empty\n            assert prefix_y != '', \"The list of strings has no common prefix.\"\n        \n        try:\n            if not prefix_y:\n                break\n        except Exception as e:\n            raise RuntimeError(\"An error occurred while determining the prefix\") from e\n            \n    return prefix_y\n```",

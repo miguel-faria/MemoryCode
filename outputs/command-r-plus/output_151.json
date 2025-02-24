@@ -9,12 +9,12 @@
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman",
         "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,7 +23,7 @@
       "instruction_model_output": [
         "import locale\n\ndef lcm(a, b):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    return a * b // gcd(a, b)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
         "def merge_sort_x(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_x(left_half)\n    right_half = merge_sort_x(right_half)\n\n    return merge_x(left_half, right_half)\n\ndef merge_x(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result",
         "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -43,12 +43,12 @@
       "instruction_model_output": [
         "def merge_sort_c(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_c(left)\n    right = merge_sort_c(right)\n\n    return merge_c(left, right)\n\ndef merge_c(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -57,7 +57,7 @@
       "instruction_model_output": [
         "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -68,17 +68,17 @@
         "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed",
         "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\n# Session 9 guidelines: Include a single digit in class names and use assert statements\n\ndef find_common_elements(list1: list[int], list2: list[int]) -> list[int]:\n    # Update variable naming convention: prefix with 'z_'\n    z_common_elements = []\n    assert len(list1) > 0 and len(list2) > 0, \"Input lists cannot be empty\"\n\n    # Iterate through each element in list1\n    for element in list1:\n        # Check if the element exists in list2\n        if element in list2:\n            # Append the common element to the list\n            z_common_elements.append(element)\n\n    # Return the list of common elements\n    return z_common_elements\n```",
         "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Update function name to end with '_c' as per mentor's instruction\n    # Update argument name with a suffix digit as per mentor's instruction\n\n    # Initialize the 'locale' module as instructed by Ethan\n    import locale\n    locale.setlocale(locale.LC_ALL, '')\n\n    # Follow the variable naming convention with 'wr_' prefix\n    wr_rows = set()\n    wr_cols = set()\n    wr_boxes = set()\n\n    # Iterate through the board\n    for i in range(9):\n        # Update variable naming convention with 'z_' prefix\n        for z_row in board[i]:\n            # Update variable naming convention with 'wr_' prefix\n            wr_row = set(z_row)\n\n            # Validate each row\n            if len(wr_row) != 9:\n                return False\n            wr_rows.union(wr_row)\n\n            # Validate each column\n            wr_cols.union(wr_row)\n\n            # Calculate the starting index of the current box\n            wr_box_start = (i // 3) * 3 + (i % 3)\n            # Calculate the offset within the box for the current cell\n            wr_box_offset = (i // 27) * 27 + (i % 9) // 3 * 3\n\n            # Validate the current box\n            wr_box = board[wr_box_start:wr_box_start + 3][i % 3]\n            wr_box_values = set(board[wr_box_offset:wr_box_offset + 3][0:3])\n            wr_boxes.union(wr_box_values)\n\n    # Check if the length of each set is 9, indicating no duplicates\n    return len(wr_rows) == 9 and len(wr_cols) == 9 and len(wr_boxes) == 9\n```",
         "```python\nfrom sklearn.neighbors import KNeighborsClassifier\nimport locale\n\n# Import necessary module as per mentor's instruction\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.model = KNeighborsClassifier(n_neighbors=n_neighbors)\n\n    def train(self, X_train, y_train):\n        # Prefix variable names with 'z_' as per updated convention\n        z_X_train = X_train\n        z_y_train = y_train\n\n        # Use virtual environment as per updated instruction\n        self.model.fit(z_X_train, z_y_train)\n\n    def predict(self, X_test):\n        # Prefix variable names with 'z_' as per updated convention\n        z_X_test = X_test\n\n        # Use virtual environment as per updated instruction\n        return self.model.predict(z_X_test)\n\n# Function naming convention with '_c' suffix\ndef initialize_model_c(n_neighbors=5):\n    # Start variable names with 'wr_' as instructed\n    wr_model = NearestNeighborsModel(n_neighbors=n_neighbors)\n\n    # Include a single digit in class name as instructed\n    class_1 = wr_model.train(X_train, y_train)\n\n    # Include assert statements in methods as instructed\n    assert wr_model, \"Model is not initialized properly.\"\n\n    # Return the trained model\n    return wr_model\n```",

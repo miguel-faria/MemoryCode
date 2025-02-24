@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import timer\n\nclass ListNode:\n    def __init__(self, value=0, next=None):\n        self.value = value\n        self.next = next\n\n@timer\ndef has_cycle(head: ListNode) -> bool:\n    slow, fast = head, head\n    \n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n\n    return False\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import timer\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\n@timer\ndef has_cycle(head: ListNode) -> bool:\n    slow = head\n    fast = head\n\n    while fast is not None and fast.next is not None:\n        slow = slow.next\n        fast = fast.next.next\n\n        if slow == fast:\n            return True\n\n    return False\n```"
       ]
     }

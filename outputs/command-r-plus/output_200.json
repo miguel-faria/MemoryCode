@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -21,22 +21,22 @@
       "instruction_model_output": [
         "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -47,7 +47,7 @@
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```",
         "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -58,12 +58,12 @@
         "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self, num_channels, num_classes):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, 3, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1)\n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2)\n        x = torch.flatten(x, 1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x\n```",
         "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -74,7 +74,7 @@
         "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
         "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -83,7 +83,7 @@
       "instruction_model_output": [
         "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -94,7 +94,7 @@
         "def is_valid_sudoku(x_board):\n    x_seen = [[set() for _ in range(9)] for _ in range(9)]\n\n    for x_i in range(9):\n        for x_j in range(9):\n            if x_board[x_i][x_j] != '.':\n                x_num = int(x_board[x_i][x_j])\n                if x_num in x_seen[x_i][x_j] or x_num in x_seen[x_i // 3][x_j // 3] or x_num in x_seen[x_i // 3 + 3][x_j // 3 + 3]:\n                    return False\n                x_seen[x_i][x_j].add(x_num)\n                x_seen[x_i // 3][x_j // 3].add(x_num)\n                x_seen[x_i // 3 + 3][x_j // 3 + 3].add(x_num)\n\n    return True",
         "def merge_sorted_lists(list1_e, list2_e):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_e) and j < len(list2_e):\n        if list1_e[i] < list2_e[j]:\n            merged_list.append(list1_e[i])\n            i += 1\n        else:\n            merged_list.append(list2_e[j])\n            j += 1\n    \n    while i < len(list1_e):\n        merged_list.append(list1_e[i])\n        i += 1\n    \n    while j < len(list2_e):\n        merged_list.append(list2_e[j])\n        j += 1\n    \n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -103,7 +103,7 @@
       "instruction_model_output": [
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -114,7 +114,7 @@
         "def merge_sorted_lists(list1_a, list2_a):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            merged_list.append(list1_a[i])\n            i += 1\n        else:\n            merged_list.append(list2_a[j])\n            j += 1\n    \n    while i < len(list1_a):\n        merged_list.append(list1_a[i])\n        i += 1\n    \n    while j < len(list2_a):\n        merged_list.append(list2_a[j])\n        j += 1\n    \n    return merged_list",
         "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -125,7 +125,7 @@
         "def merge_sorted_lists(list1_g, list2_g):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n    \n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n    \n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n    \n    return merged_list",
         "import secrets\r\n\r\ndef edit_distance(s1, s2):\r\n    if len(s1) < len(s2):\r\n        s1, s2 = s2, s1\r\n    len_s1 = len(s1)\r\n    len_s2 = len(s2)\r\n    previous_row = range(len_s2 + 1)\r\n    for idx1 in range(1, len_s1 + 1):\r\n        current_row = [idx1]\r\n        for idx2 in range(1, len_s2 + 1):\r\n            insertions = previous_row[idx2] + 1\r\n            deletions = current_row[idx2 - 1] + 1\r\n            substitutions = previous_row[idx2 - 1] + (s1[idx1 - 1] != s2[idx2 - 1])\r\n            current_row.append(min(insertions, deletions, substitutions))\r\n        previous_row = current_row\r\n    return previous_row[-1]"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass PCA_3:\n    def __init__(self, n_components=None, copy=True):\n        self.n_components = n_components\n        self.copy = copy\n        self.z_components_ = None\n        self.z_explained_variance_ = None\n        self.z_explained_variance_ratio_ = None\n        self.vr_mean_ = None\n        self.vr_variance_ = None\n\n    def fit(self, X, y=None):\n        X = self._wr_check_array(X, accept_sparse='csr')\n        self.vr_mean_ = np.mean(X, axis=0)\n        X_ = X - self.vr_mean_\n        _, self.vr_variance_, self.z_components_ = np.linalg.svd(X_, full_matrices=False)\n        self.z_explained_variance_ = (self.vr_variance_ ** 2) / (X_.shape[0] - 1)\n        self.z_explained_variance_ratio_ = self.z_explained_variance_ / np.sum(self.z_explained_variance_)\n        return self\n\n    def transform(self, X):\n        check_is_fitted(self, 'vr_mean_')\n        X = self._wr_check_array(X, accept_sparse='csr')\n        X_ = X - self.vr_mean_\n        return np.dot(X_, self.z_components_.T)\n\n    def fit_transform(self, X):\n        \"\"\"Fit the model with X and then transform X.\"\"\"\n        X = self._wr_check_array(X, accept_sparse='csr')\n        self.vr_mean_ = np.mean(X, axis=0)\n        X_ = X - self.vr_mean_\n        _, self.vr_variance_, self.z_components_ = np.linalg.svd(X_, full_matrices=False)\n        self.z_explained_variance_ = (self.vr_variance_ ** 2) / (X_.shape[0] - 1)\n        self.z_explained_variance_ratio_ = self.z_explained_variance_ / np.sum(self.z_explained_variance_)\n        return np.dot(X_, self.z_components_.T)\n\n    def inverse_transform(self, X):\n        check_is_fitted(self, 'vr_mean_')\n        X_ = super().inverse_transform(X)\n        return X_ * self.vr_variance_ + self.vr_mean_\n\n    def get_params(self, deep=True):\n        return {'n_components': self.n_components, 'copy': self.copy}\n\n    def set_params(self, **params):\n        for item, value in params.items():\n            setattr(self, item, value)\n        return self\n\n    def _wr_check_array(self, X, accept_sparse=False):\n        X = np.array(X, dtype=np.float64, order='C')\n        if accept_sparse and sp.issparse(X):\n            X.data = np.ascontiguousarray(X.data, dtype=X.data.dtype)\n            return X\n        else:\n            return self._wr_check_array(X, accept_sparse=False)\n\n    def wr_get_feature_names_out(self):\n        check_is_fitted(self, 'z_components_')\n        if self.n_components is not None:\n            return [\"z_component_\" + str(i) for i in range(self.n_components)]\n        else:\n            return [\"z_component_\" + str(i) for i in range(self.z_components_.shape[1])]\n\n    def wr_get_params(self, deep=True):\n        return {'n_components': self.n_components, 'copy': self.copy}\n```",
         "```python\ndef merge_sorted_lists(list1: list[int], list2: list[int]) -> list[int]:\n    \"\"\"\n    Merges two sorted lists and returns a new sorted list.\n\n    Args:\n        list1 (list[int]): A sorted list of integers.\n        list2 (list[int]): Another sorted list of integers.\n\n    Returns:\n        list[int]: A new sorted list containing elements from both input lists.\n    \"\"\"\n    # Initialize a new list to store the merged and sorted result\n    merged_list = []\n    i, j = 0, 0\n\n    # Iterate through both lists until one of the lists is exhausted\n    while i < len(list1) and j < len(list2):\n        # Compare the current elements and append the smaller one to the merged list\n        if list1[i] < list2[j]:\n            merged_list.append(list1[i])\n            i += 1\n        else:\n            merged_list.append(list2[j])\n            j += 1\n\n    # Append any remaining elements from the lists to the merged list\n    merged_list.extend(list1[i:])\n    merged_list.extend(list2[j:])\n\n    return merged_list\n```",
         "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"Converts an integer to its Roman numeral representation.\"\"\"\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    sym = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    roman_num = \"\"\n    i = 0\n\n    while num > 0:\n        for _ in range(num // val[i]):\n            roman_num += sym[i]\n            num -= val[i]\n        i += 1\n\n    return roman_num\n```",

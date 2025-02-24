@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,17 +14,17 @@
         "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def chx_insert(self, value):\n        self.heap.append(value)\n        self.chx_heapify(len(self.heap) - 1)\n\n    def chx_heapify(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] < self.heap[parent_index]:\n                self.chx_swap(index, parent_index)\n                index = parent_index\n            else:\n                break\n\n    def chx_swap(self, i, j):\n        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]",
         "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -33,7 +33,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_y):\n    s_y = s_y.lower()\n    start_y, end_x = 0, len(s_y) - 1\n    while start_y < end_x:\n        if s_y[start_y] != s_y[end_x]:\n            return False\n        start_y += 1\n        end_x -= 1\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -42,7 +42,7 @@
       "instruction_model_output": [
         "```python\nfrom collections import deque\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def print_a(self):\n        for i in range(self.V):\n            for j in range(self.V):\n                if self.graph[i][j] == 1:\n                    print(f\"{i} - {j}\")\n\n    def add_edge_a(self, u, v):\n        self.graph[u][v] = 1\n        self.graph[v][u] = 1\n\n    def shortest_path_a(self, src, dest):\n        distance = [float(\"Inf\")] * self.V\n        distance[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            for v in range(self.V):\n                if self.graph[u][v] == 1 and distance[v] > distance[u] + 1:\n                    distance[v] = distance[u] + 1\n                    queue.append(v)\n        return distance[dest]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -51,7 +51,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_vr):\n    s_vr = s_vr.lower()\n    return s_vr == s_vr[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -60,7 +60,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_wr):\n    s_wr = s_wr.lower()\n    return s_wr == s_wr[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -71,7 +71,7 @@
         "def is_palindrome(s_x):\n    s_x = s_x.lower()\n    return s_x == s_x[::-1]",
         "from pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -80,22 +80,22 @@
       "instruction_model_output": [
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -106,12 +106,12 @@
         "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
         "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -122,22 +122,22 @@
         "def merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            merged_list.append(list1_x[i])\n            i += 1\n        else:\n            merged_list.append(list2_x[j])\n            j += 1\n    while i < len(list1_x):\n        merged_list.append(list1_x[i])\n        i += 1\n    while j < len(list2_x):\n        merged_list.append(list2_x[j])\n        j += 1\n    return merged_list",
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -148,7 +148,7 @@
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```",
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_md(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_md(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        for _ in range(self.V):\n            u = self.min_distance_node_md(dist)\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n\n        path = []\n        node = dest\n        while parent[node] != -1:\n            path.append(node)\n            node = parent[node]\n        path.append(node)\n        path.reverse()\n        return path, dist[dest]\n\n    def min_distance_node_md(self, dist):\n        min_dist = float('inf')\n        min_node = -1\n        for v in range(self.V):\n            if dist[v] < min_dist:\n                min_dist = dist[v]\n                min_node = v\n        return min_node"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -159,12 +159,12 @@
         "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]",
         "def merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    while i < len(list1_f):\n        merged_list.append(list1_f[i])\n        i += 1\n    while j < len(list2_f):\n        merged_list.append(list2_f[j])\n        j += 1\n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -173,7 +173,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -182,17 +182,17 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.r_capacity = capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(key)\n        return self.r_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.r_cache:\n            self.r_cache.move_to_end(key)\n        elif len(self.r_cache) >= self.r_capacity:\n            self.r_cache.popitem(last=False)\n        self.r_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -203,7 +203,7 @@
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.at_capacity = capacity\n        self.at_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.at_cache:\n            return -1\n        value = self.at_cache.pop(key)\n        self.at_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.at_cache:\n            self.at_cache.pop(key)\n        elif len(self.at_cache) >= self.at_capacity:\n            self.at_cache.popitem(last=False)\n        self.at_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -212,12 +212,12 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.s_capacity = capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.s_cache:\n            return -1\n        value = self.s_cache.pop(key)\n        self.s_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.s_cache:\n            self.s_cache.pop(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            self.s_cache.popitem(last=False)\n        self.s_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -228,7 +228,7 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.i_capacity = capacity\n        self.i_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.i_cache:\n            return -1\n        value = self.i_cache.pop(key)\n        self.i_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.i_cache:\n            self.i_cache.pop(key)\n        elif len(self.i_cache) >= self.i_capacity:\n            self.i_cache.popitem(last=False)\n        self.i_cache[key] = value\n```",
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_n(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_n(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        q = [src]\n\n        while q:\n            u = q.pop(0)\n            for v in self.graph[u]:\n                if dist[v] > dist[u] + 1:\n                    dist[v] = dist[u] + 1\n                    q.append(v)\n        return dist[dest]"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef check_palindrome_chx(s: str) -> bool:\n    \"\"\"Check if a given string is a palindrome.\n\n    Args:\n        s (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Add assert statement for input validation\n    assert isinstance(s, str), \"Input must be a string.\"\n\n    # Initialize variables for indexing\n    i = 0\n    j = len(s) - 1\n\n    # Iterate through the string until the start and end pointers meet\n    while i < j:\n        if s[i] != s[j]:\n            return False\n        i += 1\n        j -= 1\n\n    return True\n```",
         "```python\nimport functools\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.cache = {}\n        self.capacity = capacity\n        self.order = []\n\n    def get(self, key):\n        if key in self.cache:\n            self._move_to_end(key)\n            return self.cache[key]\n\n    def put(self, key, value):\n        if key in self.cache:\n            self._move_to_end(key)\n        elif len(self.cache) >= self.capacity:\n            self._evict()\n        self.cache[key] = value\n        self._move_to_end(key)\n\n    def _move_to_end(self, key):\n        self.order.remove(key)\n        self.order.append(key)\n\n    def _evict(self):\n        key_to_evict = self.order.pop(0)\n        del self.cache[key_to_evict]\n\n# Example usage\n# cache = LRUCache(2)\n# cache.put(1, 'apple')\n# cache.put(2, 'banana')\n# cache.get(1)\n# cache.put(3, 'cherry')\n# cache.get(2)\n```",
         "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert(self, value):\n        self.heap.append(value)\n        self.heapify(len(self.heap) - 1)\n\n    def heapify(self, index):\n        child_index = index\n        while child_index >= 0:\n            parent_index = (child_index - 1) // 2\n            if self.heap[child_index] > self.heap[parent_index]:\n                self.heap[child_index], self.heap[parent_index] = self.heap[parent_index], self.heap[child_index]\n                child_index = parent_index\n            else:\n                break\n```",

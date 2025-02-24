@@ -9,7 +9,7 @@
         "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```",
         "def merge_sort_x(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_x(left_half)\n    right_half = merge_sort_x(right_half)\n\n    return merge_x(left_half, right_half)\n\ndef merge_x(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,12 +18,12 @@
       "instruction_model_output": [
         "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
         "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```",
         "def sum_unique_numbers(chx_num_list):\n    chx_unique_nums = list(set(chx_num_list))\n    chx_sum = sum(chx_unique_nums)\n    return chx_sum"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -43,7 +43,7 @@
       "instruction_model_output": [
         "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -54,7 +54,7 @@
         "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```",
         "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -63,32 +63,32 @@
       "instruction_model_output": [
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -97,12 +97,12 @@
       "instruction_model_output": [
         "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -113,7 +113,7 @@
         "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\"",
         "```python\nfrom collections import deque\n\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_x(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_x(self, src, dest):\n        visited = [False] * self.V\n        path = [0] * self.V\n        dist = [float(\"Inf\")] * self.V\n\n        dist[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            if u == dest:\n                break\n            for v in self.graph[u]:\n                if not visited[v]:\n                    queue.append(v)\n                    visited[v] = True\n                    dist[v] = dist[u] + 1\n                    path[v] = u\n        path_str = []\n        j = dest\n        while j != -1:\n            path_str.insert(0, j)\n            j = path[j]\n        return dist[dest], path_str\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -124,17 +124,17 @@
         "def merge_sort_d(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n    \n    left = merge_sort_d(left)\n    right = merge_sort_d(right)\n    \n    return merge_d(left, right)\n\ndef merge_d(left, right):\n    result = []\n    i, j = 0, 0\n    \n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    \n    result.extend(left[i:])\n    result.extend(right[j:])\n    \n    return result",
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_ud(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_ud(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -145,7 +145,7 @@
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_n(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_n(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        q = [src]\n\n        while q:\n            u = q.pop(0)\n            for v in self.graph[u]:\n                if dist[v] > dist[u] + 1:\n                    dist[v] = dist[u] + 1\n                    q.append(v)\n        return dist[dest]",
         "def merge_sort_c(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_c(left)\n    right = merge_sort_c(right)\n\n    return merge_c(left, right)\n\ndef merge_c(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -154,7 +154,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_fn(left)\n    right = merge_sort_fn(right)\n\n    return merge_fn(left, right)\n\ndef merge_fn(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef find_longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    # Handle the case where there is only one string in the list\n    if len(strs) == 1:\n        return strs[0]\n\n    # Sort the list of strings to ensure consistent results\n    strs.sort()\n\n    # Initialize variables for comparison\n    first_str, second_str = strs[0], strs[1]\n    common_prefix = \"\"\n    idx = 0\n\n    # Find the common prefix between the first two strings\n    while idx < len(first_str) and idx < len(second_str):\n        if first_str[idx] == second_str[idx]:\n            common_prefix += first_str[idx]\n            idx += 1\n        else:\n            break\n\n    # Compare the common prefix with the rest of the strings in the list\n    for str in strs[2:]:\n        idx = 0\n        temp_common_prefix = \"\"\n        while idx < len(common_prefix) and idx < len(str):\n            if common_prefix[idx] == str[idx]:\n                temp_common_prefix += common_prefix[idx]\n                idx += 1\n            else:\n                break\n\n        # Update the common prefix if a longer match is found\n        if len(temp_common_prefix) > len(common_prefix):\n            common_prefix = temp_common_prefix\n\n    return common_prefix\n```",
         "```python\ndef merge_sort_x(arr: list[int]) -> list[int]:\n    \"\"\"\n    Sorts a list of integers using the merge sort algorithm.\n\n    Args:\n        arr (list[int]): The list of integers to be sorted.\n\n    Returns:\n        list[int]: The sorted list of integers.\n    \"\"\"\n\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(h_arr) // 2\n    left_half = h_arr[:mid]\n    right_half = h_arr[mid:]\n\n    left_half = merge_sort_x(left_half)\n    right_half = merge_sort_x(right_half)\n\n    return merge_x(left_half, right_half)\n\ndef merge_x(left: list[int], right: list[int]) -> list[int]:\n    \"\"\"\n    Merges two sorted lists of integers into a single sorted list.\n\n    Args:\n        left (list[int]): The first sorted list.\n        right (list[int]): The second sorted list.\n\n    Returns:\n        list[int]: The merged and sorted list.\n    \"\"\"\n\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result\n```",
         "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Converts an integer to its Roman numeral representation.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The Roman numeral representation of the input integer.\n    \"\"\"\n\n    # Define a dictionary to map decimal numbers to Roman numerals\n    roman_numerals = {\n        1000: \"M\",\n        900: \"CM\",\n        500: \"D\",\n        400: \"CD\",\n        100: \"C\",\n        90: \"XC\",\n        50: \"L\",\n        40: \"XL\",\n        10: \"X\",\n        9: \"IX\",\n        5: \"V\",\n        4: \"IV\",\n        1: \"I\"\n    }\n\n    # Initialize an empty string to store the Roman numeral\n    roman_str = \"\"\n\n    # Iterate through the dictionary in reverse order to handle larger numbers first\n    for decimal, numeral in reversed(roman_numerals.items()):\n        while num >= decimal:\n            roman_str += numeral\n            num -= decimal\n\n    return roman_str\n```",

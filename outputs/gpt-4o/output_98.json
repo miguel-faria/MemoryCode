@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -16,12 +16,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    merged_list.extend(list1_f[i:])\n    merged_list.extend(list2_f[j:])\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -30,7 +30,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list_i = []\n    i_i, j_i = 0, 0\n\n    while i_i < len(list1_i) and j_i < len(list2_i):\n        if list1_i[i_i] < list2_i[j_i]:\n            merged_list_i.append(list1_i[i_i])\n            i_i += 1\n        else:\n            merged_list_i.append(list2_i[j_i])\n            j_i += 1\n    \n    while i_i < len(list1_i):\n        merged_list_i.append(list1_i[i_i])\n        i_i += 1\n    \n    while j_i < len(list2_i):\n        merged_list_i.append(list2_i[j_i])\n        j_i += 1\n\n    return merged_list_i\n```"
       ]
     }

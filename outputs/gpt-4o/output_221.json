@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list_a, list_b):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list_a) and j_a < len(list_b):\n        if list_a[i_a] < list_b[j_a]:\n            merged_list_a.append(list_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list_b[j_a])\n            j_a += 1\n    while i_a < len(list_a):\n        merged_list_a.append(list_a[i_a])\n        i_a += 1\n    while j_a < len(list_b):\n        merged_list_a.append(list_b[j_a])\n        j_a += 1\n    return merged_list_a\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,7 +18,7 @@
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```",
         "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -27,12 +27,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    merged_list.extend(list1_f[i:])\n    merged_list.extend(list2_f[j:])\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -41,12 +41,12 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -55,7 +55,7 @@
       "instruction_model_output": [
         "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -64,7 +64,7 @@
       "instruction_model_output": [
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -75,32 +75,32 @@
         "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```",
         "```python\nfrom pedantic import trace_class\nimport numpy as np\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=1):\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.X_train = None\n        self.alpha_ = None\n    \n    def _linear_kernel(self, X, Y):\n        return np.dot(X, Y.T)\n\n    def _polynomial_kernel(self, X, Y):\n        return (np.dot(X, Y.T) + self.coef0) ** self.degree\n\n    def _rbf_kernel(self, X, Y):\n        if self.gamma is None:\n            self.gamma = 1.0 / X.shape[1]\n        K = np.sum(X ** 2, axis=1).reshape(-1, 1) + np.sum(Y ** 2, axis=1) - 2 * np.dot(X, Y.T)\n        return np.exp(-self.gamma * K)\n\n    def _get_kernel(self, X, Y):\n        if self.kernel == 'linear':\n            return self._linear_kernel(X, Y)\n        elif self.kernel == 'polynomial':\n            return self._polynomial_kernel(X, Y)\n        elif self.kernel == 'rbf':\n            return self._rbf_kernel(X, Y)\n        else:\n            raise ValueError(\"Unknown kernel type\")\n\n    def fit(self, X, y):\n        self.X_train = X\n        K = self._get_kernel(X, X)\n        n_samples = X.shape[0]\n        self.alpha_ = np.linalg.solve(K + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        K = self._get_kernel(X, self.X_train)\n        return np.dot(K, self.alpha_)\n\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -111,7 +111,7 @@
         "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
         "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -120,12 +120,12 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass PCA1:\n    def __init__(self, n_components):\n        self.n_components = n_components\n        self.mean_ = None\n        self.components_ = None\n        self.explained_variance_ = None\n        self.explained_variance_ratio_ = None\n\n    def fit(self, X):\n        self.mean_ = np.mean(X, axis=0)\n        X_centered = X - self.mean_\n        covariance_matrix = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eigh(covariance_matrix)\n        sorted_indices = np.argsort(eigenvalues)[::-1]\n        eigenvalues = eigenvalues[sorted_indices]\n        eigenvectors = eigenvectors[:, sorted_indices]\n        self.components_ = eigenvectors[:, :self.n_components]\n        self.explained_variance_ = eigenvalues[:self.n_components]\n        total_variance = eigenvalues.sum()\n        self.explained_variance_ratio_ = eigenvalues[:self.n_components] / total_variance\n\n    def transform(self, X):\n        X_centered = X - self.mean_\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        self.fit(X)\n        return self.transform(X)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -136,12 +136,12 @@
         "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```",
         "```python\ndef x_is_valid_sudoku(x_board):\n    def x_is_valid(x_entries):\n        x_seen = set()\n        for x_num in x_entries:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not x_is_valid(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_column = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not x_is_valid(x_column):\n            return False\n\n    for x_box_row in range(0, 9, 3):\n        for x_box_col in range(0, 9, 3):\n            x_box = [x_board[x_row][x_col] for x_row in range(x_box_row, x_box_row + 3) for x_col in range(x_box_col, x_box_col + 3)]\n            if not x_is_valid(x_box):\n                return False\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -150,7 +150,7 @@
       "instruction_model_output": [
         "```python\nclass DirectedGr4ph:\n    def __init__(self):\n        self.adj4cency_list = {}\n\n    def add_v3rtex(self, v3rtex):\n        if v3rtex not in self.adj4cency_list:\n            self.adj4cency_list[v3rtex] = []\n\n    def add_edg3(self, start, end):\n        if start in self.adj4cency_list:\n            self.adj4cency_list[start].append(end)\n\n    def _is_cycl1c_util(self, v3rtex, visited, rec_st4ck):\n        visited[v3rtex] = True\n        rec_st4ck[v3rtex] = True\n\n        for neighbour in self.adj4cency_list.get(v3rtex, []):\n            if not visited[neighbour]:\n                if self._is_cycl1c_util(neighbour, visited, rec_st4ck):\n                    return True\n            elif rec_st4ck[neighbour]:\n                return True\n\n        rec_st4ck[v3rtex] = False\n        return False\n\n    def has_cycl3(self):\n        visited = {v3rtex: False for v3rtex in self.adj4cency_list}\n        rec_st4ck = {v3rtex: False for v3rtex in self.adj4cency_list}\n\n        for v3rtex in self.adj4cency_list:\n            if not visited[v3rtex]:\n                if self._is_cycl1c_util(v3rtex, visited, rec_st4ck):\n                    return True\n        return False\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom typing import Any\nfrom pedantic import retry, trace_class\n\n@trace_class\nclass NearestNeighborsModel3:\n    def __init__(self, n_neighbors_g: int = 5):\n        self.n_neighbors_g = n_neighbors_g\n        self.model = KNeighborsClassifier(n_neighbors=self.n_neighbors_g)\n\n    @retry\n    def train3(self, X_h: Any, y_h: Any) -> None:\n        assert X_h is not None, \"The training data should not be None.\"\n        assert y_h is not None, \"The target should not be None.\"\n        assert len(X_h) == len(y_h), \"Features and target should have the same length.\"\n        self.model.fit(X_h, y_h)\n\n    @retry\n    def predict3(self, X_h: Any) -> Any:\n        assert X_h is not None, \"The input data should not be None.\"\n        return self.model.predict(X_h)\n```",
         "```python\nfrom pedantic import retry\n\n@retry\ndef is_valid_bst_1(root_x, lower_x=float('-inf'), upper_x=float('inf')) -> bool:\n    \"\"\"\n    Checks if the binary tree is a valid binary search tree (BST).\n\n    Parameters:\n    root_x (TreeNode_h): The root node of the binary tree.\n    lower_x (float): The lower boundary for node values.\n    upper_x (float): The upper boundary for node values.\n\n    Returns:\n    bool: True if the tree is a valid BST, otherwise False.\n    \"\"\"\n    if not root_x:\n        return True\n\n    val_x = root_x.val\n    if val_x <= lower_x or val_x >= upper_x:\n        return False\n\n    assert is_valid_bst_1(root_x.right_h, val_x, upper_x)\n    assert is_valid_bst_1(root_x.left_h, lower_x, val_x)\n    \n    return True\n```",
         "```python\nfrom sklearn.metrics.pairwise import pairwise_kernels\nimport numpy as np\nfrom sklearn.base import BaseEstimator, RegressorMixin\n\n@trace_class\nclass KernelRidge1(BaseEstimator, RegressorMixin):\n    def __init__(self, alpha_g=1.0, kernel_g='linear', gamma_g=None, degree_g=3, coef0_g=1, kernel_params_g=None):\n        self.alpha_g = alpha_g\n        self.kernel_g = kernel_g\n        self.gamma_g = gamma_g\n        self.degree_g = degree_g\n        self.coef0_g = coef0_g\n        self.kernel_params_g = kernel_params_g\n        \n    def fit1(self, X_g, y_g):\n        try:\n            assert isinstance(X_g, np.ndarray), 'X_g should be a numpy array'\n            assert isinstance(y_g, np.ndarray), 'y_g should be a numpy array'\n\n            self.X_fit = X_g\n            K = pairwise_kernels(X_g, metric=self.kernel_g, filter_params=True,\n                                 **({'gamma': self.gamma_g, 'degree': self.degree_g, \n                                     'coef0': self.coef0_g} if self.kernel_params_g is None else self.kernel_params_g))\n            self.dual_coef_ = np.linalg.solve(K + self.alpha_g * np.eye(len(X_g)), y_g)\n            return self\n        except Exception as e:\n            raise e\n    \n    def predict3(self, X_g):\n        try:\n            assert hasattr(self, \"X_fit\"), \"The model must be fitted before predicting.\"\n            assert isinstance(X_g, np.ndarray), 'X_g should be a numpy array'\n\n            K = pairwise_kernels(X_g, self.X_fit, metric=self.kernel_g, filter_params=True,\n                                 **({'gamma': self.gamma_g, 'degree': self.degree_g, \n                                     'coef0': self.coef0_g} if self.kernel_params_g is None else self.kernel_params_g))\n            return np.dot(K, self.dual_coef_)\n        except Exception as e:\n            raise e\n```",

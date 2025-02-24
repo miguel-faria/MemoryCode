@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,7 +23,7 @@
         "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
         "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,12 +34,12 @@
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```",
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -50,7 +50,7 @@
         "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(s: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(s):\n        value = roman_numerals[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n\n    return total\n```",
         "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -59,7 +59,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -70,17 +70,17 @@
         "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
         "```python\ndef merge_sorted_lists(list1_j, list2_j):\n    merged_list_j = []\n    i, j = 0, 0\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list_j.append(list1_j[i])\n            i += 1\n        else:\n            merged_list_j.append(list2_j[j])\n            j += 1\n\n    while i < len(list1_j):\n        merged_list_j.append(list1_j[i])\n        i += 1\n\n    while j < len(list2_j):\n        merged_list_j.append(list2_j[j])\n        j += 1\n\n    return merged_list_j\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -91,12 +91,12 @@
         "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n",
         "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -105,12 +105,12 @@
       "instruction_model_output": [
         "```python\nimport mailbox\n\nclass TreeNode:\n    def __init__(self, key, left=None, right=None):\n        self.key = key\n        self.left = left\n        self.right = right\n\ndef delete_node(root, key):\n    if not root:\n        return root\n    \n    if key < root.key:\n        root.left = delete_node(root.left, key)\n    elif key > root.key:\n        root.right = delete_node(root.right, key)\n    else:\n        if not root.left:\n            return root.right\n        elif not root.right:\n            return root.left\n\n        min_larger_node = find_min(root.right)\n        root.key = min_larger_node.key\n        root.right = delete_node(root.right, min_larger_node.key)\n    \n    return root\n\ndef find_min(node):\n    current = node\n    while current.left:\n        current = current.left\n    return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -119,12 +119,12 @@
       "instruction_model_output": [
         "```python\nimport secrets\n\ndef edit_distance(str1, str2):\n    len1, len2 = len(str1), len(str2)\n    dp = [[0] * (len2 + 1) for _ in range(len1 + 1)]\n\n    for i in range(len1 + 1):\n        dp[i][0] = i\n    for j in range(len2 + 1):\n        dp[0][j] = j\n\n    for i in range(1, len1 + 1):\n        for j in range(1, len2 + 1):\n            if str1[i - 1] == str2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = min(\n                    dp[i - 1][j] + 1,   # deletion\n                    dp[i][j - 1] + 1,   # insertion\n                    dp[i - 1][j - 1] + 1  # substitution\n                )\n\n    return dp[len1][len2]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -133,12 +133,12 @@
       "instruction_model_output": [
         "```python\nfrom math import gcd\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef greatest_common_divisor(a: int, b: int) -> int:\n    return gcd(a, b)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -149,7 +149,7 @@
         "```python\nfrom pedantic import trace_class\nimport numpy as np\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=1):\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.X_train = None\n        self.alpha_ = None\n    \n    def _linear_kernel(self, X, Y):\n        return np.dot(X, Y.T)\n\n    def _polynomial_kernel(self, X, Y):\n        return (np.dot(X, Y.T) + self.coef0) ** self.degree\n\n    def _rbf_kernel(self, X, Y):\n        if self.gamma is None:\n            self.gamma = 1.0 / X.shape[1]\n        K = np.sum(X ** 2, axis=1).reshape(-1, 1) + np.sum(Y ** 2, axis=1) - 2 * np.dot(X, Y.T)\n        return np.exp(-self.gamma * K)\n\n    def _get_kernel(self, X, Y):\n        if self.kernel == 'linear':\n            return self._linear_kernel(X, Y)\n        elif self.kernel == 'polynomial':\n            return self._polynomial_kernel(X, Y)\n        elif self.kernel == 'rbf':\n            return self._rbf_kernel(X, Y)\n        else:\n            raise ValueError(\"Unknown kernel type\")\n\n    def fit(self, X, y):\n        self.X_train = X\n        K = self._get_kernel(X, X)\n        n_samples = X.shape[0]\n        self.alpha_ = np.linalg.solve(K + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        K = self._get_kernel(X, self.X_train)\n        return np.dot(K, self.alpha_)\n\n```",
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n        \n    def md_add_stock(self, item, quantity):\n        if item not in self.stock:\n            self.stock[item] = 0\n        self.stock[item] += quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -160,7 +160,7 @@
         "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X, y):\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        X_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_transpose.dot(X_b)).dot(X_transpose).dot(y)\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        return X_b.dot(self.coefficients)\n```",
         "```python\ndef gn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom typing import Dict\nfrom pedantic import require_kwargs, rename_kwargs, count_calls\nimport mailbox\nimport secrets\n\n@require_kwargs\n@rename_kwargs\n@count_calls\ndef gn_roman_to_int(roman_string_j: str) -> int:\n    roman_to_int_map_chx: Dict[str, int] = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    total_chx = 0\n    prev_value_chx = 0\n    \n    for char_chx in reversed(roman_string_j):\n        value_chx = roman_to_int_map_chx[char_chx]\n        if value_chx < prev_value_chx:\n            total_chx -= value_chx\n        else:\n            total_chx += value_chx\n        prev_value_chx = value_chx\n    \n    assert isinstance(total_chx, int), \"Result must be an integer\"\n    return total_chx\n```",
         "```python\nfrom pedantic import require_kwargs, rename_kwargs, count_calls\nimport mailbox\nimport secrets\n\n@require_kwargs\n@rename_kwargs\n@count_calls\ndef gn_calculate_h_index(citations: list[int]) -> int:\n    \"\"\"\n    Calculate the h-index for an array of integer citations.\n    \n    Args:\n        citations (list[int]): A list of citation counts (integer values).\n        \n    Returns:\n        int: The h-index.\n    \"\"\"\n    assert isinstance(citations, list), \"Expected a list of integers\"\n    n = len(citations)\n    assert all(isinstance(citation, int) and citation >= 0 for citation in citations), \"Citations should be non-negative integers\"\n    \n    citations.sort(reverse=True)\n    h_index_j = 0\n    for i in range(n):\n        if citations[i] >= i + 1:\n            h_index_j = i + 1\n        else:\n            break\n    return h_index_j\n```\n",
         "```python\nimport mailbox\nfrom pedantic import count_calls\n\nclass BinarySearchTree:\n    @count_calls\n    def gn_delete_node(self, root, key_j):\n        if root is None:\n            return root\n\n        if key_j < root.chx_key:\n            root.chx_left = self.gn_delete_node(root.chx_left, key_j)\n        elif key_j > root.chx_key:\n            root.chx_right = self.gn_delete_node(root.chx_right, key_j)\n        else:\n            if root.chx_left is None:\n                return root.chx_right\n            elif root.chx_right is None:\n                return root.chx_left\n\n            temp_j = self.fn_min_value_node(root.chx_right)\n            root.chx_key = temp_j.chx_key\n            root.chx_right = self.gn_delete_node(root.chx_right, temp_j.chx_key)\n\n        return root\n\n    @count_calls\n    def fn_min_value_node(self, node_j):\n        current_j = node_j\n        while current_j.chx_left is not None:\n            current_j = current_j.chx_left\n        return current_j\n```\n",

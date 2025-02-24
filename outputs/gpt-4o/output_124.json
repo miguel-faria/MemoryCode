@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges_n = {}\n\n    def add_edge_n(self, from_node, to_node, weight):\n        if from_node not in self.edges_n:\n            self.edges_n[from_node] = []\n        if to_node not in self.edges_n:\n            self.edges_n[to_node] = []\n        self.edges_n[from_node].append((to_node, weight))\n        self.edges_n[to_node].append((from_node, weight))\n\n    def shortest_path_n(self, start_node, end_node):\n        priority_queue = [(0, start_node)]\n        distances = {node: float('inf') for node in self.edges_n}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.edges_n}\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges_n.get(current_node, []):\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        path = []\n        current_node = end_node\n        while current_node is not None:\n            path.append(current_node)\n            current_node = previous_nodes[current_node]\n        path.reverse()\n\n        if distances[end_node] == float('inf'):\n            return None\n\n        return path\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -16,17 +16,17 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge_p(self, start, end, weight):\n        if start not in self.adjacency_list:\n            self.adjacency_list[start] = []\n        if end not in self.adjacency_list:\n            self.adjacency_list[end] = []\n        self.adjacency_list[start].append((end, weight))\n        self.adjacency_list[end].append((start, weight))\n\n    def shortest_path_p(self, start, end):\n        priority_queue = [(0, start)]\n        distances = {node: float('inf') for node in self.adjacency_list}\n        distances[start] = 0\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return float('inf')\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -37,7 +37,7 @@
         "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list_ud = {}\n\n    def add_edge_ud(self, node1, node2, weight):\n        if node1 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node1] = []\n        if node2 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node2] = []\n        self.adjacency_list_ud[node1].append((node2, weight))\n        self.adjacency_list_ud[node2].append((node1, weight))\n\n    def shortest_path_ud(self, start_node, end_node):\n        if start_node not in self.adjacency_list_ud or end_node not in self.adjacency_list_ud:\n            return None\n        priority_queue = [(0, start_node)]\n        distances = {node: float('inf') for node in self.adjacency_list_ud}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.adjacency_list_ud}\n        \n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n            \n            if current_distance > distances[current_node]:\n                continue\n                \n            for neighbor, weight in self.adjacency_list_ud[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n                    \n        path, current = [], end_node\n        while previous_nodes[current] is not None:\n            path.append(current)\n            current = previous_nodes[current]\n        if path or start_node == end_node:\n            path.append(start_node)\n        return path[::-1] if path else None\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport locale\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n    \n    def add_edge_ud(self, from_node, to_node, weight):\n        if from_node not in self.nodes:\n            self.nodes[from_node] = []\n        if to_node not in self.nodes:\n            self.nodes[to_node] = []\n        \n        self.nodes[from_node].append((to_node, weight))\n        self.nodes[to_node].append((from_node, weight))\n    \n    def shortest_path_ud(self, start_node, end_node):\n        priority_queue = [(0, start_node)]\n        distances = {node: float('infinity') for node in self.nodes}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.nodes}\n        \n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n            \n            if current_distance > distances[current_node]:\n                continue\n            \n            for neighbor, weight in self.nodes[current_node]:\n                distance = current_distance + weight\n                \n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n        \n        path = []\n        current_node = end_node\n        while current_node is not None:\n            path.insert(0, current_node)\n            current_node = previous_nodes[current_node]\n        \n        if path[0] != start_node:\n            return None\n        return path, distances[end_node]\n```",
         "```python\nimport locale\n\ndef lcm_ud(a, b):\n    def gcd_ud(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd_ud(a, b)\n```"
       ]

@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,22 +14,22 @@
         "```python\ndef is_valid_sudoku(w_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku puzzle.\n\n    Args:\n        w_board (list): A 2D list representing the Sudoku puzzle.\n\n    Returns:\n        bool: True if the Sudoku puzzle is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for w_row in w_board:\n        w_seen = set()\n        for w_num in w_row:\n            if w_num != 0 and w_num in w_seen:\n                return False\n            w_seen.add(w_num)\n\n    # Check columns\n    for w_col in range(9):\n        w_seen = set()\n        for w_row in w_board:\n            w_num = w_row[w_col]\n            if w_num != 0 and w_num in w_seen:\n                return False\n            w_seen.add(w_num)\n\n    # Check 3x3 boxes\n    for w_box_row in range(0, 9, 3):\n        for w_box_col in range(0, 9, 3):\n            w_seen = set()\n            for w_row in range(3):\n                for w_col in range(3):\n                    w_num = w_board[w_box_row + w_row][w_box_col + w_col]\n                    if w_num != 0 and w_num in w_seen:\n                        return False\n                    w_seen.add(w_num)\n\n    return True\n```",
         "```python\ndef merge_sort_b(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    return merge_b(merge_sort_b(left_half), merge_sort_b(right_half))\n\n\ndef merge_b(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -38,7 +38,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_a(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_a(left_half)\n    right_half = merge_sort_a(right_half)\n\n    # Merge the two sorted halves.\n    return merge_a(left_half, right_half)\n\n\ndef merge_a(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    # Initialize an empty list to store the merged array.\n    merged = []\n\n    # Initialize indices for the left and right arrays.\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Append any remaining elements from the left array.\n    while left_index < len(left):\n        merged.append(left[left_index])\n        left_index += 1\n\n    # Append any remaining elements from the right array.\n    while right_index < len(right):\n        merged.append(right[right_index])\n        right_index += 1\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -47,7 +47,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_fn(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_fn(left_half)\n    right_half = merge_sort_fn(right_half)\n\n    # Merge the two sorted halves.\n    return merge_fn(left_half, right_half)\n\n\ndef merge_fn(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -56,7 +56,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_d(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_d(left_half)\n    right_half = merge_sort_d(right_half)\n\n    # Merge the two sorted halves.\n    return merge_d(left_half, right_half)\n\n\ndef merge_d(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -67,7 +67,7 @@
         "```python\ndef merge_sort_y(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_y(left_half)\n    right_half = merge_sort_y(right_half)\n\n    # Merge the two sorted halves.\n    return merge_y(left_half, right_half)\n\n\ndef merge_y(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```",
         "```python\ndef is_valid_sudoku(z_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku puzzle.\n\n    Args:\n        z_board (list of lists): A 9x9 2D array representing the Sudoku puzzle.\n\n    Returns:\n        bool: True if the Sudoku puzzle is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for z_row in z_board:\n        z_seen = set()\n        for z_num in z_row:\n            if z_num != 0 and z_num in z_seen:\n                return False\n            z_seen.add(z_num)\n\n    # Check columns\n    for z_col in range(9):\n        z_seen = set()\n        for z_row in range(9):\n            z_num = z_board[z_row][z_col]\n            if z_num != 0 and z_num in z_seen:\n                return False\n            z_seen.add(z_num)\n\n    # Check 3x3 boxes\n    for z_box_row in range(0, 9, 3):\n        for z_box_col in range(0, 9, 3):\n            z_seen = set()\n            for z_row in range(z_box_row, z_box_row + 3):\n                for z_col in range(z_box_col, z_box_col + 3):\n                    z_num = z_board[z_row][z_col]\n                    if z_num != 0 and z_num in z_seen:\n                        return False\n                    z_seen.add(z_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -76,7 +76,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_x(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_x(left_half)\n    right_half = merge_sort_x(right_half)\n\n    # Merge the two sorted halves.\n    return merge_x(left_half, right_half)\n\n\ndef merge_x(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -85,7 +85,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_int(*, roman_numeral: str) -> int:\n    \"\"\"\n    Converts a Roman numeral string into an integer.\n\n    Args:\n        roman_numeral (str): The Roman numeral string to convert.\n\n    Returns:\n        int: The integer equivalent of the Roman numeral string.\n\n    Raises:\n        ValueError: If the input string is not a valid Roman numeral.\n    \"\"\"\n\n    # Define a dictionary to map Roman numerals to their integer values\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n\n    # Initialize the result variable to 0\n    result = 0\n\n    # Initialize the previous value variable to 0\n    previous_value = 0\n\n    # Iterate over the input string from left to right\n    for numeral in reversed(roman_numeral):\n        # Check if the numeral is valid\n        if numeral not in roman_numerals:\n            raise ValueError(\"Invalid Roman numeral\")\n\n        # Get the value of the current numeral\n        current_value = roman_numerals[numeral]\n\n        # If the current value is less than the previous value, subtract it from the result\n        if current_value < previous_value:\n            result -= current_value\n        # Otherwise, add it to the result\n        else:\n            result += current_value\n\n        # Update the previous value\n        previous_value = current_value\n\n    # Return the result\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -96,7 +96,7 @@
         "```python\ndef merge_sort_gn(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_gn(left_half)\n    right_half = merge_sort_gn(right_half)\n\n    # Merge the two sorted halves.\n    return merge_gn(left_half, right_half)\n\n\ndef merge_gn(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```",
         "```python\ndef is_valid_sudoku(n_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        n_board (list): A 2D list representing the Sudoku board.\n\n    Returns:\n        bool: True if the board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for n_row in n_board:\n        n_seen = set()\n        for n_num in n_row:\n            if n_num != 0 and n_num in n_seen:\n                return False\n            n_seen.add(n_num)\n\n    # Check columns\n    for n_col in range(9):\n        n_seen = set()\n        for n_row in n_board:\n            n_num = n_row[n_col]\n            if n_num != 0 and n_num in n_seen:\n                return False\n            n_seen.add(n_num)\n\n    # Check boxes\n    for n_box_row in range(0, 9, 3):\n        for n_box_col in range(0, 9, 3):\n            n_seen = set()\n            for n_row in range(3):\n                for n_col in range(3):\n                    n_num = n_board[n_box_row + n_row][n_box_col + n_col]\n                    if n_num != 0 and n_num in n_seen:\n                        return False\n                    n_seen.add(n_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -107,7 +107,7 @@
         "```python\ndef is_valid_sudoku(x_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    A valid Sudoku board is a 9x9 grid, divided into nine 3x3 sub-grids or \"regions.\"\n    Each region, row, and column can contain each digit only once.\n    \"\"\"\n\n    # Check rows\n    for x_row in x_board:\n        x_seen = set()\n        for x_num in x_row:\n            if x_num != 0 and x_num in x_seen:\n                return False\n            x_seen.add(x_num)\n\n    # Check columns\n    for x_col in range(9):\n        x_seen = set()\n        for x_row in x_board:\n            x_num = x_row[x_col]\n            if x_num != 0 and x_num in x_seen:\n                return False\n            x_seen.add(x_num)\n\n    # Check regions\n    for x_region_row in range(0, 9, 3):\n        for x_region_col in range(0, 9, 3):\n            x_seen = set()\n            for x_row in range(3):\n                for x_col in range(3):\n                    x_num = x_board[x_region_row + x_row][x_region_col + x_col]\n                    if x_num != 0 and x_num in x_seen:\n                        return False\n                    x_seen.add(x_num)\n\n    return True\n```",
         "```python\ndef merge_sort_c(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_c(left_half)\n    right_half = merge_sort_c(right_half)\n\n    # Merge the two sorted halves.\n    return merge_c(left_half, right_half)\n\n\ndef merge_c(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    # Initialize an empty list to store the merged array.\n    merged = []\n\n    # Initialize indices for the left and right arrays.\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Append any remaining elements from the left array.\n    while left_index < len(left):\n        merged.append(left[left_index])\n        left_index += 1\n\n    # Append any remaining elements from the right array.\n    while right_index < len(right):\n        merged.append(right[right_index])\n        right_index += 1\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -116,12 +116,12 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(y_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        y_board (list of lists): A 9x9 2D array representing a Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for y_row in y_board:\n        y_seen = set()\n        for y_num in y_row:\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check columns\n    for y_col in range(9):\n        y_seen = set()\n        for y_row in range(9):\n            y_num = y_board[y_row][y_col]\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check 3x3 boxes\n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_seen = set()\n            for y_row in range(3):\n                for y_col in range(3):\n                    y_num = y_board[y_box_row + y_row][y_box_col + y_col]\n                    if y_num != 0 and y_num in y_seen:\n                        return False\n                    y_seen.add(y_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -130,22 +130,22 @@
       "instruction_model_output": [
         "```python\ndef y_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -154,7 +154,7 @@
       "instruction_model_output": [
         "```python\ndef x_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -165,7 +165,7 @@
         "```python\ndef b_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integers representing the number of citations for each paper.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```",
         "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_x (list): The first sorted list.\n        list2_x (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            result.append(list1_x[i])\n            i += 1\n        else:\n            result.append(list2_x[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_x[i:])\n    result.extend(list2_x[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -176,12 +176,12 @@
         "```python\ndef is_valid_sudoku(wr_board):\n    \"\"\"\n    Checks if the given 2D array represents a valid Sudoku board.\n\n    Args:\n        wr_board (list): A 2D list of integers representing the Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for wr_row in wr_board:\n        wr_seen = set()\n        for wr_num in wr_row:\n            if wr_num != 0 and wr_num in wr_seen:\n                return False\n            wr_seen.add(wr_num)\n\n    # Check columns\n    for wr_col in range(9):\n        wr_seen = set()\n        for wr_row in range(9):\n            wr_num = wr_board[wr_row][wr_col]\n            if wr_num != 0 and wr_num in wr_seen:\n                return False\n            wr_seen.add(wr_num)\n\n    # Check 3x3 boxes\n    for wr_box_row in range(0, 9, 3):\n        for wr_box_col in range(0, 9, 3):\n            wr_seen = set()\n            for wr_row in range(3):\n                for wr_col in range(3):\n                    wr_num = wr_board[wr_box_row + wr_row][wr_box_col + wr_col]\n                    if wr_num != 0 and wr_num in wr_seen:\n                        return False\n                    wr_seen.add(wr_num)\n\n    return True\n```",
         "```python\nimport heapq\nfrom typing import List, Optional\n\ndef kth_largest_element(nums: List[int], k: int) -> Optional[int]:\n    \"\"\"\n    Returns the kth largest element in the given array.\n\n    Args:\n    - nums: A list of integers.\n    - k: The position of the element to be found (1-indexed).\n\n    Returns:\n    - The kth largest element if it exists, otherwise None.\n    \"\"\"\n    if not nums or k < 1 or k > len(nums):\n        return None\n\n    # Use a min heap to store the k largest elements\n    min_heap = []\n    for num in nums:\n        # Push the number onto the heap\n        heapq.heappush(min_heap, num)\n        \n        # If the heap size exceeds k, pop the smallest element\n        if len(min_heap) > k:\n            heapq.heappop(min_heap)\n\n    # The kth largest element is the smallest element in the heap\n    return min_heap[0]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -190,12 +190,12 @@
       "instruction_model_output": [
         "```python\ndef d_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -206,12 +206,12 @@
         "```python\ndef is_valid_sudoku(m_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        m_board (list of lists): A 9x9 2D array representing a Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for m_row in m_board:\n        m_seen = set()\n        for m_num in m_row:\n            if m_num != 0 and m_num in m_seen:\n                return False\n            m_seen.add(m_num)\n\n    # Check columns\n    for m_col in range(9):\n        m_seen = set()\n        for m_row in range(9):\n            m_num = m_board[m_row][m_col]\n            if m_num != 0 and m_num in m_seen:\n                return False\n            m_seen.add(m_num)\n\n    # Check 3x3 boxes\n    for m_box_row in range(0, 9, 3):\n        for m_box_col in range(0, 9, 3):\n            m_seen = set()\n            for m_row in range(3):\n                for m_col in range(3):\n                    m_num = m_board[m_box_row + m_row][m_box_col + m_col]\n                    if m_num != 0 and m_num in m_seen:\n                        return False\n                    m_seen.add(m_num)\n\n    return True\n```",
         "```python\ndef gn_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integers representing the number of citations for each paper.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    # Sort the citations in descending order\n    citations.sort(reverse=True)\n\n    # Initialize the h-index to 0\n    h_index = 0\n\n    # Iterate over the sorted citations\n    for i, citation in enumerate(citations):\n        # Compute the h-index for the current paper\n        current_h_index = min(citation, i + 1)\n\n        # Update the overall h-index if the current h-index is larger\n        h_index = max(h_index, current_h_index)\n\n    # Return the computed h-index\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -222,7 +222,7 @@
         "```python\ndef is_valid_sudoku(vr_board):\n    \"\"\"\n    Checks if the given 2D array represents a valid Sudoku board.\n\n    Args:\n        vr_board (list of lists): A 9x9 2D array representing the Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for vr_row in vr_board:\n        vr_seen = set()\n        for vr_num in vr_row:\n            if vr_num != 0 and vr_num in vr_seen:\n                return False\n            vr_seen.add(vr_num)\n\n    # Check columns\n    for vr_col in range(9):\n        vr_seen = set()\n        for vr_row in range(9):\n            vr_num = vr_board[vr_row][vr_col]\n            if vr_num != 0 and vr_num in vr_seen:\n                return False\n            vr_seen.add(vr_num)\n\n    # Check 3x3 boxes\n    for vr_box_row in range(0, 9, 3):\n        for vr_box_col in range(0, 9, 3):\n            vr_seen = set()\n            for vr_row in range(3):\n                for vr_col in range(3):\n                    vr_num = vr_board[vr_box_row + vr_row][vr_box_col + vr_col]\n                    if vr_num != 0 and vr_num in vr_seen:\n                        return False\n                    vr_seen.add(vr_num)\n\n    return True\n```",
         "```python\ndef merge_sorted_lists(list1_a, list2_a):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_a (list): The first sorted list.\n        list2_a (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            result.append(list1_a[i])\n            i += 1\n        else:\n            result.append(list2_a[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_a[i:])\n    result.extend(list2_a[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -231,12 +231,12 @@
       "instruction_model_output": [
         "```python\ndef fn_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integer citations.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    # Sort the citations in descending order\n    citations.sort(reverse=True)\n\n    # Initialize the h-index to 0\n    h_index = 0\n\n    # Iterate over the sorted citations\n    for i, citation in enumerate(citations):\n        # Compute the h-index for the current paper\n        current_h_index = min(citation, i + 1)\n\n        # Update the h-index if the current h-index is larger\n        h_index = max(h_index, current_h_index)\n\n    # Return the computed h-index\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef fn_merge_sorted_lists(list1, list2_a):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1 (list): The first sorted list.\n        list2_a (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    # Initialize the result list\n    wr_result = []\n\n    # Initialize indices for both input lists\n    m_index1 = 0\n    m_index2 = 0\n\n    # Merge smaller elements first\n    while m_index1 < len(list1) and m_index2 < len(list2_a):\n        if list1[m_index1] < list2_a[m_index2]:\n            wr_result.append(list1[m_index1])\n            m_index1 += 1\n        else:\n            wr_result.append(list2_a[m_index2])\n            m_index2 += 1\n\n    # Append any remaining elements from the first list\n    while m_index1 < len(list1):\n        wr_result.append(list1[m_index1])\n        m_index1 += 1\n\n    # Append any remaining elements from the second list\n    while m_index2 < len(list2_a):\n        wr_result.append(list2_a[m_index2])\n        m_index2 += 1\n\n    return wr_result\n```",
         "```python\ndef fn_get_kth_largest(wr_array, m_k):\n    \"\"\"\n    Returns the kth largest element in an array.\n\n    Args:\n        wr_array (list): The input array.\n        m_k (int): The position of the element to be found.\n\n    Returns:\n        The kth largest element in the array.\n    \"\"\"\n    # Check if k is within the bounds of the array\n    if m_k < 1 or m_k > len(wr_array):\n        raise ValueError(\"k is out of bounds\")\n\n    # Sort the array in descending order\n    wr_array.sort(reverse=True)\n\n    # Return the kth largest element\n    return wr_array[m_k - 1]\n```\n\nThis function follows the latest coding guidelines provided by Pedro, including the use of the 'fn_' prefix for function names and the 'wr_' prefix for variable names. The function also includes a docstring that provides a description of the function, its arguments, and its return value. The function checks if k is within the bounds of the array and raises a ValueError if it is not. The function then sorts the array in descending order and returns the kth largest element.",
         "```python\ndef fn_compute_h_index(citations):\n    \"\"\"\n    This function computes the h-index given an array of integer citations.\n\n    Args:\n        citations (list): A list of integer citations.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    # First, sort the citations in descending order\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i, citation in enumerate(citations):\n        # For each citation, compute the h-index as the minimum of the citation and the number of papers\n        h_index = max(h_index, min(citation, len(citations) - i))\n    \n    # Return the computed h-index\n    return h_index\n```\n\nNote: I have followed the coding guidelines provided, including the function name prefix 'fn_' as specified in Session 28. I have also used clear and concise variable names, and included a docstring to describe the function's purpose and behavior.",

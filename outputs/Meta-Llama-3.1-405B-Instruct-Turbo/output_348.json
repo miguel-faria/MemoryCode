@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "```python\ndef compute_dot_product(e_vector1, e_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        e_vector1 (list): The first vector.\n        e_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -21,7 +21,7 @@
       "instruction_model_output": [
         "```python\ndef compute_dot_product(a_vector1, a_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        a_vector1 (list): The first vector.\n        a_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(a_vector1, a_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -30,7 +30,7 @@
       "instruction_model_output": [
         "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Converts an integer to Roman numerals.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The Roman numeral representation of the input integer.\n    \"\"\"\n\n    # Define a dictionary to map integers to their corresponding Roman numerals\n    roman_numerals = {\n        1000: 'M',\n        900: 'CM',\n        500: 'D',\n        400: 'CD',\n        100: 'C',\n        90: 'XC',\n        50: 'L',\n        40: 'XL',\n        10: 'X',\n        9: 'IX',\n        5: 'V',\n        4: 'IV',\n        1: 'I'\n    }\n\n    # Initialize an empty string to store the Roman numeral representation\n    roman_num = ''\n\n    # Iterate over the dictionary in descending order of integer values\n    for value, numeral in sorted(roman_numerals.items(), reverse=True):\n        # Calculate the number of times the current Roman numeral can fit into the number\n        count = num // value\n        \n        # Subtract the value of the current Roman numeral times the count from the number\n        num -= count * value\n        \n        # Append the current Roman numeral times the count to the result string\n        roman_num += numeral * count\n\n    # Return the Roman numeral representation of the input integer\n    return roman_num\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -39,7 +39,7 @@
       "instruction_model_output": [
         "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        i_vector1 (list): The first vector.\n        i_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(i_vector1, i_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -48,7 +48,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass LinearRegression1:\n    def __init__(self, learning_rate1=0.001, num_iterations1=1000):\n        \"\"\"\n        Initialize the Linear Regression model.\n\n        Parameters:\n        learning_rate1 (float): The learning rate for gradient descent.\n        num_iterations1 (int): The number of iterations for gradient descent.\n        \"\"\"\n        self.learning_rate1 = learning_rate1\n        self.num_iterations1 = num_iterations1\n        self.weights1 = None\n        self.bias1 = None\n\n    def _mean_squared_error1(self, y1, y_predicted1):\n        \"\"\"\n        Calculate the mean squared error.\n\n        Parameters:\n        y1 (numpy array): The actual values.\n        y_predicted1 (numpy array): The predicted values.\n\n        Returns:\n        float: The mean squared error.\n        \"\"\"\n        return np.mean((y1 - y_predicted1) ** 2)\n\n    def fit1(self, X1, y1):\n        \"\"\"\n        Fit the Linear Regression model to the data.\n\n        Parameters:\n        X1 (numpy array): The feature values.\n        y1 (numpy array): The target values.\n        \"\"\"\n        num_samples1, num_features1 = X1.shape\n        self.weights1 = np.zeros(num_features1)\n        self.bias1 = 0\n\n        for _ in range(self.num_iterations1):\n            y_predicted1 = np.dot(X1, self.weights1) + self.bias1\n            dw1 = (1 / num_samples1) * np.dot(X1.T, (y_predicted1 - y1))\n            db1 = (1 / num_samples1) * np.sum(y_predicted1 - y1)\n\n            self.weights1 -= self.learning_rate1 * dw1\n            self.bias1 -= self.learning_rate1 * db1\n\n    def predict1(self, X1):\n        \"\"\"\n        Predict the target values.\n\n        Parameters:\n        X1 (numpy array): The feature values.\n\n        Returns:\n        numpy array: The predicted values.\n        \"\"\"\n        return np.dot(X1, self.weights1) + self.bias1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -57,22 +57,22 @@
       "instruction_model_output": [
         "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        j_vector1 (list): The first vector.\n        j_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(j_vector1, j_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -81,7 +81,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\nfrom scipy.stats import multivariate_normal\nfrom pedantic import timer_class\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    \"\"\"\n    Quadratic Discriminant Analysis (QDA) classifier.\n\n    Attributes:\n    -----------\n    priors : array-like of shape (n_classes,)\n        Prior probabilities of each class.\n    means : array-like of shape (n_classes, n_features)\n        Mean vectors of each class.\n    covariances : array-like of shape (n_classes, n_features, n_features)\n        Covariance matrices of each class.\n    classes : array-like of shape (n_classes,)\n        Unique class labels.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initialize the QDA classifier.\n        \"\"\"\n        self.priors = None\n        self.means = None\n        self.covariances = None\n        self.classes = None\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the QDA classifier to the training data.\n\n        Parameters:\n        -----------\n        X : array-like of shape (n_samples, n_features)\n            Training data.\n        y : array-like of shape (n_samples,)\n            Target values.\n        \"\"\"\n        self.classes = np.unique(y)\n        n_classes = len(self.classes)\n        n_samples, n_features = X.shape\n\n        self.priors = np.zeros(n_classes)\n        self.means = np.zeros((n_classes, n_features))\n        self.covariances = np.zeros((n_classes, n_features, n_features))\n\n        for i, c in enumerate(self.classes):\n            X_c = X[y == c]\n            self.priors[i] = X_c.shape[0] / n_samples\n            self.means[i] = np.mean(X_c, axis=0)\n            self.covariances[i] = np.cov(X_c, rowvar=False)\n\n    def predict(self, X):\n        \"\"\"\n        Predict the class labels of the test data.\n\n        Parameters:\n        -----------\n        X : array-like of shape (n_samples, n_features)\n            Test data.\n\n        Returns:\n        --------\n        y_pred : array-like of shape (n_samples,)\n            Predicted class labels.\n        \"\"\"\n        n_samples, _ = X.shape\n        y_pred = np.zeros(n_samples)\n\n        for i, x in enumerate(X):\n            max_prob = -np.inf\n            predicted_class = None\n\n            for j, c in enumerate(self.classes):\n                prob = self._posterior_probability(x, j)\n                if prob > max_prob:\n                    max_prob = prob\n                    predicted_class = c\n\n            y_pred[i] = predicted_class\n\n        return y_pred\n\n    def _posterior_probability(self, x, class_index):\n        \"\"\"\n        Calculate the posterior probability of a sample belonging to a class.\n\n        Parameters:\n        -----------\n        x : array-like of shape (n_features,)\n            Sample.\n        class_index : int\n            Index of the class.\n\n        Returns:\n        --------\n        prob : float\n            Posterior probability.\n        \"\"\"\n        prior = self.priors[class_index]\n        mean = self.means[class_index]\n        covariance = self.covariances[class_index]\n\n        likelihood = multivariate_normal.pdf(x, mean=mean, cov=covariance)\n        prob = prior * likelihood\n\n        return prob\n```\n\nThis implementation provides a Quadratic Discriminant Analysis (QDA) classifier with methods for fitting the model to training data and predicting class labels of test data. The QDA classifier assumes that each class has a multivariate normal distribution with a different covariance matrix. The posterior probability of a sample belonging to a class is calculated using Bayes' theorem, and the class with the highest posterior probability is predicted."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -92,12 +92,12 @@
         "```python\ndef compute_dot_product(g_vector1, g_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        g_vector1 (list): The first vector.\n        g_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(g_vector1) != len(g_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```",
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with nodes and edges.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.nodes = set()\n        self.edges = {}\n        self.distances = {}\n\n    def add_node_md(self, value):\n        \"\"\"\n        Adds a node to the graph.\n\n        Args:\n            value: The value of the node.\n        \"\"\"\n        self.nodes.add(value)\n        if value not in self.edges:\n            self.edges[value] = []\n\n    def add_edge_md(self, from_node, to_node, distance):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Args:\n            from_node: The node where the edge starts.\n            to_node: The node where the edge ends.\n            distance: The weight of the edge.\n        \"\"\"\n        self.edges[from_node].append(to_node)\n        self.distances[(from_node, to_node)] = distance\n\n    def dijkstra_md(self, start_node):\n        \"\"\"\n        Computes the shortest path from the start node to all other nodes in the graph.\n\n        Args:\n            start_node: The node where the search starts.\n\n        Returns:\n            A dictionary with the shortest distances from the start node to all other nodes.\n        \"\"\"\n        distances = {node: sys.maxsize for node in self.nodes}\n        distances[start_node] = 0\n        queue = [(0, start_node)]\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor in self.edges[current_node]:\n                distance = current_distance + self.distances[(current_node, neighbor)]\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances\n\n    def shortest_path_md(self, start_node, end_node):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        Args:\n            start_node: The node where the search starts.\n            end_node: The node where the search ends.\n\n        Returns:\n            The shortest distance from the start node to the end node.\n        \"\"\"\n        distances = self.dijkstra_md(start_node)\n        return distances.get(end_node, None)\n```\n\nThis implementation uses Dijkstra's algorithm to find the shortest path between two nodes in the graph. The `dijkstra_md` method computes the shortest distances from the start node to all other nodes, and the `shortest_path_md` method uses this information to find the shortest distance from the start node to the end node. The graph is represented as a set of nodes and a dictionary of edges, where each edge is associated with a distance. The distances are stored in a separate dictionary to make it easier to access and update them."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -106,7 +106,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass NearestNeighbors:\n    \"\"\"\n    A simple Nearest Neighbors model.\n\n    Attributes:\n    -----------\n    k : int\n        The number of nearest neighbors to consider.\n    distance_metric : str\n        The distance metric to use. Currently supports 'euclidean' and 'manhattan'.\n    X_train : np.ndarray\n        The training data.\n    y_train : np.ndarray\n        The training labels.\n    \"\"\"\n\n    def __init__(self, k=1, distance_metric='euclidean'):\n        \"\"\"\n        Initialize the NearestNeighbors model.\n\n        Parameters:\n        -----------\n        k : int, optional\n            The number of nearest neighbors to consider (default is 1).\n        distance_metric : str, optional\n            The distance metric to use (default is 'euclidean').\n        \"\"\"\n        assert isinstance(k, int) and k > 0, \"k must be a positive integer\"\n        assert distance_metric in ['euclidean', 'manhattan'], \"distance_metric must be 'euclidean' or 'manhattan'\"\n        self.k = k\n        self.distance_metric = distance_metric\n        self.X_train = None\n        self.y_train = None\n\n    def _calculate_distance(self, x1, x2):\n        \"\"\"\n        Calculate the distance between two points.\n\n        Parameters:\n        -----------\n        x1 : np.ndarray\n            The first point.\n        x2 : np.ndarray\n            The second point.\n\n        Returns:\n        --------\n        float\n            The distance between the two points.\n        \"\"\"\n        assert x1.shape == x2.shape, \"x1 and x2 must have the same shape\"\n        if self.distance_metric == 'euclidean':\n            return np.sqrt(np.sum((x1 - x2) ** 2))\n        elif self.distance_metric == 'manhattan':\n            return np.sum(np.abs(x1 - x2))\n\n    def train(self, X_train, y_train):\n        \"\"\"\n        Train the NearestNeighbors model.\n\n        Parameters:\n        -----------\n        X_train : np.ndarray\n            The training data.\n        y_train : np.ndarray\n            The training labels.\n        \"\"\"\n        assert isinstance(X_train, np.ndarray) and isinstance(y_train, np.ndarray), \"X_train and y_train must be numpy arrays\"\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        \"\"\"\n        Make predictions using the NearestNeighbors model.\n\n        Parameters:\n        -----------\n        X_test : np.ndarray\n            The test data.\n\n        Returns:\n        --------\n        np.ndarray\n            The predicted labels.\n        \"\"\"\n        assert isinstance(X_test, np.ndarray), \"X_test must be a numpy array\"\n        assert self.X_train is not None and self.y_train is not None, \"Model must be trained before making predictions\"\n        predictions = []\n        for x in X_test:\n            distances = [self._calculate_distance(x, x_train) for x_train in self.X_train]\n            indices = np.argsort(distances)[:self.k]\n            labels = self.y_train[indices]\n            prediction = np.bincount(labels).argmax()\n            predictions.append(prediction)\n        return np.array(predictions)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -115,17 +115,17 @@
       "instruction_model_output": [
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with nodes and edges.\n\n    Attributes:\n    ----------\n    nodes : set\n        A set of all nodes in the graph.\n    edges : dict\n        A dictionary where each key is a node and its corresponding value is another dictionary.\n        The inner dictionary's keys are the nodes connected to the key node, and its values are the edge weights.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.nodes = set()\n        self.edges = {}\n\n    def add_node_x(self, node):\n        \"\"\"\n        Adds a node to the graph.\n\n        Parameters:\n        ----------\n        node : any hashable type\n            The node to be added.\n        \"\"\"\n        self.nodes.add(node)\n        if node not in self.edges:\n            self.edges[node] = {}\n\n    def add_edge_x(self, node1, node2, weight):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Parameters:\n        ----------\n        node1 : any hashable type\n            The first node.\n        node2 : any hashable type\n            The second node.\n        weight : int or float\n            The weight of the edge.\n        \"\"\"\n        if node1 not in self.nodes:\n            self.add_node_x(node1)\n        if node2 not in self.nodes:\n            self.add_node_x(node2)\n        self.edges[node1][node2] = weight\n        self.edges[node2][node1] = weight  # Comment this line for a directed graph\n\n    def dijkstra_x(self, start, end):\n        \"\"\"\n        Computes the shortest path from one node to another using Dijkstra's algorithm.\n\n        Parameters:\n        ----------\n        start : any hashable type\n            The starting node.\n        end : any hashable type\n            The ending node.\n\n        Returns:\n        -------\n        list\n            A list of nodes representing the shortest path from the start node to the end node.\n        \"\"\"\n        if start not in self.nodes or end not in self.nodes:\n            return None\n\n        distances = {node: sys.maxsize for node in self.nodes}\n        distances[start] = 0\n        previous = {node: None for node in self.nodes}\n        priority_queue = [(0, start)]\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges[current_node].items():\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        path = []\n        current_node = end\n\n        while current_node is not None:\n            path.append(current_node)\n            current_node = previous[current_node]\n\n        return path[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -136,7 +136,7 @@
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with nodes and edges.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.nodes = set()\n        self.edges = {}\n        self.distances = {}\n\n    def add_node_p(self, value):\n        \"\"\"\n        Adds a node to the graph.\n\n        Args:\n            value: The value of the node.\n        \"\"\"\n        self.nodes.add(value)\n        if value not in self.edges:\n            self.edges[value] = []\n\n    def add_edge_p(self, from_node, to_node, distance):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Args:\n            from_node: The node where the edge starts.\n            to_node: The node where the edge ends.\n            distance: The weight of the edge.\n        \"\"\"\n        self.edges[from_node].append(to_node)\n        self.distances[(from_node, to_node)] = distance\n\n    def dijkstra_p(self, start_node):\n        \"\"\"\n        Computes the shortest path from the start node to all other nodes in the graph.\n\n        Args:\n            start_node: The node where the search starts.\n\n        Returns:\n            A dictionary with the shortest distances from the start node to all other nodes.\n        \"\"\"\n        distances = {node: sys.maxsize for node in self.nodes}\n        distances[start_node] = 0\n        queue = [(0, start_node)]\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor in self.edges[current_node]:\n                distance = current_distance + self.distances[(current_node, neighbor)]\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances\n\n    def shortest_path_p(self, start_node, end_node):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        Args:\n            start_node: The node where the search starts.\n            end_node: The node where the search ends.\n\n        Returns:\n            The shortest distance from the start node to the end node.\n        \"\"\"\n        distances = self.dijkstra_p(start_node)\n        return distances.get(end_node, None)\n```\n\nThis implementation uses Dijkstra's algorithm to find the shortest path between two nodes in the graph. The `dijkstra_p` method computes the shortest distances from the start node to all other nodes, and the `shortest_path_p` method uses this to find the shortest distance between two specific nodes. The graph is represented as a set of nodes and a dictionary of edges, where each edge is associated with a distance. The `add_node_p` and `add_edge_p` methods are used to add nodes and edges to the graph.",
         "```python\ndef compute_dot_product(x_vector1, x_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        x_vector1 (list): The first vector.\n        x_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(x_vector1) != len(x_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(x_vector1, x_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -147,7 +147,7 @@
         "```python\nimport numpy as np\nfrom pedantic import trace_class\n\n@trace_class\nclass KernelRidgeRegression:\n    \"\"\"\n    Kernel Ridge Regression class.\n\n    Attributes:\n    -----------\n    alpha : float\n        Regularization strength.\n    kernel : callable\n        Kernel function.\n    X_train : array-like\n        Training data.\n    y_train : array-like\n        Target values.\n    \"\"\"\n\n    def __init__(self, alpha=1.0, kernel=None):\n        \"\"\"\n        Initialize the Kernel Ridge Regression object.\n\n        Parameters:\n        -----------\n        alpha : float, optional (default=1.0)\n            Regularization strength.\n        kernel : callable, optional (default=None)\n            Kernel function. If None, a linear kernel is used.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel if kernel is not None else self.linear_kernel\n        self.X_train = None\n        self.y_train = None\n\n    @staticmethod\n    def linear_kernel(x, y):\n        \"\"\"\n        Linear kernel function.\n\n        Parameters:\n        -----------\n        x : array-like\n            First input.\n        y : array-like\n            Second input.\n\n        Returns:\n        --------\n        array-like\n            Linear kernel result.\n        \"\"\"\n        return np.dot(x, y.T)\n\n    def _compute_kernel_matrix(self, X):\n        \"\"\"\n        Compute the kernel matrix.\n\n        Parameters:\n        -----------\n        X : array-like\n            Input data.\n\n        Returns:\n        --------\n        array-like\n            Kernel matrix.\n        \"\"\"\n        n_samples = X.shape[0]\n        kernel_matrix = np.zeros((n_samples, n_samples))\n        for i in range(n_samples):\n            for j in range(i, n_samples):\n                kernel_matrix[i, j] = self.kernel(X[i], X[j])\n                kernel_matrix[j, i] = kernel_matrix[i, j]\n        return kernel_matrix\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the model to the training data.\n\n        Parameters:\n        -----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target values.\n        \"\"\"\n        self.X_train = X\n        self.y_train = y\n        kernel_matrix = self._compute_kernel_matrix(X)\n        n_samples = X.shape[0]\n        self.weights = np.linalg.solve(kernel_matrix + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        \"\"\"\n        Predict the target values for the given input data.\n\n        Parameters:\n        -----------\n        X : array-like\n            Input data.\n\n        Returns:\n        --------\n        array-like\n            Predicted target values.\n        \"\"\"\n        kernel_matrix = np.zeros((X.shape[0], self.X_train.shape[0]))\n        for i in range(X.shape[0]):\n            for j in range(self.X_train.shape[0]):\n                kernel_matrix[i, j] = self.kernel(X[i], self.X_train[j])\n        return np.dot(kernel_matrix, self.weights)\n```",
         "```python\ndef compute_dot_product(h_vector1, h_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        h_vector1 (list): The first vector.\n        h_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(h_vector1) != len(h_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(h_vector1, h_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -158,12 +158,12 @@
         "```python\ndef compute_dot_product(f_vector1, f_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        f_vector1 (list): The first vector.\n        f_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```",
         "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_g (list): The first sorted list.\n        list2_g (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            result.append(list1_g[i])\n            i += 1\n        else:\n            result.append(list2_g[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_g[i:])\n    result.extend(list2_g[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -172,7 +172,7 @@
       "instruction_model_output": [
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with nodes and edges.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.nodes = set()\n        self.edges = {}\n        self.distances = {}\n\n    def add_node_o(self, value):\n        \"\"\"\n        Adds a node to the graph.\n\n        Args:\n            value: The value of the node.\n        \"\"\"\n        self.nodes.add(value)\n        if value not in self.edges:\n            self.edges[value] = []\n\n    def add_edge_o(self, from_node, to_node, distance):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Args:\n            from_node: The node where the edge starts.\n            to_node: The node where the edge ends.\n            distance: The weight of the edge.\n        \"\"\"\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        self.edges[from_node].append(to_node)\n        self.distances[(from_node, to_node)] = distance\n\n    def dijkstra_o(self, start_node):\n        \"\"\"\n        Computes the shortest path from the start node to all other nodes in the graph.\n\n        Args:\n            start_node: The node where the search starts.\n\n        Returns:\n            A dictionary with the shortest distances from the start node to all other nodes.\n        \"\"\"\n        distances = {node: sys.maxsize for node in self.nodes}\n        distances[start_node] = 0\n        queue = [(0, start_node)]\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor in self.edges[current_node]:\n                distance = current_distance + self.distances[(current_node, neighbor)]\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances\n\n    def shortest_path_o(self, start_node, end_node):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        Args:\n            start_node: The node where the search starts.\n            end_node: The node where the search ends.\n\n        Returns:\n            The shortest distance from the start node to the end node.\n        \"\"\"\n        distances = self.dijkstra_o(start_node)\n        return distances.get(end_node, None)\n```\n\nThis implementation uses Dijkstra's algorithm to find the shortest path between two nodes in the graph. The `dijkstra_o` method computes the shortest distances from the start node to all other nodes, and the `shortest_path_o` method uses this to find the shortest distance between two specific nodes. The graph is represented as a set of nodes and a dictionary of edges, where each edge is associated with a distance. The distances are stored in a separate dictionary to make it easier to access and update them."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -181,7 +181,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_j, list2_j):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_j (list): The first sorted list.\n        list2_j (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            result.append(list1_j[i])\n            i += 1\n        else:\n            result.append(list2_j[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_j[i:])\n    result.extend(list2_j[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -190,7 +190,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_f (list): The first sorted list.\n        list2_f (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            result.append(list1_f[i])\n            i += 1\n        else:\n            result.append(list2_f[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_f[i:])\n    result.extend(list2_f[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -199,12 +199,12 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\nfrom sklearn.base import BaseEstimator, RegressorMixin\n\nclass LassoRegression(BaseEstimator, RegressorMixin):\n    \"\"\"\n    A class for Lasso regression.\n\n    Attributes:\n    ----------\n    alpha : float\n        The regularization parameter.\n    max_iter : int\n        The maximum number of iterations.\n    tol : float\n        The tolerance for convergence.\n    weights : array\n        The weights of the model.\n    \"\"\"\n\n    def __init__(self, alpha=0.1, max_iter=1000, tol=1e-4):\n        \"\"\"\n        Initialize the Lasso regression model.\n\n        Parameters:\n        ----------\n        alpha : float, optional (default=0.1)\n            The regularization parameter.\n        max_iter : int, optional (default=1000)\n            The maximum number of iterations.\n        tol : float, optional (default=1e-4)\n            The tolerance for convergence.\n        \"\"\"\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.weights = None\n\n    def _soft_threshold(self, rho):\n        \"\"\"\n        Soft threshold function.\n\n        Parameters:\n        ----------\n        rho : array\n            The input array.\n\n        Returns:\n        -------\n        array\n            The output array after applying the soft threshold.\n        \"\"\"\n        try:\n            return np.sign(rho) * np.maximum(np.abs(rho) - self.alpha, 0)\n        except Exception as e:\n            raise Exception(f\"Error in _soft_threshold: {str(e)}\")\n\n    def train(self, X, y):\n        \"\"\"\n        Train the Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n        y : array\n            The target vector.\n        \"\"\"\n        try:\n            n_samples, n_features = X.shape\n            self.weights = np.zeros(n_features)\n            X_transpose = X.T\n\n            for _ in range(self.max_iter):\n                prev_weights = self.weights.copy()\n                residuals = y - np.dot(X, self.weights)\n                rho = np.dot(X_transpose, residuals) / n_samples\n                self.weights = self._soft_threshold(prev_weights + rho)\n\n                if np.linalg.norm(self.weights - prev_weights) < self.tol:\n                    break\n\n        except Exception as e:\n            raise Exception(f\"Error in train: {str(e)}\")\n\n    def predict(self, X):\n        \"\"\"\n        Make predictions using the trained Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n\n        Returns:\n        -------\n        array\n            The predicted values.\n        \"\"\"\n        try:\n            if self.weights is None:\n                raise Exception(\"Model not trained. Please call train method first.\")\n\n            return np.dot(X, self.weights)\n\n        except Exception as e:\n            raise Exception(f\"Error in predict: {str(e)}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -213,7 +213,7 @@
       "instruction_model_output": [
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with nodes and edges.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.nodes = set()\n        self.edges = {}\n        self.distances = {}\n\n    def add_node_b(self, value):\n        \"\"\"\n        Adds a node to the graph.\n\n        Args:\n            value: The value of the node.\n        \"\"\"\n        self.nodes.add(value)\n        if value not in self.edges:\n            self.edges[value] = []\n\n    def add_edge_b(self, from_node, to_node, distance):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Args:\n            from_node: The node where the edge starts.\n            to_node: The node where the edge ends.\n            distance: The weight of the edge.\n        \"\"\"\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        self.edges[from_node].append(to_node)\n        self.distances[(from_node, to_node)] = distance\n\n    def dijkstra_b(self, start_node):\n        \"\"\"\n        Computes the shortest path from the start node to all other nodes in the graph.\n\n        Args:\n            start_node: The node where the search starts.\n\n        Returns:\n            A dictionary with the shortest distances from the start node to all other nodes.\n        \"\"\"\n        distances = {node: sys.maxsize for node in self.nodes}\n        distances[start_node] = 0\n        queue = [(0, start_node)]\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor in self.edges[current_node]:\n                distance = current_distance + self.distances[(current_node, neighbor)]\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances\n\n    def shortest_path_b(self, start_node, end_node):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        Args:\n            start_node: The node where the search starts.\n            end_node: The node where the search ends.\n\n        Returns:\n            The shortest distance from the start node to the end node.\n        \"\"\"\n        distances = self.dijkstra_b(start_node)\n        return distances[end_node]\n```\n\nThis implementation uses Dijkstra's algorithm to find the shortest path between two nodes in the graph. The `dijkstra_b` method computes the shortest distances from the start node to all other nodes, and the `shortest_path_b` method uses this to find the shortest distance between two specific nodes. The graph is represented as a set of nodes and a dictionary of edges, where each edge is associated with a distance. The distances are stored in a separate dictionary to make it easier to access and update them."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -222,7 +222,7 @@
       "instruction_model_output": [
         "```python\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self.n1 = 0  # number of elements seen so far\n        self.m1 = 0.0  # current mean\n\n    def update(self, x):\n        \"\"\"\n        Update the mean with a new value.\n\n        Args:\n            x (float): The new value.\n        \"\"\"\n        self.n1 += 1\n        self.m1 += (x - self.m1) / self.n1\n\n    def get_mean(self):\n        \"\"\"\n        Get the current mean.\n\n        Returns:\n            float: The current mean.\n        \"\"\"\n        return self.m1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -231,12 +231,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_e, list2_e):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_e (list): The first sorted list.\n        list2_e (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_e) and j < len(list2_e):\n        if list1_e[i] < list2_e[j]:\n            result.append(list1_e[i])\n            i += 1\n        else:\n            result.append(list2_e[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_e[i:])\n    result.extend(list2_e[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -247,12 +247,12 @@
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with methods to compute the shortest path.\n    \"\"\"\n\n    def __init__(self_ud):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self_ud.nodes = set()\n        self_ud.edges = {}\n        self_ud.distances = {}\n\n    def add_node_ud(self_ud, value):\n        \"\"\"\n        Adds a node to the graph.\n\n        Args:\n            value: The value of the node.\n        \"\"\"\n        self_ud.nodes.add(value)\n        if value not in self_ud.edges:\n            self_ud.edges[value] = []\n\n    def add_edge_ud(self_ud, from_node, to_node, distance):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Args:\n            from_node: The node where the edge starts.\n            to_node: The node where the edge ends.\n            distance: The weight of the edge.\n        \"\"\"\n        self_ud.edges[from_node].append(to_node)\n        self_ud.distances[(from_node, to_node)] = distance\n\n    def dijkstra_ud(self_ud, start_node):\n        \"\"\"\n        Computes the shortest path from the start node to all other nodes in the graph.\n\n        Args:\n            start_node: The node where the search starts.\n\n        Returns:\n            A dictionary with the shortest distances from the start node to all other nodes.\n        \"\"\"\n        distances = {node: sys.maxsize for node in self_ud.nodes}\n        distances[start_node] = 0\n        queue = [(0, start_node)]\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor in self_ud.edges[current_node]:\n                distance = current_distance + self_ud.distances[(current_node, neighbor)]\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances\n\n    def shortest_path_ud(self_ud, start_node, end_node):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        Args:\n            start_node: The node where the search starts.\n            end_node: The node where the search ends.\n\n        Returns:\n            The shortest distance from the start node to the end node.\n        \"\"\"\n        distances = self_ud.dijkstra_ud(start_node)\n        return distances[end_node]\n```\n\nThis implementation uses Dijkstra's algorithm to compute the shortest path. The `Graph` class has methods to add nodes and edges, and to compute the shortest path from one node to another. The `dijkstra_ud` method computes the shortest path from the start node to all other nodes, and the `shortest_path_ud` method uses this to compute the shortest path from the start node to the end node.",
         "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n\n    Raises:\n        ValueError: If the input list is empty.\n    \"\"\"\n    if not strs:\n        raise ValueError(\"Input list cannot be empty\")\n\n    prefix = min(strs, key=len)\n    for i, char in enumerate(prefix):\n        for string in strs:\n            if string[i] != char:\n                return prefix[:i]\n    return prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -261,12 +261,12 @@
       "instruction_model_output": [
         "```python\ndef c_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -277,17 +277,17 @@
         "```python\nfrom pedantic import retry\n\nclass Song:\n    \"\"\"Represents a song with a title and an artist.\"\"\"\n    def __init__(self, title, artist):\n        \"\"\"\n        Initializes a Song object.\n\n        Args:\n            title (str): The title of the song.\n            artist (str): The artist of the song.\n        \"\"\"\n        self.title = title\n        self.artist = artist\n\n    def __str__(self):\n        \"\"\"Returns a string representation of the song.\"\"\"\n        return f\"{self.title} by {self.artist}\"\n\n    def __eq__(self, other):\n        \"\"\"Checks if two songs are equal based on their title and artist.\"\"\"\n        return self.title == other.title and self.artist == other.artist\n\n\nclass Playlist:\n    \"\"\"Represents a playlist with a list of songs.\"\"\"\n    def __init__(self, name):\n        \"\"\"\n        Initializes a Playlist object.\n\n        Args:\n            name (str): The name of the playlist.\n        \"\"\"\n        self.name = name\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        \"\"\"\n        Adds a song to the playlist.\n\n        Args:\n            song (Song): The song to add to the playlist.\n\n        Raises:\n            ValueError: If the song is already in the playlist.\n        \"\"\"\n        if song in self.songs:\n            raise ValueError(\"Song is already in the playlist\")\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        \"\"\"\n        Removes a song from the playlist.\n\n        Args:\n            song (Song): The song to remove from the playlist.\n\n        Raises:\n            ValueError: If the song is not in the playlist.\n        \"\"\"\n        if song not in self.songs:\n            raise ValueError(\"Song is not in the playlist\")\n        self.songs.remove(song)\n```",
         "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    \"\"\"\n    Sorts an array in ascending order using the insertion sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and arr[j] > key:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -298,7 +298,7 @@
         "```python\ndef y_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```",
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with nodes and edges.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.nodes = set()\n        self.edges = {}\n        self.distances = {}\n\n    def add_node_a(self, value):\n        \"\"\"\n        Adds a node to the graph.\n\n        Args:\n            value: The value of the node.\n        \"\"\"\n        self.nodes.add(value)\n        if value not in self.edges:\n            self.edges[value] = []\n\n    def add_edge_a(self, from_node, to_node, distance):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Args:\n            from_node: The node where the edge starts.\n            to_node: The node where the edge ends.\n            distance: The distance of the edge.\n        \"\"\"\n        self.edges[from_node].append(to_node)\n        self.distances[(from_node, to_node)] = distance\n\n    def dijkstra_a(self, start_node):\n        \"\"\"\n        Computes the shortest path from the start node to all other nodes in the graph.\n\n        Args:\n            start_node: The node where the search starts.\n\n        Returns:\n            A dictionary with the shortest distances from the start node to all other nodes.\n        \"\"\"\n        distances = {node: sys.maxsize for node in self.nodes}\n        distances[start_node] = 0\n        queue = [(0, start_node)]\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor in self.edges[current_node]:\n                distance = current_distance + self.distances[(current_node, neighbor)]\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances\n\n    def shortest_path_a(self, start_node, end_node):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        Args:\n            start_node: The node where the search starts.\n            end_node: The node where the search ends.\n\n        Returns:\n            The shortest distance from the start node to the end node.\n        \"\"\"\n        distances = self.dijkstra_a(start_node)\n        return distances.get(end_node, None)\n```\n\nThis implementation uses Dijkstra's algorithm to find the shortest path between two nodes in the graph. The `dijkstra_a` method computes the shortest distances from the start node to all other nodes, and the `shortest_path_a` method uses this to find the shortest distance between two specific nodes. The graph is represented as a set of nodes and a dictionary of edges, where each edge is associated with a distance. The `add_node_a` and `add_edge_a` methods are used to add nodes and edges to the graph."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -307,12 +307,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_i (list): The first sorted list.\n        list2_i (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            result.append(list1_i[i])\n            i += 1\n        else:\n            result.append(list2_i[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_i[i:])\n    result.extend(list2_i[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -321,7 +321,7 @@
       "instruction_model_output": [
         "```python\ndef d_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -330,12 +330,12 @@
       "instruction_model_output": [
         "```python\ndef gn_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integers representing the number of citations for each paper.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    # Sort the citations in descending order\n    citations.sort(reverse=True)\n\n    # Initialize the h-index to 0\n    h_index = 0\n\n    # Iterate over the sorted citations\n    for i, citation in enumerate(citations):\n        # Compute the h-index for the current paper\n        current_h_index = min(citation, i + 1)\n\n        # Update the overall h-index if the current h-index is larger\n        h_index = max(h_index, current_h_index)\n\n    # Return the computed h-index\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -346,7 +346,7 @@
         "```python\nfrom typing import Dict, List\n\nclass DirectedGraph:\n    \"\"\"\n    A class representing a directed graph.\n\n    Attributes:\n    graph (Dict): A dictionary representing the adjacency list of the graph.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.graph = {}\n\n    def add_vertex1(self, vertex: str):\n        \"\"\"\n        Adds a vertex to the graph.\n\n        Args:\n        vertex (str): The vertex to be added.\n        \"\"\"\n        if vertex not in self.graph:\n            self.graph[vertex] = []\n\n    def add_edge1(self, vertex1: str, vertex2: str):\n        \"\"\"\n        Adds a directed edge from vertex1 to vertex2.\n\n        Args:\n        vertex1 (str): The source vertex.\n        vertex2 (str): The destination vertex.\n        \"\"\"\n        if vertex1 in self.graph and vertex2 in self.graph:\n            self.graph[vertex1].append(vertex2)\n\n    def is_cyclic1(self) -> bool:\n        \"\"\"\n        Checks if the graph contains a cycle.\n\n        Returns:\n        bool: True if the graph contains a cycle, False otherwise.\n        \"\"\"\n        visited = set()\n        recursion_stack = set()\n\n        for vertex in self.graph:\n            if vertex not in visited:\n                if self._is_cyclic_util(vertex, visited, recursion_stack):\n                    return True\n\n        return False\n\n    def _is_cyclic_util(self, vertex: str, visited: set, recursion_stack: set) -> bool:\n        \"\"\"\n        A helper function to check if the graph contains a cycle.\n\n        Args:\n        vertex (str): The current vertex.\n        visited (set): A set of visited vertices.\n        recursion_stack (set): A set of vertices in the current recursion stack.\n\n        Returns:\n        bool: True if the graph contains a cycle, False otherwise.\n        \"\"\"\n        visited.add(vertex)\n        recursion_stack.add(vertex)\n\n        for neighbor in self.graph[vertex]:\n            if neighbor not in visited:\n                if self._is_cyclic_util(neighbor, visited, recursion_stack):\n                    return True\n            elif neighbor in recursion_stack:\n                return True\n\n        recursion_stack.remove(vertex)\n        return False\n```\n\nThis implementation uses a depth-first search (DFS) approach to detect cycles in the graph. The `is_cyclic1` method iterates over all vertices in the graph and calls the `_is_cyclic_util` helper function to perform the DFS traversal. If a cycle is detected, the method returns True; otherwise, it returns False.",
         "```python\ndef b_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integers representing the number of citations for each paper.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -357,7 +357,7 @@
         "```python\ndef is_valid_sudoku(n_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        n_board (list): A 2D list representing the Sudoku board.\n\n    Returns:\n        bool: True if the board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for n_row in n_board:\n        n_seen = set()\n        for n_num in n_row:\n            if n_num != 0 and n_num in n_seen:\n                return False\n            n_seen.add(n_num)\n\n    # Check columns\n    for n_col in range(9):\n        n_seen = set()\n        for n_row in n_board:\n            n_num = n_row[n_col]\n            if n_num != 0 and n_num in n_seen:\n                return False\n            n_seen.add(n_num)\n\n    # Check boxes\n    for n_box_row in range(0, 9, 3):\n        for n_box_col in range(0, 9, 3):\n            n_seen = set()\n            for n_row in range(3):\n                for n_col in range(3):\n                    n_num = n_board[n_box_row + n_row][n_box_col + n_col]\n                    if n_num != 0 and n_num in n_seen:\n                        return False\n                    n_seen.add(n_num)\n\n    return True\n```",
         "```python\nclass Node:\n    \"\"\"\n    Represents a node in the binary tree.\n\n    Attributes:\n        value (int): The value stored in the node.\n        left (Node): The left child of the node.\n        right (Node): The right child of the node.\n    \"\"\"\n\n    def __init__(self, value):\n        \"\"\"\n        Initializes a new node with the given value.\n\n        Args:\n            value (int): The value to store in the node.\n        \"\"\"\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    \"\"\"\n    Represents a binary tree.\n\n    Attributes:\n        root (Node): The root node of the tree.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty binary tree.\n        \"\"\"\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"\n        Inserts a new node with the given value into the tree.\n\n        Args:\n            value (int): The value to store in the new node.\n        \"\"\"\n        if self.root is None:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, current_node, value):\n        \"\"\"\n        Recursively inserts a new node into the tree.\n\n        Args:\n            current_node (Node): The current node being processed.\n            value (int): The value to store in the new node.\n        \"\"\"\n        if value < current_node.value:\n            if current_node.left is None:\n                current_node.left = Node(value)\n            else:\n                self._insert_recursive(current_node.left, value)\n        else:\n            if current_node.right is None:\n                current_node.right = Node(value)\n            else:\n                self._insert_recursive(current_node.right, value)\n\n    def delete(self, value):\n        \"\"\"\n        Deletes the node with the given value from the tree.\n\n        Args:\n            value (int): The value of the node to delete.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, current_node, value):\n        \"\"\"\n        Recursively deletes a node from the tree.\n\n        Args:\n            current_node (Node): The current node being processed.\n            value (int): The value of the node to delete.\n\n        Returns:\n            Node: The updated current node.\n        \"\"\"\n        if current_node is None:\n            return current_node\n\n        if value < current_node.value:\n            current_node.left = self._delete_recursive(current_node.left, value)\n        elif value > current_node.value:\n            current_node.right = self._delete_recursive(current_node.right, value)\n        else:\n            if current_node.left is None:\n                return current_node.right\n            elif current_node.right is None:\n                return current_node.left\n            else:\n                min_value = self._find_min(current_node.right)\n                current_node.value = min_value\n                current_node.right = self._delete_recursive(current_node.right, min_value)\n\n        return current_node\n\n    def _find_min(self, current_node):\n        \"\"\"\n        Finds the minimum value in the subtree rooted at the given node.\n\n        Args:\n            current_node (Node): The root of the subtree.\n\n        Returns:\n            int: The minimum value in the subtree.\n        \"\"\"\n        while current_node.left is not None:\n            current_node = current_node.left\n        return current_node.value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -368,7 +368,7 @@
         "```python\nimport sys\nimport heapq\n\nclass Graph:\n    \"\"\"\n    A class representing a graph with nodes and edges.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.nodes = set()\n        self.edges = {}\n        self.distances = {}\n\n    def add_node_n(self, value):\n        \"\"\"\n        Adds a node to the graph.\n\n        Args:\n            value: The value of the node.\n        \"\"\"\n        self.nodes.add(value)\n        if value not in self.edges:\n            self.edges[value] = []\n\n    def add_edge_n(self, from_node, to_node, distance):\n        \"\"\"\n        Adds an edge between two nodes in the graph.\n\n        Args:\n            from_node: The node where the edge starts.\n            to_node: The node where the edge ends.\n            distance: The weight of the edge.\n        \"\"\"\n        self.edges[from_node].append(to_node)\n        self.distances[(from_node, to_node)] = distance\n\n    def dijkstra_n(self, start_node):\n        \"\"\"\n        Computes the shortest path from the start node to all other nodes in the graph.\n\n        Args:\n            start_node: The node where the search starts.\n\n        Returns:\n            A dictionary with the shortest distances from the start node to all other nodes.\n        \"\"\"\n        distances = {node: sys.maxsize for node in self.nodes}\n        distances[start_node] = 0\n        queue = [(0, start_node)]\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor in self.edges[current_node]:\n                distance = current_distance + self.distances[(current_node, neighbor)]\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances\n\n    def shortest_path_n(self, start_node, end_node):\n        \"\"\"\n        Computes the shortest path from the start node to the end node.\n\n        Args:\n            start_node: The node where the search starts.\n            end_node: The node where the search ends.\n\n        Returns:\n            The shortest distance from the start node to the end node.\n        \"\"\"\n        distances = self.dijkstra_n(start_node)\n        return distances.get(end_node, None)\n```\n\nThis implementation uses Dijkstra's algorithm to find the shortest path between two nodes in the graph. The `dijkstra_n` method computes the shortest distances from the start node to all other nodes, and the `shortest_path_n` method uses this to find the shortest distance between two specific nodes. The graph is represented as a set of nodes and a dictionary of edges, where each edge is associated with a distance. The `add_node_n` and `add_edge_n` methods are used to add nodes and edges to the graph.",
         "```python\ndef is_valid_sudoku(y_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        y_board (list of lists): A 9x9 2D array representing a Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for y_row in y_board:\n        y_seen = set()\n        for y_num in y_row:\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check columns\n    for y_col in range(9):\n        y_seen = set()\n        for y_row in range(9):\n            y_num = y_board[y_row][y_col]\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check 3x3 boxes\n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_seen = set()\n            for y_row in range(3):\n                for y_col in range(3):\n                    y_num = y_board[y_box_row + y_row][y_box_col + y_col]\n                    if y_num != 0 and y_num in y_seen:\n                        return False\n                    y_seen.add(y_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -379,22 +379,22 @@
         "```python\nclass Perceptron:\n    \"\"\"\n    A simple Perceptron class with train and predict methods.\n    \"\"\"\n\n    def __init__(self, learning_rate_chx=0.01, num_iterations_chx=1000):\n        \"\"\"\n        Initializes the Perceptron object.\n\n        Args:\n            learning_rate_chx (float, optional): The learning rate for the Perceptron. Defaults to 0.01.\n            num_iterations_chx (int, optional): The number of iterations for the Perceptron. Defaults to 1000.\n        \"\"\"\n        self.learning_rate_chx = learning_rate_chx\n        self.num_iterations_chx = num_iterations_chx\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def _unit_step_function_chx(self, signal_chx):\n        \"\"\"\n        The unit step function used for activation.\n\n        Args:\n            signal_chx (float): The input signal.\n\n        Returns:\n            int: 1 if the signal is greater than or equal to 0, 0 otherwise.\n        \"\"\"\n        return 1 if signal_chx >= 0 else 0\n\n    def train(self, X_chx, y_chx):\n        \"\"\"\n        Trains the Perceptron.\n\n        Args:\n            X_chx (list of lists): The input features.\n            y_chx (list): The target outputs.\n        \"\"\"\n        num_samples_chx, num_features_chx = len(X_chx), len(X_chx[0])\n        self.weights_chx = [0.0] * num_features_chx\n        self.bias_chx = 0.0\n\n        for _ in range(self.num_iterations_chx):\n            for idx_chx, x_i_chx in enumerate(X_chx):\n                linear_output_chx = sum([x_i_chx[j] * self.weights_chx[j] for j in range(num_features_chx)]) + self.bias_chx\n                y_predicted_chx = self._unit_step_function_chx(linear_output_chx)\n\n                update_chx = self.learning_rate_chx * (y_chx[idx_chx] - y_predicted_chx)\n                self.weights_chx = [w_chx + update_chx * x_i_chx[j] for j, w_chx in enumerate(self.weights_chx)]\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        \"\"\"\n        Makes predictions using the trained Perceptron.\n\n        Args:\n            X_chx (list of lists): The input features.\n\n        Returns:\n            list: The predicted outputs.\n        \"\"\"\n        linear_outputs_chx = [sum([x_i_chx[j] * self.weights_chx[j] for j in range(len(X_chx[0]))]) + self.bias_chx for x_i_chx in X_chx]\n        return [self._unit_step_function_chx(linear_output_chx) for linear_output_chx in linear_outputs_chx]\n```",
         "```python\ndef is_valid_sudoku(m_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        m_board (list of lists): A 9x9 2D array representing a Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for m_row in m_board:\n        m_seen = set()\n        for m_num in m_row:\n            if m_num != 0 and m_num in m_seen:\n                return False\n            m_seen.add(m_num)\n\n    # Check columns\n    for m_col in range(9):\n        m_seen = set()\n        for m_row in range(9):\n            m_num = m_board[m_row][m_col]\n            if m_num != 0 and m_num in m_seen:\n                return False\n            m_seen.add(m_num)\n\n    # Check 3x3 boxes\n    for m_box_row in range(0, 9, 3):\n        for m_box_col in range(0, 9, 3):\n            m_seen = set()\n            for m_row in range(3):\n                for m_col in range(3):\n                    m_num = m_board[m_box_row + m_row][m_box_col + m_col]\n                    if m_num != 0 and m_num in m_seen:\n                        return False\n                    m_seen.add(m_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -403,12 +403,12 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(wr_board):\n    \"\"\"\n    Checks if the given 2D array represents a valid Sudoku board.\n\n    Args:\n        wr_board (list): A 2D list of integers representing the Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for wr_row in wr_board:\n        wr_seen = set()\n        for wr_num in wr_row:\n            if wr_num != 0 and wr_num in wr_seen:\n                return False\n            wr_seen.add(wr_num)\n\n    # Check columns\n    for wr_col in range(9):\n        wr_seen = set()\n        for wr_row in range(9):\n            wr_num = wr_board[wr_row][wr_col]\n            if wr_num != 0 and wr_num in wr_seen:\n                return False\n            wr_seen.add(wr_num)\n\n    # Check 3x3 boxes\n    for wr_box_row in range(0, 9, 3):\n        for wr_box_col in range(0, 9, 3):\n            wr_seen = set()\n            for wr_row in range(3):\n                for wr_col in range(3):\n                    wr_num = wr_board[wr_box_row + wr_row][wr_box_col + wr_col]\n                    if wr_num != 0 and wr_num in wr_seen:\n                        return False\n                    wr_seen.add(wr_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -419,7 +419,7 @@
         "```python\ndef is_valid_sudoku(x_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    A valid Sudoku board is a 9x9 grid, divided into nine 3x3 sub-grids or \"regions.\"\n    Each region, row, and column can contain each digit only once.\n    \"\"\"\n\n    # Check rows\n    for x_row in x_board:\n        x_seen = set()\n        for x_num in x_row:\n            if x_num != 0 and x_num in x_seen:\n                return False\n            x_seen.add(x_num)\n\n    # Check columns\n    for x_col in range(9):\n        x_seen = set()\n        for x_row in x_board:\n            x_num = x_row[x_col]\n            if x_num != 0 and x_num in x_seen:\n                return False\n            x_seen.add(x_num)\n\n    # Check regions\n    for x_region_row in range(0, 9, 3):\n        for x_region_col in range(0, 9, 3):\n            x_seen = set()\n            for x_row in range(3):\n                for x_col in range(3):\n                    x_num = x_board[x_region_row + x_row][x_region_col + x_col]\n                    if x_num != 0 and x_num in x_seen:\n                        return False\n                    x_seen.add(x_num)\n\n    return True\n```",
         "```python\ndef x_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -428,17 +428,17 @@
       "instruction_model_output": [
         "```python\ndef a_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -449,7 +449,7 @@
         "```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef majority_element(nums: List[int]) -> int:\n    \"\"\"\n    Returns the majority element of an array.\n    \n    The majority element is the element that appears more than n/2 times where n is the size of the array.\n    \n    This function uses the Boyer-Moore Majority Vote algorithm, which works by essentially keeping a counter for the majority element. \n    If the counter is 0, the algorithm sets the current element as the majority element. \n    Then, it increments the counter if it encounters the same element again, otherwise it decrements the counter.\n    \"\"\"\n    count = 0\n    candidate = None\n\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n\n    return candidate\n```\n\nPlease note that the Boyer-Moore Majority Vote algorithm assumes that a majority element always exists in the array. If that's not the case, you would need to add an additional step to confirm that the candidate is indeed a majority element by counting its occurrences in the array. \n\nHere's how you can modify the function to handle that:\n\n```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef majority_element(nums: List[int]) -> int:\n    \"\"\"\n    Returns the majority element of an array.\n    \n    The majority element is the element that appears more than n/2 times where n is the size of the array.\n    \n    This function uses the Boyer-Moore Majority Vote algorithm, which works by essentially keeping a counter for the majority element. \n    If the counter is 0, the algorithm sets the current element as the majority element. \n    Then, it increments the counter if it encounters the same element again, otherwise it decrements the counter.\n    \"\"\"\n    count = 0\n    candidate = None\n\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n\n    # Confirm that the candidate is indeed a majority element\n    if nums.count(candidate) > len(nums) / 2:\n        return candidate\n    else:\n        raise ValueError(\"No majority element found in the array\")\n```",
         "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_h (list): The first sorted list.\n        list2_h (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            result.append(list1_h[i])\n            i += 1\n        else:\n            result.append(list2_h[j])\n            j += 1\n\n    # If there are remaining elements in either list, append them to the result\n    result.extend(list1_h[i:])\n    result.extend(list2_h[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -460,12 +460,12 @@
         "```python\ndef is_valid_sudoku(w_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku puzzle.\n\n    Args:\n        w_board (list): A 2D list representing the Sudoku puzzle.\n\n    Returns:\n        bool: True if the Sudoku puzzle is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for w_row in w_board:\n        w_seen = set()\n        for w_num in w_row:\n            if w_num != 0 and w_num in w_seen:\n                return False\n            w_seen.add(w_num)\n\n    # Check columns\n    for w_col in range(9):\n        w_seen = set()\n        for w_row in w_board:\n            w_num = w_row[w_col]\n            if w_num != 0 and w_num in w_seen:\n                return False\n            w_seen.add(w_num)\n\n    # Check 3x3 boxes\n    for w_box_row in range(0, 9, 3):\n        for w_box_col in range(0, 9, 3):\n            w_seen = set()\n            for w_row in range(3):\n                for w_col in range(3):\n                    w_num = w_board[w_box_row + w_row][w_box_col + w_col]\n                    if w_num != 0 and w_num in w_seen:\n                        return False\n                    w_seen.add(w_num)\n\n    return True\n```",
         "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_x (list): The first sorted list.\n        list2_x (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            result.append(list1_x[i])\n            i += 1\n        else:\n            result.append(list2_x[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_x[i:])\n    result.extend(list2_x[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -474,12 +474,12 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(vr_board):\n    \"\"\"\n    Checks if the given 2D array represents a valid Sudoku board.\n\n    Args:\n        vr_board (list of lists): A 9x9 2D array representing the Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for vr_row in vr_board:\n        vr_seen = set()\n        for vr_num in vr_row:\n            if vr_num != 0 and vr_num in vr_seen:\n                return False\n            vr_seen.add(vr_num)\n\n    # Check columns\n    for vr_col in range(9):\n        vr_seen = set()\n        for vr_row in range(9):\n            vr_num = vr_board[vr_row][vr_col]\n            if vr_num != 0 and vr_num in vr_seen:\n                return False\n            vr_seen.add(vr_num)\n\n    # Check 3x3 boxes\n    for vr_box_row in range(0, 9, 3):\n        for vr_box_col in range(0, 9, 3):\n            vr_seen = set()\n            for vr_row in range(3):\n                for vr_col in range(3):\n                    vr_num = vr_board[vr_box_row + vr_row][vr_box_col + vr_col]\n                    if vr_num != 0 and vr_num in vr_seen:\n                        return False\n                    vr_seen.add(vr_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -488,7 +488,7 @@
       "instruction_model_output": [
         "```python\nimport mailbox\n\nclass Node:\n    \"\"\"Represents a node in a binary search tree.\"\"\"\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\nclass BinarySearchTree:\n    \"\"\"Represents a binary search tree.\"\"\"\n    def __init__(self):\n        self.root = None\n\n    def delete_node(self, value):\n        \"\"\"Deletes a node with the given value from the binary search tree.\"\"\"\n        self.root = self._delete_node(self.root, value)\n\n    def _delete_node(self, node, value):\n        \"\"\"Recursively deletes a node with the given value from the binary search tree.\"\"\"\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_node(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_node(node.right, value)\n        else:\n            # Node to delete found\n            # Case 1: No children\n            if node.left is None and node.right is None:\n                return None\n            # Case 2: One child\n            elif node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            # Case 3: Two children\n            else:\n                # Find the node's in-order successor (smallest node in the right subtree)\n                successor = self._find_successor(node.right)\n                node.value = successor.value\n                node.right = self._delete_node(node.right, successor.value)\n\n        return node\n\n    def _find_successor(self, node):\n        \"\"\"Finds the smallest node in the given subtree.\"\"\"\n        while node.left is not None:\n            node = node.left\n        return node\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -497,17 +497,17 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    \"\"\"Represents a node in a binary tree.\"\"\"\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef is_valid_bst(root):\n    \"\"\"\n    Determines if a given tree is a valid binary search tree.\n\n    Args:\n    root (TreeNode): The root of the tree.\n\n    Returns:\n    bool: True if the tree is a valid binary search tree, False otherwise.\n    \"\"\"\n    try:\n        def is_valid_bst_helper(node, min_value, max_value):\n            # Base case: An empty tree is a valid binary search tree.\n            if node is None:\n                return True\n\n            # Check if the current node's value is within the valid range.\n            if not min_value < node.value < max_value:\n                return False\n\n            # Recursively check the left and right subtrees.\n            return (is_valid_bst_helper(node.left, min_value, node.value) and\n                    is_valid_bst_helper(node.right, node.value, max_value))\n\n        # Initialize the valid range for the root node.\n        return is_valid_bst_helper(root, float('-inf'), float('inf'))\n    except Exception as e:\n        # Log or handle the exception as needed.\n        print(f\"An error occurred: {e}\")\n        return False\n```\n\nThis function uses a recursive helper function to check each node in the tree. It ensures that each node's value is within the valid range defined by its ancestors, and that the left and right subtrees are also valid binary search trees. If any node fails these checks, the function returns False. If all nodes pass, the function returns True. The try-except block catches any exceptions that may occur during the function's execution."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -516,7 +516,7 @@
       "instruction_model_output": [
         "### Binary Tree to Linked List Conversion\n\nHere's a Python function that performs an in-place flattening of a binary tree into a linked list.\n\n```python\nclass TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef flatten_chx(root: TreeNode) -> None:\n    \"\"\"\n    Flattens a binary tree into a linked list in-place.\n\n    Args:\n    root: The root node of the binary tree.\n    \"\"\"\n    if not root:\n        return\n\n    node = root\n    while node:\n        if node.left:\n            # Find the rightmost node in the left subtree\n            rightmost = node.left\n            while rightmost.right:\n                rightmost = rightmost.right\n\n            # Reassign the right child of the rightmost node to node's right child\n            rightmost.right = node.right\n            # Reassign node's right child to its left child\n            node.right = node.left\n            # Remove node's left child\n            node.left = None\n        # Move to the next node in the list\n        node = node.right\n```\n\nThis function works by iterating through the tree and reassigning the child pointers of each node to create a linked list. It uses a while loop to traverse the tree, and for each node, it checks if there's a left child. If there is, it finds the rightmost node in the left subtree, appends the current node's right child to it, and then reassigns the current node's right child to its left child. Finally, it removes the left child of the current node. This process is repeated until all nodes have been visited."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -525,27 +525,27 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(z_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku puzzle.\n\n    Args:\n        z_board (list of lists): A 9x9 2D array representing the Sudoku puzzle.\n\n    Returns:\n        bool: True if the Sudoku puzzle is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for z_row in z_board:\n        z_seen = set()\n        for z_num in z_row:\n            if z_num != 0 and z_num in z_seen:\n                return False\n            z_seen.add(z_num)\n\n    # Check columns\n    for z_col in range(9):\n        z_seen = set()\n        for z_row in range(9):\n            z_num = z_board[z_row][z_col]\n            if z_num != 0 and z_num in z_seen:\n                return False\n            z_seen.add(z_num)\n\n    # Check 3x3 boxes\n    for z_box_row in range(0, 9, 3):\n        for z_box_col in range(0, 9, 3):\n            z_seen = set()\n            for z_row in range(z_box_row, z_box_row + 3):\n                for z_col in range(z_box_col, z_box_col + 3):\n                    z_num = z_board[z_row][z_col]\n                    if z_num != 0 and z_num in z_seen:\n                        return False\n                    z_seen.add(z_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -556,7 +556,7 @@
         "```python\nclass Node:\n    \"\"\"\n    A class representing a node in the linked list.\n    \"\"\"\n\n    def __init__(self, data_q):\n        \"\"\"\n        Initializes a Node with the given data.\n\n        Args:\n            data_q: The data to be stored in the node.\n        \"\"\"\n        self.data_q = data_q\n        self.next_q = None\n\n\nclass LinkedList:\n    \"\"\"\n    A class representing a linked list.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty linked list.\n        \"\"\"\n        self.head_q = None\n        self.tail_q = None\n        self.size_q = 0\n\n    def append(self, data_q):\n        \"\"\"\n        Adds a new node with the given data at the end of the linked list.\n\n        Args:\n            data_q: The data to be stored in the new node.\n        \"\"\"\n        node = Node(data_q)\n        if self.head_q is None:\n            self.head_q = node\n            self.tail_q = node\n        else:\n            self.tail_q.next_q = node\n            self.tail_q = node\n        self.size_q += 1\n\n    def prepend(self, data_q):\n        \"\"\"\n        Adds a new node with the given data at the beginning of the linked list.\n\n        Args:\n            data_q: The data to be stored in the new node.\n        \"\"\"\n        node = Node(data_q)\n        if self.head_q is None:\n            self.head_q = node\n            self.tail_q = node\n        else:\n            node.next_q = self.head_q\n            self.head_q = node\n        self.size_q += 1\n\n    def remove(self, data_q):\n        \"\"\"\n        Removes the first occurrence of the node with the given data from the linked list.\n\n        Args:\n            data_q: The data of the node to be removed.\n        \"\"\"\n        if self.head_q is None:\n            return\n\n        if self.head_q.data_q == data_q:\n            self.head_q = self.head_q.next_q\n            if self.head_q is None:\n                self.tail_q = None\n            self.size_q -= 1\n            return\n\n        current_q = self.head_q\n        while current_q.next_q:\n            if current_q.next_q.data_q == data_q:\n                current_q.next_q = current_q.next_q.next_q\n                if current_q.next_q is None:\n                    self.tail_q = current_q\n                self.size_q -= 1\n                return\n            current_q = current_q.next_q\n\n    def traverse(self):\n        \"\"\"\n        Returns a list of all the data in the linked list.\n        \"\"\"\n        result = []\n        current_q = self.head_q\n        while current_q:\n            result.append(current_q.data_q)\n            current_q = current_q.next_q\n        return result\n\n    def is_empty(self):\n        \"\"\"\n        Returns True if the linked list is empty, False otherwise.\n        \"\"\"\n        return self.size_q == 0\n\n    def get_size(self):\n        \"\"\"\n        Returns the number of nodes in the linked list.\n        \"\"\"\n        return self.size_q\n```",
         "```python\ndef merge_sorted_lists(list1_a, list2_a):\n    \"\"\"\n    Merge two sorted lists into a single sorted list.\n\n    Args:\n        list1_a (list): The first sorted list.\n        list2_a (list): The second sorted list.\n\n    Returns:\n        list: A new sorted list containing all elements from both input lists.\n    \"\"\"\n    result = []\n    i, j = 0, 0\n\n    # Merge smaller elements first\n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            result.append(list1_a[i])\n            i += 1\n        else:\n            result.append(list2_a[j])\n            j += 1\n\n    # Append any remaining elements\n    result.extend(list1_a[i:])\n    result.extend(list2_a[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -565,42 +565,42 @@
       "instruction_model_output": [
         "```python\nfrom typing import List\nfrom pedantic import rename_kwargs\n\nclass Solution:\n    @rename_kwargs(\n        nums='input_list_of_numbers',\n        low='starting_index_of_subarray',\n        high='ending_index_of_subarray'\n    )\n    def _crossing_max_subarray(self, nums: List[int], low: int, mid: int, high: int) -> tuple:\n        \"\"\"Finds the maximum subarray that crosses the midpoint.\"\"\"\n        left_sum = float('-inf')\n        sum = 0\n        max_left = mid\n        for i in range(mid, low - 1, -1):\n            sum += nums[i]\n            if sum > left_sum:\n                left_sum = sum\n                max_left = i\n\n        right_sum = float('-inf')\n        sum = 0\n        max_right = mid + 1\n        for i in range(mid + 1, high + 1):\n            sum += nums[i]\n            if sum > right_sum:\n                right_sum = sum\n                max_right = i\n\n        return max_left, max_right, left_sum + right_sum\n\n    @rename_kwargs(\n        nums='input_list_of_numbers',\n        low='starting_index_of_subarray',\n        high='ending_index_of_subarray'\n    )\n    def _max_subarray(self, nums: List[int], low: int, high: int) -> tuple:\n        \"\"\"Finds the maximum subarray using divide and conquer.\"\"\"\n        if low == high:\n            return low, high, nums[low]\n        else:\n            mid = (low + high) // 2\n            left_low, left_high, left_sum = self._max_subarray(nums, low, mid)\n            right_low, right_high, right_sum = self._max_subarray(nums, mid + 1, high)\n            cross_low, cross_high, cross_sum = self._crossing_max_subarray(nums, low, mid, high)\n\n            if left_sum >= right_sum and left_sum >= cross_sum:\n                return left_low, left_high, left_sum\n            elif right_sum >= left_sum and right_sum >= cross_sum:\n                return right_low, right_high, right_sum\n            else:\n                return cross_low, cross_high, cross_sum\n\n    @rename_kwargs(\n        nums='input_list_of_numbers'\n    )\n    def max_subarray(self, nums: List[int]) -> tuple:\n        \"\"\"Finds the maximum subarray.\"\"\"\n        return self._max_subarray(nums, 0, len(nums) - 1)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -609,7 +609,7 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    \"\"\"\n    A class representing a node in the linked list.\n    \"\"\"\n\n    def __init__(self, data_i):\n        \"\"\"\n        Initializes a Node with the given data.\n\n        Args:\n            data_i: The data to be stored in the node.\n        \"\"\"\n        self.data_i = data_i\n        self.next_i = None\n\n\nclass LinkedList:\n    \"\"\"\n    A class representing a linked list.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty linked list.\n        \"\"\"\n        self.head_i = None\n        self.size_i = 0\n\n    def append(self, data_i):\n        \"\"\"\n        Appends a new node with the given data to the end of the linked list.\n\n        Args:\n            data_i: The data to be stored in the new node.\n        \"\"\"\n        new_node = Node(data_i)\n        if not self.head_i:\n            self.head_i = new_node\n        else:\n            current = self.head_i\n            while current.next_i:\n                current = current.next_i\n            current.next_i = new_node\n        self.size_i += 1\n\n    def insert_at(self, index_i, data_i):\n        \"\"\"\n        Inserts a new node with the given data at the specified index in the linked list.\n\n        Args:\n            index_i: The index at which the new node should be inserted.\n            data_i: The data to be stored in the new node.\n\n        Raises:\n            IndexError: If the index is out of range.\n        \"\"\"\n        if index_i < 0 or index_i > self.size_i:\n            raise IndexError(\"Index out of range\")\n        new_node = Node(data_i)\n        if index_i == 0:\n            new_node.next_i = self.head_i\n            self.head_i = new_node\n        else:\n            current = self.head_i\n            for _ in range(index_i - 1):\n                current = current.next_i\n            new_node.next_i = current.next_i\n            current.next_i = new_node\n        self.size_i += 1\n\n    def remove_at(self, index_i):\n        \"\"\"\n        Removes the node at the specified index from the linked list.\n\n        Args:\n            index_i: The index of the node to be removed.\n\n        Raises:\n            IndexError: If the index is out of range.\n        \"\"\"\n        if index_i < 0 or index_i >= self.size_i:\n            raise IndexError(\"Index out of range\")\n        if index_i == 0:\n            self.head_i = self.head_i.next_i\n        else:\n            current = self.head_i\n            for _ in range(index_i - 1):\n                current = current.next_i\n            current.next_i = current.next_i.next_i\n        self.size_i -= 1\n\n    def get_at(self, index_i):\n        \"\"\"\n        Returns the data of the node at the specified index in the linked list.\n\n        Args:\n            index_i: The index of the node whose data is to be returned.\n\n        Returns:\n            The data of the node at the specified index.\n\n        Raises:\n            IndexError: If the index is out of range.\n        \"\"\"\n        if index_i < 0 or index_i >= self.size_i:\n            raise IndexError(\"Index out of range\")\n        current = self.head_i\n        for _ in range(index_i):\n            current = current.next_i\n        return current.data_i\n\n    def __len__(self):\n        \"\"\"\n        Returns the number of nodes in the linked list.\n\n        Returns:\n            The number of nodes in the linked list.\n        \"\"\"\n        return self.size_i\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -618,7 +618,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import validate\nfrom typing import Dict\n\nclass Book:\n    \"\"\"Represents a book with title, author, and publication year.\"\"\"\n    \n    def __init__(self, title: str, author: str, publication_year: int):\n        \"\"\"\n        Initializes a Book instance.\n\n        Args:\n            title (str): The title of the book.\n            author (str): The author of the book.\n            publication_year (int): The publication year of the book.\n        \"\"\"\n        self.title = title\n        self.author = author\n        self.publication_year = publication_year\n\n\nclass Library:\n    \"\"\"Represents a library with a collection of books.\"\"\"\n    \n    def __init__(self):\n        \"\"\"Initializes an empty library.\"\"\"\n        self.books: Dict[str, Book] = {}\n\n    @validate\n    def add_book(self, book: Book) -> None:\n        \"\"\"\n        Adds a book to the library.\n\n        Args:\n            book (Book): The book to add.\n\n        Raises:\n            ValueError: If a book with the same title already exists in the library.\n        \"\"\"\n        if book.title in self.books:\n            raise ValueError(f\"A book with the title '{book.title}' already exists in the library.\")\n        self.books[book.title] = book\n\n    @validate\n    def remove_book(self, title: str) -> None:\n        \"\"\"\n        Removes a book from the library.\n\n        Args:\n            title (str): The title of the book to remove.\n\n        Raises:\n            ValueError: If the book does not exist in the library.\n        \"\"\"\n        if title not in self.books:\n            raise ValueError(f\"A book with the title '{title}' does not exist in the library.\")\n        del self.books[title]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -627,27 +627,27 @@
       "instruction_model_output": [
         "```python\ndef fn_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integer citations.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    # Sort the citations in descending order\n    citations.sort(reverse=True)\n\n    # Initialize the h-index to 0\n    h_index = 0\n\n    # Iterate over the sorted citations\n    for i, citation in enumerate(citations):\n        # Compute the h-index for the current paper\n        current_h_index = min(citation, i + 1)\n\n        # Update the h-index if the current h-index is larger\n        h_index = max(h_index, current_h_index)\n\n    # Return the computed h-index\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -656,12 +656,12 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    \"\"\"\n    A class representing a node in the linked list.\n    \"\"\"\n\n    def __init__(self, data_j):\n        \"\"\"\n        Initializes a Node with the given data.\n\n        Args:\n            data_j: The data to be stored in the node.\n        \"\"\"\n        self.data_j = data_j\n        self.next_j = None\n\n\nclass LinkedList:\n    \"\"\"\n    A class representing a linked list.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty linked list.\n        \"\"\"\n        self.head_j = None\n        self.size_j = 0\n\n    def insert_at_head_j(self, data_j):\n        \"\"\"\n        Inserts a new node with the given data at the head of the linked list.\n\n        Args:\n            data_j: The data to be stored in the new node.\n        \"\"\"\n        new_node = Node(data_j)\n        new_node.next_j = self.head_j\n        self.head_j = new_node\n        self.size_j += 1\n\n    def insert_at_tail_j(self, data_j):\n        \"\"\"\n        Inserts a new node with the given data at the tail of the linked list.\n\n        Args:\n            data_j: The data to be stored in the new node.\n        \"\"\"\n        if not self.head_j:\n            self.insert_at_head_j(data_j)\n            return\n\n        new_node = Node(data_j)\n        current = self.head_j\n        while current.next_j:\n            current = current.next_j\n        current.next_j = new_node\n        self.size_j += 1\n\n    def delete_at_head_j(self):\n        \"\"\"\n        Deletes the node at the head of the linked list.\n\n        Returns:\n            The data of the deleted node, or None if the list is empty.\n        \"\"\"\n        if not self.head_j:\n            return None\n\n        data_j = self.head_j.data_j\n        self.head_j = self.head_j.next_j\n        self.size_j -= 1\n        return data_j\n\n    def delete_j(self, data_j):\n        \"\"\"\n        Deletes the first occurrence of the node with the given data in the linked list.\n\n        Args:\n            data_j: The data of the node to be deleted.\n\n        Returns:\n            True if the node is deleted, False otherwise.\n        \"\"\"\n        if not self.head_j:\n            return False\n\n        if self.head_j.data_j == data_j:\n            self.delete_at_head_j()\n            return True\n\n        current = self.head_j\n        while current.next_j:\n            if current.next_j.data_j == data_j:\n                current.next_j = current.next_j.next_j\n                self.size_j -= 1\n                return True\n            current = current.next_j\n\n        return False\n\n    def search_j(self, data_j):\n        \"\"\"\n        Searches for the first occurrence of the node with the given data in the linked list.\n\n        Args:\n            data_j: The data of the node to be searched.\n\n        Returns:\n            True if the node is found, False otherwise.\n        \"\"\"\n        current = self.head_j\n        while current:\n            if current.data_j == data_j:\n                return True\n            current = current.next_j\n        return False\n\n    def get_size_j(self):\n        \"\"\"\n        Returns the size of the linked list.\n\n        Returns:\n            The size of the linked list.\n        \"\"\"\n        return self.size_j\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -670,7 +670,7 @@
       "instruction_model_output": [
         "```python\nimport torch\nimport torch.nn as nn\n\nclass binary_image_classifier(nn.Module):\n    \"\"\"\n    A PyTorch model class for binary image classification.\n\n    Attributes:\n        num_channels (int): The number of input channels in the images.\n    \"\"\"\n\n    def __init__(self, num_channels: int):\n        \"\"\"\n        Initializes the binary image classifier model.\n\n        Args:\n            num_channels (int): The number of input channels in the images.\n        \"\"\"\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3)\n        self.conv3 = nn.Conv2d(64, 128, kernel_size=3)\n        self.max_pool = nn.MaxPool2d(2, 2)\n        self.dropout = nn.Dropout(p=0.2)\n        self.fc1 = nn.Linear(128 * 4 * 4, 128)\n        self.fc2 = nn.Linear(128, 2)\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        \"\"\"\n        Defines the forward pass of the model.\n\n        Args:\n            x (torch.Tensor): The input tensor.\n\n        Returns:\n            torch.Tensor: The output tensor.\n        \"\"\"\n        x = torch.relu(self.conv1(x))\n        x = self.max_pool(x)\n        x = torch.relu(self.conv2(x))\n        x = self.max_pool(x)\n        x = torch.relu(self.conv3(x))\n        x = self.max_pool(x)\n        x = x.view(-1, 128 * 4 * 4)\n        x = torch.relu(self.fc1(x))\n        x = self.dropout(x)\n        x = self.fc2(x)\n        return x\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -679,27 +679,27 @@
       "instruction_model_output": [
         "```python\nimport bz2\n\ndef sum_array_except_self(nums):\n    \"\"\"\n    Returns an array where each element is the sum of all numbers in the input array except for the number at the same index.\n\n    Args:\n        nums (list): A list of integers.\n\n    Returns:\n        list: A list of integers where each element is the sum of all numbers in the input array except for the number at the same index.\n    \"\"\"\n    # Calculate the total sum of the array\n    total_sum = sum(nums)\n    \n    # Initialize an empty list to store the results\n    result = []\n    \n    # Iterate over each number in the input array\n    for num in nums:\n        # Calculate the sum of all numbers except for the current number\n        sum_except_self = total_sum - num\n        \n        # Append the result to the list\n        result.append(sum_except_self)\n    \n    # Return the list of results\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -708,22 +708,22 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    \"\"\"\n    A class representing a node in the linked list.\n    \"\"\"\n\n    def __init__(self, data_r):\n        \"\"\"\n        Initializes a Node with the given data.\n\n        Args:\n            data_r: The data to be stored in the node.\n        \"\"\"\n        self.data_r = data_r\n        self.next_r = None\n\n\nclass LinkedList:\n    \"\"\"\n    A class representing a linked list.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty linked list.\n        \"\"\"\n        self.head_r = None\n        self.size_r = 0\n\n    def insert_at_head(self, data_r):\n        \"\"\"\n        Inserts a new node with the given data at the head of the linked list.\n\n        Args:\n            data_r: The data to be stored in the new node.\n        \"\"\"\n        new_node = Node(data_r)\n        new_node.next_r = self.head_r\n        self.head_r = new_node\n        self.size_r += 1\n\n    def insert_at_tail(self, data_r):\n        \"\"\"\n        Inserts a new node with the given data at the tail of the linked list.\n\n        Args:\n            data_r: The data to be stored in the new node.\n        \"\"\"\n        if not self.head_r:\n            self.insert_at_head(data_r)\n            return\n\n        new_node = Node(data_r)\n        current = self.head_r\n        while current.next_r:\n            current = current.next_r\n        current.next_r = new_node\n        self.size_r += 1\n\n    def delete_at_head(self):\n        \"\"\"\n        Deletes the node at the head of the linked list.\n\n        Returns:\n            The data of the deleted node, or None if the list is empty.\n        \"\"\"\n        if not self.head_r:\n            return None\n\n        data_r = self.head_r.data_r\n        self.head_r = self.head_r.next_r\n        self.size_r -= 1\n        return data_r\n\n    def delete(self, data_r):\n        \"\"\"\n        Deletes the first occurrence of the node with the given data in the linked list.\n\n        Args:\n            data_r: The data of the node to be deleted.\n\n        Returns:\n            True if the node is deleted, False otherwise.\n        \"\"\"\n        if not self.head_r:\n            return False\n\n        if self.head_r.data_r == data_r:\n            self.delete_at_head()\n            return True\n\n        current = self.head_r\n        while current.next_r:\n            if current.next_r.data_r == data_r:\n                current.next_r = current.next_r.next_r\n                self.size_r -= 1\n                return True\n            current = current.next_r\n\n        return False\n\n    def search(self, data_r):\n        \"\"\"\n        Searches for the first occurrence of the node with the given data in the linked list.\n\n        Args:\n            data_r: The data of the node to be searched.\n\n        Returns:\n            True if the node is found, False otherwise.\n        \"\"\"\n        current = self.head_r\n        while current:\n            if current.data_r == data_r:\n                return True\n            current = current.next_r\n\n        return False\n\n    def get_size(self):\n        \"\"\"\n        Returns the size of the linked list.\n\n        Returns:\n            The size of the linked list.\n        \"\"\"\n        return self.size_r\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -732,7 +732,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import require_kwargs\nfrom typing import List\n\nclass StudentGrade:\n    \"\"\"\n    A class to represent a student's grades.\n\n    Attributes:\n    ----------\n    grades : List[float]\n        A list of grades obtained by the student.\n    \"\"\"\n\n    def __init__(self, grades: List[float]) -> None:\n        \"\"\"\n        Initializes the StudentGrade object.\n\n        Args:\n        ----\n        grades (List[float]): A list of grades obtained by the student.\n        \"\"\"\n        self.grades = grades\n\n    @require_kwargs\n    def compute_average_grade(self, *, rounding_precision: int = 2) -> float:\n        \"\"\"\n        Computes the average grade of the student.\n\n        Args:\n        ----\n        rounding_precision (int): The number of decimal places to round the average grade to. Defaults to 2.\n\n        Returns:\n        -------\n        float: The average grade of the student.\n        \"\"\"\n        if not self.grades:\n            raise ValueError(\"Cannot compute average grade for an empty list of grades\")\n\n        average_grade = sum(self.grades) / len(self.grades)\n        return round(average_grade, rounding_precision)\n```\n\nThis code defines a `StudentGrade` class with a method `compute_average_grade` that calculates the average grade of a student. The `@require_kwargs` decorator is used to ensure that all arguments are passed as keyword arguments. The method also includes input validation to handle the case where the list of grades is empty. The average grade is rounded to the specified precision before being returned."
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"Converts an integer to a Roman numeral.\"\"\"\n    \n    # Define a dictionary mapping integers to their corresponding Roman numerals\n    roman_numerals = {\n        1000: 'M', 900: 'CM', 500: 'D', 400: 'CD',\n        100: 'C', 90: 'XC', 50: 'L', 40: 'XL',\n        10: 'X', 9: 'IX', 5: 'V', 4: 'IV', 1: 'I'\n    }\n    \n    # Initialize an empty string to store the Roman numeral representation\n    roman_num = ''\n    \n    # Iterate over the dictionary in descending order of integer values\n    for value, numeral in sorted(roman_numerals.items(), reverse=True):\n        # Calculate the number of times the current Roman numeral can fit into the number\n        count = num // value\n        \n        # Add the Roman numeral to the result 'count' times\n        roman_num += numeral * count\n        \n        # Subtract the value of the current Roman numeral times 'count' from the number\n        num -= value * count\n    \n    return roman_num\n```",
         "```python\nimport numpy as np\nfrom pedantic import require_kwargs\n\nclass Perceptron:\n    def __init__(self, learning_rate=0.01, n_iters=1000):\n        self.lr = learning_rate\n        self.n_iters = n_iters\n        self.activation_func = self._unit_step_func\n        self.weights = None\n        self.bias = None\n\n    @require_kwargs\n    def fit(self, X, y):\n        n_samples, n_features = X.shape\n\n        # init parameters\n        self.weights = np.zeros(n_features)\n        self.bias = 0\n\n        # cost = []\n        for _ in range(self.n_iters):\n            for idx, x_i in enumerate(X):\n                linear_output = np.dot(x_i, self.weights) + self.bias\n                y_predicted = self.activation_func(linear_output)\n\n                # Perceptron update rule\n                update = self.lr * (y[idx] - y_predicted)\n                self.weights += update * x_i\n                self.bias += update\n\n    def predict(self, X):\n        linear_output = np.dot(X, self.weights) + self.bias\n        y_predicted = self.activation_func(linear_output)\n        return y_predicted\n\n    def _unit_step_func(self, signal):\n        return np.where(signal >= 0, 1, 0)\n```",
         "```python\ndef is_valid_bst(root):\n    def is_valid_bst_helper(node, min_val=float('-inf'), max_val=float('inf')):\n        if node is None:\n            return True\n\n        if not min_val < node.val < max_val:\n            return False\n\n        return (is_valid_bst_helper(node.left, min_val, node.val) and\n                is_valid_bst_helper(node.right, node.val, max_val))\n\n    return is_valid_bst_helper(root)\n```",

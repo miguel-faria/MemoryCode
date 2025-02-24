@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,12 +12,12 @@
       "instruction_model_output": [
         "def merge_sort_b(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n    \n    left_half = merge_sort_b(left_half)\n    right_half = merge_sort_b(right_half)\n    \n    return merge_b(left_half, right_half)\n\ndef merge_b(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n    \n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n    \n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n    \n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef merge_sort_b(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half_b = arr[:mid]\n    right_half_b = arr[mid:]\n\n    left_half_b = merge_sort_b(left_half_b)\n    right_half_b = merge_sort_b(right_half_b)\n\n    return merge_b(left_half_b, right_half_b)\n\ndef merge_b(left, right):\n    result_b = []\n    left_index, right_index = 0, 0\n\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] < right[right_index]:\n            result_b.append(left[left_index])\n            left_index += 1\n        else:\n            result_b.append(right[right_index])\n            right_index += 1\n\n    result_b.extend(left[left_index:])\n    result_b.extend(right[right_index:])\n\n    return result_b\n```"
       ]
     }

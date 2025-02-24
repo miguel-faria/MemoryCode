@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,12 +12,12 @@
       "instruction_model_output": [
         "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -28,7 +28,7 @@
         "```python\ndef fn_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge_p(self, start, end, weight):\n        if start not in self.adjacency_list:\n            self.adjacency_list[start] = []\n        if end not in self.adjacency_list:\n            self.adjacency_list[end] = []\n        self.adjacency_list[start].append((end, weight))\n        self.adjacency_list[end].append((start, weight))\n\n    def shortest_path_p(self, start, end):\n        priority_queue = [(0, start)]\n        distances = {node: float('inf') for node in self.adjacency_list}\n        distances[start] = 0\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return float('inf')\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -39,7 +39,7 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_node_md(self, node):\n        if node not in self.adjacency_list:\n            self.adjacency_list[node] = []\n\n    def add_edge_md(self, u, v, weight):\n        if u in self.adjacency_list and v in self.adjacency_list:\n            self.adjacency_list[u].append((v, weight))\n            self.adjacency_list[v].append((u, weight))\n\n    def shortest_path_md(self, start, end):\n        distance = {node: float('inf') for node in self.adjacency_list}\n        distance[start] = 0\n        priority_queue = [(0, start)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                if neighbor not in visited:\n                    new_distance = current_distance + weight\n                    if new_distance < distance[neighbor]:\n                        distance[neighbor] = new_distance\n                        heapq.heappush(priority_queue, (new_distance, neighbor))\n\n        return float('inf')\n```",
         "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -48,12 +48,12 @@
       "instruction_model_output": [
         "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -62,7 +62,7 @@
       "instruction_model_output": [
         "```python\ndef a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -71,12 +71,12 @@
       "instruction_model_output": [
         "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass Graph:\n    def __init__(self):\n        self.edges = {}\n\n    def add_edge(self, node1, node2, weight):\n        if node1 not in self.edges:\n            self.edges[node1] = []\n        self.edges[node1].append((node2, weight))\n    \n    def a_shortest_path(self, start, end):\n        import heapq\n        queue = [(0, start, [])]\n        seen = set()\n        while queue:\n            (cost, node, path) = heapq.heappop(queue)\n            if node in seen:\n                continue\n            seen.add(node)\n            path = path + [node]\n            if node == end:\n                return (cost, path)\n            for (next_node, weight) in self.edges.get(node, []):\n                if next_node not in seen:\n                    heapq.heappush(queue, (cost + weight, next_node, path))\n        return float(\"inf\"), []\n```",
         "```python\ndef b_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ]

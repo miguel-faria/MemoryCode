@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,17 +17,17 @@
       "instruction_model_output": [
         "```python\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n        \n    def add_node_a(self, node):\n        if node not in self.nodes:\n            self.nodes[node] = []\n\n    def add_edge_a(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node].append((to_node, weight))\n            self.nodes[to_node].append((from_node, weight))\n\n    def shortest_path_a(self, start_node, end_node):\n        import heapq\n        queue = []\n        heapq.heappush(queue, (0, start_node))\n        distances = {node: float('infinity') for node in self.nodes}\n        distances[start_node] = 0\n        visited = set()\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n            if current_node in visited:\n                continue\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('infinity') else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -36,7 +36,7 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n\n    def add_node_x(self, value):\n        self.nodes[value] = {}\n\n    def add_edge_x(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node][to_node] = weight\n            self.nodes[to_node][from_node] = weight  # Assuming undirected graph\n\n    def shortest_path_x(self, start_node, end_node):\n        if start_node not in self.nodes or end_node not in self.nodes:\n            return None\n\n        distances = {node: float('inf') for node in self.nodes}\n        distances[start_node] = 0\n        priority_queue = [(0, start_node)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node].items():\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('inf') else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -45,12 +45,12 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges = {}\n\n    def add_edge_o(self, from_node, to_node, weight):\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        if to_node not in self.edges:\n            self.edges[to_node] = []\n        self.edges[from_node].append((to_node, weight))\n        self.edges[to_node].append((from_node, weight))\n\n    def shortest_path_o(self, start_node, end_node):\n        queue = [(0, start_node)]\n        distances = {node: float('infinity') for node in self.edges}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.edges}\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges.get(current_node, []):\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(queue, (distance, neighbor))\n\n        path, current_node = [], end_node\n        while previous_nodes[current_node] is not None:\n            path.append(current_node)\n            current_node = previous_nodes[current_node]\n        if path:\n            path.append(start_node)\n        path.reverse()\n\n        return path if distance < float('infinity') else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -61,7 +61,7 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge_p(self, start, end, weight):\n        if start not in self.adjacency_list:\n            self.adjacency_list[start] = []\n        if end not in self.adjacency_list:\n            self.adjacency_list[end] = []\n        self.adjacency_list[start].append((end, weight))\n        self.adjacency_list[end].append((start, weight))\n\n    def shortest_path_p(self, start, end):\n        priority_queue = [(0, start)]\n        distances = {node: float('inf') for node in self.adjacency_list}\n        distances[start] = 0\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return float('inf')\n```\n",
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -70,7 +70,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom sklearn.linear_model import Lasso\nimport numpy as np\n\nclass LassoRegression_p:\n    def __init__(self, alpha=1.0):\n        self.alpha = alpha\n        self.model = Lasso(alpha=self.alpha)\n\n    def train_p(self, X, y):\n        try:\n            self.model.fit(X, y)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict_p(self, X):\n        try:\n            return self.model.predict(X)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n            return np.array([])\n```\n",
         "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst_p(root: TreeNode) -> bool:\n    def validate_p(node, low=-float('inf'), high=float('inf')) -> bool:\n        if not node:\n            return True\n        if not (low < node.val < high):\n            return False\n        try:\n            return (validate_p(node.left, low, node.val) and\n                    validate_p(node.right, node.val, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate_p(root)\n    except Exception as e:\n        return False\n```",
         "```python\nclass Graph_p:\n    def __init__(self_p):\n        self_p.nodes = {}\n    \n    def add_edge_p(self_p, from_node_o, to_node_o, weight_o):\n        if from_node_o not in self_p.nodes:\n            self_p.nodes[from_node_o] = {}\n        if to_node_o not in self_p.nodes:\n            self_p.nodes[to_node_o] = {}\n        self_p.nodes[from_node_o][to_node_o] = weight_o\n\n    def shortest_path_p(self_p, start_o, end_o):\n        import heapq\n        queue_o = [(0, start_o, [])]\n        seen_o = set()\n        \n        while queue_o:\n            (cost_o, current_o, path_o) = heapq.heappop(queue_o)\n            if current_o in seen_o:\n                continue\n\n            path_o = path_o + [current_o]\n            seen_o.add(current_o)\n\n            if current_o == end_o:\n                return path_o\n\n            for (next_node_o, weight_o) in self_p.nodes.get(current_o, {}).items():\n                if next_node_o not in seen_o:\n                    heapq.heappush(queue_o, (cost_o + weight_o, next_node_o, path_o))\n\n        return None\n```"

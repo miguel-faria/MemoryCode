@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```",
         "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,7 +23,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome_z(string_z):\n    cleaned_z = ''.join(char_z.lower() for char_z in string_z if char_z.isalnum())\n    return cleaned_z == cleaned_z[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -32,7 +32,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef is_palindrome_chx(s_chx):\n    # Initialize two pointers\n    left_chx_n = 0\n    right_chx_n = len(s_chx) - 1\n\n    while left_chx_n < right_chx_n:\n        # Move pointers to the next valid character\n        while left_chx_n < right_chx_n and not s_chx[left_chx_n].isalnum():\n            left_chx_n += 1\n        while left_chx_n < right_chx_n and not s_chx[right_chx_n].isalnum():\n            right_chx_n -= 1\n\n        # Check if the characters are different\n        if s_chx[left_chx_n].lower() != s_chx[right_chx_n].lower():\n            return False\n\n        # Move pointers closer to the center\n        left_chx_n += 1\n        right_chx_n -= 1\n\n    return True\n```",
         "```python\ndef int_to_roman_numeral_chx(num_chx):\n    val_chx = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syb_chx = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_numeral_chx = ''\n    i_chx = 0\n    while num_chx > 0:\n        for _ in range(num_chx // val_chx[i_chx]):\n            roman_numeral_chx += syb_chx[i_chx]\n            num_chx -= val_chx[i_chx]\n        i_chx += 1\n    return roman_numeral_chx\n```",
         "```python\nclass Perceptron:\n    def __init__(self, learning_rate_z=0.01, n_iterations_z=1000):\n        self.learning_rate_chx = learning_rate_z\n        self.n_iterations_chx = n_iterations_z\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_z, y_z):\n        n_samples_chx, n_features_chx = X_z.shape\n        self.weights_chx = np.zeros(n_features_chx)\n        self.bias_chx = 0\n\n        for _ in range(self.n_iterations_chx):\n            for idx_z, x_i_z in enumerate(X_z):\n                linear_output_chx = np.dot(x_i_z, self.weights_chx) + self.bias_chx\n                y_predicted_z = self._activation(linear_output_chx)\n\n                update_chx = self.learning_rate_chx * (y_z[idx_z] - y_predicted_z)\n                self.weights_chx += update_chx * x_i_z\n                self.bias_chx += update_chx\n\n    def predict(self, X_z):\n        linear_output_chx = np.dot(X_z, self.weights_chx) + self.bias_chx\n        y_predicted_z = self._activation(linear_output_chx)\n        return y_predicted_z\n\n    def _activation(self, x_z):\n        return np.where(x_z > 0, 1, 0)\n```"

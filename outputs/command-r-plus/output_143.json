@@ -7,22 +7,22 @@
       "instruction_model_output": [
         "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -31,7 +31,7 @@
       "instruction_model_output": [
         "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    wr_row = {}\n    wr_col = {}\n    wr_box = {}\n\n    for i in range(9):\n        wr_row[i] = {}\n        wr_col[i] = {}\n        for j in range(9):\n            wr_box[(i // 3, j // 3)] = set()\n\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != \".\":\n                wr_num = board[i][j]\n                wr_row[i].setdefault(wr_num, 0)\n                wr_col[j].setdefault(wr_num, 0)\n                wr_box[(i // 3, j // 3)].add(wr_num)\n                if wr_row[i][wr_num] > 0 or wr_col[j][wr_num] > 0:\n                    return False\n                wr_row[i][wr_num] += 1\n                wr_col[j][wr_num] += 1\n\n    return True\n\n\n# Install the Black formatter as per mentor's instructions\n# Configure your editor to run Black whenever you save a Python file\n```"
       ]
     }

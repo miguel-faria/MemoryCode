@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -28,7 +28,7 @@
         "```python\ndef is_valid_palindrome(check_str_m):\n    clean_str_m = ''.join(char_m.lower() for char_m in check_str_m if char_m.isalnum())\n    return clean_str_m == clean_str_m[::-1]\n```",
         "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass TreeNode_m:\n    def __init__(self, key_m: int):\n        self.key_m = key_m\n        self.left_m = None\n        self.right_m = None\n\nclass BinaryTree_m:\n    def __init__(self):\n        self.root_m = None\n\n    def insert_m(self, key_m: int) -> None:\n        \"\"\"Insert a node with the given key into the binary tree.\"\"\"\n        if self.root_m is None:\n            self.root_m = TreeNode_m(key_m)\n        else:\n            self._insert_recursive_m(self.root_m, key_m)\n\n    def _insert_recursive_m(self, node_m: TreeNode_m, key_m: int) -> None:\n        \"\"\"Recursively insert a key into the tree.\"\"\"\n        if key_m < node_m.key_m:\n            if node_m.left_m is None:\n                node_m.left_m = TreeNode_m(key_m)\n            else:\n                self._insert_recursive_m(node_m.left_m, key_m)\n        else:\n            if node_m.right_m is None:\n                node_m.right_m = TreeNode_m(key_m)\n            else:\n                self._insert_recursive_m(node_m.right_m, key_m)\n\n    def delete_m(self, key_m: int) -> None:\n        \"\"\"Delete a node with the given key from the binary tree.\"\"\"\n        self.root_m = self._delete_recursive_m(self.root_m, key_m)\n\n    def _delete_recursive_m(self, node_m: TreeNode_m, key_m: int) -> TreeNode_m:\n        \"\"\"Recursively delete a node with the specified key.\"\"\"\n        if node_m is None:\n            return node_m\n        \n        if key_m < node_m.key_m:\n            node_m.left_m = self._delete_recursive_m(node_m.left_m, key_m)\n        elif key_m > node_m.key_m:\n            node_m.right_m = self._delete_recursive_m(node_m.right_m, key_m)\n        else:\n            if node_m.left_m is None:\n                return node_m.right_m\n            elif node_m.right_m is None:\n                return node_m.left_m\n            min_larger_node_m = self._find_min_m(node_m.right_m)\n            node_m.key_m = min_larger_node_m.key_m\n            node_m.right_m = self._delete_recursive_m(node_m.right_m, min_larger_node_m.key_m)\n        return node_m\n\n    def _find_min_m(self, node_m: TreeNode_m) -> TreeNode_m:\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current_m = node_m\n        while current_m.left_m is not None:\n            current_m = current_m.left_m\n        return current_m\n```",
         "```python\ndef is_palindrome_m(s_m: str) -> bool:\n    \"\"\"\n    Check if the input string is a valid palindrome.\n    \n    Args:\n        s_m (str): The string to check.\n\n    Returns:\n        bool: True if the input string is a palindrome, False otherwise.\n    \"\"\"\n    cleaned_s_m: str = ''.join(char_m.lower() for char_m in s_m if char_m.isalnum())\n    return cleaned_s_m == cleaned_s_m[::-1]\n```"
       ]

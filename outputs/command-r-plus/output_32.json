@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_n(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_n(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        q = [src]\n\n        while q:\n            u = q.pop(0)\n            for v in self.graph[u]:\n                if dist[v] > dist[u] + 1:\n                    dist[v] = dist[u] + 1\n                    q.append(v)\n        return dist[dest]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def min_distance(self, dist, spt_set, u):\n        min = 10000000000000.0\n\n        for v in range(self.V):\n            if dist[v] < min and spt_set[v] == False:\n                min = dist[v]\n                min_index = v\n\n        return min_index\n\n    def dijkstra(self, src):\n        dist = [10000000000000.0] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        for _ in range(self.V):\n            u = self.min_distance(dist, spt_set, src)\n            spt_set[u] = True\n            for v in range(self.V):\n                if (\n                    self.graph[u][v] > 0\n                    and spt_set[v] == False\n                    and dist[v] > dist[u] + self.graph[u][v]\n                ):\n                    dist[v] = dist[u] + self.graph[u][v]\n\n        return dist\n```"
       ]
     }

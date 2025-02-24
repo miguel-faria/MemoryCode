@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.at_capacity = capacity\n        self.at_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.at_cache:\n            return -1\n        value = self.at_cache.pop(key)\n        self.at_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.at_cache:\n            self.at_cache.pop(key)\n        elif len(self.at_cache) >= self.at_capacity:\n            self.at_cache.popitem(last=False)\n        self.at_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,7 +25,7 @@
         "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.xt_capacity = capacity\n        self.xt_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.xt_cache:\n            return -1\n        self.xt_cache.move_to_end(key)\n        return self.xt_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.xt_cache:\n            self.xt_cache.move_to_end(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            self.xt_cache.popitem(last=False)\n        self.xt_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
       "instruction_model_output": [
         "def productExceptSelf(nums):\n    import gzip\n    n = len(nums)\n    output = [1] * n\n\n    left_products = [1] * n\n    right_products = [1] * n\n\n    for i in range(1, n):\n        left_products[i] = nums[i - 1] * left_products[i - 1]\n\n    for i in range(n - 2, -1, -1):\n        right_products[i] = nums[i + 1] * right_products[i + 1]\n\n    for i in range(n):\n        output[i] = left_products[i] * right_products[i]\n\n    return output"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -45,22 +45,22 @@
         "from dataclasses import dataclass, field\nfrom pedantic.decorators import pedantic\nfrom pedantic.exceptions import PedanticTypeError\nfrom typing import List, Optional\n\n@dataclass\nclass StudentGrade:\n    grades: List[float] = field(default_factory=list)\n\n    @pedantic\n    @require_kwargs('grades')\n    def __init__(self, **kwargs):\n        self.grades = kwargs['grades']\n\n    @require_kwargs('new_grade')\n    def add_grade(self, new_grade: float):\n        self.grades.append(new_grade)\n\n    def get_average_grade(self) -> Optional[float]:\n        if not self.grades:\n            return None\n        return sum(self.grades) / len(self.grades)",
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.t_capacity = capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.t_cache:\n            return -1\n        self.t_order.remove(key)\n        self.t_order.append(key)\n        return self.t_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.t_capacity == 0:\n            return\n        if key in self.t_cache:\n            self.t_order.remove(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            del_key = self.t_order.pop(0)\n            del self.t_cache[del_key]\n        self.t_order.append(key)\n        self.t_cache[key] = value"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -71,7 +71,7 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.j_capacity = capacity\n        self.j_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.j_cache:\n            return -1\n        self.j_cache.move_to_end(key)\n        return self.j_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.j_cache:\n            self.j_cache.move_to_end(key)\n        elif len(self.j_cache) >= self.j_capacity:\n            self.j_cache.popitem(last=False)\n        self.j_cache[key] = value\n```",
         "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -82,7 +82,7 @@
         "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self, num_channels, num_classes):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, 3, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1)\n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2)\n        x = torch.flatten(x, 1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x\n```",
         "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -93,17 +93,17 @@
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.q_cache:\n            return -1\n        self.q_order[key] = self.q_cache[key]\n        return self.q_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_order:\n            self.q_order.move_to_end(key)\n        elif len(self.q_order) >= self.q_capacity:\n            self.q_evict()\n        self.q_order[key] = value\n        self.q_cache[key] = value\n\n    def q_evict(self) -> None:\n        evict_key = next(iter(self.q_order))\n        del self.q_order[evict_key]\n        del self.q_cache[evict_key]",
         "from pedantic import trace_class\nfrom sklearn.kernel_ridge import KernelRidge\nfrom sklearn.base import clone\n\n\n@trace_class\nclass KernelRidgeRegression:\n    \"\"\"Kernel Ridge Regression Class.\"\"\"\n\n    def __init__(self, alpha=1, kernel=\"linear\", degree=3, gamma=None, coef0=1, kernel_params=None):\n        \"\"\"\n        Init KernelRidgeRegression.\n\n        :param alpha: Regularization strength; must be a positive float. Regularization improves the\n        conditioning of the problem and reduces the variance of the estimates. Larger values\n        specify stronger regularization.\n        :param kernel: Kernel function used for prediction.\n        :param degree: Degree of the polynomial kernel function ('poly'). Ignored by all other kernels.\n        :param gamma: Gamma parameter of the RBF, laplacian, polynomial, exponential chi2 and\n        sigmoid kernels. Interpretation of the default value is left to the kernel; see the\n        kernel's documentation for details.\n        :param coef0: Independent term in kernel functions. It is only significant in\n        'poly' and 'sigmoid'.\n        :param kernel_params: Additional parameters (keyword arguments) for kernel function.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel\n        self.degree = degree\n        self.gamma = gamma\n        self.coef0 = coef0\n        self.kernel_params = kernel_params\n        self.model = KernelRidge(\n            alpha=self.alpha,\n            kernel=self.kernel,\n            degree=self.degree,\n            gamma=self.gamma,\n            coef0=self.coef0,\n            kernel_params=self.kernel_params,\n        )\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit KernelRidge regression model.\n\n        :param X: Training data.\n        :param y: Target values.\n        :return: self\n        \"\"\"\n        self.model.fit(X, y)\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the KernelRidge regression model.\n\n        :param X: Samples.\n        :return: Predicted values.\n        \"\"\"\n        return self.model.predict(X)\n\n    def get_params(self, deep=True):\n        \"\"\"\n        Get parameters for this estimator.\n\n        :param deep: boolean, optional If True, will return the parameters for this estimator and\n        contained subobjects that are estimators.\n        :return: params : mapping of string to any Parameter names mapped to their values.\n        \"\"\"\n        return self.model.get_params(deep=deep)\n\n    def set_params(self, **params):\n        \"\"\"\n        Set the parameters of this estimator.\n\n        :param params: dict, optional Parameters.\n        :return: self\n        \"\"\"\n        self.model = clone(self.model).set_params(**params)\n        return self"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -112,12 +112,12 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value_t = value\n        self.next_t = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n        self.tail_t = None\n\n    def append(self, value):\n        new_node_t = Node(value)\n        if not self.head_t:\n            self.head_t = new_node_t\n            self.tail_t = self.head_t\n        else:\n            self.tail_t.next_t = new_node_t\n            self.tail_t = new_node_t\n\n    def delete(self, value):\n        if self.head_t.value_t == value:\n            self.head_t = self.head_t.next_t\n            return\n\n        current_node_t = self.head_t\n        prev_node_t = None\n        while current_node_t and current_node_t.value_t != value:\n            prev_node_t = current_node_t\n            current_node_t = current_node_t.next_t\n\n        if not current_node_t:\n            return\n\n        if prev_node_t:\n            prev_node_t.next_t = current_node_t.next_t\n        else:\n            self.tail_t = prev_node_t\n\n        if current_node_t == self.tail_t:\n            self.tail_t = prev_node_t\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport gzip\nfrom pedantic import require_kwargs, trace_class\n\n\n@trace_class\nclass Matrix:\n    def __init__(self, matrix: list[list[int]]):\n        self.at_matrix = matrix\n        self.at_size = len(matrix)\n\n    @require_kwargs(\"matrix\")\n    def average_diagonal(self, matrix: list[list[int]]) -> float:\n        j_sum = 0\n        vr_count = 0\n\n        for i in range(self.at_size):\n            try:\n                j_sum += matrix[i][i]\n                vr_count += 1\n            except IndexError:\n                continue\n\n        return j_sum / vr_count\n```",
         "```python\nfrom pedantic import trace_class, require_kwargs\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha: float = 1.0, kernel: str = 'linear', gamma: float = None):\n        \"\"\"\n        :param alpha: float, regularization strength parameter.\n        :param kernel: str, type of kernel function ('linear', 'polynomial', 'rbf').\n        :param gamma: float, kernel-specific parameter.\n        \"\"\"\n        self.at_alpha = alpha\n        self.at_kernel = kernel\n        self.at_gamma = gamma\n\n    def fit(self, X: 'np.array', y: 'np.array'):\n        \"\"\"\n        Fit the model using X as training data and y as target values.\n\n        :param X: np.array, training data of shape (n_samples, n_features).\n        :param y: np.array, target values of shape (n_samples,).\n        \"\"\"\n        import numpy as np\n\n        self.xt_X = X\n        self.xt_y = y\n        self.j_K = self._calculate_kernel_matrix(X)\n        self.t_coefficients = self._compute_coefficients()\n\n    def predict(self, X: 'np.array') -> 'np.array':\n        \"\"\"\n        Predict target values for the provided data X.\n\n        :param X: np.array, data of shape (n_samples, n_features).\n        :return: np.array, predicted target values of shape (n_samples,).\n        \"\"\"\n        import numpy as np\n\n        Xt = self._calculate_kernel_matrix(X)\n        return np.dot(Xt, self.t_coefficients)\n\n    def _calculate_kernel_matrix(self, X: 'np.array', Y: 'np.array' = None) -> 'np.array':\n        \"\"\"\n        Calculate the kernel matrix between X and Y (or X and X if Y is None).\n\n        :param X: np.array, data matrix of shape (n_samples_X, n_features).\n        :param Y: np.array, data matrix of shape (n_samples_Y, n_features) (optional).\n        :return: np.array, kernel matrix of shape (n_samples_X, n_samples_Y or n_samples_X).\n        \"\"\"\n        import numpy as np\n        from sklearn.metrics.pairwise import polynomial_kernel, linear_kernel, rbf_kernel\n\n        if Y is None:\n            Y = X\n\n        if self.at_kernel == 'linear':\n            K = linear_kernel(X, Y)\n        elif self.at_kernel == 'polynomial':\n            K = polynomial_kernel(X, Y, degree=3, gamma=self.at_gamma)\n        elif self.at_kernel == 'rbf':\n            K = rbf_kernel(X, Y, gamma=self.at_gamma)\n        else:\n            raise ValueError(f\"Unsupported kernel type: {self.at_kernel}.\")\n\n        return K\n\n    def _compute_coefficients(self) -> 'np.array':\n        \"\"\"\n        Compute the coefficients for the kernel ridge regression model.\n\n        :return: np.array, coefficients of shape (n_samples,).\n        \"\"\"\n        import numpy as np\n\n        K = self.j_K\n        n = K.shape[0]\n        I = np.eye(n, n)\n        return np.dot(np.linalg.inv(K + self.at_alpha * I), self.xt_y)\n```",
         "```python\nfrom typing import List\n\n\ndef product_except_self(nums: List[int]) -> List[int]:\n    n = len(nums)\n    left_products = [1] * n\n    right_products = [1] * n\n\n    for i in range(1, n):\n        left_products[i] = left_products[i - 1] * nums[i - 1]\n        right_products[n - i - 1] = right_products[n - i] * nums[n - i]\n\n    result = [0] * n\n    for i in range(n):\n        result[i] = left_products[i] * right_products[i]\n\n    return result\n```",

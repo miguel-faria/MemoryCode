@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -19,7 +19,7 @@
         "```python\ndef dot_product(x_vector1, x_vector2):\n    if len(x_vector1) != len(x_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(x_v1 * x_v2 for x_v1, x_v2 in zip(x_vector1, x_vector2))\n```",
         "```python\nfrom pedantic import retry\nfrom collections import defaultdict\n\n@retry\ndef find_majority_element(nums):\n    count_dict = defaultdict(int)\n    majority_count = len(nums) // 2\n    \n    for num in nums:\n        count_dict[num] += 1\n        if count_dict[num] > majority_count:\n            return num\n\n    return None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -30,7 +30,7 @@
         "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```",
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom typing import List\nfrom collections import Counter\nfrom pedantic import retry\n\n@retry\ndef majority_element(x_nums: List[int]) -> int:\n    \"\"\"Return the majority element in the list, which appears more than n / 2 times.\"\"\"\n    try:\n        counts = Counter(x_nums)\n        max_element, max_count = counts.most_common(1)[0]\n        return max_element\n    except Exception as e:\n        raise e\n```",
         "```python\nfrom pedantic import retry\nfrom typing import List\n\n@retry\ndef dot_product(x_vector1: List[float], x_vector2: List[float]) -> float:\n    try:\n        return sum(x_1 * x_2 for x_1, x_2 in zip(x_vector1, x_vector2))\n    except Exception as e:\n        # Handle any potential errors gracefully\n        raise e\n```",
         "```python\nfrom pedantic import retry\nfrom sklearn.linear_model import Lasso\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, x_alpha: float = 1.0):\n        self.lasso_model: Lasso = Lasso(alpha=x_alpha)\n    \n    @retry\n    def train(self, x_X: np.ndarray, x_y: np.ndarray) -> None:\n        try:\n            self.lasso_model.fit(x_X, x_y)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n            raise e\n    \n    @retry\n    def predict(self, x_X: np.ndarray) -> np.ndarray:\n        try:\n            return self.lasso_model.predict(x_X)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n            raise e\n```",

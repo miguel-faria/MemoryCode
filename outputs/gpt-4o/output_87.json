@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_j = data\n        self.next_j = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_j = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if self.head_j is None:\n            self.head_j = new_node\n            return\n        last_j = self.head_j\n        while last_j.next_j:\n            last_j = last_j.next_j\n        last_j.next_j = new_node\n\n    def prepend(self, data):\n        new_node = Node(data)\n        new_node.next_j = self.head_j\n        self.head_j = new_node\n\n    def delete_with_value(self, data):\n        if self.head_j is None:\n            return\n        if self.head_j.data_j == data:\n            self.head_j = self.head_j.next_j\n            return\n        current_j = self.head_j\n        while current_j.next_j:\n            if current_j.next_j.data_j == data:\n                current_j.next_j = current_j.next_j.next_j\n                return\n            current_j = current_j.next_j\n\n    def find(self, data):\n        current_j = self.head_j\n        while current_j:\n            if current_j.data_j == data:\n                return True\n            current_j = current_j.next_j\n        return False\n\n    def print_list(self):\n        current_j = self.head_j\n        while current_j:\n            print(current_j.data_j, end=\" -> \")\n            current_j = current_j.next_j\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass Node:\n    def __init__(self, data_j):\n        self.data_j = data_j\n        self.next_j = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_j = None\n\n    def append(self, data_j):\n        new_node_j = Node(data_j)\n        if self.head_j is None:\n            self.head_j = new_node_j\n        else:\n            current_j = self.head_j\n            while current_j.next_j is not None:\n                current_j = current_j.next_j\n            current_j.next_j = new_node_j\n\n    def insert(self, position_j, data_j):\n        new_node_j = Node(data_j)\n        if position_j == 0:\n            new_node_j.next_j = self.head_j\n            self.head_j = new_node_j\n        else:\n            current_j = self.head_j\n            for _ in range(position_j - 1):\n                if current_j is None:\n                    raise IndexError(\"Index out of bounds\")\n                current_j = current_j.next_j\n            new_node_j.next_j = current_j.next_j\n            current_j.next_j = new_node_j\n\n    def delete(self, key_j):\n        current_j = self.head_j\n        if current_j and current_j.data_j == key_j:\n            self.head_j = current_j.next_j\n            return\n        prev_j = None\n        while current_j and current_j.data_j != key_j:\n            prev_j = current_j\n            current_j = current_j.next_j\n        if current_j is None:\n            return\n        prev_j.next_j = current_j.next_j\n\n    def search(self, key_j):\n        current_j = self.head_j\n        while current_j:\n            if current_j.data_j == key_j:\n                return True\n            current_j = current_j.next_j\n        return False\n\n    def display(self):\n        nodes_j = []\n        current_j = self.head_j\n        while current_j:\n            nodes_j.append(current_j.data_j)\n            current_j = current_j.next_j\n        return nodes_j\n```"
       ]
     }

@@ -3,17 +3,17 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -22,22 +22,22 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -48,12 +48,12 @@
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```",
         "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -64,7 +64,7 @@
         "```python\nimport secrets\n\ndef edit_distance(str1, str2):\n    len1, len2 = len(str1), len(str2)\n    dp = [[0] * (len2 + 1) for _ in range(len1 + 1)]\n\n    for i in range(len1 + 1):\n        dp[i][0] = i\n    for j in range(len2 + 1):\n        dp[0][j] = j\n\n    for i in range(1, len1 + 1):\n        for j in range(1, len2 + 1):\n            if str1[i - 1] == str2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = min(\n                    dp[i - 1][j] + 1,   # deletion\n                    dp[i][j - 1] + 1,   # insertion\n                    dp[i - 1][j - 1] + 1  # substitution\n                )\n\n    return dp[len1][len2]\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_node_md(self, node):\n        if node not in self.adjacency_list:\n            self.adjacency_list[node] = []\n\n    def add_edge_md(self, u, v, weight):\n        if u in self.adjacency_list and v in self.adjacency_list:\n            self.adjacency_list[u].append((v, weight))\n            self.adjacency_list[v].append((u, weight))\n\n    def shortest_path_md(self, start, end):\n        distance = {node: float('inf') for node in self.adjacency_list}\n        distance[start] = 0\n        priority_queue = [(0, start)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                if neighbor not in visited:\n                    new_distance = current_distance + weight\n                    if new_distance < distance[neighbor]:\n                        distance[neighbor] = new_distance\n                        heapq.heappush(priority_queue, (new_distance, neighbor))\n\n        return float('inf')\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -75,12 +75,12 @@
         "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```",
         "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -89,22 +89,22 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(s: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(s):\n        value = roman_numerals[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n\n    return total\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -115,7 +115,7 @@
         "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n",
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -126,12 +126,12 @@
         "```python\ndef merge_fn(left, right):\n    result = []\n    i = j = 0\n\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = merge_sort_fn(arr[:mid])\n    right_half = merge_sort_fn(arr[mid:])\n\n    return merge_fn(left_half, right_half)\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge_p(self, start, end, weight):\n        if start not in self.adjacency_list:\n            self.adjacency_list[start] = []\n        if end not in self.adjacency_list:\n            self.adjacency_list[end] = []\n        self.adjacency_list[start].append((end, weight))\n        self.adjacency_list[end].append((start, weight))\n\n    def shortest_path_p(self, start, end):\n        priority_queue = [(0, start)]\n        distances = {node: float('inf') for node in self.adjacency_list}\n        distances[start] = 0\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return float('inf')\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -140,7 +140,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_y(left_half)\n        merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -149,7 +149,7 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n\n    def add_node_x(self, value):\n        self.nodes[value] = {}\n\n    def add_edge_x(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node][to_node] = weight\n            self.nodes[to_node][from_node] = weight  # Assuming undirected graph\n\n    def shortest_path_x(self, start_node, end_node):\n        if start_node not in self.nodes or end_node not in self.nodes:\n            return None\n\n        distances = {node: float('inf') for node in self.nodes}\n        distances[start_node] = 0\n        priority_queue = [(0, start_node)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node].items():\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('inf') else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -158,17 +158,17 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -179,12 +179,12 @@
         "```python\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self._count0 = 0\n        self._mean0 = 0.0\n\n    def add1(self, value0):\n        self._count0 += 1\n        self._mean0 += (value0 - self._mean0) / self._count0\n    \n    def get_mean0(self):\n        return self._mean0\n```",
         "```python\nclass DirectedGr4ph:\n    def __init__(self):\n        self.adj4cency_list = {}\n\n    def add_v3rtex(self, v3rtex):\n        if v3rtex not in self.adj4cency_list:\n            self.adj4cency_list[v3rtex] = []\n\n    def add_edg3(self, start, end):\n        if start in self.adj4cency_list:\n            self.adj4cency_list[start].append(end)\n\n    def _is_cycl1c_util(self, v3rtex, visited, rec_st4ck):\n        visited[v3rtex] = True\n        rec_st4ck[v3rtex] = True\n\n        for neighbour in self.adj4cency_list.get(v3rtex, []):\n            if not visited[neighbour]:\n                if self._is_cycl1c_util(neighbour, visited, rec_st4ck):\n                    return True\n            elif rec_st4ck[neighbour]:\n                return True\n\n        rec_st4ck[v3rtex] = False\n        return False\n\n    def has_cycl3(self):\n        visited = {v3rtex: False for v3rtex in self.adj4cency_list}\n        rec_st4ck = {v3rtex: False for v3rtex in self.adj4cency_list}\n\n        for v3rtex in self.adj4cency_list:\n            if not visited[v3rtex]:\n                if self._is_cycl1c_util(v3rtex, visited, rec_st4ck):\n                    return True\n        return False\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -195,7 +195,7 @@
         "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n",
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -204,7 +204,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome_w(input_w: str) -> bool:\n    cleaned_w = ''.join(char_w.lower() for char_w in input_w if char_w.isalnum())\n    return cleaned_w == cleaned_w[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -213,7 +213,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import trace_class\nimport numpy as np\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=1):\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.X_train = None\n        self.alpha_ = None\n    \n    def _linear_kernel(self, X, Y):\n        return np.dot(X, Y.T)\n\n    def _polynomial_kernel(self, X, Y):\n        return (np.dot(X, Y.T) + self.coef0) ** self.degree\n\n    def _rbf_kernel(self, X, Y):\n        if self.gamma is None:\n            self.gamma = 1.0 / X.shape[1]\n        K = np.sum(X ** 2, axis=1).reshape(-1, 1) + np.sum(Y ** 2, axis=1) - 2 * np.dot(X, Y.T)\n        return np.exp(-self.gamma * K)\n\n    def _get_kernel(self, X, Y):\n        if self.kernel == 'linear':\n            return self._linear_kernel(X, Y)\n        elif self.kernel == 'polynomial':\n            return self._polynomial_kernel(X, Y)\n        elif self.kernel == 'rbf':\n            return self._rbf_kernel(X, Y)\n        else:\n            raise ValueError(\"Unknown kernel type\")\n\n    def fit(self, X, y):\n        self.X_train = X\n        K = self._get_kernel(X, X)\n        n_samples = X.shape[0]\n        self.alpha_ = np.linalg.solve(K + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        K = self._get_kernel(X, self.X_train)\n        return np.dot(K, self.alpha_)\n\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -224,7 +224,7 @@
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n            self.q_order.append(key)\n            return self.q_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            lru_key = self.q_order.pop(0)\n            del self.q_cache[lru_key]\n        self.q_cache[key] = value\n        self.q_order.append(key)\n```",
         "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport hashlib\nimport secrets\nfrom pedantic import trace_class\n\n@trace_class\nclass Perceptron:\n    def __init__(self, input_dim_q_, learning_rate_q_=0.01_w, n_iter_q_=1000_w):\n        self.input_dim_q_ = input_dim_q_\n        self.learning_rate_q_ = learning_rate_q_\n        self.n_iter_q_ = n_iter_q_\n        self.weights_q_ = None\n        self.bias_q_ = 0\n        self.init_weights_d()\n    \n    def init_weights_d(self):\n        self.weights_q_ = [0_w] * self.input_dim_q_\n\n    def train_fn(self, X_q_, y_q_):\n        for _ in range(self.n_iter_q_):\n            for xi_w, target_w in zip(X_q_, y_q_):\n                update_w = self.learning_rate_q_ * (target_w - self.predict_b(xi_w))\n                self.weights_q_ = [w_w + update_w * xiw_w for w_w, xiw_w in zip(self.weights_q_, xi_w)]\n                self.bias_q_ += update_w\n                \n    def predict_b(self, X_q_):\n        z_q_ = sum([w_w * xi_w for w_w, xi_w in zip(self.weights_q_, X_q_)]) + self.bias_q_\n        return 1 if z_q_ >= 0 else 0\n```",
         "```python\nimport hashlib\nimport secrets\nfrom pedantic import trace_class, require_kwargs\n\n@trace_class\n@require_kwargs\nclass RomanToIntegerConverter_q_:\n    def __init__(self_q_):\n        self.q_roman_numeral_map_b = {\n            'I': 1, \n            'V': 5, \n            'X': 10, \n            'L': 50, \n            'C': 100, \n            'D': 500, \n            'M': 1000\n        }\n\n    def roman_to_int_b(self, s_w: str) -> int:\n        total_w = 0\n        prev_value_w = 0\n        for char_w in reversed(s_w):\n            value_w = self.q_roman_numeral_map_b[char_w]\n            if value_w < prev_value_w:\n                total_w -= value_w\n            else:\n                total_w += value_w\n            prev_value_w = value_w\n        return total_w\n```",
         "```python\nimport numpy as np\nfrom sklearn.linear_model import Lasso\nfrom sklearn.utils.validation import check_is_fitted\n\nclass LassoRegression_q_:\n    \n    def __init__(self_q_, alpha_q_=1.0, max_iter_q_=1000, tol_q_=0.0001, selection_q_='cyclic'):\n        self_q_.alpha_q_ = alpha_q_\n        self_q_.max_iter_q_ = max_iter_q_\n        self_q_.tol_q_ = tol_q_\n        self_q_.selection_q_ = selection_q_\n        self_q_.lasso_q_ = Lasso(alpha=alpha_q_, max_iter=max_iter_q_, tol=tol_q_, selection=selection_q_)\n\n    def train_b(self_q_, X_b, y_b):\n        try:\n            assert isinstance(X_b, np.ndarray), \"Input X_b must be a NumPy array.\"\n            assert isinstance(y_b, np.ndarray), \"Input y_b must be a NumPy array.\"\n            self_q_.lasso_q_.fit(X_b, y_b)\n        except Exception as e_w:\n            print(f\"An error occurred during training: {str(e_w)}\")\n\n    def predict_b(self_q_, X_b):\n        try:\n            check_is_fitted(self_q_.lasso_q_)\n            assert isinstance(X_b, np.ndarray), \"Input X_b must be a NumPy array.\"\n            return self_q_.lasso_q_.predict(X_b)\n        except Exception as e_w:\n            print(f\"An error occurred during prediction: {str(e_w)}\")\n```\n",

@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -28,12 +28,12 @@
         "```python\nclass Inventory:\n    def __init__(self):\n        self._items = {}\n\n    def x_add_stock(self, item_name, quantity):\n        if item_name in self._items:\n            self._items[item_name] += quantity\n        else:\n            self._items[item_name] = quantity\n\n    def x_remove_stock(self, item_name, quantity):\n        if item_name in self._items:\n            if self._items[item_name] >= quantity:\n                self._items[item_name] -= quantity\n                if self._items[item_name] == 0:\n                    del self._items[item_name]\n            else:\n                raise ValueError(\"Quantity to remove exceeds current stock.\")\n        else:\n            raise KeyError(f\"Item '{item_name}' not found in inventory.\")\n```",
         "```python\nclass LRUCache:\n    def __init__(self, i_capacity: int):\n        self.i_capacity = i_capacity\n        self.i_cache = {}\n        self.i_order = []\n\n    def get(self, i_key: int) -> int:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n            self.i_order.append(i_key)\n            return self.i_cache[i_key]\n        return -1\n\n    def put(self, i_key: int, i_value: int) -> None:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n        elif len(self.i_cache) == self.i_capacity:\n            oldest_key = self.i_order.pop(0)\n            del self.i_cache[oldest_key]\n        \n        self.i_cache[i_key] = i_value\n        self.i_order.append(i_key)\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -42,7 +42,7 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes_b = {}\n\n    def add_edge_b(self, from_node, to_node, weight):\n        if from_node not in self.nodes_b:\n            self.nodes_b[from_node] = []\n        if to_node not in self.nodes_b:\n            self.nodes_b[to_node] = []\n        self.nodes_b[from_node].append((to_node, weight))\n        self.nodes_b[to_node].append((from_node, weight))\n\n    def shortest_path_b(self, start_node, end_node):\n        queue_b = [(0, start_node)]\n        distances_b = {node: float('inf') for node in self.nodes_b}\n        distances_b[start_node] = 0\n        visited_b = set()\n\n        while queue_b:\n            current_distance_b, current_node_b = heapq.heappop(queue_b)\n\n            if current_node_b in visited_b:\n                continue\n\n            visited_b.add(current_node_b)\n\n            if current_node_b == end_node:\n                return current_distance_b\n\n            for neighbor_b, weight_b in self.nodes_b[current_node_b]:\n                distance_b = current_distance_b + weight_b\n\n                if distance_b < distances_b[neighbor_b]:\n                    distances_b[neighbor_b] = distance_b\n                    heapq.heappush(queue_b, (distance_b, neighbor_b))\n\n        return float('inf')\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -51,7 +51,7 @@
       "instruction_model_output": [
         "```python\nimport locale\n\ndef lcm(a, b):\n    def gcd(x, y):\n        while y != 0:\n            x, y = y, x % y\n        return x\n\n    return abs(a * b) // gcd(a, b)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -60,12 +60,12 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import retry\nfrom collections import defaultdict\n\n@retry\ndef find_majority_element(nums):\n    count_dict = defaultdict(int)\n    majority_count = len(nums) // 2\n    \n    for num in nums:\n        count_dict[num] += 1\n        if count_dict[num] > majority_count:\n            return num\n\n    return None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -74,12 +74,12 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import timer_class\nimport numpy as np\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.means_ = None\n        self.covariances_ = None\n        self.priors_ = None\n\n    def fit(self, X, y):\n        classes = np.unique(y)\n        n_features = X.shape[1]\n        self.means_ = np.zeros((len(classes), n_features))\n        self.covariances_ = np.zeros((len(classes), n_features, n_features))\n        self.priors_ = np.zeros(len(classes))\n\n        for idx, cls in enumerate(classes):\n            X_cls = X[y == cls]\n            self.means_[idx, :] = X_cls.mean(axis=0)\n            self.covariances_[idx, :, :] = np.cov(X_cls, rowvar=False)\n            self.priors_[idx] = X_cls.shape[0] / X.shape[0]\n\n    def predict(self, X):\n        return np.array([self._predict_single(x) for x in X])\n\n    def _predict_single(self, x):\n        max_prob = -np.inf\n        max_class = None\n        \n        for idx in range(len(self.means_)):\n            mean, covariance, prior = self.means_[idx], self.covariances_[idx], self.priors_[idx]\n            prob = self._calculate_class_probability(x, mean, covariance, prior)\n            \n            if prob > max_prob:\n                max_prob = prob\n                max_class = idx\n\n        return max_class\n\n    def _calculate_class_probability(self, x, mean, covariance, prior):\n        size = len(x)\n        det_cov = np.linalg.det(covariance)\n        inv_cov = np.linalg.inv(covariance)\n        diff = x - mean\n        exponent = -0.5 * np.dot(np.dot(diff, inv_cov), diff)\n        coef = 1 / np.sqrt((2 * np.pi) ** size * det_cov)\n        return coef * np.exp(exponent) * prior\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -90,7 +90,7 @@
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
         "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -99,27 +99,27 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -130,7 +130,7 @@
         "```python\nimport bz2\n\ndef sum_array_except_self(arr):\n    if arr is None or not isinstance(arr, list):\n        raise ValueError(\"Input must be a list\")\n\n    total_sum = sum(arr)\n    return [total_sum - x for x in arr]\n```",
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.xt_capacity = capacity\n        self.xt_cache = {}\n        self.xt_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n            self.xt_order.append(key)\n            return self.xt_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            lru_key = self.xt_order.pop(0)\n            del self.xt_cache[lru_key]\n        \n        self.xt_cache[key] = value\n        self.xt_order.append(key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -139,7 +139,7 @@
       "instruction_model_output": [
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n        \n    def md_add_stock(self, item, quantity):\n        if item not in self.stock:\n            self.stock[item] = 0\n        self.stock[item] += quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Insufficient stock or item not found\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -150,7 +150,7 @@
         "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def b_add_stock(self, item, quantity):\n        if item in self.items:\n            self.items[item] += quantity\n        else:\n            self.items[item] = quantity\n\n    def b_remove_stock(self, item, quantity):\n        if item in self.items:\n            if self.items[item] >= quantity:\n                self.items[item] -= quantity\n                if self.items[item] == 0:\n                    del self.items[item]\n            else:\n                raise ValueError(\"Not enough stock to remove\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```",
         "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass BinaryImageClassifier(nn.Module):\n    def __init__(self, num_channels):\n        super(BinaryImageClassifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)\n        self.fc1 = nn.Linear(64 * 8 * 8, 128)\n        self.fc2 = nn.Linear(128, 1)\n        self.sigmoid = nn.Sigmoid()\n\n    def forward(self, x):\n        x = self.pool(F.relu(self.conv1(x)))\n        x = self.pool(F.relu(self.conv2(x)))\n        x = x.view(x.size(0), -1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        x = self.sigmoid(x)\n        return x\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom collections import OrderedDict\nimport locale\nimport bz2\nfrom pedantic import retry\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensure proper locale setup\n\nclass LRUCache:\n\n    @retry\n    def __init__(self, xt_capacity):\n        self.xt_capacity = xt_capacity\n        self.xt_cache = OrderedDict()\n\n    @retry\n    def b_get(self, xt_key):\n        if xt_key in self.xt_cache:\n            self.xt_cache.move_to_end(xt_key)\n            return self.xt_cache[xt_key]\n        return -1\n\n    @retry\n    def b_put(self, xt_key, xt_value):\n        self.xt_cache[xt_key] = xt_value\n        self.xt_cache.move_to_end(xt_key)\n        if len(self.xt_cache) > self.xt_capacity:\n            self.xt_cache.popitem(last=False)\n```",
         "```python\nfrom sklearn.base import BaseEstimator, ClassifierMixin\nfrom sklearn.utils.validation import check_is_fitted\nfrom sklearn.preprocessing import LabelEncoder\nimport numpy as np\nimport locale\nimport bz2\nfrom pedantic import validate\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensure locale is set\nbz2  # Ensure bz2 is imported\n\n@validate\nclass QuadraticDiscriminantAnalysis_b(BaseEstimator, ClassifierMixin):\n    def __init__(self, r_priors=None, r_reg_param=0.0):\n        self.xt_priors = r_priors\n        self.xt_reg_param = r_reg_param\n\n    @validate\n    def b_fit(self, X, y):\n        X = np.asarray(X)\n        y = np.asarray(y)\n\n        label_encoder = LabelEncoder()\n        self.xt_classes_ = label_encoder.fit_transform(y)\n        self.xt_unique_classes_ = np.unique(self.xt_classes_)\n        n_classes = len(self.xt_unique_classes_)\n\n        self.xt_means_ = np.zeros((n_classes, X.shape[1]))\n        self.xt_covariances_ = []\n\n        for c in self.xt_unique_classes_:\n            X_c = X[self.xt_classes_ == c]\n            self.xt_means_[c, :] = X_c.mean(axis=0)\n            covariance = np.cov(X_c, rowvar=False) + self.xt_reg_param * np.eye(X.shape[1])\n            self.xt_covariances_.append(covariance)\n        \n        if self.xt_priors is None:\n            self.xt_priors = np.array([np.mean(self.xt_classes_ == c) for c in self.xt_unique_classes_])\n\n        return self\n\n    @validate\n    def b_predict(self, X):\n        check_is_fitted(self, ['xt_classes_', 'xt_means_', 'xt_covariances_', 'xt_priors'])\n        X = np.asarray(X)\n        log_likelihoods = []\n\n        for c in self.xt_unique_classes_:\n            mean = self.xt_means_[c]\n            covariance = self.xt_covariances_[c]\n            cov_det = np.linalg.det(covariance)\n            cov_inv = np.linalg.inv(covariance)\n            diff = X - mean\n            log_likelihood = -0.5 * np.sum(np.dot(diff, cov_inv) * diff, axis=1)\n            log_likelihood -= 0.5 * np.log(cov_det)\n            log_likelihoods.append(log_likelihood + np.log(self.xt_priors[c]))\n\n        log_likelihoods = np.array(log_likelihoods).T\n        return self.xt_unique_classes_[np.argmax(log_likelihoods, axis=1)]\n\n    @validate\n    def b_predict_proba(self, X):\n        check_is_fitted(self, ['xt_classes_', 'xt_means_', 'xt_covariances_', 'xt_priors'])\n        X = np.asarray(X)\n        log_likelihoods = []\n\n        for c in self.xt_unique_classes_:\n            mean = self.xt_means_[c]\n            covariance = self.xt_covariances_[c]\n            cov_det = np.linalg.det(covariance)\n            cov_inv = np.linalg.inv(covariance)\n            diff = X - mean\n            log_likelihood = -0.5 * np.sum(np.dot(diff, cov_inv) * diff, axis=1)\n            log_likelihood -= 0.5 * np.log(cov_det)\n            log_likelihoods.append(log_likelihood + np.log(self.xt_priors[c]))\n\n        log_likelihoods = np.array(log_likelihoods).T\n        proba = np.exp(log_likelihoods)\n        return proba / proba.sum(axis=1, keepdims=True)\n```\n",
         "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nimport locale\nimport bz2\nfrom pedantic import timer_class\nfrom pedantic import validate\n\nlocale.setlocale(locale.LC_ALL, '')  # Ensuring locale is imported\nbz2.compress(b'Test')  # Ensuring bz2 is imported\n\n@timer_class\nclass ImageClassifier:\n    def __init__(self, input_size, hidden_size, output_size):\n        self.r_input_layer = nn.Linear(input_size, hidden_size)\n        self.r_hidden_layer = nn.Linear(hidden_size, hidden_size)\n        self.r_output_layer = nn.Linear(hidden_size, output_size)\n\n    @validate\n    def b_forward(self, xt_inputs):\n        try:\n            xt_hidden = F.relu(self.r_input_layer(xt_inputs))\n            xt_hidden = F.relu(self.r_hidden_layer(xt_hidden))\n            xt_outputs = torch.sigmoid(self.r_output_layer(xt_hidden))\n            return xt_outputs\n        except Exception as e:\n            print(f'An error occurred in b_forward: {e}')\n```\n",

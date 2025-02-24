@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def md_add_stock(self, amount):\n        self.stock += amount\n\n    def md_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def md_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def md_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            print(\"Insufficient stock to fulfill the request.\")"
       ]
     }

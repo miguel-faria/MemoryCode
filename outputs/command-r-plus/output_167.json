@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,17 +18,17 @@
         "def merge_sort_d(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n    \n    left = merge_sort_d(left)\n    right = merge_sort_d(right)\n    \n    return merge_d(left, right)\n\ndef merge_d(left, right):\n    result = []\n    i, j = 0, 0\n    \n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    \n    result.extend(left[i:])\n    result.extend(right[j:])\n    \n    return result",
         "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -37,7 +37,7 @@
       "instruction_model_output": [
         "def merge_sort_c(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_c(left)\n    right = merge_sort_c(right)\n\n    return merge_c(left, right)\n\ndef merge_c(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -46,17 +46,17 @@
       "instruction_model_output": [
         "def merge_sort_b(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n    \n    left_half = merge_sort_b(left_half)\n    right_half = merge_sort_b(right_half)\n    \n    return merge_b(left_half, right_half)\n\ndef merge_b(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n    \n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n    \n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n    \n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -65,7 +65,7 @@
       "instruction_model_output": [
         "from dataclasses import dataclass\r\nfrom pedantic.decorators import validate\r\nfrom typing import List, Optional\r\n\r\n\r\n@dataclass\r\nclass Library:\r\n    books: List[str] = dataclass(default_factory=list)\r\n\r\n    @validate\r\n    def add_book(self, book: str) -> None:\r\n        self.books.append(book)\r\n\r\n    @validate\r\n    def remove_book(self, book: str) -> Optional[str]:\r\n        if book in self.books:\r\n            self.books.remove(book)\r\n            return book\r\n        return None"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -76,7 +76,7 @@
         "def c_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
         "```python\ndef merge_sort_a(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_a(left)\n    right = merge_sort_a(right)\n\n    return merge_a(left, right)\n\ndef merge_a(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    def _add_books_c(self, book):\n        self.books.append(book)\n\n    def add_books(self, book):\n        try:\n            for b in book:\n                self._add_books_c(b)\n        except Exception as e:\n            raise Exception(\"Error adding books\") from e\n\n    def _remove_book_c(self, book):\n        self.books.remove(book)\n\n    def remove_book(self, book):\n        try:\n            self._remove_book_c(book)\n        except ValueError:\n            raise Exception(\"Book not found\")\n        except Exception as e:\n            raise Exception(\"Error removing book\") from e\n```",
         "```python\ndef x_merge_sort_d(arr: list[int]) -> list[int]:\n    \"\"\"\n    Sorts a list of integers using the merge sort algorithm.\n    \n    :param arr: A list of integers to be sorted.\n    :return: A new list with the sorted integers.\n    \"\"\"\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = x_merge_sort_d(left)\n    right = x_merge_sort_d(right)\n\n    return x_merge_c(left, right)\n\ndef x_merge_c(left: list[int], right: list[int]) -> list[int]:\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    :param left: A sorted list of integers.\n    :param right: Another sorted list of integers.\n    :return: A new list containing the merged and sorted integers.\n    \"\"\"\n    merged = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            merged.append(left[left_idx])\n            left_idx += 1\n        else:\n            merged.append(right[right_idx])\n            right_idx += 1\n\n    merged.extend(left[left_idx:])\n    merged.extend(right[right_idx:])\n\n    return merged\n```",
         "```python\nimport pandas as pd\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self):\n        self.model = Lasso()\n\n    def train(self, X_train: pd.DataFrame, y_train: pd.Series) -> None:\n        \"\"\"\n        Train the Lasso Regression model.\n\n        Parameters:\n        X_train (pd.DataFrame): Training input features.\n        y_train (pd.Series): Training target values.\n        \"\"\"\n        # Ensure proper input validation\n        assert isinstance(X_train, pd.DataFrame), \"@validate: X_train should be a pandas DataFrame\"\n        assert isinstance(y_train, pd.Series), \"@validate: y_train should be a pandas Series\"\n        assert all(X_train.columns == y_train.index), \"@validate: Input dimensions mismatch\"\n\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test: pd.DataFrame) -> pd.Series:\n        \"\"\"\n        Predict target values using the trained Lasso Regression model.\n\n        Parameters:\n        X_test (pd.DataFrame): Test input features.\n\n        Returns:\n        pd.Series: Predicted target values.\n        \"\"\"\n        # Ensure proper input validation\n        assert isinstance(X_test, pd.DataFrame), \"@validate: X_test should be a pandas DataFrame\"\n        assert all(X_test.columns == self.model.coef_.index), \"@validate: Input dimensions mismatch\"\n\n        return pd.Series(self.model.predict(X_test), name=\"predictions\")\n```",

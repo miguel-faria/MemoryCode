@@ -7,22 +7,22 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -31,17 +31,17 @@
       "instruction_model_output": [
         "```python\nimport mailbox\n\nclass TreeNode:\n    def __init__(self, key, left=None, right=None):\n        self.key = key\n        self.left = left\n        self.right = right\n\ndef delete_node(root, key):\n    if not root:\n        return root\n    \n    if key < root.key:\n        root.left = delete_node(root.left, key)\n    elif key > root.key:\n        root.right = delete_node(root.right, key)\n    else:\n        if not root.left:\n            return root.right\n        elif not root.right:\n            return root.left\n\n        min_larger_node = find_min(root.right)\n        root.key = min_larger_node.key\n        root.right = delete_node(root.right, min_larger_node.key)\n    \n    return root\n\ndef find_min(node):\n    current = node\n    while current.left:\n        current = current.left\n    return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -50,7 +50,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -59,7 +59,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_a(left_half)\n        merge_sort_a(right_half)\n\n        i = j = k = 0\n        \n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -68,7 +68,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, key=0, left=None, right=None):\n        self.key = key\n        self.left = left\n        self.right = right\n\ndef delete_node_x(root, key):\n    if not root:\n        return root\n\n    if key < root.key:\n        root.left = delete_node_x(root.left, key)\n    elif key > root.key:\n        root.right = delete_node_x(root.right, key)\n    else:\n        if not root.left:\n            return root.right\n        elif not root.right:\n            return root.left\n\n        temp = find_min_x(root.right)\n        root.key = temp.key\n        root.right = delete_node_x(root.right, temp.key)\n\n    return root\n\ndef find_min_x(node):\n    current = node\n    while current.left:\n        current = current.left\n    return current\n```\n",
         "```python\nclass Node:\n    def __init__(self, key):\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert_x(self, key):\n        if self.root is None:\n            self.root = Node(key)\n        else:\n            self._insert_x(self.root, key)\n\n    def _insert_x(self, node_a, key):\n        if key < node_a.val:\n            if node_a.left is None:\n                node_a.left = Node(key)\n            else:\n                self._insert_x(node_a.left, key)\n        else:\n            if node_a.right is None:\n                node_a.right = Node(key)\n            else:\n                self._insert_x(node_a.right, key)\n    \n    def deleteNode_x(self, root_a, key):\n        if root_a is None:\n            return root_a\n        \n        if key < root_a.val:\n            root_a.left = self.deleteNode_x(root_a.left, key)\n        elif key > root_a.val:\n            root_a.right = self.deleteNode_x(root_a.right, key)\n        else:\n            if root_a.left is None:\n                return root_a.right\n            elif root_a.right is None:\n                return root_a.left\n            \n            root_a.val = self._minValue_x(root_a.right)\n            root_a.right = self.deleteNode_x(root_a.right, root_a.val)\n        \n        return root_a\n\n    def _minValue_x(self, node_a):\n        current_a = node_a\n        while current_a.left is not None:\n            current_a = current_a.left\n        return current_a.val\n```",
         "```python\ndef merge_sort_x(lst):\n    \"\"\"\n    Performs a merge sort on the provided list and returns a sorted list.\n\n    Args:\n        lst (list): The list to be sorted.\n\n    Returns:\n        list: A new sorted list with the elements of the original list in ascending order.\n    \"\"\"\n    try:\n        if len(lst) <= 1:\n            return lst\n\n        mid = len(lst) // 2\n        left_half = merge_sort_x(lst[:mid])\n        right_half = merge_sort_x(lst[mid:])\n\n        return merge_x(left_half, right_half)\n    except Exception as e:\n        handle_error(e)\n\n\ndef merge_x(left, right):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    Args:\n        left (list): The first sorted list.\n        right (list): The second sorted list.\n\n    Returns:\n        list: A single merged and sorted list.\n    \"\"\"\n    try:\n        sorted_list = []\n        left_index, right_index = 0, 0\n\n        while left_index < len(left) and right_index < len(right):\n            if left[left_index] <= right[right_index]:\n                sorted_list.append(left[left_index])\n                left_index += 1\n            else:\n                sorted_list.append(right[right_index])\n                right_index += 1\n\n        sorted_list.extend(left[left_index:])\n        sorted_list.extend(right[right_index:])\n\n        return sorted_list\n    except Exception as e:\n        handle_error(e)\n\n\ndef handle_error(e):\n    \"\"\"\n    Handles an error by printing it. This can be expanded to include further error handling.\n\n    Args:\n        e (Exception): The exception to handle.\n    \"\"\"\n    print(f\"An error occurred: {e}\")\n```",

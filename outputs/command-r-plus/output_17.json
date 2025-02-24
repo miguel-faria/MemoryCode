@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.r_capacity = capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(key)\n        return self.r_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.r_cache:\n            self.r_cache.move_to_end(key)\n        elif len(self.r_cache) >= self.r_capacity:\n            self.r_cache.popitem(last=False)\n        self.r_cache[key] = value\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass R_LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.r_cache = {}\n        self.r_queue = []\n\n    def get(self, key: int) -> int:\n        if key not in self.r_cache:\n            return -1\n        self.r_queue.remove(key)\n        self.r_queue.insert(0, key)\n        return self.r_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.r_cache:\n            self.r_queue.remove(key)\n        elif len(self.r_queue) >= self.capacity:\n            del_key = self.r_queue.pop()\n            del self.r_cache[del_key]\n        self.r_queue.insert(0, key)\n        self.r_cache[key] = value\n```"
       ]
     }

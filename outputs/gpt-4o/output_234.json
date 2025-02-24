@@ -9,7 +9,7 @@
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```",
         "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,12 +18,12 @@
       "instruction_model_output": [
         "```python\ndef dot_product(h_vector1, h_vector2):\n    if not isinstance(h_vector1, list) or not isinstance(h_vector2, list):\n        raise TypeError(\"Both arguments must be lists.\")\n    if len(h_vector1) != len(h_vector2):\n        raise ValueError(\"Both vectors must be of the same length.\")\n    \n    return sum(h_v1 * h_v2 for h_v1, h_v2 in zip(h_vector1, h_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
         "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n",
         "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -43,7 +43,7 @@
       "instruction_model_output": [
         "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -54,7 +54,7 @@
         "```python\ndef compute_dot_product(j_vector1, j_vector2):\n    if len(j_vector1) != len(j_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(j_v1 * j_v2 for j_v1, j_v2 in zip(j_vector1, j_vector2))\n```",
         "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -63,32 +63,32 @@
       "instruction_model_output": [
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -97,12 +97,12 @@
       "instruction_model_output": [
         "```python\ndef dot_product(a_vector1, a_vector2):\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -113,7 +113,7 @@
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n\n    def add_node_x(self, value):\n        self.nodes[value] = {}\n\n    def add_edge_x(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node][to_node] = weight\n            self.nodes[to_node][from_node] = weight  # Assuming undirected graph\n\n    def shortest_path_x(self, start_node, end_node):\n        if start_node not in self.nodes or end_node not in self.nodes:\n            return None\n\n        distances = {node: float('inf') for node in self.nodes}\n        distances[start_node] = 0\n        priority_queue = [(0, start_node)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node].items():\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('inf') else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -124,17 +124,17 @@
         "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list_ud = {}\n\n    def add_edge_ud(self, node1, node2, weight):\n        if node1 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node1] = []\n        if node2 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node2] = []\n        self.adjacency_list_ud[node1].append((node2, weight))\n        self.adjacency_list_ud[node2].append((node1, weight))\n\n    def shortest_path_ud(self, start_node, end_node):\n        if start_node not in self.adjacency_list_ud or end_node not in self.adjacency_list_ud:\n            return None\n        priority_queue = [(0, start_node)]\n        distances = {node: float('inf') for node in self.adjacency_list_ud}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.adjacency_list_ud}\n        \n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n            \n            if current_distance > distances[current_node]:\n                continue\n                \n            for neighbor, weight in self.adjacency_list_ud[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n                    \n        path, current = [], end_node\n        while previous_nodes[current] is not None:\n            path.append(current)\n            current = previous_nodes[current]\n        if path or start_node == end_node:\n            path.append(start_node)\n        return path[::-1] if path else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -145,7 +145,7 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges_n = {}\n\n    def add_edge_n(self, from_node, to_node, weight):\n        if from_node not in self.edges_n:\n            self.edges_n[from_node] = []\n        if to_node not in self.edges_n:\n            self.edges_n[to_node] = []\n        self.edges_n[from_node].append((to_node, weight))\n        self.edges_n[to_node].append((from_node, weight))\n\n    def shortest_path_n(self, start_node, end_node):\n        priority_queue = [(0, start_node)]\n        distances = {node: float('inf') for node in self.edges_n}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.edges_n}\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges_n.get(current_node, []):\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        path = []\n        current_node = end_node\n        while current_node is not None:\n            path.append(current_node)\n            current_node = previous_nodes[current_node]\n        path.reverse()\n\n        if distances[end_node] == float('inf'):\n            return None\n\n        return path\n```",
         "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -154,7 +154,7 @@
       "instruction_model_output": [
         "```python\ndef merge_fn(left, right):\n    result = []\n    i = j = 0\n\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = merge_sort_fn(arr[:mid])\n    right_half = merge_sort_fn(arr[mid:])\n\n    return merge_fn(left_half, right_half)\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef longest_common_prefix_fn(a_strings: list[str]) -> str:\n    \"\"\"Finds the longest common prefix string amongst a list of strings.\n    \n    Args:\n        a_strings (list[str]): A list of strings to compare\n\n    Returns:\n        str: The longest common prefix\n    \n    Raises:\n        ValueError: If the list of input strings is empty\n    \"\"\"\n    if not a_strings:\n        raise ValueError(\"Input list of strings is empty\")\n    \n    chx_prefix = \"\"\n    chx_length = min(len(a_strings[0]), *(len(s) for s in a_strings))\n\n    for chx_i in range(chx_length):\n        chx_char = a_strings[0][chx_i]\n        if all(s[chx_i] == chx_char for s in a_strings):\n            chx_prefix += chx_char\n        else:\n            break\n\n    return chx_prefix\n```\n",
         "```python\ndef merge_sort_fn(a_arr):\n    \"\"\"\n    Implements the merge sort algorithm to sort a list in ascending order.\n    \n    Parameters:\n    a_arr (list): The list of elements to be sorted. Elements must be comparable.\n    \n    Returns:\n    list: A new list containing the sorted elements from the input list.\n    \"\"\"\n    if len(a_arr) <= 1:\n        return a_arr\n\n    def merge_fn(a_left, a_right):\n        \"\"\"\n        Merges two sorted lists into one sorted list.\n        \n        Parameters:\n        a_left (list): The first sorted list.\n        a_right (list): The second sorted list.\n        \n        Returns:\n        list: A merged and sorted list containing all elements from a_left and a_right.\n        \"\"\"\n        chxresult = []\n        chxi, chxj = 0, 0\n        \n        while chxi < len(a_left) and chxj < len(a_right):\n            if a_left[chxi] < a_right[chxj]:\n                chxresult.append(a_left[chxi])\n                chxi += 1\n            else:\n                chxresult.append(a_right[chxj])\n                chxj += 1\n        \n        chxresult.extend(a_left[chxi:])\n        chxresult.extend(a_right[chxj:])\n        \n        return chxresult\n\n    chxmid = len(a_arr) // 2\n    chxleft = merge_sort_fn(a_arr[:chxmid])\n    chxright = merge_sort_fn(a_arr[chxmid:])\n\n    return merge_fn(chxleft, chxright)\n```",
         "```python\ndef int_to_roman_fn(a_num_j: int) -> str:\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param a_num_j: The integer to convert to a Roman numeral.\n    :return: The Roman numeral representation of the integer.\n    \"\"\"\n    integer_to_roman_chx = {\n        1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C',\n        90: 'XC', 50: 'L', 40: 'XL', 10: 'X', 9: 'IX',\n        5: 'V', 4: 'IV', 1: 'I'\n    }\n    \n    roman_chx_numeral_chx_d = ''\n    for i_value_j, roman_chx in integer_to_roman_chx.items():\n        while a_num_j >= i_value_j:\n            roman_chx_numeral_chx_d += roman_chx\n            a_num_j -= i_value_j\n    return roman_chx_numeral_chx_d\n```",

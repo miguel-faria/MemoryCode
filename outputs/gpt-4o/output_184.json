@@ -9,7 +9,7 @@
         "```python\nfrom pedantic import trace_class\nimport numpy as np\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=1):\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.X_train = None\n        self.alpha_ = None\n    \n    def _linear_kernel(self, X, Y):\n        return np.dot(X, Y.T)\n\n    def _polynomial_kernel(self, X, Y):\n        return (np.dot(X, Y.T) + self.coef0) ** self.degree\n\n    def _rbf_kernel(self, X, Y):\n        if self.gamma is None:\n            self.gamma = 1.0 / X.shape[1]\n        K = np.sum(X ** 2, axis=1).reshape(-1, 1) + np.sum(Y ** 2, axis=1) - 2 * np.dot(X, Y.T)\n        return np.exp(-self.gamma * K)\n\n    def _get_kernel(self, X, Y):\n        if self.kernel == 'linear':\n            return self._linear_kernel(X, Y)\n        elif self.kernel == 'polynomial':\n            return self._polynomial_kernel(X, Y)\n        elif self.kernel == 'rbf':\n            return self._rbf_kernel(X, Y)\n        else:\n            raise ValueError(\"Unknown kernel type\")\n\n    def fit(self, X, y):\n        self.X_train = X\n        K = self._get_kernel(X, X)\n        n_samples = X.shape[0]\n        self.alpha_ = np.linalg.solve(K + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        K = self._get_kernel(X, self.X_train)\n        return np.dot(K, self.alpha_)\n\n```",
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,7 +18,7 @@
       "instruction_model_output": [
         "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -29,7 +29,7 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes_b = {}\n\n    def add_edge_b(self, from_node, to_node, weight):\n        if from_node not in self.nodes_b:\n            self.nodes_b[from_node] = []\n        if to_node not in self.nodes_b:\n            self.nodes_b[to_node] = []\n        self.nodes_b[from_node].append((to_node, weight))\n        self.nodes_b[to_node].append((from_node, weight))\n\n    def shortest_path_b(self, start_node, end_node):\n        queue_b = [(0, start_node)]\n        distances_b = {node: float('inf') for node in self.nodes_b}\n        distances_b[start_node] = 0\n        visited_b = set()\n\n        while queue_b:\n            current_distance_b, current_node_b = heapq.heappop(queue_b)\n\n            if current_node_b in visited_b:\n                continue\n\n            visited_b.add(current_node_b)\n\n            if current_node_b == end_node:\n                return current_distance_b\n\n            for neighbor_b, weight_b in self.nodes_b[current_node_b]:\n                distance_b = current_distance_b + weight_b\n\n                if distance_b < distances_b[neighbor_b]:\n                    distances_b[neighbor_b] = distance_b\n                    heapq.heappush(queue_b, (distance_b, neighbor_b))\n\n        return float('inf')\n```",
         "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -38,17 +38,17 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_edge_p(self, start, end, weight):\n        if start not in self.adjacency_list:\n            self.adjacency_list[start] = []\n        if end not in self.adjacency_list:\n            self.adjacency_list[end] = []\n        self.adjacency_list[start].append((end, weight))\n        self.adjacency_list[end].append((start, weight))\n\n    def shortest_path_p(self, start, end):\n        priority_queue = [(0, start)]\n        distances = {node: float('inf') for node in self.adjacency_list}\n        distances[start] = 0\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return float('inf')\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -59,7 +59,7 @@
         "```python\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n        \n    def add_node_a(self, node):\n        if node not in self.nodes:\n            self.nodes[node] = []\n\n    def add_edge_a(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node].append((to_node, weight))\n            self.nodes[to_node].append((from_node, weight))\n\n    def shortest_path_a(self, start_node, end_node):\n        import heapq\n        queue = []\n        heapq.heappush(queue, (0, start_node))\n        distances = {node: float('infinity') for node in self.nodes}\n        distances[start_node] = 0\n        visited = set()\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n            if current_node in visited:\n                continue\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('infinity') else None\n```",
         "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -70,27 +70,27 @@
         "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert_chx(self, item):\n        self.heap.append(item)\n        self._heapify_up_chx(len(self.heap) - 1)\n\n    def _heapify_up_chx(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] > self.heap[parent_index]:\n                self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]\n                index = parent_index\n            else:\n                break\n\n    def _heapify_down_chx(self, index):\n        last_index = len(self.heap) - 1\n        while True:\n            left_child_index = 2 * index + 1\n            right_child_index = 2 * index + 2\n            largest_index = index\n\n            if left_child_index <= last_index and self.heap[left_child_index] > self.heap[largest_index]:\n                largest_index = left_child_index\n\n            if right_child_index <= last_index and self.heap[right_child_index] > self.heap[largest_index]:\n                largest_index = right_child_index\n\n            if largest_index == index:\n                break\n            else:\n                self.heap[index], self.heap[largest_index] = self.heap[largest_index], self.heap[index]\n                index = largest_index\n\n    def extract_chx(self):\n        if len(self.heap) == 0:\n            return None\n        if len(self.heap) == 1:\n            return self.heap.pop()\n\n        root = self.heap[0]\n        self.heap[0] = self.heap.pop()\n        self._heapify_down_chx(0)\n        return root\n```",
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n    \n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n    \n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n            if self.stock[item] == 0:\n                del self.stock[item]\n        else:\n            raise ValueError(\"Not enough stock to remove the requested quantity.\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -101,17 +101,17 @@
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges_n = {}\n\n    def add_edge_n(self, from_node, to_node, weight):\n        if from_node not in self.edges_n:\n            self.edges_n[from_node] = []\n        if to_node not in self.edges_n:\n            self.edges_n[to_node] = []\n        self.edges_n[from_node].append((to_node, weight))\n        self.edges_n[to_node].append((from_node, weight))\n\n    def shortest_path_n(self, start_node, end_node):\n        priority_queue = [(0, start_node)]\n        distances = {node: float('inf') for node in self.edges_n}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.edges_n}\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges_n.get(current_node, []):\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        path = []\n        current_node = end_node\n        while current_node is not None:\n            path.append(current_node)\n            current_node = previous_nodes[current_node]\n        path.reverse()\n\n        if distances[end_node] == float('inf'):\n            return None\n\n        return path\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom typing import Optional\n\n@trace_class\nclass TreeNode:\n    def __init__(self, val: int, left: 'Optional[TreeNode]' = None, right: 'Optional[TreeNode]' = None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst_c(root: Optional[TreeNode]) -> bool:\n    \"\"\"\n    Determines if a given binary tree is a valid binary search tree.\n\n    Args:\n        root: The root node of the tree.\n\n    Returns:\n        True if the tree is a valid binary search tree, otherwise False.\n    \"\"\"\n    def validate_ud_chx_n(node: Optional[TreeNode], low: float, high: float) -> bool:\n        \"\"\"\n        Uses a helper function for recursive validation of the BST property.\n\n        Args:\n            node: Current tree node.\n            low: Lower bound for the current node value.\n            high: Upper bound for the current node value.\n\n        Returns:\n            True if the subtree rooted at node is valid under the constraints.\n        \"\"\"\n        try:\n            if not node:\n                return True\n            if not (low < node.val < high):\n                return False\n            return (validate_ud_chx_n(node.left, low, node.val) and\n                    validate_ud_chx_n(node.right, node.val, high))\n        except Exception as e:\n            # Log or handle any exceptions appropriately\n            raise e\n\n    try:\n        return validate_ud_chx_n(root, float('-inf'), float('inf'))\n    except Exception as e:\n        # Log or handle any exceptions appropriately\n        raise e\n```\n",
         "```python\nfrom pedantic import trace_class\n\n@trace_class\nclass Inventory:\n    \"\"\"\n    Manages the stock level within an inventory system.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes the inventory with an empty stock dictionary.\n        \"\"\"\n        self.stock = {}\n\n    def ud_add_stock_chx_n(self, item: str, quantity: int) -> None:\n        \"\"\"\n        Adds the specified quantity of an item to the inventory. Updates existing quantity if the item exists.\n\n        :param item: The name of the item to be added.\n        :param quantity: The quantity of the item to add.\n        \"\"\"\n        try:\n            if item in self.stock:\n                self.stock[item] += quantity\n            else:\n                self.stock[item] = quantity\n        except Exception as e:\n            print(f\"An error occurred while adding stock: {e}\")\n\n    def ud_remove_stock_chx_n(self, item: str, quantity: int) -> None:\n        \"\"\"\n        Removes the specified quantity of an item from the inventory. Removes the item if quantity reaches zero or below.\n\n        :param item: The name of the item to be removed.\n        :param quantity: The quantity of the item to remove.\n        \"\"\"\n        try:\n            if item in self.stock:\n                self.stock[item] -= quantity\n                if self.stock[item] <= 0:\n                    del self.stock[item]\n            else:\n                print(f\"Item '{item}' not found in inventory.\")\n        except Exception as e:\n            print(f\"An error occurred while removing stock: {e}\")\n```",
         "```python\nfrom pedantic import trace_class\n\n@trace_class\nclass MergeSortChx:\n    def ud_merge_chx_a(self, left: list, right: list) -> list:\n        \"\"\"\n        Merges two sorted lists into a single sorted list.\n\n        :param left: The left half of the list to be merged.\n        :param right: The right half of the list to be merged.\n        :return: A new list containing all elements from both halves in sorted order.\n        \"\"\"\n        merged_list = []\n        i = j = 0\n\n        try:\n            while i < len(left) and j < len(right):\n                if left[i] < right[j]:\n                    merged_list.append(left[i])\n                    i += 1\n                else:\n                    merged_list.append(right[j])\n                    j += 1\n\n            while i < len(left):\n                merged_list.append(left[i])\n                i += 1\n\n            while j < len(right):\n                merged_list.append(right[j])\n                j += 1\n\n        except Exception as e:\n            print(f\"An error occurred during merging: {e}\")\n\n        return merged_list\n\n    def ud_merge_sort_chx_a(self, array: list) -> list:\n        \"\"\"\n        Performs merge sort on a list and returns a sorted list.\n\n        :param array: The list to be sorted.\n        :return: A new list containing the elements of the original list in sorted order.\n        \"\"\"\n        if len(array) <= 1:\n            return array\n\n        try:\n            mid = len(array) // 2\n            left_half = self.ud_merge_sort_chx_a(array[:mid])\n            right_half = self.ud_merge_sort_chx_a(array[mid:])\n            return self.ud_merge_chx_a(left_half, right_half)\n\n        except Exception as e:\n            print(f\"An error occurred while sorting: {e}\")\n            return []\n```\n",

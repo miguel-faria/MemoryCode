@@ -9,7 +9,7 @@
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def b_add_stock(self, amount):\n        self.stock += amount\n\n    def b_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount",
         "def merge_sort_gn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_gn(left_half)\n    right_half = merge_sort_gn(right_half)\n\n    return merge_gn(left_half, right_half)\n\ndef merge_gn(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -20,12 +20,12 @@
         "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True",
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def md_add_stock(self, amount):\n        self.stock += amount\n\n    def md_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -36,12 +36,12 @@
         "from pedantic.decorators import pedantic\n\n@pedantic.require_kwargs('roman_numeral')\ndef roman_to_integer(roman_numeral: str) -> int:\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000,\n    }\n\n    integer = 0\n    prev_value = 0\n    for numeral in reversed(roman_numeral):\n        value = roman_numerals[numeral]\n        if value < prev_value:\n            integer -= value\n        else:\n            integer += value\n        prev_value = value\n\n    return integer",
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def a_add_stock(self, amount):\n        self.stock += amount\n\n    def a_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef is_valid_sudoku_board_gn(board: list[list[int]]) -> bool:\n    @require_kwargs(board=list)\n    def md_check_row(row: list[int]) -> bool:\n        z_set = set()\n        for z_num in row:\n            if z_num not in z_set:\n                z_set.add(z_num)\n            else:\n                return False\n        return True\n\n    def md_check_column(board: list[list[int]], column_index: int) -> bool:\n        z_set = set()\n        for z_row in board:\n            z_num = z_row[column_index]\n            if z_num not in z_set:\n                z_set.add(z_num)\n            else:\n                return False\n        return True\n\n    def md_check_box(board: list[list[int]], box_start_row: int, box_start_column: int) -> bool:\n        z_set = set()\n        for z_row in range(box_start_row, box_start_row + 3):\n            for z_column in range(box_start_column, box_start_column + 3):\n                z_num = board[z_row][z_column]\n                if z_num not in z_set:\n                    z_set.add(z_num)\n                else:\n                    return False\n        return True\n\n    for z_row in board:\n        if not md_check_row(z_row):\n            return False\n\n    for z_column in range(9):\n        if not md_check_column(board, z_column):\n            return False\n\n    for z_row_start in range(0, 9, 3):\n        for z_column_start in range(0, 9, 3):\n            if not md_check_box(board, z_row_start, z_column_start):\n                return False\n\n    return True\n```",
         "```python\nfrom pedantic import require_kwargs\n\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    @require_kwargs\n    def a_add_stock(self, product: str, quantity: int):\n        if product in self.stock:\n            self.stock[product] += quantity\n        else:\n            self.stock[product] = quantity\n\n    @require_kwargs\n    def a_remove_stock(self, product: str, quantity: int):\n        if product in self.stock and self.stock[product] >= quantity:\n            self.stock[product] -= quantity\n        else:\n            raise ValueError(\"Insufficient stock to remove\")\n```",
         "```python\nfrom pedantic import require_kwargs\n\ndef a_merge_sort_gn(arr: list[int]) -> list[int]:\n    @require_kwargs(arr=list)\n    def a_merge_sorted_arrays_gn(arr1: list[int], arr2: list[int]) -> list[int]:\n        result = []\n        i, j = 0, 0\n\n        while i < len(arr1) and j < len(arr2):\n            if arr1[i] < arr2[j]:\n                result.append(arr1[i])\n                i += 1\n            else:\n                result.append(arr2[j])\n                j += 1\n\n        result.extend(arr1[i:])\n        result.extend(arr2[j:])\n        return result\n\n    def a_divide_array_gn(arr: list[int]) -> tuple[list[int], list[int]]:\n        mid = len(arr) // 2\n        return arr[:mid], arr[mid:]\n\n    def a_merge_sort_recursive_gn(arr: list[int]) -> list[int]:\n        if len(arr) <= 1:\n            return arr\n\n        left_half, right_half = a_divide_array_gn(arr)\n        return a_merge_sorted_arrays_gn(\n            a_merge_sort_recursive_gn(left_half), a_merge_sort_recursive_gn(right_half)\n        )\n\n    return a_merge_sort_recursive_gn(arr)\n```",

@@ -9,17 +9,17 @@
         "from pedantic.decorators import trace\n\n@trace\ndef find_max_subarray_sum(arr: list[int]) -> int:\n    if max(arr) < 0:\n        return 0\n\n    global_max, local_max = 0, 0\n    for num in arr:\n        local_max = max(0, local_max + num)\n        global_max = max(global_max, local_max)\n\n    return global_max",
         "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import trace\n\n@trace\ndef find_max_subarray_sum0(nums):\n    if not nums:\n        return 0\n    \n    max_sum = current_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum\n```",
         "@trace\ndef count_non_zero_elements1(matrix):\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count"
       ]

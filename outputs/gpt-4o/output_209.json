@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -26,7 +26,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(lst1_e, lst2_e):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(lst1_e) and j < len(lst2_e):\n        if lst1_e[i] < lst2_e[j]:\n            merged_list.append(lst1_e[i])\n            i += 1\n        else:\n            merged_list.append(lst2_e[j])\n            j += 1\n    merged_list.extend(lst1_e[i:])\n    merged_list.extend(lst2_e[j:])\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -35,12 +35,12 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -51,7 +51,7 @@
         "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    merged_list.extend(list1_f[i:])\n    merged_list.extend(list2_f[j:])\n    return merged_list\n```",
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list_ud = {}\n\n    def add_edge_ud(self, node1, node2, weight):\n        if node1 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node1] = []\n        if node2 not in self.adjacency_list_ud:\n            self.adjacency_list_ud[node2] = []\n        self.adjacency_list_ud[node1].append((node2, weight))\n        self.adjacency_list_ud[node2].append((node1, weight))\n\n    def shortest_path_ud(self, start_node, end_node):\n        if start_node not in self.adjacency_list_ud or end_node not in self.adjacency_list_ud:\n            return None\n        priority_queue = [(0, start_node)]\n        distances = {node: float('inf') for node in self.adjacency_list_ud}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.adjacency_list_ud}\n        \n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n            \n            if current_distance > distances[current_node]:\n                continue\n                \n            for neighbor, weight in self.adjacency_list_ud[current_node]:\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(priority_queue, (distance, neighbor))\n                    \n        path, current = [], end_node\n        while previous_nodes[current] is not None:\n            path.append(current)\n            current = previous_nodes[current]\n        if path or start_node == end_node:\n            path.append(start_node)\n        return path[::-1] if path else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -62,7 +62,7 @@
         "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```",
         "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -71,22 +71,22 @@
       "instruction_model_output": [
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes = {}\n\n    def add_node_x(self, value):\n        self.nodes[value] = {}\n\n    def add_edge_x(self, from_node, to_node, weight):\n        if from_node in self.nodes and to_node in self.nodes:\n            self.nodes[from_node][to_node] = weight\n            self.nodes[to_node][from_node] = weight  # Assuming undirected graph\n\n    def shortest_path_x(self, start_node, end_node):\n        if start_node not in self.nodes or end_node not in self.nodes:\n            return None\n\n        distances = {node: float('inf') for node in self.nodes}\n        distances[start_node] = 0\n        priority_queue = [(0, start_node)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            for neighbor, weight in self.nodes[current_node].items():\n                distance = current_distance + weight\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    heapq.heappush(priority_queue, (distance, neighbor))\n\n        return distances[end_node] if distances[end_node] != float('inf') else None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -97,7 +97,7 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.adjacency_list = {}\n\n    def add_node_md(self, node):\n        if node not in self.adjacency_list:\n            self.adjacency_list[node] = []\n\n    def add_edge_md(self, u, v, weight):\n        if u in self.adjacency_list and v in self.adjacency_list:\n            self.adjacency_list[u].append((v, weight))\n            self.adjacency_list[v].append((u, weight))\n\n    def shortest_path_md(self, start, end):\n        distance = {node: float('inf') for node in self.adjacency_list}\n        distance[start] = 0\n        priority_queue = [(0, start)]\n        visited = set()\n\n        while priority_queue:\n            current_distance, current_node = heapq.heappop(priority_queue)\n\n            if current_node in visited:\n                continue\n\n            visited.add(current_node)\n\n            if current_node == end:\n                return current_distance\n\n            for neighbor, weight in self.adjacency_list[current_node]:\n                if neighbor not in visited:\n                    new_distance = current_distance + weight\n                    if new_distance < distance[neighbor]:\n                        distance[neighbor] = new_distance\n                        heapq.heappush(priority_queue, (new_distance, neighbor))\n\n        return float('inf')\n```",
         "```python\ndef merge_sorted_lists(list_a, list_b):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list_a) and j_a < len(list_b):\n        if list_a[i_a] < list_b[j_a]:\n            merged_list_a.append(list_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list_b[j_a])\n            j_a += 1\n    while i_a < len(list_a):\n        merged_list_a.append(list_a[i_a])\n        i_a += 1\n    while j_a < len(list_b):\n        merged_list_a.append(list_b[j_a])\n        j_a += 1\n    return merged_list_a\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -108,7 +108,7 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.nodes_b = {}\n\n    def add_edge_b(self, from_node, to_node, weight):\n        if from_node not in self.nodes_b:\n            self.nodes_b[from_node] = []\n        if to_node not in self.nodes_b:\n            self.nodes_b[to_node] = []\n        self.nodes_b[from_node].append((to_node, weight))\n        self.nodes_b[to_node].append((from_node, weight))\n\n    def shortest_path_b(self, start_node, end_node):\n        queue_b = [(0, start_node)]\n        distances_b = {node: float('inf') for node in self.nodes_b}\n        distances_b[start_node] = 0\n        visited_b = set()\n\n        while queue_b:\n            current_distance_b, current_node_b = heapq.heappop(queue_b)\n\n            if current_node_b in visited_b:\n                continue\n\n            visited_b.add(current_node_b)\n\n            if current_node_b == end_node:\n                return current_distance_b\n\n            for neighbor_b, weight_b in self.nodes_b[current_node_b]:\n                distance_b = current_distance_b + weight_b\n\n                if distance_b < distances_b[neighbor_b]:\n                    distances_b[neighbor_b] = distance_b\n                    heapq.heappush(queue_b, (distance_b, neighbor_b))\n\n        return float('inf')\n```",
         "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -119,7 +119,7 @@
         "```python\nimport heapq\n\nclass Graph:\n    def __init__(self):\n        self.edges = {}\n\n    def add_edge_o(self, from_node, to_node, weight):\n        if from_node not in self.edges:\n            self.edges[from_node] = []\n        if to_node not in self.edges:\n            self.edges[to_node] = []\n        self.edges[from_node].append((to_node, weight))\n        self.edges[to_node].append((from_node, weight))\n\n    def shortest_path_o(self, start_node, end_node):\n        queue = [(0, start_node)]\n        distances = {node: float('infinity') for node in self.edges}\n        distances[start_node] = 0\n        previous_nodes = {node: None for node in self.edges}\n\n        while queue:\n            current_distance, current_node = heapq.heappop(queue)\n\n            if current_distance > distances[current_node]:\n                continue\n\n            for neighbor, weight in self.edges.get(current_node, []):\n                distance = current_distance + weight\n\n                if distance < distances[neighbor]:\n                    distances[neighbor] = distance\n                    previous_nodes[neighbor] = current_node\n                    heapq.heappush(queue, (distance, neighbor))\n\n        path, current_node = [], end_node\n        while previous_nodes[current_node] is not None:\n            path.append(current_node)\n            current_node = previous_nodes[current_node]\n        if path:\n            path.append(start_node)\n        path.reverse()\n\n        return path if distance < float('infinity') else None\n```",
         "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef compute_diagonal_avg_o(matrix_x):\n    assert isinstance(matrix_x, list) and all(isinstance(row_x, list) for row_x in matrix_x), \"Input must be a matrix (list of lists).\"\n    \n    n_x = len(matrix_x)\n    assert all(len(row_x) == n_x for row_x in matrix_x), \"Matrix must be square (n x n).\"\n    \n    diagonal_sum_x = 0\n    for i_x in range(n_x):\n        diagonal_sum_x += matrix_x[i_x][i_x]\n    \n    avg_x = diagonal_sum_x / n_x\n    return avg_x\n```\n",
         "```python\ndef merge_sorted_lists_o(list1_x, list2_x):\n    merged_list_x = []\n    index1_x, index2_x = 0, 0\n    \n    while index1_x < len(list1_x) and index2_x < len(list2_x):\n        if list1_x[index1_x] < list2_x[index2_x]:\n            merged_list_x.append(list1_x[index1_x])\n            index1_x += 1\n        else:\n            merged_list_x.append(list2_x[index2_x])\n            index2_x += 1\n    \n    while index1_x < len(list1_x):\n        merged_list_x.append(list1_x[index1_x])\n        index1_x += 1\n    \n    while index2_x < len(list2_x):\n        merged_list_x.append(list2_x[index2_x])\n        index2_x += 1\n\n    return merged_list_x\n```",
         "```python\nclass TreeNode_o:\n    def __init__(self, key_x):\n        self.key_x = key_x\n        self.left_x = None\n        self.right_x = None\n\nclass BinaryTree_o:\n    def __init__(self):\n        self.root_x = None\n\n    def insert_x(self, key_x):\n        if self.root_x is None:\n            self.root_x = TreeNode_o(key_x)\n        else:\n            self._insert_x(self.root_x, key_x)\n\n    def _insert_x(self, node_x, key_x):\n        if key_x < node_x.key_x:\n            if node_x.left_x is None:\n                node_x.left_x = TreeNode_o(key_x)\n            else:\n                self._insert_x(node_x.left_x, key_x)\n        elif key_x > node_x.key_x:\n            if node_x.right_x is None:\n                node_x.right_x = TreeNode_o(key_x)\n            else:\n                self._insert_x(node_x.right_x, key_x)\n\n    def delete_x(self, key_x):\n        self.root_x = self._delete_x(self.root_x, key_x)\n\n    def _delete_x(self, node_x, key_x):\n        if node_x is None:\n            return node_x\n\n        if key_x < node_x.key_x:\n            node_x.left_x = self._delete_x(node_x.left_x, key_x)\n        elif key_x > node_x.key_x:\n            node_x.right_x = self._delete_x(node_x.right_x, key_x)\n        else:\n            if node_x.left_x is None:\n                return node_x.right_x\n            elif node_x.right_x is None:\n                return node_x.left_x\n\n            min_larger_node_x = self._get_min_x(node_x.right_x)\n            node_x.key_x = min_larger_node_x.key_x\n            node_x.right_x = self._delete_x(node_x.right_x, min_larger_node_x.key_x)\n\n        return node_x\n\n    def _get_min_x(self, node_x):\n        current_x = node_x\n        while current_x.left_x is not None:\n            current_x = current_x.left_x\n        return current_x\n```",

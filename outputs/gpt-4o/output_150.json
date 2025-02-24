@@ -9,12 +9,12 @@
         "```python\ndef n_is_valid_sudoku(n_board):\n    def n_is_valid_block(n_block):\n        n_block = [n_num for n_num in n_block if n_num != '.']\n        return len(n_block) == len(set(n_block))\n    \n    for n_row in n_board:\n        if not n_is_valid_block(n_row):\n            return False\n    \n    for n_col_idx in range(9):\n        n_col = [n_board[n_row_idx][n_col_idx] for n_row_idx in range(9)]\n        if not n_is_valid_block(n_col):\n            return False\n    \n    for n_row_start in range(0, 9, 3):\n        for n_col_start in range(0, 9, 3):\n            n_block = [n_board[n_row][n_col] \n                       for n_row in range(n_row_start, n_row_start + 3) \n                       for n_col in range(n_col_start, n_col_start + 3)]\n            if not n_is_valid_block(n_block):\n                return False\n    \n    return True\n```",
         "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,17 +25,17 @@
         "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X, y):\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        X_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_transpose.dot(X_b)).dot(X_transpose).dot(y)\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        return X_b.dot(self.coefficients)\n```",
         "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_unit(vr_unit):\n        vr_unit = [num for num in vr_unit if num != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    for vr_row in vr_board:\n        if not is_valid_unit(vr_row):\n            return False\n    \n    for vr_col in zip(*vr_board):\n        if not is_valid_unit(vr_col):\n            return False\n    \n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            vr_box = [\n                vr_board[vr_x][vr_y]\n                for vr_x in range(vr_i, vr_i + 3)\n                for vr_y in range(vr_j, vr_j + 3)\n            ]\n            if not is_valid_unit(vr_box):\n                return False\n    \n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(vr_self, vr_learning_rate=0.01, vr_iterations=1000):\n        vr_self.vr_learning_rate = vr_learning_rate\n        vr_self.vr_iterations = vr_iterations\n        vr_self.vr_weights = None\n        vr_self.vr_bias = None\n\n    @count_calls\n    def train(vr_self, vr_X1_train, vr_y2_train):\n        vr_samples, vr_features = vr_X1_train.shape\n        vr_self.vr_weights = np.zeros(vr_features)\n        vr_self.vr_bias = 0\n\n        for vr_ in range(vr_self.vr_iterations):\n            vr_model_predictions = np.dot(vr_X1_train, vr_self.vr_weights) + vr_self.vr_bias\n            vr_dw = (1 / vr_samples) * np.dot(vr_X1_train.T, (vr_model_predictions - vr_y2_train))\n            vr_db = (1 / vr_samples) * np.sum(vr_model_predictions - vr_y2_train)\n\n            vr_self.vr_weights -= vr_self.vr_learning_rate * vr_dw\n            vr_self.vr_bias -= vr_self.vr_learning_rate * vr_db\n\n    @count_calls\n    def predict(vr_self, vr_X1_input):\n        return np.dot(vr_X1_input, vr_self.vr_weights) + vr_self.vr_bias\n```",
         "```python\nfrom pedantic import count_calls\n\n@count_calls\ndef get_common_elements(lst1_0, lst2_1):\n    vr_common_elements = set(lst1_0) & set(lst2_1)\n    return list(vr_common_elements)\n```",
         "```python\nfrom pedantic import count_calls\n\n@count_calls\ndef is_valid_sudoku(n_board9):\n    vr_rows, vr_cols, vr_boxes = (\n        [set() for _ in range(9)],\n        [set() for _ in range(9)],\n        [set() for _ in range(9)]\n    )\n\n    for vr_r0 in range(9):\n        for vr_c1 in range(9):\n            vr_val2 = n_board9[vr_r0][vr_c1]\n            if vr_val2 == \".\":\n                continue\n            \n            vr_box_index3 = (vr_r0 // 3) * 3 + vr_c1 // 3\n            \n            if (vr_val2 in vr_rows[vr_r0] or \n                vr_val2 in vr_cols[vr_c1] or \n                vr_val2 in vr_boxes[vr_box_index3]):\n                return False\n            \n            vr_rows[vr_r0].add(vr_val2)\n            vr_cols[vr_c1].add(vr_val2)\n            vr_boxes[vr_box_index3].add(vr_val2)\n    \n    return True\n```"

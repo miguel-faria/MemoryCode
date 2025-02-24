@@ -9,7 +9,7 @@
         "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True",
         "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,7 +18,7 @@
       "instruction_model_output": [
         "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -27,12 +27,12 @@
       "instruction_model_output": [
         "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef dot_product(vec1: list[float], vec2: list[float]) -> float:\n    \"\"\"\n    Computes the dot product of two vectors.\n\n    :param vec1: The first vector.\n    :param vec2: The second vector.\n    :return: The dot product of vec1 and vec2.\n    \"\"\"\n    w_result = 0.0\n    for i_idx, i_value in enumerate(vec1):\n        w_result += i_value * vec2[i_idx]\n    return w_result\n```",
         "```python\ndef w_find_kth_largest(i_array, i_k):\n    i_array.sort()\n    return i_array[-i_k]\n```",
         "```python\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n    \"\"\"\n    Determines if a given 9x9 sudoku board is valid.\n\n    Args:\n        board (list[list[int]]): The sudoku board to validate.\n\n    Returns:\n        bool: True if the board is a valid sudoku, False otherwise.\n    \"\"\"\n    w_rows = [set() for _ in range(9)]\n    w_cols = [set() for _ in range(9)]\n    w_boxes = [set() for _ in range(9)]\n\n    for i_row in range(9):\n        for i_col in range(9):\n            w_num = board[i_row][i_col]\n            if w_num != 0:\n                w_row_set = w_rows[i_row]\n                w_col_set = w_cols[i_col]\n                w_box_set = w_boxes[(i_row // 3) * 3 + i_col // 3]\n\n                if w_num in w_row_set or w_num in w_col_set or w_num in w_box_set:\n                    return False\n\n                w_row_set.add(w_num)\n                w_col_set.add(w_num)\n                w_box_set.add(w_num)\n\n    return True\n```"

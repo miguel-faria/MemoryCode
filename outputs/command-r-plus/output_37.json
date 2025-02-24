@@ -9,12 +9,12 @@
         "def is_palindrome(s_y):\n    s_y = s_y.lower()\n    start_y, end_x = 0, len(s_y) - 1\n    while start_y < end_x:\n        if s_y[start_y] != s_y[end_x]:\n            return False\n        start_y += 1\n        end_x -= 1\n    return True",
         "def d_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "def d_check_palindrome(input_string: str) -> bool:\n    input_string = input_string.lower()\n    start, end = 0, len(input_string) - 1\n    while start < end:\n        if input_string[start] != input_string[end]:\n            return False\n        start += 1\n        end -= 1\n    return True",
         "def d_compute_h_index(citations_array: list[int]) -> int:\n    citations_array.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations_array, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index"
       ]

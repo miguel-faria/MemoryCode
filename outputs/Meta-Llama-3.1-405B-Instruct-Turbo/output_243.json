@@ -3,32 +3,32 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -39,7 +39,7 @@
         "```python\ndef is_palindrome(input_string_m: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_m (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_m = ''.join(char_m for char_m in input_string_m if char_m.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_m == cleaned_string_m[::-1]\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    q_capacity (int): The maximum number of items the cache can hold.\n    q_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.q_capacity = capacity\n        self.q_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.q_cache:\n            value = self.q_cache.pop(key)\n            self.q_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.q_cache:\n            self.q_cache.pop(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            self.q_cache.popitem(last=False)  # Remove the least recently used item\n        self.q_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -48,12 +48,12 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    \"\"\"\n    Represents a node in the binary tree.\n\n    Attributes:\n        value (int): The value stored in the node.\n        left (Node): The left child of the node.\n        right (Node): The right child of the node.\n    \"\"\"\n\n    def __init__(self, value):\n        \"\"\"\n        Initializes a new node with the given value.\n\n        Args:\n            value (int): The value to store in the node.\n        \"\"\"\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    \"\"\"\n    Represents a binary tree.\n\n    Attributes:\n        root (Node): The root node of the tree.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty binary tree.\n        \"\"\"\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"\n        Inserts a new node with the given value into the tree.\n\n        Args:\n            value (int): The value to store in the new node.\n        \"\"\"\n        if self.root is None:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, current_node, value):\n        \"\"\"\n        Recursively inserts a new node into the tree.\n\n        Args:\n            current_node (Node): The current node being processed.\n            value (int): The value to store in the new node.\n        \"\"\"\n        if value < current_node.value:\n            if current_node.left is None:\n                current_node.left = Node(value)\n            else:\n                self._insert_recursive(current_node.left, value)\n        else:\n            if current_node.right is None:\n                current_node.right = Node(value)\n            else:\n                self._insert_recursive(current_node.right, value)\n\n    def delete(self, value):\n        \"\"\"\n        Deletes the node with the given value from the tree.\n\n        Args:\n            value (int): The value of the node to delete.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, current_node, value):\n        \"\"\"\n        Recursively deletes a node from the tree.\n\n        Args:\n            current_node (Node): The current node being processed.\n            value (int): The value of the node to delete.\n\n        Returns:\n            Node: The updated current node.\n        \"\"\"\n        if current_node is None:\n            return current_node\n\n        if value < current_node.value:\n            current_node.left = self._delete_recursive(current_node.left, value)\n        elif value > current_node.value:\n            current_node.right = self._delete_recursive(current_node.right, value)\n        else:\n            if current_node.left is None:\n                return current_node.right\n            elif current_node.right is None:\n                return current_node.left\n            else:\n                min_value = self._find_min(current_node.right)\n                current_node.value = min_value\n                current_node.right = self._delete_recursive(current_node.right, min_value)\n\n        return current_node\n\n    def _find_min(self, current_node):\n        \"\"\"\n        Finds the minimum value in the subtree rooted at the given node.\n\n        Args:\n            current_node (Node): The root of the subtree.\n\n        Returns:\n            int: The minimum value in the subtree.\n        \"\"\"\n        while current_node.left is not None:\n            current_node = current_node.left\n        return current_node.value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -64,7 +64,7 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    r_capacity (int): The maximum number of items the cache can hold.\n    r_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.r_capacity = capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.r_cache:\n            value = self.r_cache.pop(key)\n            self.r_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.r_cache:\n            self.r_cache.pop(key)\n        elif len(self.r_cache) >= self.r_capacity:\n            self.r_cache.popitem(last=False)  # Remove the least recently used item\n        self.r_cache[key] = value\n```",
         "```python\ndef is_palindrome(input_str_vr: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_str_vr (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_str_vr = ''.join(char_vr for char_vr in input_str_vr if char_vr.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_str_vr == cleaned_str_vr[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -73,12 +73,12 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    t_capacity (int): The maximum number of items the cache can hold.\n    t_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.t_capacity = capacity\n        self.t_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.t_cache:\n            value = self.t_cache.pop(key)\n            self.t_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.t_cache:\n            self.t_cache.pop(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            self.t_cache.popitem(last=False)  # Remove the least recently used item\n        self.t_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -87,7 +87,7 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(vr_board):\n    \"\"\"\n    Checks if the given 2D array represents a valid Sudoku board.\n\n    Args:\n        vr_board (list of lists): A 9x9 2D array representing the Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for vr_row in vr_board:\n        vr_seen = set()\n        for vr_num in vr_row:\n            if vr_num != 0 and vr_num in vr_seen:\n                return False\n            vr_seen.add(vr_num)\n\n    # Check columns\n    for vr_col in range(9):\n        vr_seen = set()\n        for vr_row in range(9):\n            vr_num = vr_board[vr_row][vr_col]\n            if vr_num != 0 and vr_num in vr_seen:\n                return False\n            vr_seen.add(vr_num)\n\n    # Check 3x3 boxes\n    for vr_box_row in range(0, 9, 3):\n        for vr_box_col in range(0, 9, 3):\n            vr_seen = set()\n            for vr_row in range(3):\n                for vr_col in range(3):\n                    vr_num = vr_board[vr_box_row + vr_row][vr_box_col + vr_col]\n                    if vr_num != 0 and vr_num in vr_seen:\n                        return False\n                    vr_seen.add(vr_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -98,12 +98,12 @@
         "```python\ndef is_palindrome(input_string_z: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_z (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_z = ''.join(char_z for char_z in input_string_z if char_z.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_z == cleaned_string_z[::-1]\n```",
         "```python\nimport heapq\nfrom typing import List, Optional\n\ndef kth_largest_element(nums: List[int], k: int) -> Optional[int]:\n    \"\"\"\n    Returns the kth largest element in the given array.\n\n    Args:\n    - nums: A list of integers.\n    - k: The position of the element to be found (1-indexed).\n\n    Returns:\n    - The kth largest element if it exists, otherwise None.\n    \"\"\"\n    if not nums or k < 1 or k > len(nums):\n        return None\n\n    # Use a min heap to store the k largest elements\n    min_heap = []\n    for num in nums:\n        # Push the number onto the heap\n        heapq.heappush(min_heap, num)\n        \n        # If the heap size exceeds k, pop the smallest element\n        if len(min_heap) > k:\n            heapq.heappop(min_heap)\n\n    # The kth largest element is the smallest element in the heap\n    return min_heap[0]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -114,12 +114,12 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    s_capacity (int): The maximum number of items the cache can hold.\n    s_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.s_capacity = capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.s_cache:\n            value = self.s_cache.pop(key)\n            self.s_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.s_cache:\n            self.s_cache.pop(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            self.s_cache.popitem(last=False)  # Remove the least recently used item\n        self.s_cache[key] = value\n```",
         "```python\ndef is_palindrome(input_string_n: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_n (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_n = ''.join(char_n for char_n in input_string_n if char_n.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_n == cleaned_string_n[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -130,7 +130,7 @@
         "```python\ndef is_valid_sudoku(m_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        m_board (list of lists): A 9x9 2D array representing a Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for m_row in m_board:\n        m_seen = set()\n        for m_num in m_row:\n            if m_num != 0 and m_num in m_seen:\n                return False\n            m_seen.add(m_num)\n\n    # Check columns\n    for m_col in range(9):\n        m_seen = set()\n        for m_row in range(9):\n            m_num = m_board[m_row][m_col]\n            if m_num != 0 and m_num in m_seen:\n                return False\n            m_seen.add(m_num)\n\n    # Check 3x3 boxes\n    for m_box_row in range(0, 9, 3):\n        for m_box_col in range(0, 9, 3):\n            m_seen = set()\n            for m_row in range(3):\n                for m_col in range(3):\n                    m_num = m_board[m_box_row + m_row][m_box_col + m_col]\n                    if m_num != 0 and m_num in m_seen:\n                        return False\n                    m_seen.add(m_num)\n\n    return True\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    j_capacity (int): The maximum number of items the cache can hold.\n    j_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.j_capacity = capacity\n        self.j_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.j_cache:\n            value = self.j_cache.pop(key)\n            self.j_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.j_cache:\n            self.j_cache.pop(key)\n        elif len(self.j_cache) >= self.j_capacity:\n            self.j_cache.popitem(last=False)  # Remove the least recently used item\n        self.j_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -139,7 +139,7 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(n_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        n_board (list): A 2D list representing the Sudoku board.\n\n    Returns:\n        bool: True if the board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for n_row in n_board:\n        n_seen = set()\n        for n_num in n_row:\n            if n_num != 0 and n_num in n_seen:\n                return False\n            n_seen.add(n_num)\n\n    # Check columns\n    for n_col in range(9):\n        n_seen = set()\n        for n_row in n_board:\n            n_num = n_row[n_col]\n            if n_num != 0 and n_num in n_seen:\n                return False\n            n_seen.add(n_num)\n\n    # Check boxes\n    for n_box_row in range(0, 9, 3):\n        for n_box_col in range(0, 9, 3):\n            n_seen = set()\n            for n_row in range(3):\n                for n_col in range(3):\n                    n_num = n_board[n_box_row + n_row][n_box_col + n_col]\n                    if n_num != 0 and n_num in n_seen:\n                        return False\n                    n_seen.add(n_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -148,7 +148,7 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(wr_board):\n    \"\"\"\n    Checks if the given 2D array represents a valid Sudoku board.\n\n    Args:\n        wr_board (list): A 2D list of integers representing the Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for wr_row in wr_board:\n        wr_seen = set()\n        for wr_num in wr_row:\n            if wr_num != 0 and wr_num in wr_seen:\n                return False\n            wr_seen.add(wr_num)\n\n    # Check columns\n    for wr_col in range(9):\n        wr_seen = set()\n        for wr_row in range(9):\n            wr_num = wr_board[wr_row][wr_col]\n            if wr_num != 0 and wr_num in wr_seen:\n                return False\n            wr_seen.add(wr_num)\n\n    # Check 3x3 boxes\n    for wr_box_row in range(0, 9, 3):\n        for wr_box_col in range(0, 9, 3):\n            wr_seen = set()\n            for wr_row in range(3):\n                for wr_col in range(3):\n                    wr_num = wr_board[wr_box_row + wr_row][wr_box_col + wr_col]\n                    if wr_num != 0 and wr_num in wr_seen:\n                        return False\n                    wr_seen.add(wr_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -159,7 +159,7 @@
         "```python\ndef is_valid_sudoku(y_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        y_board (list of lists): A 9x9 2D array representing a Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for y_row in y_board:\n        y_seen = set()\n        for y_num in y_row:\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check columns\n    for y_col in range(9):\n        y_seen = set()\n        for y_row in range(9):\n            y_num = y_board[y_row][y_col]\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check 3x3 boxes\n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_seen = set()\n            for y_row in range(3):\n                for y_col in range(3):\n                    y_num = y_board[y_box_row + y_row][y_box_col + y_col]\n                    if y_num != 0 and y_num in y_seen:\n                        return False\n                    y_seen.add(y_num)\n\n    return True\n```",
         "```python\ndef compute_dot_product(f_vector1, f_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        f_vector1 (list): The first vector.\n        f_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -168,12 +168,12 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_w: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_w (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_w = ''.join(char_w for char_w in input_string_w if char_w.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_w == cleaned_string_w[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -184,12 +184,12 @@
         "```python\ndef is_valid_sudoku(w_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku puzzle.\n\n    Args:\n        w_board (list): A 2D list representing the Sudoku puzzle.\n\n    Returns:\n        bool: True if the Sudoku puzzle is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for w_row in w_board:\n        w_seen = set()\n        for w_num in w_row:\n            if w_num != 0 and w_num in w_seen:\n                return False\n            w_seen.add(w_num)\n\n    # Check columns\n    for w_col in range(9):\n        w_seen = set()\n        for w_row in w_board:\n            w_num = w_row[w_col]\n            if w_num != 0 and w_num in w_seen:\n                return False\n            w_seen.add(w_num)\n\n    # Check 3x3 boxes\n    for w_box_row in range(0, 9, 3):\n        for w_box_col in range(0, 9, 3):\n            w_seen = set()\n            for w_row in range(3):\n                for w_col in range(3):\n                    w_num = w_board[w_box_row + w_row][w_box_col + w_col]\n                    if w_num != 0 and w_num in w_seen:\n                        return False\n                    w_seen.add(w_num)\n\n    return True\n```",
         "```python\nimport numpy as np\n\nclass PCA1:\n    \"\"\"\n    Principal Component Analysis (PCA) class.\n\n    Attributes:\n    -----------\n    n_components : int\n        Number of principal components to retain.\n    explained_variance_ratio_ : array, [n_components]\n        Percentage of variance explained by each of the selected components.\n    components_ : array, [n_components, n_features]\n        Principal axes (eigenvectors) of the covariance matrix.\n    \"\"\"\n\n    def __init__(self, n_components=None):\n        \"\"\"\n        Initialize the PCA class.\n\n        Parameters:\n        -----------\n        n_components : int, optional\n            Number of principal components to retain. If None, all components are retained.\n        \"\"\"\n        self.n_components = n_components\n        self.explained_variance_ratio_ = None\n        self.components_ = None\n\n    def _center_data(self, X):\n        \"\"\"\n        Center the data by subtracting the mean.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_centered : array, [n_samples, n_features]\n            Centered data.\n        \"\"\"\n        return X - np.mean(X, axis=0)\n\n    def _compute_covariance(self, X_centered):\n        \"\"\"\n        Compute the covariance matrix.\n\n        Parameters:\n        -----------\n        X_centered : array, [n_samples, n_features]\n            Centered data.\n\n        Returns:\n        --------\n        cov : array, [n_features, n_features]\n            Covariance matrix.\n        \"\"\"\n        return np.cov(X_centered.T)\n\n    def _compute_eigenvectors(self, cov):\n        \"\"\"\n        Compute the eigenvectors and eigenvalues of the covariance matrix.\n\n        Parameters:\n        -----------\n        cov : array, [n_features, n_features]\n            Covariance matrix.\n\n        Returns:\n        --------\n        eigenvectors : array, [n_features, n_features]\n            Eigenvectors of the covariance matrix.\n        eigenvalues : array, [n_features]\n            Eigenvalues of the covariance matrix.\n        \"\"\"\n        eigenvalues, eigenvectors = np.linalg.eig(cov)\n        idx = np.argsort(-eigenvalues)\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        return eigenvectors, eigenvalues\n\n    def fit(self, X):\n        \"\"\"\n        Fit the PCA model to the data.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n        \"\"\"\n        X_centered = self._center_data(X)\n        cov = self._compute_covariance(X_centered)\n        eigenvectors, eigenvalues = self._compute_eigenvectors(cov)\n\n        if self.n_components is not None:\n            eigenvectors = eigenvectors[:, :self.n_components]\n            eigenvalues = eigenvalues[:self.n_components]\n\n        self.components_ = eigenvectors\n        self.explained_variance_ratio_ = eigenvalues / np.sum(eigenvalues)\n\n    def transform(self, X):\n        \"\"\"\n        Transform the data using the fitted PCA model.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_transformed : array, [n_samples, n_components]\n            Transformed data.\n        \"\"\"\n        X_centered = self._center_data(X)\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        \"\"\"\n        Fit the PCA model to the data and transform the data.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_transformed : array, [n_samples, n_components]\n            Transformed data.\n        \"\"\"\n        self.fit(X)\n        return self.transform(X)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -198,7 +198,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\ndef compute_diagonal_average(matrix):\n    \"\"\"\n    Compute the average of the diagonal elements of a matrix.\n\n    Args:\n        matrix (numpy.ndarray): A 2D numpy array representing the matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n\n    Raises:\n        AssertionError: If the input matrix is not a square matrix.\n    \"\"\"\n    assert isinstance(matrix, np.ndarray), \"Input matrix must be a numpy array\"\n    assert matrix.ndim == 2, \"Input matrix must be a 2D array\"\n    assert matrix.shape[0] == matrix.shape[1], \"Input matrix must be a square matrix\"\n\n    diagonal_elements = np.diag(matrix)\n    average = np.mean(diagonal_elements)\n\n    assert np.isfinite(average), \"Average of diagonal elements is not a finite number\"\n\n    return average\n```\n\nThis function uses the `numpy` library to efficiently compute the diagonal elements and their average. It includes assertions to ensure that the input matrix is a square matrix and that the computed average is a finite number."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -207,12 +207,12 @@
       "instruction_model_output": [
         "```python\nimport secrets\n\ndef edit_distance(str1, str2):\n    \"\"\"\n    This function calculates the edit distance between two strings.\n    The edit distance is the minimum number of operations (insertions, deletions, substitutions)\n    required to change one string into the other.\n\n    Args:\n        str1 (str): The first string.\n        str2 (str): The second string.\n\n    Returns:\n        int: The edit distance between str1 and str2.\n    \"\"\"\n\n    # Initialize a matrix to store the edit distances between substrings of str1 and str2\n    dp = [[0 for _ in range(len(str2) + 1)] for _ in range(len(str1) + 1)]\n\n    # Initialize the base cases\n    for i in range(len(str1) + 1):\n        dp[i][0] = i\n    for j in range(len(str2) + 1):\n        dp[0][j] = j\n\n    # Fill in the rest of the matrix\n    for i in range(1, len(str1) + 1):\n        for j in range(1, len(str2) + 1):\n            # If the current characters in str1 and str2 are the same, there's no operation needed\n            if str1[i - 1] == str2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            # Otherwise, consider all possible operations (insertion, deletion, substitution) and take the minimum\n            else:\n                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])\n\n    # The edit distance is stored in the bottom-right corner of the matrix\n    return dp[len(str1)][len(str2)]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -221,12 +221,12 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    i_capacity (int): The maximum number of items the cache can hold.\n    i_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.i_capacity = capacity\n        self.i_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.i_cache:\n            value = self.i_cache.pop(key)\n            self.i_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.i_cache:\n            self.i_cache.pop(key)\n        elif len(self.i_cache) >= self.i_capacity:\n            self.i_cache.popitem(last=False)  # Remove the least recently used item\n        self.i_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef is_palindrome(s: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n    s (str): The input string to be checked.\n\n    Returns:\n    bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove any non-alphanumeric characters and convert to lowercase\n    cleaned_s = ''.join(c for c in s if c.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_s == cleaned_s[::-1]\n```",
         "```python\ndef edit_distance(str1, str2):\n    \"\"\"\n    This function calculates the edit distance between two input strings.\n    \n    The edit distance is the minimum number of operations (insertions, deletions, and substitutions)\n    required to change one string into the other.\n    \n    :param str1: The first input string.\n    :param str2: The second input string.\n    :return: The edit distance between str1 and str2.\n    \"\"\"\n    \n    # Initialize a 2D array to store the edit distances between substrings of str1 and str2\n    vr_dp = [[0 for _ in range(len(str2) + 1)] for _ in range(len(str1) + 1)]\n    \n    # Initialize the base cases\n    for vr_i in range(len(str1) + 1):\n        vr_dp[vr_i][0] = vr_i\n    for vr_j in range(len(str2) + 1):\n        vr_dp[0][vr_j] = vr_j\n    \n    # Fill in the rest of the 2D array\n    for vr_i in range(1, len(str1) + 1):\n        for vr_j in range(1, len(str2) + 1):\n            # Calculate the cost of substitution\n            vr_cost = 0 if str1[vr_i - 1] == str2[vr_j - 1] else 1\n            \n            # Calculate the edit distance\n            vr_dp[vr_i][vr_j] = min(vr_dp[vr_i - 1][vr_j] + 1,      # Deletion\n                                    vr_dp[vr_i][vr_j - 1] + 1,      # Insertion\n                                    vr_dp[vr_i - 1][vr_j - 1] + vr_cost)  # Substitution or no operation\n    \n    # The edit distance is stored in the bottom-right corner of the 2D array\n    return vr_dp[len(str1)][len(str2)]\n```",
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.wr_capacity = capacity\n        self.wr_cache = {}\n        self.wr_lru = []\n\n    def get(self, key: int) -> int:\n        if key in self.wr_cache:\n            self.wr_lru.remove(key)\n            self.wr_lru.append(key)\n            return self.wr_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.wr_cache:\n            self.wr_lru.remove(key)\n        elif len(self.wr_cache) >= self.wr_capacity:\n            i_key = self.wr_lru.pop(0)\n            del self.wr_cache[i_key]\n        self.wr_cache[key] = value\n        self.wr_lru.append(key)\n```\n\nThis code adheres to the latest coding guidelines provided by the mentor, including the use of the 'wr_' prefix for variable names. The LRU cache class is implemented with a dictionary (self.wr_cache) to store the key-value pairs and a list (self.wr_lru) to keep track of the order of the keys. The get method retrieves the value associated with a given key and updates the order of the keys. The put method inserts or updates a key-value pair and ensures that the cache does not exceed its capacity.",

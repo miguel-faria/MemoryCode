@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -16,7 +16,7 @@
       "instruction_model_output": [
         "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -27,12 +27,12 @@
         "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
         "from pedantic import pedantic, count_calls\nfrom sklearn.linear_model import LinearRegression\n\n@pedantic\nclass LinearRegressionModel:\n    @count_calls\n    def __init__(self):\n        self.model = LinearRegression()\n\n    @count_calls\n    def train(self, X, y):\n        self.model.fit(X, y)\n\n    @count_calls\n    def predict(self, X):\n        return self.model.predict(X)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import count_calls\n\n\n@count_calls\ndef fn_longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    shortest = min(strs, key=len)\n\n    for i, char in enumerate(shortest):\n        if any(str_[i] != char for str_ in strs):\n            return shortest[:i]\n\n    return shortest\n```",
         "```python\nfrom pedantic import count_calls\n\n\n@count_calls\ndef fn_h_index(citations: list[int]) -> int:\n    \"\"\"\n    Calculate the h-index of a researcher based on their citations.\n\n    Args:\n        citations (list[int]): A list of integer citations of the researcher's publications.\n\n    Returns:\n        int: The h-index value, rounded down to the nearest integer.\n    \"\"\"\n    if not isinstance(citations, list) or any(not isinstance(cit, int) for cit in citations):\n        raise TypeError(\"Citations must be provided as a list of integers.\")\n\n    citations.sort(reverse=True)\n    h_index = 0\n\n    for i, cit in enumerate(citations):\n        if i < cit:\n            h_index = i + 1\n        else:\n            break\n\n    return h_index\n\n\nassert fn_h_index([5, 3, 3, 1, 1]) == 3\n```",
         "```python\nfrom pedantic import count_calls\n\n\n@count_calls\ndef fn_average_diagonal_elements(matrix: list[list[int]]) -> float:\n    \"\"\"\n    Calculate the average of the diagonal elements of a square matrix.\n\n    Args:\n        matrix (list[list[int]]): A square matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n    \"\"\"\n    size = len(matrix)\n    assert size == len(matrix[0]), \"Input must be a square matrix.\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(size))\n    average = diagonal_sum / size\n    return average\n```",

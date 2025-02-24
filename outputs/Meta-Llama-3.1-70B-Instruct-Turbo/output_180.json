@@ -7,17 +7,17 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome_string_wr(input_string_wr: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n    input_string_wr (str): The input string to be checked.\n\n    Returns:\n    bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_wr = ''.join(char_wr for char_wr in input_string_wr if char_wr.isalnum()).lower()\n\n    # Compare the cleaned string with its reverse\n    return cleaned_string_wr == cleaned_string_wr[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -26,12 +26,12 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome_n(input_string_n: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n    input_string_n (str): The string to be checked.\n\n    Returns:\n    bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_n = ''.join(char_n for char_n in input_string_n if char_n.isalnum()).lower()\n\n    # Compare the cleaned string with its reverse\n    return cleaned_string_n == cleaned_string_n[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -40,7 +40,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass LinearRegression:\n    \"\"\"\n    A simple linear regression class using numpy.\n\n    Attributes:\n        w_ (float): The weight of the linear regression model.\n        b_ (float): The bias of the linear regression model.\n        n_ (int): The number of features in the training data.\n        m_ (int): The number of samples in the training data.\n        learning_rate_ (float): The learning rate of the model.\n        iterations_ (int): The number of iterations for training.\n    \"\"\"\n\n    def __init__(self, learning_rate=0.001, iterations=1000):\n        \"\"\"\n        Initializes the LinearRegression object.\n\n        Args:\n            learning_rate (float, optional): The learning rate of the model. Defaults to 0.001.\n            iterations (int, optional): The number of iterations for training. Defaults to 1000.\n        \"\"\"\n        self.w_ = None\n        self.b_ = None\n        self.n_ = None\n        self.m_ = None\n        self.learning_rate_ = learning_rate\n        self.iterations_ = iterations\n\n    def _cost(self, X, y):\n        \"\"\"\n        Calculates the cost of the model.\n\n        Args:\n            X (numpy.ndarray): The feature matrix.\n            y (numpy.ndarray): The target vector.\n\n        Returns:\n            float: The cost of the model.\n        \"\"\"\n        y_pred = self._predict(X)\n        return (1 / (2 * self.m_)) * np.sum(np.square(y_pred - y))\n\n    def _predict(self, X):\n        \"\"\"\n        Makes predictions using the model.\n\n        Args:\n            X (numpy.ndarray): The feature matrix.\n\n        Returns:\n            numpy.ndarray: The predicted values.\n        \"\"\"\n        return self.w_ * X + self.b_\n\n    def fit(self, X, y):\n        \"\"\"\n        Trains the model using gradient descent.\n\n        Args:\n            X (numpy.ndarray): The feature matrix.\n            y (numpy.ndarray): The target vector.\n        \"\"\"\n        self.n_ = X.shape[1]\n        self.m_ = X.shape[0]\n        self.w_ = np.zeros(self.n_)\n        self.b_ = 0\n\n        for _ in range(self.iterations_):\n            y_pred = self._predict(X)\n            dw = (1 / self.m_) * np.dot(X.T, (y_pred - y))\n            db = (1 / self.m_) * np.sum(y_pred - y)\n\n            self.w_ -= self.learning_rate_ * dw\n            self.b_ -= self.learning_rate_ * db\n\n    def score(self, X, y):\n        \"\"\"\n        Calculates the R-squared score of the model.\n\n        Args:\n            X (numpy.ndarray): The feature matrix.\n            y (numpy.ndarray): The target vector.\n\n        Returns:\n            float: The R-squared score of the model.\n        \"\"\"\n        y_pred = self._predict(X)\n        ss_res = np.sum(np.square(y_pred - y))\n        ss_tot = np.sum(np.square(y - np.mean(y)))\n        return 1 - (ss_res / ss_tot)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -51,17 +51,17 @@
         "```python\ndef compute_dot_product(vector1_chx, vector2_chx):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector1_chx (list): The first vector.\n        vector2_chx (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(vector1_chx) != len(vector2_chx):\n        raise ValueError(\"Vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(vector1_chx, vector2_chx))\n```",
         "```python\nclass TreeNode:\n    \"\"\"Represents a node in a binary tree.\"\"\"\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef is_valid_bst(root, min_value=float('-inf'), max_value=float('inf')):\n    \"\"\"\n    Determines if a given tree is a valid binary search tree.\n\n    Args:\n    root (TreeNode): The root of the binary tree.\n    min_value (float): The minimum allowed value for the current node. Defaults to negative infinity.\n    max_value (float): The maximum allowed value for the current node. Defaults to positive infinity.\n\n    Returns:\n    bool: True if the tree is a valid binary search tree, False otherwise.\n    \"\"\"\n    try:\n        # Base case: An empty tree is a valid BST\n        if root is None:\n            return True\n\n        # Check if the current node's value is within the allowed range\n        if not min_value < root.value < max_value:\n            return False\n\n        # Recursively check the left and right subtrees\n        return (is_valid_bst(root.left, min_value, root.value) and\n                is_valid_bst(root.right, root.value, max_value))\n\n    except Exception as e:\n        # Handle any unexpected errors\n        print(f\"An error occurred: {e}\")\n        return False\n```\n\nThis function uses a recursive approach to check if the binary tree is a valid binary search tree. It keeps track of the minimum and maximum allowed values for each node, ensuring that the left child's value is less than the parent's value and the right child's value is greater than the parent's value. If any node's value is outside the allowed range, the function returns False. If an unexpected error occurs, the function catches the exception, prints an error message, and returns False."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -70,7 +70,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome_string_y(input_string_y: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n    input_string_y (str): The input string to be checked.\n\n    Returns:\n    bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n\n    # Remove any non-alphanumeric characters and convert to lowercase\n    cleaned_string_y = ''.join(char_y for char_y in input_string_y if char_y.isalnum()).lower()\n\n    # Compare the cleaned string with its reverse\n    return cleaned_string_y == cleaned_string_y[::-1]\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport numpy as np\n\nclass LinearRegression_chx1n:\n    def __init__(self, learning_rate_chx2n=0.001, n_iters_chx3n=1000):\n        self.lr_chx4n = learning_rate_chx2n\n        self.n_iters_chx5n = n_iters_chx3n\n        self.weights_chx6n = None\n        self.bias_chx7n = None\n\n    def _cost_chx8n(self, X_chx9n, y_chx10n):\n        n_samples_chx11n = X_chx9n.shape[0]\n        y_predicted_chx12n = X_chx9n.dot(self.weights_chx6n) + self.bias_chx7n\n        return (1 / (2 * n_samples_chx11n)) * np.sum(np.square(y_predicted_chx12n - y_chx10n))\n\n    def fit_chx13n(self, X_chx14n, y_chx15n):\n        n_samples_chx16n, n_features_chx17n = X_chx14n.shape\n        self.weights_chx6n = np.zeros(n_features_chx17n)\n        self.bias_chx7n = 0\n        cost_chx18n = []\n\n        for _ in range(self.n_iters_chx5n):\n            y_predicted_chx19n = X_chx14n.dot(self.weights_chx6n) + self.bias_chx7n\n            dw_chx20n = (1 / n_samples_chx16n) * X_chx14n.T.dot(y_predicted_chx19n - y_chx15n)\n            db_chx21n = (1 / n_samples_chx16n) * np.sum(y_predicted_chx19n - y_chx15n)\n\n            self.weights_chx6n -= self.lr_chx4n * dw_chx20n\n            self.bias_chx7n -= self.lr_chx4n * db_chx21n\n\n            cost_chx18n.append(self._cost_chx8n(X_chx14n, y_chx15n))\n\n        return cost_chx18n\n\n    def predict_chx22n(self, X_chx23n):\n        y_approximated_chx24n = X_chx23n.dot(self.weights_chx6n) + self.bias_chx7n\n        return y_approximated_chx24n\n```\n\nNote: The variable names have been updated to follow the latest coding guidelines provided by your mentor, including the use of '_chx' and '_n' suffixes.",
         "```python\ndef compute_dot_product(chx_vector1_n, chx_vector2_n):\n    try:\n        if len(chx_vector1_n) != len(chx_vector2_n):\n            raise ValueError(\"Both vectors must have the same length\")\n        \n        dot_product_y = 0\n        for i in range(len(chx_vector1_n)):\n            dot_product_y += chx_vector1_n[i] * chx_vector2_n[i]\n        \n        return dot_product_y\n    \n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return None\n```",
         "```python\ndef is_valid_bst_chx(root_chx):\n    def validate_chx(node_chx, min_val_chx, max_val_chx):\n        if node_chx is None_chx:\n            return True_chx\n        if not min_val_chx < node_chx.val_chx < max_val_chx:\n            return False_chx\n        return (validate_chx(node_chx.left_chx, min_val_chx, node_chx.val_chx) and\n                validate_chx(node_chx.right_chx, node_chx.val_chx, max_val_chx))\n\n    return validate_chx(root_chx, float('-inf_chx'), float('inf_chx'))\n```\n\nThis function checks if a given binary tree is a valid binary search tree (BST) by recursively validating each node's value against a given range. The function `validate_chx` is a helper function that performs the actual validation. It checks if the current node's value is within the given range and recursively calls itself for the left and right child nodes, updating the range accordingly. The main function `is_valid_bst_chx` initializes the validation process with the root node and infinite range. \n\nNote that the function and variable names follow the latest coding guidelines provided by the mentor, including the use of '_chx' in the function and variable names, and the inclusion of a single digit in the attribute names is not applicable in this case as there are no attribute names. Also, the function includes try statements implicitly as it checks for `None_chx` values, but it does not include explicit try statements as they are not necessary in this case.",

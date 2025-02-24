@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```",
         "```python\ndef is_palindrome(string_y):\n    clean_string_y = ''.join(char_y.lower() for char_y in string_y if char_y.isalnum())\n    return clean_string_y == clean_string_y[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,7 +23,7 @@
       "instruction_model_output": [
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
         "```python\nfrom pedantic import retry\nfrom collections import defaultdict\n\n@retry\ndef find_majority_element(nums):\n    count_dict = defaultdict(int)\n    majority_count = len(nums) // 2\n    \n    for num in nums:\n        count_dict[num] += 1\n        if count_dict[num] > majority_count:\n            return num\n\n    return None\n```",
         "```python\ndef is_palindrome(s_vr):\n    left_vr, right_vr = 0, len(s_vr) - 1\n    while left_vr < right_vr:\n        while left_vr < right_vr and not s_vr[left_vr].isalnum():\n            left_vr += 1\n        while left_vr < right_vr and not s_vr[right_vr].isalnum():\n            right_vr -= 1\n        if s_vr[left_vr].lower() != s_vr[right_vr].lower():\n            return False\n        left_vr += 1\n        right_vr -= 1\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -43,7 +43,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(s_x):\n    s_x = ''.join(char_x.lower() for char_x in s_x if char_x.isalnum())\n    return s_x == s_x[::-1]\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import retry\n\n@retry\ndef longest_common_prefix_x(strs_x):\n    \"\"\"\n    Returns the longest common prefix string amongst a list of strings.\n\n    :param strs_x: List of strings\n    :return: The longest common prefix\n    \"\"\"\n    if not strs_x:\n        return \"\"\n    \n    prefix_x = strs_x[0]\n    for string_x in strs_x[1:]:\n        while not string_x.startswith(prefix_x):\n            prefix_x = prefix_x[:-1]\n            if not prefix_x:\n                return \"\"\n    \n    return prefix_x\n```",
         "```python\nfrom pedantic import retry\n\n@retry\ndef is_palindrome_x(input_string_x):\n    \"\"\"\n    Check if the given string is a valid palindrome.\n    \n    A palindrome is a string that reads the same backward as forward.\n    \n    :param input_string_x: The string to check\n    :return: True if the string is a palindrome, False otherwise\n    \"\"\"\n    # Removing non-alphanumeric characters and converting to lowercase\n    cleaned_string_x = ''.join(char_x.lower() for char_x in input_string_x if char_x.isalnum())\n    # Checking if the cleaned string is equal to its reverse\n    return cleaned_string_x == cleaned_string_x[::-1]\n```",
         "```python\nfrom pedantic import retry\n\n@retry\ndef int_to_roman_x(num_x: int) -> str:\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num_x: The integer to convert.\n    :return: A string representing the Roman numeral.\n    \"\"\"\n    val_x = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms_x = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_numeral_x = ''\n    i_x = 0\n    while num_x > 0:\n        for _vr in range(num_x // val_x[i_x]):\n            roman_numeral_x += syms_x[i_x]\n            num_x -= val_x[i_x]\n        i_x += 1\n    return roman_numeral_x\n```",

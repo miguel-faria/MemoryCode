@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n\n    Raises:\n        ValueError: If the input list is empty.\n    \"\"\"\n    if not strs:\n        raise ValueError(\"Input list cannot be empty\")\n\n    prefix = min(strs, key=len)\n    for i, char in enumerate(prefix):\n        for string in strs:\n            if string[i] != char:\n                return prefix[:i]\n    return prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,12 +23,12 @@
         "```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef majority_element(nums: List[int]) -> int:\n    \"\"\"\n    Returns the majority element of an array.\n    \n    The majority element is the element that appears more than n/2 times where n is the size of the array.\n    \n    This function uses the Boyer-Moore Majority Vote algorithm, which works by essentially keeping a counter for the majority element. \n    If the counter is 0, the algorithm sets the current element as the majority element. \n    Then, it increments the counter if it encounters the same element again, otherwise it decrements the counter.\n    \"\"\"\n    count = 0\n    candidate = None\n\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n\n    return candidate\n```\n\nPlease note that the Boyer-Moore Majority Vote algorithm assumes that a majority element always exists in the array. If that's not the case, you would need to add an additional step to confirm that the candidate is indeed a majority element by counting its occurrences in the array. \n\nHere's how you can modify the function to handle that:\n\n```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef majority_element(nums: List[int]) -> int:\n    \"\"\"\n    Returns the majority element of an array.\n    \n    The majority element is the element that appears more than n/2 times where n is the size of the array.\n    \n    This function uses the Boyer-Moore Majority Vote algorithm, which works by essentially keeping a counter for the majority element. \n    If the counter is 0, the algorithm sets the current element as the majority element. \n    Then, it increments the counter if it encounters the same element again, otherwise it decrements the counter.\n    \"\"\"\n    count = 0\n    candidate = None\n\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n\n    # Confirm that the candidate is indeed a majority element\n    if nums.count(candidate) > len(nums) / 2:\n        return candidate\n    else:\n        raise ValueError(\"No majority element found in the array\")\n```",
         "```python\ndef count1_non_zero_elements(matrix):\n    \"\"\"\n    Counts the number of non-zero elements in a matrix.\n\n    Args:\n        matrix (list of lists): A 2D list of integers.\n\n    Returns:\n        int: The number of non-zero elements in the matrix.\n    \"\"\"\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count\n```\n\nAlternatively, you can use a more concise version using list comprehension and the `sum` function:\n\n```python\ndef count1_non_zero_elements(matrix):\n    \"\"\"\n    Counts the number of non-zero elements in a matrix.\n\n    Args:\n        matrix (list of lists): A 2D list of integers.\n\n    Returns:\n        int: The number of non-zero elements in the matrix.\n    \"\"\"\n    return sum(1 for row in matrix for element in row if element != 0)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -37,7 +37,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\ndef compute_diagonal_average(matrix):\n    \"\"\"\n    Compute the average of the diagonal elements of a matrix.\n\n    Args:\n        matrix (numpy.ndarray): A 2D numpy array representing the matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n\n    Raises:\n        AssertionError: If the input matrix is not a square matrix.\n    \"\"\"\n    assert isinstance(matrix, np.ndarray), \"Input matrix must be a numpy array\"\n    assert matrix.ndim == 2, \"Input matrix must be a 2D array\"\n    assert matrix.shape[0] == matrix.shape[1], \"Input matrix must be a square matrix\"\n\n    diagonal_elements = np.diag(matrix)\n    average = np.mean(diagonal_elements)\n\n    assert np.isfinite(average), \"Average of diagonal elements is not a finite number\"\n\n    return average\n```\n\nThis function uses the `numpy` library to efficiently compute the diagonal elements and their average. It includes assertions to ensure that the input matrix is a square matrix and that the computed average is a finite number."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -46,7 +46,7 @@
       "instruction_model_output": [
         "```python\ndef get_common_elements(list1_, list2_):\n    \"\"\"\n    Returns a list of common elements between two input lists.\n\n    Args:\n        list1_ (list): The first input list.\n        list2_ (list): The second input list.\n\n    Returns:\n        list: A list of common elements.\n    \"\"\"\n    return [element for element in list1_ if element in list2_]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -57,17 +57,17 @@
         "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_int(*, roman_numeral: str) -> int:\n    \"\"\"\n    Converts a Roman numeral string into an integer.\n\n    Args:\n        roman_numeral (str): The Roman numeral string to convert.\n\n    Returns:\n        int: The integer equivalent of the Roman numeral string.\n\n    Raises:\n        ValueError: If the input string is not a valid Roman numeral.\n    \"\"\"\n\n    # Define a dictionary to map Roman numerals to their integer values\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n\n    # Initialize the result variable to 0\n    result = 0\n\n    # Initialize the previous value variable to 0\n    previous_value = 0\n\n    # Iterate over the input string from left to right\n    for numeral in reversed(roman_numeral):\n        # Check if the numeral is valid\n        if numeral not in roman_numerals:\n            raise ValueError(\"Invalid Roman numeral\")\n\n        # Get the value of the current numeral\n        current_value = roman_numerals[numeral]\n\n        # If the current value is less than the previous value, subtract it from the result\n        if current_value < previous_value:\n            result -= current_value\n        # Otherwise, add it to the result\n        else:\n            result += current_value\n\n        # Update the previous value\n        previous_value = current_value\n\n    # Return the result\n    return result\n```",
         "```python\ndef compute_dot_product(a_vector1, a_vector2):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        a_vector1 (list): The first vector.\n        a_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Both vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(a_vector1, a_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -76,7 +76,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\nfrom sklearn.base import BaseEstimator, RegressorMixin\n\nclass LassoRegression(BaseEstimator, RegressorMixin):\n    \"\"\"\n    A class for Lasso regression.\n\n    Attributes:\n    ----------\n    alpha : float\n        The regularization parameter.\n    max_iter : int\n        The maximum number of iterations.\n    tol : float\n        The tolerance for convergence.\n    weights : array\n        The weights of the model.\n    \"\"\"\n\n    def __init__(self, alpha=0.1, max_iter=1000, tol=1e-4):\n        \"\"\"\n        Initialize the Lasso regression model.\n\n        Parameters:\n        ----------\n        alpha : float, optional (default=0.1)\n            The regularization parameter.\n        max_iter : int, optional (default=1000)\n            The maximum number of iterations.\n        tol : float, optional (default=1e-4)\n            The tolerance for convergence.\n        \"\"\"\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.weights = None\n\n    def _soft_threshold(self, rho):\n        \"\"\"\n        Soft threshold function.\n\n        Parameters:\n        ----------\n        rho : array\n            The input array.\n\n        Returns:\n        -------\n        array\n            The output array after applying the soft threshold.\n        \"\"\"\n        try:\n            return np.sign(rho) * np.maximum(np.abs(rho) - self.alpha, 0)\n        except Exception as e:\n            raise Exception(f\"Error in _soft_threshold: {str(e)}\")\n\n    def train(self, X, y):\n        \"\"\"\n        Train the Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n        y : array\n            The target vector.\n        \"\"\"\n        try:\n            n_samples, n_features = X.shape\n            self.weights = np.zeros(n_features)\n            X_transpose = X.T\n\n            for _ in range(self.max_iter):\n                prev_weights = self.weights.copy()\n                residuals = y - np.dot(X, self.weights)\n                rho = np.dot(X_transpose, residuals) / n_samples\n                self.weights = self._soft_threshold(prev_weights + rho)\n\n                if np.linalg.norm(self.weights - prev_weights) < self.tol:\n                    break\n\n        except Exception as e:\n            raise Exception(f\"Error in train: {str(e)}\")\n\n    def predict(self, X):\n        \"\"\"\n        Make predictions using the trained Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n\n        Returns:\n        -------\n        array\n            The predicted values.\n        \"\"\"\n        try:\n            if self.weights is None:\n                raise Exception(\"Model not trained. Please call train method first.\")\n\n            return np.dot(X, self.weights)\n\n        except Exception as e:\n            raise Exception(f\"Error in predict: {str(e)}\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import count_calls, require_kwargs\n\n@count_calls\n@require_kwargs\ndef a_count_non_zero_elements(matrix_1: list) -> int:\n    \"\"\"\n    Counts the number of non-zero elements in a matrix.\n\n    Args:\n        matrix_1 (list): A 2D list representing the matrix.\n\n    Returns:\n        int: The number of non-zero elements in the matrix.\n    \"\"\"\n    assert isinstance(matrix_1, list), \"Input must be a list\"\n    count = 0\n    try:\n        for row in matrix_1:\n            assert isinstance(row, list), \"Input must be a 2D list\"\n            for element in row:\n                if element != 0:\n                    count += 1\n    except Exception as e:\n        raise ValueError(\"Error counting non-zero elements: \" + str(e))\n    return count\n```",
         "```python\nfrom pedantic import count_calls, require_kwargs\n\n@count_calls\n@require_kwargs\ndef a_1_compute_dot_product(a_0_vector1: list, a_1_vector2: list) -> float:\n    \"\"\"\n    This function calculates the dot product of two vectors.\n\n    Args:\n        a_0_vector1 (list): The first vector.\n        a_1_vector2 (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n    \"\"\"\n    assert len(a_0_vector1) == len(a_1_vector2), \"Both vectors must have the same length.\"\n    \n    try:\n        return sum(a_0_vector1[i] * a_1_vector2[i] for i in range(len(a_0_vector1)))\n    except Exception as e:\n        raise ValueError(\"An error occurred while computing the dot product.\") from e\n```",
         "```python\nfrom pedantic import count_calls, require_kwargs\n\n@count_calls\n@require_kwargs\ndef longest_common_prefix(*, a_0_strings: list[str]) -> str:\n    \"\"\"\n    This function returns the longest common prefix string in a list of strings.\n\n    Args:\n        a_0_strings (list[str]): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    assert isinstance(a_0_strings, list), \"Input must be a list of strings.\"\n    assert all(isinstance(string, str) for string in a_0_strings), \"Input must be a list of strings.\"\n\n    if not a_0_strings:\n        return \"\"\n\n    prefix = min(a_0_strings, key=len)\n\n    for i, char in enumerate(prefix):\n        for string in a_0_strings:\n            if string[i] != char:\n                return prefix[:i]\n\n    return prefix\n```",

@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        new_node_i = Node(data_i)\n        if self.head_i is None:\n            self.head_i = new_node_i\n            return\n        last_i = self.head_i\n        while last_i.next_i:\n            last_i = last_i.next_i\n        last_i.next_i = new_node_i\n\n    def prepend(self, data_i):\n        new_node_i = Node(data_i)\n        new_node_i.next_i = self.head_i\n        self.head_i = new_node_i\n\n    def delete(self, key_i):\n        temp_i = self.head_i\n        if temp_i and temp_i.data_i == key_i:\n            self.head_i = temp_i.next_i\n            temp_i = None\n            return\n\n        prev_i = None\n        while temp_i and temp_i.data_i != key_i:\n            prev_i = temp_i\n            temp_i = temp_i.next_i\n\n        if temp_i is None:\n            return\n\n        prev_i.next_i = temp_i.next_i\n        temp_i = None\n\n    def search(self, key_i):\n        current_i = self.head_i\n        while current_i and current_i.data_i != key_i:\n            current_i = current_i.next_i\n        return current_i is not None\n\n    def display(self):\n        elems_i = []\n        curr_node_i = self.head_i\n        while curr_node_i:\n            elems_i.append(curr_node_i.data_i)\n            curr_node_i = curr_node_i.next_i\n        return elems_i\n```",
         "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,7 +25,7 @@
         "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X, y):\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        X_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_transpose.dot(X_b)).dot(X_transpose).dot(y)\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        return X_b.dot(self.coefficients)\n```",
         "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_t = data\n        self.next_t = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n\n    def append(self, data):\n        new_node_t = Node(data)\n        if self.head_t is None:\n            self.head_t = new_node_t\n            return\n        last_t = self.head_t\n        while last_t.next_t:\n            last_t = last_t.next_t\n        last_t.next_t = new_node_t\n\n    def prepend(self, data):\n        new_node_t = Node(data)\n        new_node_t.next_t = self.head_t\n        self.head_t = new_node_t\n\n    def delete_with_value(self, data):\n        if self.head_t is None:\n            return\n        if self.head_t.data_t == data:\n            self.head_t = self.head_t.next_t\n            return\n        current_t = self.head_t\n        while current_t.next_t:\n            if current_t.next_t.data_t == data:\n                current_t.next_t = current_t.next_t.next_t\n                return\n            current_t = current_t.next_t\n\n    def find(self, data):\n        current_t = self.head_t\n        while current_t:\n            if current_t.data_t == data:\n                return True\n            current_t = current_t.next_t\n        return False\n\n    def clear(self):\n        self.head_t = None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -43,7 +43,7 @@
       "instruction_model_output": [
         "```python\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self._count0 = 0\n        self._mean0 = 0.0\n\n    def add1(self, value0):\n        self._count0 += 1\n        self._mean0 += (value0 - self._mean0) / self._count0\n    \n    def get_mean0(self):\n        return self._mean0\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom typing import List\nimport heapq\n\ndef find_kth_largest(g_nums1: List[int], g_k1: int) -> int:\n    min_heap1 = g_nums1[:g_k1]\n    heapq.heapify(min_heap1)\n\n    for num1 in g_nums1[g_k1:]:\n        if num1 > min_heap1[0]:\n            heapq.heappop(min_heap1)\n            heapq.heappush(min_heap1, num1)\n\n    return min_heap1[0]\n```\n",
         "```python\nfrom typing import List, Tuple\nimport numpy as np\nfrom pedantic import count_calls\n\nclass LinearRegressionModel_t:\n    def __init__(self):\n        self.coefficients_t = None\n        self.intercept_t = None\n\n    @count_calls\n    def train(self, g_X0: List[List[float]], g_y1: List[float]) -> None:\n        g_X0 = np.array(g_X0)\n        g_y1 = np.array(g_y1)\n        \n        g_X_b0 = np.c_[np.ones((g_X0.shape[0], 1)), g_X0]\n\n        theta_best_t = np.linalg.inv(g_X_b0.T.dot(g_X_b0)).dot(g_X_b0.T).dot(g_y1)\n        self.intercept_t = theta_best_t[0]\n        self.coefficients_t = theta_best_t[1:]\n\n    @count_calls\n    def predict(self, g_X0: List[List[float]]) -> List[float]:\n        g_X0 = np.array(g_X0)\n        g_X_b0 = np.c_[np.ones((g_X0.shape[0], 1)), g_X0]\n        return (g_X_b0.dot(np.r_[self.intercept_t, self.coefficients_t])).tolist()\n```\n",
         "```python\nfrom typing import Optional\n\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self.count_t: int = 0\n        self.mean_t: float = 0.0\n\n    def add_number_t(self, g_num1: float) -> None:\n        self.count_t += 1\n        self.mean_t += (g_num1 - self.mean_t) / self.count_t\n\n    def get_mean_t(self) -> Optional[float]:\n        if self.count_t == 0:\n            return None\n        return self.mean_t\n```",

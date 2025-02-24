@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, learning_chx_rate=0.01, n_chx_iters=1000):\n        self.learning_chx_rate = learning_chx_rate\n        self.n_chx_iters = n_chx_iters\n        self.weights_chx = None\n        self.bias_chx = None\n\n    def train(self, X_chx, y_chx):\n        n_chx_samples, n_chx_features = X_chx.shape\n        self.weights_chx = np.zeros(n_chx_features)\n        self.bias_chx = 0\n\n        for _ in range(self.n_chx_iters):\n            for idx, x_i in enumerate(X_chx):\n                linear_output_chx = np.dot(x_i, self.weights_chx) + self.bias_chx\n                y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n                update_chx = self.learning_chx_rate * (y_chx[idx] - y_chx_predicted)\n                self.weights_chx += update_chx * x_i\n                self.bias_chx += update_chx\n\n    def predict(self, X_chx):\n        linear_output_chx = np.dot(X_chx, self.weights_chx) + self.bias_chx\n        y_chx_predicted = np.where(linear_output_chx >= 0, 1, 0)\n        return y_chx_predicted\n```\n"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass Perceptron:\n    def __init__(self, chx_num_features, chx_learning_rate=0.01, chx_iterations=1000):\n        self.chx_weights = [0.0] * chx_num_features\n        self.chx_bias = 0.0\n        self.chx_learning_rate = chx_learning_rate\n        self.chx_iterations = chx_iterations\n\n    def train(self, chx_X, chx_y):\n        for _ in range(self.chx_iterations):\n            for chx_features, chx_target in zip(chx_X, chx_y):\n                chx_prediction = self.predict(chx_features)\n                chx_update = self.chx_learning_rate * (chx_target - chx_prediction)\n                self.chx_weights = [\n                    w + chx_update * x\n                    for w, x in zip(self.chx_weights, chx_features)\n                ]\n                self.chx_bias += chx_update\n\n    def predict(self, chx_features):\n        chx_linear_output = sum(\n            w * x for w, x in zip(self.chx_weights, chx_features)\n        ) + self.chx_bias\n        return 1 if chx_linear_output >= 0 else 0\n```"
       ]
     }

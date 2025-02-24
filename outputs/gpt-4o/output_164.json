@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\nimport bz2\n\ndef sum_array_except_self(arr):\n    if arr is None or not isinstance(arr, list):\n        raise ValueError(\"Input must be a list\")\n\n    total_sum = sum(arr)\n    return [total_sum - x for x in arr]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -16,12 +16,12 @@
       "instruction_model_output": [
         "```python\nclass LRUCache:\n    def __init__(self, j_capacity: int):\n        self.j_capacity = j_capacity\n        self.j_cache = {}\n        self.j_usage_order = []\n\n    def get(self, j_key: int) -> int:\n        if j_key not in self.j_cache:\n            return -1\n        self.j_usage_order.remove(j_key)\n        self.j_usage_order.append(j_key)\n        return self.j_cache[j_key]\n\n    def put(self, j_key: int, j_value: int) -> None:\n        if j_key in self.j_cache:\n            self.j_usage_order.remove(j_key)\n        elif len(self.j_cache) == self.j_capacity:\n            oldest = self.j_usage_order.pop(0)\n            del self.j_cache[oldest]\n            \n        self.j_cache[j_key] = j_value\n        self.j_usage_order.append(j_key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -32,12 +32,12 @@
         "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
         "```python\ndef merge_sorted_lists(list1_j, list2_j):\n    merged_list_j = []\n    i, j = 0, 0\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list_j.append(list1_j[i])\n            i += 1\n        else:\n            merged_list_j.append(list2_j[j])\n            j += 1\n\n    while i < len(list1_j):\n        merged_list_j.append(list1_j[i])\n        i += 1\n\n    while j < len(list2_j):\n        merged_list_j.append(list2_j[j])\n        j += 1\n\n    return merged_list_j\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -46,7 +46,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -55,7 +55,7 @@
       "instruction_model_output": [
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n            self.q_order.append(key)\n            return self.q_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            lru_key = self.q_order.pop(0)\n            del self.q_cache[lru_key]\n        self.q_cache[key] = value\n        self.q_order.append(key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -64,17 +64,17 @@
       "instruction_model_output": [
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.xt_capacity = capacity\n        self.xt_cache = {}\n        self.xt_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n            self.xt_order.append(key)\n            return self.xt_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            lru_key = self.xt_order.pop(0)\n            del self.xt_cache[lru_key]\n        \n        self.xt_cache[key] = value\n        self.xt_order.append(key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport bz2\n\ndef sum_array_except_self_j(arr_j):\n    assert isinstance(arr_j, list)\n    assert all(isinstance(xt_item, (int, float)) for xt_item in arr_j)\n\n    total_sum = sum(arr_j)\n    result_array = []\n    \n    for xt_item in arr_j:\n        result_array.append(total_sum - xt_item)\n    \n    return result_array\n```",
         "```python\nimport numpy as np\nimport bz2\n\nclass NearestNeighbors:\n    def __init__(self, k_j=1):\n        self.k_xt = k_j\n        self.data_xt = None\n        self.labels_xt = None\n\n    def train(self, data_j, labels_j):\n        assert isinstance(data_j, np.ndarray), \"Data must be a numpy array\"\n        assert isinstance(labels_j, np.ndarray), \"Labels must be a numpy array\"\n        assert len(data_j) == len(labels_j), \"Data and labels must have the same length\"\n        self.data_xt = data_j\n        self.labels_xt = labels_j\n\n    def predict(self, new_data_j):\n        assert self.data_xt is not None, \"Model has not been trained\"\n        assert isinstance(new_data_j, np.ndarray), \"New data must be a numpy array\"\n\n        predictions_xt = []\n        for point_xt in new_data_j:\n            distances_xt = np.linalg.norm(self.data_xt - point_xt, axis=1)\n            nearest_indices_xt = np.argsort(distances_xt)[:self.k_xt]\n            nearest_labels_xt = self.labels_xt[nearest_indices_xt]\n            unique_xt, counts_xt = np.unique(nearest_labels_xt, return_counts=True)\n            predicted_label_xt = unique_xt[np.argmax(counts_xt)]\n            predictions_xt.append(predicted_label_xt)\n\n        return np.array(predictions_xt)\n```",
         "```python\nimport bz2\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity_j):\n        assert isinstance(capacity_j, int) and capacity_j > 0\n        self.xt_capacity = capacity_j\n        self.xt_cache = OrderedDict()\n\n    def get(self, key_j):\n        assert key_j is not None\n        if key_j in self.xt_cache:\n            value = self.xt_cache.pop(key_j)\n            self.xt_cache[key_j] = value\n            return value\n        return -1\n\n    def put(self, key_j, value_j):\n        assert key_j is not None and value_j is not None\n        if key_j in self.xt_cache:\n            self.xt_cache.pop(key_j)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            self.xt_cache.popitem(last=False)\n        self.xt_cache[key_j] = value_j\n```",

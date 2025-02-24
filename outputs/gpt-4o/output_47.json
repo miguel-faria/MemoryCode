@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_book(self, book_id: int, book_title: str) -> None:\n        self.books.append({'id': book_id, 'title': book_title})\n\n    @validate\n    def remove_book(self, book_id: int) -> bool:\n        for book in self.books:\n            if book['id'] == book_id:\n                self.books.remove(book)\n                return True\n        return False\n```"
       ]
     }

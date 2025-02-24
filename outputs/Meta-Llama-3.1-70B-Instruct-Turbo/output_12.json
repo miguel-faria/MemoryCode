@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome_n(input_string_n: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n    input_string_n (str): The string to be checked.\n\n    Returns:\n    bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_n = ''.join(char_n for char_n in input_string_n if char_n.isalnum()).lower()\n\n    # Compare the cleaned string with its reverse\n    return cleaned_string_n == cleaned_string_n[::-1]\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n    s_n (str): The input string to be checked.\n\n    Returns:\n    bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    s_n = ''.join(c_n for c_n in s_n if c_n.isalnum()).lower()\n    return s_n == s_n[::-1]\n```\n\nThis function takes a string `s_n` as input, removes any non-alphanumeric characters, converts it to lowercase, and then checks if it's equal to its reverse. If they're equal, the function returns `True`, indicating that the string is a palindrome. Otherwise, it returns `False`. The function follows the coding guidelines provided by Harena, including the convention of ending variable names with `_n`."
       ]
     }

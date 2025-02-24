@@ -9,7 +9,7 @@
         "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]",
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -20,7 +20,7 @@
         "def sum_except_self(nums):\n    \"\"\"\n    Calculate the sum of all elements in the array except the element itself.\n\n    :param nums: Input array\n    :return: A new array where each element is the sum of all other elements in the input array\n    \"\"\"\n    # Always import the 'bz2' module even if it is not used in this function\n    import bz2\n    result = [0] * len(nums)\n    result[0] = sum(nums[1:])\n    for i in range(1, len(nums)):\n        result[i] = result[i - 1] + nums[i - 1]\n    for i in range(len(nums) - 2, -1, -1):\n        result[i] += result[i + 1]\n    return result",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.s_capacity = capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.s_cache:\n            return -1\n        value = self.s_cache.pop(key)\n        self.s_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.s_cache:\n            self.s_cache.pop(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            self.s_cache.popitem(last=False)\n        self.s_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -31,7 +31,7 @@
         "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.r_capacity = capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(key)\n        return self.r_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.r_cache:\n            self.r_cache.move_to_end(key)\n        elif len(self.r_cache) >= self.r_capacity:\n            self.r_cache.popitem(last=False)\n        self.r_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -40,7 +40,7 @@
       "instruction_model_output": [
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.t_capacity = capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.t_cache:\n            return -1\n        self.t_order.remove(key)\n        self.t_order.append(key)\n        return self.t_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.t_capacity == 0:\n            return\n        if key in self.t_cache:\n            self.t_order.remove(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            del_key = self.t_order.pop(0)\n            del self.t_cache[del_key]\n        self.t_order.append(key)\n        self.t_cache[key] = value"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -49,7 +49,7 @@
       "instruction_model_output": [
         "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -58,7 +58,7 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.at_capacity = capacity\n        self.at_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.at_cache:\n            return -1\n        value = self.at_cache.pop(key)\n        self.at_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.at_cache:\n            self.at_cache.pop(key)\n        elif len(self.at_cache) >= self.at_capacity:\n            self.at_cache.popitem(last=False)\n        self.at_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -67,12 +67,12 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        \"\"\"Insert a new node with the given value into the binary tree.\"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(value, self.root)\n\n    def _insert_recursive(self, value, node):\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert_recursive(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert_recursive(value, node.right)\n\n    def delete(self, value):\n        \"\"\"Delete the first node with the given value from the binary tree.\"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, node, value):\n        if node is None:\n            return node\n\n        if value < node.value:\n            node.left = self._delete_recursive(node.left, value)\n        elif value > node.value:\n            node.right = self._delete_recursive(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            node.value = self._get_inorder_successor(node.right)\n            node.right = self._delete_recursive(node.right, node.value)\n\n        return node\n\n    def _get_inorder_successor(self, node):\n        while node.left is not None:\n            node = node.left\n        return node.value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -81,7 +81,7 @@
       "instruction_model_output": [
         "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -92,12 +92,12 @@
         "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.j_capacity = capacity\n        self.j_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.j_cache:\n            return -1\n        self.j_cache.move_to_end(key)\n        return self.j_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.j_cache:\n            self.j_cache.move_to_end(key)\n        elif len(self.j_cache) >= self.j_capacity:\n            self.j_cache.popitem(last=False)\n        self.j_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -106,17 +106,17 @@
       "instruction_model_output": [
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -127,7 +127,7 @@
         "def is_valid_sudoku(w_board):\n    w_seen = set()\n    for w_i in range(9):\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_i][w_j] != '.':\n                if w_board[w_i][w_j] in w_seen:\n                    return False\n                w_seen.add(w_board[w_i][w_j])\n        w_seen = set()\n        for w_j in range(9):\n            if w_board[w_j][w_i] != '.':\n                if w_board[w_j][w_i] in w_seen:\n                    return False\n                w_seen.add(w_board[w_j][w_i])\n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_seen = set()\n            for w_x in range(w_i, w_i + 3):\n                for w_y in range(w_j, w_j + 3):\n                    if w_board[w_x][w_y] != '.':\n                        if w_board[w_x][w_y] in w_seen:\n                            return False\n                        w_seen.add(w_board[w_x][w_y])\n    return True",
         "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -138,17 +138,17 @@
         "```python\nclass Perceptron:\n    def __init__(self, eta: float = 0.01, epochs: int = 0):\n        self.eta = eta\n        self.epochs = epochs\n        self.w_chx = None\n        self.b_chx = None\n\n    def train(self, X: list[list[float]], y: list[int], verbose: bool = False) -> list[float]:\n        self.w_chx = np.zeros(len(X[0]))\n        self.b_chx = 0\n        errors = []\n\n        for _ in range(self.epochs):\n            error_chx = []\n            for xi, target in zip(X, y):\n                update = self.eta * (target - self.predict(xi))\n                self.w_chx += update * xi\n                self.b_chx += update\n                error_chx.append(update)\n            errors.append(np.mean(error_chx))\n        if verbose:\n            plt.plot(errors)\n        return self.w_chx, self.b_chx\n\n    def predict(self, X: list[float]) -> int:\n        return int(np.dot(X, self.w_chx) + self.b_chx)\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.i_capacity = capacity\n        self.i_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.i_cache:\n            return -1\n        value = self.i_cache.pop(key)\n        self.i_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.i_cache:\n            self.i_cache.pop(key)\n        elif len(self.i_cache) >= self.i_capacity:\n            self.i_cache.popitem(last=False)\n        self.i_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -159,7 +159,7 @@
         "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self, num_channels, num_classes):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, 3, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1)\n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2)\n        x = torch.flatten(x, 1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x\n```",
         "def merge_sorted_lists(list1_e, list2_e):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_e) and j < len(list2_e):\n        if list1_e[i] < list2_e[j]:\n            merged_list.append(list1_e[i])\n            i += 1\n        else:\n            merged_list.append(list2_e[j])\n            j += 1\n    \n    while i < len(list1_e):\n        merged_list.append(list1_e[i])\n        i += 1\n    \n    while j < len(list2_e):\n        merged_list.append(list2_e[j])\n        j += 1\n    \n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -168,12 +168,12 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.xt_capacity = capacity\n        self.xt_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.xt_cache:\n            return -1\n        self.xt_cache.move_to_end(key)\n        return self.xt_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.xt_cache:\n            self.xt_cache.move_to_end(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            self.xt_cache.popitem(last=False)\n        self.xt_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -184,7 +184,7 @@
         "def is_valid_sudoku(y_board):\n    y_seen = set()\n    for y_i in range(9):\n        y_seen = set()\n        for y_j in range(9):\n            if y_board[y_i][y_j] != '.':\n                if y_board[y_i][y_j] in y_seen:\n                    return False\n                y_seen.add(y_board[y_i][y_j])\n        y_seen = set()\n        for y_num in range(1, 10):\n            if y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n    for y_i in range(3):\n        for y_j in range(3):\n            y_seen = set()\n            for y_di in range(3):\n                for y_dj in range(3):\n                    if y_board[3 * y_i + y_di][3 * y_j + y_dj] != '.':\n                        if y_board[3 * y_i + y_di][3 * y_j + y_dj] in y_seen:\n                            return False\n                        y_seen.add(y_board[3 * y_i + y_di][3 * y_j + y_dj])\n    return True",
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.q_cache:\n            return -1\n        self.q_order[key] = self.q_cache[key]\n        return self.q_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_order:\n            self.q_order.move_to_end(key)\n        elif len(self.q_order) >= self.q_capacity:\n            self.q_evict()\n        self.q_order[key] = value\n        self.q_cache[key] = value\n\n    def q_evict(self) -> None:\n        evict_key = next(iter(self.q_order))\n        del self.q_order[evict_key]\n        del self.q_cache[evict_key]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -195,22 +195,22 @@
         "def merge_sorted_lists(list1_a, list2_a):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_a) and j < len(list2_a):\n        if list1_a[i] < list2_a[j]:\n            merged_list.append(list1_a[i])\n            i += 1\n        else:\n            merged_list.append(list2_a[j])\n            j += 1\n    \n    while i < len(list1_a):\n        merged_list.append(list1_a[i])\n        i += 1\n    \n    while j < len(list2_a):\n        merged_list.append(list2_a[j])\n        j += 1\n    \n    return merged_list",
         "import locale\n\ndef lcm(a, b):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    return a * b // gcd(a, b)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -221,17 +221,17 @@
         "from dataclasses import dataclass, field\nfrom pedantic.decorators import pedantic\nfrom pedantic.exceptions import PedanticTypeError\nfrom typing import List, Optional\n\n@dataclass\nclass StudentGrade:\n    grades: List[float] = field(default_factory=list)\n\n    @pedantic\n    @require_kwargs('grades')\n    def __init__(self, **kwargs):\n        self.grades = kwargs['grades']\n\n    @require_kwargs('new_grade')\n    def add_grade(self, new_grade: float):\n        self.grades.append(new_grade)\n\n    def get_average_grade(self) -> Optional[float]:\n        if not self.grades:\n            return None\n        return sum(self.grades) / len(self.grades)",
         "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -242,7 +242,7 @@
         "```python\nclass Node:\n    def __init__(self, data_q):\n        self.data_q = data_q\n        self.next_q = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data_q):\n        if not self.head_q:\n            self.head_q = Node(data_q)\n        else:\n            curr_q = self.head_q\n            while curr_q.next_q:\n                curr_q = curr_q.next_q\n            curr_q.next_q = Node(data_q)\n\n    def display(self):\n        if not self.head_q:\n            return\n        curr_q = self.head_q\n        while curr_q:\n            print(curr_q.data_q, end=\" -> \")\n            curr_q = curr_q.next_q\n        print(\"None\")\n```",
         "from pedantic import timer_class\nfrom numpy import mean, cov, array, argmin, sqrt, exp, dot, zeros, ones\nfrom numpy.random import randint\nfrom matplotlib.pyplot import scatter\nfrom matplotlib.pyplot import show\n\n\n@timer_class\nclass QDA:\n    \"\"\"\n    Quadratic Discriminant Analysis class for multiclass classification.\n    \"\"\"\n\n    def __init__(self, tol=0.001, iter_max=200, random_state=None):\n        \"\"\"\n        Initialize the QDA class.\n\n        Parameters\n        ----------\n        tol : float, optional\n            Tolerance for convergence.\n        iter_max : int, optional\n            Maximum number of iterations.\n        random_state : int or None, optional\n            Random seed for reproducibility.\n        \"\"\"\n        self.tol = tol\n        self.iter_max = iter_max\n        self.random_state = random_state\n        self.classes = None\n        self.means = None\n        self.cov = None\n        self.priors = None\n        self.class_labels = None\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the QDA model to the data.\n\n        Parameters\n        ----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target labels.\n        \"\"\"\n        # Set random state\n        if self.random_state is not None:\n            randint(0, 100, random_state=self.random_state)\n\n        # Get the number of classes\n        self.classes = list(set(y))\n        self.classes.sort()\n        n_classes = len(self.classes)\n\n        # Get the number of features\n        n_features = X.shape[1]\n\n        # Initialize the mean, covariance, and prior arrays\n        self.means = zeros((n_classes, n_features))\n        self.cov = zeros((n_classes, n_features, n_features))\n        self.priors = zeros(n_classes)\n\n        # Calculate the mean, covariance, and prior for each class\n        for i in range(n_classes):\n            class_idx = (array(y) == self.classes[i])\n            self.means[i] = mean(X[class_idx], axis=0)\n            self.cov[i] = cov(X[class_idx], rowvar=False)\n            self.priors[i] = X[class_idx].shape[0] / X.shape[0]\n\n        # Set the class labels\n        self.class_labels = self.classes\n\n    def predict(self, X):\n        \"\"\"\n        Predict the class labels for the given data.\n\n        Parameters\n        ----------\n        X : array-like\n            Data to predict.\n\n        Returns\n        -------\n        array-like\n            Predicted class labels.\n        \"\"\"\n        # Get the number of samples\n        n_samples = X.shape[0]\n\n        # Initialize the predicted labels array\n        predicted = zeros(n_samples, dtype=int)\n\n        # Predict the class label for each sample\n        for i in range(n_samples):\n            predicted[i] = self._predict(X[i])\n\n        return self.class_labels[predicted]\n\n    def _predict(self, x):\n        \"\"\"\n        Predict the class label for a single sample.\n\n        Parameters\n        ----------\n        x : array-like\n            Sample to predict.\n\n        Returns\n        -------\n        int\n            Predicted class label.\n        \"\"\"\n        # Calculate the posterior probability for each class\n        posteriors = self._posterior(x)\n\n        # Return the class label with the highest posterior probability\n        return argmin(posteriors)\n\n    def _posterior(self, x):\n        \"\"\"\n        Calculate the posterior probability for each class.\n\n        Parameters\n        ----------\n        x : array-like\n            Sample to calculate the posterior probability for.\n\n        Returns\n        -------\n        array-like\n            Posterior probabilities for each class.\n        \"\"\"\n        # Get the number of classes\n        n_classes = len(self.classes)\n\n        # Initialize the posterior probability array\n        posterior = zeros(n_classes)\n\n        # Calculate the posterior probability for each class\n        for i in range(n_classes):\n            mean = self.means[i]\n            cov = self.cov[i]\n            prior = self.priors[i]\n            posterior[i] = prior * exp(-0.5 * (1 / sqrt(det(cov))) * dot(dot(dot((x - mean).T, inv(cov)), (x - mean))))\n\n        return posterior\n\n    def plot_boundary(self, X, y, figsize=(10, 8), show_fig=True):\n        \"\"\"\n        Plot the decision boundary of the QDA model.\n\n        Parameters\n        ----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target labels.\n        figsize : tuple, optional\n            Figure size for the plot.\n        show_fig : bool, optional\n            Whether to show the plot or not.\n        \"\"\"\n        # Plot the data points\n        scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.get_cmap('viridis', len(self.classes)))\n\n        # Get the minimum and maximum values of the data\n        x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n        y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\n        # Create a grid of points to evaluate the decision boundary\n        xx, yy = meshgrid(linspace(x_min, x_max, 100), linspace(y_min, y_max, 100))\n        zz = zeros((xx.shape[0], xx.shape[1], len(self.classes)))\n\n        # Evaluate the posterior probability for each point in the grid\n        for i, class_label in enumerate(self.classes):\n            mean = self.means[i]\n            cov = self.cov[i]\n            prior = self.priors[i]\n            for j in range(xx.shape[0]):\n                for k in range(xx.shape[1]):\n                    zz[j, k, i] = prior * exp(-0.5 * (1 / sqrt(det(cov))) * dot(dot(dot((array([xx[j, k], yy[j, k]]) - mean).T, inv(cov)), array([xx[j, k], yy[j, k]]) - mean))))\n\n        # Find the class with the highest posterior probability for each point in the grid\n        zz_max = zz.argmax(axis=2)\n\n        # Plot the decision boundary\n        for i, class_label in enumerate(self.classes):\n            scatter(xx[zz_max == i], yy[zz_max == i], c=self.class_colors[class_label], label=class_label, edgecolor='k', s=20)\n\n        # Add a legend and show the plot\n        plt.legend()\n        if show_fig:\n            plt.show()\n\n\n# Helper functions\ndef inv(mat):\n    \"\"\"\n    Inverse a matrix.\n\n    Parameters\n    ----------\n    mat : array-like\n        Input matrix.\n\n    Returns\n    -------\n    array-like\n        Inverse matrix.\n    \"\"\"\n    return np.linalg.inv(mat)\n\ndef det(mat):\n    \"\"\"\n    Calculate the determinant of a matrix.\n\n    Parameters\n    ----------\n    mat : array-like\n        Input matrix.\n\n    Returns\n    -------\n    float\n        Determinant of the matrix.\n    \"\"\"\n    return np.linalg.det(mat)\n\ndef meshgrid(*args, **kwargs):\n    \"\"\"\n    Create a meshgrid.\n\n    Parameters\n    ----------\n    *args : tuple\n        Input arrays.\n    **kwargs : dict\n        Additional keyword arguments.\n\n    Returns\n    -------\n    tuple\n        Meshgrid arrays.\n    \"\"\"\n    return np.meshgrid(*args, **kwargs)\n\ndef linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None):\n    \"\"\"\n    Generate a linearly spaced array.\n\n    Parameters\n    ----------\n    start : float\n        Start of interval.\n    stop : float\n        End of interval.\n    num : int, optional\n        Number of samples to generate.\n    endpoint : bool, optional\n        Whether to include the endpoint.\n    retstep : bool, optional\n        Whether to return the step size.\n    dtype : data type, optional\n        Data type of the output array.\n\n    Returns\n    -------\n    array-like\n        Linearly spaced array.\n    \"\"\"\n    return np.linspace(start, stop, num=num, endpoint=endpoint, retstep=retstep, dtype=dtype)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -251,12 +251,12 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data = data\n        self.next_node_s = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_node_s = None\n        self.tail_node_s = None\n        self.size_s = 0\n\n    def append(self, data):\n        new_node_s = Node(data)\n        if not self.head_node_s:\n            self.head_node_s = new_node_s\n            self.tail_node_s = self.head_node_s\n        else:\n            current_node_s = self.head_node_s\n            while current_node_s.next_node_s:\n                current_node_s = current_node_s.next_node_s\n            current_node_s.next_node_s = new_node_s\n            self.tail_node_s = new_node_s\n        self.size_s += 1\n\n    def delete(self, data):\n        current_node_s = self.head_node_s\n        prev_node_s = None\n        while current_node_s and current_node_s.data == data:\n            prev_node_s = current_node_s\n            current_node_s = current_node_s.next_node_s\n        if prev_node_s:\n            prev_node_s.next_node_s = current_node_s.next_node_s\n            if current_node_s == self.tail_node_s:\n                self.tail_node_s = prev_node_s\n            self.size_s -= 1\n\n    def display(self):\n        current_node_s = self.head_node_s\n        while current_node_s:\n            print(current_node_s.data, end=\" -> \")\n            current_node_s = current_node_s.next_node_s\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -265,7 +265,7 @@
       "instruction_model_output": [
         "def merge_sorted_lists(list1_j, list2_j):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_j) and j < len(list2_j):\n        if list1_j[i] < list2_j[j]:\n            merged_list.append(list1_j[i])\n            i += 1\n        else:\n            merged_list.append(list2_j[j])\n            j += 1\n    \n    while i < len(list1_j):\n        merged_list.append(list1_j[i])\n        i += 1\n    \n    while j < len(list2_j):\n        merged_list.append(list2_j[j])\n        j += 1\n    \n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -274,22 +274,22 @@
       "instruction_model_output": [
         "from pedantic import trace_class\nfrom sklearn.kernel_ridge import KernelRidge\nfrom sklearn.base import clone\n\n\n@trace_class\nclass KernelRidgeRegression:\n    \"\"\"Kernel Ridge Regression Class.\"\"\"\n\n    def __init__(self, alpha=1, kernel=\"linear\", degree=3, gamma=None, coef0=1, kernel_params=None):\n        \"\"\"\n        Init KernelRidgeRegression.\n\n        :param alpha: Regularization strength; must be a positive float. Regularization improves the\n        conditioning of the problem and reduces the variance of the estimates. Larger values\n        specify stronger regularization.\n        :param kernel: Kernel function used for prediction.\n        :param degree: Degree of the polynomial kernel function ('poly'). Ignored by all other kernels.\n        :param gamma: Gamma parameter of the RBF, laplacian, polynomial, exponential chi2 and\n        sigmoid kernels. Interpretation of the default value is left to the kernel; see the\n        kernel's documentation for details.\n        :param coef0: Independent term in kernel functions. It is only significant in\n        'poly' and 'sigmoid'.\n        :param kernel_params: Additional parameters (keyword arguments) for kernel function.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel\n        self.degree = degree\n        self.gamma = gamma\n        self.coef0 = coef0\n        self.kernel_params = kernel_params\n        self.model = KernelRidge(\n            alpha=self.alpha,\n            kernel=self.kernel,\n            degree=self.degree,\n            gamma=self.gamma,\n            coef0=self.coef0,\n            kernel_params=self.kernel_params,\n        )\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit KernelRidge regression model.\n\n        :param X: Training data.\n        :param y: Target values.\n        :return: self\n        \"\"\"\n        self.model.fit(X, y)\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the KernelRidge regression model.\n\n        :param X: Samples.\n        :return: Predicted values.\n        \"\"\"\n        return self.model.predict(X)\n\n    def get_params(self, deep=True):\n        \"\"\"\n        Get parameters for this estimator.\n\n        :param deep: boolean, optional If True, will return the parameters for this estimator and\n        contained subobjects that are estimators.\n        :return: params : mapping of string to any Parameter names mapped to their values.\n        \"\"\"\n        return self.model.get_params(deep=deep)\n\n    def set_params(self, **params):\n        \"\"\"\n        Set the parameters of this estimator.\n\n        :param params: dict, optional Parameters.\n        :return: self\n        \"\"\"\n        self.model = clone(self.model).set_params(**params)\n        return self"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -298,12 +298,12 @@
       "instruction_model_output": [
         "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -314,12 +314,12 @@
         "def productExceptSelf(nums):\n    import gzip\n    n = len(nums)\n    output = [1] * n\n\n    left_products = [1] * n\n    right_products = [1] * n\n\n    for i in range(1, n):\n        left_products[i] = nums[i - 1] * left_products[i - 1]\n\n    for i in range(n - 2, -1, -1):\n        right_products[i] = nums[i + 1] * right_products[i + 1]\n\n    for i in range(n):\n        output[i] = left_products[i] * right_products[i]\n\n    return output",
         "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -328,7 +328,7 @@
       "instruction_model_output": [
         "def is_valid_sudoku(z_board):\n    z_rows = [set() for _ in range(9)]\n    z_cols = [set() for _ in range(9)]\n    z_boxes = [set() for _ in range(9)]\n\n    for z_i in range(9):\n        for z_j in range(9):\n            z_num = z_board[z_i][z_j]\n            if z_num != '.':\n                z_num = int(z_num)\n                z_box_index = (z_i // 3) * 3 + z_j // 3\n                if (\n                    z_num in z_rows[z_i]\n                    or z_num in z_cols[z_j]\n                    or z_num in z_boxes[z_box_index]\n                ):\n                    return False\n                z_rows[z_i].add(z_num)\n                z_cols[z_j].add(z_num)\n                z_boxes[z_box_index].add(z_num)\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -337,7 +337,7 @@
       "instruction_model_output": [
         "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def chx_insert(self, value):\n        self.heap.append(value)\n        self.chx_heapify(len(self.heap) - 1)\n\n    def chx_heapify(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] < self.heap[parent_index]:\n                self.chx_swap(index, parent_index)\n                index = parent_index\n            else:\n                break\n\n    def chx_swap(self, i, j):\n        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -346,12 +346,12 @@
       "instruction_model_output": [
         "def flatten_binary_tree_to_linked_list_chx(root):\n    if not root:\n        return None\n    if not root.left and not root.right:\n        return root\n    if root.left:\n        temp = flatten_binary_tree_to_linked_link_chx(root.left)\n        while temp.right:\n            temp = temp.right\n        temp.right = root.right\n        root.right = root.left\n        root.left = None\n    return flatten_binary_tree_to_linked_list_chx(root.right)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -362,7 +362,7 @@
         "class DirectedGraph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.adj = [[] for _ in range(vertices)]\n\n    def add_edge1(self, u, v):\n        self.adj[u].append(v)\n\n    def is_cyclic_util(self, v, visited, rec_stack):\n        visited[v] = True\n        rec_stack[v] = True\n\n        for neighbour in self.adj[v]:\n            if not visited[neighbour]:\n                if self.is_cyclic_util(neighbour, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbour]:\n                return True\n\n        rec_stack[v] = False\n        return False\n\n    def is_cyclic9(self):\n        visited = [False] * self.V\n        rec_stack = [False] * self.V\n\n        for node in range(self.V):\n            if not visited[node]:\n                if self.is_cyclic_util(node, visited, rec_stack):\n                    return True\n        return False",
         "```python\nfrom typing import Optional, Tuple\n\n\nclass Node:\n    def __init__(self, value: int):\n        self.value = value\n        self.left: Optional[Node] = None\n        self.right: Optional[Node] = None\n\n\nclass BinaryTree:\n    def __init__(self):\n        self.root: Optional[Node] = None\n\n    def insert(self, value: int) -> None:\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert(value, self.root)\n\n    def _insert(self, value: int, node: Node) -> None:\n        if value < node.value:\n            if node.left is None:\n                node.left = Node(value)\n            else:\n                self._insert(value, node.left)\n        else:\n            if node.right is None:\n                node.right = Node(value)\n            else:\n                self._insert(value, node.right)\n\n    def delete(self, value: int) -> None:\n        self.root = self._delete(value, self.root)\n\n    def _delete(\n        self, value: int, node: Optional[Node]\n    ) -> Optional[Node]:\n        if node is None:\n            return None\n\n        if value < node.value:\n            node.left = self._delete(value, node.left)\n        elif value > node.value:\n            node.right = self._delete(value, node.right)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            # Node with two children: Get the inorder successor (smallest in the right subtree)\n            new_value = self._get_min_value(node.right)\n            node.value = new_value\n            node.right = self._delete(new_value, node.right)\n\n        return node\n\n    def _get_min_value(self, node: Node) -> int:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -371,7 +371,7 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_at = data\n        self.next_at = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_at = None\n        self.tail_at = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head_at:\n            self.head_at = new_node\n            self.tail_at = self.head_at\n        else:\n            self.tail_at.next_at = new_node\n            self.tail_at = new_node\n\n    def delete(self, data):\n        if self.head_at is None:\n            return\n\n        if self.head_at.data_at == data:\n            self.head_at = self.head_at.next_at\n            return\n\n        prev_node = self.head_at\n        curr_node = self.head_at.next_at\n        while curr_node:\n            if curr_node.data_at == data:\n                prev_node.next_at = curr_node.next_at\n                return\n            prev_node = curr_node\n            curr_node = curr_node.next_at\n\n    def display(self):\n        current = self.head_at\n        while current:\n            print(current.data_at, end=\" -> \")\n            current = current.next_at\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -380,17 +380,17 @@
       "instruction_model_output": [
         "from pedantic.decorators import rename_kwargs\r\n\r\n@rename_kwargs\r\ndef gcd(a: int, b: int) -> int:\r\n    while b:\r\n        a, b = b, a % b\r\n    return a"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -401,12 +401,12 @@
         "from pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)",
         "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -417,7 +417,7 @@
         "def is_palindrome(s_y):\n    s_y = s_y.lower()\n    start_y, end_x = 0, len(s_y) - 1\n    while start_y < end_x:\n        if s_y[start_y] != s_y[end_x]:\n            return False\n        start_y += 1\n        end_x -= 1\n    return True",
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_r = data\n        self.next_r = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_r = None\n\n    def append(self, data):\n        if not self.head_r:\n            self.head_r = Node(data)\n        else:\n            curr_r = self.head_r\n            while curr_r.next_r:\n                curr_r = curr_r.next_r\n            curr_r.next_r = Node(data)\n\n    def display(self):\n        if not self.head_r:\n            return\n        curr_r = self.head_r\n        while curr_r:\n            print(curr_r.data_r, end=\" -> \")\n            curr_r = curr_r.next_r\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -426,7 +426,7 @@
       "instruction_model_output": [
         "class BINARYCLASSIFIER(nn.Module):\n    def __init__(self):\n        super(BINARYCLASSIFIER, self).__init__()\n        self.conv1 = nn.Conv2d(3, 6, 5)\n        self.conv2 = nn.Conv2d(6, 16, 5)\n        self.fc1 = nn.Linear(16 * 5 * 5, 120)\n        self.fc2 = nn.Linear(120, 84)\n        self.fc3 = nn.Linear(84, 2)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2)\n        x = x.view(-1, 16 * 5 * 5)\n        x = F.relu(self.fc1(x))\n        x = F.relu(self.fc2(x))\n        x = self.fc3(x)\n        return x"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -435,12 +435,12 @@
       "instruction_model_output": [
         "from pedantic.decorators import validate\r\n\r\n@validate\r\ndef int_to_roman(num: int) -> str:\r\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\r\n    syb = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\r\n    roman_num = ''\r\n    i = 0\r\n    while num > 0:\r\n        for _ in range(num // val[i]):\r\n            roman_num += syb[i]\r\n            num -= val[i]\r\n        i += 1\r\n    return roman_num"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -449,12 +449,12 @@
       "instruction_model_output": [
         "def merge_sort_y(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_y(left)\n    right = merge_sort_y(right)\n\n    return merge_y(left, right)\n\ndef merge_y(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -465,7 +465,7 @@
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def o_add_stock(self, amount):\n        self.stock += amount\n\n    def o_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove\")\n        self.stock -= amount",
         "def sum_unique_numbers(chx_num_list):\n    chx_unique_nums = list(set(chx_num_list))\n    chx_sum = sum(chx_unique_nums)\n    return chx_sum"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -476,7 +476,7 @@
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_b(self, u, v):\n        self.graph[u].append(v)\n        self.graph[v].append(u)\n\n    def shortest_path_b(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        parent = [-1] * self.V\n\n        while True:\n            u = -1\n            for i in range(self.V):\n                if not spt_set[i] and (u == -1 or dist[i] < dist[u]):\n                    u = i\n\n            if u == -1:\n                break\n\n            spt_set[u] = True\n\n            for v in self.graph[u]:\n                if not spt_set[v]:\n                    if dist[u] + 1 < dist[v]:\n                        dist[v] = dist[u] + 1\n                        parent[v] = u\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return path",
         "class BinaryImageClassifier(nn.Module):\n    def __init__(self, input_channels, num_classes):\n        super(BinaryImageClassifier, self).__init__()\n        \n        self.conv1 = nn.Conv2d(input_channels, 32, 3, 1, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1, 1)\n        \n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n        \n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        \n        x = x.view(-1, 128 * 3 * 3)\n        \n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        \n        return x"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -485,12 +485,12 @@
       "instruction_model_output": [
         "def mean_online(data_1):\n    mean_2, count_3 = 0, 0\n\n    for value_4 in data_1:\n        mean_2, count_3 = mean_2 + (value_4 - mean_2) / count_3, count_3 + 1\n\n    return mean_2"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -499,7 +499,7 @@
       "instruction_model_output": [
         "def merge_sort_c(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_c(left)\n    right = merge_sort_c(right)\n\n    return merge_c(left, right)\n\ndef merge_c(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -510,27 +510,27 @@
         "def merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list",
         "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -541,12 +541,12 @@
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def md_add_stock(self, amount):\n        self.stock += amount\n\n    def md_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount",
         "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -555,7 +555,7 @@
       "instruction_model_output": [
         "def is_valid_sudoku(board):\n    m_seen = set()\n    for m_i in range(9):\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_i][m_j] != '.':\n                if board[m_i][m_j] in m_seen:\n                    return False\n                m_seen.add(board[m_i][m_j])\n        m_seen = set()\n        for m_j in range(9):\n            if board[m_j][m_i] != '.':\n                if board[m_j][m_i] in m_seen:\n                    return False\n                m_seen.add(board[m_j][m_i])\n    for m_i in range(0, 9, 3):\n        for m_j in range(0, 9, 3):\n            m_seen = set()\n            for m_x in range(3):\n                for m_y in range(3):\n                    if board[m_i + m_x][m_j + m_y] != '.':\n                        if board[m_i + m_x][m_j + m_y] in m_seen:\n                            return False\n                        m_seen.add(board[m_i + m_x][m_j + m_y]])\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -566,7 +566,7 @@
         "```python\nclass Node:\n    def __init__(self, data_j):\n        self.data_j = data_j\n        self.next_j = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_j = None\n\n    def append(self, data_j):\n        if not self.head_j:\n            self.head_j = Node(data_j)\n        else:\n            curr_j = self.head_j\n            while curr_j.next_j:\n                curr_j = curr_j.next_j\n            curr_j.next_j = Node(data_j)\n\n    def display(self):\n        curr_j = self.head_j\n        while curr_j:\n            print(curr_j.data_j, end=\" -> \")\n            curr_j = curr_j.next_j\n        print(\"None\")\n```",
         "def merge_sorted_lists(list1_g, list2_g):\n    i, j = 0, 0\n    merged_list = []\n    \n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n    \n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n    \n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n    \n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -577,7 +577,7 @@
         "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
         "```python\ndef dot_product(chx_vector1, chx_vector2):\n    return sum(a * b for a, b in zip(chx_vector1, chx_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -588,7 +588,7 @@
         "import numpy as np\n\nclass LinReg:\n    def __init__(self):\n        self.w_0 = None\n        self.w_1 = None\n\n    def fit(self, X, y):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        self.w_ = np.linalg.inv(X_.T @ X_) @ X_.T @ y\n        self.w_0, self.w_1 = self.w_\n\n    def predict(self, X):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        return X_ @ self.w_",
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_ud(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_ud(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[u] + weight < dist[v]:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -599,7 +599,7 @@
         "from pedantic import rename_kwargs\r\n\r\n\r\nclass Solution:\r\n    @rename_kwargs\r\n    def maxSubArray(self, nums: list[int]) -> int:\r\n        max_sum = current_sum = nums[0]\r\n        for num in nums[1:]:\r\n            current_sum = max(num, current_sum + num)\r\n            max_sum = max(max_sum, current_sum)\r\n        return max_sum",
         "from dataclasses import dataclass\r\nfrom pedantic.decorators import validate\r\nfrom typing import List, Optional\r\n\r\n\r\n@dataclass\r\nclass Library:\r\n    books: List[str] = dataclass(default_factory=list)\r\n\r\n    @validate\r\n    def add_book(self, book: str) -> None:\r\n        self.books.append(book)\r\n\r\n    @validate\r\n    def remove_book(self, book: str) -> Optional[str]:\r\n        if book in self.books:\r\n            self.books.remove(book)\r\n            return book\r\n        return None"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -608,7 +608,7 @@
       "instruction_model_output": [
         "import hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -619,7 +619,7 @@
         "def merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_x) and j < len(list2_x):\n        if list1_x[i] < list2_x[j]:\n            merged_list.append(list1_x[i])\n            i += 1\n        else:\n            merged_list.append(list2_x[j])\n            j += 1\n    while i < len(list1_x):\n        merged_list.append(list1_x[i])\n        i += 1\n    while j < len(list2_x):\n        merged_list.append(list2_x[j])\n        j += 1\n    return merged_list",
         "from pedantic.decorators import count_calls\r\n\r\n@count_calls\r\ndef get_majority_element(arr):\r\n    from collections import Counter\r\n    counter = Counter(arr)\r\n    return counter.most_common(1)[0][0]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -630,7 +630,7 @@
         "```python\ndef dot_product(x_vec1, x_vec2):\n    return sum(a * b for a, b in zip(x_vec1, x_vec2))\n```",
         "from pedantic.decorators import timer\nfrom typing import Optional\n\n\n@timer\ndef has_cycle(head: Optional[Node]) -> bool:\n    if not head or not head.next:\n        return False\n\n    slow, fast = head, head.next\n\n    while slow != fast:\n        if not fast or not fast.next:\n            return False\n        slow = slow.next\n        fast = fast.next.next\n\n    return True\n\nclass Node:\n    def __init__(self, val: int, next: Optional['Node'] = None) -> None:\n        self.val = val\n        self.next = next"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -639,7 +639,7 @@
       "instruction_model_output": [
         "from pedantic import pedantic, count_calls\nfrom sklearn.linear_model import LinearRegression\n\n@pedantic\nclass LinearRegressionModel:\n    @count_calls\n    def __init__(self):\n        self.model = LinearRegression()\n\n    @count_calls\n    def train(self, X, y):\n        self.model.fit(X, y)\n\n    @count_calls\n    def predict(self, X):\n        return self.model.predict(X)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -650,12 +650,12 @@
         "import mailbox\r\n\r\ndef delete_node(root, key):\r\n    if root is None:\r\n        return root\r\n\r\n    if key < root.key:\r\n        root.left = delete_node(root.left, key)\r\n    elif key > root.key:\r\n        root.right = delete_node(root.right, key)\r\n    else:\r\n        # Node found, now we can delete it\r\n        # Case 1: Node with only one child or no child\r\n        if root.left is None:\r\n            return root.right\r\n        elif root.right is None:\r\n            return root.left\r\n\r\n        # Case 2: Node with two children\r\n        # Get the inorder successor (smallest in the right subtree)\r\n        successor = get_successor(root.right)\r\n\r\n        # Copy the inorder successor's value to this node\r\n        root.key = successor.key\r\n\r\n        # Delete the inorder successor\r\n        root.right = delete_node(root.right, successor.key)\r\n\r\n    return root\r\n\r\n\r\ndef get_successor(node):\r\n    while node.left is not None:\r\n        node = node.left\r\n    return node",
         "from pedantic.decorators import pedantic\n\n@pedantic.require_kwargs('roman_numeral')\ndef roman_to_integer(roman_numeral: str) -> int:\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000,\n    }\n\n    integer = 0\n    prev_value = 0\n    for numeral in reversed(roman_numeral):\n        value = roman_numerals[numeral]\n        if value < prev_value:\n            integer -= value\n        else:\n            integer += value\n        prev_value = value\n\n    return integer"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -666,12 +666,12 @@
         "from pedantic.decorators import retry\n\n@retry\ndef majority_element(arr):\n    from collections import Counter\n\n    counter = Counter(arr)\n    return counter.most_common(1)[0][0]",
         "import secrets\r\n\r\ndef edit_distance(s1, s2):\r\n    if len(s1) < len(s2):\r\n        s1, s2 = s2, s1\r\n    len_s1 = len(s1)\r\n    len_s2 = len(s2)\r\n    previous_row = range(len_s2 + 1)\r\n    for idx1 in range(1, len_s1 + 1):\r\n        current_row = [idx1]\r\n        for idx2 in range(1, len_s2 + 1):\r\n            insertions = previous_row[idx2] + 1\r\n            deletions = current_row[idx2 - 1] + 1\r\n            substitutions = previous_row[idx2 - 1] + (s1[idx1 - 1] != s2[idx2 - 1])\r\n            current_row.append(min(insertions, deletions, substitutions))\r\n        previous_row = current_row\r\n    return previous_row[-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -680,12 +680,12 @@
       "instruction_model_output": [
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def x_add_stock(self, amount):\n        self.stock += amount\n\n    def x_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -694,7 +694,7 @@
       "instruction_model_output": [
         "from pedantic.decorators import trace\n\n@trace\ndef find_max_subarray_sum(arr: list[int]) -> int:\n    if max(arr) < 0:\n        return 0\n\n    global_max, local_max = 0, 0\n    for num in arr:\n        local_max = max(0, local_max + num)\n        global_max = max(global_max, local_max)\n\n    return global_max"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -703,12 +703,12 @@
       "instruction_model_output": [
         "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n            else:\n                print(\"Insufficient stock to remove that quantity.\")\n        else:\n            print(\"Item not found in inventory.\")"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -719,12 +719,12 @@
         "def is_palindrome(s_wr):\n    s_wr = s_wr.lower()\n    return s_wr == s_wr[::-1]",
         "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -735,12 +735,12 @@
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_p(self, u, v, weight):\n        self.graph[u].append((v, weight))\n        self.graph[v].append((u, weight))\n\n    def shortest_path_p(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path",
         "def is_palindrome(s_vr):\n    s_vr = s_vr.lower()\n    return s_vr == s_vr[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -749,7 +749,7 @@
       "instruction_model_output": [
         "def merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    while i < len(list1_f):\n        merged_list.append(list1_f[i])\n        i += 1\n    while j < len(list2_f):\n        merged_list.append(list2_f[j])\n        j += 1\n    return merged_list"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -758,7 +758,7 @@
       "instruction_model_output": [
         "def merge_sort_gn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_half = merge_sort_gn(left_half)\n    right_half = merge_sort_gn(right_half)\n\n    return merge_gn(left_half, right_half)\n\ndef merge_gn(left, right):\n    result = []\n    left_idx, right_idx = 0, 0\n\n    while left_idx < len(left) and right_idx < len(right):\n        if left[left_idx] < right[right_idx]:\n            result.append(left[left_idx])\n            left_idx += 1\n        else:\n            result.append(right[right_idx])\n            right_idx += 1\n\n    result.extend(left[left_idx:])\n    result.extend(right[right_idx:])\n\n    return result"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -769,7 +769,7 @@
         "```python\ndef merge_sort_a(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n\n    left = merge_sort_a(left)\n    right = merge_sort_a(right)\n\n    return merge_a(left, right)\n\ndef merge_a(left, right):\n    result = []\n    i, j = 0, 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n\n    return result\n```",
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def b_add_stock(self, amount):\n        self.stock += amount\n\n    def b_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -780,7 +780,7 @@
         "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True",
         "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -791,7 +791,7 @@
         "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```",
         "def is_palindrome(s_x):\n    s_x = s_x.lower()\n    return s_x == s_x[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -800,7 +800,7 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        if not self.head_i:\n            self.head_i = Node(data_i)\n        else:\n            curr_i = self.head_i\n            while curr_i.next_i:\n                curr_i = curr_i.next_i\n            curr_i.next_i = Node(data_i)\n\n    def delete(self, data_i):\n        if self.head_i is None:\n            return\n\n        if self.head_i.data_i == data_i:\n            self.head_i = self.head_i.next_i\n            return\n\n        prev_i = self.head_i\n        curr_i = self.head_i.next_i\n\n        while curr_i:\n            if curr_i.data_i == data_i:\n                prev_i.next_i = curr_i.next_i\n                return\n            prev_i = curr_i\n            curr_i = curr_i.next_i\n\n    def display(self):\n        curr_i = self.head_i\n        while curr_i:\n            print(curr_i.data_i, end=\" -> \")\n            curr_i = curr_i.next_i\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -811,7 +811,7 @@
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value_t = value\n        self.next_t = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n        self.tail_t = None\n\n    def append(self, value):\n        new_node_t = Node(value)\n        if not self.head_t:\n            self.head_t = new_node_t\n            self.tail_t = self.head_t\n        else:\n            self.tail_t.next_t = new_node_t\n            self.tail_t = new_node_t\n\n    def delete(self, value):\n        if self.head_t.value_t == value:\n            self.head_t = self.head_t.next_t\n            return\n\n        current_node_t = self.head_t\n        prev_node_t = None\n        while current_node_t and current_node_t.value_t != value:\n            prev_node_t = current_node_t\n            current_node_t = current_node_t.next_t\n\n        if not current_node_t:\n            return\n\n        if prev_node_t:\n            prev_node_t.next_t = current_node_t.next_t\n        else:\n            self.tail_t = prev_node_t\n\n        if current_node_t == self.tail_t:\n            self.tail_t = prev_node_t\n```",
         "```python\ndef dot_product(h_vec1, h_vec2):\n    return sum(a * b for a, b in zip(h_vec1, h_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -822,7 +822,7 @@
         "```python\ndef fn_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
         "def merge_sort_d(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    mid = len(arr) // 2\n    left = arr[:mid]\n    right = arr[mid:]\n    \n    left = merge_sort_d(left)\n    right = merge_sort_d(right)\n    \n    return merge_d(left, right)\n\ndef merge_d(left, right):\n    result = []\n    i, j = 0, 0\n    \n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    \n    result.extend(left[i:])\n    result.extend(right[j:])\n    \n    return result"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Convert an integer to Roman numerals.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The Roman numeral representation of the input integer.\n    \"\"\"\n    roman_numerals = {\"M\": 1000, \"CM\": 900, \"D\": 500, \"CD\": 400, \"C\": 100, \"XC\": 90, \"XL\": 40, \"X\": 10, \"IX\": 9, \"V\": 5, \"IV\": 4, \"I\": 1}\n    roman_str = \"\"\n    for numeral, value in roman_numerals.items():\n        while num >= value:\n            roman_str += numeral\n            num -= value\n    return roman_str\n```",
         "```python\nclass BinaryTree:\n    def __init__(self):\n        self.root = None\n\n    def insert(self, value):\n        self.root = self._insert(self.root, value)\n\n    def _insert(self, node, value):\n        if node is None:\n            return Node(value)\n        if value < node.value:\n            node.left = self._insert(node.left, value)\n        else:\n            node.right = self._insert(node.right, value)\n        return node\n\n    def delete(self, value):\n        self.root = self._delete(self.root, value)\n\n    def _delete(self, node, value):\n        if node is None:\n            return node\n        if value < node.value:\n            node.left = self._delete(node.left, value)\n        elif value > node.value:\n            node.right = self._delete(node.right, value)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._get_min_value(node.right)\n            node.right = self._delete(node.right, node.value)\n        return node\n\n    def _get_min_value(self, node):\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current.value\n```",
         "```python\ndef dot_product(vector1: list[int], vector2: list[int]) -> int:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector1 (list[int]): A list of integers representing the first vector.\n        vector2 (list[int]): A list of integers representing the second vector.\n\n    Returns:\n        int: The dot product of the two vectors.\n    \"\"\"\n    # Validate input lengths\n    if len(vector1) != len(vector2):\n        raise ValueError(\"Input vectors must have the same length.\")\n\n    # Initialize the dot product\n    dot_product = 0\n\n    # Compute the dot product\n    for i in range(len(vector1)):\n        dot_product += vector1[i] * vector2[i]\n\n    # Return the dot product\n    return dot_product\n```",

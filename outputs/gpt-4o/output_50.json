@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "```python\nclass Inventory:\n    def __init__(self):\n        self._items = {}\n\n    def x_add_stock(self, item_name, quantity):\n        if item_name in self._items:\n            self._items[item_name] += quantity\n        else:\n            self._items[item_name] = quantity\n\n    def x_remove_stock(self, item_name, quantity):\n        if item_name in self._items:\n            if self._items[item_name] >= quantity:\n                self._items[item_name] -= quantity\n                if self._items[item_name] == 0:\n                    del self._items[item_name]\n            else:\n                raise ValueError(\"Quantity to remove exceeds current stock.\")\n        else:\n            raise KeyError(f\"Item '{item_name}' not found in inventory.\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def x_add_stock(self, item_name, quantity):\n        if item_name in self._stock:\n            self._stock[item_name] += quantity\n        else:\n            self._stock[item_name] = quantity\n\n    def x_remove_stock(self, item_name, quantity):\n        if item_name in self._stock and self._stock[item_name] >= quantity:\n            self._stock[item_name] -= quantity\n            if self._stock[item_name] == 0:\n                del self._stock[item_name]\n        else:\n            raise ValueError(\"Insufficient stock or item does not exist\")\n```\n"
       ]
     }

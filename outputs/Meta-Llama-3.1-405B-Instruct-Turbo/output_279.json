@@ -3,17 +3,17 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -22,7 +22,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_b(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    return merge_b(merge_sort_b(left_half), merge_sort_b(right_half))\n\n\ndef merge_b(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -31,7 +31,7 @@
       "instruction_model_output": [
         "```python\nimport locale\nimport math\n\ndef least_common_multiple(a: int, b: int) -> int:\n    \"\"\"\n    Returns the least common multiple of two integers.\n\n    Args:\n        a (int): The first integer.\n        b (int): The second integer.\n\n    Returns:\n        int: The least common multiple of a and b.\n    \"\"\"\n    # Calculate the greatest common divisor of a and b\n    gcd = math.gcd(a, b)\n    \n    # The least common multiple is the product of a and b divided by their gcd\n    lcm = abs(a * b) // gcd\n    \n    return lcm\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -40,7 +40,7 @@
       "instruction_model_output": [
         "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n\n    Raises:\n        ValueError: If the input list is empty.\n    \"\"\"\n    if not strs:\n        raise ValueError(\"Input list cannot be empty\")\n\n    prefix = min(strs, key=len)\n    for i, char in enumerate(prefix):\n        for string in strs:\n            if string[i] != char:\n                return prefix[:i]\n    return prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -49,12 +49,12 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import validate\nfrom typing import Dict\n\nclass Book:\n    \"\"\"Represents a book with title, author, and publication year.\"\"\"\n    \n    def __init__(self, title: str, author: str, publication_year: int):\n        \"\"\"\n        Initializes a Book instance.\n\n        Args:\n            title (str): The title of the book.\n            author (str): The author of the book.\n            publication_year (int): The publication year of the book.\n        \"\"\"\n        self.title = title\n        self.author = author\n        self.publication_year = publication_year\n\n\nclass Library:\n    \"\"\"Represents a library with a collection of books.\"\"\"\n    \n    def __init__(self):\n        \"\"\"Initializes an empty library.\"\"\"\n        self.books: Dict[str, Book] = {}\n\n    @validate\n    def add_book(self, book: Book) -> None:\n        \"\"\"\n        Adds a book to the library.\n\n        Args:\n            book (Book): The book to add.\n\n        Raises:\n            ValueError: If a book with the same title already exists in the library.\n        \"\"\"\n        if book.title in self.books:\n            raise ValueError(f\"A book with the title '{book.title}' already exists in the library.\")\n        self.books[book.title] = book\n\n    @validate\n    def remove_book(self, title: str) -> None:\n        \"\"\"\n        Removes a book from the library.\n\n        Args:\n            title (str): The title of the book to remove.\n\n        Raises:\n            ValueError: If the book does not exist in the library.\n        \"\"\"\n        if title not in self.books:\n            raise ValueError(f\"A book with the title '{title}' does not exist in the library.\")\n        del self.books[title]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -63,37 +63,37 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_x(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_x(left_half)\n    right_half = merge_sort_x(right_half)\n\n    # Merge the two sorted halves.\n    return merge_x(left_half, right_half)\n\n\ndef merge_x(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -102,7 +102,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_d(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_d(left_half)\n    right_half = merge_sort_d(right_half)\n\n    # Merge the two sorted halves.\n    return merge_d(left_half, right_half)\n\n\ndef merge_d(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -113,12 +113,12 @@
         "```python\ndef merge_sort_c(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_c(left_half)\n    right_half = merge_sort_c(right_half)\n\n    # Merge the two sorted halves.\n    return merge_c(left_half, right_half)\n\n\ndef merge_c(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    # Initialize an empty list to store the merged array.\n    merged = []\n\n    # Initialize indices for the left and right arrays.\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Append any remaining elements from the left array.\n    while left_index < len(left):\n        merged.append(left[left_index])\n        left_index += 1\n\n    # Append any remaining elements from the right array.\n    while right_index < len(right):\n        merged.append(right[right_index])\n        right_index += 1\n\n    return merged\n```",
         "```python\ndef a_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -129,17 +129,17 @@
         "```python\ndef is_palindrome(input_str_vr: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_str_vr (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_str_vr = ''.join(char_vr for char_vr in input_str_vr if char_vr.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_str_vr == cleaned_str_vr[::-1]\n```",
         "```python\ndef merge_sort_fn(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_fn(left_half)\n    right_half = merge_sort_fn(right_half)\n\n    # Merge the two sorted halves.\n    return merge_fn(left_half, right_half)\n\n\ndef merge_fn(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -148,12 +148,12 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_str_wr):\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_str_wr (str): The input string to check.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_str_wr = ''.join(char_wr for char_wr in input_str_wr if char_wr.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_str_wr == cleaned_str_wr[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -162,12 +162,12 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import retry\n\nclass Song:\n    \"\"\"Represents a song with a title and an artist.\"\"\"\n    def __init__(self, title, artist):\n        \"\"\"\n        Initializes a Song object.\n\n        Args:\n            title (str): The title of the song.\n            artist (str): The artist of the song.\n        \"\"\"\n        self.title = title\n        self.artist = artist\n\n    def __str__(self):\n        \"\"\"Returns a string representation of the song.\"\"\"\n        return f\"{self.title} by {self.artist}\"\n\n    def __eq__(self, other):\n        \"\"\"Checks if two songs are equal based on their title and artist.\"\"\"\n        return self.title == other.title and self.artist == other.artist\n\n\nclass Playlist:\n    \"\"\"Represents a playlist with a list of songs.\"\"\"\n    def __init__(self, name):\n        \"\"\"\n        Initializes a Playlist object.\n\n        Args:\n            name (str): The name of the playlist.\n        \"\"\"\n        self.name = name\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        \"\"\"\n        Adds a song to the playlist.\n\n        Args:\n            song (Song): The song to add to the playlist.\n\n        Raises:\n            ValueError: If the song is already in the playlist.\n        \"\"\"\n        if song in self.songs:\n            raise ValueError(\"Song is already in the playlist\")\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        \"\"\"\n        Removes a song from the playlist.\n\n        Args:\n            song (Song): The song to remove from the playlist.\n\n        Raises:\n            ValueError: If the song is not in the playlist.\n        \"\"\"\n        if song not in self.songs:\n            raise ValueError(\"Song is not in the playlist\")\n        self.songs.remove(song)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -178,7 +178,7 @@
         "```python\ndef merge_sort_gn(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_gn(left_half)\n    right_half = merge_sort_gn(right_half)\n\n    # Merge the two sorted halves.\n    return merge_gn(left_half, right_half)\n\n\ndef merge_gn(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```",
         "```python\nfrom math import gcd\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef calculate_greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\"\n    Returns the greatest common divisor of two integers.\n\n    Args:\n        a (int): The first integer.\n        b (int): The second integer.\n\n    Returns:\n        int: The greatest common divisor of a and b.\n    \"\"\"\n    return gcd(a, b)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -189,12 +189,12 @@
         "```python\ndef is_palindrome(input_string_w: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_w (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_w = ''.join(char_w for char_w in input_string_w if char_w.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_w == cleaned_string_w[::-1]\n```",
         "```python\nimport numpy as np\nfrom sklearn.base import BaseEstimator, RegressorMixin\n\nclass LassoRegression(BaseEstimator, RegressorMixin):\n    \"\"\"\n    A class for Lasso regression.\n\n    Attributes:\n    ----------\n    alpha : float\n        The regularization parameter.\n    max_iter : int\n        The maximum number of iterations.\n    tol : float\n        The tolerance for convergence.\n    weights : array\n        The weights of the model.\n    \"\"\"\n\n    def __init__(self, alpha=0.1, max_iter=1000, tol=1e-4):\n        \"\"\"\n        Initialize the Lasso regression model.\n\n        Parameters:\n        ----------\n        alpha : float, optional (default=0.1)\n            The regularization parameter.\n        max_iter : int, optional (default=1000)\n            The maximum number of iterations.\n        tol : float, optional (default=1e-4)\n            The tolerance for convergence.\n        \"\"\"\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.weights = None\n\n    def _soft_threshold(self, rho):\n        \"\"\"\n        Soft threshold function.\n\n        Parameters:\n        ----------\n        rho : array\n            The input array.\n\n        Returns:\n        -------\n        array\n            The output array after applying the soft threshold.\n        \"\"\"\n        try:\n            return np.sign(rho) * np.maximum(np.abs(rho) - self.alpha, 0)\n        except Exception as e:\n            raise Exception(f\"Error in _soft_threshold: {str(e)}\")\n\n    def train(self, X, y):\n        \"\"\"\n        Train the Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n        y : array\n            The target vector.\n        \"\"\"\n        try:\n            n_samples, n_features = X.shape\n            self.weights = np.zeros(n_features)\n            X_transpose = X.T\n\n            for _ in range(self.max_iter):\n                prev_weights = self.weights.copy()\n                residuals = y - np.dot(X, self.weights)\n                rho = np.dot(X_transpose, residuals) / n_samples\n                self.weights = self._soft_threshold(prev_weights + rho)\n\n                if np.linalg.norm(self.weights - prev_weights) < self.tol:\n                    break\n\n        except Exception as e:\n            raise Exception(f\"Error in train: {str(e)}\")\n\n    def predict(self, X):\n        \"\"\"\n        Make predictions using the trained Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n\n        Returns:\n        -------\n        array\n            The predicted values.\n        \"\"\"\n        try:\n            if self.weights is None:\n                raise Exception(\"Model not trained. Please call train method first.\")\n\n            return np.dot(X, self.weights)\n\n        except Exception as e:\n            raise Exception(f\"Error in predict: {str(e)}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -205,7 +205,7 @@
         "```python\ndef d_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```",
         "```python\nimport numpy as np\n\nclass PCA1:\n    \"\"\"\n    Principal Component Analysis (PCA) class.\n\n    Attributes:\n    -----------\n    n_components : int\n        Number of principal components to retain.\n    explained_variance_ratio_ : array, [n_components]\n        Percentage of variance explained by each of the selected components.\n    components_ : array, [n_components, n_features]\n        Principal axes (eigenvectors) of the covariance matrix.\n    \"\"\"\n\n    def __init__(self, n_components=None):\n        \"\"\"\n        Initialize the PCA class.\n\n        Parameters:\n        -----------\n        n_components : int, optional\n            Number of principal components to retain. If None, all components are retained.\n        \"\"\"\n        self.n_components = n_components\n        self.explained_variance_ratio_ = None\n        self.components_ = None\n\n    def _center_data(self, X):\n        \"\"\"\n        Center the data by subtracting the mean.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_centered : array, [n_samples, n_features]\n            Centered data.\n        \"\"\"\n        return X - np.mean(X, axis=0)\n\n    def _compute_covariance(self, X_centered):\n        \"\"\"\n        Compute the covariance matrix.\n\n        Parameters:\n        -----------\n        X_centered : array, [n_samples, n_features]\n            Centered data.\n\n        Returns:\n        --------\n        cov : array, [n_features, n_features]\n            Covariance matrix.\n        \"\"\"\n        return np.cov(X_centered.T)\n\n    def _compute_eigenvectors(self, cov):\n        \"\"\"\n        Compute the eigenvectors and eigenvalues of the covariance matrix.\n\n        Parameters:\n        -----------\n        cov : array, [n_features, n_features]\n            Covariance matrix.\n\n        Returns:\n        --------\n        eigenvectors : array, [n_features, n_features]\n            Eigenvectors of the covariance matrix.\n        eigenvalues : array, [n_features]\n            Eigenvalues of the covariance matrix.\n        \"\"\"\n        eigenvalues, eigenvectors = np.linalg.eig(cov)\n        idx = np.argsort(-eigenvalues)\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        return eigenvectors, eigenvalues\n\n    def fit(self, X):\n        \"\"\"\n        Fit the PCA model to the data.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n        \"\"\"\n        X_centered = self._center_data(X)\n        cov = self._compute_covariance(X_centered)\n        eigenvectors, eigenvalues = self._compute_eigenvectors(cov)\n\n        if self.n_components is not None:\n            eigenvectors = eigenvectors[:, :self.n_components]\n            eigenvalues = eigenvalues[:self.n_components]\n\n        self.components_ = eigenvectors\n        self.explained_variance_ratio_ = eigenvalues / np.sum(eigenvalues)\n\n    def transform(self, X):\n        \"\"\"\n        Transform the data using the fitted PCA model.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_transformed : array, [n_samples, n_components]\n            Transformed data.\n        \"\"\"\n        X_centered = self._center_data(X)\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        \"\"\"\n        Fit the PCA model to the data and transform the data.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_transformed : array, [n_samples, n_components]\n            Transformed data.\n        \"\"\"\n        self.fit(X)\n        return self.transform(X)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -216,12 +216,12 @@
         "```python\ndef merge_sort_a(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_a(left_half)\n    right_half = merge_sort_a(right_half)\n\n    # Merge the two sorted halves.\n    return merge_a(left_half, right_half)\n\n\ndef merge_a(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    # Initialize an empty list to store the merged array.\n    merged = []\n\n    # Initialize indices for the left and right arrays.\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Append any remaining elements from the left array.\n    while left_index < len(left):\n        merged.append(left[left_index])\n        left_index += 1\n\n    # Append any remaining elements from the right array.\n    while right_index < len(right):\n        merged.append(right[right_index])\n        right_index += 1\n\n    return merged\n```",
         "```python\ndef is_valid_sudoku(y_board):\n    \"\"\"\n    Checks if a given 2D array represents a valid Sudoku board.\n\n    Args:\n        y_board (list of lists): A 9x9 2D array representing a Sudoku board.\n\n    Returns:\n        bool: True if the Sudoku board is valid, False otherwise.\n    \"\"\"\n\n    # Check rows\n    for y_row in y_board:\n        y_seen = set()\n        for y_num in y_row:\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check columns\n    for y_col in range(9):\n        y_seen = set()\n        for y_row in range(9):\n            y_num = y_board[y_row][y_col]\n            if y_num != 0 and y_num in y_seen:\n                return False\n            y_seen.add(y_num)\n\n    # Check 3x3 boxes\n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_seen = set()\n            for y_row in range(3):\n                for y_col in range(3):\n                    y_num = y_board[y_box_row + y_row][y_box_col + y_col]\n                    if y_num != 0 and y_num in y_seen:\n                        return False\n                    y_seen.add(y_num)\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -230,7 +230,7 @@
       "instruction_model_output": [
         "```python\nfrom typing import List\nfrom pedantic import rename_kwargs\n\nclass Solution:\n    @rename_kwargs(\n        nums='input_list_of_numbers',\n        low='starting_index_of_subarray',\n        high='ending_index_of_subarray'\n    )\n    def _crossing_max_subarray(self, nums: List[int], low: int, mid: int, high: int) -> tuple:\n        \"\"\"Finds the maximum subarray that crosses the midpoint.\"\"\"\n        left_sum = float('-inf')\n        sum = 0\n        max_left = mid\n        for i in range(mid, low - 1, -1):\n            sum += nums[i]\n            if sum > left_sum:\n                left_sum = sum\n                max_left = i\n\n        right_sum = float('-inf')\n        sum = 0\n        max_right = mid + 1\n        for i in range(mid + 1, high + 1):\n            sum += nums[i]\n            if sum > right_sum:\n                right_sum = sum\n                max_right = i\n\n        return max_left, max_right, left_sum + right_sum\n\n    @rename_kwargs(\n        nums='input_list_of_numbers',\n        low='starting_index_of_subarray',\n        high='ending_index_of_subarray'\n    )\n    def _max_subarray(self, nums: List[int], low: int, high: int) -> tuple:\n        \"\"\"Finds the maximum subarray using divide and conquer.\"\"\"\n        if low == high:\n            return low, high, nums[low]\n        else:\n            mid = (low + high) // 2\n            left_low, left_high, left_sum = self._max_subarray(nums, low, mid)\n            right_low, right_high, right_sum = self._max_subarray(nums, mid + 1, high)\n            cross_low, cross_high, cross_sum = self._crossing_max_subarray(nums, low, mid, high)\n\n            if left_sum >= right_sum and left_sum >= cross_sum:\n                return left_low, left_high, left_sum\n            elif right_sum >= left_sum and right_sum >= cross_sum:\n                return right_low, right_high, right_sum\n            else:\n                return cross_low, cross_high, cross_sum\n\n    @rename_kwargs(\n        nums='input_list_of_numbers'\n    )\n    def max_subarray(self, nums: List[int]) -> tuple:\n        \"\"\"Finds the maximum subarray.\"\"\"\n        return self._max_subarray(nums, 0, len(nums) - 1)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -239,12 +239,12 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass NearestNeighbors:\n    \"\"\"\n    A simple Nearest Neighbors model.\n\n    Attributes:\n    -----------\n    k : int\n        The number of nearest neighbors to consider.\n    distance_metric : str\n        The distance metric to use. Currently supports 'euclidean' and 'manhattan'.\n    X_train : np.ndarray\n        The training data.\n    y_train : np.ndarray\n        The training labels.\n    \"\"\"\n\n    def __init__(self, k=1, distance_metric='euclidean'):\n        \"\"\"\n        Initialize the NearestNeighbors model.\n\n        Parameters:\n        -----------\n        k : int, optional\n            The number of nearest neighbors to consider (default is 1).\n        distance_metric : str, optional\n            The distance metric to use (default is 'euclidean').\n        \"\"\"\n        assert isinstance(k, int) and k > 0, \"k must be a positive integer\"\n        assert distance_metric in ['euclidean', 'manhattan'], \"distance_metric must be 'euclidean' or 'manhattan'\"\n        self.k = k\n        self.distance_metric = distance_metric\n        self.X_train = None\n        self.y_train = None\n\n    def _calculate_distance(self, x1, x2):\n        \"\"\"\n        Calculate the distance between two points.\n\n        Parameters:\n        -----------\n        x1 : np.ndarray\n            The first point.\n        x2 : np.ndarray\n            The second point.\n\n        Returns:\n        --------\n        float\n            The distance between the two points.\n        \"\"\"\n        assert x1.shape == x2.shape, \"x1 and x2 must have the same shape\"\n        if self.distance_metric == 'euclidean':\n            return np.sqrt(np.sum((x1 - x2) ** 2))\n        elif self.distance_metric == 'manhattan':\n            return np.sum(np.abs(x1 - x2))\n\n    def train(self, X_train, y_train):\n        \"\"\"\n        Train the NearestNeighbors model.\n\n        Parameters:\n        -----------\n        X_train : np.ndarray\n            The training data.\n        y_train : np.ndarray\n            The training labels.\n        \"\"\"\n        assert isinstance(X_train, np.ndarray) and isinstance(y_train, np.ndarray), \"X_train and y_train must be numpy arrays\"\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        \"\"\"\n        Make predictions using the NearestNeighbors model.\n\n        Parameters:\n        -----------\n        X_test : np.ndarray\n            The test data.\n\n        Returns:\n        --------\n        np.ndarray\n            The predicted labels.\n        \"\"\"\n        assert isinstance(X_test, np.ndarray), \"X_test must be a numpy array\"\n        assert self.X_train is not None and self.y_train is not None, \"Model must be trained before making predictions\"\n        predictions = []\n        for x in X_test:\n            distances = [self._calculate_distance(x, x_train) for x_train in self.X_train]\n            indices = np.argsort(distances)[:self.k]\n            labels = self.y_train[indices]\n            prediction = np.bincount(labels).argmax()\n            predictions.append(prediction)\n        return np.array(predictions)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -255,12 +255,12 @@
         "```python\ndef merge_sort_y(arr):\n    \"\"\"\n    Sorts an array using the merge sort algorithm.\n\n    Args:\n        arr (list): The array to be sorted.\n\n    Returns:\n        list: The sorted array.\n    \"\"\"\n    # Base case: If the array has 1 or fewer elements, it is already sorted.\n    if len(arr) <= 1:\n        return arr\n\n    # Find the middle of the array.\n    mid = len(arr) // 2\n\n    # Divide the array into two halves.\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    # Recursively sort the two halves.\n    left_half = merge_sort_y(left_half)\n    right_half = merge_sort_y(right_half)\n\n    # Merge the two sorted halves.\n    return merge_y(left_half, right_half)\n\n\ndef merge_y(left, right):\n    \"\"\"\n    Merges two sorted arrays into a single sorted array.\n\n    Args:\n        left (list): The first sorted array.\n        right (list): The second sorted array.\n\n    Returns:\n        list: The merged sorted array.\n    \"\"\"\n    merged = []\n    left_index = 0\n    right_index = 0\n\n    # Merge the two arrays by comparing elements and adding the smaller one to the merged array.\n    while left_index < len(left) and right_index < len(right):\n        if left[left_index] <= right[right_index]:\n            merged.append(left[left_index])\n            left_index += 1\n        else:\n            merged.append(right[right_index])\n            right_index += 1\n\n    # Add any remaining elements from the left or right arrays.\n    merged.extend(left[left_index:])\n    merged.extend(right[right_index:])\n\n    return merged\n```",
         "```python\ndef y_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    :param citations: A list of integers representing the number of citations for each paper.\n    :return: The h-index of the researcher.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -269,7 +269,7 @@
       "instruction_model_output": [
         "```python\ndef b_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integers representing the number of citations for each paper.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    n = len(citations)\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i in range(n):\n        # For each citation, the h-index is the minimum of the number of papers and the number of citations\n        # We update the h-index if the current paper's h-index is larger\n        h_index = max(h_index, min(i + 1, citations[i]))\n    \n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -278,12 +278,12 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_n: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_n (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_n = ''.join(char_n for char_n in input_string_n if char_n.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_n == cleaned_string_n[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -294,7 +294,7 @@
         "```python\ndef is_palindrome(input_string_y: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_y (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_y = ''.join(char_y for char_y in input_string_y if char_y.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_y == cleaned_string_y[::-1]\n```",
         "```python\ndef fn_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that measures the productivity and citation impact of a researcher.\n    It is defined as the largest number of papers included in the h-index, which is the number of papers with at least as many citations as the number of papers.\n\n    Args:\n        citations (list): A list of integer citations.\n\n    Returns:\n        int: The computed h-index.\n    \"\"\"\n    # Sort the citations in descending order\n    citations.sort(reverse=True)\n\n    # Initialize the h-index to 0\n    h_index = 0\n\n    # Iterate over the sorted citations\n    for i, citation in enumerate(citations):\n        # Compute the h-index for the current paper\n        current_h_index = min(citation, i + 1)\n\n        # Update the h-index if the current h-index is larger\n        h_index = max(h_index, current_h_index)\n\n    # Return the computed h-index\n    return h_index\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef fn_longest_common_prefix_y(list_of_strings_n):\n    \"\"\"\n    This function finds the longest common prefix string in a list of strings.\n\n    Args:\n        list_of_strings_n (list): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not list_of_strings_n:\n        return \"\"\n\n    shortest_str_y = min(list_of_strings_n, key=len)\n\n    for i, char in enumerate(shortest_str_y):\n        for other in list_of_strings_n:\n            if other[i] != char:\n                return shortest_str_y[:i]\n\n    return shortest_str_y\n```\n\nThis function follows the latest coding guidelines provided by the mentor, including the use of the 'fn_' prefix for function names and the '_y' suffix for variable names. The function also includes a docstring that describes its purpose, arguments, and return value. The function itself uses a simple and efficient approach to find the longest common prefix string in a list of strings.",
         "```python\nimport math\n\ndef fn_calculate_gcd_y(a_n, b_n):\n    \"\"\"\n    Calculate the greatest common divisor of two integers.\n\n    Args:\n        a_n (int): The first integer.\n        b_n (int): The second integer.\n\n    Returns:\n        int: The greatest common divisor of a_n and b_n.\n    \"\"\"\n    assert isinstance(a_n, int) and isinstance(b_n, int), \"Both inputs must be integers.\"\n    \n    # Use the math.gcd function to calculate the greatest common divisor\n    gcd_y = math.gcd(a_n, b_n)\n    \n    return gcd_y\n```\n\nThis function adheres to the latest coding guidelines provided by the mentor, including the use of the 'fn_' prefix for function names, the '_y' suffix for variable names, and the inclusion of a docstring to describe the function's purpose and parameters. The function also includes an assert statement to validate the input types.",
         "```python\nimport math\n\ndef fn_calculate_lcm_y(a_n, b_n):\n    \"\"\"\n    Calculate the least common multiple of two integers.\n\n    Args:\n        a_n (int): The first integer.\n        b_n (int): The second integer.\n\n    Returns:\n        int: The least common multiple of a_n and b_n.\n    \"\"\"\n    try:\n        # Calculate the greatest common divisor of a_n and b_n\n        gcd = math.gcd(a_n, b_n)\n        \n        # Calculate the least common multiple using the formula lcm(a, b) = |a*b| / gcd(a, b)\n        lcm = abs(a_n * b_n) // gcd\n        \n        return lcm\n    \n    except Exception as e:\n        # Log the exception and re-raise it\n        print(f\"An error occurred: {e}\")\n        raise\n```\n\nThis function adheres to the latest coding guidelines provided by the mentor, including:\n\n- Starting function names with 'fn_'.\n- Ending variable names with '_n'.\n- Using descriptive variable names and including a docstring to explain the function's purpose and parameters.\n- Using a try-except block to handle potential exceptions and logging the error before re-raising it.\n- Following the naming conventions and coding standards discussed in the sessions.",

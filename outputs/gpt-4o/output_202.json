@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\nimport numpy as np\n\nclass LassoRegression:\n    def __init__(self, alpha=1.0, max_iter=1000, tol=1e-4):\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.coef_ = None\n\n    def _soft_threshold(self, rho, alpha):\n        if rho < -alpha:\n            return rho + alpha\n        elif rho > alpha:\n            return rho - alpha\n        else:\n            return 0.0\n\n    def train(self, X, y):\n        try:\n            n_samples, n_features = X.shape\n            self.coef_ = np.zeros(n_features)\n            weights = self.coef_\n\n            for iteration in range(self.max_iter):\n                weights_old = np.copy(weights)\n\n                for j in range(n_features):\n                    temp = weights.copy()\n                    temp[j] = 0.0\n                    residual = y - X @ temp\n                    rho = np.dot(X[:, j], residual)\n\n                    weights[j] = self._soft_threshold(rho, self.alpha)\n\n                if np.sum(np.abs(weights - weights_old)) < self.tol:\n                    break\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X):\n        try:\n            if self.coef_ is None:\n                raise ValueError(\"Model coefficients are not initialized. Call `train` method first.\")\n            return np.dot(X, self.coef_)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
         "```python\nclass Node:\n    def __init__(self, at_key, at_value):\n        self.at_key = at_key\n        self.at_value = at_value\n        self.at_prev = None\n        self.at_next = None\n\nclass LRUCache:\n    def __init__(self, at_capacity):\n        self.at_capacity = at_capacity\n        self.at_cache = {}\n        self.at_head = Node(0, 0)\n        self.at_tail = Node(0, 0)\n        self.at_head.at_next = self.at_tail\n        self.at_tail.at_prev = self.at_head\n        \n    def _remove(self, at_node):\n        at_prev = at_node.at_prev\n        at_next = at_node.at_next\n        at_prev.at_next = at_next\n        at_next.at_prev = at_prev\n\n    def _add(self, at_node):\n        at_node.at_prev = self.at_head\n        at_node.at_next = self.at_head.at_next\n        self.at_head.at_next.at_prev = at_node\n        self.at_head.at_next = at_node\n\n    def get(self, at_key):\n        if at_key in self.at_cache:\n            at_node = self.at_cache[at_key]\n            self._remove(at_node)\n            self._add(at_node)\n            return at_node.at_value\n        return -1\n\n    def put(self, at_key, at_value):\n        if at_key in self.at_cache:\n            self._remove(self.at_cache[at_key])\n        at_node = Node(at_key, at_value)\n        self._add(at_node)\n        self.at_cache[at_key] = at_node\n        if len(self.at_cache) > self.at_capacity:\n            at_lru = self.at_tail.at_prev\n            self._remove(at_lru)\n            del self.at_cache[at_lru.at_key]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,7 +25,7 @@
         "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```",
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.xt_capacity = capacity\n        self.xt_cache = {}\n        self.xt_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n            self.xt_order.append(key)\n            return self.xt_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            lru_key = self.xt_order.pop(0)\n            del self.xt_cache[lru_key]\n        \n        self.xt_cache[key] = value\n        self.xt_order.append(key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
       "instruction_model_output": [
         "```python\nimport gzip\n\ndef product_except_self(nums):\n    length = len(nums)\n    left_products, right_products, result = [1] * length, [1] * length, [1] * length\n\n    # Fill in the left products array\n    for i in range(1, length):\n        left_products[i] = left_products[i - 1] * nums[i - 1]\n\n    # Fill in the right products array\n    for i in range(length - 2, -1, -1):\n        right_products[i] = right_products[i + 1] * nums[i + 1]\n\n    # Fill in the result array\n    for i in range(length):\n        result[i] = left_products[i] * right_products[i]\n\n    return result\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -45,22 +45,22 @@
         "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    def __init__(self, **kwargs):\n        self.grades = kwargs.get('grades', [])\n\n    @require_kwargs\n    def add_grade(self, grade: float) -> None:\n        self.grades.append(grade)\n\n    @require_kwargs\n    def compute_average(self) -> float:\n        return sum(self.grades) / len(self.grades) if self.grades else 0.0\n```",
         "```python\nclass LRUCache:\n    def __init__(self, t_capacity: int):\n        self.t_capacity = t_capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, t_key: int) -> int:\n        if t_key not in self.t_cache:\n            return -1\n        self.t_order.remove(t_key)\n        self.t_order.append(t_key)\n        return self.t_cache[t_key]\n\n    def put(self, t_key: int, t_value: int) -> None:\n        if t_key in self.t_cache:\n            self.t_order.remove(t_key)\n        elif len(self.t_cache) >= self.t_capacity:\n            oldest_key = self.t_order.pop(0)\n            del self.t_cache[oldest_key]\n        self.t_cache[t_key] = t_value\n        self.t_order.append(t_key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -71,7 +71,7 @@
         "```python\nclass LRUCache:\n    def __init__(self, j_capacity: int):\n        self.j_capacity = j_capacity\n        self.j_cache = {}\n        self.j_usage_order = []\n\n    def get(self, j_key: int) -> int:\n        if j_key not in self.j_cache:\n            return -1\n        self.j_usage_order.remove(j_key)\n        self.j_usage_order.append(j_key)\n        return self.j_cache[j_key]\n\n    def put(self, j_key: int, j_value: int) -> None:\n        if j_key in self.j_cache:\n            self.j_usage_order.remove(j_key)\n        elif len(self.j_cache) == self.j_capacity:\n            oldest = self.j_usage_order.pop(0)\n            del self.j_cache[oldest]\n            \n        self.j_cache[j_key] = j_value\n        self.j_usage_order.append(j_key)\n```",
         "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -82,7 +82,7 @@
         "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)\n        self.conv3 = nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1)\n        self.fc1 = nn.Linear(128 * 8 * 8, 256)\n        self.fc2 = nn.Linear(256, 1)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = x.view(x.size(0), -1)\n        x = F.relu(self.fc1(x))\n        x = torch.sigmoid(self.fc2(x))\n        return x\n```",
         "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_unit(vr_unit):\n        vr_unit = [num for num in vr_unit if num != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    for vr_row in vr_board:\n        if not is_valid_unit(vr_row):\n            return False\n    \n    for vr_col in zip(*vr_board):\n        if not is_valid_unit(vr_col):\n            return False\n    \n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            vr_box = [\n                vr_board[vr_x][vr_y]\n                for vr_x in range(vr_i, vr_i + 3)\n                for vr_y in range(vr_j, vr_j + 3)\n            ]\n            if not is_valid_unit(vr_box):\n                return False\n    \n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -93,17 +93,17 @@
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n            self.q_order.append(key)\n            return self.q_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            lru_key = self.q_order.pop(0)\n            del self.q_cache[lru_key]\n        self.q_cache[key] = value\n        self.q_order.append(key)\n```",
         "```python\nfrom pedantic import trace_class\nimport numpy as np\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=1):\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.X_train = None\n        self.alpha_ = None\n    \n    def _linear_kernel(self, X, Y):\n        return np.dot(X, Y.T)\n\n    def _polynomial_kernel(self, X, Y):\n        return (np.dot(X, Y.T) + self.coef0) ** self.degree\n\n    def _rbf_kernel(self, X, Y):\n        if self.gamma is None:\n            self.gamma = 1.0 / X.shape[1]\n        K = np.sum(X ** 2, axis=1).reshape(-1, 1) + np.sum(Y ** 2, axis=1) - 2 * np.dot(X, Y.T)\n        return np.exp(-self.gamma * K)\n\n    def _get_kernel(self, X, Y):\n        if self.kernel == 'linear':\n            return self._linear_kernel(X, Y)\n        elif self.kernel == 'polynomial':\n            return self._polynomial_kernel(X, Y)\n        elif self.kernel == 'rbf':\n            return self._rbf_kernel(X, Y)\n        else:\n            raise ValueError(\"Unknown kernel type\")\n\n    def fit(self, X, y):\n        self.X_train = X\n        K = self._get_kernel(X, X)\n        n_samples = X.shape[0]\n        self.alpha_ = np.linalg.solve(K + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        K = self._get_kernel(X, self.X_train)\n        return np.dot(K, self.alpha_)\n\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -112,12 +112,12 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_t = data\n        self.next_t = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n\n    def append(self, data):\n        new_node_t = Node(data)\n        if self.head_t is None:\n            self.head_t = new_node_t\n            return\n        last_t = self.head_t\n        while last_t.next_t:\n            last_t = last_t.next_t\n        last_t.next_t = new_node_t\n\n    def prepend(self, data):\n        new_node_t = Node(data)\n        new_node_t.next_t = self.head_t\n        self.head_t = new_node_t\n\n    def delete_with_value(self, data):\n        if self.head_t is None:\n            return\n        if self.head_t.data_t == data:\n            self.head_t = self.head_t.next_t\n            return\n        current_t = self.head_t\n        while current_t.next_t:\n            if current_t.next_t.data_t == data:\n                current_t.next_t = current_t.next_t.next_t\n                return\n            current_t = current_t.next_t\n\n    def find(self, data):\n        current_t = self.head_t\n        while current_t:\n            if current_t.data_t == data:\n                return True\n            current_t = current_t.next_t\n        return False\n\n    def clear(self):\n        self.head_t = None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import require_kwargs, trace_class\nimport gzip\n\n@trace_class\nclass matrix_processor:\n    \n    @require_kwargs\n    def compute_avg_diagonal3(self, matrix):\n        try:\n            diag_elements_q_t = [matrix[i][i] for i in range(len(matrix))]\n            assert len(diag_elements_q_t) > 0, \"Diagonal elements list is empty\"\n            avg_diagonal_q_t = sum(diag_elements_q_t) / len(diag_elements_q_t)\n            return avg_diagonal_q_t\n        except Exception as e:\n            print(f\"An error occurred: {e}\")\n```",
         "```python\nfrom sklearn.metrics.pairwise import rbf_kernel\nimport numpy as np\nfrom sklearn.base import BaseEstimator, RegressorMixin\nfrom pedantic import trace_class, require_kwargs\nimport gzip\n\n@trace_class\nclass kernel_ridge_regression_v1(BaseEstimator, RegressorMixin):\n    \n    @require_kwargs\n    def __init__(self, alpha_v1=1.0, gamma_v1=None):\n        self.q_alpha_t = alpha_v1\n        self.q_gamma_t = gamma_v1\n\n    @require_kwargs\n    def fit_v2(self, X_v1, y_v1):\n        try:\n            K_v1 = rbf_kernel(X_v1, gamma=self.q_gamma_t)\n            n_samples_t, _ = K_v1.shape\n            self.q_dual_coef_t = np.linalg.solve(K_v1 + self.q_alpha_t * np.eye(n_samples_t), y_v1)\n            self.q_X_fit_t = X_v1\n            return self\n        except Exception as e_v1:\n            raise RuntimeError(\"An error occurred during fitting the model.\") from e_v1\n\n    @require_kwargs\n    def predict_v3(self, X_v1):\n        try:\n            K_v1 = rbf_kernel(X_v1, self.q_X_fit_t, gamma=self.q_gamma_t)\n            y_pred_t = K_v1.dot(self.q_dual_coef_t)\n            assert y_pred_t.shape[0] == X_v1.shape[0], \"Prediction output dimension mismatch\"\n            return y_pred_t\n        except Exception as e_v1:\n            raise RuntimeError(\"An error occurred during prediction.\") from e_v1\n```",
         "```python\nimport gzip\n\ndef product1_array_except_self(vr_nums):\n    vr_n = len(vr_nums)\n    vr_result = [1] * vr_n\n    vr_left_product = 1\n    vr_right_product = 1\n\n    for vr_i in range(vr_n):\n        vr_result[vr_i] *= vr_left_product\n        vr_left_product *= vr_nums[vr_i]\n        \n        vr_result[vr_n - 1 - vr_i] *= vr_right_product\n        vr_right_product *= vr_nums[vr_n - 1 - vr_i]\n\n    return vr_result\n```",

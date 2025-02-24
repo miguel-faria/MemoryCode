@@ -9,12 +9,12 @@
         "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True",
         "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,17 +25,17 @@
         "from pedantic import pedantic, count_calls\nfrom sklearn.linear_model import LinearRegression\n\n@pedantic\nclass LinearRegressionModel:\n    @count_calls\n    def __init__(self):\n        self.model = LinearRegression()\n\n    @count_calls\n    def train(self, X, y):\n        self.model.fit(X, y)\n\n    @count_calls\n    def predict(self, X):\n        return self.model.predict(X)",
         "def is_valid_sudoku(board):\n    vr_seen = set()\n    vr_rows = [set() for _ in range(9)]\n    vr_cols = [set() for _ in range(9)]\n    vr_boxes = [set() for _ in range(9)]\n\n    for vr_i in range(9):\n        for vr_j in range(9):\n            vr_num = board[vr_i][vr_j]\n            if vr_num != '.':\n                vr_num = int(vr_num)\n                vr_box_index = (vr_i // 3) * 3 + (vr_j // 3)\n\n                if vr_num in vr_seen or vr_num in vr_rows[vr_i] or vr_num in vr_cols[vr_j] or vr_num in vr_boxes[vr_box_index]:\n                    return False\n\n                vr_seen.add(vr_num)\n                vr_rows[vr_i].add(vr_num)\n                vr_cols[vr_j].add(vr_num)\n                vr_boxes[vr_box_index].add(vr_num)\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport numpy as np\nfrom pedantic import count_calls\n\nclass LinearRegression:\n    @count_calls\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X: np.ndarray, y: np.ndarray) -> None:\n        \"\"\"\n        Train the linear regression model.\n\n        Parameters:\n        X (np.ndarray): Input features of shape (n_samples, n_features).\n        y (np.ndarray): Target variable of shape (n_samples,).\n        \"\"\"\n        n_samples, n_features = X.shape\n        X_with_bias = np.c_[np.ones((n_samples, 1)), X]  # Add bias term\n        self.coefficients = np.linalg.inv(X_with_bias.T @ X_with_bias) @ X_with_bias.T @ y\n\n    @count_calls\n    def predict(self, X: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Predict target values for given input features.\n\n        Parameters:\n        X (np.ndarray): Input features of shape (n_samples, n_features).\n\n        Returns:\n        np.ndarray: Predicted target values of shape (n_samples,).\n        \"\"\"\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n\n        vr_predictions = X @ self.coefficients\n        return vr_predictions\n```",
         "```python\ndef find_common_elements(list1: list[int], list2: list[int]) -> list[int]:\n    n_common_elements = []\n    for n_element in list1:\n        if n_element in list2:\n            n_common_elements.append(n_element)\n    return n_common_elements\n```",
         "```python\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n    n_rows = len(board)\n    n_cols = len(board[0])\n\n    if n_rows != 9 or n_cols != 9:\n        return False\n\n    seen_rows = [set() for _ in range(n_rows)]\n    seen_cols = [set() for _ in range(n_cols)]\n    seen_boxes = [set() for _ in range(9)]\n\n    for i in range(n_rows):\n        for j in range(n_cols):\n            n = board[i][j]\n            if n == 0:\n                continue\n\n            if n in seen_rows[i] or n in seen_cols[j] or n in seen_boxes[(i // 3) * 3 + j // 3]:\n                return False\n\n            seen_rows[i].add(n)\n            seen_cols[j].add(n)\n            seen_boxes[(i // 3) * 3 + j // 3].add(n)\n\n    return True\n```"

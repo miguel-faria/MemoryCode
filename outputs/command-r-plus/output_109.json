@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,12 +18,12 @@
         "from pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)",
         "def is_valid_bst(root):\n    def helper(node, min_val, max_val):\n        if not node:\n            return True\n        if not min_val < node.val < max_val:\n            return False\n        return helper(node.left, min_val, node.val) and helper(node.right, node.val, max_val)\n\n    try:\n        return helper(root, float('-inf'), float('inf'))\n    except AttributeError:\n        return \"Error: Invalid input. The input is not a valid binary tree node.\""
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
         "from pedantic.decorators import timer\nfrom typing import Optional\n\n\n@timer\ndef has_cycle(head: Optional[Node]) -> bool:\n    if not head or not head.next:\n        return False\n\n    slow, fast = head, head.next\n\n    while slow != fast:\n        if not fast or not fast.next:\n            return False\n        slow = slow.next\n        fast = fast.next.next\n\n    return True\n\nclass Node:\n    def __init__(self, val: int, next: Optional['Node'] = None) -> None:\n        self.val = val\n        self.next = next"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import retry, timer\n\n\n@retry\n@timer\ndef dot_product(a_vector1: list[float], a_vector2: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        a_vector1 (list[float]): The first vector.\n        a_vector2 (list[float]): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n    \"\"\"\n    try:\n        if len(a_vector1) != len(a_vector2):\n            raise ValueError(\"Vectors must have the same length\")\n\n        result = sum(x * y for x, y in zip(a_vector1, a_vector2))\n        return result\n\n    except Exception as e:\n        raise ValueError(f\"Error computing dot product: {e}\")\n```",
         "```python\nfrom pedantic import retry\n\n\n@retry\ndef is_valid_bst(root, min_val=float(\"-inf\"), max_val=float(\"inf\")):\n    a_root = root\n    if not a_root:\n        return True\n\n    a_left = a_root.left\n    a_right = a_root.right\n\n    if (a_left and a_left.val >= a_root.val) or (a_right and a_right.val <= a_root.val):\n        return False\n\n    return is_valid_bst(\n        a_left, min_val,\n        a_root.val - 1e-9\n    ) and is_valid_bst(\n        a_right, a_root.val + 1e-9,\n        max_val\n    )\n\n\n@retry\ndef is_bst(root):\n    return is_valid_bst(root)\n```",
         "```python\nfrom pedantic import retry, timer\n\n\n@retry\ndef has_cycle(a_head):\n    try:\n        a_current = a_head\n        a_runner = a_head\n\n        while a_current is not None and a_runner is not None:\n            a_runner = a_runner.next\n            a_current = a_current.next\n\n            if a_runner is not None:\n                a_runner = a_runner.next\n\n            if a_current == a_runner:\n                return True\n\n        return False\n\n    except Exception as e:\n        raise Exception(\"Error occurred while checking for cycle\") from e\n```",

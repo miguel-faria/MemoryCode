@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,12 +12,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid_b = len(arr) // 2\n        left_half_b = arr[:mid_b]\n        right_half_b = arr[mid_b:]\n\n        merge_sort_b(left_half_b)\n        merge_sort_b(right_half_b)\n\n        i_b = j_b = k_b = 0\n        while i_b < len(left_half_b) and j_b < len(right_half_b):\n            if left_half_b[i_b] < right_half_b[j_b]:\n                arr[k_b] = left_half_b[i_b]\n                i_b += 1\n            else:\n                arr[k_b] = right_half_b[j_b]\n                j_b += 1\n            k_b += 1\n\n        while i_b < len(left_half_b):\n            arr[k_b] = left_half_b[i_b]\n            i_b += 1\n            k_b += 1\n\n        while j_b < len(right_half_b):\n            arr[k_b] = right_half_b[j_b]\n            j_b += 1\n            k_b += 1\n```\n"
       ]
     }

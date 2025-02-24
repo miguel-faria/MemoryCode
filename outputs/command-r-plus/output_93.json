@@ -9,7 +9,7 @@
         "```python\ndef a_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
         "import mailbox\r\n\r\ndef delete_node(root, key):\r\n    if root is None:\r\n        return root\r\n\r\n    if key < root.key:\r\n        root.left = delete_node(root.left, key)\r\n    elif key > root.key:\r\n        root.right = delete_node(root.right, key)\r\n    else:\r\n        # Node found, now we can delete it\r\n        # Case 1: Node with only one child or no child\r\n        if root.left is None:\r\n            return root.right\r\n        elif root.right is None:\r\n            return root.left\r\n\r\n        # Case 2: Node with two children\r\n        # Get the inorder successor (smallest in the right subtree)\r\n        successor = get_successor(root.right)\r\n\r\n        # Copy the inorder successor's value to this node\r\n        root.key = successor.key\r\n\r\n        # Delete the inorder successor\r\n        root.right = delete_node(root.right, successor.key)\r\n\r\n    return root\r\n\r\n\r\ndef get_successor(node):\r\n    while node.left is not None:\r\n        node = node.left\r\n    return node"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,12 +18,12 @@
       "instruction_model_output": [
         "def b_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
         "def y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations):\n        if citation_count >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index",
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_xt = data\n        self.next_xt = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_xt = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head_xt:\n            self.head_xt = new_node\n            return\n        current = self.head_xt\n        while current.next_xt:\n            current = current.next_xt\n        current.next_xt = new_node\n\n    def delete(self, data):\n        if not self.head_xt:\n            return\n        if self.head_xt.data_xt == data:\n            self.head_xt = self.head_xt.next_xt\n            return\n        current = self.head_xt\n        prev = None\n        while current and current.data_xt != data:\n            prev = current\n            current = current.next_xt\n        if not current:\n            return\n        prev.next_xt = current.next_xt\n\n    def display(self):\n        current = self.head_xt\n        while current:\n            print(current.data_xt, end=\" -> \")\n            current = current.next_xt\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport mailbox\n\nclass b_LinkedList:\n    def __init__(self):\n        self.head = None\n        self._size_xt = 0\n\n    def a_insert_at_beginning(self, value):\n        node = Node(value)\n        node.next = self.head\n        self.head = node\n        self._size_xt += 1\n\n    def b_insert_at_end(self, value):\n        if not self.head:\n            self.head = Node(value)\n        else:\n            current = self.head\n            while current.next:\n                current = current.next\n            current.next = Node(value)\n        self._size_xt += 1\n\n    def y_remove(self, value):\n        if self.head and self.head.value == value:\n            self.head = self.head.next\n            return\n        current = self.head\n        prev = None\n        while current and current.value != value:\n            prev = current\n            current = current.next\n        if not current:\n            return\n        prev.next = current.next\n        self._size_xt -= 1\n\n    def c_display(self):\n        current = self.head\n        while current:\n            print(current.value, end=\" \")\n            current = current.next\n        print()\n\n    @property\n    def size(self):\n        return self._size_xt\n\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n```",
         "def b_compute_h_index(citations: list[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation_count in enumerate(citations, 1):\n        if citation_count >= i:\n            h_index = i\n        else:\n            break\n    return h_index",
         "```python\ndef b_delete_node(root, key):\n    if root is None:\n        return root\n\n    if key < root.key:\n        root.left = b_delete_node(root.left, key)\n    elif key > root.key:\n        root.right = b_delete_node(root.right, key)\n    else:\n        if root.left is None:\n            return root.right\n        elif root.right is None:\n            return root.left\n        else:\n            min_node = b_find_min_node(root.right)\n            root.key = min_node.key\n            root.right = b_delete_node(root.right, min_node.key)\n\n    return root\n\ndef b_find_min_node(node):\n    current = node\n    while current.left is not None:\n        current = current.left\n    return current\n\nclass Node:\n    def __init__(self, key):\n        self.key = key\n        self.left = None\n        self.right = None\n```"

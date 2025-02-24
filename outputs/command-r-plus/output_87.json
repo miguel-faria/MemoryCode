@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, data_j):\n        self.data_j = data_j\n        self.next_j = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_j = None\n\n    def append(self, data_j):\n        if not self.head_j:\n            self.head_j = Node(data_j)\n        else:\n            curr_j = self.head_j\n            while curr_j.next_j:\n                curr_j = curr_j.next_j\n            curr_j.next_j = Node(data_j)\n\n    def display(self):\n        curr_j = self.head_j\n        while curr_j:\n            print(curr_j.data_j, end=\" -> \")\n            curr_j = curr_j.next_j\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def append(self, value):\n        if not self.head:\n            self.head = Node(value)\n        else:\n            current = self.head\n            while current.next_:\n                current = current.next_\n            current.next_ = Node(value)\n\n    def delete(self, value):\n        if self.head and self.head.value == value:\n            self.head = self.head.next_\n        else:\n            current = self.head\n            prev = None\n            while current and current.value != value:\n                prev = current\n                current = current.next_\n            if current:\n                prev.next_ = current.next_\n\n    def search(self, value):\n        current = self.head\n        while current:\n            if current.value == value:\n                return True\n            current = current.next_\n        return False\n\n    def display(self):\n        current = self.head\n        while current:\n            print(current.value, end=\" -> \")\n            current = current current.next_\n        print(\"None\")\n\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.next_ = None\n```"
       ]
     }

@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_wr):\n    s_wr = s_wr.lower()\n    return s_wr == s_wr[::-1]"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "def is_palindrome(input_string_wr: str) -> bool:\n    cleaned_string_wr = ''.join(char_wr.lower() for char_wr in input_string_wr if char_wr.isalnum())\n    return cleaned_string_wr == cleaned_string_wr[::-1]"
       ]
     }

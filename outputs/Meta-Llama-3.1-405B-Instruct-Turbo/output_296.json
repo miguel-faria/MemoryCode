@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_str_wr):\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_str_wr (str): The input string to check.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_str_wr = ''.join(char_wr for char_wr in input_str_wr if char_wr.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_str_wr == cleaned_str_wr[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,22 +18,22 @@
         "```python\nimport numpy as np\nfrom sklearn.base import BaseEstimator, RegressorMixin\n\nclass LassoRegression(BaseEstimator, RegressorMixin):\n    \"\"\"\n    A class for Lasso regression.\n\n    Attributes:\n    ----------\n    alpha : float\n        The regularization parameter.\n    max_iter : int\n        The maximum number of iterations.\n    tol : float\n        The tolerance for convergence.\n    weights : array\n        The weights of the model.\n    \"\"\"\n\n    def __init__(self, alpha=0.1, max_iter=1000, tol=1e-4):\n        \"\"\"\n        Initialize the Lasso regression model.\n\n        Parameters:\n        ----------\n        alpha : float, optional (default=0.1)\n            The regularization parameter.\n        max_iter : int, optional (default=1000)\n            The maximum number of iterations.\n        tol : float, optional (default=1e-4)\n            The tolerance for convergence.\n        \"\"\"\n        self.alpha = alpha\n        self.max_iter = max_iter\n        self.tol = tol\n        self.weights = None\n\n    def _soft_threshold(self, rho):\n        \"\"\"\n        Soft threshold function.\n\n        Parameters:\n        ----------\n        rho : array\n            The input array.\n\n        Returns:\n        -------\n        array\n            The output array after applying the soft threshold.\n        \"\"\"\n        try:\n            return np.sign(rho) * np.maximum(np.abs(rho) - self.alpha, 0)\n        except Exception as e:\n            raise Exception(f\"Error in _soft_threshold: {str(e)}\")\n\n    def train(self, X, y):\n        \"\"\"\n        Train the Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n        y : array\n            The target vector.\n        \"\"\"\n        try:\n            n_samples, n_features = X.shape\n            self.weights = np.zeros(n_features)\n            X_transpose = X.T\n\n            for _ in range(self.max_iter):\n                prev_weights = self.weights.copy()\n                residuals = y - np.dot(X, self.weights)\n                rho = np.dot(X_transpose, residuals) / n_samples\n                self.weights = self._soft_threshold(prev_weights + rho)\n\n                if np.linalg.norm(self.weights - prev_weights) < self.tol:\n                    break\n\n        except Exception as e:\n            raise Exception(f\"Error in train: {str(e)}\")\n\n    def predict(self, X):\n        \"\"\"\n        Make predictions using the trained Lasso regression model.\n\n        Parameters:\n        ----------\n        X : array\n            The feature matrix.\n\n        Returns:\n        -------\n        array\n            The predicted values.\n        \"\"\"\n        try:\n            if self.weights is None:\n                raise Exception(\"Model not trained. Please call train method first.\")\n\n            return np.dot(X, self.weights)\n\n        except Exception as e:\n            raise Exception(f\"Error in predict: {str(e)}\")\n```",
         "```python\ndef is_palindrome(input_string_w: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_w (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_w = ''.join(char_w for char_w in input_string_w if char_w.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_w == cleaned_string_w[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -44,7 +44,7 @@
         "```python\nimport heapq\nfrom typing import List, Optional\n\ndef kth_largest_element(nums: List[int], k: int) -> Optional[int]:\n    \"\"\"\n    Returns the kth largest element in the given array.\n\n    Args:\n    - nums: A list of integers.\n    - k: The position of the element to be found (1-indexed).\n\n    Returns:\n    - The kth largest element if it exists, otherwise None.\n    \"\"\"\n    if not nums or k < 1 or k > len(nums):\n        return None\n\n    # Use a min heap to store the k largest elements\n    min_heap = []\n    for num in nums:\n        # Push the number onto the heap\n        heapq.heappush(min_heap, num)\n        \n        # If the heap size exceeds k, pop the smallest element\n        if len(min_heap) > k:\n            heapq.heappop(min_heap)\n\n    # The kth largest element is the smallest element in the heap\n    return min_heap[0]\n```",
         "```python\nimport torch\nimport torch.nn as nn\n\nclass binary_image_classifier(nn.Module):\n    \"\"\"\n    A PyTorch model class for binary image classification.\n\n    Attributes:\n        num_channels (int): The number of input channels in the images.\n    \"\"\"\n\n    def __init__(self, num_channels: int):\n        \"\"\"\n        Initializes the binary image classifier model.\n\n        Args:\n            num_channels (int): The number of input channels in the images.\n        \"\"\"\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3)\n        self.conv3 = nn.Conv2d(64, 128, kernel_size=3)\n        self.max_pool = nn.MaxPool2d(2, 2)\n        self.dropout = nn.Dropout(p=0.2)\n        self.fc1 = nn.Linear(128 * 4 * 4, 128)\n        self.fc2 = nn.Linear(128, 2)\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        \"\"\"\n        Defines the forward pass of the model.\n\n        Args:\n            x (torch.Tensor): The input tensor.\n\n        Returns:\n            torch.Tensor: The output tensor.\n        \"\"\"\n        x = torch.relu(self.conv1(x))\n        x = self.max_pool(x)\n        x = torch.relu(self.conv2(x))\n        x = self.max_pool(x)\n        x = torch.relu(self.conv3(x))\n        x = self.max_pool(x)\n        x = x.view(-1, 128 * 4 * 4)\n        x = torch.relu(self.fc1(x))\n        x = self.dropout(x)\n        x = self.fc2(x)\n        return x\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -53,7 +53,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_z: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_z (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_z = ''.join(char_z for char_z in input_string_z if char_z.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_z == cleaned_string_z[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -62,7 +62,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_str_vr: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_str_vr (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_str_vr = ''.join(char_vr for char_vr in input_str_vr if char_vr.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_str_vr == cleaned_str_vr[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -71,7 +71,7 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    \"\"\"Represents a node in a binary tree.\"\"\"\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef is_valid_bst(root):\n    \"\"\"\n    Determines if a given tree is a valid binary search tree.\n\n    Args:\n    root (TreeNode): The root of the tree.\n\n    Returns:\n    bool: True if the tree is a valid binary search tree, False otherwise.\n    \"\"\"\n    try:\n        def is_valid_bst_helper(node, min_value, max_value):\n            # Base case: An empty tree is a valid binary search tree.\n            if node is None:\n                return True\n\n            # Check if the current node's value is within the valid range.\n            if not min_value < node.value < max_value:\n                return False\n\n            # Recursively check the left and right subtrees.\n            return (is_valid_bst_helper(node.left, min_value, node.value) and\n                    is_valid_bst_helper(node.right, node.value, max_value))\n\n        # Initialize the valid range for the root node.\n        return is_valid_bst_helper(root, float('-inf'), float('inf'))\n    except Exception as e:\n        # Log or handle the exception as needed.\n        print(f\"An error occurred: {e}\")\n        return False\n```\n\nThis function uses a recursive helper function to check each node in the tree. It ensures that each node's value is within the valid range defined by its ancestors, and that the left and right subtrees are also valid binary search trees. If any node fails these checks, the function returns False. If all nodes pass, the function returns True. The try-except block catches any exceptions that may occur during the function's execution."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -80,12 +80,12 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_y: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_y (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_y = ''.join(char_y for char_y in input_string_y if char_y.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_y == cleaned_string_y[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -94,7 +94,7 @@
       "instruction_model_output": [
         "```python\nfrom typing import Dict, List\n\nclass DirectedGraph:\n    \"\"\"\n    A class representing a directed graph.\n\n    Attributes:\n    graph (Dict): A dictionary representing the adjacency list of the graph.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty graph.\n        \"\"\"\n        self.graph = {}\n\n    def add_vertex1(self, vertex: str):\n        \"\"\"\n        Adds a vertex to the graph.\n\n        Args:\n        vertex (str): The vertex to be added.\n        \"\"\"\n        if vertex not in self.graph:\n            self.graph[vertex] = []\n\n    def add_edge1(self, vertex1: str, vertex2: str):\n        \"\"\"\n        Adds a directed edge from vertex1 to vertex2.\n\n        Args:\n        vertex1 (str): The source vertex.\n        vertex2 (str): The destination vertex.\n        \"\"\"\n        if vertex1 in self.graph and vertex2 in self.graph:\n            self.graph[vertex1].append(vertex2)\n\n    def is_cyclic1(self) -> bool:\n        \"\"\"\n        Checks if the graph contains a cycle.\n\n        Returns:\n        bool: True if the graph contains a cycle, False otherwise.\n        \"\"\"\n        visited = set()\n        recursion_stack = set()\n\n        for vertex in self.graph:\n            if vertex not in visited:\n                if self._is_cyclic_util(vertex, visited, recursion_stack):\n                    return True\n\n        return False\n\n    def _is_cyclic_util(self, vertex: str, visited: set, recursion_stack: set) -> bool:\n        \"\"\"\n        A helper function to check if the graph contains a cycle.\n\n        Args:\n        vertex (str): The current vertex.\n        visited (set): A set of visited vertices.\n        recursion_stack (set): A set of vertices in the current recursion stack.\n\n        Returns:\n        bool: True if the graph contains a cycle, False otherwise.\n        \"\"\"\n        visited.add(vertex)\n        recursion_stack.add(vertex)\n\n        for neighbor in self.graph[vertex]:\n            if neighbor not in visited:\n                if self._is_cyclic_util(neighbor, visited, recursion_stack):\n                    return True\n            elif neighbor in recursion_stack:\n                return True\n\n        recursion_stack.remove(vertex)\n        return False\n```\n\nThis implementation uses a depth-first search (DFS) approach to detect cycles in the graph. The `is_cyclic1` method iterates over all vertices in the graph and calls the `_is_cyclic_util` helper function to perform the DFS traversal. If a cycle is detected, the method returns True; otherwise, it returns False."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -105,7 +105,7 @@
         "```python\ndef is_palindrome(input_string_m: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_m (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_m = ''.join(char_m for char_m in input_string_m if char_m.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_m == cleaned_string_m[::-1]\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    s_capacity (int): The maximum number of items the cache can hold.\n    s_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.s_capacity = capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.s_cache:\n            value = self.s_cache.pop(key)\n            self.s_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.s_cache:\n            self.s_cache.pop(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            self.s_cache.popitem(last=False)  # Remove the least recently used item\n        self.s_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -116,17 +116,17 @@
         "```python\nimport locale\nimport math\n\ndef least_common_multiple(a: int, b: int) -> int:\n    \"\"\"\n    Returns the least common multiple of two integers.\n\n    Args:\n        a (int): The first integer.\n        b (int): The second integer.\n\n    Returns:\n        int: The least common multiple of a and b.\n    \"\"\"\n    # Calculate the greatest common divisor of a and b\n    gcd = math.gcd(a, b)\n    \n    # The least common multiple is the product of a and b divided by their gcd\n    lcm = abs(a * b) // gcd\n    \n    return lcm\n```",
         "```python\ndef is_palindrome(input_string_n: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_n (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_n = ''.join(char_n for char_n in input_string_n if char_n.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_n == cleaned_string_n[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -135,17 +135,17 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    q_capacity (int): The maximum number of items the cache can hold.\n    q_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.q_capacity = capacity\n        self.q_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.q_cache:\n            value = self.q_cache.pop(key)\n            self.q_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.q_cache:\n            self.q_cache.pop(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            self.q_cache.popitem(last=False)  # Remove the least recently used item\n        self.q_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -156,7 +156,7 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    at_capacity (int): The maximum number of items the cache can hold.\n    at_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.at_capacity = capacity\n        self.at_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.at_cache:\n            value = self.at_cache.pop(key)\n            self.at_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.at_cache:\n            self.at_cache.pop(key)\n        elif len(self.at_cache) >= self.at_capacity:\n            self.at_cache.popitem(last=False)  # Remove the least recently used item\n        self.at_cache[key] = value\n```\n\nThis implementation uses an `OrderedDict` to store the cache items, which automatically keeps track of the order in which items were inserted or accessed. The `get` method moves the accessed key to the end of the dictionary to mark it as recently used, and the `put` method removes the least recently used item if the cache is full.",
         "```python\nimport numpy as np\n\ndef compute_diagonal_average(matrix):\n    \"\"\"\n    Compute the average of the diagonal elements of a matrix.\n\n    Args:\n        matrix (numpy.ndarray): A 2D numpy array representing the matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n\n    Raises:\n        AssertionError: If the input matrix is not a square matrix.\n    \"\"\"\n    assert isinstance(matrix, np.ndarray), \"Input matrix must be a numpy array\"\n    assert matrix.ndim == 2, \"Input matrix must be a 2D array\"\n    assert matrix.shape[0] == matrix.shape[1], \"Input matrix must be a square matrix\"\n\n    diagonal_elements = np.diag(matrix)\n    average = np.mean(diagonal_elements)\n\n    assert np.isfinite(average), \"Average of diagonal elements is not a finite number\"\n\n    return average\n```\n\nThis function uses the `numpy` library to efficiently compute the diagonal elements and their average. It includes assertions to ensure that the input matrix is a square matrix and that the computed average is a finite number."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -165,7 +165,7 @@
       "instruction_model_output": [
         "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Converts an integer to Roman numerals.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The Roman numeral representation of the input integer.\n    \"\"\"\n\n    # Define a dictionary to map integers to their corresponding Roman numerals\n    roman_numerals = {\n        1000: 'M',\n        900: 'CM',\n        500: 'D',\n        400: 'CD',\n        100: 'C',\n        90: 'XC',\n        50: 'L',\n        40: 'XL',\n        10: 'X',\n        9: 'IX',\n        5: 'V',\n        4: 'IV',\n        1: 'I'\n    }\n\n    # Initialize an empty string to store the Roman numeral representation\n    roman_num = ''\n\n    # Iterate over the dictionary in descending order of integer values\n    for value, numeral in sorted(roman_numerals.items(), reverse=True):\n        # Calculate the number of times the current Roman numeral can fit into the number\n        count = num // value\n        \n        # Subtract the value of the current Roman numeral times the count from the number\n        num -= count * value\n        \n        # Append the current Roman numeral times the count to the result string\n        roman_num += numeral * count\n\n    # Return the Roman numeral representation of the input integer\n    return roman_num\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -176,32 +176,32 @@
         "```python\nclass Node:\n    \"\"\"Represents a node in the binary tree.\"\"\"\n    \n    def __init__(self, value: int):\n        \"\"\"\n        Initializes a new node with the given value.\n\n        Args:\n        value (int): The value of the node.\n        \"\"\"\n        self.value = value\n        self.left = None\n        self.right = None\n\n\nclass BinaryTree:\n    \"\"\"Represents a binary tree.\"\"\"\n    \n    def __init__(self):\n        \"\"\"\n        Initializes an empty binary tree.\n        \"\"\"\n        self.root = None\n\n    def insert(self, value: int) -> None:\n        \"\"\"\n        Inserts a new node with the given value into the binary tree.\n\n        Args:\n        value (int): The value of the node to insert.\n        \"\"\"\n        if not self.root:\n            self.root = Node(value)\n        else:\n            self._insert_recursive(self.root, value)\n\n    def _insert_recursive(self, current_node: Node, value: int) -> None:\n        \"\"\"\n        Recursively inserts a new node into the binary tree.\n\n        Args:\n        current_node (Node): The current node being processed.\n        value (int): The value of the node to insert.\n        \"\"\"\n        if value < current_node.value:\n            if current_node.left is None:\n                current_node.left = Node(value)\n            else:\n                self._insert_recursive(current_node.left, value)\n        else:\n            if current_node.right is None:\n                current_node.right = Node(value)\n            else:\n                self._insert_recursive(current_node.right, value)\n\n    def delete(self, value: int) -> None:\n        \"\"\"\n        Deletes the node with the given value from the binary tree.\n\n        Args:\n        value (int): The value of the node to delete.\n        \"\"\"\n        self.root = self._delete_recursive(self.root, value)\n\n    def _delete_recursive(self, current_node: Node, value: int) -> Node:\n        \"\"\"\n        Recursively deletes a node from the binary tree.\n\n        Args:\n        current_node (Node): The current node being processed.\n        value (int): The value of the node to delete.\n\n        Returns:\n        Node: The updated current node.\n        \"\"\"\n        if current_node is None:\n            return current_node\n\n        if value < current_node.value:\n            current_node.left = self._delete_recursive(current_node.left, value)\n        elif value > current_node.value:\n            current_node.right = self._delete_recursive(current_node.right, value)\n        else:\n            if current_node.left is None:\n                return current_node.right\n            elif current_node.right is None:\n                return current_node.left\n            else:\n                min_value = self._find_min(current_node.right)\n                current_node.value = min_value\n                current_node.right = self._delete_recursive(current_node.right, min_value)\n\n        return current_node\n\n    def _find_min(self, current_node: Node) -> int:\n        \"\"\"\n        Finds the minimum value in the given subtree.\n\n        Args:\n        current_node (Node): The root of the subtree.\n\n        Returns:\n        int: The minimum value in the subtree.\n        \"\"\"\n        while current_node.left is not None:\n            current_node = current_node.left\n        return current_node.value\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    j_capacity (int): The maximum number of items the cache can hold.\n    j_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.j_capacity = capacity\n        self.j_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.j_cache:\n            value = self.j_cache.pop(key)\n            self.j_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.j_cache:\n            self.j_cache.pop(key)\n        elif len(self.j_cache) >= self.j_capacity:\n            self.j_cache.popitem(last=False)  # Remove the least recently used item\n        self.j_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -212,7 +212,7 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    xt_capacity (int): The maximum number of items the cache can hold.\n    xt_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.xt_capacity = capacity\n        self.xt_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.xt_cache:\n            value = self.xt_cache.pop(key)\n            self.xt_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.xt_cache:\n            self.xt_cache.pop(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            self.xt_cache.popitem(last=False)  # Remove the least recently used item\n        self.xt_cache[key] = value\n```\n\nThis implementation uses an `OrderedDict` to store the cache items, which allows for efficient insertion, deletion, and retrieval of items while maintaining the order of the items. The `get` method retrieves the value associated with a given key and moves the key to the end of the ordered dictionary to mark it as recently used. The `put` method inserts or updates a key-value pair in the cache, removing the least recently used item if the cache is full.",
         "```python\nimport numpy as np\nfrom scipy.stats import multivariate_normal\nfrom pedantic import timer_class\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    \"\"\"\n    Quadratic Discriminant Analysis (QDA) classifier.\n\n    Attributes:\n    -----------\n    priors : array-like of shape (n_classes,)\n        Prior probabilities of each class.\n    means : array-like of shape (n_classes, n_features)\n        Mean vectors of each class.\n    covariances : array-like of shape (n_classes, n_features, n_features)\n        Covariance matrices of each class.\n    classes : array-like of shape (n_classes,)\n        Unique class labels.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initialize the QDA classifier.\n        \"\"\"\n        self.priors = None\n        self.means = None\n        self.covariances = None\n        self.classes = None\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the QDA classifier to the training data.\n\n        Parameters:\n        -----------\n        X : array-like of shape (n_samples, n_features)\n            Training data.\n        y : array-like of shape (n_samples,)\n            Target values.\n        \"\"\"\n        self.classes = np.unique(y)\n        n_classes = len(self.classes)\n        n_samples, n_features = X.shape\n\n        self.priors = np.zeros(n_classes)\n        self.means = np.zeros((n_classes, n_features))\n        self.covariances = np.zeros((n_classes, n_features, n_features))\n\n        for i, c in enumerate(self.classes):\n            X_c = X[y == c]\n            self.priors[i] = X_c.shape[0] / n_samples\n            self.means[i] = np.mean(X_c, axis=0)\n            self.covariances[i] = np.cov(X_c, rowvar=False)\n\n    def predict(self, X):\n        \"\"\"\n        Predict the class labels of the test data.\n\n        Parameters:\n        -----------\n        X : array-like of shape (n_samples, n_features)\n            Test data.\n\n        Returns:\n        --------\n        y_pred : array-like of shape (n_samples,)\n            Predicted class labels.\n        \"\"\"\n        n_samples, _ = X.shape\n        y_pred = np.zeros(n_samples)\n\n        for i, x in enumerate(X):\n            max_prob = -np.inf\n            predicted_class = None\n\n            for j, c in enumerate(self.classes):\n                prob = self._posterior_probability(x, j)\n                if prob > max_prob:\n                    max_prob = prob\n                    predicted_class = c\n\n            y_pred[i] = predicted_class\n\n        return y_pred\n\n    def _posterior_probability(self, x, class_index):\n        \"\"\"\n        Calculate the posterior probability of a sample belonging to a class.\n\n        Parameters:\n        -----------\n        x : array-like of shape (n_features,)\n            Sample.\n        class_index : int\n            Index of the class.\n\n        Returns:\n        --------\n        prob : float\n            Posterior probability.\n        \"\"\"\n        prior = self.priors[class_index]\n        mean = self.means[class_index]\n        covariance = self.covariances[class_index]\n\n        likelihood = multivariate_normal.pdf(x, mean=mean, cov=covariance)\n        prob = prior * likelihood\n\n        return prob\n```\n\nThis implementation provides a Quadratic Discriminant Analysis (QDA) classifier with methods for fitting the model to training data and predicting class labels of test data. The QDA classifier assumes that each class has a multivariate normal distribution with a different covariance matrix. The posterior probability of a sample belonging to a class is calculated using Bayes' theorem, and the class with the highest posterior probability is predicted."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -221,17 +221,17 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_x: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_x (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_x = ''.join(char_x for char_x in input_string_x if char_x.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_x == cleaned_string_x[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -240,12 +240,12 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\nfrom pedantic import trace_class\n\n@trace_class\nclass KernelRidgeRegression:\n    \"\"\"\n    Kernel Ridge Regression class.\n\n    Attributes:\n    -----------\n    alpha : float\n        Regularization strength.\n    kernel : callable\n        Kernel function.\n    X_train : array-like\n        Training data.\n    y_train : array-like\n        Target values.\n    \"\"\"\n\n    def __init__(self, alpha=1.0, kernel=None):\n        \"\"\"\n        Initialize the Kernel Ridge Regression object.\n\n        Parameters:\n        -----------\n        alpha : float, optional (default=1.0)\n            Regularization strength.\n        kernel : callable, optional (default=None)\n            Kernel function. If None, a linear kernel is used.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel if kernel is not None else self.linear_kernel\n        self.X_train = None\n        self.y_train = None\n\n    @staticmethod\n    def linear_kernel(x, y):\n        \"\"\"\n        Linear kernel function.\n\n        Parameters:\n        -----------\n        x : array-like\n            First input.\n        y : array-like\n            Second input.\n\n        Returns:\n        --------\n        array-like\n            Linear kernel result.\n        \"\"\"\n        return np.dot(x, y.T)\n\n    def _compute_kernel_matrix(self, X):\n        \"\"\"\n        Compute the kernel matrix.\n\n        Parameters:\n        -----------\n        X : array-like\n            Input data.\n\n        Returns:\n        --------\n        array-like\n            Kernel matrix.\n        \"\"\"\n        n_samples = X.shape[0]\n        kernel_matrix = np.zeros((n_samples, n_samples))\n        for i in range(n_samples):\n            for j in range(i, n_samples):\n                kernel_matrix[i, j] = self.kernel(X[i], X[j])\n                kernel_matrix[j, i] = kernel_matrix[i, j]\n        return kernel_matrix\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the model to the training data.\n\n        Parameters:\n        -----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target values.\n        \"\"\"\n        self.X_train = X\n        self.y_train = y\n        kernel_matrix = self._compute_kernel_matrix(X)\n        n_samples = X.shape[0]\n        self.weights = np.linalg.solve(kernel_matrix + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        \"\"\"\n        Predict the target values for the given input data.\n\n        Parameters:\n        -----------\n        X : array-like\n            Input data.\n\n        Returns:\n        --------\n        array-like\n            Predicted target values.\n        \"\"\"\n        kernel_matrix = np.zeros((X.shape[0], self.X_train.shape[0]))\n        for i in range(X.shape[0]):\n            for j in range(self.X_train.shape[0]):\n                kernel_matrix[i, j] = self.kernel(X[i], self.X_train[j])\n        return np.dot(kernel_matrix, self.weights)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -256,7 +256,7 @@
         "```python\ndef compute_dot_product(vector1_chx, vector2_chx):\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector1_chx (list): The first vector.\n        vector2_chx (list): The second vector.\n\n    Returns:\n        float: The dot product of the two vectors.\n\n    Raises:\n        ValueError: If the vectors are not of the same length.\n    \"\"\"\n    if len(vector1_chx) != len(vector2_chx):\n        raise ValueError(\"Vectors must be of the same length\")\n\n    return sum(a * b for a, b in zip(vector1_chx, vector2_chx))\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    t_capacity (int): The maximum number of items the cache can hold.\n    t_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.t_capacity = capacity\n        self.t_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.t_cache:\n            value = self.t_cache.pop(key)\n            self.t_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.t_cache:\n            self.t_cache.pop(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            self.t_cache.popitem(last=False)  # Remove the least recently used item\n        self.t_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -265,7 +265,7 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    r_capacity (int): The maximum number of items the cache can hold.\n    r_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.r_capacity = capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.r_cache:\n            value = self.r_cache.pop(key)\n            self.r_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.r_cache:\n            self.r_cache.pop(key)\n        elif len(self.r_cache) >= self.r_capacity:\n            self.r_cache.popitem(last=False)  # Remove the least recently used item\n        self.r_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -274,7 +274,7 @@
       "instruction_model_output": [
         "```python\nimport numpy as np\n\nclass PCA1:\n    \"\"\"\n    Principal Component Analysis (PCA) class.\n\n    Attributes:\n    -----------\n    n_components : int\n        Number of principal components to retain.\n    explained_variance_ratio_ : array, [n_components]\n        Percentage of variance explained by each of the selected components.\n    components_ : array, [n_components, n_features]\n        Principal axes (eigenvectors) of the covariance matrix.\n    \"\"\"\n\n    def __init__(self, n_components=None):\n        \"\"\"\n        Initialize the PCA class.\n\n        Parameters:\n        -----------\n        n_components : int, optional\n            Number of principal components to retain. If None, all components are retained.\n        \"\"\"\n        self.n_components = n_components\n        self.explained_variance_ratio_ = None\n        self.components_ = None\n\n    def _center_data(self, X):\n        \"\"\"\n        Center the data by subtracting the mean.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_centered : array, [n_samples, n_features]\n            Centered data.\n        \"\"\"\n        return X - np.mean(X, axis=0)\n\n    def _compute_covariance(self, X_centered):\n        \"\"\"\n        Compute the covariance matrix.\n\n        Parameters:\n        -----------\n        X_centered : array, [n_samples, n_features]\n            Centered data.\n\n        Returns:\n        --------\n        cov : array, [n_features, n_features]\n            Covariance matrix.\n        \"\"\"\n        return np.cov(X_centered.T)\n\n    def _compute_eigenvectors(self, cov):\n        \"\"\"\n        Compute the eigenvectors and eigenvalues of the covariance matrix.\n\n        Parameters:\n        -----------\n        cov : array, [n_features, n_features]\n            Covariance matrix.\n\n        Returns:\n        --------\n        eigenvectors : array, [n_features, n_features]\n            Eigenvectors of the covariance matrix.\n        eigenvalues : array, [n_features]\n            Eigenvalues of the covariance matrix.\n        \"\"\"\n        eigenvalues, eigenvectors = np.linalg.eig(cov)\n        idx = np.argsort(-eigenvalues)\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        return eigenvectors, eigenvalues\n\n    def fit(self, X):\n        \"\"\"\n        Fit the PCA model to the data.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n        \"\"\"\n        X_centered = self._center_data(X)\n        cov = self._compute_covariance(X_centered)\n        eigenvectors, eigenvalues = self._compute_eigenvectors(cov)\n\n        if self.n_components is not None:\n            eigenvectors = eigenvectors[:, :self.n_components]\n            eigenvalues = eigenvalues[:self.n_components]\n\n        self.components_ = eigenvectors\n        self.explained_variance_ratio_ = eigenvalues / np.sum(eigenvalues)\n\n    def transform(self, X):\n        \"\"\"\n        Transform the data using the fitted PCA model.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_transformed : array, [n_samples, n_components]\n            Transformed data.\n        \"\"\"\n        X_centered = self._center_data(X)\n        return np.dot(X_centered, self.components_)\n\n    def fit_transform(self, X):\n        \"\"\"\n        Fit the PCA model to the data and transform the data.\n\n        Parameters:\n        -----------\n        X : array, [n_samples, n_features]\n            Input data.\n\n        Returns:\n        --------\n        X_transformed : array, [n_samples, n_components]\n            Transformed data.\n        \"\"\"\n        self.fit(X)\n        return self.transform(X)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -283,22 +283,22 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"\n    A Least Recently Used (LRU) cache class.\n\n    Attributes:\n    i_capacity (int): The maximum number of items the cache can hold.\n    i_cache (OrderedDict): An ordered dictionary to store the cache items.\n    \"\"\"\n\n    def __init__(self, capacity: int):\n        \"\"\"\n        Initializes the LRU cache with a given capacity.\n\n        Args:\n        capacity (int): The maximum number of items the cache can hold.\n        \"\"\"\n        self.i_capacity = capacity\n        self.i_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        \"\"\"\n        Retrieves the value associated with a given key from the cache.\n\n        Args:\n        key (int): The key to retrieve the value for.\n\n        Returns:\n        int: The value associated with the key if it exists in the cache, otherwise -1.\n        \"\"\"\n        if key in self.i_cache:\n            value = self.i_cache.pop(key)\n            self.i_cache[key] = value  # Move the key to the end to mark it as recently used\n            return value\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        \"\"\"\n        Inserts or updates a key-value pair in the cache.\n\n        Args:\n        key (int): The key to insert or update.\n        value (int): The value associated with the key.\n        \"\"\"\n        if key in self.i_cache:\n            self.i_cache.pop(key)\n        elif len(self.i_cache) >= self.i_capacity:\n            self.i_cache.popitem(last=False)  # Remove the least recently used item\n        self.i_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef kth_largest_element(arr, k):\n    \"\"\"\n    Returns the kth largest element in the given array.\n\n    Parameters:\n    arr (list): The input array.\n    k (int): The position of the element to be found (1-indexed).\n\n    Returns:\n    int: The kth largest element in the array.\n    \"\"\"\n    # Check if k is within the bounds of the array\n    assert 1 <= k <= len(arr), \"k is out of bounds\"\n\n    # Sort the array in descending order\n    arr.sort(reverse=True)\n\n    # Return the kth largest element\n    return arr[k - 1]\n```\n\nHowever, according to the latest coding guidelines provided by Yuichi, I need to make the following adjustments:\n\n- Use the `@timer_class` decorator from the `pedantic` module for performance profiling and code optimization.\n- Start attribute names with `xt_` as a prefix.\n- Use the `@trace_class` decorator from the `pedantic` module for debugging and understanding the flow of the code.\n- Include a single digit in the class name.\n- End variable names with `_m`.\n- Use snake_case for class names.\n- Use VSCode as the preferred IDE.\n- Use the `locale` module for localization and formatting.\n- Avoid using a debugger and instead rely on print statements for debugging.\n- Use TPUs instead of GPUs for training neural networks.\n- Use Emacs as the preferred IDE (this seems to be a contradiction with the previous guideline to use VSCode, but I will follow the latest guideline).\n- Use the `pre-commit` framework for managing pre-commit hooks.\n- Start attribute names with `r_` as a prefix (this seems to be a contradiction with the previous guideline to start attribute names with `xt_`, but I will follow the latest guideline).\n- Use Vim as the primary IDE (this seems to be a contradiction with the previous guidelines to use VSCode and Emacs, but I will follow the latest guideline).\n- Include a single digit in the class name.\n- Start attribute names with `i_` as a prefix (this seems to be a contradiction with the previous guidelines to start attribute names with `xt_` and `r_`, but I will follow the latest guideline).\n\nHere is the updated code:\n\n```python\nfrom pedantic import timer_class, trace_class\n\n@timer_class\n@trace_class\nclass KthLargestElement8:\n    def __init__(self, arr_m, k_m):\n        \"\"\"\n        Initializes the KthLargestElement8 class.\n\n        Parameters:\n        arr_m (list): The input array.\n        k_m (int): The position of the element to be found (1-indexed).\n        \"\"\"\n        self.xt_arr_m = arr_m\n        self.xt_k_m = k_m\n\n    def find_kth_largest(self):\n        \"\"\"\n        Returns the kth largest element in the given array.\n\n        Returns:\n        int: The kth largest element in the array.\n        \"\"\"\n        # Check if k is within the bounds of the array\n        assert 1 <= self.xt_k_m <= len(self.xt_arr_m), \"k is out of bounds\"\n\n        # Sort the array in descending order\n        self.xt_arr_m.sort(reverse=True)\n\n        # Return the kth largest element\n        return self.xt_arr_m[self.xt_k_m - 1]\n```\n\nPlease note that the updated code may not be consistent with all the guidelines provided, as some of them seem to be contradictory. It's recommended to review the guidelines and update the code accordingly to ensure consistency and accuracy.",
         "```python\nclass DirectedGraph:\n    def __init__(self):\n        self._t_vertices = set()\n        self._t_edges = {}\n\n    def add_vertex(self, vertex):\n        self._t_vertices.add(vertex)\n        if vertex not in self._t_edges:\n            self._t_edges[vertex] = []\n\n    def add_edge(self, vertex1, vertex2):\n        if vertex1 in self._t_vertices and vertex2 in self._t_vertices:\n            self._t_edges[vertex1].append(vertex2)\n\n    def has_cycle(self):\n        visited = set()\n        recursion_stack = set()\n\n        for vertex in self._t_vertices:\n            if vertex not in visited:\n                if self._has_cycle_util(vertex, visited, recursion_stack):\n                    return True\n\n        return False\n\n    def _has_cycle_util(self, vertex, visited, recursion_stack):\n        visited.add(vertex)\n        recursion_stack.add(vertex)\n\n        for neighbor in self._t_edges.get(vertex, []):\n            if neighbor not in visited:\n                if self._has_cycle_util(neighbor, visited, recursion_stack):\n                    return True\n            elif neighbor in recursion_stack:\n                return True\n\n        recursion_stack.remove(vertex)\n        return False\n```\n\nThis implementation follows the provided guidelines, including the use of the 't_' prefix for attribute names. The `has_cycle` method checks for the presence of cycles in the directed graph using a recursive approach with a helper function `_has_cycle_util`. The `add_vertex` and `add_edge` methods allow you to construct the graph.",
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Converts an integer to Roman numerals.\n\n    Args:\n        num (int): The integer to convert.\n\n    Returns:\n        str: The Roman numeral representation of the integer.\n    \"\"\"\n    try:\n        val = [\n            1000, 900, 500, 400,\n            100, 90, 50, 40,\n            10, 9, 5, 4,\n            1\n        ]\n        syb = [\n            \"M\", \"CM\", \"D\", \"CD\",\n            \"C\", \"XC\", \"L\", \"XL\",\n            \"X\", \"IX\", \"V\", \"IV\",\n            \"I\"\n        ]\n        roman_num = ''\n        i = 0\n        while  num > 0:\n            for _ in range(num // val[i]):\n                roman_num += syb[i]\n                num -= val[i]\n            i += 1\n        return roman_num\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n```",

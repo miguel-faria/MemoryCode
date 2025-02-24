@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome_n(s_n: str) -> bool:\n    s_n = ''.join(char_n.lower() for char_n in s_n if char_n.isalnum())\n    return s_n == s_n[::-1]\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef is_palindrome_n(input_string_n):\n    filtered_string_n = ''.join(char_n.lower() for char_n in input_string_n if char_n.isalnum())\n    return filtered_string_n == filtered_string_n[::-1]\n```"
       ]
     }

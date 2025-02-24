@@ -3,17 +3,17 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -24,7 +24,7 @@
         "```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef majority_element(nums: List[int]) -> int:\n    \"\"\"\n    Returns the majority element of an array.\n    \n    The majority element is the element that appears more than n/2 times where n is the size of the array.\n    \n    This function uses the Boyer-Moore Majority Vote algorithm, which works by essentially keeping a counter for the majority element. \n    If the counter is 0, the algorithm sets the current element as the majority element. \n    Then, it increments the counter if it encounters the same element again, otherwise it decrements the counter.\n    \"\"\"\n    count = 0\n    candidate = None\n\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n\n    return candidate\n```\n\nPlease note that the Boyer-Moore Majority Vote algorithm assumes that a majority element always exists in the array. If that's not the case, you would need to add an additional step to confirm that the candidate is indeed a majority element by counting its occurrences in the array. \n\nHere's how you can modify the function to handle that:\n\n```python\nfrom pedantic import count_calls\nfrom typing import List\n\n@count_calls\ndef majority_element(nums: List[int]) -> int:\n    \"\"\"\n    Returns the majority element of an array.\n    \n    The majority element is the element that appears more than n/2 times where n is the size of the array.\n    \n    This function uses the Boyer-Moore Majority Vote algorithm, which works by essentially keeping a counter for the majority element. \n    If the counter is 0, the algorithm sets the current element as the majority element. \n    Then, it increments the counter if it encounters the same element again, otherwise it decrements the counter.\n    \"\"\"\n    count = 0\n    candidate = None\n\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n\n    # Confirm that the candidate is indeed a majority element\n    if nums.count(candidate) > len(nums) / 2:\n        return candidate\n    else:\n        raise ValueError(\"No majority element found in the array\")\n```",
         "```python\ndef is_palindrome(input_string_y: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_y (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_y = ''.join(char_y for char_y in input_string_y if char_y.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_y == cleaned_string_y[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -33,12 +33,12 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_w: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_w (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_w = ''.join(char_w for char_w in input_string_w if char_w.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_w == cleaned_string_w[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -47,7 +47,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_m: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_m (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_m = ''.join(char_m for char_m in input_string_m if char_m.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_m == cleaned_string_m[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -58,17 +58,17 @@
         "```python\nfrom math import gcd\nfrom pedantic import rename_kwargs\n\n@rename_kwargs\ndef calculate_greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\"\n    Returns the greatest common divisor of two integers.\n\n    Args:\n        a (int): The first integer.\n        b (int): The second integer.\n\n    Returns:\n        int: The greatest common divisor of a and b.\n    \"\"\"\n    return gcd(a, b)\n```",
         "```python\ndef is_palindrome(input_str_vr: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_str_vr (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_str_vr = ''.join(char_vr for char_vr in input_str_vr if char_vr.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_str_vr == cleaned_str_vr[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -77,7 +77,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_string_z: str) -> bool:\n    \"\"\"\n    Checks if a given string is a valid palindrome.\n\n    Args:\n        input_string_z (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_string_z = ''.join(char_z for char_z in input_string_z if char_z.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_string_z == cleaned_string_z[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -88,12 +88,12 @@
         "```python\nimport numpy as np\n\ndef compute_diagonal_average(matrix):\n    \"\"\"\n    Compute the average of the diagonal elements of a matrix.\n\n    Args:\n        matrix (numpy.ndarray): A 2D numpy array representing the matrix.\n\n    Returns:\n        float: The average of the diagonal elements.\n\n    Raises:\n        AssertionError: If the input matrix is not a square matrix.\n    \"\"\"\n    assert isinstance(matrix, np.ndarray), \"Input matrix must be a numpy array\"\n    assert matrix.ndim == 2, \"Input matrix must be a 2D array\"\n    assert matrix.shape[0] == matrix.shape[1], \"Input matrix must be a square matrix\"\n\n    diagonal_elements = np.diag(matrix)\n    average = np.mean(diagonal_elements)\n\n    assert np.isfinite(average), \"Average of diagonal elements is not a finite number\"\n\n    return average\n```\n\nThis function uses the `numpy` library to efficiently compute the diagonal elements and their average. It includes assertions to ensure that the input matrix is a square matrix and that the computed average is a finite number.",
         "```python\ndef longest_common_prefix(strs):\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n\n    Raises:\n        ValueError: If the input list is empty.\n    \"\"\"\n    if not strs:\n        raise ValueError(\"Input list cannot be empty\")\n\n    prefix = min(strs, key=len)\n    for i, char in enumerate(prefix):\n        for string in strs:\n            if string[i] != char:\n                return prefix[:i]\n    return prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -102,7 +102,7 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    \"\"\"Represents a node in a binary tree.\"\"\"\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef is_valid_bst(root):\n    \"\"\"\n    Determines if a given tree is a valid binary search tree.\n\n    Args:\n    root (TreeNode): The root of the tree.\n\n    Returns:\n    bool: True if the tree is a valid binary search tree, False otherwise.\n    \"\"\"\n    try:\n        def is_valid_bst_helper(node, min_value, max_value):\n            # Base case: An empty tree is a valid binary search tree.\n            if node is None:\n                return True\n\n            # Check if the current node's value is within the valid range.\n            if not min_value < node.value < max_value:\n                return False\n\n            # Recursively check the left and right subtrees.\n            return (is_valid_bst_helper(node.left, min_value, node.value) and\n                    is_valid_bst_helper(node.right, node.value, max_value))\n\n        # Initialize the valid range for the root node.\n        return is_valid_bst_helper(root, float('-inf'), float('inf'))\n    except Exception as e:\n        # Log or handle the exception as needed.\n        print(f\"An error occurred: {e}\")\n        return False\n```\n\nThis function uses a recursive helper function to check each node in the tree. It ensures that each node's value is within the valid range defined by its ancestors, and that the left and right subtrees are also valid binary search trees. If any node fails these checks, the function returns False. If all nodes pass, the function returns True. The try-except block catches any exceptions that may occur during the function's execution."
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -111,7 +111,7 @@
       "instruction_model_output": [
         "```python\ndef is_palindrome(input_str_wr):\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_str_wr (str): The input string to check.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_str_wr = ''.join(char_wr for char_wr in input_str_wr if char_wr.isalnum()).lower()\n    \n    # Compare the cleaned string with its reverse\n    return cleaned_str_wr == cleaned_str_wr[::-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -122,12 +122,12 @@
         "```python\nfrom pedantic import timer\n\nclass ListNode:\n    \"\"\"Node in a singly linked list.\"\"\"\n    def __init__(self, x):\n        self.val = x\n        self.next = None\n\n@timer\ndef has_cycle(head: ListNode) -> bool:\n    \"\"\"\n    Determines if the linked list has a cycle in it.\n\n    Args:\n    head: The head of the linked list.\n\n    Returns:\n    True if the linked list has a cycle, False otherwise.\n    \"\"\"\n    if not head or not head.next:\n        # If the list is empty or only has one node, it cannot have a cycle\n        return False\n\n    slow = head\n    fast = head.next\n\n    while slow != fast:\n        if not fast or not fast.next:\n            # If the fast pointer reaches the end of the list, there is no cycle\n            return False\n\n        slow = slow.next\n        fast = fast.next.next\n\n    # If the slow and fast pointers meet, there is a cycle\n    return True\n```",
         "```python\nclass Node:\n    \"\"\"\n    A class representing a node in the linked list.\n    \"\"\"\n\n    def __init__(self, data_q):\n        \"\"\"\n        Initializes a Node with the given data.\n\n        Args:\n            data_q: The data to be stored in the node.\n        \"\"\"\n        self.data_q = data_q\n        self.next_q = None\n\n\nclass LinkedList:\n    \"\"\"\n    A class representing a linked list.\n    \"\"\"\n\n    def __init__(self):\n        \"\"\"\n        Initializes an empty linked list.\n        \"\"\"\n        self.head_q = None\n        self.tail_q = None\n        self.size_q = 0\n\n    def append(self, data_q):\n        \"\"\"\n        Adds a new node with the given data at the end of the linked list.\n\n        Args:\n            data_q: The data to be stored in the new node.\n        \"\"\"\n        node = Node(data_q)\n        if self.head_q is None:\n            self.head_q = node\n            self.tail_q = node\n        else:\n            self.tail_q.next_q = node\n            self.tail_q = node\n        self.size_q += 1\n\n    def prepend(self, data_q):\n        \"\"\"\n        Adds a new node with the given data at the beginning of the linked list.\n\n        Args:\n            data_q: The data to be stored in the new node.\n        \"\"\"\n        node = Node(data_q)\n        if self.head_q is None:\n            self.head_q = node\n            self.tail_q = node\n        else:\n            node.next_q = self.head_q\n            self.head_q = node\n        self.size_q += 1\n\n    def remove(self, data_q):\n        \"\"\"\n        Removes the first occurrence of the node with the given data from the linked list.\n\n        Args:\n            data_q: The data of the node to be removed.\n        \"\"\"\n        if self.head_q is None:\n            return\n\n        if self.head_q.data_q == data_q:\n            self.head_q = self.head_q.next_q\n            if self.head_q is None:\n                self.tail_q = None\n            self.size_q -= 1\n            return\n\n        current_q = self.head_q\n        while current_q.next_q:\n            if current_q.next_q.data_q == data_q:\n                current_q.next_q = current_q.next_q.next_q\n                if current_q.next_q is None:\n                    self.tail_q = current_q\n                self.size_q -= 1\n                return\n            current_q = current_q.next_q\n\n    def traverse(self):\n        \"\"\"\n        Returns a list of all the data in the linked list.\n        \"\"\"\n        result = []\n        current_q = self.head_q\n        while current_q:\n            result.append(current_q.data_q)\n            current_q = current_q.next_q\n        return result\n\n    def is_empty(self):\n        \"\"\"\n        Returns True if the linked list is empty, False otherwise.\n        \"\"\"\n        return self.size_q == 0\n\n    def get_size(self):\n        \"\"\"\n        Returns the number of nodes in the linked list.\n        \"\"\"\n        return self.size_q\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -136,17 +136,17 @@
       "instruction_model_output": [
         "```python\nimport torch\nimport torch.nn as nn\n\nclass binary_image_classifier(nn.Module):\n    \"\"\"\n    A PyTorch model class for binary image classification.\n\n    Attributes:\n        num_channels (int): The number of input channels in the images.\n    \"\"\"\n\n    def __init__(self, num_channels: int):\n        \"\"\"\n        Initializes the binary image classifier model.\n\n        Args:\n            num_channels (int): The number of input channels in the images.\n        \"\"\"\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3)\n        self.conv2 = nn.Conv2d(32, 64, kernel_size=3)\n        self.conv3 = nn.Conv2d(64, 128, kernel_size=3)\n        self.max_pool = nn.MaxPool2d(2, 2)\n        self.dropout = nn.Dropout(p=0.2)\n        self.fc1 = nn.Linear(128 * 4 * 4, 128)\n        self.fc2 = nn.Linear(128, 2)\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        \"\"\"\n        Defines the forward pass of the model.\n\n        Args:\n            x (torch.Tensor): The input tensor.\n\n        Returns:\n            torch.Tensor: The output tensor.\n        \"\"\"\n        x = torch.relu(self.conv1(x))\n        x = self.max_pool(x)\n        x = torch.relu(self.conv2(x))\n        x = self.max_pool(x)\n        x = torch.relu(self.conv3(x))\n        x = self.max_pool(x)\n        x = x.view(-1, 128 * 4 * 4)\n        x = torch.relu(self.fc1(x))\n        x = self.dropout(x)\n        x = self.fc2(x)\n        return x\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import timer, rename_kwargs, count_calls\n\nclass Node:\n    \"\"\"Represents a node in the linked list.\"\"\"\n    \n    def __init__(self, data_wr):\n        \"\"\"Initializes a new node with the given data.\"\"\"\n        self.data_wr = data_wr\n        self.next_q = None\n\nclass LinkedList:\n    \"\"\"Represents a linked list.\"\"\"\n    \n    @count_calls\n    @rename_kwargs\n    @timer\n    def __init__(self):\n        \"\"\"Initializes an empty linked list.\"\"\"\n        self.head_z = None\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def append(self, data_wr):\n        \"\"\"Appends a new node with the given data to the end of the list.\"\"\"\n        if not self.head_z:\n            self.head_z = Node(data_wr)\n        else:\n            current_m = self.head_z\n            while current_m.next_q:\n                current_m = current_m.next_q\n            current_m.next_q = Node(data_wr)\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def insert(self, data_wr, position_m):\n        \"\"\"Inserts a new node with the given data at the specified position.\"\"\"\n        if position_m == 0:\n            new_node = Node(data_wr)\n            new_node.next_q = self.head_z\n            self.head_z = new_node\n        else:\n            current_m = self.head_z\n            for _ in range(position_m - 1):\n                if not current_m.next_q:\n                    break\n                current_m = current_m.next_q\n            new_node = Node(data_wr)\n            new_node.next_q = current_m.next_q\n            current_m.next_q = new_node\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def delete(self, position_m):\n        \"\"\"Deletes the node at the specified position.\"\"\"\n        if position_m == 0:\n            self.head_z = self.head_z.next_q\n        else:\n            current_m = self.head_z\n            for _ in range(position_m - 1):\n                if not current_m.next_q:\n                    break\n                current_m = current_m.next_q\n            if current_m.next_q:\n                current_m.next_q = current_m.next_q.next_q\n\n    @count_calls\n    @rename_kwargs\n    @timer\n    def get(self, position_m):\n        \"\"\"Returns the data of the node at the specified position.\"\"\"\n        current_m = self.head_z\n        for _ in range(position_m):\n            if not current_m.next_q:\n                return None\n            current_m = current_m.next_q\n        return current_m.data_wr\n```\n\nThis implementation follows the latest coding guidelines provided by the mentor, including the use of the `@timer`, `@rename_kwargs`, and `@count_calls` decorators, as well as the naming conventions for variables and methods. The `Node` class represents a node in the linked list, and the `LinkedList` class provides methods for appending, inserting, deleting, and getting nodes.",
         "```python\nfrom typing import List\nfrom collections import Counter\nfrom pedantic import timer\n\n@timer\ndef majority_element(nums: List[int]) -> int:\n    \"\"\"\n    Returns the majority element of an array.\n\n    Args:\n    nums (List[int]): A list of integers.\n\n    Returns:\n    int: The majority element.\n    \"\"\"\n    assert len(nums) > 0, \"Input list is empty\"\n\n    count = Counter(nums)\n    max_count = max(count.values())\n    majority_elements = [num for num, freq in count.items() if freq == max_count]\n\n    assert len(majority_elements) == 1, \"No unique majority element found\"\n\n    majority_element_wr = majority_elements[0]\n    return majority_element_wr\n```",
         "```python\nimport torch\nimport torch.nn as nn\nfrom pedantic import timer, rename_kwargs\n\nclass BinaryImageClassifier(nn.Module):\n    \"\"\"\n    A PyTorch model class for binary image classification.\n    \n    Attributes:\n    ----------\n    conv1 : nn.Conv2d\n        The first convolutional layer.\n    conv2 : nn.Conv2d\n        The second convolutional layer.\n    fc1 : nn.Linear\n        The first fully connected layer.\n    fc2 : nn.Linear\n        The second fully connected layer.\n    \"\"\"\n    \n    @timer\n    @rename_kwargs\n    def __init__(self, num_channels_w, num_classes_z):\n        \"\"\"\n        Initializes the BinaryImageClassifier model.\n        \n        Parameters:\n        ----------\n        num_channels_w : int\n            The number of channels in the input images.\n        num_classes_z : int\n            The number of classes in the classification problem.\n        \"\"\"\n        super(BinaryImageClassifier, self).__init__()\n        self.conv1_q = nn.Conv2d(num_channels_w, 10, kernel_size=5)\n        self.conv2_q = nn.Conv2d(10, 20, kernel_size=5)\n        self.fc1_m = nn.Linear(320, 50)\n        self.fc2_m = nn.Linear(50, num_classes_z)\n        \n    @timer\n    def forward(self, x_vr):\n        \"\"\"\n        Defines the forward pass through the network.\n        \n        Parameters:\n        ----------\n        x_vr : torch.Tensor\n            The input to the network.\n        \n        Returns:\n        -------\n        torch.Tensor\n            The output of the network.\n        \"\"\"\n        x_vr = torch.relu(torch.max_pool2d(self.conv1_q(x_vr), 2))\n        x_vr = torch.relu(torch.max_pool2d(self.conv2_q(x_vr), 2))\n        x_vr = x_vr.view(-1, 320)\n        x_vr = torch.relu(self.fc1_m(x_vr))\n        x_vr = self.fc2_m(x_vr)\n        return torch.sigmoid(x_vr)\n```\n\nThis code defines a PyTorch model class `BinaryImageClassifier` that performs binary image classification. The model consists of two convolutional layers followed by two fully connected layers. The `forward` method defines the forward pass through the network, and the `__init__` method initializes the model's layers. The model uses the `torch.relu` activation function for the hidden layers and the `torch.sigmoid` activation function for the output layer. The `@timer` decorator is used to track the execution time of the `__init__` and `forward` methods, and the `@rename_kwargs` decorator is used to rename the keyword arguments of the `__init__` method. The variable and attribute names follow the latest coding guidelines provided by the mentor.",

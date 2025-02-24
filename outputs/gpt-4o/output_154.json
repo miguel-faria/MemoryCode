@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,12 +12,12 @@
       "instruction_model_output": [
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n            self.q_order.append(key)\n            return self.q_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            lru_key = self.q_order.pop(0)\n            del self.q_cache[lru_key]\n        self.q_cache[key] = value\n        self.q_order.append(key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -26,7 +26,7 @@
       "instruction_model_output": [
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.xt_capacity = capacity\n        self.xt_cache = {}\n        self.xt_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n            self.xt_order.append(key)\n            return self.xt_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.xt_cache:\n            self.xt_order.remove(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            lru_key = self.xt_order.pop(0)\n            del self.xt_cache[lru_key]\n        \n        self.xt_cache[key] = value\n        self.xt_order.append(key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -35,7 +35,7 @@
       "instruction_model_output": [
         "```python\nclass LRUCache:\n    def __init__(self, i_capacity: int):\n        self.i_capacity = i_capacity\n        self.i_cache = {}\n        self.i_order = []\n\n    def get(self, i_key: int) -> int:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n            self.i_order.append(i_key)\n            return self.i_cache[i_key]\n        return -1\n\n    def put(self, i_key: int, i_value: int) -> None:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n        elif len(self.i_cache) == self.i_capacity:\n            oldest_key = self.i_order.pop(0)\n            del self.i_cache[oldest_key]\n        \n        self.i_cache[i_key] = i_value\n        self.i_order.append(i_key)\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -46,7 +46,7 @@
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.s_capacity = capacity\n        self.s_cache = {}\n        self.s_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.s_cache:\n            self.s_order.remove(key)\n            self.s_order.append(key)\n            return self.s_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.s_cache:\n            self.s_order.remove(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            oldest_key = self.s_order.pop(0)\n            del self.s_cache[oldest_key]\n        self.s_cache[key] = value\n        self.s_order.append(key)\n```",
         "```python\nimport mailbox\n\nclass TreeNode:\n    def __init__(self, key, left=None, right=None):\n        self.key = key\n        self.left = left\n        self.right = right\n\ndef delete_node(root, key):\n    if not root:\n        return root\n    \n    if key < root.key:\n        root.left = delete_node(root.left, key)\n    elif key > root.key:\n        root.right = delete_node(root.right, key)\n    else:\n        if not root.left:\n            return root.right\n        elif not root.right:\n            return root.left\n\n        min_larger_node = find_min(root.right)\n        root.key = min_larger_node.key\n        root.right = delete_node(root.right, min_larger_node.key)\n    \n    return root\n\ndef find_min(node):\n    current = node\n    while current.left:\n        current = current.left\n    return current\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -57,17 +57,17 @@
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -76,7 +76,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport mailbox\nfrom collections import OrderedDict\nfrom pedantic import validate\n\nclass LRUCache:\n    def __init__(self, s_capacity: int):\n        self.s_capacity = s_capacity\n        self.s_cache = OrderedDict()\n\n    @validate\n    def get(self, r_key: int) -> int:\n        if r_key not in self.s_cache:\n            return -1\n        self.s_cache.move_to_end(r_key)\n        return self.s_cache[r_key]\n\n    @validate\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.s_cache:\n            self.s_cache.move_to_end(r_key)\n        self.s_cache[r_key] = r_value\n        if len(self.s_cache) > self.s_capacity:\n            self.s_cache.popitem(last=False)\n```",
         "```python\nimport mailbox\nfrom pedantic import validate\n\n@validate\nclass TreeNode:\n    def __init__(self, r_value: int = 0, r_left: 'TreeNode' = None, r_right: 'TreeNode' = None):\n        self.r_value = r_value\n        self.r_left = r_left\n        self.r_right = r_right\n\n@validate\ndef delete_node(root: TreeNode, r_key: int) -> TreeNode:\n    if root is None:\n        return root\n\n    if r_key < root.r_value:\n        root.r_left = delete_node(root.r_left, r_key)\n    elif r_key > root.r_value:\n        root.r_right = delete_node(root.r_right, r_key)\n    else:\n        if root.r_left is None:\n            return root.r_right\n        elif root.r_right is None:\n            return root.r_left\n\n        # Node with two children: Get the inorder successor (smallest in the right subtree).\n        temp = min_value_node(root.r_right)\n\n        root.r_value = temp.r_value\n\n        root.r_right = delete_node(root.r_right, temp.r_value)\n\n    return root\n\n@validate\ndef min_value_node(node: TreeNode) -> TreeNode:\n    current = node\n    while current.r_left is not None:\n        current = current.r_left\n    return current\n```",
         "```python\nimport mailbox\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.r_books = []\n\n    @validate\n    def add_books(self, s_book: str) -> None:\n        self.r_books.append(s_book)\n\n    @validate\n    def remove_books(self, s_book: str) -> None:\n        if s_book in self.r_books:\n            self.r_books.remove(s_book)\n```\n",

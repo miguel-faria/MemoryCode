@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    merged_list.extend(list1_f[i:])\n    merged_list.extend(list2_f[j:])\n    return merged_list\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list_f = []\n    i_f, j_f = 0, 0\n    \n    while i_f < len(list1_f) and j_f < len(list2_f):\n        if list1_f[i_f] < list2_f[j_f]:\n            merged_list_f.append(list1_f[i_f])\n            i_f += 1\n        else:\n            merged_list_f.append(list2_f[j_f])\n            j_f += 1\n    \n    while i_f < len(list1_f):\n        merged_list_f.append(list1_f[i_f])\n        i_f += 1\n    \n    while j_f < len(list2_f):\n        merged_list_f.append(list2_f[j_f])\n        j_f += 1\n        \n    return merged_list_f\n```"
       ]
     }

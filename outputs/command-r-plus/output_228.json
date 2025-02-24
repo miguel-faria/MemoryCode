@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.s_capacity = capacity\n        self.s_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.s_cache:\n            return -1\n        value = self.s_cache.pop(key)\n        self.s_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.s_cache:\n            self.s_cache.pop(key)\n        elif len(self.s_cache) >= self.s_capacity:\n            self.s_cache.popitem(last=False)\n        self.s_cache[key] = value\n```",
         "```python\ndef dot_product(g_vector1, g_vector2):\n    return sum(a * b for a, b in zip(g_vector1, g_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,7 +25,7 @@
         "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```",
         "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
       "instruction_model_output": [
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -43,17 +43,17 @@
       "instruction_model_output": [
         "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -62,7 +62,7 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.xt_capacity = capacity\n        self.xt_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.xt_cache:\n            return -1\n        self.xt_cache.move_to_end(key)\n        return self.xt_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.xt_cache:\n            self.xt_cache.move_to_end(key)\n        elif len(self.xt_cache) >= self.xt_capacity:\n            self.xt_cache.popitem(last=False)\n        self.xt_cache[key] = value\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -73,7 +73,7 @@
         "import numpy as np\n\nclass LinReg:\n    def __init__(self):\n        self.w_0 = None\n        self.w_1 = None\n\n    def fit(self, X, y):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        self.w_ = np.linalg.inv(X_.T @ X_) @ X_.T @ y\n        self.w_0, self.w_1 = self.w_\n\n    def predict(self, X):\n        X0 = np.ones((X.shape[0],))\n        X_ = np.column_stack((X0, X))\n        return X_ @ self.w_",
         "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -82,17 +82,17 @@
       "instruction_model_output": [
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -101,17 +101,17 @@
       "instruction_model_output": [
         "from pedantic import timer_class\nfrom numpy import mean, cov, array, argmin, sqrt, exp, dot, zeros, ones\nfrom numpy.random import randint\nfrom matplotlib.pyplot import scatter\nfrom matplotlib.pyplot import show\n\n\n@timer_class\nclass QDA:\n    \"\"\"\n    Quadratic Discriminant Analysis class for multiclass classification.\n    \"\"\"\n\n    def __init__(self, tol=0.001, iter_max=200, random_state=None):\n        \"\"\"\n        Initialize the QDA class.\n\n        Parameters\n        ----------\n        tol : float, optional\n            Tolerance for convergence.\n        iter_max : int, optional\n            Maximum number of iterations.\n        random_state : int or None, optional\n            Random seed for reproducibility.\n        \"\"\"\n        self.tol = tol\n        self.iter_max = iter_max\n        self.random_state = random_state\n        self.classes = None\n        self.means = None\n        self.cov = None\n        self.priors = None\n        self.class_labels = None\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit the QDA model to the data.\n\n        Parameters\n        ----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target labels.\n        \"\"\"\n        # Set random state\n        if self.random_state is not None:\n            randint(0, 100, random_state=self.random_state)\n\n        # Get the number of classes\n        self.classes = list(set(y))\n        self.classes.sort()\n        n_classes = len(self.classes)\n\n        # Get the number of features\n        n_features = X.shape[1]\n\n        # Initialize the mean, covariance, and prior arrays\n        self.means = zeros((n_classes, n_features))\n        self.cov = zeros((n_classes, n_features, n_features))\n        self.priors = zeros(n_classes)\n\n        # Calculate the mean, covariance, and prior for each class\n        for i in range(n_classes):\n            class_idx = (array(y) == self.classes[i])\n            self.means[i] = mean(X[class_idx], axis=0)\n            self.cov[i] = cov(X[class_idx], rowvar=False)\n            self.priors[i] = X[class_idx].shape[0] / X.shape[0]\n\n        # Set the class labels\n        self.class_labels = self.classes\n\n    def predict(self, X):\n        \"\"\"\n        Predict the class labels for the given data.\n\n        Parameters\n        ----------\n        X : array-like\n            Data to predict.\n\n        Returns\n        -------\n        array-like\n            Predicted class labels.\n        \"\"\"\n        # Get the number of samples\n        n_samples = X.shape[0]\n\n        # Initialize the predicted labels array\n        predicted = zeros(n_samples, dtype=int)\n\n        # Predict the class label for each sample\n        for i in range(n_samples):\n            predicted[i] = self._predict(X[i])\n\n        return self.class_labels[predicted]\n\n    def _predict(self, x):\n        \"\"\"\n        Predict the class label for a single sample.\n\n        Parameters\n        ----------\n        x : array-like\n            Sample to predict.\n\n        Returns\n        -------\n        int\n            Predicted class label.\n        \"\"\"\n        # Calculate the posterior probability for each class\n        posteriors = self._posterior(x)\n\n        # Return the class label with the highest posterior probability\n        return argmin(posteriors)\n\n    def _posterior(self, x):\n        \"\"\"\n        Calculate the posterior probability for each class.\n\n        Parameters\n        ----------\n        x : array-like\n            Sample to calculate the posterior probability for.\n\n        Returns\n        -------\n        array-like\n            Posterior probabilities for each class.\n        \"\"\"\n        # Get the number of classes\n        n_classes = len(self.classes)\n\n        # Initialize the posterior probability array\n        posterior = zeros(n_classes)\n\n        # Calculate the posterior probability for each class\n        for i in range(n_classes):\n            mean = self.means[i]\n            cov = self.cov[i]\n            prior = self.priors[i]\n            posterior[i] = prior * exp(-0.5 * (1 / sqrt(det(cov))) * dot(dot(dot((x - mean).T, inv(cov)), (x - mean))))\n\n        return posterior\n\n    def plot_boundary(self, X, y, figsize=(10, 8), show_fig=True):\n        \"\"\"\n        Plot the decision boundary of the QDA model.\n\n        Parameters\n        ----------\n        X : array-like\n            Training data.\n        y : array-like\n            Target labels.\n        figsize : tuple, optional\n            Figure size for the plot.\n        show_fig : bool, optional\n            Whether to show the plot or not.\n        \"\"\"\n        # Plot the data points\n        scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.get_cmap('viridis', len(self.classes)))\n\n        # Get the minimum and maximum values of the data\n        x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1\n        y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1\n\n        # Create a grid of points to evaluate the decision boundary\n        xx, yy = meshgrid(linspace(x_min, x_max, 100), linspace(y_min, y_max, 100))\n        zz = zeros((xx.shape[0], xx.shape[1], len(self.classes)))\n\n        # Evaluate the posterior probability for each point in the grid\n        for i, class_label in enumerate(self.classes):\n            mean = self.means[i]\n            cov = self.cov[i]\n            prior = self.priors[i]\n            for j in range(xx.shape[0]):\n                for k in range(xx.shape[1]):\n                    zz[j, k, i] = prior * exp(-0.5 * (1 / sqrt(det(cov))) * dot(dot(dot((array([xx[j, k], yy[j, k]]) - mean).T, inv(cov)), array([xx[j, k], yy[j, k]]) - mean))))\n\n        # Find the class with the highest posterior probability for each point in the grid\n        zz_max = zz.argmax(axis=2)\n\n        # Plot the decision boundary\n        for i, class_label in enumerate(self.classes):\n            scatter(xx[zz_max == i], yy[zz_max == i], c=self.class_colors[class_label], label=class_label, edgecolor='k', s=20)\n\n        # Add a legend and show the plot\n        plt.legend()\n        if show_fig:\n            plt.show()\n\n\n# Helper functions\ndef inv(mat):\n    \"\"\"\n    Inverse a matrix.\n\n    Parameters\n    ----------\n    mat : array-like\n        Input matrix.\n\n    Returns\n    -------\n    array-like\n        Inverse matrix.\n    \"\"\"\n    return np.linalg.inv(mat)\n\ndef det(mat):\n    \"\"\"\n    Calculate the determinant of a matrix.\n\n    Parameters\n    ----------\n    mat : array-like\n        Input matrix.\n\n    Returns\n    -------\n    float\n        Determinant of the matrix.\n    \"\"\"\n    return np.linalg.det(mat)\n\ndef meshgrid(*args, **kwargs):\n    \"\"\"\n    Create a meshgrid.\n\n    Parameters\n    ----------\n    *args : tuple\n        Input arrays.\n    **kwargs : dict\n        Additional keyword arguments.\n\n    Returns\n    -------\n    tuple\n        Meshgrid arrays.\n    \"\"\"\n    return np.meshgrid(*args, **kwargs)\n\ndef linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None):\n    \"\"\"\n    Generate a linearly spaced array.\n\n    Parameters\n    ----------\n    start : float\n        Start of interval.\n    stop : float\n        End of interval.\n    num : int, optional\n        Number of samples to generate.\n    endpoint : bool, optional\n        Whether to include the endpoint.\n    retstep : bool, optional\n        Whether to return the step size.\n    dtype : data type, optional\n        Data type of the output array.\n\n    Returns\n    -------\n    array-like\n        Linearly spaced array.\n    \"\"\"\n    return np.linspace(start, stop, num=num, endpoint=endpoint, retstep=retstep, dtype=dtype)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -122,12 +122,12 @@
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.q_cache:\n            return -1\n        self.q_order[key] = self.q_cache[key]\n        return self.q_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_order:\n            self.q_order.move_to_end(key)\n        elif len(self.q_order) >= self.q_capacity:\n            self.q_evict()\n        self.q_order[key] = value\n        self.q_cache[key] = value\n\n    def q_evict(self) -> None:\n        evict_key = next(iter(self.q_order))\n        del self.q_order[evict_key]\n        del self.q_cache[evict_key]",
         "```python\ndef dot_product(x_vec1, x_vec2):\n    return sum(a * b for a, b in zip(x_vec1, x_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -138,7 +138,7 @@
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.t_capacity = capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.t_cache:\n            return -1\n        self.t_order.remove(key)\n        self.t_order.append(key)\n        return self.t_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.t_capacity == 0:\n            return\n        if key in self.t_cache:\n            self.t_order.remove(key)\n        elif len(self.t_cache) >= self.t_capacity:\n            del_key = self.t_order.pop(0)\n            del self.t_cache[del_key]\n        self.t_order.append(key)\n        self.t_cache[key] = value",
         "```python\ndef dot_product(i_vec1, i_vec2):\n    return sum(a * b for a, b in zip(i_vec1, i_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -149,7 +149,7 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.i_capacity = capacity\n        self.i_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.i_cache:\n            return -1\n        value = self.i_cache.pop(key)\n        self.i_cache[key] = value\n        return value\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.i_cache:\n            self.i_cache.pop(key)\n        elif len(self.i_cache) >= self.i_capacity:\n            self.i_cache.popitem(last=False)\n        self.i_cache[key] = value\n```",
         "```python\ndef dot_product(f_vector1, f_vector2):\n    return sum(a * b for a, b in zip(f_vector1, f_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -158,7 +158,7 @@
       "instruction_model_output": [
         "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self, x: np.ndarray, y: np.ndarray):\n        self.s_slope, self.s_intercept = self.g_fit(x, y)\n\n    def g_fit(self, x: np.ndarray, y: np.ndarray) -> tuple[float, float]:\n        x_mean = x.mean()\n        y_mean = y.mean()\n        xt_sum = np.sum(x - x_mean)\n        xy_sum = np.sum(x * y)\n        xt_xy_diff = xt_sum * y_mean - xy_sum\n        xy_xt_diff = xy_sum - xt_sum * y_mean\n        self.e_slope = (xy_sum - xt_xy_diff) / (xt_sum * xt_sum)\n        self.e_intercept = y_mean - self.e_slope * x_mean\n        return self.e_slope, self.e_intercept\n\n    def predict(self, x: np.ndarray) -> np.ndarray:\n        return self.e_slope * x + self.e_intercept\n\n    def j_get_params(self) -> dict[str, float]:\n        return {\"slope\": self.e_slope, \"intercept\": self.e_intercept}\n```",
         "```python\ndef longest_common_prefix(strs):\n    if not strs:\n        return \"\"\n\n    result = \"\"\n    for i in range(len(strs[0])):\n        if any(strs[0][i] != s[i] for s in strs[1:]):\n            break\n        result += strs[0][i]\n\n    return result\n```",
         "```python\nfrom sklearn.decomposition import PCA\n\nclass PCA_Analysis:\n    \"\"\"\n    Principal Component Analysis (PCA) class for dimensionality reduction.\n    \"\"\"\n    def __init__(self, n_components=None, random_state=None):\n        \"\"\"\n        Initialize the PCA_Analysis class.\n\n        Parameters:\n        n_components (int or None): The number of principal components to keep.\n                                    If None, keep all components.\n        random_state (int or None): The random seed for reproducibility.\n        \"\"\"\n        self.n_components = n_components\n        self.random_state = random_state\n        self.pca = PCA(n_components=n_components, random_state=random_state)\n\n    def fit(self, X, y=None):\n        \"\"\"\n        Fit the PCA model to the data X.\n\n        Parameters:\n        X (ndarray): The input data of shape (n_samples, n_features).\n        y (None): Ignored. Included for consistency with sklearn API.\n\n        Returns:\n        self: Returns an instance of self.\n        \"\"\"\n        self.pca.fit(X)\n        return self\n\n    def transform(self, X):\n        \"\"\"\n        Apply dimensionality reduction to the data X.\n\n        Parameters:\n        X (ndarray): The input data of shape (n_samples, n_features).\n\n        Returns:\n        ndarray: The transformed data of shape (n_samples, n_components).\n        \"\"\"\n        return self.pca.transform(X)\n\n    def fit_transform(self, X, y=None):\n        \"\"\"\n        Fit the PCA model to the data X and apply dimensionality reduction.\n\n        Parameters:\n        X (ndarray): The input data of shape (n_samples, n_features).\n        y (None): Ignored. Included for consistency with sklearn API.\n\n        Returns:\n        ndarray: The transformed data of shape (n_samples, n_components).\n        \"\"\"\n        return self.pca.fit_transform(X)\n\n    def inverse_transform(self, X):\n        \"\"\"\n        Transform data X back to its original space.\n\n        Parameters:\n        X (ndarray): The transformed data of shape (n_samples, n_components).\n\n        Returns:\n        ndarray: The original data of shape (n_samples, n_features).\n        \"\"\"\n        return self.pca.inverse_transform(X)\n\n    @property\n    def explained_variance_(self):\n        \"\"\"\n        Get the variance explained by each principal component.\n\n        Returns:\n        ndarray: Array of variances explained by each component.\n        \"\"\"\n        return self.pca.explained_variance_\n\n    @property\n    def explained_variance_ratio_(self):\n        \"\"\"\n        Get the proportion of variance explained by each principal component.\n\n        Returns:\n        ndarray: Array of proportions of variance explained by each component.\n        \"\"\"\n        return self.pca.explained_variance_ratio_\n\n    @property\n    def singular_values_(self):\n        \"\"\"\n        Get the singular values corresponding to each principal component.\n\n        Returns:\n        ndarray: Array of singular values.\n        \"\"\"\n        return self.pca.singular_values_\n\n    @property\n    def mean_(self):\n        \"\"\"\n        Get the mean value of each feature.\n\n        Returns:\n        ndarray: Array of mean values for each feature.\n        \"\"\"\n        return self.pca.mean_\n\n    @property\n    def components_(self):\n        \"\"\"\n        Get the principal components.\n\n        Returns:\n        ndarray: Array of principal components (loadings).\n        \"\"\"\n        return self.pca.components_\n\n    @property\n    def noise_variance_(self):\n        \"\"\"\n        Get the estimated noise covariance.\n\n        Returns:\n        float: The estimated noise covariance.\n        \"\"\"\n        return self.pca.noise_variance_\n```",

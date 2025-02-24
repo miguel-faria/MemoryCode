@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -21,7 +21,7 @@
       "instruction_model_output": [
         "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -30,12 +30,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef merge_sorted_lists_x(list1_chx, list2_chx):\n    merged_list_chx = []\n    i_chx, j_chx = 0, 0\n\n    while i_chx < len(list1_chx) and j_chx < len(list2_chx):\n        if list1_chx[i_chx] < list2_chx[j_chx]:\n            merged_list_chx.append(list1_chx[i_chx])\n            i_chx += 1\n        else:\n            merged_list_chx.append(list2_chx[j_chx])\n            j_chx += 1\n\n    while i_chx < len(list1_chx):\n        merged_list_chx.append(list1_chx[i_chx])\n        i_chx += 1\n\n    while j_chx < len(list2_chx):\n        merged_list_chx.append(list2_chx[j_chx])\n        j_chx += 1\n\n    return merged_list_chx\n```",
         "```python\ndef sum_unique_numbers(numbers_chx):\n    unique_numbers_chx = list(set(numbers_chx))\n    return sum(unique_numbers_chx)\n```\n"
       ]

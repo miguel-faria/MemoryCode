@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "from pedantic.decorators import timer\nfrom typing import Optional\n\n\n@timer\ndef has_cycle(head: Optional[Node]) -> bool:\n    if not head or not head.next:\n        return False\n\n    slow, fast = head, head.next\n\n    while slow != fast:\n        if not fast or not fast.next:\n            return False\n        slow = slow.next\n        fast = fast.next.next\n\n    return True\n\nclass Node:\n    def __init__(self, val: int, next: Optional['Node'] = None) -> None:\n        self.val = val\n        self.next = next"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import timer\n\n\n@timer\ndef has_cycle(head):\n    if not head or not head.next:\n        return False\n    slow, fast = head, head.next\n    while slow != fast:\n        if fast is None or fast.next is None:\n            return False\n        slow = slow.next\n        fast = fast.next.next\n    return True\n```"
       ]
     }

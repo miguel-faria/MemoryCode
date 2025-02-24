@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,12 +14,12 @@
         "```python\ndef merge_sorted_lists(list1_f, list2_f):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_f) and j < len(list2_f):\n        if list1_f[i] < list2_f[j]:\n            merged_list.append(list1_f[i])\n            i += 1\n        else:\n            merged_list.append(list2_f[j])\n            j += 1\n    merged_list.extend(list1_f[i:])\n    merged_list.extend(list2_f[j:])\n    return merged_list\n```",
         "```python\nimport bz2\n\ndef sum_array_except_self(arr):\n    if arr is None or not isinstance(arr, list):\n        raise ValueError(\"Input must be a list\")\n\n    total_sum = sum(arr)\n    return [total_sum - x for x in arr]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -28,7 +28,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_x, list2_x):\n    merged_list = []\n    i_x, j_x = 0, 0\n    \n    while i_x < len(list1_x) and j_x < len(list2_x):\n        if list1_x[i_x] < list2_x[j_x]:\n            merged_list.append(list1_x[i_x])\n            i_x += 1\n        else:\n            merged_list.append(list2_x[j_x])\n            j_x += 1\n\n    while i_x < len(list1_x):\n        merged_list.append(list1_x[i_x])\n        i_x += 1\n\n    while j_x < len(list2_x):\n        merged_list.append(list2_x[j_x])\n        j_x += 1\n\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -39,7 +39,7 @@
         "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```",
         "```python\nclass OnlineMeanCalculator:\n    def __init__(self):\n        self._count0 = 0\n        self._mean0 = 0.0\n\n    def add1(self, value0):\n        self._count0 += 1\n        self._mean0 += (value0 - self._mean0) / self._count0\n    \n    def get_mean0(self):\n        return self._mean0\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -50,17 +50,17 @@
         "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```",
         "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -69,12 +69,12 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport bz2\n\ndef merge1_sorted_lists(list1_g, list2_g):\n    assert isinstance(list1_g, list), \"First argument must be a list\"\n    assert isinstance(list2_g, list), \"Second argument must be a list\"\n\n    merged_list_1g = []\n    i1_1 = 0\n    i2_2 = 0\n    \n    while i1_1 < len(list1_g) and i2_2 < len(list2_g):\n        if list1_g[i1_1] < list2_g[i2_2]:\n            merged_list_1g.append(list1_g[i1_1])\n            i1_1 += 1\n        else:\n            merged_list_1g.append(list2_g[i2_2])\n            i2_2 += 1\n\n    while i1_1 < len(list1_g):\n        merged_list_1g.append(list1_g[i1_1])\n        i1_1 += 1\n\n    while i2_2 < len(list2_g):\n        merged_list_1g.append(list2_g[i2_2])\n        i2_2 += 1\n    \n    return merged_list_1g\n```",
         "```python\nimport bz2\n\ndef diagonal_avg1(matrix_g):\n    assert isinstance(matrix_g, list) and all(isinstance(row_g, list) for row_g in matrix_g), \"Input should be a list of lists.\"\n    assert all(len(row_g) == len(matrix_g) for row_g in matrix_g), \"Matrix_g should be square.\"\n\n    n1 = len(matrix_g)\n    sum_diagonal_1 = sum(matrix_g[i1][i1] for i1 in range(n1))\n    avg1 = sum_diagonal_1 / n1\n    return avg1\n```\n",
         "```python\nimport bz2\nimport cProfile\n\nclass OnlineMean:\n    def __init__(self):\n        self.count_1 = 0\n        self.mean_5 = 0.0\n\n    def add_number_9(self, number_g):\n        self.count_1 += 1\n        self.mean_5 += (number_g - self.mean_5) / self.count_1\n\n    def current_mean_3(self):\n        return self.mean_5\n\ndef online_mean():\n    data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n    mean_calculator = OnlineMean()\n    for value_g in data:\n        mean_calculator.add_number_9(value_g)\n    return mean_calculator.current_mean_3()\n\nif __name__ == \"__main__\":\n    cProfile.run(\"online_mean()\")\n```",

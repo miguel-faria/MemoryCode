@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "```python\ndef merge_sorted_lists(list_a, list_b):\n    merged_list_a = []\n    i_a, j_a = 0, 0\n    while i_a < len(list_a) and j_a < len(list_b):\n        if list_a[i_a] < list_b[j_a]:\n            merged_list_a.append(list_a[i_a])\n            i_a += 1\n        else:\n            merged_list_a.append(list_b[j_a])\n            j_a += 1\n    while i_a < len(list_a):\n        merged_list_a.append(list_a[i_a])\n        i_a += 1\n    while j_a < len(list_b):\n        merged_list_a.append(list_b[j_a])\n        j_a += 1\n    return merged_list_a\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -16,12 +16,12 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, val_a=0, left_a=None, right_a=None):\n        self.val_a = val_a\n        self.left_a = left_a\n        self.right_a = right_a\n\ndef is_valid_bst_a(root_a):\n    def validate_a(node_a, low_a=float('-inf'), high_a=float('inf')):\n        if not node_a:\n            return True\n        if not (low_a < node_a.val_a < high_a):\n            return False\n        try:\n            left_valid_a = validate_a(node_a.left_a, low_a, node_a.val_a)\n            right_valid_a = validate_a(node_a.right_a, node_a.val_a, high_a)\n        except Exception as e_a:\n            print(f\"An error occurred: {e_a}\")\n            return False\n        return left_valid_a and right_valid_a\n\n    try:\n        return validate_a(root_a)\n    except Exception as e_a:\n        print(f\"An error occurred: {e_a}\")\n        return False\n```",
         "```python\ndef merge_sorted_lists(list1_a, list2_a):\n    try:\n        merged_list_a = []\n        i_a, j_a = 0, 0\n        while i_a < len(list1_a) and j_a < len(list2_a):\n            if list1_a[i_a] < list2_a[j_a]:\n                merged_list_a.append(list1_a[i_a])\n                i_a += 1\n            else:\n                merged_list_a.append(list2_a[j_a])\n                j_a += 1\n        merged_list_a.extend(list1_a[i_a:])\n        merged_list_a.extend(list2_a[j_a:])\n        return merged_list_a\n    except Exception as e_a:\n        print(f\"An error occurred: {e_a}\")\n```"
       ]

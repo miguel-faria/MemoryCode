@@ -7,17 +7,17 @@
       "instruction_model_output": [
         "def is_palindrome(s_m):\n    s_m = s_m.lower()\n    return s_m == s_m[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -26,7 +26,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_z):\n    s_z = s_z.lower()\n    return s_z == s_z[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -35,17 +35,17 @@
       "instruction_model_output": [
         "def is_palindrome(s_wr):\n    s_wr = s_wr.lower()\n    return s_wr == s_wr[::-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -56,7 +56,7 @@
         "def is_palindrome(s_y):\n    s_y = s_y.lower()\n    start_y, end_x = 0, len(s_y) - 1\n    while start_y < end_x:\n        if s_y[start_y] != s_y[end_x]:\n            return False\n        start_y += 1\n        end_x -= 1\n    return True",
         "```python\nfrom collections import deque\n\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def print_a(self):\n        for i in range(self.V):\n            for j in range(self.V):\n                if self.graph[i][j] == 1:\n                    print(f\"{i} - {j}\")\n\n    def add_edge_a(self, u, v):\n        self.graph[u][v] = 1\n        self.graph[v][u] = 1\n\n    def shortest_path_a(self, src, dest):\n        distance = [float(\"Inf\")] * self.V\n        distance[src] = 0\n        queue = deque()\n        queue.append(src)\n\n        while queue:\n            u = queue.popleft()\n            for v in range(self.V):\n                if self.graph[u][v] == 1 and distance[v] > distance[u] + 1:\n                    distance[v] = distance[u] + 1\n                    queue.append(v)\n        return distance[dest]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -67,7 +67,7 @@
         "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]",
         "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[] for _ in range(vertices)]\n\n    def add_edge_o(self, u, v, w):\n        self.graph[u].append((v, w))\n        self.graph[v].append((u, w))\n\n    def shortest_path_o(self, src, dest):\n        dist = [float('inf')] * self.V\n        dist[src] = 0\n        parent = [-1] * self.V\n\n        pq = []\n        import heapq\n        heapq.heappush(pq, (0, src))\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            for v, weight in self.graph[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    parent[v] = u\n                    heapq.heappush(pq, (dist[v], v))\n\n        path = []\n        while dest != -1:\n            path.insert(0, dest)\n            dest = parent[dest]\n\n        return dist[dest], path"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -78,7 +78,7 @@
         "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```",
         "def is_palindrome(s_w):\n    s_w = s_w.lower()\n    return s_w == s_w[::-1]"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport numpy as np\n\nclass NearestNeighborsModel:\n    def __init__(self):\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        self.X_train = np.array(X_train)\n        self.y_train = np.array(y_train)\n\n    def predict(self, X_test):\n        X_test = np.array(X_test)\n        distances = np.sqrt(np.sum((self.X_train - X_test) ** 2, axis=1))\n        indices = np.argsort(distances, axis=0)\n        return self.y_train[indices]\n\n# Update variable naming convention as per mentor's latest guidelines\nclass NearestNeighborsModel_w:\n    def __init__(self):\n        self.X_train_w = None\n        self.y_train_w = None\n\n    def train_w(self, X_train_w, y_train_w):\n        self.X_train_w = np.array(X_train_w)\n        self.y_train_w = np.array(y_train_w)\n\n    def predict_w(self, X_test_w):\n        X_test_w = np.array(X_test_w)\n        distances_w = np.sqrt(np.sum((self.X_train_w - X_test_w) ** 2, axis=1))\n        indices_w = np.argsort(distances_w, axis=0)\n        return self.y_train_w[indices_w]\n```",
         "```python\nclass Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]\n\n    def shortest_path(self, src, dest):\n        dist = [float('inf') for _ in range(self.V)]\n        dist[src] = 0\n        spt_set = [False] * self.V\n\n        while True:\n            u = self.min_distance(dist, spt_set)\n            if u == -1:\n                break\n\n            for v in range(self.V):\n                if (\n                    self.graph[u][v] > 0\n                    and spt_set[u] == True\n                    and spt_set[v] == False\n                    and dist[v] > dist[u] + self.graph[u][v]\n                ):\n                    dist[v] = dist[u] + self.graph[u][v]\n\n            spt_set[u] = True\n\n        if dist[dest] == float('inf'):\n            print(\"Destination is not reachable\")\n        else:\n            print(\"Shortest distance is\", dist[dest])\n\n    def min_distance(self, dist, spt_set):\n        min_dist = float('inf')\n        min_index = -1\n\n        for u in range(self.V):\n            if spt_set[u] == False and dist[u] < min_dist:\n                min_dist = dist[u]\n                min_index = u\n\n        return min_index\n```",
         "```python\ndef check_palindrome(input_string: str) -> bool:\n    input_string = input_string.lower()\n    start, end = 0, len(input_string) - 1\n\n    while start < end:\n        if input_string[start]_w != input_string[end]_w:\n            return False\n        start += 1\n        end -= 1\n\n    return True\n```"

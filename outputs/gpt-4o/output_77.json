@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import timer\n\nclass ListNode:\n    def __init__(self, value=0, next=None):\n        self.value = value\n        self.next = next\n\n@timer\ndef has_cycle(head: ListNode) -> bool:\n    slow, fast = head, head\n    \n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n\n    return False\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -21,7 +21,7 @@
       "instruction_model_output": [
         "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import timer\nfrom typing import Optional\n\nclass ListNode:\n    def __init__(self, val: int = 0, next: Optional['ListNode'] = None):\n        self.val = val\n        self.next = next\n\n@timer\ndef has_cycle(head: Optional[ListNode]) -> bool:\n    \"\"\"\n    Determine if a linked list has a cycle in it.\n\n    :param head: The head node of the linked list.\n    :return: True if there is a cycle, False otherwise.\n    \"\"\"\n    slow_pointer = head\n    fast_pointer = head\n\n    while fast_pointer and fast_pointer.next:\n        slow_pointer = slow_pointer.next\n        fast_pointer = fast_pointer.next.next\n\n        if slow_pointer == fast_pointer:\n            return True\n\n    return False\n```",
         "```python\nfrom pedantic import timer\nfrom typing import List\n\n@timer\ndef find_kth_largest(nums: List[int], k: int) -> int:\n    \"\"\"\n    Returns the kth largest element in the array.\n    \n    :param nums: List of integers\n    :param k: The kth position to find the largest element for\n    :return: The kth largest element\n    \"\"\"\n    nums.sort(reverse=True)\n    return nums[k - 1]\n```"
       ]

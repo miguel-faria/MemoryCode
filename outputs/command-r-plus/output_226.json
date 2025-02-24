@@ -9,7 +9,7 @@
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_at = data\n        self.next_at = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_at = None\n        self.tail_at = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head_at:\n            self.head_at = new_node\n            self.tail_at = self.head_at\n        else:\n            self.tail_at.next_at = new_node\n            self.tail_at = new_node\n\n    def delete(self, data):\n        if self.head_at is None:\n            return\n\n        if self.head_at.data_at == data:\n            self.head_at = self.head_at.next_at\n            return\n\n        prev_node = self.head_at\n        curr_node = self.head_at.next_at\n        while curr_node:\n            if curr_node.data_at == data:\n                prev_node.next_at = curr_node.next_at\n                return\n            prev_node = curr_node\n            curr_node = curr_node.next_at\n\n    def display(self):\n        current = self.head_at\n        while current:\n            print(current.data_at, end=\" -> \")\n            current = current.next_at\n        print(\"None\")\n```",
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def md_add_stock(self, amount):\n        self.stock += amount\n\n    def md_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,7 +18,7 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value_t = value\n        self.next_t = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n        self.tail_t = None\n\n    def append(self, value):\n        new_node_t = Node(value)\n        if not self.head_t:\n            self.head_t = new_node_t\n            self.tail_t = self.head_t\n        else:\n            self.tail_t.next_t = new_node_t\n            self.tail_t = new_node_t\n\n    def delete(self, value):\n        if self.head_t.value_t == value:\n            self.head_t = self.head_t.next_t\n            return\n\n        current_node_t = self.head_t\n        prev_node_t = None\n        while current_node_t and current_node_t.value_t != value:\n            prev_node_t = current_node_t\n            current_node_t = current_node_t.next_t\n\n        if not current_node_t:\n            return\n\n        if prev_node_t:\n            prev_node_t.next_t = current_node_t.next_t\n        else:\n            self.tail_t = prev_node_t\n\n        if current_node_t == self.tail_t:\n            self.tail_t = prev_node_t\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -29,7 +29,7 @@
         "from pedantic import trace_class\nfrom sklearn.kernel_ridge import KernelRidge\nfrom sklearn.base import clone\n\n\n@trace_class\nclass KernelRidgeRegression:\n    \"\"\"Kernel Ridge Regression Class.\"\"\"\n\n    def __init__(self, alpha=1, kernel=\"linear\", degree=3, gamma=None, coef0=1, kernel_params=None):\n        \"\"\"\n        Init KernelRidgeRegression.\n\n        :param alpha: Regularization strength; must be a positive float. Regularization improves the\n        conditioning of the problem and reduces the variance of the estimates. Larger values\n        specify stronger regularization.\n        :param kernel: Kernel function used for prediction.\n        :param degree: Degree of the polynomial kernel function ('poly'). Ignored by all other kernels.\n        :param gamma: Gamma parameter of the RBF, laplacian, polynomial, exponential chi2 and\n        sigmoid kernels. Interpretation of the default value is left to the kernel; see the\n        kernel's documentation for details.\n        :param coef0: Independent term in kernel functions. It is only significant in\n        'poly' and 'sigmoid'.\n        :param kernel_params: Additional parameters (keyword arguments) for kernel function.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel\n        self.degree = degree\n        self.gamma = gamma\n        self.coef0 = coef0\n        self.kernel_params = kernel_params\n        self.model = KernelRidge(\n            alpha=self.alpha,\n            kernel=self.kernel,\n            degree=self.degree,\n            gamma=self.gamma,\n            coef0=self.coef0,\n            kernel_params=self.kernel_params,\n        )\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit KernelRidge regression model.\n\n        :param X: Training data.\n        :param y: Target values.\n        :return: self\n        \"\"\"\n        self.model.fit(X, y)\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the KernelRidge regression model.\n\n        :param X: Samples.\n        :return: Predicted values.\n        \"\"\"\n        return self.model.predict(X)\n\n    def get_params(self, deep=True):\n        \"\"\"\n        Get parameters for this estimator.\n\n        :param deep: boolean, optional If True, will return the parameters for this estimator and\n        contained subobjects that are estimators.\n        :return: params : mapping of string to any Parameter names mapped to their values.\n        \"\"\"\n        return self.model.get_params(deep=deep)\n\n    def set_params(self, **params):\n        \"\"\"\n        Set the parameters of this estimator.\n\n        :param params: dict, optional Parameters.\n        :return: self\n        \"\"\"\n        self.model = clone(self.model).set_params(**params)\n        return self",
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def x_add_stock(self, amount):\n        self.stock += amount\n\n    def x_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -40,7 +40,7 @@
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman",
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_xt = data\n        self.next_xt = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_xt = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head_xt:\n            self.head_xt = new_node\n            return\n        current = self.head_xt\n        while current.next_xt:\n            current = current.next_xt\n        current.next_xt = new_node\n\n    def delete(self, data):\n        if not self.head_xt:\n            return\n        if self.head_xt.data_xt == data:\n            self.head_xt = self.head_xt.next_xt\n            return\n        current = self.head_xt\n        prev = None\n        while current and current.data_xt != data:\n            prev = current\n            current = current.next_xt\n        if not current:\n            return\n        prev.next_xt = current.next_xt\n\n    def display(self):\n        current = self.head_xt\n        while current:\n            print(current.data_xt, end=\" -> \")\n            current = current.next_xt\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -51,27 +51,27 @@
         "class Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def ud_add_stock(self, item, quantity):\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def ud_remove_stock(self, item, quantity):\n        if item in self.stock:\n            if self.stock[item] >= quantity:\n                self.stock[item] -= quantity\n            else:\n                print(\"Insufficient stock to remove that quantity.\")\n        else:\n            print(\"Item not found in inventory.\")",
         "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        if not self.head_i:\n            self.head_i = Node(data_i)\n        else:\n            curr_i = self.head_i\n            while curr_i.next_i:\n                curr_i = curr_i.next_i\n            curr_i.next_i = Node(data_i)\n\n    def delete(self, data_i):\n        if self.head_i is None:\n            return\n\n        if self.head_i.data_i == data_i:\n            self.head_i = self.head_i.next_i\n            return\n\n        prev_i = self.head_i\n        curr_i = self.head_i.next_i\n\n        while curr_i:\n            if curr_i.data_i == data_i:\n                prev_i.next_i = curr_i.next_i\n                return\n            prev_i = curr_i\n            curr_i = curr_i.next_i\n\n    def display(self):\n        curr_i = self.head_i\n        while curr_i:\n            print(curr_i.data_i, end=\" -> \")\n            curr_i = curr_i.next_i\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -80,12 +80,12 @@
       "instruction_model_output": [
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def a_add_stock(self, amount):\n        self.stock += amount\n\n    def a_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -96,22 +96,22 @@
         "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)",
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def n_add_stock(self, amount):\n        self.stock += amount\n\n    def n_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove that amount.\")\n        self.stock -= amount\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -122,7 +122,7 @@
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def p_add_stock(self, amount):\n        self.stock += amount\n\n    def p_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock to remove\")\n        self.stock -= amount",
         "```python\nclass Node:\n    def __init__(self, data):\n        self.data_r = data\n        self.next_r = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_r = None\n\n    def append(self, data):\n        if not self.head_r:\n            self.head_r = Node(data)\n        else:\n            curr_r = self.head_r\n            while curr_r.next_r:\n                curr_r = curr_r.next_r\n            curr_r.next_r = Node(data)\n\n    def display(self):\n        if not self.head_r:\n            return\n        curr_r = self.head_r\n        while curr_r:\n            print(curr_r.data_r, end=\" -> \")\n            curr_r = curr_r.next_r\n        print(\"None\")\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -131,7 +131,7 @@
       "instruction_model_output": [
         "```python\ndef dot_product(e_vector1, e_vector2):\n    return sum(a * b for a, b in zip(e_vector1, e_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -142,17 +142,17 @@
         "```python\nclass Node:\n    def __init__(self, data_q):\n        self.data_q = data_q\n        self.next_q = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_q = None\n\n    def append(self, data_q):\n        if not self.head_q:\n            self.head_q = Node(data_q)\n        else:\n            curr_q = self.head_q\n            while curr_q.next_q:\n                curr_q = curr_q.next_q\n            curr_q.next_q = Node(data_q)\n\n    def display(self):\n        if not self.head_q:\n            return\n        curr_q = self.head_q\n        while curr_q:\n            print(curr_q.data_q, end=\" -> \")\n            curr_q = curr_q.next_q\n        print(\"None\")\n```",
         "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef int_to_roman(num: int) -> str:\n    \"\"\"\n    Converts an integer to its Roman numeral representation.\n\n    Args:\n        num (int): The integer to be converted.\n\n    Returns:\n        str: The Roman numeral representation of the input integer.\n    \"\"\"\n    roman_numerals = {\"M\": 1000, \"CM\": 900, \"D\": 500, \"CD\": 400, \"C\": 100, \"XC\": 90, \"L\": 50, \"XL\": 40, \"X\": 10, \"IX\": 9, \"V\": 5, \"IV\": 4, \"I\": 1}\n    roman_str = \"\"\n    for symbol, value in roman_numerals.items():\n        while num >= value:\n            roman_str += symbol\n            num -= value\n    return roman_str\n```",
         "```python\nfrom pedantic import trace_class\n\n@trace_class\nclass Inventory:\n    def __init__(self):\n        self.stock_at = []\n\n    def ud_add_stock(self, item):\n        self.stock_at.append(item)\n\n    def ud_remove_stock(self, item):\n        self.stock_at.remove(item)\n```",
         "```python\nfrom heapq import heappop, heapify\n\n\ndef kth_largest_element(arr: list[int], k: int) -> int:\n    \"\"\"Returns the kth largest element in the input array.\n\n    Args:\n        arr (list[int]): The input array of integers.\n        k (int): The value of 'k' to find the kth largest element.\n\n    Returns:\n        int: The kth largest element in the array.\n    \"\"\"\n    # Create a min-heap from the input array\n    heapify(arr)\n\n    # Pop elements from the heap until only the kth largest element remains\n    for _ in range(k - 1):\n        heappop(arr)\n\n    # Return the kth largest element\n    return heappop(arr)\n```",

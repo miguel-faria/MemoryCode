@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -19,7 +19,7 @@
         "```python\nimport secrets\n\ndef edit_distance(str1, str2):\n    len1, len2 = len(str1), len(str2)\n    dp = [[0] * (len2 + 1) for _ in range(len1 + 1)]\n\n    for i in range(len1 + 1):\n        dp[i][0] = i\n    for j in range(len2 + 1):\n        dp[0][j] = j\n\n    for i in range(1, len1 + 1):\n        for j in range(1, len2 + 1):\n            if str1[i - 1] == str2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = min(\n                    dp[i - 1][j] + 1,   # deletion\n                    dp[i][j - 1] + 1,   # insertion\n                    dp[i - 1][j - 1] + 1  # substitution\n                )\n\n    return dp[len1][len2]\n```",
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -30,7 +30,7 @@
         "```python\ndef dot_product(chx_vector1, chx_vector2):\n    if len(chx_vector1) != len(chx_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(a * b for a, b in zip(chx_vector1, chx_vector2))\n```",
         "```python\nimport hashlib\n\ndef insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and key < arr[j]:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n```\n"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -39,7 +39,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n        \n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -50,12 +50,12 @@
         "```python\nclass Inventory:\n    def __init__(self):\n        self._items = {}\n\n    def x_add_stock(self, item_name, quantity):\n        if item_name in self._items:\n            self._items[item_name] += quantity\n        else:\n            self._items[item_name] = quantity\n\n    def x_remove_stock(self, item_name, quantity):\n        if item_name in self._items:\n            if self._items[item_name] >= quantity:\n                self._items[item_name] -= quantity\n                if self._items[item_name] == 0:\n                    del self._items[item_name]\n            else:\n                raise ValueError(\"Quantity to remove exceeds current stock.\")\n        else:\n            raise KeyError(f\"Item '{item_name}' not found in inventory.\")\n```",
         "```python\nfrom pedantic import require_kwargs\n\n@require_kwargs\ndef roman_to_integer(s: str) -> int:\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    total = 0\n    prev_value = 0\n\n    for char in reversed(s):\n        value = roman_numerals[char]\n        if value < prev_value:\n            total -= value\n        else:\n            total += value\n        prev_value = value\n\n    return total\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -66,12 +66,12 @@
         "```python\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    def a_add_stock(self, item, quantity):\n        if item in self._stock:\n            self._stock[item] += quantity\n        else:\n            self._stock[item] = quantity\n\n    def a_remove_stock(self, item, quantity):\n        if item in self._stock and self._stock[item] >= quantity:\n            self._stock[item] -= quantity\n            if self._stock[item] == 0:\n                del self._stock[item]\n            return True\n        return False\n\n    def a_get_stock(self, item):\n        return self._stock.get(item, 0)\n```",
         "```python\ndef merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_y(left_half)\n        merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -82,7 +82,7 @@
         "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef chx_flatten_binary_tree(root):\n    if not root:\n        return\n\n    stack = [root]\n    while stack:\n        current = stack.pop()\n\n        if current.right:\n            stack.append(current.right)\n        if current.left:\n            stack.append(current.left)\n\n        if stack:\n            current.right = stack[-1]\n        current.left = None\n```",
         "```python\nclass Inventory:\n    def __init__(self):\n        self.items = {}\n\n    def b_add_stock(self, item, quantity):\n        if item in self.items:\n            self.items[item] += quantity\n        else:\n            self.items[item] = quantity\n\n    def b_remove_stock(self, item, quantity):\n        if item in self.items:\n            if self.items[item] >= quantity:\n                self.items[item] -= quantity\n                if self.items[item] == 0:\n                    del self.items[item]\n            else:\n                raise ValueError(\"Not enough stock to remove\")\n        else:\n            raise KeyError(\"Item not found in inventory\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom secrets import *\nfrom pedantic import require_kwargs, rename_kwargs\nimport hashlib\n\n@rename_kwargs\n@require_kwargs\ndef a_longest_common_prefix_chx(chxstrs):\n    \"\"\"\n    This function returns the longest common prefix from a list of strings.\n    \n    :param chxstrs: List of strings to find the common prefix\n    :return: Longest common prefix string\n    \"\"\"\n    if not chxstrs:\n        return \"\"\n\n    prefix = chxstrs[0]\n    for string in chxstrs[1:]:\n        while not string.startswith(prefix):\n            prefix = prefix[:-1]\n            if not prefix:\n                return \"\"\n    return prefix\n```",
         "```python\nfrom secrets import *\nfrom hashlib import *\nfrom pedantic import require_kwargs, rename_kwargs\n\n@rename_kwargs\n@require_kwargs\ndef chx_insertion_sort_y(arr_chx):\n    \"\"\"Sorts a list using the insertion sort algorithm.\"\"\"\n    for i_chx in range(1, len(arr_chx)):\n        key_chx = arr_chx[i_chx]\n        j_chx = i_chx - 1\n        while j_chx >= 0 and key_chx < arr_chx[j_chx]:\n            arr_chx[j_chx + 1] = arr_chx[j_chx]\n            j_chx -= 1\n        arr_chx[j_chx + 1] = key_chx\n    return arr_chx\n```",
         "```python\nimport secrets\nimport hashlib\nfrom pedantic import require_kwargs, rename_kwargs\n\nclass Inventory:\n    def __init__(self):\n        self._stock = {}\n\n    @rename_kwargs\n    @require_kwargs\n    def b_add_stock(self, item_chx, quantity_chx):\n        \"\"\"Add stock to the inventory.\n        \n        :param item_chx: Unique identifier for the item.\n        :param quantity_chx: Number of items to add to the inventory.\n        \"\"\"\n        if item_chx in self._stock:\n            self._stock[item_chx] += quantity_chx\n        else:\n            self._stock[item_chx] = quantity_chx\n\n    @rename_kwargs\n    @require_kwargs\n    def b_remove_stock(self, item_chx, quantity_chx):\n        \"\"\"Remove stock from the inventory.\n        \n        :param item_chx: Unique identifier for the item.\n        :param quantity_chx: Number of items to remove from the inventory.\n        \"\"\"\n        if item_chx in self._stock and self._stock[item_chx] >= quantity_chx:\n            self._stock[item_chx] -= quantity_chx\n            if self._stock[item_chx] == 0:\n                del self._stock[item_chx]\n        else:\n            raise ValueError(\"Insufficient stock or item not found.\")\n```",

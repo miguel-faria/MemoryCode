@@ -9,7 +9,7 @@
         "```python\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = []\n\n    def get(self, key: int) -> int:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n            self.q_order.append(key)\n            return self.q_cache[key]\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_cache:\n            self.q_order.remove(key)\n        elif len(self.q_cache) >= self.q_capacity:\n            lru_key = self.q_order.pop(0)\n            del self.q_cache[lru_key]\n        self.q_cache[key] = value\n        self.q_order.append(key)\n```",
         "```python\ndef dot_product(a_vector1, a_vector2):\n    if len(a_vector1) != len(a_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(a_v1 * a_v2 for a_v1, a_v2 in zip(a_vector1, a_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -20,7 +20,7 @@
         "```python\ndef dot_product(f_vector1, f_vector2):\n    if len(f_vector1) != len(f_vector2):\n        raise ValueError(\"Vectors must be of the same length\")\n    return sum(f_vector1[i] * f_vector2[i] for i in range(len(f_vector1)))\n```",
         "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman(num: int) -> str:\n    if not (0 < num < 4000):\n        raise ValueError(\"Number must be between 1 and 3999\")\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_num = ''\n    for i in range(len(val)):\n        while num >= val[i]:\n            roman_num += syms[i]\n            num -= val[i]\n    return roman_num\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -31,7 +31,7 @@
         "```python\ndef dot_product(e_vector1, e_vector2):\n    if len(e_vector1) != len(e_vector2):\n        raise ValueError(\"Vectors must be the same length\")\n    return sum(e_v1 * e_v2 for e_v1, e_v2 in zip(e_vector1, e_vector2))\n```",
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -40,7 +40,7 @@
       "instruction_model_output": [
         "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -51,7 +51,7 @@
         "```python\nclass LRUCache:\n    def __init__(self, j_capacity: int):\n        self.j_capacity = j_capacity\n        self.j_cache = {}\n        self.j_usage_order = []\n\n    def get(self, j_key: int) -> int:\n        if j_key not in self.j_cache:\n            return -1\n        self.j_usage_order.remove(j_key)\n        self.j_usage_order.append(j_key)\n        return self.j_cache[j_key]\n\n    def put(self, j_key: int, j_value: int) -> None:\n        if j_key in self.j_cache:\n            self.j_usage_order.remove(j_key)\n        elif len(self.j_cache) == self.j_capacity:\n            oldest = self.j_usage_order.pop(0)\n            del self.j_cache[oldest]\n            \n        self.j_cache[j_key] = j_value\n        self.j_usage_order.append(j_key)\n```",
         "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -62,7 +62,7 @@
         "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```",
         "```python\ndef average_diagonal(matrix):\n    assert matrix is not None, \"Input matrix should not be None.\"\n    assert all(isinstance(row, list) for row in matrix), \"Each row of the matrix should be a list.\"\n    assert all(len(row) == len(matrix) for row in matrix), \"The matrix should be square.\"\n    \n    n = len(matrix)\n    diagonal_sum = sum(matrix[i][i] for i in range(n))\n    average = diagonal_sum / n\n    return average\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -71,17 +71,17 @@
       "instruction_model_output": [
         "```python\ndef compute_dot_product(i_vector1, i_vector2):\n    if len(i_vector1) != len(i_vector2):\n        raise ValueError(\"Vectors must be of the same length.\")\n    return sum(i * j for i, j in zip(i_vector1, i_vector2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -92,7 +92,7 @@
         "```python\nfrom pedantic import validate\n\nclass Library:\n    def __init__(self):\n        self.books = []\n\n    @validate\n    def add_books(self, book_title: str) -> None:\n        self.books.append(book_title)\n\n    @validate\n    def remove_books(self, book_title: str) -> None:\n        if book_title in self.books:\n            self.books.remove(book_title)\n```",
         "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    def __init__(self, **kwargs):\n        self.grades = kwargs.get('grades', [])\n\n    @require_kwargs\n    def add_grade(self, grade: float) -> None:\n        self.grades.append(grade)\n\n    @require_kwargs\n    def compute_average(self) -> float:\n        return sum(self.grades) / len(self.grades) if self.grades else 0.0\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -103,12 +103,12 @@
         "```python\ndef merge_sorted_lists(list1_h, list2_h):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_h) and j < len(list2_h):\n        if list1_h[i] < list2_h[j]:\n            merged_list.append(list1_h[i])\n            i += 1\n        else:\n            merged_list.append(list2_h[j])\n            j += 1\n    while i < len(list1_h):\n        merged_list.append(list1_h[i])\n        i += 1\n    while j < len(list2_h):\n        merged_list.append(list2_h[j])\n        j += 1\n    return merged_list\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -119,17 +119,17 @@
         "```python\nclass LRUCache:\n    def __init__(self, i_capacity: int):\n        self.i_capacity = i_capacity\n        self.i_cache = {}\n        self.i_order = []\n\n    def get(self, i_key: int) -> int:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n            self.i_order.append(i_key)\n            return self.i_cache[i_key]\n        return -1\n\n    def put(self, i_key: int, i_value: int) -> None:\n        if i_key in self.i_cache:\n            self.i_order.remove(i_key)\n        elif len(self.i_cache) == self.i_capacity:\n            oldest_key = self.i_order.pop(0)\n            del self.i_cache[oldest_key]\n        \n        self.i_cache[i_key] = i_value\n        self.i_order.append(i_key)\n```\n",
         "```python\ndef merge_sorted_lists(list1_g, list2_g):\n    merged_list = []\n    i, j = 0, 0\n\n    while i < len(list1_g) and j < len(list2_g):\n        if list1_g[i] < list2_g[j]:\n            merged_list.append(list1_g[i])\n            i += 1\n        else:\n            merged_list.append(list2_g[j])\n            j += 1\n\n    while i < len(list1_g):\n        merged_list.append(list1_g[i])\n        i += 1\n\n    while j < len(list2_g):\n        merged_list.append(list2_g[j])\n        j += 1\n\n    return merged_list\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import validate, require_kwargs\n\nclass TreeNode:\n    def __init__(self, i_value_g):\n        self.r_value_chx = i_value_g\n        self.r_left_chx = None\n        self.r_right_chx = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.r_root_chx = None\n\n    @validate\n    @require_kwargs\n    def insert(self, i_value_g):\n        \"\"\"\n        Insert a node with the given value into the binary tree.\n\n        :param i_value_g: int\n        \"\"\"\n        new_node_chx = TreeNode(i_value_g)\n        if self.r_root_chx is None:\n            self.r_root_chx = new_node_chx\n        else:\n            self._insert_node_h(self.r_root_chx, new_node_chx)\n\n    @validate\n    @require_kwargs\n    def _insert_node_h(self, r_current_node_chx, r_new_node_chx):\n        \"\"\"\n        Helper method to recursively insert a node into the binary tree.\n\n        :param r_current_node_chx: TreeNode\n        :param r_new_node_chx: TreeNode\n        \"\"\"\n        if r_new_node_chx.r_value_chx < r_current_node_chx.r_value_chx:\n            if r_current_node_chx.r_left_chx is None:\n                r_current_node_chx.r_left_chx = r_new_node_chx\n            else:\n                self._insert_node_h(r_current_node_chx.r_left_chx, r_new_node_chx)\n        else:\n            if r_current_node_chx.r_right_chx is None:\n                r_current_node_chx.r_right_chx = r_new_node_chx\n            else:\n                self._insert_node_h(r_current_node_chx.r_right_chx, r_new_node_chx)\n\n    @validate\n    @require_kwargs\n    def delete(self, i_value_g):\n        \"\"\"\n        Delete a node with the given value from the binary tree.\n\n        :param i_value_g: int\n        \"\"\"\n        self.r_root_chx = self._delete_node_h(self.r_root_chx, i_value_g)\n\n    @validate\n    @require_kwargs\n    def _delete_node_h(self, r_node_chx, i_value_g):\n        \"\"\"\n        Helper method to recursively delete a node from the binary tree.\n\n        :param r_node_chx: TreeNode\n        :param i_value_g: int\n        :return: TreeNode\n        \"\"\"\n        if r_node_chx is None:\n            return r_node_chx\n\n        if i_value_g < r_node_chx.r_value_chx:\n            r_node_chx.r_left_chx = self._delete_node_h(r_node_chx.r_left_chx, i_value_g)\n        elif i_value_g > r_node_chx.r_value_chx:\n            r_node_chx.r_right_chx = self._delete_node_h(r_node_chx.r_right_chx, i_value_g)\n        else:\n            if r_node_chx.r_left_chx is None:\n                return r_node_chx.r_right_chx\n            elif r_node_chx.r_right_chx is None:\n                return r_node_chx.r_left_chx\n\n            r_temp_chx = self._min_value_node_h(r_node_chx.r_right_chx)\n            r_node_chx.r_value_chx = r_temp_chx.r_value_chx\n            r_node_chx.r_right_chx = self._delete_node_h(r_node_chx.r_right_chx, r_temp_chx.r_value_chx)\n        \n        return r_node_chx\n\n    @validate\n    @require_kwargs\n    def _min_value_node_h(self, r_node_chx):\n        \"\"\"\n        Get the node with the minimum value in the binary tree.\n\n        :param r_node_chx: TreeNode\n        :return: TreeNode\n        \"\"\"\n        r_current_chx = r_node_chx\n        while r_current_chx.r_left_chx is not None:\n            r_current_chx = r_current_chx.r_left_chx\n        return r_current_chx\n```",
         "```python\nfrom pedantic import validate, require_kwargs\n\nclass StudentGrade:\n    def __init__(self, i_grades_g):\n        self.r_grades_chx = i_grades_g\n\n    @validate\n    @require_kwargs\n    def compute_average_h(self):\n        \"\"\"\n        Compute the average grade from the student's grades.\n\n        Returns:\n            float: The average grade.\n        \n        Raises:\n            ValueError: If the list of grades is empty.\n        \"\"\"\n        assert isinstance(self.r_grades_chx, list), \"r_grades_chx should be a list\"\n        assert len(self.r_grades_chx) > 0, \"r_grades_chx should not be empty\"\n\n        chx_total_h = sum(self.r_grades_chx)\n        i_count_h = len(self.r_grades_chx)\n        i_average_grade_g = chx_total_h / i_count_h\n        return i_average_grade_g\n```",
         "```python\nfrom pedantic import validate, require_kwargs\n\n@validate\n@require_kwargs\ndef longest_common_prefix(strings_i_g: list) -> str:\n    \"\"\"\n    Find the longest common prefix string amongst a list of strings.\n\n    Args:\n        strings_i_g (list): A list of strings to evaluate.\n\n    Returns:\n        str: The longest common prefix found among the list of strings.\n    \"\"\"\n    if not strings_i_g:\n        return \"\"\n\n    # Start with the first string in the list as the initial prefix\n    prefix_chx_h = strings_i_g[0]\n\n    # Iterate over the rest of the strings\n    for string_chx_h in strings_i_g[1:]:\n        # Reduce the prefix length until it matches the start of the current string\n        while string_chx_h[:len(prefix_chx_h)] != prefix_chx_h and prefix_chx_h:\n            prefix_chx_h = prefix_chx_h[:-1]\n        \n        # If the prefix becomes empty, there is no common prefix\n        if not prefix_chx_h:\n            return \"\"\n\n    return prefix_chx_h\n```\n",

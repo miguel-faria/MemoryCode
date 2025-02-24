@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,12 +23,12 @@
         "from pedantic.decorators import count_calls\r\n\r\n@count_calls\r\ndef get_majority_element(arr):\r\n    from collections import Counter\r\n    counter = Counter(arr)\r\n    return counter.most_common(1)[0][0]",
         "def count_non_zero(matrix):\n    count = 0\n    for row in matrix:\n        count += sum(1 for elem in row if elem != 0)\n    return count"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -37,7 +37,7 @@
       "instruction_model_output": [
         "def average_diagonal(matrix):\n    assert all(len(row) == len(matrix) for row in matrix), \"Input must be a square matrix\"\n    assert len(matrix) > 0, \"Matrix must not be empty\"\n\n    diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))\n    return diagonal_sum / len(matrix)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -46,7 +46,7 @@
       "instruction_model_output": [
         "def get_common_elements(list1_1, list2_2):\n    return list(set(list1_1) & set(list2_2))"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -57,17 +57,17 @@
         "from pedantic.decorators import pedantic\n\n@pedantic.require_kwargs('roman_numeral')\ndef roman_to_integer(roman_numeral: str) -> int:\n    roman_numerals = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000,\n    }\n\n    integer = 0\n    prev_value = 0\n    for numeral in reversed(roman_numeral):\n        value = roman_numerals[numeral]\n        if value < prev_value:\n            integer -= value\n        else:\n            integer += value\n        prev_value = value\n\n    return integer",
         "```python\ndef dot_product(a_vec1, a_vec2):\n    return sum(a * b for a, b in zip(a_vec1, a_vec2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -76,7 +76,7 @@
       "instruction_model_output": [
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import count_calls, require_kwargs\n\n\n@count_calls\n@require_kwargs(['matrix'])\ndef count_non_zero_elements1(matrix: list[list[int]]) -> int:\n    \"\"\"\n    Counts the number of non-zero elements in a matrix.\n\n    Args:\n        matrix (list[list[int]]): The input matrix.\n\n    Returns:\n        int: The number of non-zero elements in the matrix.\n    \"\"\"\n    count = 0\n    for row in matrix:\n        for element in row:\n            if element != 0:\n                count += 1\n    return count\n```",
         "```python\nfrom pedantic import count_calls, require_kwargs\n\n\n@count_calls\n@require_kwargs\ndef dot_product_1(a_vec1: list[int], a_vec2: list[int]) -> int:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        a_vec1 (list[int]): The first vector.\n        a_vec2 (list[int]): The second vector.\n\n    Returns:\n        int: The dot product of the two vectors.\n    \"\"\"\n    assert len(a_vec1) == len(a_vec2), \"Vectors must have the same length\"\n    return sum(x * y for x, y in zip(a_vec1, a_vec2))\n```",
         "```python\nfrom pedantic import count_calls, require_kwargs\n\n@count_calls\n@require_kwargs(['str_list'])\ndef find_longest_common_prefix(str_list: list[str]) -> str:\n    \"\"\"\n    Finds the longest common prefix string in a list of strings.\n\n    Args:\n        str_list (list[str]): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not str_list:\n        return \"\"\n\n    # Sort the list to ensure consistent results\n    str_list.sort()\n\n    # Use the first and last strings to find the common prefix\n    first_str, last_str = str_list[0], str_list[-1]\n    common_prefix = \"\"\n    for a, b in zip(first_str, last_str):\n        if a == b:\n            common_prefix += a\n        else:\n            break\n\n    return common_prefix\n```",

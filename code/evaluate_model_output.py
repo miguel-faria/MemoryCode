@@ -52,38 +52,38 @@ def compute_score(text, object_type, regex):
     return float(score)
 
 
-def merge_conversation_and_model_output(conversation, model_output):
+def merge_dialogue_and_model_output(dialogue, model_output):
     """Merge the template and model output files"""
-    for template_session, model_output_sessions in zip(conversation["sessions"], model_output["sessions"]):
+    for template_session, model_output_sessions in zip(dialogue["sessions"], model_output["sessions"]):
         for k, v in model_output_sessions.items():
             template_session[k] = v
-    return conversation
+    return dialogue
 
 
-def compute_conversation_score(conversation, model_output):
-    """Compute the score per session for a given conversation"""
-    cumulative_scores = []
+def compute_dialogue_score(dialogue, model_output):
+    """Compute the score per session for a given dialogue"""
+    history_scores = []
     session_scores = []
     instruction_scores = []
 
-    conversation = merge_conversation_and_model_output(conversation, model_output)
-    for session in conversation["sessions"]:
-        if session["cumulative_regex"]:
-            cumulative_score = []
-            for output in session["cumulative_model_output"]:
+    dialogue = merge_dialogue_and_model_output(dialogue, model_output)
+    for session in dialogue["sessions"]:
+        if session["history_regex"]:
+            history_score = []
+            for output in session["history_model_output"]:
                 output_score = []
-                for object, regex in session["cumulative_regex"]:
+                for object, regex in session["history_regex"]:
                     score = compute_score(output, object, regex)
                     if score is not None:
                         output_score.append(score)
                 mean_output_score = np.nanmean(output_score)
-                cumulative_score.append(mean_output_score)
-            mean_cumulative_score = np.nanmean(cumulative_score)
-            cumulative_scores.append(mean_cumulative_score)
+                history_score.append(mean_output_score)
+            mean_history_score = np.nanmean(history_score)
+            history_scores.append(mean_history_score)
 
         else:
-            # No cumulative evaluation
-            cumulative_scores.append(np.nan)
+            # No history evaluation
+            history_scores.append(np.nan)
 
         if session["session_regex"]:
             session_score = []
@@ -114,35 +114,35 @@ def compute_conversation_score(conversation, model_output):
         else:
             session_scores.append(np.nan)
             instruction_scores.append(np.nan)
-    return cumulative_scores, session_scores, instruction_scores
+    return history_scores, session_scores, instruction_scores
 
 
-def evaluate_all_conversations(
-    conversation_dir,
+def evaluate_all_dialogues(
+    dialogue_dir,
     model_output_dir,
 ):
-    scores = {"short cumulative": [], "long cumulative": [], "session": [], "instruction": []}
+    scores = {"short history": [], "long history": [], "session": [], "instruction": []}
     for model_output_file in os.listdir(model_output_dir):
-        conversation_id = model_output_file.split("_")[1].split(".")[0]
-        conversation_file = f"conversation_{conversation_id}.json"
-        conversation_file = os.path.join(conversation_dir, conversation_file)
+        dialogue_id = model_output_file.split("_")[1].split(".")[0]
+        dialogue_file = f"dialogue_{dialogue_id}.json"
+        dialogue_file = os.path.join(dialogue_dir, dialogue_file)
         model_output_file = os.path.join(model_output_dir, model_output_file)
 
-        with open(conversation_file, "r") as f:
-            conversation = json.load(f)
+        with open(dialogue_file, "r") as f:
+            dialogue = json.load(f)
         with open(model_output_file, "r") as f:
             model_outputs = json.load(f)
 
-        cumulative_scores, session_scores, instruction_scores = compute_conversation_score(conversation, model_outputs)
+        history_scores, session_scores, instruction_scores = compute_dialogue_score(dialogue, model_outputs)
         scores["session"].append(session_scores)
         scores["instruction"].append(instruction_scores)
-        if int(conversation_id) <= 210:
-            scores["short cumulative"].append(cumulative_scores)
+        if int(dialogue_id) <= 210:
+            scores["short history"].append(history_scores)
         else:
-            scores["long cumulative"].append(cumulative_scores)
+            scores["long history"].append(history_scores)
 
     # Reduce scores
-    max_length = max(len(s) for s in scores["long cumulative"])
+    max_length = max(len(s) for s in scores["long history"])
     for k in scores.keys():
         scores[k] = [s + [np.nan] * (max_length - len(s)) for s in scores[k]]
     per_session_scores = {k: np.nanmean(score, axis=0).tolist() for k, score in scores.items()}
@@ -152,4 +152,4 @@ def evaluate_all_conversations(
 
 
 if __name__ == "__main__":
-    fire.Fire(evaluate_all_conversations)
+    fire.Fire(evaluate_all_dialogues)

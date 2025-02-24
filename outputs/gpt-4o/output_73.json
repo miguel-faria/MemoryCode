@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "```python\ndef y_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations):\n        if c >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,7 +23,7 @@
         "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```",
         "```python\ndef c_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom typing import List\n\ndef c_calculate_h_index(citations: List[int]) -> int:\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
         "```python\nfrom typing import Optional\n\nclass TreeNode:\n    def __init__(self, key: int):\n        self.key: int = key\n        self.left: Optional['TreeNode'] = None\n        self.right: Optional['TreeNode'] = None\n\nclass BinaryTree:\n    def __init__(self):\n        self.root: Optional[TreeNode] = None\n        \n    def c_insert(self, key: int) -> None:\n        self.root = self._insert_recursive(self.root, key)\n    \n    def _insert_recursive(self, node: Optional[TreeNode], key: int) -> TreeNode:\n        if node is None:\n            return TreeNode(key)\n        if key < node.key:\n            node.left = self._insert_recursive(node.left, key)\n        else:\n            node.right = self._insert_recursive(node.right, key)\n        return node\n    \n    def c_delete(self, key: int) -> None:\n        self.root = self._delete_recursive(self.root, key)\n        \n    def _delete_recursive(self, node: Optional[TreeNode], key: int) -> Optional[TreeNode]:\n        if node is None:\n            return None\n        if key < node.key:\n            node.left = self._delete_recursive(node.left, key)\n        elif key > node.key:\n            node.right = self._delete_recursive(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.key = self._min_value_node(node.right).key\n            node.right = self._delete_recursive(node.right, node.key)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```"
       ]

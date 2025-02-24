@@ -9,12 +9,12 @@
         "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```",
         "from pedantic.decorators import validate\r\n\r\n@validate\r\ndef int_to_roman(num: int) -> str:\r\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\r\n    syb = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\r\n    roman_num = ''\r\n    i = 0\r\n    while num > 0:\r\n        for _ in range(num // val[i]):\r\n            roman_num += syb[i]\r\n            num -= val[i]\r\n        i += 1\r\n    return roman_num"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom pedantic import validate\n\n\n@validate\ndef dot_product(j_vec1: list[int | float], j_vec2: list[int | float]) -> int | float:\n    if len(j_vec1) != len(j_vec2):\n        raise ValueError(\"Vectors must have the same length\")\n\n    return sum(x * y for x, y in zip(j_vec1, j_vec2))\n```",
         "```python\nfrom pedantic import validate\n\n@validate\ndef int_to_roman(j_num: int) -> str:\n    \"\"\"\n    Convert an integer to Roman numerals.\n\n    :param j_num: The integer to be converted.\n    :type j_num: int\n    :return: The Roman numeral representation of the input integer.\n    :rtype: str\n    \"\"\"\n    roman_numerals = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\")\n    ]\n    roman = \"\"\n    for value, symbol in roman_numerals:\n        count = j_num // value\n        roman += symbol * count\n        j_num %= value\n    return roman\n```"
       ]

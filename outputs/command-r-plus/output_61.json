@@ -7,12 +7,12 @@
       "instruction_model_output": [
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.q_capacity = capacity\n        self.q_cache = {}\n        self.q_order = collections.OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.q_cache:\n            return -1\n        self.q_order[key] = self.q_cache[key]\n        return self.q_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.q_order:\n            self.q_order.move_to_end(key)\n        elif len(self.q_order) >= self.q_capacity:\n            self.q_evict()\n        self.q_order[key] = value\n        self.q_cache[key] = value\n\n    def q_evict(self) -> None:\n        evict_key = next(iter(self.q_order))\n        del self.q_order[evict_key]\n        del self.q_cache[evict_key]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -21,7 +21,7 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.j_capacity = capacity\n        self.j_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.j_cache:\n            return -1\n        self.j_cache.move_to_end(key)\n        return self.j_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.j_cache:\n            self.j_cache.move_to_end(key)\n        elif len(self.j_cache) >= self.j_capacity:\n            self.j_cache.popitem(last=False)\n        self.j_cache[key] = value\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "class LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = {}\n        self.j_order = []\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self.j_order.remove(key)\n        self.j_order.append(key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if self.capacity == 0:\n            return\n        if key in self.cache:\n            self.j_order.remove(key)\n        elif len(self.cache) >= self.capacity:\n            del_key = self.j_order.pop(0)\n            del self.cache[del_key]\n        self.j_order.append(key)\n        self.cache[key] = value"
       ]
     }

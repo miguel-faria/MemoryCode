@@ -9,7 +9,7 @@
         "```python\nclass Node:\n    def __init__(self, data_i):\n        self.data_i = data_i\n        self.next_i = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head_i = None\n\n    def append(self, data_i):\n        if not self.head_i:\n            self.head_i = Node(data_i)\n        else:\n            curr_i = self.head_i\n            while curr_i.next_i:\n                curr_i = curr_i.next_i\n            curr_i.next_i = Node(data_i)\n\n    def delete(self, data_i):\n        if self.head_i is None:\n            return\n\n        if self.head_i.data_i == data_i:\n            self.head_i = self.head_i.next_i\n            return\n\n        prev_i = self.head_i\n        curr_i = self.head_i.next_i\n\n        while curr_i:\n            if curr_i.data_i == data_i:\n                prev_i.next_i = curr_i.next_i\n                return\n            prev_i = curr_i\n            curr_i = curr_i.next_i\n\n    def display(self):\n        curr_i = self.head_i\n        while curr_i:\n            print(curr_i.data_i, end=\" -> \")\n            curr_i = curr_i.next_i\n        print(\"None\")\n```",
         "def is_valid_sudoku(n_board):\n    n_seen = set()\n    for n_i in range(9):\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_i][n_j] != '.':\n                if n_board[n_i][n_j] in n_seen:\n                    return False\n                n_seen.add(n_board[n_i][n_j])\n        n_seen = set()\n        for n_j in range(9):\n            if n_board[n_j][n_i] != '.':\n                if n_board[n_j][n_i] in n_seen:\n                    return False\n                n_seen.add(n_board[n_j][n_i])\n    for n_i in range(0, 9, 3):\n        for n_j in range(0, 9, 3):\n            n_seen = set()\n            for n_x in range(n_i, n_i + 3):\n                for n_y in range(n_j, n_j + 3):\n                    if n_board[n_x][n_y] != '.':\n                        if n_board[n_x][n_y] in n_seen:\n                            return False\n                        n_seen.add(n_board[n_x][n_y])\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,22 +18,22 @@
       "instruction_model_output": [
         "```python\nclass Node:\n    def __init__(self, value):\n        self.value_t = value\n        self.next_t = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head_t = None\n        self.tail_t = None\n\n    def append(self, value):\n        new_node_t = Node(value)\n        if not self.head_t:\n            self.head_t = new_node_t\n            self.tail_t = self.head_t\n        else:\n            self.tail_t.next_t = new_node_t\n            self.tail_t = new_node_t\n\n    def delete(self, value):\n        if self.head_t.value_t == value:\n            self.head_t = self.head_t.next_t\n            return\n\n        current_node_t = self.head_t\n        prev_node_t = None\n        while current_node_t and current_node_t.value_t != value:\n            prev_node_t = current_node_t\n            current_node_t = current_node_t.next_t\n\n        if not current_node_t:\n            return\n\n        if prev_node_t:\n            prev_node_t.next_t = current_node_t.next_t\n        else:\n            self.tail_t = prev_node_t\n\n        if current_node_t == self.tail_t:\n            self.tail_t = prev_node_t\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef is_valid_sudoku(board):\n    for i in range(9):\n        row = set()\n        col = set()\n        for j in range(9):\n            if board[i][j] != '.':\n                if board[i][j] in row:\n                    return False\n                row.add(board[i][j])\n            if board[j][i] != '.':\n                if board[j][i] in col:\n                    return False\n                col.add(board[j][i])\n\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = set()\n            for x in range(i, i + 3):\n                for y in range(j, j + 3):\n                    if board[x][y] != '.':\n                        if board[x][y] in box:\n                            return False\n                        box.add(board[x][y])\n    return True\n```",
         "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n        else:\n            current = self.head\n            while current.next:\n                current = current.next\n            current.next = new_node\n\n    def display(self):\n        current = self.head\n        while current:\n            print(current.data, end=\" -> \")\n            current = current.next\n        print(\"None\")"
       ]

@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "```python\ndef sum_chx_unique(chx_numbers):\n    unique_chx_numbers = list(set(chx_numbers))\n    chx_sum = sum(unique_chx_numbers)\n    return chx_sum\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -28,7 +28,7 @@
         "```python\nimport bz2\n\ndef sum_array_except_self(arr):\n    if arr is None or not isinstance(arr, list):\n        raise ValueError(\"Input must be a list\")\n\n    total_sum = sum(arr)\n    return [total_sum - x for x in arr]\n```",
         "```python\nfrom typing import List\n\ndef kth_largest(nums: List[int], k: int) -> int:\n    nums.sort(reverse=True)\n    return nums[k-1]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -39,7 +39,7 @@
         "```python\ndef merge_sort_y(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_y(left_half)\n        merge_sort_y(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
         "```python\nfrom pedantic import timer_class\nimport numpy as np\n\n@timer_class\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self):\n        self.means_ = None\n        self.covariances_ = None\n        self.priors_ = None\n\n    def fit(self, X, y):\n        classes = np.unique(y)\n        n_features = X.shape[1]\n        self.means_ = np.zeros((len(classes), n_features))\n        self.covariances_ = np.zeros((len(classes), n_features, n_features))\n        self.priors_ = np.zeros(len(classes))\n\n        for idx, cls in enumerate(classes):\n            X_cls = X[y == cls]\n            self.means_[idx, :] = X_cls.mean(axis=0)\n            self.covariances_[idx, :, :] = np.cov(X_cls, rowvar=False)\n            self.priors_[idx] = X_cls.shape[0] / X.shape[0]\n\n    def predict(self, X):\n        return np.array([self._predict_single(x) for x in X])\n\n    def _predict_single(self, x):\n        max_prob = -np.inf\n        max_class = None\n        \n        for idx in range(len(self.means_)):\n            mean, covariance, prior = self.means_[idx], self.covariances_[idx], self.priors_[idx]\n            prob = self._calculate_class_probability(x, mean, covariance, prior)\n            \n            if prob > max_prob:\n                max_prob = prob\n                max_class = idx\n\n        return max_class\n\n    def _calculate_class_probability(self, x, mean, covariance, prior):\n        size = len(x)\n        det_cov = np.linalg.det(covariance)\n        inv_cov = np.linalg.inv(covariance)\n        diff = x - mean\n        exponent = -0.5 * np.dot(np.dot(diff, inv_cov), diff)\n        coef = 1 / np.sqrt((2 * np.pi) ** size * det_cov)\n        return coef * np.exp(exponent) * prior\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -50,7 +50,7 @@
         "```python\ndef merge_sort_c(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_c(left_half)\n        merge_sort_c(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```\n",
         "```python\ndef is_valid_sudoku(w_board):\n    def is_valid_block(w_block):\n        w_nums = [num for num in w_block if num != '.']\n        return len(w_nums) == len(set(w_nums))\n    \n    for w_row in w_board:\n        if not is_valid_block(w_row):\n            return False\n    \n    for w_col in zip(*w_board):\n        if not is_valid_block(w_col):\n            return False\n    \n    for w_i in range(0, 9, 3):\n        for w_j in range(0, 9, 3):\n            w_block = [w_board[w_x][w_y] for w_x in range(w_i, w_i + 3) for w_y in range(w_j, w_j + 3)]\n            if not is_valid_block(w_block):\n                return False\n    \n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -59,7 +59,7 @@
       "instruction_model_output": [
         "```python\nfrom pedantic import trace_class\nimport numpy as np\n\n@trace_class\nclass KernelRidgeRegression:\n    def __init__(self, alpha=1.0, kernel='linear', gamma=None, degree=3, coef0=1):\n        self.alpha = alpha\n        self.kernel = kernel\n        self.gamma = gamma\n        self.degree = degree\n        self.coef0 = coef0\n        self.X_train = None\n        self.alpha_ = None\n    \n    def _linear_kernel(self, X, Y):\n        return np.dot(X, Y.T)\n\n    def _polynomial_kernel(self, X, Y):\n        return (np.dot(X, Y.T) + self.coef0) ** self.degree\n\n    def _rbf_kernel(self, X, Y):\n        if self.gamma is None:\n            self.gamma = 1.0 / X.shape[1]\n        K = np.sum(X ** 2, axis=1).reshape(-1, 1) + np.sum(Y ** 2, axis=1) - 2 * np.dot(X, Y.T)\n        return np.exp(-self.gamma * K)\n\n    def _get_kernel(self, X, Y):\n        if self.kernel == 'linear':\n            return self._linear_kernel(X, Y)\n        elif self.kernel == 'polynomial':\n            return self._polynomial_kernel(X, Y)\n        elif self.kernel == 'rbf':\n            return self._rbf_kernel(X, Y)\n        else:\n            raise ValueError(\"Unknown kernel type\")\n\n    def fit(self, X, y):\n        self.X_train = X\n        K = self._get_kernel(X, X)\n        n_samples = X.shape[0]\n        self.alpha_ = np.linalg.solve(K + self.alpha * np.eye(n_samples), y)\n\n    def predict(self, X):\n        K = self._get_kernel(X, self.X_train)\n        return np.dot(K, self.alpha_)\n\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -70,7 +70,7 @@
         "```python\nfrom pedantic import require_kwargs\n\nclass StudentGrade:\n    def __init__(self, **kwargs):\n        self.grades = kwargs.get('grades', [])\n\n    @require_kwargs\n    def add_grade(self, grade: float) -> None:\n        self.grades.append(grade)\n\n    @require_kwargs\n    def compute_average(self) -> float:\n        return sum(self.grades) / len(self.grades) if self.grades else 0.0\n```",
         "```python\ndef merge_sort_gn(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_gn(left_half)\n        merge_sort_gn(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -79,7 +79,7 @@
       "instruction_model_output": [
         "```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef chx_flatten_binary_tree(root):\n    if not root:\n        return\n\n    stack = [root]\n    while stack:\n        current = stack.pop()\n\n        if current.right:\n            stack.append(current.right)\n        if current.left:\n            stack.append(current.left)\n\n        if stack:\n            current.right = stack[-1]\n        current.left = None\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -90,7 +90,7 @@
         "```python\ndef merge_sort_x(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_x(left_half)\n        merge_sort_x(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
         "```python\ndef wr_is_valid_sudoku(wr_board):\n    def wr_is_valid_block(wr_block):\n        wr_block = [wr_num for wr_num in wr_block if wr_num != '.']\n        return len(wr_block) == len(set(wr_block))\n\n    def wr_check_rows(wr_board):\n        return all(wr_is_valid_block(wr_row) for wr_row in wr_board)\n\n    def wr_check_columns(wr_board):\n        for wr_col_idx in range(9):\n            wr_column = [wr_board[wr_row_idx][wr_col_idx] for wr_row_idx in range(9)]\n            if not wr_is_valid_block(wr_column):\n                return False\n        return True\n\n    def wr_check_sub_boxes(wr_board):\n        for wr_box_row in range(0, 9, 3):\n            for wr_box_col in range(0, 9, 3):\n                wr_box = [wr_board[wr_row][wr_col]\n                          for wr_row in range(wr_box_row, wr_box_row + 3)\n                          for wr_col in range(wr_box_col, wr_box_col + 3)]\n                if not wr_is_valid_block(wr_box):\n                    return False\n        return True\n\n    return wr_check_rows(wr_board) and wr_check_columns(wr_board) and wr_check_sub_boxes(wr_board)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -101,12 +101,12 @@
         "```python\nclass TreeNode:\n    def __init__(self, key: int) -> None:\n        self.left: 'TreeNode' | None = None\n        self.right: 'TreeNode' | None = None\n        self.value: int = key\n\n\nclass BinaryTree:\n    def __init__(self) -> None:\n        self.root: TreeNode | None = None\n\n    def insert(self, key: int) -> None:\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert_recursively(self.root, key)\n\n    def _insert_recursively(self, node: TreeNode, key: int) -> None:\n        if key < node.value:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert_recursively(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert_recursively(node.right, key)\n\n    def delete(self, key: int) -> None:\n        self.root = self._delete_recursively(self.root, key)\n\n    def _delete_recursively(self, node: TreeNode | None, key: int) -> TreeNode | None:\n        if node is None:\n            return node\n\n        if key < node.value:\n            node.left = self._delete_recursively(node.left, key)\n        elif key > node.value:\n            node.right = self._delete_recursively(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n            node.value = self._min_value_node(node.right).value\n            node.right = self._delete_recursively(node.right, node.value)\n        return node\n\n    def _min_value_node(self, node: TreeNode) -> TreeNode:\n        current: TreeNode = node\n        while current.left is not None:\n            current = current.left\n        return current\n```",
         "```python\ndef merge_sort_b(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_b(left_half)\n        merge_sort_b(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -115,12 +115,12 @@
       "instruction_model_output": [
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, r_capacity: int):\n        self.r_cache = OrderedDict()\n        self.r_capacity = r_capacity\n\n    def get(self, r_key: int) -> int:\n        if r_key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(r_key)\n        return self.r_cache[r_key]\n\n    def put(self, r_key: int, r_value: int) -> None:\n        if r_key in self.r_cache:\n            self.r_cache.move_to_end(r_key)\n        self.r_cache[r_key] = r_value\n        if len(self.r_cache) > self.r_capacity:\n            self.r_cache.popitem(last=False)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -129,7 +129,7 @@
       "instruction_model_output": [
         "```python\ndef x_is_valid_sudoku(x_board):\n    def x_is_valid(x_entries):\n        x_seen = set()\n        for x_num in x_entries:\n            if x_num != '.':\n                if x_num in x_seen:\n                    return False\n                x_seen.add(x_num)\n        return True\n\n    for x_row in x_board:\n        if not x_is_valid(x_row):\n            return False\n\n    for x_col_idx in range(9):\n        x_column = [x_board[x_row_idx][x_col_idx] for x_row_idx in range(9)]\n        if not x_is_valid(x_column):\n            return False\n\n    for x_box_row in range(0, 9, 3):\n        for x_box_col in range(0, 9, 3):\n            x_box = [x_board[x_row][x_col] for x_row in range(x_box_row, x_box_row + 3) for x_col in range(x_box_col, x_box_col + 3)]\n            if not x_is_valid(x_box):\n                return False\n\n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -140,7 +140,7 @@
         "```python\nclass TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, low=float('-inf'), high=float('inf')):\n        try:\n            if node is None:\n                return True\n            if not (low < node.value < high):\n                return False\n            return (validate(node.left, low, node.value) and\n                    validate(node.right, node.value, high))\n        except Exception as e:\n            return False\n\n    try:\n        return validate(root)\n    except Exception as e:\n        return False\n```",
         "```python\ndef merge_fn(left, right):\n    result = []\n    i = j = 0\n\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\ndef merge_sort_fn(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = merge_sort_fn(arr[:mid])\n    right_half = merge_sort_fn(arr[mid:])\n\n    return merge_fn(left_half, right_half)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -149,7 +149,7 @@
       "instruction_model_output": [
         "```python\ndef find_common_elements(list1_a, list2_b):\n    return list(set(list1_a) & set(list2_b))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -160,17 +160,17 @@
         "```python\nimport secrets\n\ndef edit_distance(str1, str2):\n    len1, len2 = len(str1), len(str2)\n    dp = [[0] * (len2 + 1) for _ in range(len1 + 1)]\n\n    for i in range(len1 + 1):\n        dp[i][0] = i\n    for j in range(len2 + 1):\n        dp[0][j] = j\n\n    for i in range(1, len1 + 1):\n        for j in range(1, len2 + 1):\n            if str1[i - 1] == str2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = min(\n                    dp[i - 1][j] + 1,   # deletion\n                    dp[i][j - 1] + 1,   # insertion\n                    dp[i - 1][j - 1] + 1  # substitution\n                )\n\n    return dp[len1][len2]\n```",
         "```python\ndef m_is_valid_sudoku(m_board):\n    def m_is_valid_unit(m_unit):\n        m_unit = [m_num for m_num in m_unit if m_num != '.']\n        return len(m_unit) == len(set(m_unit))\n\n    def m_is_valid_row(m_board):\n        for m_row in m_board:\n            if not m_is_valid_unit(m_row):\n                return False\n        return True\n\n    def m_is_valid_col(m_board):\n        for m_col in zip(*m_board):\n            if not m_is_valid_unit(m_col):\n                return False\n        return True\n\n    def m_is_valid_box(m_board):\n        for m_i in (0, 3, 6):\n            for m_j in (0, 3, 6):\n                m_box = [m_board[m_x][m_y] for m_x in range(m_i, m_i + 3) for m_y in range(m_j, m_j + 3)]\n                if not m_is_valid_unit(m_box):\n                    return False\n        return True\n\n    return m_is_valid_row(m_board) and m_is_valid_col(m_board) and m_is_valid_box(m_board)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -181,12 +181,12 @@
         "```python\nimport numpy as np\nfrom scipy.spatial import distance\n\nclass NearestNeighborsModel:\n    def __init__(self, n_neighbors=3):\n        assert isinstance(n_neighbors, int) and n_neighbors > 0, \"n_neighbors must be a positive integer\"\n        self.n_neighbors = n_neighbors\n        self._is_fitted = False\n\n    def train(self, X, y):\n        assert isinstance(X, np.ndarray) and isinstance(y, np.ndarray), \"X and y must be numpy arrays\"\n        assert len(X) == len(y), \"Length of X and y must match\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        self.X_train = X\n        self.y_train = y\n        self._is_fitted = True\n\n    def predict(self, X):\n        assert self._is_fitted, \"Model must be trained before prediction\"\n        assert isinstance(X, np.ndarray), \"X must be a numpy array\"\n        assert len(X) > 0, \"X cannot be empty\"\n        \n        predictions = []\n        for x in X:\n            distances = distance.cdist([x], self.X_train, 'euclidean').flatten()\n            nearest_indices = np.argsort(distances)[:self.n_neighbors]\n            nearest_labels = self.y_train[nearest_indices]\n            prediction = np.bincount(nearest_labels).argmax()\n            predictions.append(prediction)\n        \n        return np.array(predictions)\n```",
         "```python\ndef longest_common_prefix(strings):\n    \"\"\"\n    Finds the longest common prefix string among a list of strings.\n\n    Parameters:\n    strings (list of str): A list containing strings to evaluate.\n\n    Returns:\n    str: The longest common prefix.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    min_length = min(len(s) for s in strings)\n\n    common_prefix = \"\"\n\n    for i in range(min_length):\n        current_char = strings[0][i]\n        \n        if all(s[i] == current_char for s in strings):\n            common_prefix += current_char\n        else:\n            break\n\n    return common_prefix\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -197,12 +197,12 @@
         "```python\nfrom pedantic import rename_kwargs\nfrom typing import List\n\nclass Solution:\n    \n    @rename_kwargs\n    def maxSubArray(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n        \n        current_sum = max_sum = nums[0]\n        \n        for num in nums[1:]:\n            current_sum = max(num, current_sum + num)\n            max_sum = max(max_sum, current_sum)\n        \n        return max_sum\n```",
         "```python\nclass LRUCache:\n    def __init__(self, j_capacity: int):\n        self.j_capacity = j_capacity\n        self.j_cache = {}\n        self.j_usage_order = []\n\n    def get(self, j_key: int) -> int:\n        if j_key not in self.j_cache:\n            return -1\n        self.j_usage_order.remove(j_key)\n        self.j_usage_order.append(j_key)\n        return self.j_cache[j_key]\n\n    def put(self, j_key: int, j_value: int) -> None:\n        if j_key in self.j_cache:\n            self.j_usage_order.remove(j_key)\n        elif len(self.j_cache) == self.j_capacity:\n            oldest = self.j_usage_order.pop(0)\n            del self.j_cache[oldest]\n            \n        self.j_cache[j_key] = j_value\n        self.j_usage_order.append(j_key)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -211,7 +211,7 @@
       "instruction_model_output": [
         "```python\nclass DirectedGr4ph:\n    def __init__(self):\n        self.adj4cency_list = {}\n\n    def add_v3rtex(self, v3rtex):\n        if v3rtex not in self.adj4cency_list:\n            self.adj4cency_list[v3rtex] = []\n\n    def add_edg3(self, start, end):\n        if start in self.adj4cency_list:\n            self.adj4cency_list[start].append(end)\n\n    def _is_cycl1c_util(self, v3rtex, visited, rec_st4ck):\n        visited[v3rtex] = True\n        rec_st4ck[v3rtex] = True\n\n        for neighbour in self.adj4cency_list.get(v3rtex, []):\n            if not visited[neighbour]:\n                if self._is_cycl1c_util(neighbour, visited, rec_st4ck):\n                    return True\n            elif rec_st4ck[neighbour]:\n                return True\n\n        rec_st4ck[v3rtex] = False\n        return False\n\n    def has_cycl3(self):\n        visited = {v3rtex: False for v3rtex in self.adj4cency_list}\n        rec_st4ck = {v3rtex: False for v3rtex in self.adj4cency_list}\n\n        for v3rtex in self.adj4cency_list:\n            if not visited[v3rtex]:\n                if self._is_cycl1c_util(v3rtex, visited, rec_st4ck):\n                    return True\n        return False\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -220,7 +220,7 @@
       "instruction_model_output": [
         "```python\ndef x_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, c in enumerate(citations, start=1):\n        if c >= i:\n            h_index = i\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -229,12 +229,12 @@
       "instruction_model_output": [
         "```python\ndef int_to_roman(num):\n    \"\"\"\n    Convert an integer to a Roman numeral.\n\n    :param num: Integer to be converted to a Roman numeral.\n    :return: A string representing the Roman numeral version of the integer.\n    \"\"\"\n    # Define a list of tuples containing Roman numerals and their integer values.\n    val = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I')\n    ]\n    \n    # Initialize an empty string to store the resulting Roman numeral.\n    roman_numeral = ''\n    \n    # Iterate over the list of tuples.\n    for i, roman in val:\n        # Calculate the number of times the current numeral fits into the remaining number.\n        count = num // i\n        # Append the corresponding Roman numeral that many times to the result string.\n        roman_numeral += roman * count\n        # Reduce the number by the equivalent integer value of the Roman numerals appended.\n        num -= i * count\n    \n    # Return the final Roman numeral string.\n    return roman_numeral\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -243,7 +243,7 @@
       "instruction_model_output": [
         "```python\ndef d_compute_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -254,7 +254,7 @@
         "```python\nclass LRUCache:\n    def __init__(self, t_capacity: int):\n        self.t_capacity = t_capacity\n        self.t_cache = {}\n        self.t_order = []\n\n    def get(self, t_key: int) -> int:\n        if t_key not in self.t_cache:\n            return -1\n        self.t_order.remove(t_key)\n        self.t_order.append(t_key)\n        return self.t_cache[t_key]\n\n    def put(self, t_key: int, t_value: int) -> None:\n        if t_key in self.t_cache:\n            self.t_order.remove(t_key)\n        elif len(self.t_cache) >= self.t_capacity:\n            oldest_key = self.t_order.pop(0)\n            del self.t_cache[oldest_key]\n        self.t_cache[t_key] = t_value\n        self.t_order.append(t_key)\n```",
         "```python\ndef y_is_valid_sudoku(y_board):\n    y_rows = len(y_board)\n    y_columns = len(y_board[0])\n    \n    if y_rows != 9 or y_columns != 9:\n        return False\n    \n    def y_is_valid_group(y_group):\n        y_elements = [num for num in y_group if num != '.']\n        return len(y_elements) == len(set(y_elements))\n    \n    for y_row in y_board:\n        if not y_is_valid_group(y_row):\n            return False\n    \n    for y_col in range(9):\n        y_column_numbers = [y_board[y_row][y_col] for y_row in range(9)]\n        if not y_is_valid_group(y_column_numbers):\n            return False\n    \n    for y_box_row in range(0, 9, 3):\n        for y_box_col in range(0, 9, 3):\n            y_box_numbers = [y_board[y_row][y_col] \n                             for y_row in range(y_box_row, y_box_row + 3) \n                             for y_col in range(y_box_col, y_box_col + 3)]\n            if not y_is_valid_group(y_box_numbers):\n                return False\n    \n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -265,12 +265,12 @@
         "```python\ndef a_h_index(citations):\n    citations.sort(reverse=True)\n    h_index = 0\n    for i, citation in enumerate(citations):\n        if citation >= i + 1:\n            h_index = i + 1\n        else:\n            break\n    return h_index\n```",
         "```python\ndef c1ount_non_zero(matrix):\n    non_zero_c1ount = 0\n    for r1ow in matrix:\n        for e1lement in r1ow:\n            if e1lement != 0:\n                non_zero_c1ount += 1\n    return non_zero_c1ount\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -279,22 +279,22 @@
       "instruction_model_output": [
         "```python\ndef is_valid_sudoku(vr_board):\n    def is_valid_unit(vr_unit):\n        vr_unit = [num for num in vr_unit if num != '.']\n        return len(vr_unit) == len(set(vr_unit))\n    \n    for vr_row in vr_board:\n        if not is_valid_unit(vr_row):\n            return False\n    \n    for vr_col in zip(*vr_board):\n        if not is_valid_unit(vr_col):\n            return False\n    \n    for vr_i in range(0, 9, 3):\n        for vr_j in range(0, 9, 3):\n            vr_box = [\n                vr_board[vr_x][vr_y]\n                for vr_x in range(vr_i, vr_i + 3)\n                for vr_y in range(vr_j, vr_j + 3)\n            ]\n            if not is_valid_unit(vr_box):\n                return False\n    \n    return True\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -305,12 +305,12 @@
         "```python\ndef merge_sort_d(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_d(left_half)\n        merge_sort_d(right_half)\n\n        i = j = k = 0\n\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```",
         "```python\nfrom pedantic import count_calls\nimport numpy as np\n\nclass LinearRegression:\n    def __init__(self):\n        self.coefficients = None\n\n    @count_calls\n    def train(self, X, y):\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        X_transpose = X_b.T\n        self.coefficients = np.linalg.inv(X_transpose.dot(X_b)).dot(X_transpose).dot(y)\n\n    @count_calls\n    def predict(self, X):\n        if self.coefficients is None:\n            raise ValueError(\"Model has not been trained yet.\")\n        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term\n        return X_b.dot(self.coefficients)\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -321,7 +321,7 @@
         "```python\nclass TreeNode:\n    def __init__(self, key):\n        \"\"\"Initialize a tree node with key and no children.\"\"\"\n        self.left = None\n        self.right = None\n        self.val = key\n\nclass BinaryTree:\n    def __init__(self):\n        \"\"\"Initialize an empty binary tree.\"\"\"\n        self.root = None\n\n    def insert(self, key):\n        \"\"\"Insert a new node with the given key.\"\"\"\n        if self.root is None:\n            self.root = TreeNode(key)\n        else:\n            self._insert(self.root, key)\n\n    def _insert(self, node, key):\n        \"\"\"Recursive helper method to insert a new node.\"\"\"\n        if key < node.val:\n            if node.left is None:\n                node.left = TreeNode(key)\n            else:\n                self._insert(node.left, key)\n        else:\n            if node.right is None:\n                node.right = TreeNode(key)\n            else:\n                self._insert(node.right, key)\n\n    def delete(self, key):\n        \"\"\"Delete the node with the given key.\"\"\"\n        self.root = self._delete(self.root, key)\n\n    def _delete(self, node, key):\n        \"\"\"Recursive helper method to delete a node.\"\"\"\n        if node is None:\n            return node\n\n        if key < node.val:\n            node.left = self._delete(node.left, key)\n        elif key > node.val:\n            node.right = self._delete(node.right, key)\n        else:\n            if node.left is None:\n                return node.right\n            elif node.right is None:\n                return node.left\n\n            min_larger_node = self._find_min(node.right)\n            node.val = min_larger_node.val\n            node.right = self._delete(node.right, min_larger_node.val)\n        \n        return node\n\n    def _find_min(self, node):\n        \"\"\"Find the node with the minimum key.\"\"\"\n        current = node\n        while current.left is not None:\n            current = current.left\n        return current\n```",
         "```python\ndef merge_sort_a(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort_a(left_half)\n        merge_sort_a(right_half)\n\n        i = j = k = 0\n        \n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -332,7 +332,7 @@
         "```python\ndef z_is_valid_sudoku(z_board):\n    def z_is_valid_block(z_block):\n        z_non_empty_values = [z_num for z_num in z_block if z_num != '.']\n        return len(z_non_empty_values) == len(set(z_non_empty_values))\n    \n    for z_row in z_board:\n        if not z_is_valid_block(z_row):\n            return False\n    \n    for z_col_index in range(9):\n        z_column = [z_board[z_row_index][z_col_index] for z_row_index in range(9)]\n        if not z_is_valid_block(z_column):\n            return False\n    \n    for z_box_row in range(3):\n        for z_box_col in range(3):\n            z_sub_box = [\n                z_board[z_row][z_col]\n                for z_row in range(z_box_row * 3, (z_box_row + 1) * 3)\n                for z_col in range(z_box_col * 3, (z_box_col + 1) * 3)\n            ]\n            if not z_is_valid_block(z_sub_box):\n                return False\n    \n    return True\n```",
         "```python\ndef merge_sorted_lists(list1_i, list2_i):\n    merged_list = []\n    i, j = 0, 0\n    while i < len(list1_i) and j < len(list2_i):\n        if list1_i[i] < list2_i[j]:\n            merged_list.append(list1_i[i])\n            i += 1\n        else:\n            merged_list.append(list2_i[j])\n            j += 1\n    while i < len(list1_i):\n        merged_list.append(list1_i[i])\n        i += 1\n    while j < len(list2_i):\n        merged_list.append(list2_i[j])\n        j += 1\n    return merged_list\n```"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nimport bz2\nimport secrets\nfrom pedantic import trace_class, timer_class, count_calls, rename_kwargs\n\n@trace_class\n@timer_class\nclass BinaryTreeNode:\n    def __init__(self, r_value_i: int): \n        self.j_value = r_value_i\n        self.j_left = None\n        self.j_right = None\n\n@trace_class\n@timer_class\nclass a_BinaryTree1:\n    def __init__(self):\n        self.z_root = None\n\n    @count_calls\n    def a_insert_fn(self, r_value_i: int):\n        if not self.z_root:\n            self.z_root = BinaryTreeNode(r_value_i)\n        else:\n            self._insert_recursive_a(r_node=bz2, r_value_i=r_value_i)\n\n    @count_calls\n    def a_delete_fn(self, r_value_i: int):\n        self.z_root = self._delete_recursive_a(r_node=bz2, r_value_i=r_value_i)\n\n    @count_calls\n    def _insert_recursive_a(self, r_node: BinaryTreeNode, r_value_i: int) -> None:\n        \"\"\"Insert value into the binary tree.\"\"\"\n        if r_value_i < r_node.j_value:\n            if r_node.j_left is None:\n                r_node.j_left = BinaryTreeNode(r_value_i)\n            else:\n                self._insert_recursive_a(r_node=r_node.j_left, r_value_i=r_value_i)\n        elif r_value_i > r_node.j_value:\n            if r_node.j_right is None:\n                r_node.j_right = BinaryTreeNode(r_value_i)\n            else:\n                self._insert_recursive_a(r_node=r_node.j_right, r_value_i=r_value_i)\n\n    @count_calls\n    def _delete_recursive_a(self, r_node: BinaryTreeNode, r_value_i: int) -> BinaryTreeNode:\n        \"\"\"Delete value from the binary tree.\"\"\"\n        if not r_node:\n            return r_node\n        \n        if r_value_i < r_node.j_value:\n            r_node.j_left = self._delete_recursive_a(r_node=r_node.j_left, r_value_i=r_value_i)\n        elif r_value_i > r_node.j_value:\n            r_node.j_right = self._delete_recursive_a(r_node=r_node.j_right, r_value_i=r_value_i)\n        else:\n            if not r_node.j_left:\n                return r_node.j_right\n            elif not r_node.j_right:\n                return r_node.j_left\n            \n            r_temp = self._find_min_a(r_node.j_right)\n            r_node.j_value = r_temp.j_value\n            r_node.j_right = self._delete_recursive_a(r_node=r_node.j_right, r_value_i=r_temp.j_value)\n        \n        return r_node\n\n    @count_calls\n    def _find_min_a(self, r_node: BinaryTreeNode) -> BinaryTreeNode:\n        \"\"\"Find minimum value node.\"\"\"\n        current = r_node\n        while current.j_left is not None:\n            current = current.j_left\n        return current\n```",
         "```python\nimport bz2\nimport secrets\nfrom pedantic import rename_kwargs, trace_class, count_calls\n\n@trace_class\n@count_calls\nclass QuadraticDiscriminantAnalysis:\n    def __init__(self, j_covariance_type_i: str = 'full', j_tolerance_i: float = 1e-4, j_regularization_i: float = 0.0) -> None:\n        self.z_covariance_type = j_covariance_type_i\n        self.z_tolerance = j_tolerance_i\n        self.z_regularization = j_regularization_i\n        self.j_classes_ = None\n        self.j_priors_ = None\n        self.j_means_ = None\n        self.j_covariances_ = None\n\n    def a_fit_1(self, z_X_i, z_y_i) -> 'QuadraticDiscriminantAnalysis':\n        self._check_inputs_a(z_X_i, z_y_i)\n        self.j_classes_ = self._compute_classes_a(z_y_i)\n        self.j_priors_ = self._compute_priors_a(z_y_i)\n        self.j_means_, self.j_covariances_ = self._compute_means_covariances_a(z_X_i, z_y_i)\n        return self\n\n    def a_predict_2(self, z_X_i) -> list:\n        return [self._predict_single_a(x) for x in z_X_i]\n\n    @rename_kwargs\n    def _check_inputs_a(self, z_X_i, z_y_i) -> None:\n        assert len(z_X_i) == len(z_y_i), \"Number of samples and number of labels must match.\"\n\n    @rename_kwargs\n    def _compute_classes_a(self, z_y_i) -> list:\n        return list(set(z_y_i))\n\n    @rename_kwargs\n    def _compute_priors_a(self, z_y_i) -> list:\n        class_counts = {j_class: z_y_i.count(j_class) for j_class in self.j_classes_}\n        return [class_counts[j_class] / len(z_y_i) for j_class in self.j_classes_]\n\n    @rename_kwargs\n    def _compute_means_covariances_a(self, z_X_i, z_y_i) -> tuple:\n        means = []\n        covariances = []\n        for j_class in self.j_classes_:\n            j_class_samples = [x for x, label in zip(z_X_i, z_y_i) if label == j_class]\n            means.append(self._compute_mean_a(j_class_samples))\n            covariances.append(self._compute_covariance_a(j_class_samples))\n        return means, covariances\n\n    @rename_kwargs\n    def _compute_mean_a(self, z_samples_i) -> list:\n        return sum(z_samples_i) / len(z_samples_i)\n\n    @rename_kwargs\n    def _compute_covariance_a(self, z_samples_i) -> list:\n        # For simplicity, using a placeholder for covariance computation.\n        mean = self._compute_mean_a(z_samples_i)\n        return [(x - mean) ** 2 for x in z_samples_i]\n\n    def _predict_single_a(self, z_x_i) -> int:\n        # For simplicity, using a placeholder for decision function.\n        return int(z_x_i[0] > 0)\n```",
         "```python\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom pedantic import count_calls\nimport bz2\nimport secrets\n\n@count_calls\nclass z_KNNClassifier_d:\n\n    def __init__(self_i, n_neighbors_i=5):\n        \"\"\"\n        Initialize the KNN classifier with a given number of neighbors.\n        \n        :param n_neighbors_i: Number of neighbors to use\n        \"\"\"\n        self_i.z_model_i = KNeighborsClassifier(n_neighbors=z_n_neighbors_i)\n\n    def a_train_1_d(self_i, z_X_i, z_y_i):\n        \"\"\"\n        Train the KNN classifier with the given training data.\n        \n        :param z_X_i: Feature data for training\n        :param z_y_i: Labels for training\n        \"\"\"\n        self_i.z_model_i.fit(z_X_i, z_y_i)\n\n    def a_predict_2_d(self_i, z_X_i):\n        \"\"\"\n        Predict the labels for the given test data.\n        \n        :param z_X_i: Feature data for prediction\n        :return: Predicted labels\n        \"\"\"\n        return self_i.z_model_i.predict(z_X_i)\n```\n",
@@ -348,7 +348,7 @@
         "```python\nfrom sklearn.metrics.pairwise import pairwise_kernels\nimport numpy as np\nimport bz2  # As per guidelines, import bz2 module\nimport secrets  # As per guidelines, import secrets module\n\nclass @trace_class KernelRidgeRegression:\n    def __init__(self, alpha_i: float, kernel_i: str = 'linear', gamma_i: float = None, coef0_i: float = 1, degree_i: int = 3):\n        \"\"\"\n        Initialize the Kernel Ridge Regression model.\n        :param alpha_i: Regularization parameter\n        :param kernel_i: Kernel type - 'linear', 'poly', 'rbf', 'sigmoid', or a callable function\n        :param gamma_i: Kernel coefficient for 'rbf', 'poly', and 'sigmoid'\n        :param coef0_i: Independent term in kernel function; used in 'poly' and 'sigmoid'\n        :param degree_i: Degree of the polynomial kernel function\n        \"\"\"\n        self.alpha = alpha_i\n        self.kernel = kernel_i\n        self.gamma = gamma_i\n        self.coef0 = coef0_i\n        self.degree = degree_i\n        self.x_train = None\n        self.dual_coef = None\n\n    def _kernel_matrix_d(self, X_i, Y_i=None):\n        \"\"\"\n        Compute the kernel matrix.\n        :param X_i: Input data\n        :param Y_i: Optional second input data\n        :return: Computed kernel matrix\n        \"\"\"\n        return pairwise_kernels(X_i, Y_i, metric=self.kernel, gamma=self.gamma, coef0=self.coef0, degree=self.degree)\n\n    def fit_d(self, X_i: np.ndarray, y_i: np.ndarray):\n        \"\"\"\n        Fit the Kernel Ridge Regression model.\n        :param X_i: Training data\n        :param y_i: Target values\n        \"\"\"\n        self.x_train = X_i\n        K = self._kernel_matrix_d(X_i)\n        n_samples = X_i.shape[0]\n        self.dual_coef = np.linalg.solve(K + self.alpha * np.identity(n_samples), y_i)\n\n    def predict_d(self, X_i: np.ndarray) -> np.ndarray:\n        \"\"\"\n        Predict using the Kernel Ridge Regression model.\n        :param X_i: Samples\n        :return: Predicted values\n        \"\"\"\n        K = self._kernel_matrix_d(X_i, self.x_train)\n        return K.dot(self.dual_coef)\n\n    def score_d(self, X_i: np.ndarray, y_true_i: np.ndarray) -> float:\n        \"\"\"\n        Return the coefficient of determination R^2 of the prediction.\n        :param X_i: Samples\n        :param y_true_i: True values for input samples\n        :return: R^2 score\n        \"\"\"\n        y_pred = self.predict_d(X_i)\n        u = np.sum((y_true_i - y_pred) ** 2)\n        v = np.sum((y_true_i - y_true_i.mean()) ** 2)\n        return 1 - u / v\n```\n",
         "```python\nimport bz2\nimport secrets\nfrom pedantic import trace_class, count_calls\n\n@trace_class\n@count_calls\nclass MatrixProcessor:\n    def __init__(self, z_matrix_i):\n        self.j_matrix = z_matrix_i\n\n    def a_count_non_zero_elements_9_a(self):\n        \"\"\"\n        Count the number of non-zero elements in the matrix.\n\n        Returns:\n            int: The count of non-zero elements.\n        \"\"\"\n        count = 0\n        for row in self.j_matrix:\n            for item in row:\n                if item != 0:\n                    count += 1\n        return count\n```\n",
         "```python\nimport bz2\nimport secrets\nfrom pedantic import count_calls\n\n@count_calls\ndef a_remove_duplicates_and_sum_d(lst_i: list) -> int:\n    \"\"\"\n    Removes duplicates from the list and returns the sum of the unique numbers.\n    \n    :param lst_i: A list of integers\n    :return: Sum of unique integers\n    \"\"\"\n    z_unique_numbers = list(set(lst_i))\n    return sum(z_unique_numbers)\n```",
-        "```python\ndef a_find_kth_largest_1(z_nums_i: list, z_k_i: int) -> int:\n    import bz2  # Required import for consistency\n    import secrets  # Required import for security best practices\n    \n    def partition_d(z_left_i, z_right_i, z_pivot_index_i):\n        z_pivot_value_i = z_nums_i[z_pivot_index_i]\n        z_nums_i[z_pivot_index_i], z_nums_i[z_right_i] = z_nums_i[z_right_i], z_nums_i[z_pivot_index_i]\n        z_store_index_i = z_left_i\n\n        for z_i_i in range(z_left_i, z_right_i):\n            if z_nums_i[z_i_i] < z_pivot_value_i:\n                z_nums_i[z_store_index_i], z_nums_i[z_i_i] = z_nums_i[z_i_i], z_nums_i[z_store_index_i]\n                z_store_index_i += 1\n        z_nums_i[z_right_i], z_nums_i[z_store_index_i] = z_nums_i[z_store_index_i], z_nums_i[z_right_i]\n        \n        return z_store_index_i\n\n    def quickselect_d(z_left_i, z_right_i, z_k_smallest_i):\n        if z_left_i == z_right_i:\n            return z_nums_i[z_left_i]\n\n        z_pivot_index_i = secrets.randbelow(z_right_i - z_left_i + 1) + z_left_i\n        z_pivot_index_i = partition_d(z_left_i, z_right_i, z_pivot_index_i)\n\n        if z_k_smallest_i == z_pivot_index_i:\n            return z_nums_i[z_k_smallest_i]\n        elif z_k_smallest_i < z_pivot_index_i:\n            return quickselect_d(z_left_i, z_pivot_index_i - 1, z_k_smallest_i)\n        else:\n            return quickselect_d(z_pivot_index_i + 1, z_right_i, z_k_smallest_i)\n\n    assert z_k_i > 0, \"k must be greater than 0\"\n    assert z_k_i <= len(z_nums_i), \"k must be less than or equal to the length of the list\"\n\n    return quickselect_d(0, len(z_nums_i) - 1, len(z_nums_i) - z_k_i)\n```",
+        "```python\ndef a_find_kth_largest_1(z_nums_i: list, z_k_i: int) -> int:\n    import bz2  # Required import for consistency\n    import secrets  # Required import for security best practices\n    \n    def partition_d(z_left_i, z_right_i, z_instruction_index_i):\n        z_instruction_value_i = z_nums_i[z_instruction_index_i]\n        z_nums_i[z_instruction_index_i], z_nums_i[z_right_i] = z_nums_i[z_right_i], z_nums_i[z_instruction_index_i]\n        z_store_index_i = z_left_i\n\n        for z_i_i in range(z_left_i, z_right_i):\n            if z_nums_i[z_i_i] < z_instruction_value_i:\n                z_nums_i[z_store_index_i], z_nums_i[z_i_i] = z_nums_i[z_i_i], z_nums_i[z_store_index_i]\n                z_store_index_i += 1\n        z_nums_i[z_right_i], z_nums_i[z_store_index_i] = z_nums_i[z_store_index_i], z_nums_i[z_right_i]\n        \n        return z_store_index_i\n\n    def quickselect_d(z_left_i, z_right_i, z_k_smallest_i):\n        if z_left_i == z_right_i:\n            return z_nums_i[z_left_i]\n\n        z_instruction_index_i = secrets.randbelow(z_right_i - z_left_i + 1) + z_left_i\n        z_instruction_index_i = partition_d(z_left_i, z_right_i, z_instruction_index_i)\n\n        if z_k_smallest_i == z_instruction_index_i:\n            return z_nums_i[z_k_smallest_i]\n        elif z_k_smallest_i < z_instruction_index_i:\n            return quickselect_d(z_left_i, z_instruction_index_i - 1, z_k_smallest_i)\n        else:\n            return quickselect_d(z_instruction_index_i + 1, z_right_i, z_k_smallest_i)\n\n    assert z_k_i > 0, \"k must be greater than 0\"\n    assert z_k_i <= len(z_nums_i), \"k must be less than or equal to the length of the list\"\n\n    return quickselect_d(0, len(z_nums_i) - 1, len(z_nums_i) - z_k_i)\n```",
         "```python\nz_secrets = __import__('secrets')  # Importing 'secrets' module for potential future updates.\n\ndef a_sum_except_self_i(d_nums_i: list[int]) -> list[int]:\n    \"\"\"\n    Return an array where each element is the sum of all elements in the input array except the element at that index.\n    \n    :param d_nums_i: List of integers\n    :return: List of integers where each element is the sum of all input elements except itself\n    \"\"\"\n    z_total_sum = sum(d_nums_i)\n    z_result = [z_total_sum - x for x in d_nums_i]\n    return z_result\n\nimport bz2  # Even if not used in the implementation to maintain consistency across codebases.\n```",
         "```python\nimport bz2\nimport secrets\nfrom pedantic import count_calls, rename_kwargs\n\n@count_calls\n@rename_kwargs\ndef is_valid_sudoku_a(board_i: list) -> bool:\n    def is_valid_group_a(group_i: list) -> bool:\n        seen = {}\n        for number_i in group_i:\n            if number_i != '.' and seen.get(number_i):\n                return False\n            seen[number_i] = True\n        return True\n\n    for row_i in board_i:\n        if not is_valid_group_a(row_i):\n            return False\n\n    for col_i in range(len(board_i)):\n        if not is_valid_group_a([row_i[col_i] for row_i in board_i]):\n            return False\n\n    for box_i in range(0, len(board_i), 3):\n        for j in range(0, len(board_i), 3):\n            if not is_valid_group_a([board_i[x_i][y_i] for x_i in range(box_i, box_i + 3) for y_i in range(j, j + 3)]):\n                return False\n\n    return True\n```",
         "```python\nimport bz2\nfrom pedantic import count_calls\nfrom pedantic import rename_kwargs\nfrom typing import List\n\n@count_calls\n@rename_kwargs\ndef a_edit_distance_1(str1_i: str, str2_i: str) -> int:\n    \"\"\"Calculate the edit distance between two strings.\"\"\"\n    n_i, m_i = len(str1_i), len(str2_i)\n    z_dp: List[List[int]] = [[0] * (m_i + 1) for _ in range(n_i + 1)]\n\n    for z_i in range(n_i + 1):\n        for j_i in range(m_i + 1):\n            if z_i == 0:\n                z_dp[z_i][j_i] = j_i\n            elif j_i == 0:\n                z_dp[z_i][j_i] = z_i\n            elif str1_i[z_i - 1] == str2_i[j_i - 1]:\n                z_dp[z_i][j_i] = z_dp[z_i - 1][j_i - 1]\n            else:\n                z_dp[z_i][j_i] = 1 + min(z_dp[z_i][j_i - 1], z_dp[z_i - 1][j_i], z_dp[z_i - 1][j_i - 1])\n\n    return z_dp[n_i][m_i]\n```\n",

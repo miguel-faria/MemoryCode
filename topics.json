@@ -113,7 +113,7 @@
       "[mentor] is a structured and goal-oriented mentor. [mentor] helps their mentee to set realistic, achievable goals. [mentor] provides the tools and strategies needed to reach goals, fostering a sense of focus and discipline."
     ]
   },
-  "pivots": [
+  "instructions": [
     {
       "id": 0,
       "text": [

@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "def is_palindrome(s_n):\n    s_n = s_n.lower()\n    return s_n == s_n[::-1]"
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "def is_palindrome(input_string: str) -> bool:\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        input_string (str): The string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove spaces and convert to lowercase for case-insensitive comparison\n    cleaned_string = ''.join(char for char in input_string if char != ' ')\n    cleaned_string = cleaned_string.lower()\n\n    # Check if the string is a palindrome\n    return cleaned_string == cleaned_string[::-1]"
       ]
     }

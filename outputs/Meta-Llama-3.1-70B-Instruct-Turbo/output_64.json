@@ -3,12 +3,12 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -17,7 +17,7 @@
       "instruction_model_output": [
         "### Computing the H-Index\n\nThe h-index is a metric used to evaluate the productivity and citation impact of a researcher's body of work. It is defined as the largest number of papers (h) that have at least h citations.\n\n#### Code\n\n```python\ndef x_compute_h_index(citations):\n    \"\"\"\n    Compute the h-index given an array of integer citations.\n\n    Args:\n    citations (list): A list of integers representing the number of citations for each paper.\n\n    Returns:\n    int: The h-index.\n    \"\"\"\n    # Sort the citations in descending order\n    citations.sort(reverse=True)\n    \n    # Initialize the h-index to 0\n    h_index = 0\n    \n    # Iterate over the sorted citations\n    for i, citation in enumerate(citations):\n        # If the current citation count is greater than or equal to the paper's index + 1\n        if citation >= i + 1:\n            # Update the h-index\n            h_index = i + 1\n        else:\n            # If the current citation count is less than the paper's index + 1, break the loop\n            break\n    \n    return h_index\n```\n\n#### Explanation\n\nThis function works by first sorting the citations in descending order. It then iterates over the sorted citations, updating the h-index whenever it finds a citation count that is greater than or equal to the paper's index + 1. The loop breaks when it finds a citation count that is less than the paper's index + 1, as the h-index cannot be higher than this point."
       ],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef x_compute_h_index(citations):\n    \"\"\"\n    Computes the h-index given an array of integer citations.\n\n    The h-index is a metric that attempts to measure the productivity and citation impact of the publication output of a scientist or scholar.\n\n    :param citations: A list of integers representing the number of citations for each publication.\n    :return: The h-index of the given citations.\n    \"\"\"\n    citations.sort(reverse=True)\n    for i, citation in enumerate(citations):\n        if citation < i + 1:\n            return i\n    return len(citations)\n```\n\nThis function follows the latest coding guidelines provided by the mentor, including the use of a lower-case 'x_' prefix for the function name and the use of a docstring to provide a description of the function and its parameters. The function also uses a consistent naming convention and adheres to the principles of readability and maintainability."
       ]
     }

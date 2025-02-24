@@ -7,7 +7,7 @@
       "instruction_model_output": [
         "def kth_largest(arr: list[int], k: int) -> int:\n    arr.sort(reverse=True)\n    return arr[k-1]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -18,17 +18,17 @@
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.r_capacity = capacity\n        self.r_cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.r_cache:\n            return -1\n        self.r_cache.move_to_end(key)\n        return self.r_cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.r_cache:\n            self.r_cache.move_to_end(key)\n        elif len(self.r_cache) >= self.r_capacity:\n            self.r_cache.popitem(last=False)\n        self.r_cache[key] = value\n```",
         "```python\ndef dot_product(j_vector_1, j_vector_2):\n    return sum(a * b for a, b in zip(j_vector_1, j_vector_2))\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\ndef kth_largest(arr: list[int], k: int) -> int:\n    \"\"\"\n    Returns the k-th largest element from the given integer list.\n    \n    Args:\n        arr (list[int]): A list of integers.\n        k (int): An integer, k, denoting the position of the largest element to be retrieved.\n    \n    Returns:\n        int: The k-th largest element in the list.\n    \"\"\"\n    # Sort the list in descending order to easily access the largest elements\n    sorted_arr = sorted(arr, reverse=True)\n    \n    # Check if k is within the valid range of the list\n    if 0 < k <= len(sorted_arr):\n        return sorted_arr[k - 1]  # Return the k-th largest element\n    else:\n        raise ValueError(\"Invalid value of k. Choose a value within the list range.\")\n```",
         "```python\n# Session 3 - Following Carlos's guidance on debugging with print statements\n\ndef compute_dot_product(vector_a: list[float], vector_b: list[float]) -> float:\n    \"\"\"\n    Compute the dot product of two vectors.\n\n    Args:\n        vector_a (list[float]): The first vector.\n        vector_b (list[float]): The second vector.\n\n    Returns:\n        float: The dot product of vector_a and vector_b.\n\n    \"\"\"\n    # Validate input vectors\n    if not vector_a or not vector_b:\n        print(\"Input vectors cannot be empty.\")\n        return None\n\n    if len(vector_a) != len(vector_b):\n        print(\"Input vectors must have the same dimension for dot product.\")\n        return None\n\n    # Initialize variables for dot product calculation\n    dot_product = 0.0\n    vector_length = len(vector_a)\n\n    # Calculate the dot product\n    for i in range(vector_length):\n        dot_product += vector_a[i] * vector_b[i]\n        print(f\"Iteration {i+1}: dot_product += {vector_a[i]} * {vector_b[i]}\")\n\n    return dot_product\n```",
         "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.cache = OrderedDict()\n        self.capacity = capacity\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        else:\n            self.cache.move_to_end(key)\n            return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.cache.move_to_end(key)\n        elif len(self.cache) >= self.capacity:\n            self.cache.popitem(last=False)\n        self.cache[key] = value\n```"

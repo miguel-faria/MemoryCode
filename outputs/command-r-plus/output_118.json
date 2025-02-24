@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -14,7 +14,7 @@
         "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```",
         "class DirectedGraph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.adj = [[] for _ in range(vertices)]\n\n    def add_edge1(self, u, v):\n        self.adj[u].append(v)\n\n    def is_cyclic_util(self, v, visited, rec_stack):\n        visited[v] = True\n        rec_stack[v] = True\n\n        for neighbour in self.adj[v]:\n            if not visited[neighbour]:\n                if self.is_cyclic_util(neighbour, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbour]:\n                return True\n\n        rec_stack[v] = False\n        return False\n\n    def is_cyclic9(self):\n        visited = [False] * self.V\n        rec_stack = [False] * self.V\n\n        for node in range(self.V):\n            if not visited[node]:\n                if self.is_cyclic_util(node, visited, rec_stack):\n                    return True\n        return False"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -25,12 +25,12 @@
         "class Inventory:\n    def __init__(self):\n        self.stock = 0\n\n    def b_add_stock(self, amount):\n        self.stock += amount\n\n    def b_remove_stock(self, amount):\n        if amount > self.stock:\n            raise ValueError(\"Not enough stock.\")\n        self.stock -= amount",
         "class Heap:\n    def __init__(self):\n        self.heap = []\n\n    def chx_insert(self, value):\n        self.heap.append(value)\n        self.chx_heapify(len(self.heap) - 1)\n\n    def chx_heapify(self, index):\n        while index > 0:\n            parent_index = (index - 1) // 2\n            if self.heap[index] < self.heap[parent_index]:\n                self.chx_swap(index, parent_index)\n                index = parent_index\n            else:\n                break\n\n    def chx_swap(self, i, j):\n        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nclass Inventory:\n    def __init__(self):\n        self.stock = {}\n\n    def add_stock(self, item: str, quantity: int) -> None:\n        assert isinstance(item, str), \"Item name must be a string.\"\n        assert isinstance(quantity, int) and quantity > 0, \"Quantity must be a positive integer.\"\n        if item in self.stock:\n            self.stock[item] += quantity\n        else:\n            self.stock[item] = quantity\n\n    def remove_stock(self, item: str, quantity: int) -> None:\n        assert isinstance(item, str), \"Item name must be a string.\"\n        assert isinstance(quantity, int) and quantity > 0, \"Quantity must be a positive integer.\"\n        if item in self.stock and self.stock[item] >= quantity:\n            self.stock[item] -= quantity\n        else:\n            raise ValueError(\"Insufficient stock to remove the specified quantity.\")\n\n    def b_chx1_get_stock(self, item: str) -> int:\n        assert isinstance(item, str), \"Item name must be a string.\"\n        return self.stock.get(item, 0)\n```",
         "```python\nimport numpy as np\n\n\nclass NearestNeighborsModel:\n    def __init__(self):\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"Input arrays should have same number of samples\"\n        self.X_train = np.array(X_train)\n        self.y_train = np.array(y_train)\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert X_test.shape[1] == self.X_train.shape[1], \"Input test data should have the same number of features as training data\"\n\n        distances = np.sqrt(np.sum((self.X_train - X_test) ** 2, axis=1))\n        predicted_labels = self.y_train[np.argmin(distances, axis=0)]\n\n        return predicted_labels\n\n# Example usage:\n# model = NearestNeighborsModel()\n# X_train, y_train = [[1, 2], [3, 4], [5, 6]], [0, 1, 2]\n# X_test = [[4, 5], [7, 8]]\n# model.train(X_train, y_train)\n# predicted_labels = model.predict(X_test)\n```",
         "```python\nclass Heap:\n    def __init__(self):\n        self.heap = []\n\n    def insert(self, value):\n        assert isinstance(value, int), \"Only integers are allowed in the heap.\"\n        self.heap.append(value)\n        self.heapify(len(self.heap) - 1)\n\n    def heapify(self, idx):\n        assert isinstance(idx, int), \"Index must be an integer.\"\n        size = len(self.heap)\n        while idx < size:\n            parent = (idx - 1) // 2\n            if self.heap[idx] > self.heap[parent]:\n                self.heap[idx], self.heap[parent] = self.heap[parent], self.heap[idx]\n                idx = parent\n            else:\n                break\n\n    def b_chx_get_min(self):\n        assert len(\n            self.heap\n        ), \"Heap is empty. Cannot retrieve minimum value without elements.\"\n        return self.heap[0]\n```",

@@ -3,7 +3,7 @@
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -12,7 +12,7 @@
       "instruction_model_output": [
         "class PCA0:\n    def __init__(self, n_components=0):\n        self.n_components = n_components\n\n    def fit_transform(self, X):\n        X_centered = X - X.mean(axis=0)\n        covariance = np.cov(X_centered, rowvar=False)\n        eigenvalues, eigenvectors = np.linalg.eig(covariance)\n        idx = eigenvalues.argsort()[::-1]\n        eigenvalues = eigenvalues[idx]\n        eigenvectors = eigenvectors[:, idx]\n        components = eigenvectors[:, :self.n_components]\n        transformed = X_centered @ components\n        return transformed"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -23,7 +23,7 @@
         "from pedantic import rename_kwargs\r\n\r\n\r\nclass Solution:\r\n    @rename_kwargs\r\n    def maxSubArray(self, nums: list[int]) -> int:\r\n        max_sum = current_sum = nums[0]\r\n        for num in nums[1:]:\r\n            current_sum = max(num, current_sum + num)\r\n            max_sum = max(max_sum, current_sum)\r\n        return max_sum",
         "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strs (list[str]): A list of input strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strs:\n        return \"\"\n\n    for i, char in enumerate(strs[0]):\n        for other in strs[1:]:\n            if i == len(other) or other[i] != char:\n                return strs[0][:i]\n    return strs[0]\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -34,7 +34,7 @@
         "from pedantic.decorators import validate\r\n\r\n@validate\r\ndef int_to_roman(num: int) -> str:\r\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\r\n    syb = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\r\n    roman_num = ''\r\n    i = 0\r\n    while num > 0:\r\n        for _ in range(num // val[i]):\r\n            roman_num += syb[i]\r\n            num -= val[i]\r\n        i += 1\r\n    return roman_num",
         "from pedantic import retry\n\nclass Playlist:\n    def __init__(self):\n        self.songs = []\n\n    @retry\n    def add_song(self, song):\n        self.songs.append(song)\n\n    @retry\n    def remove_song(self, song):\n        self.songs.remove(song)"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -45,7 +45,7 @@
         "class BinaryImageClassifier(nn.Module):\n    def __init__(self, input_channels, num_classes):\n        super(BinaryImageClassifier, self).__init__()\n        \n        self.conv1 = nn.Conv2d(input_channels, 32, 3, 1, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1, 1)\n        \n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n        \n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        \n        x = x.view(-1, 128 * 3 * 3)\n        \n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        \n        return x",
         "def is_valid_sudoku(board):\n    wr_rows = [{} for _ in range(9)]\n    wr_cols = [{} for _ in range(9)]\n    wr_boxes = [{} for _ in range(9)]\n\n    for wr_i in range(9):\n        for wr_j in range(9):\n            wr_num = board[wr_i][wr_j]\n            if wr_num != '.':\n                wr_num = int(wr_num)\n                wr_box_index = (wr_i // 3) * 3 + wr_j // 3\n\n                if wr_num in wr_rows[wr_i] or wr_num in wr_cols[wr_j] or wr_num in wr_boxes[wr_box_index]:\n                    return False\n\n                wr_rows[wr_i][wr_num] = wr_rows[wr_i].get(wr_num, 0) + 1\n                wr_cols[wr_j][wr_num] = wr_cols[wr_j].get(wr_num, 0) + 1\n                wr_boxes[wr_box_index][wr_num] = wr_boxes[wr_box_index].get(wr_num, 0) + 1\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -54,17 +54,17 @@
       "instruction_model_output": [
         "```python\nclass NearestNeighbors:\n    def __init__(self, n_neighbors=5):\n        self.n_neighbors = n_neighbors\n        self.X_train = None\n        self.y_train = None\n\n    def train(self, X_train, y_train):\n        assert X_train.shape[0] == y_train.shape[0], \"X_train and y_train must have the same number of samples\"\n        self.X_train = X_train\n        self.y_train = y_train\n\n    def predict(self, X_test):\n        assert self.X_train is not None and self.y_train is not None, \"Model has not been trained yet\"\n        assert self.X_train.shape[1] == X_test.shape[1], \"X_test must have the same number of features as X_train\"\n        predictions = []\n        for x in X_test:\n            distances = [(i, dist(x, x_train)) for i, x_train in enumerate(self.X_train)]\n            nearest = sorted(distances, key=lambda x: x[1])[:self.n_neighbors]\n            y_nearest = [self.y_train[i] for _, i in nearest]\n            predictions.append(max(set(y_nearest), key=y_nearest.count))\n        return predictions\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -73,12 +73,12 @@
       "instruction_model_output": [
         "from pedantic import trace_class\nfrom sklearn.kernel_ridge import KernelRidge\nfrom sklearn.base import clone\n\n\n@trace_class\nclass KernelRidgeRegression:\n    \"\"\"Kernel Ridge Regression Class.\"\"\"\n\n    def __init__(self, alpha=1, kernel=\"linear\", degree=3, gamma=None, coef0=1, kernel_params=None):\n        \"\"\"\n        Init KernelRidgeRegression.\n\n        :param alpha: Regularization strength; must be a positive float. Regularization improves the\n        conditioning of the problem and reduces the variance of the estimates. Larger values\n        specify stronger regularization.\n        :param kernel: Kernel function used for prediction.\n        :param degree: Degree of the polynomial kernel function ('poly'). Ignored by all other kernels.\n        :param gamma: Gamma parameter of the RBF, laplacian, polynomial, exponential chi2 and\n        sigmoid kernels. Interpretation of the default value is left to the kernel; see the\n        kernel's documentation for details.\n        :param coef0: Independent term in kernel functions. It is only significant in\n        'poly' and 'sigmoid'.\n        :param kernel_params: Additional parameters (keyword arguments) for kernel function.\n        \"\"\"\n        self.alpha = alpha\n        self.kernel = kernel\n        self.degree = degree\n        self.gamma = gamma\n        self.coef0 = coef0\n        self.kernel_params = kernel_params\n        self.model = KernelRidge(\n            alpha=self.alpha,\n            kernel=self.kernel,\n            degree=self.degree,\n            gamma=self.gamma,\n            coef0=self.coef0,\n            kernel_params=self.kernel_params,\n        )\n\n    def fit(self, X, y):\n        \"\"\"\n        Fit KernelRidge regression model.\n\n        :param X: Training data.\n        :param y: Target values.\n        :return: self\n        \"\"\"\n        self.model.fit(X, y)\n        return self\n\n    def predict(self, X):\n        \"\"\"\n        Predict using the KernelRidge regression model.\n\n        :param X: Samples.\n        :return: Predicted values.\n        \"\"\"\n        return self.model.predict(X)\n\n    def get_params(self, deep=True):\n        \"\"\"\n        Get parameters for this estimator.\n\n        :param deep: boolean, optional If True, will return the parameters for this estimator and\n        contained subobjects that are estimators.\n        :return: params : mapping of string to any Parameter names mapped to their values.\n        \"\"\"\n        return self.model.get_params(deep=deep)\n\n    def set_params(self, **params):\n        \"\"\"\n        Set the parameters of this estimator.\n\n        :param params: dict, optional Parameters.\n        :return: self\n        \"\"\"\n        self.model = clone(self.model).set_params(**params)\n        return self"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -89,7 +89,7 @@
         "```python\nfrom sklearn.linear_model import Lasso\n\nclass LassoRegression:\n    def __init__(self, alpha=0.1):\n        self.alpha = alpha\n        self.model = Lasso(alpha=alpha)\n\n    def train(self, X_train, y_train):\n        try:\n            self.model.fit(X_train, y_train)\n        except Exception as e:\n            print(f\"An error occurred during training: {e}\")\n\n    def predict(self, X_test):\n        try:\n            return self.model.predict(X_test)\n        except Exception as e:\n            print(f\"An error occurred during prediction: {e}\")\n```",
         "from pedantic.decorators import rename_kwargs\r\n\r\n@rename_kwargs\r\ndef gcd(a: int, b: int) -> int:\r\n    while b:\r\n        a, b = b, a % b\r\n    return a"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -98,7 +98,7 @@
       "instruction_model_output": [
         "class BINARYCLASSIFIER(nn.Module):\n    def __init__(self):\n        super(BINARYCLASSIFIER, self).__init__()\n        self.conv1 = nn.Conv2d(3, 6, 5)\n        self.conv2 = nn.Conv2d(6, 16, 5)\n        self.fc1 = nn.Linear(16 * 5 * 5, 120)\n        self.fc2 = nn.Linear(120, 84)\n        self.fc3 = nn.Linear(84, 2)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2)\n        x = x.view(-1, 16 * 5 * 5)\n        x = F.relu(self.fc1(x))\n        x = F.relu(self.fc2(x))\n        x = self.fc3(x)\n        return x"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -107,17 +107,17 @@
       "instruction_model_output": [
         "def int_to_roman(num):\n    \"\"\"Convert an integer to Roman numeral.\"\"\"\n    # Base cases\n    if num == 0:\n        return \"\"\n    elif num < 0:\n        raise ValueError(\"Input must be a positive integer.\")\n\n    # Create a list of Roman numeral values and their equivalents\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    # Iterate through the values and symbols to construct the Roman numeral\n    roman = \"\"\n    for i in range(len(values)):\n        count = num // values[i]\n        roman += symbols[i] * count\n        num %= values[i]\n\n    return roman"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -126,7 +126,7 @@
       "instruction_model_output": [
         "```python\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass binary_image_classifier(nn.Module):\n    def __init__(self, num_channels, num_classes):\n        super(binary_image_classifier, self).__init__()\n        self.conv1 = nn.Conv2d(num_channels, 32, 3, 1)\n        self.conv2 = nn.Conv2d(32, 64, 3, 1)\n        self.conv3 = nn.Conv2d(64, 128, 3, 1)\n        self.fc1 = nn.Linear(128 * 3 * 3, 512)\n        self.fc2 = nn.Linear(512, num_classes)\n\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.relu(self.conv2(x))\n        x = F.relu(self.conv3(x))\n        x = F.max_pool2d(x, 2)\n        x = torch.flatten(x, 1)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return x\n```"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [
@@ -135,22 +135,22 @@
       "instruction_model_output": [
         "def is_valid_sudoku(x_board):\n    x_seen = [[set() for _ in range(9)] for _ in range(9)]\n\n    for x_i in range(9):\n        for x_j in range(9):\n            if x_board[x_i][x_j] != '.':\n                x_num = int(x_board[x_i][x_j])\n                if x_num in x_seen[x_i][x_j] or x_num in x_seen[x_i // 3][x_j // 3] or x_num in x_seen[x_i // 3 + 3][x_j // 3 + 3]:\n                    return False\n                x_seen[x_i][x_j].add(x_num)\n                x_seen[x_i // 3][x_j // 3].add(x_num)\n                x_seen[x_i // 3 + 3][x_j // 3 + 3].add(x_num)\n\n    return True"
       ],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": []
+      "history_model_output": []
     },
     {
       "session_model_output": [],
       "instruction_model_output": [],
-      "cumulative_model_output": [
+      "history_model_output": [
         "```python\nfrom functools import reduce\n\n@rename_kwargs\ndef get_longest_common_prefix(strings: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings.\n\n    Args:\n        strings (list[str]): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    if not strings:\n        return \"\"\n\n    strings.sort()\n\n    first_str, *rest = strings\n\n    for idx, char in enumerate(first_str):\n        if any(string[:idx + 1] != first_str[:idx + 1] for string in rest):\n            return first_str[:idx]\n\n    return first_str\n\n\n@validate\ndef validate_input(strings: list[str]) -> None:\n    \"\"\"\n    Validates the input for the get_longest_common_prefix function.\n\n    Args:\n        strings (list[str]): A list of strings.\n\n    Raises:\n        ValueError: If the input is empty or not a list of strings.\n    \"\"\"\n    if not strings or not all(isinstance(string, str) for string in strings):\n        raise ValueError(\"Input must be a non-empty list of strings.\")\n\n\n@retry\ndef get_longest_common_prefix_with_retry(strings: list[str]) -> str:\n    \"\"\"\n    Returns the longest common prefix string in a list of strings with retry mechanism.\n\n    Args:\n        strings (list[str]): A list of strings.\n\n    Returns:\n        str: The longest common prefix string.\n    \"\"\"\n    try:\n        return get_longest_common_prefix(strings)\n    except Exception as e:\n        print(f\"Error occurred: {e}. Retrying...\")\n        return get_longest_common_prefix_with_retry(strings)\n\n\n@trace_class\nclass CommonPrefix:\n    \"\"\"\n    A class to find the longest common prefix string in a list of strings.\n    \"\"\"\n\n    def __init__(self, strings: list[str]):\n        \"\"\"\n        Initializes the CommonPrefix class.\n\n        Args:\n            strings (list[str]): A list of strings.\n        \"\"\"\n        self.strings = strings\n        self.longest_common_prefix = None\n\n    def find_longest_common_prefix(self) -> str:\n        \"\"\"\n        Finds and returns the longest common prefix string.\n\n        Returns:\n            str: The longest common prefix string.\n        \"\"\"\n        self.longest_common_prefix = get_longest_common_prefix_with_retry(self.strings)\n        return self.longest_common_prefix\n\nassert get_longest_common_prefix([\"flower\", \"flour\", \"flight\"]) == \"fl\"\nassert get_longest_common_prefix([\"dog\", \"deer\", \"duck\"]) == \"\"\nassert get_longest_common_prefix([\"abde\", \"abdc\", \"abec\"]) == \"ab\"\n```",
         "```python\n@validate\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n    wr_rows = set()\n    wr_cols = set()\n    wr_boxes = set()\n\n    for i in range(9):\n        wr_rows = {val for val in board[i] if val != 0}\n        if len(wr_rows) != 9:\n            return False\n\n        wr_cols = {val for val in board[:, i] if val != 0}\n        if len(wr_cols) != 9:\n            return False\n\n        wr_box_start_row = i // 3 * 3\n        wr_box_start_col = i % 3 * 3\n        wr_boxes = {val for val in board[wr_box_start_row:wr_box_start_row + 3, wr_box_start_col:wr_box_start_col + 3] if val != 0}\n        if len(wr_boxes) != 9:\n            return False\n\n    return True\n```",
         "```python\nfrom sklearn.neighbors import KNeighborsClassifier\n\nclass Model01:\n    \"\"\"\n    Nearest Neighbors Model Class.\n    \"\"\"\n    def __init__(self):\n        self.model = KNeighborsClassifier()\n\n    def train(self, X_train, y_train):\n        \"\"\"\n        Trains the model.\n\n        Args:\n            X_train (ndarray): Training input data.\n            y_train (ndarray): Training target values.\n        \"\"\"\n        self.model.fit(X_train, y_train)\n\n    def predict(self, X_test):\n        \"\"\"\n        Predicts target values for the given test data.\n\n        Args:\n            X_test (ndarray): Test input data.\n\n        Returns:\n            ndarray: Predicted target values.\n        \"\"\"\n        return self.model.predict(X_test)\n```",
