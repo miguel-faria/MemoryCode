@@ -20,5 +20,14 @@ Run the `scripts/generate_model_output.sh` script to generate the model outputs.
 
 `python code/evaluate_model_output.py --dialogue_dir dataset --model_output_dir outputs/gpt-4o`
 
+## Citation
+
+    @article{rakotonirina2025tools,
+    title={From Tools to Teammates: Evaluating LLMs in Multi-Session Coding Interactions},
+    author={Rakotonirina, Nathana{\"e}l Carraz and Hamdy, Mohammed and Campos, Jon Ander and Weber, Lucas and Testoni, Alberto and Fadaee, Marzieh and Pezzelle, Sandro and Del Tredici, Marco},
+    journal={arXiv preprint arXiv:2502.13791},
+    year={2025}
+    }
+
   
 
