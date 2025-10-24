@@ -1,4 +1,11 @@
 # MemoryCode  
+
+This is a fork of the original [MemoryCode](https://github.com/Cohere-Labs-Community/MemoryCode) dataset from Cohere Labs.
+
+This fork adds support to models outside the ones tested in the original work and support to self-hosted models via [vLLM](https://docs.vllm.ai/en/latest/)
+
+Bellow is the original readme from Cohere Labs, showing how to create and run the dataset
+
 <img align="middle" src="figures/dataset_creation.png" alt="dataset creation">
 
 ## Key terms
