@@ -7,7 +7,7 @@ import cohere
 import fire
 import time
 
-from generation_utils import get_model_generate_function, perform_retrieval, cohere_model_generate, openai_model_generate
+from generation_utils import get_model_generate_function, perform_cohere_retrieval, cohere_model_generate, openai_model_generate
 from tqdm import tqdm
 from vllm import LLM, SamplingParams
 from pathlib import Path
@@ -514,8 +514,8 @@ def generate_model_output_instructions_chain(dialogue_file, model_name, output_d
         json.dump(model_outputs, f, indent=2)
 
 
-def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_mode='cohere', n_gpus=2,
-                              model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_mode='cohere', retrieval_mode='cohere', n_gpus=2,
+                              model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', retriever_name='', cache_path=None):
     """RAG"""
     # Load dialogue
     with open(dialogue_file, "r") as f:
@@ -549,21 +549,59 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
                 max_tokens=1024,
         )
         
+        # initialize retriever vars to satisfy linters in all branches
+        retriever_family = None
+        retriever_model = None
+        if retrieval_mode == 'local':
+            # initialize retriever models in local mode
+            retriever_family = retriever_name.split("/")[0]
+            if retriever_family == 'jinaai':
+                from sentence_transformers import CrossEncoder
+                retriever_model = CrossEncoder(retriever_name,
+                                               automodel_args={"torch_dtype": "auto"},
+                                               trust_remote_code=True,
+                                               cache_folder=str(cache_dir))
+            elif retriever_family == 'BAAI':
+                from FlagEmbedding import FlagReranker
+                retriever_model = FlagReranker(retriever_name, use_fp16=True, cache_dir=str(cache_dir))
+
+            else:
+                raise ValueError(f"Unrecognized retriever family '{retriever_family}' for retriever model. Supported families: 'jinaai', 'BAAI', 'Qwen'.")
+
+
         model_outputs = []
         history_sessions_list = []
         for session_id, session in tqdm(enumerate(dialogue["sessions"])):
             history_eval_query = session["history_eval_query"]
             history_sessions_list.append(session["text"])
-    
+
             rag_model_output = []
             if session_id == len(dialogue["sessions"]) - 1:
                 for eval in history_eval_query:
                     ### RAG
-                    relevant_chunks = perform_retrieval(history_sessions_list, eval, num_instruction_sessions)
+                    if retrieval_mode == 'local':
+                        if retriever_family == 'jinaai':
+                            # ensure top_k at least 1 to avoid invalid call
+                            n_docs = max(1, num_instruction_sessions)
+                            relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
+                            relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
+
+                        elif retriever_family == 'BAAI':
+                            scores = retriever_model.compute_score([[eval, history_sessions_list[i]] for i in range(len(history_sessions_list))], normalize=True)
+                            ranked_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:num_instruction_sessions]
+                            relevant_chunks = [(i, history_sessions_list[i]) for i in sorted(ranked_indices)]
+
+                        relevant_context = ''
+                        for retrieved_session_id, retrieved_session in relevant_chunks:
+                            relevant_context += f"\n\n Session {retrieved_session_id} \n\n" + retrieved_session
+                    elif retrieval_mode == 'cohere':
+                        relevant_context = perform_cohere_retrieval(history_sessions_list, eval, num_instruction_sessions)
+                    else:
+                        raise ValueError(f"Unrecognized retrieval mode '{retrieval_mode}'.")
                     prompt = (
                         rag_prompt.replace("[mentor]", dialogue_context["mentor"])
                         .replace("[eval_query]", eval)
-                        .replace("[session]", relevant_chunks)
+                        .replace("[session]", relevant_context)
                     )
                     messages = [{"role": "system", "content": preamble}, {"role": "user", "content": prompt}] if preamble != '' else [{"role": "user", "content": prompt}]
                     response = model.chat(messages, gen_params)[0].outputs[0].text
@@ -593,7 +631,7 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
                 if session_id == len(dialogue["sessions"]) - 1:
                     for eval in history_eval_query:
                         ### RAG
-                        relevant_chunks = perform_retrieval(history_sessions_list, eval, num_instruction_sessions)
+                        relevant_chunks = perform_cohere_retrieval(history_sessions_list, eval, num_instruction_sessions)
                         prompt = (
                                 rag_prompt.replace("[mentor]", dialogue_context["mentor"])
                                 .replace("[eval_query]", eval)
@@ -615,6 +653,23 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
                 client = OpenAI()
             else:
                 client = OpenAI(base_url=model_url, api_key=api_key)
+                
+            # initialize retriever models in local mode
+            if retrieval_mode == 'local':
+                cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
+                retriever_family = retriever_name.split("/")[0]
+                if retriever_family == 'jinaai':
+                    from sentence_transformers import CrossEncoder
+                    retriever_model = CrossEncoder(retriever_name,
+                                                   automodel_args={"torch_dtype": "auto"},
+                                                   trust_remote_code=True,
+                                                   cache_folder=str(cache_dir))
+                elif retriever_family == 'BAAI':
+                    from FlagEmbedding import FlagReranker
+                    retriever_model = FlagReranker(retriever_name, use_fp16=True, cache_dir=str(cache_dir))
+            
+                else:
+                    raise ValueError(f"Unrecognized retriever family '{retriever_family}' for retriever model.")
             
             model_outputs = []
             history_sessions_list = []
@@ -627,11 +682,32 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
                 if session_id == len(dialogue["sessions"]) - 1:
                     for eval in history_eval_query:
                         ### RAG
-                        relevant_chunks = perform_retrieval(history_sessions_list, eval, num_instruction_sessions)
+                        if retrieval_mode == 'local':
+                            if retriever_family == 'jinaai':
+                                # ensure top_k at least 1 to avoid invalid call
+                                n_docs = max(1, num_instruction_sessions)
+                                relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
+                                relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
+                            
+                            elif retriever_family == 'BAAI':
+                                scores = retriever_model.compute_score([[eval, history_sessions_list[i]] for i in range(len(history_sessions_list))], normalize=True)
+                                ranked_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:num_instruction_sessions]
+                                relevant_chunks = [(i, history_sessions_list[i]) for i in sorted(ranked_indices)]
+            
+                            else:
+                                raise ValueError(f"Unrecognized retriever family '{retriever_family}' for retriever model.")
+                            
+                            relevant_context = ''
+                            for retrieved_session_id, retrieved_session in relevant_chunks:
+                                relevant_context += f"\n\n Session {retrieved_session_id} \n\n" + retrieved_session
+                        elif retrieval_mode == 'cohere':
+                            relevant_context = perform_cohere_retrieval(history_sessions_list, eval, num_instruction_sessions)
+                        else:
+                            raise ValueError(f"Unrecognized retrieval mode '{retrieval_mode}'.")
                         prompt = (
                                 rag_prompt.replace("[mentor]", dialogue_context["mentor"])
                                 .replace("[eval_query]", eval)
-                                .replace("[session]", relevant_chunks)
+                                .replace("[session]", relevant_context)
                         )
                         response = openai_model_generate(client, prompt, preamble, model_name=model_name)
                         rag_model_output.append(response)

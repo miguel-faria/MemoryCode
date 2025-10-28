@@ -42,13 +42,13 @@ fi
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
 model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
-api_key="a1b2c3d4e5"
-n_gpus=2
-host="localhost"
-port=12500
-gpu_usage=0.75
-model_url="http://$host:$port/v1"
 connection_mode="local"
+n_gpus=2
+# api_key="a1b2c3d4e5"
+# host="localhost"
+# port=12500
+# gpu_usage=0.75
+# model_url="http://$host:$port/v1"
 
 set -e
 
@@ -61,8 +61,6 @@ mkdir -p "$instruction_dir"
 mkdir -p "$instruction_session_dir"
 mkdir -p "$instruction_history_dir"
 
-# Evaluation is split into 3 steps. The final output is stored in model_outputs/instruction_session_history.
-
 # Instructions
 python -m fire code/generate_model_output.py generate_model_output_instruction --model_name "$model" \
     --topics_file "$data_dir"/memory_code/topics.json \
@@ -70,21 +68,3 @@ python -m fire code/generate_model_output.py generate_model_output_instruction -
     --cache_path "$cache_dir" \
     --connection_mode "$connection_mode" \
     --n_gpus "$n_gpus" \
-
-# Sessions
-# for dialogue_id in {1..360}; do
-#     python -m fire code/generate_model_output.py generate_model_output_session \
-#         --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
-#         --model_name "$model" \
-#         --instruction_output_path "$instruction_dir/${model_name}.json" \
-#         --output_dir "$instruction_session_dir"
-# done
-
-# History
-# for dialogue_id in {1..360}; do
-#     python -m fire code/generate_model_output.py generate_model_output_history \
-#         --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
-#         --model_name "$model" \
-#         --instruction_session_path "$instruction_session_dir/${model_name}/output_${dialogue_id}.json" \
-#         --output_dir "$instruction_history_dir"
-# done

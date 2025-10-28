@@ -102,7 +102,17 @@ def get_model_generate_function(model_name, temperature=0.9, p=0.9):
     return model_generate
 
 
-def perform_retrieval(cumulative_sessions, query, num_pivot_sessions):
+def get_retrieval_model(retrieval_mode):
+    
+    if retrieval_mode == 'local':
+        pass
+    elif retrieval_mode == 'vllm':
+        pass
+    else:
+        print('Retrieval mode not defined')
+        return None
+
+def perform_cohere_retrieval(cumulative_sessions, query, num_pivot_sessions):
     try:
         COHERE_API_KEY = os.environ["COHERE_API_KEY"]
     except KeyError:
