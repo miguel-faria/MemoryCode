@@ -53,4 +53,10 @@ set -e
 
 # Dialogue generation
 echo "Generating dialogues ..."
-python code/generate_dialogue.py --prompt_dir prompts --template_dir dataset --connection_mode local --model_name Qwen/Qwen2.5-1.5B-Instruct --n_gpus 1 --model_url http://localhost:12500/v1 --api_key a1b2c3d4
+python code/generate_dialogue.py --prompt_dir prompts \
+                                --template_dir dataset \
+                                --connection_mode local \
+                                --model_name Qwen/Qwen2.5-1.5B-Instruct \
+                                --n_gpus 1 \
+                                --model_url http://localhost:12500/v1 \
+                                --api_key a1b2c3d4

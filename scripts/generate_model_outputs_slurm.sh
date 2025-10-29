@@ -65,23 +65,23 @@ mkdir -p "$instruction_history_dir"
 # Sessions
 for dialogue_id in {1..360}; do
     python -m fire code/generate_model_output.py generate_model_output_session \
-        --dialogue_file "dataset/dialogue_${dialogue_id}.json" \
-        --model_name "$model" \
-        --instruction_output_path "model_outputs/instruction/${model_name}.json" \
-        --output_dir model_outputs/instruction_session \
-        --connection_mode "$connection_mode" \
-        --n_gpus "$n_gpus" \
-        --cache_path "$cache_dir"
+          --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
+          --model_name "$model" \
+          --instruction_output_path "$instruction_dir/${model_name}.json" \
+          --output_dir "$instruction_session_dir" \
+          --connection_mode "$connection_mode" \
+          --n_gpus "$n_gpus" \
+          --cache_path "$cache_dir"
 done
 
 # History
 for dialogue_id in {1..360}; do
    python -m fire code/generate_model_output.py generate_model_output_history \
-       --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
-       --model_name "$model" \
-       --instruction_session_path "$instruction_session_dir/${model_name}/output_${dialogue_id}.json" \
-       --output_dir "$instruction_history_dir" \
-       --connection_mode "$connection_mode" \
-       --n_gpus "$n_gpus" \
-       --cache_path "$cache_dir"
+          --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
+          --model_name "$model" \
+          --instruction_session_path "$instruction_session_dir/${model_name}/output_${dialogue_id}.json" \
+          --output_dir "$instruction_history_dir" \
+          --connection_mode "$connection_mode" \
+          --n_gpus "$n_gpus" \
+          --cache_path "$cache_dir"
 done

@@ -110,7 +110,14 @@ model_url="http://$host:$port/v1"
 # model_id=$!
 # sleep 2.5m
 echo "Starting dialogue generation script"
-python code/generate_dialogue.py --prompt_dir "$data_dir"/memory_code/prompts --template_dir "$data_dir"/memory_code/dataset --connection_mode local --model_name "$model" --n_gpus "$n_gpus" --model_url "$model_url" --api_key "$api_key" --cache_path "$cache_dir"
+python code/generate_dialogue.py --prompt_dir "$data_dir"/memory_code/prompts \
+                                  --template_dir "$data_dir"/memory_code/dataset \
+                                  --connection_mode local \
+                                  --model_name "$model" \
+                                  --n_gpus "$n_gpus" \
+                                  --model_url "$model_url" \
+                                  --api_key "$api_key" \
+                                  --cache_path "$cache_dir"
 
 # kill -9 "$model_id"
 conda deactivate

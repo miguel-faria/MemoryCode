@@ -25,8 +25,8 @@ mkdir -p "$instruction_history_dir"
 
 # Instructions
 python -m fire code/generate_model_output.py generate_model_output_instruction --model_name "$model_name" \
-    --topics_file topics.json \
-    --output_dir model_outputs/instruction \
+    --topics_file "$data_dir/memory_code/topics.json" \
+    --output_dir "$instruction_dir" \
     --cache_path "$cache_dir" \
     --connection_mode "$connection_mode" \
     --n_gpus "$n_gpus"
