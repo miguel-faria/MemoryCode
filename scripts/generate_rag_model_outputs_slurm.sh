@@ -66,7 +66,7 @@ mkdir -p "$instruction_history_dir"
 for dialogue_id in {1..360}; do
     python -m fire code/generate_model_output.py generate_model_output_session \
           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
-          --model_name "$model" \
+          --model "$model" \
           --instruction_output_path "$instruction_dir/${model_name}.json" \
           --output_dir "$instruction_session_dir" \
           --connection_mode "$connection_mode" \
@@ -78,7 +78,7 @@ done
 for dialogue_id in {1..360}; do
    python -m fire code/generate_model_output.py generate_model_output_history \
           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
-          --model_name "$model" \
+          --model "$model" \
           --instruction_session_path "$instruction_session_dir/${model_name}/output_${dialogue_id}.json" \
           --output_dir "$instruction_history_dir" \
           --connection_mode "$connection_mode" \
