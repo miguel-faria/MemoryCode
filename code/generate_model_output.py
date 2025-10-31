@@ -14,7 +14,7 @@ from pathlib import Path
 from openai import OpenAI
 
 
-def generate_model_output_instruction(model_name, topics_file, output_dir, connection_mode='cohere', n_gpus=2,
+def generate_model_output_instruction(model, topics_file, output_dir, connection_mode='cohere', n_gpus=2,
                                       model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
     
     with open(topics_file, "r") as f:
@@ -26,11 +26,11 @@ def generate_model_output_instruction(model_name, topics_file, output_dir, conne
     Do not acknowledge. Only generate Python code and nothing else before or after. Do not explain the code. Do not ask for more information but directly give the answer.
     """
     prompt_template = f"Write a [eval_query]. Do not provide example usage. Follow this coding style guide when writing the code: [instruction_topic]."
-    model_name = model_name.split("/")[-1]
+    model_name = model.split("/")[-1]
     
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model_name, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
         gen_params = SamplingParams(
                 temperature=0.9,
                 top_k=5,
@@ -85,7 +85,7 @@ def generate_model_output_instruction(model_name, topics_file, output_dir, conne
                 eval_query = instruction["eval_query"]
                 for update_id, instruction_topic in enumerate(instruction["text"]):
                     prompt = prompt_template.replace("[eval_query]", eval_query).replace("[instruction_topic]", instruction_topic)
-                    response = openai_model_generate(client, prompt, preamble, model_name=model_name)
+                    response = openai_model_generate(client, prompt, preamble, model_name=model)
                     model_outputs[f"{instruction_id}.{update_id}"] = response
                     i += 1
                     if i % 10 == 0:
@@ -97,10 +97,11 @@ def generate_model_output_instruction(model_name, topics_file, output_dir, conne
         json.dump(model_outputs, f, indent=2)
 
 
-def generate_model_output_session(dialogue_file, model_name, instruction_output_path, output_dir, connection_mode='cohere', n_gpus=2,
-                                      model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+def generate_model_output_session(dialogue_file, model, instruction_output_path, output_dir, connection_mode='cohere', n_gpus=2,
+                                  model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
     """Generates the session and history model outputs.
     The already computed instruction-only output is included in the final output file"""
+    model_name = model.split("/")[-1]
     with open(instruction_output_path, "r") as f:
         precomputed_instruction_model_output = json.load(f)
 
@@ -108,7 +109,7 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
-    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).absolute().absolute().name.split("_")[1].split(".")[0]
     
     completed_sessions_file = os.path.join(output_dir, f"completed_{model_name}_sessions.txt")
     with open(completed_sessions_file, "r") as f:
@@ -129,7 +130,7 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
     
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model_name, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -235,7 +236,7 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
                                 .replace("[eval_query]", eval)
                                 .replace("[session]", session["text"])
                         )
-                        response = openai_model_generate(client, prompt, preamble, model_name=model_name)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model)
                         session_model_output.append(response)
                         i += 1
                         if i % 10 == 0:
@@ -255,7 +256,6 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
         model_outputs = {"sessions": model_outputs}
     
     # Save model output
-    model_name = model_name.split("/")[-1]
     output_dir = os.path.join(output_dir, model_name)
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
@@ -267,11 +267,11 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
         f.write(f"dialogue_{dialogue_id}\n")
 
 
-def generate_model_output_history(dialogue_file, model_name, instruction_session_path, output_dir, connection_mode='cohere', n_gpus=2,
-                                      model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+def generate_model_output_history(dialogue_file, model, instruction_session_path, output_dir, connection_mode='cohere', n_gpus=2,
+                                  model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
     """Generates the session and history model outputs.
     The already computed instruction-only output is included in the final output file"""
-    model_name = model_name.split("/")[-1]
+    model_name = model.split("/")[-1]
     with open(instruction_session_path, "r") as f:
         model_outputs = json.load(f)
     
@@ -279,7 +279,7 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
-    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).absolute().name.split("_")[1].split(".")[0]
     
     completed_histories_file = os.path.join(output_dir, f"completed_{model_name}_histories.txt")
     with open(completed_histories_file, "r") as f:
@@ -300,7 +300,7 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
     
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model_name, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -384,7 +384,7 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
                             .replace("[eval_query]", eval)
                             .replace("[session]", history_sessions)
                         )
-                        response = openai_model_generate(client, prompt, preamble, model_name=model_name)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model)
                         history_model_output.append(response)
                         i += 1
                         if i % 10 == 0:
@@ -396,7 +396,6 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
                 model_outputs["sessions"][session_id].update(model_output)
     
     # Save model output
-    model_name = model_name.split("/")[-1]
     output_dir = os.path.join(output_dir, model_name)
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, os.path.basename(instruction_session_path))
@@ -407,15 +406,15 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
         f.write(f"dialogue_{dialogue_id}\n")
 
 
-def generate_model_output_instructions_chain(dialogue_file, model_name, output_dir, connection_mode='cohere', n_gpus=2,
-                              model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+def generate_model_output_instructions_chain(dialogue_file, model, output_dir, connection_mode='cohere', n_gpus=2,
+                                             model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
     """Output when a chain of instructions is provided as input."""
-    model_name = model_name.split("/")[-1]
+    model_name = model.split("/")[-1]
 
     # Load dialogue
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
-    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).absolute().name.split("_")[1].split(".")[0]
     
     completed_instruct_chain_file = os.path.join(output_dir, f"completed_{model_name}_instruct_chain.txt")
     with open(completed_instruct_chain_file, "r") as f:
@@ -434,7 +433,7 @@ def generate_model_output_instructions_chain(dialogue_file, model_name, output_d
     # Generate model output
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model_name, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -517,7 +516,7 @@ def generate_model_output_instructions_chain(dialogue_file, model_name, output_d
                     instruction_topics_str = ", ".join(instruction_topics)
                     for eval in history_eval_query:
                         prompt = prompt_template.replace("[eval_query]", eval).replace("[instruction_topic]", instruction_topics_str)
-                        response = openai_model_generate(client, prompt, preamble, model_name=model_name)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model)
                         model_output.append(response)
                         i += 1
                         if i % 10 == 0:
@@ -529,7 +528,6 @@ def generate_model_output_instructions_chain(dialogue_file, model_name, output_d
             model_outputs = {"sessions": model_outputs}
             
     # Save model output
-    model_name = model_name.split("/")[-1]
     output_dir = os.path.join(output_dir, model_name)
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
@@ -541,14 +539,15 @@ def generate_model_output_instructions_chain(dialogue_file, model_name, output_d
         f.write(f"dialogue_{dialogue_id}\n")
 
 
-def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_mode='cohere', retrieval_mode='cohere', n_gpus=2,
+def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode='cohere', retrieval_mode='cohere', n_gpus=2,
                               model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', retriever_name='', cache_path=None):
     """RAG"""
     # Load dialogue
+    model_name = model.split("/")[-1]
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
-    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).absolute().name.split("_")[1].split(".")[0]
     
     completed_rag_file = os.path.join(output_dir, f"completed_{model_name}_rag.txt")
     with open(completed_rag_file, "r") as f:
@@ -576,7 +575,7 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
     # Generate model output
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model_name, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -744,7 +743,7 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
                                 .replace("[eval_query]", eval)
                                 .replace("[session]", relevant_context)
                         )
-                        response = openai_model_generate(client, prompt, preamble, model_name=model_name)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model)
                         rag_model_output.append(response)
                         i += 1
                         if i % 10 == 0:
@@ -756,7 +755,6 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
             model_outputs = {"sessions": model_outputs}
     
     # Save model output
-    model_name = model_name.split("/")[-1]
     output_dir = os.path.join(output_dir, model_name)
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
@@ -768,15 +766,15 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
         f.write(f"dialogue_{dialogue_id}\n")
 
 
-def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, connection_mode='cohere', n_gpus=2,
-                              model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+def generate_model_output_no_dialogue(dialogue_file, model, output_dir, connection_mode='cohere', n_gpus=2,
+                                      model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
     """Output when no dialogue is provided."""
-    model_name = model_name.split("/")[-1]
+    model_name = model.split("/")[-1]
 
     # Load dialogue
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
-    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).absolute().name.split("_")[1].split(".")[0]
     
     completed_no_dialogue_file = os.path.join(output_dir, f"completed_{model_name}_no_dialogue.txt")
     with open(completed_no_dialogue_file, "r") as f:
@@ -795,7 +793,7 @@ def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, con
     # Generate model output
     if connection_mode not in ["cohere", "gpt", "vllm"]:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model_name, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -866,7 +864,7 @@ def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, con
                     ## history
                     for eval in history_eval_query:
                         prompt = prompt_template.replace("[eval_query]", eval)
-                        response = openai_model_generate(client, prompt, preamble, model_name=model_name)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model)
                         model_output.append(response)
                         i += 1
                         if i % 10 == 0:
@@ -878,7 +876,6 @@ def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, con
             model_outputs = {"sessions": model_outputs}
     
     # Save model output
-    model_name = model_name.split("/")[-1]
     output_dir = os.path.join(output_dir, model_name)
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
