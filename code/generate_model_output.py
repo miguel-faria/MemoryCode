@@ -26,14 +26,15 @@ def generate_model_output_instruction(model_name, topics_file, output_dir, conne
     Do not acknowledge. Only generate Python code and nothing else before or after. Do not explain the code. Do not ask for more information but directly give the answer.
     """
     prompt_template = f"Write a [eval_query]. Do not provide example usage. Follow this coding style guide when writing the code: [instruction_topic]."
+    model_name = model_name.split("/")[-1]
     
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
         model = LLM(model_name, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
         gen_params = SamplingParams(
-                temperature=1.0,
+                temperature=0.9,
                 top_k=5,
-                top_p=0.75,
+                top_p=0.9,
                 max_tokens=1024,
         )
         
@@ -64,9 +65,7 @@ def generate_model_output_instruction(model_name, topics_file, output_dir, conne
                 eval_query = instruction["eval_query"]
                 for update_id, instruction_topic in enumerate(instruction["text"]):
                     prompt = prompt_template.replace("[eval_query]", eval_query).replace("[instruction_topic]", instruction_topic)
-                    response = cohere_model_generate(
-                            prompt, client, preamble, model_name="command-r-plus-08-2024", temperature=0.9, p=0.9
-                    )
+                    response = cohere_model_generate(prompt, client, preamble, model_name="command-r-plus-08-2024", temperature=0.9, p=0.9)
                     model_outputs[f"{instruction_id}.{update_id}"] = response
                     i += 1
                     if i % 10 == 0:
@@ -86,15 +85,12 @@ def generate_model_output_instruction(model_name, topics_file, output_dir, conne
                 eval_query = instruction["eval_query"]
                 for update_id, instruction_topic in enumerate(instruction["text"]):
                     prompt = prompt_template.replace("[eval_query]", eval_query).replace("[instruction_topic]", instruction_topic)
-                    response = openai_model_generate(
-                            client, prompt, preamble, model_name=model_name
-                    )
+                    response = openai_model_generate(client, prompt, preamble, model_name=model_name)
                     model_outputs[f"{instruction_id}.{update_id}"] = response
                     i += 1
                     if i % 10 == 0:
                         time.sleep(10)  # to avoid rate limiting
             
-    model_name = model_name.split("/")[-1]
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{model_name}.json")
     with open(output_file, "a") as f:
@@ -112,6 +108,14 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
+    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    
+    completed_sessions_file = os.path.join(output_dir, f"completed_{model_name}_sessions.txt")
+    with open(completed_sessions_file, "r") as f:
+        completed_sessions = f.read().splitlines()
+    if f"dialogue_{dialogue_id}" in completed_sessions:
+        print(f"Dialogue file {dialogue_id} already completed. Skipping...")
+        return
 
     # Prompts
     preamble = f"""
@@ -258,6 +262,9 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
     output_file = os.path.join(output_dir, f"output_{dialogue_id}.json")
     with open(output_file, "w") as f:
         json.dump(model_outputs, f, indent=2)
+    
+    with open(completed_sessions_file, "a") as f:
+        f.write(f"dialogue_{dialogue_id}\n")
 
 
 def generate_model_output_history(dialogue_file, model_name, instruction_session_path, output_dir, connection_mode='cohere', n_gpus=2,
@@ -272,6 +279,14 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
+    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    
+    completed_histories_file = os.path.join(output_dir, f"completed_{model_name}_histories.txt")
+    with open(completed_histories_file, "r") as f:
+        completed_histories = f.read().splitlines()
+    if f"dialogue_{dialogue_id}" in completed_histories:
+        print(f"Dialogue file {dialogue_id} already completed. Skipping...")
+        return
     
     # Prompts
     preamble = f"""
@@ -387,18 +402,27 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
     output_file = os.path.join(output_dir, os.path.basename(instruction_session_path))
     with open(output_file, "w") as f:
         json.dump(model_outputs, f, indent=2)
+    
+    with open(completed_histories_file, "a") as f:
+        f.write(f"dialogue_{dialogue_id}\n")
 
 
 def generate_model_output_instructions_chain(dialogue_file, model_name, output_dir, connection_mode='cohere', n_gpus=2,
                               model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
     """Output when a chain of instructions is provided as input."""
-    model_generate = get_model_generate_function(model_name, temperature=0, p=None)
-
     model_name = model_name.split("/")[-1]
 
     # Load dialogue
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
+    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    
+    completed_instruct_chain_file = os.path.join(output_dir, f"completed_{model_name}_instruct_chain.txt")
+    with open(completed_instruct_chain_file, "r") as f:
+        completed_instruct_chains = f.read().splitlines()
+    if f"dialogue_{dialogue_id}" in completed_instruct_chains:
+        print(f"Dialogue file {dialogue_id} already completed. Skipping...")
+        return
 
     # Prompts
     preamble = f"""
@@ -512,6 +536,9 @@ def generate_model_output_instructions_chain(dialogue_file, model_name, output_d
     output_file = os.path.join(output_dir, f"output_{dialogue_id}.json")
     with open(output_file, "w") as f:
         json.dump(model_outputs, f, indent=2)
+    
+    with open(completed_instruct_chain_file, "a") as f:
+        f.write(f"dialogue_{dialogue_id}\n")
 
 
 def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_mode='cohere', retrieval_mode='cohere', n_gpus=2,
@@ -521,6 +548,14 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
+    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    
+    completed_rag_file = os.path.join(output_dir, f"completed_{model_name}_rag.txt")
+    with open(completed_rag_file, "r") as f:
+        completed_rag = f.read().splitlines()
+    if f"dialogue_{dialogue_id}" in completed_rag:
+        print(f"Dialogue file {dialogue_id} already completed. Skipping...")
+        return
 
     # Prompts
     preamble = f"""
@@ -728,6 +763,9 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
     output_file = os.path.join(output_dir, f"output_{dialogue_id}_rag.json")
     with open(output_file, "w") as f:
         json.dump(model_outputs, f, indent=2)
+    
+    with open(completed_rag_file, "a") as f:
+        f.write(f"dialogue_{dialogue_id}\n")
 
 
 def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, connection_mode='cohere', n_gpus=2,
@@ -738,6 +776,14 @@ def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, con
     # Load dialogue
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
+    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    
+    completed_no_dialogue_file = os.path.join(output_dir, f"completed_{model_name}_no_dialogue.txt")
+    with open(completed_no_dialogue_file, "r") as f:
+        completed_no_dialogues = f.read().splitlines()
+    if f"dialogue_{dialogue_id}" in completed_no_dialogues:
+        print(f"Dialogue file {dialogue_id} already completed. Skipping...")
+        return
 
     # Prompts
     preamble = f"""
@@ -839,6 +885,9 @@ def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, con
     output_file = os.path.join(output_dir, f"output_{dialogue_id}.json")
     with open(output_file, "w") as f:
         json.dump(model_outputs, f, indent=2)
+    
+    with open(completed_no_dialogue_file, "a") as f:
+        f.write(f"dialogue_{dialogue_id}\n")
 
 
 if __name__ == "__main__":
