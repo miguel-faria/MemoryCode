@@ -20,7 +20,7 @@ date;hostname;pwd
 if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "maia" ] || [ "$HOSTNAME" = "hades" ] ; then
   # cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
   cache_dir="/mnt/scratch-hades/miguelfaria/models"
-  data_dir="/mnt/data-artemis/miguelfaria/agentic_llm/"
+  data_dir="/mnt/data-artemis/miguelfaria/agentic_llm"
 else
   cache_dir="./cache"
   data_dir="./data"
