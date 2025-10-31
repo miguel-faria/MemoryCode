@@ -108,7 +108,7 @@ def generate_model_output_session(dialogue_file, model_name, instruction_output_
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
-    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
     
     completed_sessions_file = os.path.join(output_dir, f"completed_{model_name}_sessions.txt")
     with open(completed_sessions_file, "r") as f:
@@ -279,7 +279,7 @@ def generate_model_output_history(dialogue_file, model_name, instruction_session
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
-    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
     
     completed_histories_file = os.path.join(output_dir, f"completed_{model_name}_histories.txt")
     with open(completed_histories_file, "r") as f:
@@ -415,7 +415,7 @@ def generate_model_output_instructions_chain(dialogue_file, model_name, output_d
     # Load dialogue
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
-    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
     
     completed_instruct_chain_file = os.path.join(output_dir, f"completed_{model_name}_instruct_chain.txt")
     with open(completed_instruct_chain_file, "r") as f:
@@ -548,7 +548,7 @@ def generate_model_output_rag(dialogue_file, model_name, output_dir, connection_
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
     dialogue_context = dialogue["context"]
-    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
     
     completed_rag_file = os.path.join(output_dir, f"completed_{model_name}_rag.txt")
     with open(completed_rag_file, "r") as f:
@@ -776,7 +776,7 @@ def generate_model_output_no_dialogue(dialogue_file, model_name, output_dir, con
     # Load dialogue
     with open(dialogue_file, "r") as f:
         dialogue = json.load(f)
-    dialogue_id = dialogue_file.name.split("_")[1].split(".")[0]
+    dialogue_id = Path(dialogue_file).name.split("_")[1].split(".")[0]
     
     completed_no_dialogue_file = os.path.join(output_dir, f"completed_{model_name}_no_dialogue.txt")
     with open(completed_no_dialogue_file, "r") as f:
