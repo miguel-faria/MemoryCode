@@ -42,7 +42,8 @@ fi
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
 model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
-model_name="${model##*/}"
+retriever_name="jinaai/jina-reranker-v3"
+retrieval_mode="local"
 connection_mode="local"
 n_gpus=2
 # api_key="a1b2c3d4e5"
@@ -64,24 +65,13 @@ mkdir -p "$instruction_history_dir"
 
 # Sessions
 for dialogue_id in {1..360}; do
-    python -m fire code/generate_model_output.py generate_model_output_session \
+    python -m fire code/generate_model_output.py generate_model_output_rag \
           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
           --model "$model" \
-          --instruction_output_path "$instruction_dir/${model_name}.json" \
           --output_dir "$instruction_session_dir" \
           --connection_mode "$connection_mode" \
           --n_gpus "$n_gpus" \
-          --cache_path "$cache_dir"
-done
-
-# History
-for dialogue_id in {1..360}; do
-   python -m fire code/generate_model_output.py generate_model_output_history \
-          --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
-          --model "$model" \
-          --instruction_session_path "$instruction_session_dir/${model_name}/output_${dialogue_id}.json" \
-          --output_dir "$instruction_history_dir" \
-          --connection_mode "$connection_mode" \
-          --n_gpus "$n_gpus" \
-          --cache_path "$cache_dir"
+          --cache_path "$cache_dir" \
+          --retrieval_mode "$retrieval_mode" \
+          --retriver_name "$retriever_name"
 done

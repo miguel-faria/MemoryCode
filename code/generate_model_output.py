@@ -589,12 +589,16 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
         if retrieval_mode == 'local':
             # initialize retriever models in local mode
             retriever_family = retriever_name.split("/")[0]
+            use_v3 = False
             if retriever_family == 'jinaai':
-                from sentence_transformers import CrossEncoder
-                retriever_model = CrossEncoder(retriever_name,
-                                               automodel_args={"torch_dtype": "auto"},
-                                               trust_remote_code=True,
-                                               cache_folder=str(cache_dir))
+                if 'v3' in retriever_name:
+                    from transformers import AutoModel
+                    retriever_model = AutoModel.from_pretrained('jinaai/jina-reranker-v3', dtype="auto", trust_remote_code=True, cache_dir=str(cache_dir))
+                    retriever_model.eval()
+                    use_v3 = True
+                else:
+                    from sentence_transformers import CrossEncoder
+                    retriever_model = CrossEncoder(retriever_name, automodel_args={"torch_dtype": "auto"}, trust_remote_code=True, cache_folder=str(cache_dir))
             elif retriever_family == 'BAAI':
                 from FlagEmbedding import FlagReranker
                 retriever_model = FlagReranker(retriever_name, use_fp16=True, cache_dir=str(cache_dir))
@@ -617,8 +621,11 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                         if retriever_family == 'jinaai':
                             # ensure top_k at least 1 to avoid invalid call
                             n_docs = max(1, num_instruction_sessions)
-                            relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
-                            relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
+                            if use_v3:
+                                relevant_chunks = retriever_model.rerank(eval, history_sessions_list)[:n_docs]
+                            else:
+                                relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
+                                relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
 
                         elif retriever_family == 'BAAI':
                             scores = retriever_model.compute_score([[eval, history_sessions_list[i]] for i in range(len(history_sessions_list))], normalize=True)
@@ -692,12 +699,16 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
             if retrieval_mode == 'local':
                 cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
                 retriever_family = retriever_name.split("/")[0]
+                use_v3 = False
                 if retriever_family == 'jinaai':
-                    from sentence_transformers import CrossEncoder
-                    retriever_model = CrossEncoder(retriever_name,
-                                                   automodel_args={"torch_dtype": "auto"},
-                                                   trust_remote_code=True,
-                                                   cache_folder=str(cache_dir))
+                    if 'v3' in retriever_name:
+                        from transformers import AutoModel
+                        retriever_model = AutoModel.from_pretrained('jinaai/jina-reranker-v3', dtype="auto", trust_remote_code=True, cache_dir=str(cache_dir))
+                        retriever_model.eval()
+                        use_v3 = True
+                    else:
+                        from sentence_transformers import CrossEncoder
+                        retriever_model = CrossEncoder(retriever_name, automodel_args={"torch_dtype": "auto"}, trust_remote_code=True, cache_folder=str(cache_dir))
                 elif retriever_family == 'BAAI':
                     from FlagEmbedding import FlagReranker
                     retriever_model = FlagReranker(retriever_name, use_fp16=True, cache_dir=str(cache_dir))
@@ -720,8 +731,11 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                             if retriever_family == 'jinaai':
                                 # ensure top_k at least 1 to avoid invalid call
                                 n_docs = max(1, num_instruction_sessions)
-                                relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
-                                relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
+                                if use_v3:
+                                    relevant_chunks = retriever_model.rerank(eval, history_sessions_list)[:n_docs]
+                                else:
+                                    relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
+                                    relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
                             
                             elif retriever_family == 'BAAI':
                                 scores = retriever_model.compute_score([[eval, history_sessions_list[i]] for i in range(len(history_sessions_list))], normalize=True)
