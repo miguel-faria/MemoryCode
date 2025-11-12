@@ -588,6 +588,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
         retriever_model = None
         if retrieval_mode == 'local':
             # initialize retriever models in local mode
+            print(f"Retriever name: {retriever_name}\nName split: {retriever_name.split('/')}")
             retriever_family = retriever_name.split("/")[0]
             use_v3 = False
             if retriever_family == 'jinaai':
@@ -622,7 +623,8 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                             # ensure top_k at least 1 to avoid invalid call
                             n_docs = max(1, num_instruction_sessions)
                             if use_v3:
-                                relevant_chunks = retriever_model.rerank(eval, history_sessions_list)[:n_docs]
+                                relevant_chunks = [(doc['index'], doc['document']) for doc in retriever_model.rerank(eval, history_sessions_list)[:n_docs]]
+                                relevant_chunks = sorted(relevant_chunks, key=lambda x: x[0])
                             else:
                                 relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
                                 relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
