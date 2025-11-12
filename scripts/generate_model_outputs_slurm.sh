@@ -2,7 +2,7 @@
 
 #SBATCH --mail-type=BEGIN,END,FAIL         # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=miguel.faria@tecnico.ulisboa.pt
-#SBATCH --job-name=generate_memory_code
+#SBATCH --job-name=generate_memory_code_outputs
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --ntasks-per-node=1
