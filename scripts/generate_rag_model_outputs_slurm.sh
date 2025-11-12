@@ -73,5 +73,5 @@ for dialogue_id in {1..360}; do
           --n_gpus "$n_gpus" \
           --cache_path "$cache_dir" \
           --retrieval_mode "$retrieval_mode" \
-          --retriver_name "$retriever_name"
+          --retriever_name "$retriever_name"
 done
