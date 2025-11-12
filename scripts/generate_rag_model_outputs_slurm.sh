@@ -42,6 +42,7 @@ fi
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
 model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
+model_name="${model##*/}"
 retriever_name="jinaai/jina-reranker-v3"
 retrieval_mode="local"
 connection_mode="local"
@@ -64,6 +65,7 @@ mkdir -p "$instruction_session_dir"
 mkdir -p "$instruction_history_dir"
 
 # Sessions
+touch "$instruction_session_dir/completed_${model_name}_rag.txt"
 for dialogue_id in {1..360}; do
     python -m fire code/generate_model_output.py generate_model_output_rag \
           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
