@@ -20,6 +20,7 @@ date;hostname;pwd
 if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "maia" ] || [ "$HOSTNAME" = "hades" ] ; then
   # cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
   cache_dir="/mnt/scratch-hades/miguelfaria/models"
+  # cache_dir="/mnt/scratch-hades/shared/models"
   data_dir="/mnt/data-artemis/miguelfaria/agentic_llm"
 else
   cache_dir="./cache"
@@ -41,7 +42,8 @@ fi
 
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
-model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
+ model="/mnt/scratch-hades/shared/models/Llama-3.3-70B-Instruct"
+#model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
 connection_mode="local"
 n_gpus=2
 # api_key="a1b2c3d4e5"
