@@ -24,6 +24,7 @@ mkdir -p "$instruction_session_dir"
 mkdir -p "$instruction_history_dir"
 
 # Sessions
+touch "$instruction_session_dir/completed_${model_name}_sessions.txt"
 for dialogue_id in {1..360}; do
     python -m fire code/generate_model_output.py generate_model_output_session \
         --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
@@ -36,6 +37,7 @@ for dialogue_id in {1..360}; do
 done
 
 # History
+touch "$instruction_history_dir/completed_${model_name}_histories.txt"
 for dialogue_id in {1..360}; do
     python -m fire code/generate_model_output.py generate_model_output_history \
         --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \

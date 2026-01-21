@@ -46,12 +46,12 @@ source "$conda_dir"/bin/activate llm_env
 # model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
 model="Qwen/Qwen3-32B-AWQ"
 connection_mode="vllm"
-# n_gpus=4
 api_key="a1b2c3d4e5"
 host="localhost"
 port=14500
 gpu_usage=0.75
 model_url="http://$host:$port/v1"
+thinking=0
 
 set -e
 
@@ -114,6 +114,7 @@ python -m fire code/generate_model_output.py generate_model_output_instruction -
     --n_gpus "$n_gpus" \
     --model_url "$model_url" \
     --api_key "$api_key" \
+    --thinking "$thinking" \
 
 kill -9 "$model_id"
 conda deactivate

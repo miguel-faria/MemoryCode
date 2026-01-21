@@ -26,13 +26,14 @@ def cohere_model_generate(prompt, client, preamble=None, model_name="command-r-p
     return response.text
 
 
-def openai_model_generate(client, prompt, preamble=None, model_name="gpt-4o"):
+def openai_model_generate(client, prompt, preamble=None, model_name="gpt-4o", thinking=False):
     messages = [{"role": "user", "content": prompt}]
     if preamble:
         messages.insert(0, {"role": "system", "content": preamble})
     completion = client.chat.completions.create(
         model=model_name,
         messages=messages,
+        extra_body={"chat_template_kwargs": {"enable_thinking": thinking}}
     )
     return completion.choices[0].message.content
 
