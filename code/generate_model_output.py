@@ -130,7 +130,7 @@ def generate_model_output_session(dialogue_file, model, instruction_output_path,
     
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=65536)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -300,7 +300,7 @@ def generate_model_output_history(dialogue_file, model, instruction_session_path
     
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=65536)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -555,6 +555,8 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
     if f"dialogue_{dialogue_id}" in completed_rag:
         print(f"Dialogue file {dialogue_id} already completed. Skipping...")
         return
+    else:
+        print(f"Generating model output with rag for dialogue file {dialogue_id}.")
 
     # Prompts
     preamble = f"""
@@ -575,7 +577,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
     # Generate model output
     if connection_mode not in ['cohere', 'openai', 'vllm']:
         cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=2048)
+        model = LLM(model, gpu_memory_utilization=0.95, enforce_eager=True, download_dir=str(cache_dir), tensor_parallel_size=n_gpus, dtype='auto', max_model_len=65536)
         gen_params = SamplingParams(
                 temperature=1.0,
                 top_k=5,
@@ -583,7 +585,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                 max_tokens=1024,
         )
         
-        # initialize retriever vars to satisfy linters in all branches
+        # initialize retriever in local mode
         retriever_family = None
         retriever_model = None
         if retrieval_mode == 'local':

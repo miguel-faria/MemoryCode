@@ -9,7 +9,7 @@
 #SBATCH --gres=gpu:2
 # #SBATCH --gres=gpu:quadro6000:1
 # #SBATCH --gres=gpu:rtx2080:2
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --mem-per-cpu=8G
 #SBATCH --qos=gpu-h200
 #SBATCH --output="job-%x-%j.out"
