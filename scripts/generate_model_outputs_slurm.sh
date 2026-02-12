@@ -43,15 +43,16 @@ fi
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
 # model="/mnt/scratch-hades/shared/models/Llama-3.3-70B-Instruct"
-model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
+# model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
+model="Qwen/Qwen3-32B-AWQ"
 model_name="${model##*/}"
-connection_mode="local"
-n_gpus=2
-# api_key="a1b2c3d4e5"
-# host="localhost"
-# port=12500
-# gpu_usage=0.75
-# model_url="http://$host:$port/v1"
+connection_mode="vllm"
+api_key="a1b2c3d4e5"
+host="localhost"
+port=12500
+gpu_usage=0.75
+model_url="http://$host:$port/v1"
+thinking=0
 
 set -e
 
@@ -63,6 +64,47 @@ export PYTHONPATH=$(pwd)/code:$PYTHONPATH
 mkdir -p "$instruction_dir"
 mkdir -p "$instruction_session_dir"
 mkdir -p "$instruction_history_dir"
+if [ "$HOSTNAME" = "maia" ] ; then
+  vllm serve "$model" --download-dir "$cache_dir" \
+                      --dtype float16 \
+                      --api-key "$api_key" \
+                      --gpu-memory-utilization "$gpu_usage" \
+                      --tensor-parallel-size "$n_gpus" \
+                      --host "$host" \
+                      --port "$port" \
+                      --max-model-len 2048 \
+                      --enforce-eager &
+                      # --reasoning-parser mistral \
+                      # --tokenizer_mode mistral \
+                      # --config_format mistral \
+                      # --load_format mistral \
+                      # --tool-call-parser mistral \
+                      # --enable-auto-tool-choice \
+                      # --limit-mm-per-prompt '{"image":10}' \
+                      # --enable-reasoning \
+                      # --reasoning-parser deepseek_r1 &
+else
+  vllm serve "$model" --download-dir "$cache_dir" \
+                      --dtype auto \
+                      --api-key "$api_key" \
+                      --gpu-memory-utilization "$gpu_usage" \
+                      --tensor-parallel-size "$n_gpus" \
+                      --host "$host" \
+                      --port "$port" \
+                      --max-model-len 2048 \
+                      --enforce-eager &
+                      # --reasoning-parser mistral \
+                      # --tokenizer_mode mistral \
+                      # --config_format mistral \
+                      # --load_format mistral \
+                      # --tool-call-parser mistral \
+                      # --enable-auto-tool-choice \
+                      # --limit-mm-per-prompt '{"image":10}' \
+                      # --enable-reasoning \
+                      # --reasoning-parser deepseek_r1 &
+fi
+model_id=$!
+sleep 10m
 
 # Sessions
 # touch "$instruction_session_dir/completed_${model_name}_sessions.txt"
@@ -87,5 +129,7 @@ for dialogue_id in {1..360}; do
           --output_dir "$instruction_history_dir" \
           --connection_mode "$connection_mode" \
           --n_gpus "$n_gpus" \
-          --cache_path "$cache_dir"
+          --cache_path "$cache_dir" \
+          --model_url "$model_url" \
+          --thinking "$thinking" \
 done

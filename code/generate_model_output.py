@@ -1,11 +1,9 @@
 import json
 import os
-
-import json
-import os
 import cohere
 import fire
 import time
+import re
 
 from generation_utils import get_model_generate_function, perform_cohere_retrieval, cohere_model_generate, openai_model_generate
 from tqdm import tqdm
@@ -14,8 +12,8 @@ from pathlib import Path
 from openai import OpenAI
 
 
-def generate_model_output_instruction(model, topics_file, output_dir, connection_mode='cohere', n_gpus=2,
-                                      model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+def generate_model_output_instruction(model, topics_file, output_dir, connection_mode='cohere', n_gpus=2, model_url='http://localhost:12000/v1',
+                                      api_key='a1b2c3d4e5', cache_path=None, thinking=0):
     
     with open(topics_file, "r") as f:
         topics = json.load(f)
@@ -85,8 +83,13 @@ def generate_model_output_instruction(model, topics_file, output_dir, connection
                 eval_query = instruction["eval_query"]
                 for update_id, instruction_topic in enumerate(instruction["text"]):
                     prompt = prompt_template.replace("[eval_query]", eval_query).replace("[instruction_topic]", instruction_topic)
-                    response = openai_model_generate(client, prompt, preamble, model_name=model)
-                    model_outputs[f"{instruction_id}.{update_id}"] = response
+                    response = openai_model_generate(client, prompt, preamble, model_name=model, thinking=(True if thinking > 0 else False))
+                    think_match = re.search(r"<think>(.*?)</think>", response, flags=re.DOTALL)
+                    if think_match:
+                        model_output = response[:think_match.start()] + '\n' + response[think_match.end():]  # everything else
+                    else:
+                        model_output = response
+                    model_outputs[f"{instruction_id}.{update_id}"] = model_output
                     i += 1
                     if i % 10 == 0:
                         time.sleep(10)  # to avoid rate limiting
@@ -98,7 +101,7 @@ def generate_model_output_instruction(model, topics_file, output_dir, connection
 
 
 def generate_model_output_session(dialogue_file, model, instruction_output_path, output_dir, connection_mode='cohere', n_gpus=2,
-                                  model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+                                  model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None, thinking=0):
     """Generates the session and history model outputs.
     The already computed instruction-only output is included in the final output file"""
     model_name = model.split("/")[-1]
@@ -236,8 +239,13 @@ def generate_model_output_session(dialogue_file, model, instruction_output_path,
                                 .replace("[eval_query]", eval)
                                 .replace("[session]", session["text"])
                         )
-                        response = openai_model_generate(client, prompt, preamble, model_name=model)
-                        session_model_output.append(response)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model, thinking=(True if thinking > 0 else False))
+                        think_match = re.search(r"<think>(.*?)</think>", response, flags=re.DOTALL)
+                        if think_match:
+                            clean_response = response[:think_match.start()] + '\n' + response[think_match.end():]  # everything else
+                        else:
+                            clean_response = response
+                        session_model_output.append(clean_response)
                         i += 1
                         if i % 10 == 0:
                             time.sleep(10)  # to avoid rate limiting
@@ -268,7 +276,7 @@ def generate_model_output_session(dialogue_file, model, instruction_output_path,
 
 
 def generate_model_output_history(dialogue_file, model, instruction_session_path, output_dir, connection_mode='cohere', n_gpus=2,
-                                  model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+                                  model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None, thinking=0):
     """Generates the session and history model outputs.
     The already computed instruction-only output is included in the final output file"""
     model_name = model.split("/")[-1]
@@ -384,8 +392,13 @@ def generate_model_output_history(dialogue_file, model, instruction_session_path
                             .replace("[eval_query]", eval)
                             .replace("[session]", history_sessions)
                         )
-                        response = openai_model_generate(client, prompt, preamble, model_name=model)
-                        history_model_output.append(response)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model, thinking=(True if thinking > 0 else False))
+                        think_match = re.search(r"<think>(.*?)</think>", response, flags=re.DOTALL)
+                        if think_match:
+                            clean_response = response[:think_match.start()] + '\n' + response[think_match.end():]  # everything else
+                        else:
+                            clean_response = response
+                        history_model_output.append(clean_response)
                         i += 1
                         if i % 10 == 0:
                             time.sleep(10)  # to avoid rate limiting
@@ -407,7 +420,7 @@ def generate_model_output_history(dialogue_file, model, instruction_session_path
 
 
 def generate_model_output_instructions_chain(dialogue_file, model, output_dir, connection_mode='cohere', n_gpus=2,
-                                             model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+                                             model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None, thinking=0):
     """Output when a chain of instructions is provided as input."""
     model_name = model.split("/")[-1]
 
@@ -516,8 +529,13 @@ def generate_model_output_instructions_chain(dialogue_file, model, output_dir, c
                     instruction_topics_str = ", ".join(instruction_topics)
                     for eval in history_eval_query:
                         prompt = prompt_template.replace("[eval_query]", eval).replace("[instruction_topic]", instruction_topics_str)
-                        response = openai_model_generate(client, prompt, preamble, model_name=model)
-                        model_output.append(response)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model, thinking=(True if thinking > 0 else False))
+                        think_match = re.search(r"<think>(.*?)</think>", response, flags=re.DOTALL)
+                        if think_match:
+                            clean_response = response[:think_match.start()] + '\n' + response[think_match.end():]  # everything else
+                        else:
+                            clean_response = response
+                        model_output.append(clean_response)
                         i += 1
                         if i % 10 == 0:
                             time.sleep(10)  # to avoid rate limiting
@@ -540,7 +558,7 @@ def generate_model_output_instructions_chain(dialogue_file, model, output_dir, c
 
 
 def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode='cohere', retrieval_mode='cohere', n_gpus=2,
-                              model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', retriever_name='', cache_path=None):
+                              model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', retriever_name='', cache_path=None, thinking=0):
     """RAG"""
     # Load dialogue
     model_name = model.split("/")[-1]
@@ -591,7 +609,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
         if retrieval_mode == 'local':
             # initialize retriever models in local mode
             print(f"Retriever name: {retriever_name}\nName split: {retriever_name.split('/')}")
-            retriever_family = retriever_name.split("/")[0]
+            retriever_family = (retriever_name.split("/")[0]).lower()
             use_v3 = False
             if retriever_family == 'jinaai':
                 if 'v3' in retriever_name:
@@ -602,7 +620,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                 else:
                     from sentence_transformers import CrossEncoder
                     retriever_model = CrossEncoder(retriever_name, automodel_args={"torch_dtype": "auto"}, trust_remote_code=True, cache_folder=str(cache_dir))
-            elif retriever_family == 'BAAI':
+            elif retriever_family == 'baai':
                 from FlagEmbedding import FlagReranker
                 retriever_model = FlagReranker(retriever_name, use_fp16=True, cache_dir=str(cache_dir))
 
@@ -631,7 +649,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                                 relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
                                 relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
 
-                        elif retriever_family == 'BAAI':
+                        elif retriever_family == 'baai':
                             scores = retriever_model.compute_score([[eval, history_sessions_list[i]] for i in range(len(history_sessions_list))], normalize=True)
                             ranked_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:num_instruction_sessions]
                             relevant_chunks = [(i, history_sessions_list[i]) for i in sorted(ranked_indices)]
@@ -702,7 +720,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
             # initialize retriever models in local mode
             if retrieval_mode == 'local':
                 cache_dir = Path(cache_path) if cache_path is not None else Path(__file__).absolute().parent.parent.parent.parent / 'cache'
-                retriever_family = retriever_name.split("/")[0]
+                retriever_family = (retriever_name.split("/")[0]).lower()
                 use_v3 = False
                 if retriever_family == 'jinaai':
                     if 'v3' in retriever_name:
@@ -713,7 +731,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                     else:
                         from sentence_transformers import CrossEncoder
                         retriever_model = CrossEncoder(retriever_name, automodel_args={"torch_dtype": "auto"}, trust_remote_code=True, cache_folder=str(cache_dir))
-                elif retriever_family == 'BAAI':
+                elif retriever_family == 'baai':
                     from FlagEmbedding import FlagReranker
                     retriever_model = FlagReranker(retriever_name, use_fp16=True, cache_dir=str(cache_dir))
             
@@ -741,7 +759,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                                     relevant_chunks = retriever_model.rank(eval, history_sessions_list, top_k=n_docs, return_documents=True, convert_to_tensor=True)
                                     relevant_chunks = sorted([(x['corpus_id'], x['text']) for x in relevant_chunks], key=lambda x: x[0])
                             
-                            elif retriever_family == 'BAAI':
+                            elif retriever_family == 'baai':
                                 scores = retriever_model.compute_score([[eval, history_sessions_list[i]] for i in range(len(history_sessions_list))], normalize=True)
                                 ranked_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:num_instruction_sessions]
                                 relevant_chunks = [(i, history_sessions_list[i]) for i in sorted(ranked_indices)]
@@ -761,8 +779,13 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                                 .replace("[eval_query]", eval)
                                 .replace("[session]", relevant_context)
                         )
-                        response = openai_model_generate(client, prompt, preamble, model_name=model)
-                        rag_model_output.append(response)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model, thinking=(True if thinking > 0 else False))
+                        think_match = re.search(r"<think>(.*?)</think>", response, flags=re.DOTALL)
+                        if think_match:
+                            clean_response = response[:think_match.start()] + '\n' + response[think_match.end():]  # everything else
+                        else:
+                            clean_response = response
+                        rag_model_output.append(clean_response)
                         i += 1
                         if i % 10 == 0:
                             time.sleep(10)  # to avoid rate limiting
@@ -785,7 +808,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
 
 
 def generate_model_output_no_dialogue(dialogue_file, model, output_dir, connection_mode='cohere', n_gpus=2,
-                                      model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None):
+                                      model_url='http://localhost:12000/v1', api_key='a1b2c3d4e5', cache_path=None, thinking=0):
     """Output when no dialogue is provided."""
     model_name = model.split("/")[-1]
 
@@ -882,8 +905,13 @@ def generate_model_output_no_dialogue(dialogue_file, model, output_dir, connecti
                     ## history
                     for eval in history_eval_query:
                         prompt = prompt_template.replace("[eval_query]", eval)
-                        response = openai_model_generate(client, prompt, preamble, model_name=model)
-                        model_output.append(response)
+                        response = openai_model_generate(client, prompt, preamble, model_name=model, thinking=(True if thinking > 0 else False))
+                        think_match = re.search(r"<think>(.*?)</think>", response, flags=re.DOTALL)
+                        if think_match:
+                            clean_response = response[:think_match.start()] + '\n' + response[think_match.end():]  # everything else
+                        else:
+                            clean_response = response
+                        model_output.append(clean_response)
                         i += 1
                         if i % 10 == 0:
                             time.sleep(10)  # to avoid rate limiting
