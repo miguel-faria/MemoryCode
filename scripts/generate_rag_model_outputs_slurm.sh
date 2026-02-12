@@ -18,8 +18,9 @@
 date;hostname;pwd
 
 if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "maia" ] || [ "$HOSTNAME" = "hades" ] ; then
-  # cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
-  cache_dir="/mnt/scratch-hades/miguelfaria/models"
+   cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
+  # cache_dir="/mnt/scratch-hades/miguelfaria/models"
+  # cache_dir="/mnt/scratch-hades/shared/models"
   data_dir="/mnt/data-artemis/miguelfaria/agentic_llm"
 else
   cache_dir="./cache"
@@ -42,7 +43,7 @@ fi
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
 # model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
-model="Qwen/Qwen3-32B-AWQ"
+model="Qwen/Qwen3-32B"
 model_name="${model##*/}"
 retriever_name="jinaai/jina-reranker-v3"
 retrieval_mode="local"
@@ -91,7 +92,7 @@ else
                       --tensor-parallel-size "$n_gpus" \
                       --host "$host" \
                       --port "$port" \
-                      --max-model-len 2048 \
+                      --max-model-len 4096 \
                       --enforce-eager &
                       # --reasoning-parser mistral \
                       # --tokenizer_mode mistral \
