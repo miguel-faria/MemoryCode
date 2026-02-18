@@ -9,7 +9,7 @@
 #SBATCH --gres=gpu:2
 # #SBATCH --gres=gpu:quadro6000:1
 # #SBATCH --gres=gpu:rtx2080:2
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --mem-per-cpu=8G
 #SBATCH --qos=gpu-h200
 #SBATCH --output="job-%x-%j.out"
@@ -18,8 +18,8 @@
 date;hostname;pwd
 
 if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "maia" ] || [ "$HOSTNAME" = "hades" ] ; then
-  # cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
-  cache_dir="/mnt/scratch-hades/miguelfaria/models"
+   cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
+  # cache_dir="/mnt/scratch-hades/miguelfaria/models"
   # cache_dir="/mnt/scratch-hades/shared/models"
   data_dir="/mnt/data-artemis/miguelfaria/agentic_llm"
 else
@@ -44,7 +44,7 @@ n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
 # model="/mnt/scratch-hades/shared/models/Llama-3.3-70B-Instruct"
 # model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
-model="Qwen/Qwen3-32B-AWQ"
+model="Qwen/Qwen3-32B"
 model_name="${model##*/}"
 connection_mode="vllm"
 api_key="a1b2c3d4e5"
@@ -107,17 +107,17 @@ model_id=$!
 sleep 10m
 
 # Sessions
-touch "$instruction_session_dir/completed_${model_name}_sessions.txt"
-for dialogue_id in {1..360}; do
-    python -m fire code/generate_model_output.py generate_model_output_session \
-          --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
-          --model "$model" \
-          --instruction_output_path "$instruction_dir/${model_name}.json" \
-          --output_dir "$instruction_session_dir" \
-          --connection_mode "$connection_mode" \
-          --n_gpus "$n_gpus" \
-          --cache_path "$cache_dir"
-done
+# touch "$instruction_session_dir/completed_${model_name}_sessions.txt"
+# for dialogue_id in {1..360}; do
+#     python -m fire code/generate_model_output.py generate_model_output_session \
+#           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
+#           --model "$model" \
+#           --instruction_output_path "$instruction_dir/${model_name}.json" \
+#           --output_dir "$instruction_session_dir" \
+#           --connection_mode "$connection_mode" \
+#           --n_gpus "$n_gpus" \
+#           --cache_path "$cache_dir"
+# done
 
 # History
 touch "$instruction_history_dir/completed_${model_name}_histories.txt"
