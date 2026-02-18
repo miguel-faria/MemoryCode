@@ -2,12 +2,13 @@
 
 #SBATCH --mail-type=BEGIN,END,FAIL         # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=miguel.faria@tecnico.ulisboa.pt
-#SBATCH --job-name=generate_memory_code_instructions
+#SBATCH --job-name=generate_memory_code_outputs
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=2
 #SBATCH --ntasks-per-node=1
 # #SBATCH --gres=gpu:2
-#SBATCH --gres=gpu:rtx2080:0,gpu:quadro6000:2
+#SBATCH --gres=gpu:quadro6000:2
+# #SBATCH --gres=gpu:rtx2080:2
 #SBATCH --time=24:00:00
 #SBATCH --mem-per-cpu=8G
 #SBATCH --qos=gpu-medium
@@ -17,8 +18,8 @@
 date;hostname;pwd
 
 if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "maia" ] || [ "$HOSTNAME" = "hades" ] ; then
-  cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
-  # cache_dir="/mnt/scratch-hades/miguelfaria/models"
+  # cache_dir="/mnt/scratch-artemis/miguelfaria/llms/checkpoints"
+  cache_dir="/mnt/scratch-hades/miguelfaria/models"
   # cache_dir="/mnt/scratch-hades/shared/models"
   data_dir="/mnt/data-artemis/miguelfaria/agentic_llm"
 else
@@ -41,14 +42,14 @@ fi
 
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
-# model=""
 # model="/mnt/scratch-hades/shared/models/Llama-3.3-70B-Instruct"
 # model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
 model="Qwen/Qwen3-32B-AWQ"
+model_name="${model##*/}"
 connection_mode="vllm"
 api_key="a1b2c3d4e5"
 host="localhost"
-port=14500
+port=12500
 gpu_usage=0.75
 model_url="http://$host:$port/v1"
 thinking=0
@@ -63,6 +64,8 @@ export PYTHONPATH=$(pwd)/code:$PYTHONPATH
 mkdir -p "$instruction_dir"
 mkdir -p "$instruction_session_dir"
 mkdir -p "$instruction_history_dir"
+
+echo "Serving model via vLLM"
 if [ "$HOSTNAME" = "maia" ] ; then
   vllm serve "$model" --download-dir "$cache_dir" \
                       --dtype float16 \
@@ -71,7 +74,7 @@ if [ "$HOSTNAME" = "maia" ] ; then
                       --tensor-parallel-size "$n_gpus" \
                       --host "$host" \
                       --port "$port" \
-                      --max-model-len 2048 \
+                      --max-model-len 32768 \
                       --enforce-eager &
                       # --reasoning-parser mistral \
                       # --tokenizer_mode mistral \
@@ -90,7 +93,7 @@ else
                       --tensor-parallel-size "$n_gpus" \
                       --host "$host" \
                       --port "$port" \
-                      --max-model-len 2048 \
+                      --max-model-len 32768 \
                       --enforce-eager &
                       # --reasoning-parser mistral \
                       # --tokenizer_mode mistral \
@@ -103,19 +106,37 @@ else
                       # --reasoning-parser deepseek_r1 &
 fi
 model_id=$!
-sleep 10m                            
+sleep 10m
 
-# Instructions
-python -m fire code/generate_model_output.py generate_model_output_instruction --model "$model" \
-    --topics_file "$data_dir"/memory_code/topics.json \
-    --output_dir "$instruction_dir" \
-    --cache_path "$cache_dir" \
-    --connection_mode "$connection_mode" \
-    --n_gpus "$n_gpus" \
-    --model_url "$model_url" \
-    --api_key "$api_key" \
-    --thinking "$thinking" 
+# Sessions
+echo "Starting model testing for single sessions"
+touch "$instruction_session_dir/completed_${model_name}_sessions.txt"
+for dialogue_id in {1..360}; do
+    python -m fire code/generate_model_output.py generate_model_output_session \
+          --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
+          --model "$model" \
+          --instruction_output_path "$instruction_dir/${model_name}.json" \
+          --output_dir "$instruction_session_dir" \
+          --connection_mode "$connection_mode" \
+          --n_gpus "$n_gpus" \
+          --cache_path "$cache_dir"
+done
+
+# History
+# echo "Starting model testing for full history sessions"
+# touch "$instruction_history_dir/completed_${model_name}_histories.txt"
+# for dialogue_id in {1..360}; do
+#    python -m fire code/generate_model_output.py generate_model_output_history \
+#           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
+#           --model "$model" \
+#           --instruction_session_path "$instruction_session_dir/${model_name}/output_${dialogue_id}.json" \
+#           --output_dir "$instruction_history_dir" \
+#           --connection_mode "$connection_mode" \
+#           --n_gpus "$n_gpus" \
+#           --cache_path "$cache_dir" \
+#           --model_url "$model_url" \
+#           --thinking "$thinking"
+# done
 
 kill -9 "$model_id"
 conda deactivate
-date
