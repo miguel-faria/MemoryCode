@@ -31,7 +31,7 @@ fi
 # Move to script directory to ensure sources are correctly accessed
 if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "dionysus" ]; then
   script_path="/mnt/home/$USER"/post_doc/agentic_llm/memory_code_dataset
-elif [ "$HOSTNAME" = "hades" ]; then
+elif [ "$HOSTNAME" = "hades" ] || [ "$HOSTNAME" = "maia" ]; then
   script_path="/home/$USER"/post_doc/agentic_llm/memory_code_dataset
 else
   script_path="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; cd .. ; pwd -P )"
