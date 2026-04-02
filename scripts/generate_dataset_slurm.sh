@@ -12,7 +12,8 @@
 #SBATCH --time=12:00:00
 #SBATCH --mem-per-cpu=8G
 #SBATCH --qos=gpu-h200
-#SBATCH --output="job-%x-%j.out"
+#SBATCH --chdir=/mnt/scratch-artemis/miguelfaria/logs/agentic_llm/memory_code_dataset
+#SBATCH --output=job-%x-%j.out
 #SBATCH --partition=h200
 
 date;hostname;pwd
@@ -24,6 +25,15 @@ if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" 
 else
   cache_dir="./cache"
   data_dir="./data"
+fi
+
+# Move to script directory to ensure sources are correctly accessed
+if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "dionysus" ]; then
+  script_path="/mnt/home/$USER"/post_doc/agentic_llm/memory_code_dataset
+elif [ "$HOSTNAME" = "hades" ]; then
+  script_path="/home/$USER"/post_doc/agentic_llm/memory_code_dataset
+else
+  script_path="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; cd .. ; pwd -P )"
 fi
 
 export LD_LIBRARY_PATH="/opt/cuda/lib64:$LD_LIBRARY_PATH"
@@ -41,6 +51,7 @@ fi
 
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
+export PYTHONPATH="$script_path"/code:$PYTHONPATH
 
 set -e
 
@@ -67,7 +78,7 @@ set -e
 #             instruction_update_rate_max=0.5
 #         fi
 #         echo "$n $id $instruction_min $instruction_max $instruction_only_session_max"
-#         python code/generate_template.py --template_id $id \
+#         python "$script_path"/code/generate_template.py --template_id $id \
 #             --n_session_min $n \
 #             --n_session_max $n \
 #             --proportion_of_session_with_instruction_min $instruction_min \
@@ -92,7 +103,7 @@ set -e
 # Prompt generation
 # echo "Generating prompts ..."
 # for template_file in "$data_dir"/memory_code/dataset/*.json; do
-#     python code/generate_prompt.py --template_file $template_file --output_dir "$data_dir"/memory_code/prompts
+#     python "$script_path"/code/generate_prompt.py --template_file $template_file --output_dir "$data_dir"/memory_code/prompts
 # done
 
 # Dialogue generation
@@ -110,7 +121,7 @@ model_url="http://$host:$port/v1"
 # model_id=$!
 # sleep 2.5m
 echo "Starting dialogue generation script"
-python code/generate_dialogue.py --prompt_dir "$data_dir"/memory_code/prompts \
+python "$script_path"/code/generate_dialogue.py --prompt_dir "$data_dir"/memory_code/prompts \
                                   --template_dir "$data_dir"/memory_code/dataset \
                                   --connection_mode local \
                                   --model_name "$model" \

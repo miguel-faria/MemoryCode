@@ -11,9 +11,16 @@
 # #SBATCH --gres=gpu:rtx2080:2
 #SBATCH --time=24:00:00
 #SBATCH --mem-per-cpu=8G
+<<<<<<< HEAD
 #SBATCH --qos=gpu-medium
 #SBATCH --output="job-%x-%j.out"
 # #SBATCH --partition=h200
+=======
+#SBATCH --qos=gpu-h200
+#SBATCH --chdir=/mnt/scratch-artemis/miguelfaria/logs/agentic_llm/memory_code_dataset
+#SBATCH --output=job-%x-%j.out
+#SBATCH --partition=h200
+>>>>>>> 1080bf47ecfe54d4038b9d5e6c53da4c3f5866ed
 
 date;hostname;pwd
 
@@ -25,6 +32,15 @@ if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" 
 else
   cache_dir="./cache"
   data_dir="./data"
+fi
+
+# Move to script directory to ensure sources are correctly accessed
+if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "dionysus" ]; then
+  script_path="/mnt/home/$USER"/post_doc/agentic_llm/memory_code_dataset
+elif [ "$HOSTNAME" = "hades" ]; then
+  script_path="/home/$USER"/post_doc/agentic_llm/memory_code_dataset
+else
+  script_path="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; cd .. ; pwd -P )"
 fi
 
 export LD_LIBRARY_PATH="/opt/cuda/lib64:$LD_LIBRARY_PATH"
@@ -61,7 +77,7 @@ instruction_dir="$data_dir"/memory_code/model_outputs/instruction
 instruction_session_dir="$data_dir"/memory_code/model_outputs/instruction_session
 instruction_history_dir="$data_dir"/memory_code/model_outputs/instruction_session_history
 
-export PYTHONPATH=$(pwd)/code:$PYTHONPATH
+export PYTHONPATH="$script_path"/code:$PYTHONPATH
 mkdir -p "$instruction_dir"
 mkdir -p "$instruction_session_dir"
 mkdir -p "$instruction_history_dir"
@@ -110,7 +126,7 @@ sleep 10m
 # Sessions
 touch "$instruction_session_dir/completed_${model_name}_rag.txt"
 for dialogue_id in {1..360}; do
-    python -m fire code/generate_model_output.py generate_model_output_rag \
+    python -m fire "$script_path"/code/generate_model_output.py generate_model_output_rag \
           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
           --model "$model" \
           --output_dir "$instruction_session_dir" \

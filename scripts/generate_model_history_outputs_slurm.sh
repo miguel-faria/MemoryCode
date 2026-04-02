@@ -12,7 +12,8 @@
 #SBATCH --time=24:00:00
 #SBATCH --mem-per-cpu=8G
 #SBATCH --qos=gpu-medium
-#SBATCH --output="job-%x-%j.out"
+#SBATCH --chdir=/mnt/scratch-artemis/miguelfaria/logs/agentic_llm/memory_code_dataset
+#SBATCH --output=job-%x-%j.out
 # #SBATCH --partition=h200
 
 date;hostname;pwd
@@ -25,6 +26,15 @@ if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" 
 else
   cache_dir="./cache"
   data_dir="./data"
+fi
+
+# Move to script directory to ensure sources are correctly accessed
+if [ "$HOSTNAME" = "artemis" ] || [ "$HOSTNAME" = "poseidon" ] || [ "$HOSTNAME" = "dionysus" ]; then
+  script_path="/mnt/home/$USER"/post_doc/agentic_llm/memory_code_dataset
+elif [ "$HOSTNAME" = "hades" ]; then
+  script_path="/home/$USER"/post_doc/agentic_llm/memory_code_dataset
+else
+  script_path="$( cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; cd .. ; pwd -P )"
 fi
 
 export LD_LIBRARY_PATH="/opt/cuda/lib64:$LD_LIBRARY_PATH"
@@ -60,7 +70,7 @@ instruction_dir="$data_dir"/memory_code/model_outputs/instruction
 instruction_session_dir="$data_dir"/memory_code/model_outputs/instruction_session
 instruction_history_dir="$data_dir"/memory_code/model_outputs/instruction_session_history
 
-export PYTHONPATH=$(pwd)/code:$PYTHONPATH
+export PYTHONPATH="$script_path"/code:$PYTHONPATH
 mkdir -p "$instruction_dir"
 mkdir -p "$instruction_session_dir"
 mkdir -p "$instruction_history_dir"
@@ -112,7 +122,7 @@ sleep 2.5m
 # echo "Starting model testing for single sessions"
 # touch "$instruction_session_dir/completed_${model_name}_sessions.txt"
 # for dialogue_id in {1..360}; do
-#     python -m fire code/generate_model_output.py generate_model_output_session \
+#     python -m fire "$script_path"/code/generate_model_output.py generate_model_output_session \
 #           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
 #           --model "$model" \
 #           --instruction_output_path "$instruction_dir/${model_name}.json" \
@@ -126,7 +136,7 @@ sleep 2.5m
 echo "Starting model testing for full history sessions"
 touch "$instruction_history_dir/completed_${model_name}_histories.txt"
 for dialogue_id in {1..360}; do
-   python -m fire code/generate_model_output.py generate_model_output_history \
+   python -m fire "$script_path"/code/generate_model_output.py generate_model_output_history \
           --dialogue_file "$data_dir/memory_code/dataset/dialogue_${dialogue_id}.json" \
           --model "$model" \
           --instruction_session_path "$instruction_session_dir/${model_name}/output_${dialogue_id}.json" \
