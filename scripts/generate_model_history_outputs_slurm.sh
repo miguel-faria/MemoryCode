@@ -106,7 +106,7 @@ else
                       # --reasoning-parser deepseek_r1 &
 fi
 model_id=$!
-sleep 10m
+sleep 2.5m
 
 # Sessions
 # echo "Starting model testing for single sessions"
