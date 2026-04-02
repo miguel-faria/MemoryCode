@@ -113,7 +113,7 @@ else
                       # --reasoning-parser deepseek_r1 &
 fi
 model_id=$!
-sleep 10m                            
+sleep 2.5m                            
 
 # Instructions
 python -m fire "$script_path"/code/generate_model_output.py generate_model_output_instruction --model "$model" \

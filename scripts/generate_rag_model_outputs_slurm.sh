@@ -6,15 +6,21 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:2
-# #SBATCH --gres=gpu:quadro6000:1
+# #SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:quadro6000:2
 # #SBATCH --gres=gpu:rtx2080:2
 #SBATCH --time=24:00:00
 #SBATCH --mem-per-cpu=8G
+<<<<<<< HEAD
+#SBATCH --qos=gpu-medium
+#SBATCH --output="job-%x-%j.out"
+# #SBATCH --partition=h200
+=======
 #SBATCH --qos=gpu-h200
 #SBATCH --chdir=/mnt/scratch-artemis/miguelfaria/logs/agentic_llm/memory_code_dataset
 #SBATCH --output=job-%x-%j.out
 #SBATCH --partition=h200
+>>>>>>> 1080bf47ecfe54d4038b9d5e6c53da4c3f5866ed
 
 date;hostname;pwd
 
@@ -53,7 +59,7 @@ fi
 n_gpus=$(echo "${CUDA_VISIBLE_DEVICES:-""}" | tr ',' '\n' | wc -l)
 source "$conda_dir"/bin/activate llm_env
 # model="/mnt/scratch-hades/miguelfaria/models/Tower-Plus-72B"
-model="Qwen/Qwen3-32B"
+model="Qwen/Qwen3-32B-AWQ"
 model_name="${model##*/}"
 retriever_name="jinaai/jina-reranker-v3"
 retrieval_mode="local"
@@ -83,7 +89,7 @@ if [ "$HOSTNAME" = "maia" ] ; then
                       --tensor-parallel-size "$n_gpus" \
                       --host "$host" \
                       --port "$port" \
-                      --max-model-len 2048 \
+                      --max-model-len 32768 \
                       --enforce-eager &
                       # --reasoning-parser mistral \
                       # --tokenizer_mode mistral \
@@ -102,7 +108,7 @@ else
                       --tensor-parallel-size "$n_gpus" \
                       --host "$host" \
                       --port "$port" \
-                      --max-model-len 4096 \
+                      --max-model-len 32768 \
                       --enforce-eager &
                       # --reasoning-parser mistral \
                       # --tokenizer_mode mistral \
@@ -130,5 +136,5 @@ for dialogue_id in {1..360}; do
           --retrieval_mode "$retrieval_mode" \
           --retriever_name "$retriever_name" \
           --model_url "$model_url" \
-          --thinking "$thinking" \
+          --thinking "$thinking"
 done

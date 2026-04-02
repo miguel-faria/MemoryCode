@@ -600,7 +600,7 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
                 temperature=1.0,
                 top_k=5,
                 top_p=0.75,
-                max_tokens=1024,
+                max_tokens=2048,
         )
         
         # initialize retriever in local mode

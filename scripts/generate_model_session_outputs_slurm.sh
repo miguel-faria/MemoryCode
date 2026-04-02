@@ -116,7 +116,7 @@ else
                       # --reasoning-parser deepseek_r1 &
 fi
 model_id=$!
-sleep 10m
+sleep 2.5m
 
 # Sessions
 echo "Starting model testing for single sessions"
@@ -128,6 +128,7 @@ for dialogue_id in {1..360}; do
           --instruction_output_path "$instruction_dir/${model_name}.json" \
           --output_dir "$instruction_session_dir" \
           --connection_mode "$connection_mode" \
+          --model_url "$model_url" \
           --n_gpus "$n_gpus" \
           --cache_path "$cache_dir"
 done
