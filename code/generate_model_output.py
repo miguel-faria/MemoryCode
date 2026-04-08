@@ -800,8 +800,8 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
     output_dir = os.path.join(output_dir, model_name)
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
-    output_file = os.path.join(output_dir, f"output_{dialogue_id}_rag.json")
-    with open(output_file, "w") as f:
+    output_file = os.path.join(output_dir, f"output_{dialogue_id}.json")
+    with open(output_file, "a") as f:
         json.dump(model_outputs, f, indent=2)
     
     with open(completed_rag_file, "a") as f:
