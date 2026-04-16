@@ -96,8 +96,18 @@ def generate_model_output_instruction(model, topics_file, output_dir, connection
             
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{model_name}.json")
-    with open(output_file, "a") as f:
-        json.dump(model_outputs, f, indent=2)
+    open_mode = "r+" if os.path.exists(output_file) and os.path.getsize(output_file) > 0 else "w"
+    with open(output_file, open_mode) as f:
+        if open_mode == "r+":
+            existing_outputs = json.load(f)
+            for i, session_output in enumerate(existing_outputs.get("sessions", [])):
+                if i < len(model_outputs["sessions"]):
+                    existing_outputs["sessions"][i].update(model_outputs["sessions"][i])
+            f.seek(0)
+            f.truncate()
+            json.dump(existing_outputs, f, indent=2)
+        else:
+            json.dump(model_outputs, f, indent=2)
 
 
 def generate_model_output_session(dialogue_file, model, instruction_output_path, output_dir, connection_mode='cohere', n_gpus=2,
@@ -268,8 +278,18 @@ def generate_model_output_session(dialogue_file, model, instruction_output_path,
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
     output_file = os.path.join(output_dir, f"output_{dialogue_id}.json")
-    with open(output_file, "w") as f:
-        json.dump(model_outputs, f, indent=2)
+    open_mode = "r+" if os.path.exists(output_file) and os.path.getsize(output_file) > 0 else "w"
+    with open(output_file, open_mode) as f:
+        if open_mode == "r+":
+            existing_outputs = json.load(f)
+            for i, session_output in enumerate(existing_outputs.get("sessions", [])):
+                if i < len(model_outputs["sessions"]):
+                    existing_outputs["sessions"][i].update(model_outputs["sessions"][i])
+            f.seek(0)
+            f.truncate()
+            json.dump(existing_outputs, f, indent=2)
+        else:
+            json.dump(model_outputs, f, indent=2)
     
     with open(completed_sessions_file, "a") as f:
         f.write(f"dialogue_{dialogue_id}\n")
@@ -412,8 +432,18 @@ def generate_model_output_history(dialogue_file, model, instruction_session_path
     output_dir = os.path.join(output_dir, model_name)
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, os.path.basename(instruction_session_path))
-    with open(output_file, "w") as f:
-        json.dump(model_outputs, f, indent=2)
+    open_mode = "r+" if os.path.exists(output_file) and os.path.getsize(output_file) > 0 else "w"
+    with open(output_file, open_mode) as f:
+        if open_mode == "r+":
+            existing_outputs = json.load(f)
+            for i, session_output in enumerate(existing_outputs.get("sessions", [])):
+                if i < len(model_outputs["sessions"]):
+                    existing_outputs["sessions"][i].update(model_outputs["sessions"][i])
+            f.seek(0)
+            f.truncate()
+            json.dump(existing_outputs, f, indent=2)
+        else:
+            json.dump(model_outputs, f, indent=2)
     
     with open(completed_histories_file, "a") as f:
         f.write(f"dialogue_{dialogue_id}\n")
@@ -550,8 +580,18 @@ def generate_model_output_instructions_chain(dialogue_file, model, output_dir, c
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
     output_file = os.path.join(output_dir, f"output_{dialogue_id}.json")
-    with open(output_file, "w") as f:
-        json.dump(model_outputs, f, indent=2)
+    open_mode = "r+" if os.path.exists(output_file) and os.path.getsize(output_file) > 0 else "w"
+    with open(output_file, open_mode) as f:
+        if open_mode == "r+":
+            existing_outputs = json.load(f)
+            for i, session_output in enumerate(existing_outputs.get("sessions", [])):
+                if i < len(model_outputs["sessions"]):
+                    existing_outputs["sessions"][i].update(model_outputs["sessions"][i])
+            f.seek(0)
+            f.truncate()
+            json.dump(existing_outputs, f, indent=2)
+        else:
+            json.dump(model_outputs, f, indent=2)
     
     with open(completed_instruct_chain_file, "a") as f:
         f.write(f"dialogue_{dialogue_id}\n")
@@ -801,8 +841,18 @@ def generate_model_output_rag(dialogue_file, model, output_dir, connection_mode=
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
     output_file = os.path.join(output_dir, f"output_{dialogue_id}_rag.json")
-    with open(output_file, "w") as f:
-        json.dump(model_outputs, f, indent=2)
+    open_mode = "r+" if os.path.exists(output_file) and os.path.getsize(output_file) > 0 else "w"
+    with open(output_file, open_mode) as f:
+        if open_mode == "r+":
+            existing_outputs = json.load(f)
+            for i, session_output in enumerate(existing_outputs.get("sessions", [])):
+                if i < len(model_outputs["sessions"]):
+                    existing_outputs["sessions"][i].update(model_outputs["sessions"][i])
+            f.seek(0)
+            f.truncate()
+            json.dump(existing_outputs, f, indent=2)
+        else:
+            json.dump(model_outputs, f, indent=2)
     
     with open(completed_rag_file, "a") as f:
         f.write(f"dialogue_{dialogue_id}\n")
@@ -927,8 +977,18 @@ def generate_model_output_no_dialogue(dialogue_file, model, output_dir, connecti
     os.makedirs(output_dir, exist_ok=True)
     dialogue_id = os.path.basename(dialogue_file).split("_")[1].split(".")[0]
     output_file = os.path.join(output_dir, f"output_{dialogue_id}.json")
-    with open(output_file, "w") as f:
-        json.dump(model_outputs, f, indent=2)
+    open_mode = "r+" if os.path.exists(output_file) and os.path.getsize(output_file) > 0 else "w"
+    with open(output_file, open_mode) as f:
+        if open_mode == "r+":
+            existing_outputs = json.load(f)
+            for i, session_output in enumerate(existing_outputs.get("sessions", [])):
+                if i < len(model_outputs["sessions"]):
+                    existing_outputs["sessions"][i].update(model_outputs["sessions"][i])
+            f.seek(0)
+            f.truncate()
+            json.dump(existing_outputs, f, indent=2)
+        else:
+            json.dump(model_outputs, f, indent=2)
     
     with open(completed_no_dialogue_file, "a") as f:
         f.write(f"dialogue_{dialogue_id}\n")
